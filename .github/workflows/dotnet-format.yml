@@ -17,6 +17,9 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v3
 
+      - name: Creating sln
+        run: dotnet new sln --name Fantasy-Quest --output ./Fantasy-Quest
+
       - name: Run dotnet format
         run: dotnet format Fantasy-Quest/Fantasy-Quest.sln --verbosity diagnostic --verify-no-changes --no-restore
 
