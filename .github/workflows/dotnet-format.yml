@@ -11,16 +11,14 @@ jobs:
     runs-on: self-hosted
     
     steps:
-      - name: Setup .NET Core
-        uses: actions/setup-dotnet@v1
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: '5.0.x'
-
-      - name: Install dotnet-format tool
-        run: dotnet tool install -g dotnet-format
+          dotnet-version: '8.0.x'
+          cache: true
 
       - name: Check out code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Run dotnet format
         run: dotnet format '.\' --folder --check --verbosity diagnostic
@@ -29,16 +27,14 @@ jobs:
     runs-on: self-hosted
 
     steps:
-      - name: Setup .NET Core
-        uses: actions/setup-dotnet@v1
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: '6.0.x'
-
-      - name: Install csharpier tool
-        run: dotnet tool install csharpier -g
+          dotnet-version: '8.0.x'
+          cache: true
 
       - name: Check out code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Run csharpier format
         run: dotnet csharpier 'Assets\' --check
