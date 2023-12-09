@@ -21,7 +21,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Run dotnet format
-        run: dotnet format ./Fantasy-Quest/Assembly-CSharp.csproj --no-restore --verbosity diagnostic --verify-no-changes
+        run: dotnet format whitespace '.\Fantasy-Quest\Assets\Scripts\' --folder --verbosity diagnostic --verify-no-changes
 
   check-format-cscharpier:
     runs-on: self-hosted
