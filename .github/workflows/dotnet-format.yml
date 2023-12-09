@@ -1,0 +1,32 @@
+name: dotnet format
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  check-format-dotnet:
+    runs-on: self-hosted
+    
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v3
+
+      - name: Creating sln
+        run: dotnet new sln --name Fantasy-Quest --output ./Fantasy-Quest
+
+      - name: Run dotnet format
+        run: dotnet format Fantasy-Quest/Fantasy-Quest.sln --verbosity diagnostic --verify-no-changes --no-restore
+
+  check-format-cscharpier:
+    runs-on: self-hosted
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v3
+
+      - name: Run csharpier format
+        run: dotnet csharpier '.\Fantasy-Quest\Assets\Scripts\' --check
+  
