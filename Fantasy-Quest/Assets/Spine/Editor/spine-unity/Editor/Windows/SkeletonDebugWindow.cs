@@ -36,1043 +36,557 @@
 #endif
 
 using System.Collections.Generic;
+using UnityEngine;
 using UnityEditor;
 using UnityEditor.AnimatedValues;
-using UnityEngine;
-using Icons = Spine.Unity.Editor.SpineEditorUtilities.Icons;
 
-namespace Spine.Unity.Editor
-{
-    public class SkeletonDebugWindow : EditorWindow
-    {
-        private const bool IsUtilityWindow = true;
-        internal static bool showBoneNames,
-            showPaths = true,
-            showShapes = true,
-            showConstraints = true;
+namespace Spine.Unity.Editor {
+	using Editor = UnityEditor.Editor;
+	using Icons = SpineEditorUtilities.Icons;
 
-        [MenuItem("CONTEXT/SkeletonRenderer/Open Skeleton Debug Window", false, 5000)]
-        public static void Init()
-        {
-            SkeletonDebugWindow window = EditorWindow.GetWindow<SkeletonDebugWindow>(
-                IsUtilityWindow
-            );
-            window.minSize = new Vector2(330f, 360f);
-            window.maxSize = new Vector2(600f, 4000f);
-            window.titleContent = new GUIContent("Skeleton Debug", Icons.spine);
-            window.Show();
-            window.OnSelectionChange();
-        }
+	public class SkeletonDebugWindow : EditorWindow {
 
-        private static AnimBool showSkeleton = new(true);
-        private static AnimBool showSlotsTree = new(false);
-        private static AnimBool showConstraintsTree = new(false);
-        private static AnimBool showDrawOrderTree = new(false);
-        private static AnimBool showEventDataTree = new(false);
-        private static AnimBool showDataTree = new(false);
-        private static AnimBool showInspectBoneTree = new(false);
-        private Vector2 scrollPos;
-        private GUIContent SlotsRootLabel,
-            SkeletonRootLabel;
-        private GUIStyle BoldFoldoutStyle;
+		const bool IsUtilityWindow = true;
+		internal static bool showBoneNames, showPaths = true, showShapes = true, showConstraints = true;
 
-        public SkeletonRenderer skeletonRenderer;
-        private Skeleton skeleton;
-        private Skin activeSkin;
-        private bool isPrefab;
-        private SerializedProperty bpo;
-        private Bone bone;
+		[MenuItem("CONTEXT/SkeletonRenderer/Open Skeleton Debug Window", false, 5000)]
+		public static void Init () {
+			var window = EditorWindow.GetWindow<SkeletonDebugWindow>(IsUtilityWindow);
+			window.minSize = new Vector2(330f, 360f);
+			window.maxSize = new Vector2(600f, 4000f);
+			window.titleContent = new GUIContent("Skeleton Debug", Icons.spine);
+			window.Show();
+			window.OnSelectionChange();
+		}
 
-        [SpineBone(dataField: "skeletonRenderer")]
-        public string boneName;
-        private readonly Dictionary<Slot, List<Skin.SkinEntry>> attachmentTable = new();
-        private static bool staticLostValues = true;
 
-        private void OnSceneGUI(SceneView sceneView)
-        {
-            if (skeleton == null || skeletonRenderer == null || !skeletonRenderer.valid || isPrefab)
-            {
-                return;
-            }
+		static AnimBool showSkeleton = new AnimBool(true);
+		static AnimBool showSlotsTree = new AnimBool(false);
+		static AnimBool showConstraintsTree = new AnimBool(false);
+		static AnimBool showDrawOrderTree = new AnimBool(false);
+		static AnimBool showEventDataTree = new AnimBool(false);
+		static AnimBool showDataTree = new AnimBool(false);
+		static AnimBool showInspectBoneTree = new AnimBool(false);
 
-            Transform transform = skeletonRenderer.transform;
-            if (showPaths)
-            {
-                SpineHandles.DrawPaths(transform, skeleton);
-            }
+		Vector2 scrollPos;
 
-            if (showConstraints)
-            {
-                SpineHandles.DrawConstraints(transform, skeleton);
-            }
+		GUIContent SlotsRootLabel, SkeletonRootLabel;
+		GUIStyle BoldFoldoutStyle;
 
-            if (showBoneNames)
-            {
-                SpineHandles.DrawBoneNames(transform, skeleton);
-            }
+		public SkeletonRenderer skeletonRenderer;
+		Skeleton skeleton;
+		Skin activeSkin;
+		bool isPrefab;
 
-            if (showShapes)
-            {
-                SpineHandles.DrawBoundingBoxes(transform, skeleton);
-            }
+		SerializedProperty bpo;
+		Bone bone;
 
-            if (bone != null)
-            {
-                SpineHandles.DrawBone(skeletonRenderer.transform, bone, 1.5f, Color.cyan);
-                Handles.Label(
-                    bone.GetWorldPosition(skeletonRenderer.transform) + (Vector3.down * 0.15f),
-                    bone.Data.Name,
-                    SpineHandles.BoneNameStyle
-                );
-            }
-        }
+		[SpineBone(dataField:"skeletonRenderer")]
+		public string boneName;
 
-        private void OnSelectionChange()
-        {
-#if UNITY_2019_1_OR_NEWER
-            SceneView.duringSceneGui -= OnSceneGUI;
-            SceneView.duringSceneGui += OnSceneGUI;
-#else
-            SceneView.onSceneGUIDelegate -= this.OnSceneGUI;
-            SceneView.onSceneGUIDelegate += this.OnSceneGUI;
-#endif
+		readonly Dictionary<Slot, List<Skin.SkinEntry>> attachmentTable = new Dictionary<Slot, List<Skin.SkinEntry>>();
 
-            bool noSkeletonRenderer = false;
+		static bool staticLostValues = true;
 
-            GameObject selectedObject = Selection.activeGameObject;
-            if (selectedObject == null)
-            {
-                noSkeletonRenderer = true;
-            }
-            else
-            {
-                SkeletonRenderer selectedSkeletonRenderer =
-                    selectedObject.GetComponent<SkeletonRenderer>();
-                if (selectedSkeletonRenderer == null)
-                {
-                    noSkeletonRenderer = true;
-                }
-                else if (skeletonRenderer != selectedSkeletonRenderer)
-                {
-                    bone = null;
-                    if (
-                        skeletonRenderer != null
-                        && skeletonRenderer.SkeletonDataAsset
-                            != selectedSkeletonRenderer.SkeletonDataAsset
-                    )
-                    {
-                        boneName = null;
-                    }
+		void OnSceneGUI (SceneView sceneView) {
+			if (skeleton == null || skeletonRenderer == null || !skeletonRenderer.valid || isPrefab)
+				return;
 
-                    skeletonRenderer = selectedSkeletonRenderer;
-                    skeletonRenderer.Initialize(false);
-                    skeletonRenderer.LateUpdate();
-                    skeleton = skeletonRenderer.skeleton;
+			var transform = skeletonRenderer.transform;
+			if (showPaths) SpineHandles.DrawPaths(transform, skeleton);
+			if (showConstraints) SpineHandles.DrawConstraints(transform, skeleton);
+			if (showBoneNames) SpineHandles.DrawBoneNames(transform, skeleton);
+			if (showShapes) SpineHandles.DrawBoundingBoxes(transform, skeleton);
+
+			if (bone != null) {
+				SpineHandles.DrawBone(skeletonRenderer.transform, bone, 1.5f, Color.cyan);
+				Handles.Label(bone.GetWorldPosition(skeletonRenderer.transform) + (Vector3.down * 0.15f), bone.Data.Name, SpineHandles.BoneNameStyle);
+			}
+		}
+
+		void OnSelectionChange () {
+		#if UNITY_2019_1_OR_NEWER
+			SceneView.duringSceneGui -= this.OnSceneGUI;
+			SceneView.duringSceneGui += this.OnSceneGUI;
+		#else
+			SceneView.onSceneGUIDelegate -= this.OnSceneGUI;
+			SceneView.onSceneGUIDelegate += this.OnSceneGUI;
+		#endif
+
+			bool noSkeletonRenderer = false;
+
+			var selectedObject = Selection.activeGameObject;
+			if (selectedObject == null) {
+				noSkeletonRenderer = true;
+			} else {
+				var selectedSkeletonRenderer = selectedObject.GetComponent<SkeletonRenderer>();
+				if (selectedSkeletonRenderer == null) {
+					noSkeletonRenderer = true;
+				} else if (skeletonRenderer != selectedSkeletonRenderer) {
+
+					bone = null;
+					if (skeletonRenderer != null && skeletonRenderer.SkeletonDataAsset != selectedSkeletonRenderer.SkeletonDataAsset)
+						boneName = null;
+
+					skeletonRenderer = selectedSkeletonRenderer;
+					skeletonRenderer.Initialize(false);
+					skeletonRenderer.LateUpdate();
+					skeleton = skeletonRenderer.skeleton;
 #if NEW_PREFAB_SYSTEM
-                    isPrefab = false;
+					isPrefab = false;
 #else
-                    isPrefab |= PrefabUtility.GetPrefabType(selectedObject) == PrefabType.Prefab;
+					isPrefab |= PrefabUtility.GetPrefabType(selectedObject) == PrefabType.Prefab;
 #endif
-                    UpdateAttachments();
-                }
-            }
+					UpdateAttachments();
+				}
+			}
 
-            if (noSkeletonRenderer)
-            {
-                Clear();
-            }
+			if (noSkeletonRenderer) Clear();
+			Repaint();
+		}
 
-            Repaint();
-        }
+		void Clear () {
+			skeletonRenderer = null;
+			skeleton = null;
+			attachmentTable.Clear();
+			isPrefab = false;
+			boneName = string.Empty;
+			bone = null;
+		#if UNITY_2019_1_OR_NEWER
+			SceneView.duringSceneGui -= this.OnSceneGUI;
+		#else
+			SceneView.onSceneGUIDelegate -= this.OnSceneGUI;
+		#endif
+		}
 
-        private void Clear()
-        {
-            skeletonRenderer = null;
-            skeleton = null;
-            attachmentTable.Clear();
-            isPrefab = false;
-            boneName = string.Empty;
-            bone = null;
-#if UNITY_2019_1_OR_NEWER
-            SceneView.duringSceneGui -= OnSceneGUI;
-#else
-            SceneView.onSceneGUIDelegate -= this.OnSceneGUI;
-#endif
-        }
+		void OnDestroy () {
+			Clear();
+		}
 
-        private void OnDestroy()
-        {
-            Clear();
-        }
+		static void FalseDropDown (string label, string stringValue, Texture2D icon = null, bool disabledGroup = false) {
+			if (disabledGroup) EditorGUI.BeginDisabledGroup(true);
+			var pos = EditorGUILayout.GetControlRect(true);
+			pos = EditorGUI.PrefixLabel(pos, SpineInspectorUtility.TempContent(label));
+			GUI.Button(pos, SpineInspectorUtility.TempContent(stringValue, icon), EditorStyles.popup);
+			if (disabledGroup) EditorGUI.EndDisabledGroup();
+		}
 
-        private static void FalseDropDown(
-            string label,
-            string stringValue,
-            Texture2D icon = null,
-            bool disabledGroup = false
-        )
-        {
-            if (disabledGroup)
-            {
-                EditorGUI.BeginDisabledGroup(true);
-            }
+		// Window GUI
+		void OnGUI () {
+			bool requireRepaint = false;
 
-            Rect pos = EditorGUILayout.GetControlRect(true);
-            pos = EditorGUI.PrefixLabel(pos, SpineInspectorUtility.TempContent(label));
-            _ = GUI.Button(
-                pos,
-                SpineInspectorUtility.TempContent(stringValue, icon),
-                EditorStyles.popup
-            );
-            if (disabledGroup)
-            {
-                EditorGUI.EndDisabledGroup();
-            }
-        }
+			if (staticLostValues) {
+				Clear();
+				OnSelectionChange();
+				staticLostValues = false;
+				requireRepaint = true;
+			}
 
-        // Window GUI
-        private void OnGUI()
-        {
-            bool requireRepaint = false;
+			if (SlotsRootLabel == null) {
+				SlotsRootLabel = new GUIContent("Slots", Icons.slotRoot);
+				SkeletonRootLabel = new GUIContent("Skeleton", Icons.skeleton);
+				BoldFoldoutStyle = new GUIStyle(EditorStyles.foldout);
+				BoldFoldoutStyle.fontStyle = FontStyle.Bold;
+				BoldFoldoutStyle.stretchWidth = true;
+				BoldFoldoutStyle.fixedWidth = 0;
+			}
 
-            if (staticLostValues)
-            {
-                Clear();
-                OnSelectionChange();
-                staticLostValues = false;
-                requireRepaint = true;
-            }
 
-            if (SlotsRootLabel == null)
-            {
-                SlotsRootLabel = new GUIContent("Slots", Icons.slotRoot);
-                SkeletonRootLabel = new GUIContent("Skeleton", Icons.skeleton);
-                BoldFoldoutStyle = new GUIStyle(EditorStyles.foldout)
-                {
-                    fontStyle = FontStyle.Bold,
-                    stretchWidth = true,
-                    fixedWidth = 0
-                };
-            }
+			EditorGUILayout.Space();
+			EditorGUI.BeginDisabledGroup(true);
+			EditorGUILayout.ObjectField(SpineInspectorUtility.TempContent("Debug Selection", Icons.spine), skeletonRenderer, typeof(SkeletonRenderer), true);
+			EditorGUI.EndDisabledGroup();
 
-            EditorGUILayout.Space();
-            EditorGUI.BeginDisabledGroup(true);
-            _ = EditorGUILayout.ObjectField(
-                SpineInspectorUtility.TempContent("Debug Selection", Icons.spine),
-                skeletonRenderer,
-                typeof(SkeletonRenderer),
-                true
-            );
-            EditorGUI.EndDisabledGroup();
+			if (skeleton == null || skeletonRenderer == null) {
+				EditorGUILayout.HelpBox("No SkeletonRenderer Spine GameObject selected.", MessageType.Info);
+				return;
+			}
 
-            if (skeleton == null || skeletonRenderer == null)
-            {
-                EditorGUILayout.HelpBox(
-                    "No SkeletonRenderer Spine GameObject selected.",
-                    MessageType.Info
-                );
-                return;
-            }
+			if (isPrefab) {
+				EditorGUILayout.HelpBox("SkeletonDebug only debugs Spine GameObjects in the scene.", MessageType.Warning);
+				return;
+			}
 
-            if (isPrefab)
-            {
-                EditorGUILayout.HelpBox(
-                    "SkeletonDebug only debugs Spine GameObjects in the scene.",
-                    MessageType.Warning
-                );
-                return;
-            }
+			if (!skeletonRenderer.valid) {
+				EditorGUILayout.HelpBox("Spine Component is invalid. Check SkeletonData Asset.", MessageType.Error);
+				return;
+			}
 
-            if (!skeletonRenderer.valid)
-            {
-                EditorGUILayout.HelpBox(
-                    "Spine Component is invalid. Check SkeletonData Asset.",
-                    MessageType.Error
-                );
-                return;
-            }
+			if (activeSkin != skeleton.Skin)
+				UpdateAttachments();
 
-            if (activeSkin != skeleton.Skin)
-            {
-                UpdateAttachments();
-            }
+			scrollPos = EditorGUILayout.BeginScrollView(scrollPos);
 
-            scrollPos = EditorGUILayout.BeginScrollView(scrollPos);
+			using (new SpineInspectorUtility.BoxScope(false)) {
+				if (SpineInspectorUtility.CenteredButton(SpineInspectorUtility.TempContent("Skeleton.SetToSetupPose()"))) {
+					skeleton.SetToSetupPose();
+					requireRepaint = true;
+				}
 
-            using (new SpineInspectorUtility.BoxScope(false))
-            {
-                if (
-                    SpineInspectorUtility.CenteredButton(
-                        SpineInspectorUtility.TempContent("Skeleton.SetToSetupPose()")
-                    )
-                )
-                {
-                    skeleton.SetToSetupPose();
-                    requireRepaint = true;
-                }
+				EditorGUI.BeginChangeCheck();
+				EditorGUILayout.LabelField("Scene View", EditorStyles.boldLabel);
+				using (new SpineInspectorUtility.LabelWidthScope()) {
+					showBoneNames = EditorGUILayout.Toggle("Show Bone Names", showBoneNames);
+					showPaths = EditorGUILayout.Toggle("Show Paths", showPaths);
+					showShapes = EditorGUILayout.Toggle("Show Shapes", showShapes);
+					showConstraints = EditorGUILayout.Toggle("Show Constraints", showConstraints);
+				}
+				requireRepaint |= EditorGUI.EndChangeCheck();
 
-                EditorGUI.BeginChangeCheck();
-                EditorGUILayout.LabelField("Scene View", EditorStyles.boldLabel);
-                using (new SpineInspectorUtility.LabelWidthScope())
-                {
-                    showBoneNames = EditorGUILayout.Toggle("Show Bone Names", showBoneNames);
-                    showPaths = EditorGUILayout.Toggle("Show Paths", showPaths);
-                    showShapes = EditorGUILayout.Toggle("Show Shapes", showShapes);
-                    showConstraints = EditorGUILayout.Toggle("Show Constraints", showConstraints);
-                }
-                requireRepaint |= EditorGUI.EndChangeCheck();
 
-                // Skeleton
-                showSkeleton.target = EditorGUILayout.Foldout(
-                    showSkeleton.target,
-                    SkeletonRootLabel,
-                    BoldFoldoutStyle
-                );
-                if (showSkeleton.faded > 0)
-                {
-                    using (new SpineInspectorUtility.IndentScope())
-                    {
-                        using (new EditorGUILayout.FadeGroupScope(showSkeleton.faded))
-                        {
-                            EditorGUI.BeginChangeCheck();
+				// Skeleton
+				showSkeleton.target = EditorGUILayout.Foldout(showSkeleton.target, SkeletonRootLabel, BoldFoldoutStyle);
+				if (showSkeleton.faded > 0) {
+					using (new SpineInspectorUtility.IndentScope()) {
+						using (new EditorGUILayout.FadeGroupScope(showSkeleton.faded)) {
+							EditorGUI.BeginChangeCheck();
 
-                            EditorGUI.BeginDisabledGroup(true);
-                            FalseDropDown(
-                                ".Skin",
-                                skeleton.Skin != null
-                                    ? skeletonRenderer.Skeleton.Skin.Name
-                                    : "<None>",
-                                Icons.skin
-                            );
-                            EditorGUI.EndDisabledGroup();
+							EditorGUI.BeginDisabledGroup(true);
+							FalseDropDown(".Skin", skeleton.Skin != null ? skeletonRenderer.Skeleton.Skin.Name : "<None>", Icons.skin);
+							EditorGUI.EndDisabledGroup();
 
-                            // Flip
-                            skeleton.ScaleX = EditorGUILayout.DelayedFloatField(
-                                ".ScaleX",
-                                skeleton.ScaleX
-                            );
-                            skeleton.ScaleY = EditorGUILayout.DelayedFloatField(
-                                ".ScaleY",
-                                skeleton.ScaleY
-                            );
-                            //EditorGUILayout.BeginHorizontal(GUILayout.MaxWidth(160f));
-                            ////EditorGUILayout.LabelField("Scale", GUILayout.Width(EditorGUIUtility.labelWidth - 20f));
-                            //GUILayout.EndHorizontal();
+							// Flip
+							skeleton.ScaleX = EditorGUILayout.DelayedFloatField(".ScaleX", skeleton.ScaleX);
+							skeleton.ScaleY = EditorGUILayout.DelayedFloatField(".ScaleY", skeleton.ScaleY);
+							//EditorGUILayout.BeginHorizontal(GUILayout.MaxWidth(160f));
+							////EditorGUILayout.LabelField("Scale", GUILayout.Width(EditorGUIUtility.labelWidth - 20f));
+							//GUILayout.EndHorizontal();
 
-                            // Color
-                            skeleton.SetColor(
-                                EditorGUILayout.ColorField(".R .G .B .A", skeleton.GetColor())
-                            );
+							// Color
+							skeleton.SetColor(EditorGUILayout.ColorField(".R .G .B .A", skeleton.GetColor()));
 
-                            requireRepaint |= EditorGUI.EndChangeCheck();
-                        }
-                    }
-                }
+							requireRepaint |= EditorGUI.EndChangeCheck();
+						}
+					}
+				}
 
-                // Bone
-                showInspectBoneTree.target = EditorGUILayout.Foldout(
-                    showInspectBoneTree.target,
-                    SpineInspectorUtility.TempContent("Bone", Icons.bone),
-                    BoldFoldoutStyle
-                );
-                if (showInspectBoneTree.faded > 0)
-                {
-                    using (new SpineInspectorUtility.IndentScope())
-                    {
-                        using (new EditorGUILayout.FadeGroupScope(showInspectBoneTree.faded))
-                        {
-                            showBoneNames = EditorGUILayout.Toggle(
-                                "Show Bone Names",
-                                showBoneNames
-                            );
-                            bpo ??= new SerializedObject(this).FindProperty("boneName");
-                            _ = EditorGUILayout.PropertyField(
-                                bpo,
-                                SpineInspectorUtility.TempContent("Bone")
-                            );
-                            if (!string.IsNullOrEmpty(bpo.stringValue))
-                            {
-                                if (bone == null || bone.Data.Name != bpo.stringValue)
-                                {
-                                    bone = skeleton.FindBone(bpo.stringValue);
-                                }
+				// Bone
+				showInspectBoneTree.target = EditorGUILayout.Foldout(showInspectBoneTree.target, SpineInspectorUtility.TempContent("Bone", Icons.bone), BoldFoldoutStyle);
+				if (showInspectBoneTree.faded > 0) {
+					using (new SpineInspectorUtility.IndentScope()) {
+						using (new EditorGUILayout.FadeGroupScope(showInspectBoneTree.faded)) {
+							showBoneNames = EditorGUILayout.Toggle("Show Bone Names", showBoneNames);
+							if (bpo == null) bpo = new SerializedObject(this).FindProperty("boneName");
+							EditorGUILayout.PropertyField(bpo, SpineInspectorUtility.TempContent("Bone"));
+							if (!string.IsNullOrEmpty(bpo.stringValue)) {
+								if (bone == null || bone.Data.Name != bpo.stringValue) {
+									bone = skeleton.FindBone(bpo.stringValue);
+								}
 
-                                if (bone != null)
-                                {
-                                    using (new EditorGUI.DisabledGroupScope(true))
-                                    {
-                                        bool wm = EditorGUIUtility.wideMode;
-                                        EditorGUIUtility.wideMode = true;
-                                        _ = EditorGUILayout.Slider(
-                                            "Local Rotation",
-                                            ViewRound(bone.Rotation),
-                                            -180f,
-                                            180f
-                                        );
-                                        _ = EditorGUILayout.Vector2Field(
-                                            "Local Position",
-                                            RoundVector2(bone.X, bone.Y)
-                                        );
-                                        _ = EditorGUILayout.Vector2Field(
-                                            "Local Scale",
-                                            RoundVector2(bone.ScaleX, bone.ScaleY)
-                                        );
-                                        _ = EditorGUILayout.Vector2Field(
-                                            "Local Shear",
-                                            RoundVector2(bone.ShearX, bone.ShearY)
-                                        );
+								if (bone != null) {
+									using (new EditorGUI.DisabledGroupScope(true)) {
+										var wm = EditorGUIUtility.wideMode;
+										EditorGUIUtility.wideMode = true;
+										EditorGUILayout.Slider("Local Rotation", ViewRound(bone.Rotation), -180f, 180f);
+										EditorGUILayout.Vector2Field("Local Position", RoundVector2(bone.X, bone.Y));
+										EditorGUILayout.Vector2Field("Local Scale", RoundVector2(bone.ScaleX, bone.ScaleY));
+										EditorGUILayout.Vector2Field("Local Shear", RoundVector2(bone.ShearX, bone.ShearY));
 
-                                        EditorGUILayout.Space();
+										EditorGUILayout.Space();
 
-                                        Bone boneParent = bone.Parent;
-                                        if (boneParent != null)
-                                        {
-                                            FalseDropDown(
-                                                "Parent",
-                                                boneParent.Data.Name,
-                                                Icons.bone
-                                            );
-                                        }
+										var boneParent = bone.Parent;
+										if (boneParent != null) FalseDropDown("Parent", boneParent.Data.Name, Icons.bone);
 
-                                        const string RoundFormat = "0.##";
-                                        float lw = EditorGUIUtility.labelWidth;
-                                        float fw = EditorGUIUtility.fieldWidth;
-                                        EditorGUIUtility.labelWidth *= 0.25f;
-                                        EditorGUIUtility.fieldWidth *= 0.5f;
-                                        EditorGUILayout.LabelField("LocalToWorld");
+										const string RoundFormat = "0.##";
+										var lw = EditorGUIUtility.labelWidth;
+										var fw = EditorGUIUtility.fieldWidth;
+										EditorGUIUtility.labelWidth *= 0.25f;
+										EditorGUIUtility.fieldWidth *= 0.5f;
+										EditorGUILayout.LabelField("LocalToWorld");
 
-                                        _ = EditorGUILayout.BeginHorizontal();
-                                        EditorGUILayout.Space();
-                                        _ = EditorGUILayout.TextField(
-                                            ".A",
-                                            bone.A.ToString(RoundFormat)
-                                        );
-                                        _ = EditorGUILayout.TextField(
-                                            ".B",
-                                            bone.B.ToString(RoundFormat)
-                                        );
-                                        EditorGUILayout.EndHorizontal();
-                                        _ = EditorGUILayout.BeginHorizontal();
-                                        EditorGUILayout.Space();
-                                        _ = EditorGUILayout.TextField(
-                                            ".C",
-                                            bone.C.ToString(RoundFormat)
-                                        );
-                                        _ = EditorGUILayout.TextField(
-                                            ".D",
-                                            bone.D.ToString(RoundFormat)
-                                        );
-                                        EditorGUILayout.EndHorizontal();
+										EditorGUILayout.BeginHorizontal();
+										EditorGUILayout.Space();
+										EditorGUILayout.TextField(".A", bone.A.ToString(RoundFormat));
+										EditorGUILayout.TextField(".B", bone.B.ToString(RoundFormat));
+										EditorGUILayout.EndHorizontal();
+										EditorGUILayout.BeginHorizontal();
+										EditorGUILayout.Space();
+										EditorGUILayout.TextField(".C", bone.C.ToString(RoundFormat));
+										EditorGUILayout.TextField(".D", bone.D.ToString(RoundFormat));
+										EditorGUILayout.EndHorizontal();
 
-                                        EditorGUIUtility.labelWidth = lw * 0.5f;
-                                        _ = EditorGUILayout.BeginHorizontal();
-                                        EditorGUILayout.Space();
-                                        EditorGUILayout.Space();
-                                        _ = EditorGUILayout.TextField(
-                                            ".WorldX",
-                                            bone.WorldX.ToString(RoundFormat)
-                                        );
-                                        _ = EditorGUILayout.TextField(
-                                            ".WorldY",
-                                            bone.WorldY.ToString(RoundFormat)
-                                        );
-                                        EditorGUILayout.EndHorizontal();
+										EditorGUIUtility.labelWidth = lw * 0.5f;
+										EditorGUILayout.BeginHorizontal();
+										EditorGUILayout.Space();
+										EditorGUILayout.Space();
+										EditorGUILayout.TextField(".WorldX", bone.WorldX.ToString(RoundFormat));
+										EditorGUILayout.TextField(".WorldY", bone.WorldY.ToString(RoundFormat));
+										EditorGUILayout.EndHorizontal();
 
-                                        EditorGUIUtility.labelWidth = lw;
-                                        EditorGUIUtility.fieldWidth = fw;
-                                        EditorGUIUtility.wideMode = wm;
-                                    }
-                                }
-                                requireRepaint = true;
-                            }
-                            else
-                            {
-                                bone = null;
-                            }
-                        }
-                    }
-                }
+										EditorGUIUtility.labelWidth = lw;
+										EditorGUIUtility.fieldWidth = fw;
+										EditorGUIUtility.wideMode = wm;
 
-                // Slots
-                int preSlotsIndent = EditorGUI.indentLevel;
-                showSlotsTree.target = EditorGUILayout.Foldout(
-                    showSlotsTree.target,
-                    SlotsRootLabel,
-                    BoldFoldoutStyle
-                );
-                if (showSlotsTree.faded > 0)
-                {
-                    using (new EditorGUILayout.FadeGroupScope(showSlotsTree.faded))
-                    {
-                        if (
-                            SpineInspectorUtility.CenteredButton(
-                                SpineInspectorUtility.TempContent("Skeleton.SetSlotsToSetupPose()")
-                            )
-                        )
-                        {
-                            skeleton.SetSlotsToSetupPose();
-                            requireRepaint = true;
-                        }
+									}
+								}
+								requireRepaint = true;
+							} else {
+								bone = null;
+							}
+						}
+					}
+				}
 
-                        int baseIndent = EditorGUI.indentLevel;
-                        foreach (KeyValuePair<Slot, List<Skin.SkinEntry>> pair in attachmentTable)
-                        {
-                            Slot slot = pair.Key;
+				// Slots
+				int preSlotsIndent = EditorGUI.indentLevel;
+				showSlotsTree.target = EditorGUILayout.Foldout(showSlotsTree.target, SlotsRootLabel, BoldFoldoutStyle);
+				if (showSlotsTree.faded > 0) {
+					using (new EditorGUILayout.FadeGroupScope(showSlotsTree.faded)) {
+						if (SpineInspectorUtility.CenteredButton(SpineInspectorUtility.TempContent("Skeleton.SetSlotsToSetupPose()"))) {
+							skeleton.SetSlotsToSetupPose();
+							requireRepaint = true;
+						}
 
-                            using (new EditorGUILayout.HorizontalScope())
-                            {
-                                EditorGUI.indentLevel = baseIndent + 1;
-                                EditorGUILayout.LabelField(
-                                    SpineInspectorUtility.TempContent(slot.Data.Name, Icons.slot),
-                                    GUILayout.ExpandWidth(false)
-                                );
-                                EditorGUI.BeginChangeCheck();
-                                Color c = EditorGUILayout.ColorField(
-                                    new Color(slot.R, slot.G, slot.B, slot.A),
-                                    GUILayout.Width(60)
-                                );
-                                if (EditorGUI.EndChangeCheck())
-                                {
-                                    slot.SetColor(c);
-                                    requireRepaint = true;
-                                }
-                            }
+						int baseIndent = EditorGUI.indentLevel;
+						foreach (KeyValuePair<Slot, List<Skin.SkinEntry>> pair in attachmentTable) {
+							Slot slot = pair.Key;
 
-                            foreach (Skin.SkinEntry skinEntry in pair.Value)
-                            {
-                                Attachment attachment = skinEntry.Attachment;
-                                GUI.contentColor =
-                                    slot.Attachment == attachment ? Color.white : Color.grey;
-                                EditorGUI.indentLevel = baseIndent + 2;
-                                Texture2D icon = Icons.GetAttachmentIcon(attachment);
-                                bool isAttached = attachment == slot.Attachment;
-                                bool swap = EditorGUILayout.ToggleLeft(
-                                    SpineInspectorUtility.TempContent(attachment.Name, icon),
-                                    attachment == slot.Attachment
-                                );
-                                if (isAttached != swap)
-                                {
-                                    slot.Attachment = isAttached ? null : attachment;
-                                    requireRepaint = true;
-                                }
-                                GUI.contentColor = Color.white;
-                            }
-                        }
-                    }
-                }
-                EditorGUI.indentLevel = preSlotsIndent;
+							using (new EditorGUILayout.HorizontalScope()) {
+								EditorGUI.indentLevel = baseIndent + 1;
+								EditorGUILayout.LabelField(SpineInspectorUtility.TempContent(slot.Data.Name, Icons.slot), GUILayout.ExpandWidth(false));
+								EditorGUI.BeginChangeCheck();
+								Color c = EditorGUILayout.ColorField(new Color(slot.R, slot.G, slot.B, slot.A), GUILayout.Width(60));
+								if (EditorGUI.EndChangeCheck()) {
+									slot.SetColor(c);
+									requireRepaint = true;
+								}
+							}
 
-                // Constraints
-                const string NoneText = "<none>";
-                showConstraintsTree.target = EditorGUILayout.Foldout(
-                    showConstraintsTree.target,
-                    SpineInspectorUtility.TempContent("Constraints", Icons.constraintRoot),
-                    BoldFoldoutStyle
-                );
-                if (showConstraintsTree.faded > 0)
-                {
-                    using (new SpineInspectorUtility.IndentScope())
-                    {
-                        using (new EditorGUILayout.FadeGroupScope(showConstraintsTree.faded))
-                        {
-                            const float MixMin = 0f;
-                            const float MixMax = 1f;
-                            EditorGUI.BeginChangeCheck();
-                            showConstraints = EditorGUILayout.Toggle(
-                                "Show Constraints",
-                                showConstraints
-                            );
-                            requireRepaint |= EditorGUI.EndChangeCheck();
+							foreach (var skinEntry in pair.Value) {
+								var attachment = skinEntry.Attachment;
+								GUI.contentColor = slot.Attachment == attachment ? Color.white : Color.grey;
+								EditorGUI.indentLevel = baseIndent + 2;
+								var icon = Icons.GetAttachmentIcon(attachment);
+								bool isAttached = (attachment == slot.Attachment);
+								bool swap = EditorGUILayout.ToggleLeft(SpineInspectorUtility.TempContent(attachment.Name, icon), attachment == slot.Attachment);
+								if (isAttached != swap) {
+									slot.Attachment = isAttached ? null : attachment;
+									requireRepaint = true;
+								}
+								GUI.contentColor = Color.white;
+							}
+						}
+					}
+				}
+				EditorGUI.indentLevel = preSlotsIndent;
 
-                            EditorGUILayout.Space();
+				// Constraints
+				const string NoneText = "<none>";
+				showConstraintsTree.target = EditorGUILayout.Foldout(showConstraintsTree.target, SpineInspectorUtility.TempContent("Constraints", Icons.constraintRoot), BoldFoldoutStyle);
+				if (showConstraintsTree.faded > 0) {
+					using (new SpineInspectorUtility.IndentScope()) {
+						using (new EditorGUILayout.FadeGroupScope(showConstraintsTree.faded)) {
+							const float MixMin = 0f;
+							const float MixMax = 1f;
+							EditorGUI.BeginChangeCheck();
+							showConstraints = EditorGUILayout.Toggle("Show Constraints", showConstraints);
+							requireRepaint |= EditorGUI.EndChangeCheck();
 
-                            EditorGUILayout.LabelField(
-                                SpineInspectorUtility.TempContent(
-                                    string.Format(
-                                        "IK Constraints ({0})",
-                                        skeleton.IkConstraints.Count
-                                    ),
-                                    Icons.constraintIK
-                                ),
-                                EditorStyles.boldLabel
-                            );
-                            using (new SpineInspectorUtility.IndentScope())
-                            {
-                                if (skeleton.IkConstraints.Count > 0)
-                                {
-                                    foreach (IkConstraint c in skeleton.IkConstraints)
-                                    {
-                                        EditorGUILayout.LabelField(
-                                            SpineInspectorUtility.TempContent(
-                                                c.Data.Name,
-                                                Icons.constraintIK
-                                            )
-                                        );
-                                        FalseDropDown("Goal", c.Data.Target.Name, Icons.bone, true);
-                                        using (new EditorGUI.DisabledGroupScope(true))
-                                        {
-                                            _ = EditorGUILayout.Toggle(
-                                                SpineInspectorUtility.TempContent(
-                                                    "Data.Uniform",
-                                                    tooltip: "Uniformly scales a bone when Ik stretches or compresses."
-                                                ),
-                                                c.Data.Uniform
-                                            );
-                                        }
+							EditorGUILayout.Space();
 
-                                        EditorGUI.BeginChangeCheck();
-                                        c.Mix = EditorGUILayout.Slider(
-                                            "Mix",
-                                            c.Mix,
-                                            MixMin,
-                                            MixMax
-                                        );
-                                        c.BendDirection = EditorGUILayout.Toggle(
-                                            SpineInspectorUtility.TempContent(
-                                                "Bend Clockwise",
-                                                tooltip: "IkConstraint.BendDirection == 1 if clockwise; -1 if counterclockwise."
-                                            ),
-                                            c.BendDirection > 0
-                                        )
-                                            ? 1
-                                            : -1;
-                                        c.Compress = EditorGUILayout.Toggle(
-                                            SpineInspectorUtility.TempContent(
-                                                "Compress",
-                                                tooltip: "Compress single bone IK when the target too close. Not applied when parent bone has nonuniform scale."
-                                            ),
-                                            c.Compress
-                                        );
-                                        c.Stretch = EditorGUILayout.Toggle(
-                                            SpineInspectorUtility.TempContent(
-                                                "Stretch",
-                                                tooltip: "Stretch the parent bone when the target is out of range. Not applied when parent bone has nonuniform scale."
-                                            ),
-                                            c.Stretch
-                                        );
-                                        if (EditorGUI.EndChangeCheck())
-                                        {
-                                            requireRepaint = true;
-                                        }
+							EditorGUILayout.LabelField(SpineInspectorUtility.TempContent(string.Format("IK Constraints ({0})", skeleton.IkConstraints.Count), Icons.constraintIK), EditorStyles.boldLabel);
+							using (new SpineInspectorUtility.IndentScope()) {
+								if (skeleton.IkConstraints.Count > 0) {
+									foreach (var c in skeleton.IkConstraints) {
+										EditorGUILayout.LabelField(SpineInspectorUtility.TempContent(c.Data.Name, Icons.constraintIK));
+										FalseDropDown("Goal", c.Data.Target.Name, Icons.bone, true);
+										using (new EditorGUI.DisabledGroupScope(true)) {
+											EditorGUILayout.Toggle(SpineInspectorUtility.TempContent("Data.Uniform", tooltip: "Uniformly scales a bone when Ik stretches or compresses."), c.Data.Uniform);
+										}
 
-                                        EditorGUILayout.Space();
-                                    }
-                                }
-                                else
-                                {
-                                    EditorGUILayout.LabelField(NoneText);
-                                }
-                            }
+										EditorGUI.BeginChangeCheck();
+										c.Mix = EditorGUILayout.Slider("Mix", c.Mix, MixMin, MixMax);
+										c.BendDirection = EditorGUILayout.Toggle(SpineInspectorUtility.TempContent("Bend Clockwise", tooltip: "IkConstraint.BendDirection == 1 if clockwise; -1 if counterclockwise."), c.BendDirection > 0) ? 1 : -1;
+										c.Compress = EditorGUILayout.Toggle(SpineInspectorUtility.TempContent("Compress", tooltip: "Compress single bone IK when the target too close. Not applied when parent bone has nonuniform scale."), c.Compress);
+										c.Stretch = EditorGUILayout.Toggle(SpineInspectorUtility.TempContent("Stretch", tooltip: "Stretch the parent bone when the target is out of range. Not applied when parent bone has nonuniform scale."), c.Stretch);
+										if (EditorGUI.EndChangeCheck()) requireRepaint = true;
 
-                            EditorGUILayout.LabelField(
-                                SpineInspectorUtility.TempContent(
-                                    string.Format(
-                                        "Transform Constraints ({0})",
-                                        skeleton.TransformConstraints.Count
-                                    ),
-                                    Icons.constraintTransform
-                                ),
-                                EditorStyles.boldLabel
-                            );
-                            using (new SpineInspectorUtility.IndentScope())
-                            {
-                                if (skeleton.TransformConstraints.Count > 0)
-                                {
-                                    foreach (TransformConstraint c in skeleton.TransformConstraints)
-                                    {
-                                        EditorGUILayout.LabelField(
-                                            SpineInspectorUtility.TempContent(
-                                                c.Data.Name,
-                                                Icons.constraintTransform
-                                            )
-                                        );
-                                        EditorGUI.BeginDisabledGroup(true);
-                                        FalseDropDown("Goal", c.Data.Target.Name, Icons.bone);
-                                        EditorGUI.EndDisabledGroup();
+										EditorGUILayout.Space();
+									}
 
-                                        EditorGUI.BeginChangeCheck();
-                                        c.TranslateMix = EditorGUILayout.Slider(
-                                            "TranslateMix",
-                                            c.TranslateMix,
-                                            MixMin,
-                                            MixMax
-                                        );
-                                        c.RotateMix = EditorGUILayout.Slider(
-                                            "RotateMix",
-                                            c.RotateMix,
-                                            MixMin,
-                                            MixMax
-                                        );
-                                        c.ScaleMix = EditorGUILayout.Slider(
-                                            "ScaleMix",
-                                            c.ScaleMix,
-                                            MixMin,
-                                            MixMax
-                                        );
-                                        c.ShearMix = EditorGUILayout.Slider(
-                                            "ShearMix",
-                                            c.ShearMix,
-                                            MixMin,
-                                            MixMax
-                                        );
-                                        if (EditorGUI.EndChangeCheck())
-                                        {
-                                            requireRepaint = true;
-                                        }
+								} else {
+									EditorGUILayout.LabelField(NoneText);
+								}
+							}
 
-                                        EditorGUILayout.Space();
-                                    }
-                                }
-                                else
-                                {
-                                    EditorGUILayout.LabelField(NoneText);
-                                }
-                            }
+							EditorGUILayout.LabelField(SpineInspectorUtility.TempContent(string.Format("Transform Constraints ({0})", skeleton.TransformConstraints.Count), Icons.constraintTransform), EditorStyles.boldLabel);
+							using (new SpineInspectorUtility.IndentScope()) {
+								if (skeleton.TransformConstraints.Count > 0) {
+									foreach (var c in skeleton.TransformConstraints) {
+										EditorGUILayout.LabelField(SpineInspectorUtility.TempContent(c.Data.Name, Icons.constraintTransform));
+										EditorGUI.BeginDisabledGroup(true);
+										FalseDropDown("Goal", c.Data.Target.Name, Icons.bone);
+										EditorGUI.EndDisabledGroup();
 
-                            EditorGUILayout.LabelField(
-                                SpineInspectorUtility.TempContent(
-                                    string.Format(
-                                        "Path Constraints ({0})",
-                                        skeleton.PathConstraints.Count
-                                    ),
-                                    Icons.constraintPath
-                                ),
-                                EditorStyles.boldLabel
-                            );
+										EditorGUI.BeginChangeCheck();
+										c.TranslateMix = EditorGUILayout.Slider("TranslateMix", c.TranslateMix, MixMin, MixMax);
+										c.RotateMix = EditorGUILayout.Slider("RotateMix", c.RotateMix, MixMin, MixMax);
+										c.ScaleMix = EditorGUILayout.Slider("ScaleMix", c.ScaleMix, MixMin, MixMax);
+										c.ShearMix = EditorGUILayout.Slider("ShearMix", c.ShearMix, MixMin, MixMax);
+										if (EditorGUI.EndChangeCheck()) requireRepaint = true;
 
-                            EditorGUI.BeginChangeCheck();
-                            showPaths = EditorGUILayout.Toggle("Show Paths", showPaths);
-                            requireRepaint |= EditorGUI.EndChangeCheck();
+										EditorGUILayout.Space();
+									}
+								} else {
+									EditorGUILayout.LabelField(NoneText);
+								}
+							}
 
-                            using (new SpineInspectorUtility.IndentScope())
-                            {
-                                if (skeleton.PathConstraints.Count > 0)
-                                {
-                                    foreach (PathConstraint c in skeleton.PathConstraints)
-                                    {
-                                        EditorGUILayout.LabelField(
-                                            SpineInspectorUtility.TempContent(
-                                                c.Data.Name,
-                                                Icons.constraintPath
-                                            )
-                                        );
-                                        EditorGUI.BeginDisabledGroup(true);
-                                        FalseDropDown("Path Slot", c.Data.Target.Name, Icons.slot);
-                                        Attachment activeAttachment = c.Target.Attachment;
-                                        FalseDropDown(
-                                            "Active Path",
-                                            activeAttachment != null
-                                                ? activeAttachment.Name
-                                                : "<None>",
-                                            activeAttachment is PathAttachment ? Icons.path : null
-                                        );
-                                        EditorGUILayout.LabelField(
-                                            "PositionMode." + c.Data.PositionMode
-                                        );
-                                        EditorGUILayout.LabelField(
-                                            "SpacingMode." + c.Data.SpacingMode
-                                        );
-                                        EditorGUILayout.LabelField(
-                                            "RotateMode." + c.Data.RotateMode
-                                        );
-                                        EditorGUI.EndDisabledGroup();
+							EditorGUILayout.LabelField(SpineInspectorUtility.TempContent(string.Format("Path Constraints ({0})", skeleton.PathConstraints.Count), Icons.constraintPath), EditorStyles.boldLabel);
 
-                                        EditorGUI.BeginChangeCheck();
-                                        c.RotateMix = EditorGUILayout.Slider(
-                                            "RotateMix",
-                                            c.RotateMix,
-                                            MixMin,
-                                            MixMax
-                                        );
-                                        c.TranslateMix = EditorGUILayout.Slider(
-                                            "TranslateMix",
-                                            c.TranslateMix,
-                                            MixMin,
-                                            MixMax
-                                        );
-                                        c.Position = EditorGUILayout.FloatField(
-                                            "Position",
-                                            c.Position
-                                        );
-                                        c.Spacing = EditorGUILayout.FloatField(
-                                            "Spacing",
-                                            c.Spacing
-                                        );
-                                        if (EditorGUI.EndChangeCheck())
-                                        {
-                                            requireRepaint = true;
-                                        }
+							EditorGUI.BeginChangeCheck();
+							showPaths = EditorGUILayout.Toggle("Show Paths", showPaths);
+							requireRepaint |= EditorGUI.EndChangeCheck();
 
-                                        EditorGUILayout.Space();
-                                    }
-                                }
-                                else
-                                {
-                                    EditorGUILayout.LabelField(NoneText);
-                                }
-                            }
-                        }
-                    }
-                }
+							using (new SpineInspectorUtility.IndentScope()) {
+								if (skeleton.PathConstraints.Count > 0) {
+									foreach (var c in skeleton.PathConstraints) {
+										EditorGUILayout.LabelField(SpineInspectorUtility.TempContent(c.Data.Name, Icons.constraintPath));
+										EditorGUI.BeginDisabledGroup(true);
+										FalseDropDown("Path Slot", c.Data.Target.Name, Icons.slot);
+										var activeAttachment = c.Target.Attachment;
+										FalseDropDown("Active Path", activeAttachment != null ? activeAttachment.Name : "<None>", activeAttachment is PathAttachment ? Icons.path : null);
+										EditorGUILayout.LabelField("PositionMode." + c.Data.PositionMode);
+										EditorGUILayout.LabelField("SpacingMode." + c.Data.SpacingMode);
+										EditorGUILayout.LabelField("RotateMode." + c.Data.RotateMode);
+										EditorGUI.EndDisabledGroup();
 
-                showDrawOrderTree.target = EditorGUILayout.Foldout(
-                    showDrawOrderTree.target,
-                    SpineInspectorUtility.TempContent("Draw Order and Separators", Icons.slotRoot),
-                    BoldFoldoutStyle
-                );
+										EditorGUI.BeginChangeCheck();
+										c.RotateMix = EditorGUILayout.Slider("RotateMix", c.RotateMix, MixMin, MixMax);
+										c.TranslateMix = EditorGUILayout.Slider("TranslateMix", c.TranslateMix, MixMin, MixMax);
+										c.Position = EditorGUILayout.FloatField("Position", c.Position);
+										c.Spacing = EditorGUILayout.FloatField("Spacing", c.Spacing);
+										if (EditorGUI.EndChangeCheck()) requireRepaint = true;
 
-                //var separatorSlotNamesField =
-                //SpineInspectorUtility.ge
-                if (showDrawOrderTree.faded > 0)
-                {
-                    using (new SpineInspectorUtility.IndentScope())
-                    {
-                        using (new EditorGUILayout.FadeGroupScope(showDrawOrderTree.faded))
-                        {
-                            const string SeparatorString =
-                                "------------- v SEPARATOR v -------------";
+										EditorGUILayout.Space();
+									}
 
-                            if (Application.isPlaying)
-                            {
-                                foreach (Slot slot in skeleton.DrawOrder)
-                                {
-                                    if (skeletonRenderer.separatorSlots.Contains(slot))
-                                    {
-                                        EditorGUILayout.LabelField(SeparatorString);
-                                    }
+								} else {
+									EditorGUILayout.LabelField(NoneText);
+								}
+							}
+						}
+					}
+				}
 
-                                    using (new EditorGUI.DisabledScope(!slot.Bone.Active))
-                                    {
-                                        EditorGUILayout.LabelField(
-                                            SpineInspectorUtility.TempContent(
-                                                slot.Data.Name,
-                                                Icons.slot
-                                            ),
-                                            GUILayout.ExpandWidth(false)
-                                        );
-                                    }
-                                }
-                            }
-                            else
-                            {
-                                foreach (Slot slot in skeleton.DrawOrder)
-                                {
-                                    string[] slotNames =
-                                        SkeletonRendererInspector.GetSeparatorSlotNames(
-                                            skeletonRenderer
-                                        );
-                                    for (int i = 0, n = slotNames.Length; i < n; i++)
-                                    {
-                                        if (
-                                            string.Equals(
-                                                slotNames[i],
-                                                slot.Data.Name,
-                                                System.StringComparison.Ordinal
-                                            )
-                                        )
-                                        {
-                                            EditorGUILayout.LabelField(SeparatorString);
-                                            break;
-                                        }
-                                    }
-                                    using (new EditorGUI.DisabledScope(!slot.Bone.Active))
-                                    {
-                                        EditorGUILayout.LabelField(
-                                            SpineInspectorUtility.TempContent(
-                                                slot.Data.Name,
-                                                Icons.slot
-                                            ),
-                                            GUILayout.ExpandWidth(false)
-                                        );
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
+				showDrawOrderTree.target = EditorGUILayout.Foldout(showDrawOrderTree.target, SpineInspectorUtility.TempContent("Draw Order and Separators", Icons.slotRoot), BoldFoldoutStyle);
 
-                showEventDataTree.target = EditorGUILayout.Foldout(
-                    showEventDataTree.target,
-                    SpineInspectorUtility.TempContent("Events", Icons.userEvent),
-                    BoldFoldoutStyle
-                );
-                if (showEventDataTree.faded > 0)
-                {
-                    using (new SpineInspectorUtility.IndentScope())
-                    {
-                        using (new EditorGUILayout.FadeGroupScope(showEventDataTree.faded))
-                        {
-                            if (skeleton.Data.Events.Count > 0)
-                            {
-                                foreach (EventData e in skeleton.Data.Events)
-                                {
-                                    EditorGUILayout.LabelField(
-                                        SpineInspectorUtility.TempContent(e.Name, Icons.userEvent)
-                                    );
-                                }
-                            }
-                            else
-                            {
-                                EditorGUILayout.LabelField(NoneText);
-                            }
-                        }
-                    }
-                }
+				//var separatorSlotNamesField =
+				//SpineInspectorUtility.ge
+				if (showDrawOrderTree.faded > 0) {
+					using (new SpineInspectorUtility.IndentScope()) {
+						using (new EditorGUILayout.FadeGroupScope(showDrawOrderTree.faded)) {
 
-                showDataTree.target = EditorGUILayout.Foldout(
-                    showDataTree.target,
-                    SpineInspectorUtility.TempContent("Data Counts", Icons.spine),
-                    BoldFoldoutStyle
-                );
-                if (showDataTree.faded > 0)
-                {
-                    using (new SpineInspectorUtility.IndentScope())
-                    {
-                        using (new EditorGUILayout.FadeGroupScope(showDataTree.faded))
-                        {
-                            using (new SpineInspectorUtility.LabelWidthScope())
-                            {
-                                SkeletonData skeletonData = skeleton.Data;
-                                EditorGUILayout.LabelField(
-                                    SpineInspectorUtility.TempContent(
-                                        "Bones",
-                                        Icons.bone,
-                                        "Skeleton.Data.Bones"
-                                    ),
-                                    new GUIContent(skeletonData.Bones.Count.ToString())
-                                );
-                                EditorGUILayout.LabelField(
-                                    SpineInspectorUtility.TempContent(
-                                        "Slots",
-                                        Icons.slotRoot,
-                                        "Skeleton.Data.Slots"
-                                    ),
-                                    new GUIContent(skeletonData.Slots.Count.ToString())
-                                );
-                                EditorGUILayout.LabelField(
-                                    SpineInspectorUtility.TempContent(
-                                        "Skins",
-                                        Icons.skinsRoot,
-                                        "Skeleton.Data.Skins"
-                                    ),
-                                    new GUIContent(skeletonData.Skins.Count.ToString())
-                                );
-                                EditorGUILayout.LabelField(
-                                    SpineInspectorUtility.TempContent(
-                                        "Events",
-                                        Icons.userEvent,
-                                        "Skeleton.Data.Events"
-                                    ),
-                                    new GUIContent(skeletonData.Events.Count.ToString())
-                                );
-                                EditorGUILayout.LabelField(
-                                    SpineInspectorUtility.TempContent(
-                                        "IK Constraints",
-                                        Icons.constraintIK,
-                                        "Skeleton.Data.IkConstraints"
-                                    ),
-                                    new GUIContent(skeletonData.IkConstraints.Count.ToString())
-                                );
-                                EditorGUILayout.LabelField(
-                                    SpineInspectorUtility.TempContent(
-                                        "Transform Constraints",
-                                        Icons.constraintTransform,
-                                        "Skeleton.Data.TransformConstraints"
-                                    ),
-                                    new GUIContent(
-                                        skeletonData.TransformConstraints.Count.ToString()
-                                    )
-                                );
-                                EditorGUILayout.LabelField(
-                                    SpineInspectorUtility.TempContent(
-                                        "Path Constraints",
-                                        Icons.constraintPath,
-                                        "Skeleton.Data.PathConstraints"
-                                    ),
-                                    new GUIContent(skeletonData.PathConstraints.Count.ToString())
-                                );
-                            }
-                        }
-                    }
-                }
+							const string SeparatorString = "------------- v SEPARATOR v -------------";
 
-                if (
-                    IsAnimating(
-                        showSlotsTree,
-                        showSkeleton,
-                        showConstraintsTree,
-                        showDrawOrderTree,
-                        showEventDataTree,
-                        showInspectBoneTree,
-                        showDataTree
-                    )
-                )
-                {
-                    Repaint();
-                }
-            }
+							if (Application.isPlaying) {
+								foreach (var slot in skeleton.DrawOrder) {
+									if (skeletonRenderer.separatorSlots.Contains(slot))	EditorGUILayout.LabelField(SeparatorString);
 
-            if (requireRepaint)
-            {
-                skeletonRenderer.LateUpdate();
-                Repaint();
-                SceneView.RepaintAll();
-            }
+									using (new EditorGUI.DisabledScope(!slot.Bone.Active)) {
+										EditorGUILayout.LabelField(SpineInspectorUtility.TempContent(slot.Data.Name, Icons.slot), GUILayout.ExpandWidth(false));
+									}
+								}
+							} else {
+								foreach (var slot in skeleton.DrawOrder) {
+									var slotNames = SkeletonRendererInspector.GetSeparatorSlotNames(skeletonRenderer);
+									for (int i = 0, n = slotNames.Length; i < n; i++) {
+										if (string.Equals(slotNames[i], slot.Data.Name, System.StringComparison.Ordinal)) {
+											EditorGUILayout.LabelField(SeparatorString);
+											break;
+										}
+									}
+									using (new EditorGUI.DisabledScope(!slot.Bone.Active)) {
+										EditorGUILayout.LabelField(SpineInspectorUtility.TempContent(slot.Data.Name, Icons.slot), GUILayout.ExpandWidth(false));
+									}
+								}
+							}
 
-            EditorGUILayout.EndScrollView();
-        }
+						}
+					}
+				}
 
-        private static float ViewRound(float x)
-        {
-            const float Factor = 100f;
-            const float Divisor = 1f / Factor;
-            return Mathf.Round(x * Factor) * Divisor;
-        }
+				showEventDataTree.target = EditorGUILayout.Foldout(showEventDataTree.target, SpineInspectorUtility.TempContent("Events", Icons.userEvent), BoldFoldoutStyle);
+				if (showEventDataTree.faded > 0) {
+					using (new SpineInspectorUtility.IndentScope()) {
+						using (new EditorGUILayout.FadeGroupScope(showEventDataTree.faded)) {
+							if (skeleton.Data.Events.Count > 0) {
+								foreach (var e in skeleton.Data.Events) {
+									EditorGUILayout.LabelField(SpineInspectorUtility.TempContent(e.Name, Icons.userEvent));
+								}
+							} else {
+								EditorGUILayout.LabelField(NoneText);
+							}
+						}
+					}
+				}
 
-        private static Vector2 RoundVector2(float x, float y)
-        {
-            const float Factor = 100f;
-            const float Divisor = 1f / Factor;
-            return new Vector2(
-                Mathf.Round(x * Factor) * Divisor,
-                Mathf.Round(y * Factor) * Divisor
-            );
-        }
+				showDataTree.target = EditorGUILayout.Foldout(showDataTree.target, SpineInspectorUtility.TempContent("Data Counts", Icons.spine), BoldFoldoutStyle);
+				if (showDataTree.faded > 0) {
+					using (new SpineInspectorUtility.IndentScope()) {
+						using (new EditorGUILayout.FadeGroupScope(showDataTree.faded)) {
+							using (new SpineInspectorUtility.LabelWidthScope()) {
+								var skeletonData = skeleton.Data;
+								EditorGUILayout.LabelField(SpineInspectorUtility.TempContent("Bones", Icons.bone, "Skeleton.Data.Bones"), new GUIContent(skeletonData.Bones.Count.ToString()));
+								EditorGUILayout.LabelField(SpineInspectorUtility.TempContent("Slots", Icons.slotRoot, "Skeleton.Data.Slots"), new GUIContent(skeletonData.Slots.Count.ToString()));
+								EditorGUILayout.LabelField(SpineInspectorUtility.TempContent("Skins", Icons.skinsRoot, "Skeleton.Data.Skins"), new GUIContent(skeletonData.Skins.Count.ToString()));
+								EditorGUILayout.LabelField(SpineInspectorUtility.TempContent("Events", Icons.userEvent, "Skeleton.Data.Events"), new GUIContent(skeletonData.Events.Count.ToString()));
+								EditorGUILayout.LabelField(SpineInspectorUtility.TempContent("IK Constraints", Icons.constraintIK, "Skeleton.Data.IkConstraints"), new GUIContent(skeletonData.IkConstraints.Count.ToString()));
+								EditorGUILayout.LabelField(SpineInspectorUtility.TempContent("Transform Constraints", Icons.constraintTransform, "Skeleton.Data.TransformConstraints"), new GUIContent(skeletonData.TransformConstraints.Count.ToString()));
+								EditorGUILayout.LabelField(SpineInspectorUtility.TempContent("Path Constraints", Icons.constraintPath, "Skeleton.Data.PathConstraints"), new GUIContent(skeletonData.PathConstraints.Count.ToString()));
+							}
+						}
+					}
+				}
 
-        private static bool IsAnimating(params AnimBool[] animBools)
-        {
-            foreach (AnimBool a in animBools)
-            {
-                if (a.isAnimating)
-                {
-                    return true;
-                }
-            }
+				if (IsAnimating(showSlotsTree, showSkeleton, showConstraintsTree, showDrawOrderTree, showEventDataTree, showInspectBoneTree, showDataTree))
+					Repaint();
+			}
 
-            return false;
-        }
+			if (requireRepaint) {
+				skeletonRenderer.LateUpdate();
+				Repaint();
+				SceneView.RepaintAll();
+			}
 
-        private void UpdateAttachments()
-        {
-            //skeleton = skeletonRenderer.skeleton;
-            Skin defaultSkin = skeleton.Data.DefaultSkin;
-            Skin skin = skeleton.Skin ?? defaultSkin;
-            bool notDefaultSkin = skin != defaultSkin;
+			EditorGUILayout.EndScrollView();
+		}
 
-            attachmentTable.Clear();
-            for (int i = skeleton.Slots.Count - 1; i >= 0; i--)
-            {
-                List<Skin.SkinEntry> attachments = new();
-                attachmentTable.Add(skeleton.Slots.Items[i], attachments);
-                // Add skin attachments.
-                skin.GetAttachments(i, attachments);
-                if (notDefaultSkin && defaultSkin != null) // Add default skin attachments.
-                {
-                    defaultSkin.GetAttachments(i, attachments);
-                }
-            }
+		static float ViewRound (float x) {
+			const float Factor = 100f;
+			const float Divisor = 1f/Factor;
+			return Mathf.Round(x * Factor) * Divisor;
+		}
 
-            activeSkin = skeleton.Skin;
-        }
-    }
+		static Vector2 RoundVector2 (float x, float y) {
+			const float Factor = 100f;
+			const float Divisor = 1f/Factor;
+			return new Vector2(Mathf.Round(x * Factor) * Divisor, Mathf.Round(y * Factor) * Divisor);
+		}
+
+		static bool IsAnimating (params AnimBool[] animBools) {
+			foreach (var a in animBools)
+				if (a.isAnimating) return true;
+			return false;
+		}
+
+		void UpdateAttachments () {
+			//skeleton = skeletonRenderer.skeleton;
+			Skin defaultSkin = skeleton.Data.DefaultSkin;
+			Skin skin = skeleton.Skin ?? defaultSkin;
+			bool notDefaultSkin = skin != defaultSkin;
+
+			attachmentTable.Clear();
+			for (int i = skeleton.Slots.Count - 1; i >= 0; i--) {
+				var attachments = new List<Skin.SkinEntry>();
+				attachmentTable.Add(skeleton.Slots.Items[i], attachments);
+				// Add skin attachments.
+				skin.GetAttachments(i, attachments);
+				if (notDefaultSkin && defaultSkin != null) // Add default skin attachments.
+					defaultSkin.GetAttachments(i, attachments);
+			}
+
+			activeSkin = skeleton.Skin;
+		}
+	}
 }

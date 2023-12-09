@@ -31,237 +31,162 @@
 #define NEW_PREFAB_SYSTEM
 #endif
 
-using System.Reflection;
-using UnityEditor;
 using UnityEngine;
-using Icons = Spine.Unity.Editor.SpineEditorUtilities.Icons;
+using UnityEditor;
+using UnityEditor.AnimatedValues;
+using System.Collections.Generic;
+using Spine;
+using System.Reflection;
 
-namespace Spine.Unity.Editor
-{
-    [CustomEditor(typeof(SkeletonUtility))]
-    public class SkeletonUtilityInspector : UnityEditor.Editor
-    {
-        private SkeletonUtility skeletonUtility;
-        private Skeleton skeleton;
-        private SkeletonRenderer skeletonRenderer;
-        private SkeletonGraphic skeletonGraphic;
+namespace Spine.Unity.Editor {
+	using Icons = SpineEditorUtilities.Icons;
 
-#if !NEW_PREFAB_SYSTEM
-        bool isPrefab;
-#endif
+	[CustomEditor(typeof(SkeletonUtility))]
+	public class SkeletonUtilityInspector : UnityEditor.Editor {
 
-        private readonly GUIContent SpawnHierarchyButtonLabel =
-            new("Spawn Hierarchy", Icons.skeleton);
-
-        private void OnEnable()
-        {
-            skeletonUtility = (SkeletonUtility)target;
-            skeletonRenderer = skeletonUtility.skeletonRenderer;
-            skeletonGraphic = skeletonUtility.skeletonGraphic;
-            skeleton = skeletonUtility.Skeleton;
-
-            if (skeleton == null)
-            {
-                if (skeletonRenderer != null)
-                {
-                    skeletonRenderer.Initialize(false);
-                    skeletonRenderer.LateUpdate();
-                }
-                else if (skeletonGraphic != null)
-                {
-                    skeletonGraphic.Initialize(false);
-                    skeletonGraphic.LateUpdate();
-                }
-                skeleton = skeletonUtility.Skeleton;
-            }
-
-            if (
-                (skeletonRenderer != null && !skeletonRenderer.valid)
-                || (skeletonGraphic != null && !skeletonGraphic.IsValid)
-            )
-            {
-                return;
-            }
+		SkeletonUtility skeletonUtility;
+		Skeleton skeleton;
+		SkeletonRenderer skeletonRenderer;
+		SkeletonGraphic skeletonGraphic;
 
 #if !NEW_PREFAB_SYSTEM
-            isPrefab |= PrefabUtility.GetPrefabType(this.target) == PrefabType.Prefab;
-#endif
-        }
+		bool isPrefab;
+		#endif
 
-        public override void OnInspectorGUI()
-        {
-#if !NEW_PREFAB_SYSTEM
-            if (isPrefab)
-            {
-                GUILayout.Label(new GUIContent("Cannot edit Prefabs", Icons.warning));
-                return;
-            }
-#endif
+		readonly GUIContent SpawnHierarchyButtonLabel = new GUIContent("Spawn Hierarchy", Icons.skeleton);
 
-            serializedObject.Update();
+		void OnEnable () {
+			skeletonUtility = (SkeletonUtility)target;
+			skeletonRenderer = skeletonUtility.skeletonRenderer;
+			skeletonGraphic = skeletonUtility.skeletonGraphic;
+			skeleton = skeletonUtility.Skeleton;
 
-            if (
-                (skeletonRenderer != null && !skeletonRenderer.valid)
-                || (skeletonGraphic != null && !skeletonGraphic.IsValid)
-            )
-            {
-                GUILayout.Label(
-                    new GUIContent(
-                        "Spine Component invalid. Check Skeleton Data Asset.",
-                        Icons.warning
-                    )
-                );
-                return;
-            }
+			if (skeleton == null) {
+				if (skeletonRenderer != null) {
+					skeletonRenderer.Initialize(false);
+					skeletonRenderer.LateUpdate();
+				}
+				else if (skeletonGraphic != null) {
+					skeletonGraphic.Initialize(false);
+					skeletonGraphic.LateUpdate();
+				}
+				skeleton = skeletonUtility.Skeleton;
+			}
 
-            EditorGUILayout.PropertyField(
-                serializedObject.FindProperty("boneRoot"),
-                SpineInspectorUtility.TempContent("Skeleton Root")
-            );
-            EditorGUILayout.PropertyField(
-                serializedObject.FindProperty("flipBy180DegreeRotation"),
-                SpineInspectorUtility.TempContent(
-                    "Flip by Rotation",
-                    null,
-                    "If true, Skeleton.ScaleX and Skeleton.ScaleY are followed "
-                        + "by 180 degree rotation. If false, negative Transform scale is used. "
-                        + "Note that using negative scale is consistent with previous behaviour (hence the default), "
-                        + "however causes serious problems with rigidbodies and physics. Therefore, it is recommended to "
-                        + "enable this parameter where possible. When creating hinge chains for a chain of skeleton bones "
-                        + "via SkeletonUtilityBone, it is mandatory to have this parameter enabled."
-                )
-            );
+			if ((skeletonRenderer != null && !skeletonRenderer.valid) ||
+				(skeletonGraphic != null && !skeletonGraphic.IsValid)) return;
 
-            bool hasRootBone = skeletonUtility.boneRoot != null;
+			#if !NEW_PREFAB_SYSTEM
+			isPrefab |= PrefabUtility.GetPrefabType(this.target) == PrefabType.Prefab;
+			#endif
+		}
 
-            if (!hasRootBone)
-            {
-                EditorGUILayout.HelpBox(
-                    "No hierarchy found. Use Spawn Hierarchy to generate GameObjects for bones.",
-                    MessageType.Info
-                );
-            }
+		public override void OnInspectorGUI () {
 
-            using (new EditorGUI.DisabledGroupScope(hasRootBone))
-            {
-                if (SpineInspectorUtility.LargeCenteredButton(SpawnHierarchyButtonLabel))
-                {
-                    SpawnHierarchyContextMenu();
-                }
-            }
+			#if !NEW_PREFAB_SYSTEM
+			if (isPrefab) {
+				GUILayout.Label(new GUIContent("Cannot edit Prefabs", Icons.warning));
+				return;
+			}
+			#endif
 
-            if (hasRootBone)
-            {
-                if (SpineInspectorUtility.CenteredButton(new GUIContent("Remove Hierarchy")))
-                {
-                    Undo.RegisterCompleteObjectUndo(skeletonUtility, "Remove Hierarchy");
-                    Undo.DestroyObjectImmediate(skeletonUtility.boneRoot.gameObject);
-                    skeletonUtility.boneRoot = null;
-                }
-            }
+			serializedObject.Update();
 
-            serializedObject.ApplyModifiedProperties();
-        }
+			if ((skeletonRenderer != null && !skeletonRenderer.valid) ||
+				(skeletonGraphic != null && !skeletonGraphic.IsValid)) {
+				GUILayout.Label(new GUIContent("Spine Component invalid. Check Skeleton Data Asset.", Icons.warning));
+				return;
+			}
 
-        private void SpawnHierarchyContextMenu()
-        {
-            GenericMenu menu = new();
+			EditorGUILayout.PropertyField(serializedObject.FindProperty("boneRoot"), SpineInspectorUtility.TempContent("Skeleton Root"));
+			EditorGUILayout.PropertyField(serializedObject.FindProperty("flipBy180DegreeRotation"), SpineInspectorUtility.TempContent("Flip by Rotation", null,
+				"If true, Skeleton.ScaleX and Skeleton.ScaleY are followed " +
+				"by 180 degree rotation. If false, negative Transform scale is used. " +
+				"Note that using negative scale is consistent with previous behaviour (hence the default), " +
+				"however causes serious problems with rigidbodies and physics. Therefore, it is recommended to " +
+				"enable this parameter where possible. When creating hinge chains for a chain of skeleton bones " +
+				"via SkeletonUtilityBone, it is mandatory to have this parameter enabled."));
 
-            menu.AddItem(new GUIContent("Follow all bones"), false, SpawnFollowHierarchy);
-            menu.AddItem(new GUIContent("Follow (Root Only)"), false, SpawnFollowHierarchyRootOnly);
-            menu.AddSeparator("");
-            menu.AddItem(new GUIContent("Override all bones"), false, SpawnOverrideHierarchy);
-            menu.AddItem(
-                new GUIContent("Override (Root Only)"),
-                false,
-                SpawnOverrideHierarchyRootOnly
-            );
+			bool hasRootBone = skeletonUtility.boneRoot != null;
 
-            menu.ShowAsContext();
-        }
+			if (!hasRootBone)
+				EditorGUILayout.HelpBox("No hierarchy found. Use Spawn Hierarchy to generate GameObjects for bones.", MessageType.Info);
 
-        public static void AttachIcon(SkeletonUtilityBone boneComponent)
-        {
-            Skeleton skeleton = boneComponent.hierarchy.Skeleton;
-            Texture2D icon = boneComponent.bone.Data.Length == 0 ? Icons.nullBone : Icons.boneNib;
+			using (new EditorGUI.DisabledGroupScope(hasRootBone)) {
+				if (SpineInspectorUtility.LargeCenteredButton(SpawnHierarchyButtonLabel))
+					SpawnHierarchyContextMenu();
+			}
 
-            foreach (IkConstraint c in skeleton.IkConstraints)
-            {
-                if (c.Target == boneComponent.bone)
-                {
-                    icon = Icons.constraintNib;
-                    break;
-                }
-            }
+			if (hasRootBone) {
+				if (SpineInspectorUtility.CenteredButton(new GUIContent("Remove Hierarchy"))) {
+					Undo.RegisterCompleteObjectUndo(skeletonUtility, "Remove Hierarchy");
+					Undo.DestroyObjectImmediate(skeletonUtility.boneRoot.gameObject);
+					skeletonUtility.boneRoot = null;
+				}
+			}
 
-            _ = typeof(EditorGUIUtility).InvokeMember(
-                "SetIconForObject",
-                BindingFlags.InvokeMethod | BindingFlags.Static | BindingFlags.NonPublic,
-                null,
-                null,
-                new object[2] { boneComponent.gameObject, icon }
-            );
-        }
+			serializedObject.ApplyModifiedProperties();
+		}
 
-        private static void AttachIconsToChildren(Transform root)
-        {
-            if (root != null)
-            {
-                SkeletonUtilityBone[] utilityBones =
-                    root.GetComponentsInChildren<SkeletonUtilityBone>();
-                foreach (SkeletonUtilityBone utilBone in utilityBones)
-                {
-                    AttachIcon(utilBone);
-                }
-            }
-        }
+		void SpawnHierarchyContextMenu () {
+			var menu = new GenericMenu();
 
-        private void SpawnFollowHierarchy()
-        {
-            Undo.RegisterCompleteObjectUndo(skeletonUtility, "Spawn Hierarchy");
-            Selection.activeGameObject = skeletonUtility.SpawnHierarchy(
-                SkeletonUtilityBone.Mode.Follow,
-                true,
-                true,
-                true
-            );
-            AttachIconsToChildren(skeletonUtility.boneRoot);
-        }
+			menu.AddItem(new GUIContent("Follow all bones"), false, SpawnFollowHierarchy);
+			menu.AddItem(new GUIContent("Follow (Root Only)"), false, SpawnFollowHierarchyRootOnly);
+			menu.AddSeparator("");
+			menu.AddItem(new GUIContent("Override all bones"), false, SpawnOverrideHierarchy);
+			menu.AddItem(new GUIContent("Override (Root Only)"), false, SpawnOverrideHierarchyRootOnly);
 
-        private void SpawnFollowHierarchyRootOnly()
-        {
-            Undo.RegisterCompleteObjectUndo(skeletonUtility, "Spawn Root");
-            Selection.activeGameObject = skeletonUtility.SpawnRoot(
-                SkeletonUtilityBone.Mode.Follow,
-                true,
-                true,
-                true
-            );
-            AttachIconsToChildren(skeletonUtility.boneRoot);
-        }
+			menu.ShowAsContext();
+		}
 
-        private void SpawnOverrideHierarchy()
-        {
-            Undo.RegisterCompleteObjectUndo(skeletonUtility, "Spawn Hierarchy");
-            Selection.activeGameObject = skeletonUtility.SpawnHierarchy(
-                SkeletonUtilityBone.Mode.Override,
-                true,
-                true,
-                true
-            );
-            AttachIconsToChildren(skeletonUtility.boneRoot);
-        }
+		public static void AttachIcon (SkeletonUtilityBone boneComponent) {
+			Skeleton skeleton = boneComponent.hierarchy.Skeleton;
+			Texture2D icon = boneComponent.bone.Data.Length == 0 ? Icons.nullBone : Icons.boneNib;
 
-        private void SpawnOverrideHierarchyRootOnly()
-        {
-            Undo.RegisterCompleteObjectUndo(skeletonUtility, "Spawn Root");
-            Selection.activeGameObject = skeletonUtility.SpawnRoot(
-                SkeletonUtilityBone.Mode.Override,
-                true,
-                true,
-                true
-            );
-            AttachIconsToChildren(skeletonUtility.boneRoot);
-        }
-    }
+			foreach (IkConstraint c in skeleton.IkConstraints)
+				if (c.Target == boneComponent.bone) {
+					icon = Icons.constraintNib;
+					break;
+				}
+
+			typeof(EditorGUIUtility).InvokeMember("SetIconForObject", BindingFlags.InvokeMethod | BindingFlags.Static | BindingFlags.NonPublic, null, null, new object[2] {
+				boneComponent.gameObject,
+				icon
+			});
+		}
+
+		static void AttachIconsToChildren (Transform root) {
+			if (root != null) {
+				var utilityBones = root.GetComponentsInChildren<SkeletonUtilityBone>();
+				foreach (var utilBone in utilityBones)
+					AttachIcon(utilBone);
+			}
+		}
+
+		void SpawnFollowHierarchy () {
+			Undo.RegisterCompleteObjectUndo(skeletonUtility, "Spawn Hierarchy");
+			Selection.activeGameObject = skeletonUtility.SpawnHierarchy(SkeletonUtilityBone.Mode.Follow, true, true, true);
+			AttachIconsToChildren(skeletonUtility.boneRoot);
+		}
+
+		void SpawnFollowHierarchyRootOnly () {
+			Undo.RegisterCompleteObjectUndo(skeletonUtility, "Spawn Root");
+			Selection.activeGameObject = skeletonUtility.SpawnRoot(SkeletonUtilityBone.Mode.Follow, true, true, true);
+			AttachIconsToChildren(skeletonUtility.boneRoot);
+		}
+
+		void SpawnOverrideHierarchy () {
+			Undo.RegisterCompleteObjectUndo(skeletonUtility, "Spawn Hierarchy");
+			Selection.activeGameObject = skeletonUtility.SpawnHierarchy(SkeletonUtilityBone.Mode.Override, true, true, true);
+			AttachIconsToChildren(skeletonUtility.boneRoot);
+		}
+
+		void SpawnOverrideHierarchyRootOnly () {
+			Undo.RegisterCompleteObjectUndo(skeletonUtility, "Spawn Root");
+			Selection.activeGameObject = skeletonUtility.SpawnRoot(SkeletonUtilityBone.Mode.Override, true, true, true);
+			AttachIconsToChildren(skeletonUtility.boneRoot);
+		}
+	}
+
 }

@@ -33,32 +33,30 @@
 
 using UnityEngine;
 
-namespace Spine.Unity
-{
-#if NEW_PREFAB_SYSTEM
-    [ExecuteAlways]
-#else
-    [ExecuteInEditMode]
-#endif
-    [RequireComponent(typeof(SkeletonUtilityBone))]
-    [HelpURL("http://esotericsoftware.com/spine-unity#SkeletonUtilityConstraint")]
-    public abstract class SkeletonUtilityConstraint : MonoBehaviour
-    {
-        protected SkeletonUtilityBone bone;
-        protected SkeletonUtility hierarchy;
+namespace Spine.Unity {
 
-        protected virtual void OnEnable()
-        {
-            bone = GetComponent<SkeletonUtilityBone>();
-            hierarchy = transform.GetComponentInParent<SkeletonUtility>();
-            hierarchy.RegisterConstraint(this);
-        }
+	#if NEW_PREFAB_SYSTEM
+	[ExecuteAlways]
+	#else
+	[ExecuteInEditMode]
+	#endif
+	[RequireComponent(typeof(SkeletonUtilityBone))]
+	[HelpURL("http://esotericsoftware.com/spine-unity#SkeletonUtilityConstraint")]
+	public abstract class SkeletonUtilityConstraint : MonoBehaviour {
 
-        protected virtual void OnDisable()
-        {
-            hierarchy.UnregisterConstraint(this);
-        }
+		protected SkeletonUtilityBone bone;
+		protected SkeletonUtility hierarchy;
 
-        public abstract void DoUpdate();
-    }
+		protected virtual void OnEnable () {
+			bone = GetComponent<SkeletonUtilityBone>();
+			hierarchy = transform.GetComponentInParent<SkeletonUtility>();
+			hierarchy.RegisterConstraint(this);
+		}
+
+		protected virtual void OnDisable () {
+			hierarchy.UnregisterConstraint(this);
+		}
+
+		public abstract void DoUpdate ();
+	}
 }

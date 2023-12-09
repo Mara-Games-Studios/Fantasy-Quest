@@ -27,13 +27,13 @@
  * THE SPINE RUNTIMES, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *****************************************************************************/
 
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-namespace Spine.Unity
-{
-    /// <summary>Can be stored by SkeletonDataAsset to automatically apply modifications to loaded SkeletonData.</summary>
-    public abstract class SkeletonDataModifierAsset : ScriptableObject
-    {
-        public abstract void Apply(SkeletonData skeletonData);
-    }
+namespace Spine.Unity {
+	/// <summary>Can be stored by SkeletonDataAsset to automatically apply modifications to loaded SkeletonData.</summary>
+	public abstract class SkeletonDataModifierAsset : ScriptableObject {
+		public abstract void Apply (SkeletonData skeletonData);
+	}
 }

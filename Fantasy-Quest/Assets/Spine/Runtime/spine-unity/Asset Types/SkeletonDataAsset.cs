@@ -34,348 +34,229 @@ using UnityEngine;
 
 using CompatibilityProblemInfo = Spine.Unity.SkeletonDataCompatibility.CompatibilityProblemInfo;
 
-namespace Spine.Unity
-{
-    [CreateAssetMenu(fileName = "New SkeletonDataAsset", menuName = "Spine/SkeletonData Asset")]
-    public class SkeletonDataAsset : ScriptableObject
-    {
-        #region Inspector
-        public AtlasAssetBase[] atlasAssets = new AtlasAssetBase[0];
+namespace Spine.Unity {
 
-#if SPINE_TK2D
-        public tk2dSpriteCollectionData spriteCollection;
-        public float scale = 1f;
-#else
-        public float scale = 0.01f;
-#endif
-        public TextAsset skeletonJSON;
+	[CreateAssetMenu(fileName = "New SkeletonDataAsset", menuName = "Spine/SkeletonData Asset")]
+	public class SkeletonDataAsset : ScriptableObject {
+		#region Inspector
+		public AtlasAssetBase[] atlasAssets = new AtlasAssetBase[0];
 
-        public bool isUpgradingBlendModeMaterials = false;
-        public BlendModeMaterials blendModeMaterials = new();
+		#if SPINE_TK2D
+		public tk2dSpriteCollectionData spriteCollection;
+		public float scale = 1f;
+		#else
+		public float scale = 0.01f;
+		#endif
+		public TextAsset skeletonJSON;
 
-        [Tooltip(
-            "Use SkeletonDataModifierAssets to apply changes to the SkeletonData after being loaded, such as apply blend mode Materials to Attachments under slots with special blend modes."
-        )]
-        public List<SkeletonDataModifierAsset> skeletonDataModifiers = new();
+		public bool isUpgradingBlendModeMaterials = false;
+		public BlendModeMaterials blendModeMaterials = new BlendModeMaterials();
 
-        [SpineAnimation(includeNone: false)]
-        public string[] fromAnimation = new string[0];
+		[Tooltip("Use SkeletonDataModifierAssets to apply changes to the SkeletonData after being loaded, such as apply blend mode Materials to Attachments under slots with special blend modes.")]
+		public List<SkeletonDataModifierAsset> skeletonDataModifiers = new List<SkeletonDataModifierAsset>();
 
-        [SpineAnimation(includeNone: false)]
-        public string[] toAnimation = new string[0];
-        public float[] duration = new float[0];
-        public float defaultMix;
-        public RuntimeAnimatorController controller;
+		[SpineAnimation(includeNone: false)]
+		public string[] fromAnimation = new string[0];
+		[SpineAnimation(includeNone: false)]
+		public string[] toAnimation = new string[0];
+		public float[] duration = new float[0];
+		public float defaultMix;
+		public RuntimeAnimatorController controller;
 
-        public bool IsLoaded => skeletonData != null;
+		public bool IsLoaded { get { return this.skeletonData != null; } }
 
-        private void Reset()
-        {
-            Clear();
-        }
-        #endregion
+		void Reset () {
+			Clear();
+		}
+		#endregion
 
-        private SkeletonData skeletonData;
-        private AnimationStateData stateData;
+		SkeletonData skeletonData;
+		AnimationStateData stateData;
 
-        #region Runtime Instantiation
-        /// <summary>
-        /// Creates a runtime SkeletonDataAsset.</summary>
-        public static SkeletonDataAsset CreateRuntimeInstance(
-            TextAsset skeletonDataFile,
-            AtlasAssetBase atlasAsset,
-            bool initialize,
-            float scale = 0.01f
-        )
-        {
-            return CreateRuntimeInstance(skeletonDataFile, new[] { atlasAsset }, initialize, scale);
-        }
+		#region Runtime Instantiation
+		/// <summary>
+		/// Creates a runtime SkeletonDataAsset.</summary>
+		public static SkeletonDataAsset CreateRuntimeInstance (TextAsset skeletonDataFile, AtlasAssetBase atlasAsset, bool initialize, float scale = 0.01f) {
+			return CreateRuntimeInstance(skeletonDataFile, new [] {atlasAsset}, initialize, scale);
+		}
 
-        /// <summary>
-        /// Creates a runtime SkeletonDataAsset.</summary>
-        public static SkeletonDataAsset CreateRuntimeInstance(
-            TextAsset skeletonDataFile,
-            AtlasAssetBase[] atlasAssets,
-            bool initialize,
-            float scale = 0.01f
-        )
-        {
-            SkeletonDataAsset skeletonDataAsset =
-                ScriptableObject.CreateInstance<SkeletonDataAsset>();
-            skeletonDataAsset.Clear();
-            skeletonDataAsset.skeletonJSON = skeletonDataFile;
-            skeletonDataAsset.atlasAssets = atlasAssets;
-            skeletonDataAsset.scale = scale;
+		/// <summary>
+		/// Creates a runtime SkeletonDataAsset.</summary>
+		public static SkeletonDataAsset CreateRuntimeInstance (TextAsset skeletonDataFile, AtlasAssetBase[] atlasAssets, bool initialize, float scale = 0.01f) {
+			SkeletonDataAsset skeletonDataAsset = ScriptableObject.CreateInstance<SkeletonDataAsset>();
+			skeletonDataAsset.Clear();
+			skeletonDataAsset.skeletonJSON = skeletonDataFile;
+			skeletonDataAsset.atlasAssets = atlasAssets;
+			skeletonDataAsset.scale = scale;
 
-            if (initialize)
-            {
-                _ = skeletonDataAsset.GetSkeletonData(true);
-            }
+			if (initialize)
+				skeletonDataAsset.GetSkeletonData(true);
 
-            return skeletonDataAsset;
-        }
-        #endregion
+			return skeletonDataAsset;
+		}
+		#endregion
 
-        /// <summary>Clears the loaded SkeletonData and AnimationStateData. Use this to force a reload for the next time GetSkeletonData is called.</summary>
-        public void Clear()
-        {
-            skeletonData = null;
-            stateData = null;
-        }
+		/// <summary>Clears the loaded SkeletonData and AnimationStateData. Use this to force a reload for the next time GetSkeletonData is called.</summary>
+		public void Clear () {
+			skeletonData = null;
+			stateData = null;
+		}
 
-        public AnimationStateData GetAnimationStateData()
-        {
-            if (stateData != null)
-            {
-                return stateData;
-            }
+		public AnimationStateData GetAnimationStateData () {
+			if (stateData != null)
+				return stateData;
+			GetSkeletonData(false);
+			return stateData;
+		}
 
-            _ = GetSkeletonData(false);
-            return stateData;
-        }
+		/// <summary>Loads, caches and returns the SkeletonData from the skeleton data file. Returns the cached SkeletonData after the first time it is called. Pass false to prevent direct errors from being logged.</summary>
+		public SkeletonData GetSkeletonData (bool quiet) {
+			if (skeletonJSON == null) {
+				if (!quiet)
+					Debug.LogError("Skeleton JSON file not set for SkeletonData asset: " + name, this);
+				Clear();
+				return null;
+			}
 
-        /// <summary>Loads, caches and returns the SkeletonData from the skeleton data file. Returns the cached SkeletonData after the first time it is called. Pass false to prevent direct errors from being logged.</summary>
-        public SkeletonData GetSkeletonData(bool quiet)
-        {
-            if (skeletonJSON == null)
-            {
-                if (!quiet)
-                {
-                    Debug.LogError(
-                        "Skeleton JSON file not set for SkeletonData asset: " + name,
-                        this
-                    );
-                }
+			// Disabled to support attachmentless/skinless SkeletonData.
+			//			if (atlasAssets == null) {
+			//				atlasAssets = new AtlasAsset[0];
+			//				if (!quiet)
+			//					Debug.LogError("Atlas not set for SkeletonData asset: " + name, this);
+			//				Clear();
+			//				return null;
+			//			}
+			//			#if !SPINE_TK2D
+			//			if (atlasAssets.Length == 0) {
+			//				Clear();
+			//				return null;
+			//			}
+			//			#else
+			//			if (atlasAssets.Length == 0 && spriteCollection == null) {
+			//				Clear();
+			//				return null;
+			//			}
+			//			#endif
 
-                Clear();
-                return null;
-            }
+			if (skeletonData != null)
+				return skeletonData;
 
-            // Disabled to support attachmentless/skinless SkeletonData.
-            //			if (atlasAssets == null) {
-            //				atlasAssets = new AtlasAsset[0];
-            //				if (!quiet)
-            //					Debug.LogError("Atlas not set for SkeletonData asset: " + name, this);
-            //				Clear();
-            //				return null;
-            //			}
-            //			#if !SPINE_TK2D
-            //			if (atlasAssets.Length == 0) {
-            //				Clear();
-            //				return null;
-            //			}
-            //			#else
-            //			if (atlasAssets.Length == 0 && spriteCollection == null) {
-            //				Clear();
-            //				return null;
-            //			}
-            //			#endif
+			AttachmentLoader attachmentLoader;
+			float skeletonDataScale;
+			Atlas[] atlasArray = this.GetAtlasArray();
 
-            if (skeletonData != null)
-            {
-                return skeletonData;
-            }
+			#if !SPINE_TK2D
+			attachmentLoader = (atlasArray.Length == 0) ? (AttachmentLoader)new RegionlessAttachmentLoader() : (AttachmentLoader)new AtlasAttachmentLoader(atlasArray);
+			skeletonDataScale = scale;
+			#else
+			if (spriteCollection != null) {
+				attachmentLoader = new Spine.Unity.TK2D.SpriteCollectionAttachmentLoader(spriteCollection);
+				skeletonDataScale = (1.0f / (spriteCollection.invOrthoSize * spriteCollection.halfTargetHeight) * scale);
+			} else {
+				if (atlasArray.Length == 0) {
+					Reset();
+					if (!quiet) Debug.LogError("Atlas not set for SkeletonData asset: " + name, this);
+					return null;
+				}
+				attachmentLoader = new AtlasAttachmentLoader(atlasArray);
+				skeletonDataScale = scale;
+			}
+			#endif
 
-            AttachmentLoader attachmentLoader;
-            float skeletonDataScale;
-            Atlas[] atlasArray = GetAtlasArray();
+			bool hasBinaryExtension = skeletonJSON.name.ToLower().Contains(".skel");
+			SkeletonData loadedSkeletonData = null;
 
-#if !SPINE_TK2D
-            attachmentLoader =
-                (atlasArray.Length == 0)
-                    ? new RegionlessAttachmentLoader()
-                    : new AtlasAttachmentLoader(atlasArray);
-            skeletonDataScale = scale;
-#else
-            if (spriteCollection != null)
-            {
-                attachmentLoader = new Spine.Unity.TK2D.SpriteCollectionAttachmentLoader(
-                    spriteCollection
-                );
-                skeletonDataScale = (
-                    1.0f
-                    / (spriteCollection.invOrthoSize * spriteCollection.halfTargetHeight)
-                    * scale
-                );
-            }
-            else
-            {
-                if (atlasArray.Length == 0)
-                {
-                    Reset();
-                    if (!quiet)
-                        Debug.LogError("Atlas not set for SkeletonData asset: " + name, this);
-                    return null;
-                }
-                attachmentLoader = new AtlasAttachmentLoader(atlasArray);
-                skeletonDataScale = scale;
-            }
-#endif
+			try {
+				if (hasBinaryExtension)
+					loadedSkeletonData = SkeletonDataAsset.ReadSkeletonData(skeletonJSON.bytes, attachmentLoader, skeletonDataScale);
+				else
+					loadedSkeletonData = SkeletonDataAsset.ReadSkeletonData(skeletonJSON.text, attachmentLoader, skeletonDataScale);
+			} catch (Exception ex) {
+				if (!quiet)
+					Debug.LogError("Error reading skeleton JSON file for SkeletonData asset: " + name + "\n" + ex.Message + "\n" + ex.StackTrace, skeletonJSON);
+			}
 
-            bool hasBinaryExtension = skeletonJSON.name.ToLower().Contains(".skel");
-            SkeletonData loadedSkeletonData = null;
+			#if UNITY_EDITOR
+			if (loadedSkeletonData == null && !quiet && skeletonJSON != null) {
+				string problemDescription = null;
+				bool isSpineSkeletonData;
+				SkeletonDataCompatibility.VersionInfo fileVersion = SkeletonDataCompatibility.GetVersionInfo(skeletonJSON, out isSpineSkeletonData, ref problemDescription);
+				if (problemDescription != null) {
+					if (!quiet)
+						Debug.LogError(problemDescription, skeletonJSON);
+					return null;
+				}
+				CompatibilityProblemInfo compatibilityProblemInfo = SkeletonDataCompatibility.GetCompatibilityProblemInfo(fileVersion);
+				if (compatibilityProblemInfo != null) {
+					SkeletonDataCompatibility.DisplayCompatibilityProblem(compatibilityProblemInfo.DescriptionString(), skeletonJSON);
+					return null;
+				}
+			}
+			#endif
+			if (loadedSkeletonData == null)
+				return null;
 
-            try
-            {
-                if (hasBinaryExtension)
-                {
-                    loadedSkeletonData = SkeletonDataAsset.ReadSkeletonData(
-                        skeletonJSON.bytes,
-                        attachmentLoader,
-                        skeletonDataScale
-                    );
-                }
-                else
-                {
-                    loadedSkeletonData = SkeletonDataAsset.ReadSkeletonData(
-                        skeletonJSON.text,
-                        attachmentLoader,
-                        skeletonDataScale
-                    );
-                }
-            }
-            catch (Exception ex)
-            {
-                if (!quiet)
-                {
-                    Debug.LogError(
-                        "Error reading skeleton JSON file for SkeletonData asset: "
-                            + name
-                            + "\n"
-                            + ex.Message
-                            + "\n"
-                            + ex.StackTrace,
-                        skeletonJSON
-                    );
-                }
-            }
+			if (skeletonDataModifiers != null) {
+				foreach (var modifier in skeletonDataModifiers) {
+					if (modifier != null && !(isUpgradingBlendModeMaterials && modifier is BlendModeMaterialsAsset)) {
+						modifier.Apply(loadedSkeletonData);
+					}
+				}
+			}
+			if (!isUpgradingBlendModeMaterials)
+				blendModeMaterials.ApplyMaterials(loadedSkeletonData);
 
-#if UNITY_EDITOR
-            if (loadedSkeletonData == null && !quiet && skeletonJSON != null)
-            {
-                string problemDescription = null;
-                SkeletonDataCompatibility.VersionInfo fileVersion =
-                    SkeletonDataCompatibility.GetVersionInfo(
-                        skeletonJSON,
-                        out bool isSpineSkeletonData,
-                        ref problemDescription
-                    );
-                if (problemDescription != null)
-                {
-                    if (!quiet)
-                    {
-                        Debug.LogError(problemDescription, skeletonJSON);
-                    }
+			this.InitializeWithData(loadedSkeletonData);
 
-                    return null;
-                }
-                CompatibilityProblemInfo compatibilityProblemInfo =
-                    SkeletonDataCompatibility.GetCompatibilityProblemInfo(fileVersion);
-                if (compatibilityProblemInfo != null)
-                {
-                    SkeletonDataCompatibility.DisplayCompatibilityProblem(
-                        compatibilityProblemInfo.DescriptionString(),
-                        skeletonJSON
-                    );
-                    return null;
-                }
-            }
-#endif
-            if (loadedSkeletonData == null)
-            {
-                return null;
-            }
+			return skeletonData;
+		}
 
-            if (skeletonDataModifiers != null)
-            {
-                foreach (SkeletonDataModifierAsset modifier in skeletonDataModifiers)
-                {
-                    if (
-                        modifier != null
-                        && !(isUpgradingBlendModeMaterials && modifier is BlendModeMaterialsAsset)
-                    )
-                    {
-                        modifier.Apply(loadedSkeletonData);
-                    }
-                }
-            }
-            if (!isUpgradingBlendModeMaterials)
-            {
-                blendModeMaterials.ApplyMaterials(loadedSkeletonData);
-            }
+		internal void InitializeWithData (SkeletonData sd) {
+			this.skeletonData = sd;
+			this.stateData = new AnimationStateData(skeletonData);
+			FillStateData();
+		}
 
-            InitializeWithData(loadedSkeletonData);
+		public void FillStateData () {
+			if (stateData != null) {
+				stateData.defaultMix = defaultMix;
 
-            return skeletonData;
-        }
+				for (int i = 0, n = fromAnimation.Length; i < n; i++) {
+					if (fromAnimation[i].Length == 0 || toAnimation[i].Length == 0)
+						continue;
+					stateData.SetMix(fromAnimation[i], toAnimation[i], duration[i]);
+				}
+			}
+		}
 
-        internal void InitializeWithData(SkeletonData sd)
-        {
-            skeletonData = sd;
-            stateData = new AnimationStateData(skeletonData);
-            FillStateData();
-        }
+		internal Atlas[] GetAtlasArray () {
+			var returnList = new System.Collections.Generic.List<Atlas>(atlasAssets.Length);
+			for (int i = 0; i < atlasAssets.Length; i++) {
+				var aa = atlasAssets[i];
+				if (aa == null) continue;
+				var a = aa.GetAtlas();
+				if (a == null) continue;
+				returnList.Add(a);
+			}
+			return returnList.ToArray();
+		}
 
-        public void FillStateData()
-        {
-            if (stateData != null)
-            {
-                stateData.defaultMix = defaultMix;
+		internal static SkeletonData ReadSkeletonData (byte[] bytes, AttachmentLoader attachmentLoader, float scale) {
+			using (var input = new MemoryStream(bytes)) {
+				var binary = new SkeletonBinary(attachmentLoader) {
+					Scale = scale
+				};
+				return binary.ReadSkeletonData(input);
+			}
+		}
 
-                for (int i = 0, n = fromAnimation.Length; i < n; i++)
-                {
-                    if (fromAnimation[i].Length == 0 || toAnimation[i].Length == 0)
-                    {
-                        continue;
-                    }
+		internal static SkeletonData ReadSkeletonData (string text, AttachmentLoader attachmentLoader, float scale) {
+			var input = new StringReader(text);
+			var json = new SkeletonJson(attachmentLoader) {
+				Scale = scale
+			};
+			return json.ReadSkeletonData(input);
+		}
+	}
 
-                    stateData.SetMix(fromAnimation[i], toAnimation[i], duration[i]);
-                }
-            }
-        }
-
-        internal Atlas[] GetAtlasArray()
-        {
-            List<Atlas> returnList = new(atlasAssets.Length);
-            for (int i = 0; i < atlasAssets.Length; i++)
-            {
-                AtlasAssetBase aa = atlasAssets[i];
-                if (aa == null)
-                {
-                    continue;
-                }
-
-                Atlas a = aa.GetAtlas();
-                if (a == null)
-                {
-                    continue;
-                }
-
-                returnList.Add(a);
-            }
-            return returnList.ToArray();
-        }
-
-        internal static SkeletonData ReadSkeletonData(
-            byte[] bytes,
-            AttachmentLoader attachmentLoader,
-            float scale
-        )
-        {
-            using MemoryStream input = new(bytes);
-            SkeletonBinary binary = new(attachmentLoader) { Scale = scale };
-            return binary.ReadSkeletonData(input);
-        }
-
-        internal static SkeletonData ReadSkeletonData(
-            string text,
-            AttachmentLoader attachmentLoader,
-            float scale
-        )
-        {
-            StringReader input = new(text);
-            SkeletonJson json = new(attachmentLoader) { Scale = scale };
-            return json.ReadSkeletonData(input);
-        }
-    }
 }

@@ -30,59 +30,50 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace Spine.Unity.Editor
-{
-    [CustomEditor(typeof(SkeletonRootMotion))]
-    [CanEditMultipleObjects]
-    public class SkeletonRootMotionInspector : SkeletonRootMotionBaseInspector
-    {
-        protected SerializedProperty animationTrackFlags;
-        protected GUIContent animationTrackFlagsLabel;
-        private string[] TrackNames;
+namespace Spine.Unity.Editor {
+	[CustomEditor(typeof(SkeletonRootMotion))]
+	[CanEditMultipleObjects]
+	public class SkeletonRootMotionInspector : SkeletonRootMotionBaseInspector {
+		protected SerializedProperty animationTrackFlags;
+		protected GUIContent animationTrackFlagsLabel;
 
-        protected override void OnEnable()
-        {
-            base.OnEnable();
+		string[] TrackNames;
 
-            animationTrackFlags = serializedObject.FindProperty("animationTrackFlags");
-            animationTrackFlagsLabel = new UnityEngine.GUIContent(
-                "Animation Tracks",
-                "Animation tracks to apply root motion at. Defaults to the first"
-                    + " animation track (index 0)."
-            );
-        }
+		protected override void OnEnable () {
+			base.OnEnable();
 
-        public override void OnInspectorGUI()
-        {
-            base.MainPropertyFields();
-            AnimationTracksPropertyField();
+			animationTrackFlags = serializedObject.FindProperty("animationTrackFlags");
+			animationTrackFlagsLabel = new UnityEngine.GUIContent("Animation Tracks",
+				"Animation tracks to apply root motion at. Defaults to the first" +
+				" animation track (index 0).");
+		}
 
-            base.OptionalPropertyFields();
-            _ = serializedObject.ApplyModifiedProperties();
-        }
+		override public void OnInspectorGUI () {
 
-        protected void AnimationTracksPropertyField()
-        {
-            if (TrackNames == null)
-            {
-                InitTrackNames();
-            }
+			base.MainPropertyFields();
+			AnimationTracksPropertyField();
 
-            animationTrackFlags.intValue = EditorGUILayout.MaskField(
-                animationTrackFlagsLabel,
-                animationTrackFlags.intValue,
-                TrackNames
-            );
-        }
+			base.OptionalPropertyFields();
+			serializedObject.ApplyModifiedProperties();
+		}
 
-        protected void InitTrackNames()
-        {
-            int numEntries = 32;
-            TrackNames = new string[numEntries];
-            for (int i = 0; i < numEntries; ++i)
-            {
-                TrackNames[i] = string.Format("Track {0}", i);
-            }
-        }
-    }
+		protected void AnimationTracksPropertyField () {
+
+			if (TrackNames == null) {
+				InitTrackNames();
+
+			}
+
+			animationTrackFlags.intValue = EditorGUILayout.MaskField(
+				animationTrackFlagsLabel, animationTrackFlags.intValue, TrackNames);
+		}
+
+		protected void InitTrackNames () {
+			int numEntries = 32;
+			TrackNames = new string[numEntries];
+			for (int i = 0; i < numEntries; ++i) {
+				TrackNames[i] = string.Format("Track {0}", i);
+			}
+		}
+	}
 }

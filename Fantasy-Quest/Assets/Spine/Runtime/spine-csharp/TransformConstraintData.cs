@@ -27,95 +27,34 @@
  * THE SPINE RUNTIMES, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *****************************************************************************/
 
-namespace Spine
-{
-    public class TransformConstraintData : ConstraintData
-    {
-        internal ExposedList<BoneData> bones = new();
-        internal BoneData target;
-        internal float rotateMix,
-            translateMix,
-            scaleMix,
-            shearMix;
-        internal float offsetRotation,
-            offsetX,
-            offsetY,
-            offsetScaleX,
-            offsetScaleY,
-            offsetShearY;
-        internal bool relative,
-            local;
+using System;
 
-        public ExposedList<BoneData> Bones => bones;
-        public BoneData Target
-        {
-            get => target;
-            set => target = value;
-        }
-        public float RotateMix
-        {
-            get => rotateMix;
-            set => rotateMix = value;
-        }
-        public float TranslateMix
-        {
-            get => translateMix;
-            set => translateMix = value;
-        }
-        public float ScaleMix
-        {
-            get => scaleMix;
-            set => scaleMix = value;
-        }
-        public float ShearMix
-        {
-            get => shearMix;
-            set => shearMix = value;
-        }
+namespace Spine {
+	public class TransformConstraintData : ConstraintData {
+		internal ExposedList<BoneData> bones = new ExposedList<BoneData>();
+		internal BoneData target;
+		internal float rotateMix, translateMix, scaleMix, shearMix;
+		internal float offsetRotation, offsetX, offsetY, offsetScaleX, offsetScaleY, offsetShearY;
+		internal bool relative, local;
 
-        public float OffsetRotation
-        {
-            get => offsetRotation;
-            set => offsetRotation = value;
-        }
-        public float OffsetX
-        {
-            get => offsetX;
-            set => offsetX = value;
-        }
-        public float OffsetY
-        {
-            get => offsetY;
-            set => offsetY = value;
-        }
-        public float OffsetScaleX
-        {
-            get => offsetScaleX;
-            set => offsetScaleX = value;
-        }
-        public float OffsetScaleY
-        {
-            get => offsetScaleY;
-            set => offsetScaleY = value;
-        }
-        public float OffsetShearY
-        {
-            get => offsetShearY;
-            set => offsetShearY = value;
-        }
+		public ExposedList<BoneData> Bones { get { return bones; } }
+		public BoneData Target { get { return target; } set { target = value; } }
+		public float RotateMix { get { return rotateMix; } set { rotateMix = value; } }
+		public float TranslateMix { get { return translateMix; } set { translateMix = value; } }
+		public float ScaleMix { get { return scaleMix; } set { scaleMix = value; } }
+		public float ShearMix { get { return shearMix; } set { shearMix = value; } }
 
-        public bool Relative
-        {
-            get => relative;
-            set => relative = value;
-        }
-        public bool Local
-        {
-            get => local;
-            set => local = value;
-        }
+		public float OffsetRotation { get { return offsetRotation; } set { offsetRotation = value; } }
+		public float OffsetX { get { return offsetX; } set { offsetX = value; } }
+		public float OffsetY { get { return offsetY; } set { offsetY = value; } }
+		public float OffsetScaleX { get { return offsetScaleX; } set { offsetScaleX = value; } }
+		public float OffsetScaleY { get { return offsetScaleY; } set { offsetScaleY = value; } }
+		public float OffsetShearY { get { return offsetShearY; } set { offsetShearY = value; } }
 
-        public TransformConstraintData(string name)
-            : base(name) { }
-    }
+		public bool Relative { get { return relative; } set { relative = value; } }
+		public bool Local { get { return local; } set { local = value; } }
+
+		public TransformConstraintData (string name) : base(name) {
+		}
+	}
 }

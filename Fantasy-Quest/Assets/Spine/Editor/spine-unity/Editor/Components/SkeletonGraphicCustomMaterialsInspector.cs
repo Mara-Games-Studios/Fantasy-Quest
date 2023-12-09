@@ -33,173 +33,127 @@ using System.Linq;
 using System.Reflection;
 using UnityEditor;
 using UnityEngine;
+using Spine.Unity.Examples;
 
-namespace Spine.Unity.Editor
-{
-    // This script is not intended for use with code. See spine-unity documentation page for additional information.
-    [CustomEditor(typeof(SkeletonGraphicCustomMaterials))]
-    public class SkeletonGraphicCustomMaterialsInspector : UnityEditor.Editor
-    {
-        private List<SkeletonGraphicCustomMaterials.AtlasMaterialOverride> componentCustomMaterialOverrides,
-            _customMaterialOverridesPrev;
-        private List<SkeletonGraphicCustomMaterials.AtlasTextureOverride> componentCustomTextureOverrides,
-            _customTextureOverridesPrev;
-        private SkeletonGraphicCustomMaterials component;
-        private const BindingFlags PrivateInstance = BindingFlags.Instance | BindingFlags.NonPublic;
-        private MethodInfo RemoveCustomMaterialOverrides,
-            RemoveCustomTextureOverrides,
-            SetCustomMaterialOverrides,
-            SetCustomTextureOverrides;
+namespace Spine.Unity.Editor {
 
-        #region SkeletonGraphic context menu
-        [MenuItem("CONTEXT/SkeletonGraphic/Add Basic Serialized Custom Materials")]
-        private static void AddSkeletonGraphicCustomMaterials(MenuCommand menuCommand)
-        {
-            SkeletonGraphic skeletonGraphic = (SkeletonGraphic)menuCommand.context;
-            SkeletonGraphicCustomMaterials newComponent =
-                skeletonGraphic.gameObject.AddComponent<SkeletonGraphicCustomMaterials>();
-            Undo.RegisterCreatedObjectUndo(newComponent, "Add Basic Serialized Custom Materials");
-        }
+	// This script is not intended for use with code. See spine-unity documentation page for additional information.
+	[CustomEditor(typeof(SkeletonGraphicCustomMaterials))]
+	public class SkeletonGraphicCustomMaterialsInspector : UnityEditor.Editor {
+		List<SkeletonGraphicCustomMaterials.AtlasMaterialOverride> componentCustomMaterialOverrides, _customMaterialOverridesPrev;
+		List<SkeletonGraphicCustomMaterials.AtlasTextureOverride> componentCustomTextureOverrides, _customTextureOverridesPrev;
+		SkeletonGraphicCustomMaterials component;
 
-        [MenuItem("CONTEXT/SkeletonGraphic/Add Basic Serialized Custom Materials", true)]
-        private static bool AddSkeletonGraphicCustomMaterials_Validate(MenuCommand menuCommand)
-        {
-            SkeletonGraphic skeletonGraphic = (SkeletonGraphic)menuCommand.context;
-            return skeletonGraphic.GetComponent<SkeletonGraphicCustomMaterials>() == null;
-        }
-        #endregion
+		const BindingFlags PrivateInstance = BindingFlags.Instance | BindingFlags.NonPublic;
+		MethodInfo RemoveCustomMaterialOverrides, RemoveCustomTextureOverrides, SetCustomMaterialOverrides, SetCustomTextureOverrides;
 
-        private void OnEnable()
-        {
-            Type cm = typeof(SkeletonGraphicCustomMaterials);
-            RemoveCustomMaterialOverrides = cm.GetMethod(
-                "RemoveCustomMaterialOverrides",
-                PrivateInstance
-            );
-            RemoveCustomTextureOverrides = cm.GetMethod(
-                "RemoveCustomTextureOverrides",
-                PrivateInstance
-            );
-            SetCustomMaterialOverrides = cm.GetMethod(
-                "SetCustomMaterialOverrides",
-                PrivateInstance
-            );
-            SetCustomTextureOverrides = cm.GetMethod("SetCustomTextureOverrides", PrivateInstance);
-        }
+		#region SkeletonGraphic context menu
+		[MenuItem("CONTEXT/SkeletonGraphic/Add Basic Serialized Custom Materials")]
+		static void AddSkeletonGraphicCustomMaterials (MenuCommand menuCommand) {
+			var skeletonGraphic = (SkeletonGraphic)menuCommand.context;
+			var newComponent = skeletonGraphic.gameObject.AddComponent<SkeletonGraphicCustomMaterials>();
+			Undo.RegisterCreatedObjectUndo(newComponent, "Add Basic Serialized Custom Materials");
+		}
 
-        public override void OnInspectorGUI()
-        {
-            component = (SkeletonGraphicCustomMaterials)target;
-            SkeletonGraphic skeletonGraphic = component.skeletonGraphic;
+		[MenuItem("CONTEXT/SkeletonGraphic/Add Basic Serialized Custom Materials", true)]
+		static bool AddSkeletonGraphicCustomMaterials_Validate (MenuCommand menuCommand) {
+			var skeletonGraphic = (SkeletonGraphic)menuCommand.context;
+			return (skeletonGraphic.GetComponent<SkeletonGraphicCustomMaterials>() == null);
+		}
+		#endregion
 
-            // Draw the default inspector
-            _ = DrawDefaultInspector();
+		void OnEnable () {
+			Type cm = typeof(SkeletonGraphicCustomMaterials);
+			RemoveCustomMaterialOverrides = cm.GetMethod("RemoveCustomMaterialOverrides", PrivateInstance);
+			RemoveCustomTextureOverrides = cm.GetMethod("RemoveCustomTextureOverrides", PrivateInstance);
+			SetCustomMaterialOverrides = cm.GetMethod("SetCustomMaterialOverrides", PrivateInstance);
+			SetCustomTextureOverrides = cm.GetMethod("SetCustomTextureOverrides", PrivateInstance);
+		}
 
-            if (serializedObject.isEditingMultipleObjects)
-            {
-                return;
-            }
+		public override void OnInspectorGUI () {
+			component = (SkeletonGraphicCustomMaterials)target;
+			var skeletonGraphic = component.skeletonGraphic;
 
-            if (componentCustomMaterialOverrides == null)
-            {
-                Type cm = typeof(SkeletonGraphicCustomMaterials);
-                componentCustomMaterialOverrides =
-                    cm.GetField("customMaterialOverrides", PrivateInstance).GetValue(component)
-                    as List<SkeletonGraphicCustomMaterials.AtlasMaterialOverride>;
-                componentCustomTextureOverrides =
-                    cm.GetField("customTextureOverrides", PrivateInstance).GetValue(component)
-                    as List<SkeletonGraphicCustomMaterials.AtlasTextureOverride>;
-                if (componentCustomMaterialOverrides == null)
-                {
-                    Debug.Log("Reflection failed.");
-                    return;
-                }
-            }
+			// Draw the default inspector
+			DrawDefaultInspector();
 
-            // Fill with current values at start
-            if (_customMaterialOverridesPrev == null || _customTextureOverridesPrev == null)
-            {
-                _customMaterialOverridesPrev = CopyList(componentCustomMaterialOverrides);
-                _customTextureOverridesPrev = CopyList(componentCustomTextureOverrides);
-            }
+			if (serializedObject.isEditingMultipleObjects)
+				return;
 
-            // Compare new values with saved. If change is detected:
-            // store new values, restore old values, remove overrides, restore new values, restore overrides.
+			if (componentCustomMaterialOverrides == null) {
+				Type cm = typeof(SkeletonGraphicCustomMaterials);
+				componentCustomMaterialOverrides = cm.GetField("customMaterialOverrides", PrivateInstance).GetValue(component) as List<SkeletonGraphicCustomMaterials.AtlasMaterialOverride>;
+				componentCustomTextureOverrides = cm.GetField("customTextureOverrides", PrivateInstance).GetValue(component) as List<SkeletonGraphicCustomMaterials.AtlasTextureOverride>;
+				if (componentCustomMaterialOverrides == null) {
+					Debug.Log("Reflection failed.");
+					return;
+				}
+			}
 
-            // 1. Store new values
-            List<SkeletonGraphicCustomMaterials.AtlasMaterialOverride> customMaterialOverridesNew =
-                CopyList(componentCustomMaterialOverrides);
-            List<SkeletonGraphicCustomMaterials.AtlasTextureOverride> customTextureOverridesNew =
-                CopyList(componentCustomTextureOverrides);
+			// Fill with current values at start
+			if (_customMaterialOverridesPrev == null || _customTextureOverridesPrev == null) {
+				_customMaterialOverridesPrev = CopyList(componentCustomMaterialOverrides);
+				_customTextureOverridesPrev = CopyList(componentCustomTextureOverrides);
+			}
 
-            // Detect changes
-            if (
-                !_customMaterialOverridesPrev.SequenceEqual(customMaterialOverridesNew)
-                || !_customTextureOverridesPrev.SequenceEqual(customTextureOverridesNew)
-            )
-            {
-                // 2. Restore old values
-                componentCustomMaterialOverrides.Clear();
-                componentCustomTextureOverrides.Clear();
-                componentCustomMaterialOverrides.AddRange(_customMaterialOverridesPrev);
-                componentCustomTextureOverrides.AddRange(_customTextureOverridesPrev);
+			// Compare new values with saved. If change is detected:
+			// store new values, restore old values, remove overrides, restore new values, restore overrides.
 
-                // 3. Remove overrides
-                RemoveCustomMaterials();
+			// 1. Store new values
+			var customMaterialOverridesNew = CopyList(componentCustomMaterialOverrides);
+			var customTextureOverridesNew = CopyList(componentCustomTextureOverrides);
 
-                // 4. Restore new values
-                componentCustomMaterialOverrides.Clear();
-                componentCustomTextureOverrides.Clear();
-                componentCustomMaterialOverrides.AddRange(customMaterialOverridesNew);
-                componentCustomTextureOverrides.AddRange(customTextureOverridesNew);
+			// Detect changes
+			if (!_customMaterialOverridesPrev.SequenceEqual(customMaterialOverridesNew) ||
+				!_customTextureOverridesPrev.SequenceEqual(customTextureOverridesNew)) {
+				// 2. Restore old values
+				componentCustomMaterialOverrides.Clear();
+				componentCustomTextureOverrides.Clear();
+				componentCustomMaterialOverrides.AddRange(_customMaterialOverridesPrev);
+				componentCustomTextureOverrides.AddRange(_customTextureOverridesPrev);
 
-                // 5. Restore overrides
-                SetCustomMaterials();
+				// 3. Remove overrides
+				RemoveCustomMaterials();
 
-                if (skeletonGraphic != null)
-                {
-                    skeletonGraphic.LateUpdate();
-                }
-            }
+				// 4. Restore new values
+				componentCustomMaterialOverrides.Clear();
+				componentCustomTextureOverrides.Clear();
+				componentCustomMaterialOverrides.AddRange(customMaterialOverridesNew);
+				componentCustomTextureOverrides.AddRange(customTextureOverridesNew);
 
-            _customMaterialOverridesPrev = CopyList(componentCustomMaterialOverrides);
-            _customTextureOverridesPrev = CopyList(componentCustomTextureOverrides);
+				// 5. Restore overrides
+				SetCustomMaterials();
 
-            if (
-                SpineInspectorUtility.LargeCenteredButton(
-                    SpineInspectorUtility.TempContent(
-                        "Clear and Reapply Changes",
-                        tooltip: "Removes all non-serialized overrides in the SkeletonGraphic and reapplies the overrides on this component."
-                    )
-                )
-            )
-            {
-                if (skeletonGraphic != null)
-                {
-                    skeletonGraphic.CustomMaterialOverride.Clear();
-                    skeletonGraphic.CustomTextureOverride.Clear();
-                    RemoveCustomMaterials();
-                    SetCustomMaterials();
-                    skeletonGraphic.LateUpdate();
-                }
-            }
-        }
+				if (skeletonGraphic != null)
+					skeletonGraphic.LateUpdate();
+			}
 
-        private void RemoveCustomMaterials()
-        {
-            _ = RemoveCustomMaterialOverrides.Invoke(component, null);
-            _ = RemoveCustomTextureOverrides.Invoke(component, null);
-        }
+			_customMaterialOverridesPrev = CopyList(componentCustomMaterialOverrides);
+			_customTextureOverridesPrev = CopyList(componentCustomTextureOverrides);
 
-        private void SetCustomMaterials()
-        {
-            _ = SetCustomMaterialOverrides.Invoke(component, null);
-            _ = SetCustomTextureOverrides.Invoke(component, null);
-        }
+			if (SpineInspectorUtility.LargeCenteredButton(SpineInspectorUtility.TempContent("Clear and Reapply Changes", tooltip: "Removes all non-serialized overrides in the SkeletonGraphic and reapplies the overrides on this component."))) {
+				if (skeletonGraphic != null) {
+					skeletonGraphic.CustomMaterialOverride.Clear();
+					skeletonGraphic.CustomTextureOverride.Clear();
+					RemoveCustomMaterials();
+					SetCustomMaterials();
+					skeletonGraphic.LateUpdate();
+				}
+			}
+		}
 
-        private static List<T> CopyList<T>(List<T> list)
-        {
-            return list.GetRange(0, list.Count);
-        }
-    }
+		void RemoveCustomMaterials () {
+			RemoveCustomMaterialOverrides.Invoke(component, null);
+			RemoveCustomTextureOverrides.Invoke(component, null);
+		}
+
+		void SetCustomMaterials () {
+			SetCustomMaterialOverrides.Invoke(component, null);
+			SetCustomTextureOverrides.Invoke(component, null);
+		}
+
+		static List<T> CopyList<T> (List<T> list) {
+			return list.GetRange(0, list.Count);
+		}
+	}
 }
