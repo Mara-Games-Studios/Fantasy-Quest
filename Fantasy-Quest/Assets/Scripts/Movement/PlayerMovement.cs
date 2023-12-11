@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
     private NavMeshAgent _agent;
     private NavMeshPath _path;
     private float _minDistanceForWalkable;
+    private float _speedCorrection;
 
     private void OnValidate()
     {
@@ -31,6 +32,7 @@ public class PlayerMovement : MonoBehaviour
         _playerInput = new PlayerInput();
         _mainCamera = Camera.main;
         _minDistanceForWalkable = 0.2f;
+        _speedCorrection = 0.7f;
     }
 
     private void OnEnable()
@@ -81,7 +83,8 @@ public class PlayerMovement : MonoBehaviour
         if (_movePositionForKeyBoard != Vector2.zero)
         {
             _movePositionForKeyBoard = 
-                _movePositionForKeyBoard * .7f + new Vector2(transform.position.x, transform.position.y);
+                _movePositionForKeyBoard * _speedCorrection + 
+                new Vector2(transform.position.x, transform.position.y);
         }
     }
 
