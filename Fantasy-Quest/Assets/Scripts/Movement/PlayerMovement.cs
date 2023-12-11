@@ -54,7 +54,8 @@ public class PlayerMovement : MonoBehaviour
             _agent.SetDestination(_movePositionForKeyBoard);
             _movePositionForMouse = new Vector2(transform.position.x, transform.position.y); 
         }
-        else if (_movePositionForMouse != new Vector2(transform.position.x, transform.position.y) && IsEndPointWalkable())
+        else if (_movePositionForMouse != 
+            new Vector2(transform.position.x, transform.position.y) && IsEndPointWalkable())
         {
             _agent.SetDestination(_movePositionForMouse);
             NavMesh.CalculatePath(transform.position, _movePositionForMouse, NavMesh.AllAreas, _path);
@@ -69,8 +70,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void SetMovePointFromMouse(InputAction.CallbackContext context)
     {
-        _movePositionForMouse = _mainCamera.ScreenToWorldPoint(_playerInput.Player.MousePositionForMove.ReadValue<Vector2>());
-
+        _movePositionForMouse = 
+            _mainCamera.ScreenToWorldPoint(_playerInput.Player.MousePositionForMove.ReadValue<Vector2>());
     }
 
     private void SetMovePointFromKeyBoard()
@@ -79,7 +80,8 @@ public class PlayerMovement : MonoBehaviour
 
         if (_movePositionForKeyBoard != Vector2.zero)
         {
-            _movePositionForKeyBoard = _movePositionForKeyBoard * .7f + new Vector2(transform.position.x, transform.position.y);
+            _movePositionForKeyBoard = 
+                _movePositionForKeyBoard * .7f + new Vector2(transform.position.x, transform.position.y);
         }
     }
 
