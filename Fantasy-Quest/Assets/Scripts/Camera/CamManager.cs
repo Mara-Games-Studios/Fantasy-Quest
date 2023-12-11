@@ -17,7 +17,7 @@ public class CamManager : MonoBehaviour
     private Coroutine panCameraCoroutine;
     private Vector2 startOffset;
 
-    public int activeCameraNum = 1;
+    public int ActiveCameraNum = 1;
 
     // Start is called before the first frame update
     private void Awake()
@@ -34,35 +34,35 @@ public class CamManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
-            activeCameraNum++;
-            if (activeCameraNum <= cameras.Count - 1)
+            ActiveCameraNum++;
+            if (ActiveCameraNum <= cameras.Count - 1)
             {
                 activeCam.Priority = 1;
-                activeCam = cameras[activeCameraNum];
+                activeCam = cameras[ActiveCameraNum];
                 transposer = activeCam.GetCinemachineComponent<CinemachineFramingTransposer>();
                 startOffset = transposer.m_TrackedObjectOffset;
                 activeCam.Priority = 100;
             }
             else
             {
-                activeCameraNum--;
+                ActiveCameraNum--;
             }
         }
 
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            activeCameraNum--;
-            if (activeCameraNum > -1)
+            ActiveCameraNum--;
+            if (ActiveCameraNum > -1)
             {
                 activeCam.Priority = 1;
-                activeCam = cameras[activeCameraNum];
+                activeCam = cameras[ActiveCameraNum];
                 transposer = activeCam.GetCinemachineComponent<CinemachineFramingTransposer>();
                 startOffset = transposer.m_TrackedObjectOffset;
                 activeCam.Priority = 100;
             }
             else
             {
-                activeCameraNum++;
+                ActiveCameraNum++;
             }
         }
     }
