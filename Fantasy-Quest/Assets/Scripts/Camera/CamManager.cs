@@ -6,12 +6,12 @@ using UnityEngine;
 public class CamManager : MonoBehaviour
 {
     public static CamManager Instance;
+
     [SerializeField]
     private List<CinemachineVirtualCamera> cameras = new List<CinemachineVirtualCamera>();
 
     [SerializeField]
     private CinemachineVirtualCamera activeCam;
-
 
     private CinemachineFramingTransposer transposer;
     private Coroutine panCameraCoroutine;
@@ -67,13 +67,24 @@ public class CamManager : MonoBehaviour
         }
     }
 
-
-    public void PanCameraCoroutineTrigger(float distance, float panSpeed, PanDirection panDir, bool panToStartingPos)
+    public void PanCameraCoroutineTrigger(
+        float distance,
+        float panSpeed,
+        PanDirection panDir,
+        bool panToStartingPos
+    )
     {
-        panCameraCoroutine = StartCoroutine(PanCamera(distance, panSpeed, panDir, panToStartingPos));
+        panCameraCoroutine = StartCoroutine(
+            PanCamera(distance, panSpeed, panDir, panToStartingPos)
+        );
     }
 
-    private IEnumerator PanCamera(float distance, float panSpeed, PanDirection panDir, bool panToStartingPos)
+    private IEnumerator PanCamera(
+        float distance,
+        float panSpeed,
+        PanDirection panDir,
+        bool panToStartingPos
+    )
     {
         Vector2 endPos = Vector2.zero;
         _ = Vector2.zero;

@@ -19,6 +19,7 @@ public class LookDown : MonoBehaviour
     {
         CamManager.Instance.PanCameraCoroutineTrigger(panDistance, panSpeed, panDir, false);
     }
+
     private void OnTriggerExit2D(Collider2D collision)
     {
         CamManager.Instance.PanCameraCoroutineTrigger(panDistance, panSpeed, panDir, true);
