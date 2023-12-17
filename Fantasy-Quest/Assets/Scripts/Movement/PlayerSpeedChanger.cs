@@ -3,27 +3,28 @@ using UnityEngine.AI;
 
 public class PlayerSpeedChanger
 {
-    private NavMeshAgent _agent;
-    private float _pathDistance;
-    private AnimationCurve _speedChangeCurve;
-    private float _baseSpeed;
+    private NavMeshAgent agent;
+    private float pathDistance;
+    private AnimationCurve speedChangeCurve;
+    private float baseSpeed;
 
     public PlayerSpeedChanger(NavMeshAgent agent, AnimationCurve speedChangeCurve, float baseSpeed)
     {
-        _agent = agent;
-        _speedChangeCurve = speedChangeCurve;
-        _baseSpeed = baseSpeed;
+        this.agent = agent;
+        this.speedChangeCurve = speedChangeCurve;
+        this.baseSpeed = baseSpeed;
     }
 
     public void ChangeSpeed(NavMeshPath currentPath)
     {
         float currentPathDistance = GetPathValue(currentPath);
-        _agent.speed = _speedChangeCurve.Evaluate(1 - currentPathDistance / _pathDistance) * _baseSpeed;
+        agent.speed =
+            speedChangeCurve.Evaluate(1 - (currentPathDistance / pathDistance)) * baseSpeed;
     }
 
     public void CalculatePathDistance(NavMeshPath path)
     {
-        _pathDistance = GetPathValue(path);
+        pathDistance = GetPathValue(path);
     }
 
     private float GetPathValue(NavMeshPath path)

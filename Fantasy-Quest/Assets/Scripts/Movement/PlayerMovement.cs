@@ -51,8 +51,12 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Player Speed Changer")]
     private PlayerSpeedChanger speedChanger;
-    [SerializeField] private AnimationCurve speedChangeCurve;
-    [SerializeField] private float baseSpeed;
+
+    [SerializeField]
+    private AnimationCurve speedChangeCurve;
+
+    [SerializeField]
+    private float baseSpeed;
 
     private void OnValidate()
     {
@@ -94,12 +98,19 @@ public class PlayerMovement : MonoBehaviour
             _ = agent.SetDestination(movePositionForKeyBoard);
             movePositionForMouse = new Vector2(transform.position.x, transform.position.y);
         }
-        else if ( movePositionForMouse.x != transform.position.x &&
-                  movePositionForMouse.y != transform.position.y )
+        else if (
+            movePositionForMouse.x != transform.position.x
+            && movePositionForMouse.y != transform.position.y
+        )
         {
-            NavMesh.CalculatePath(transform.position, movePositionForMouse, NavMesh.AllAreas, path);
+            _ = NavMesh.CalculatePath(
+                transform.position,
+                movePositionForMouse,
+                NavMesh.AllAreas,
+                path
+            );
             speedChanger.ChangeSpeed(path);
-            agent.SetDestination(movePositionForMouse);
+            _ = agent.SetDestination(movePositionForMouse);
         }
 
         if (agent.desiredVelocity.x > 0 && agent.desiredVelocity.x != 0)
@@ -137,8 +148,12 @@ public class PlayerMovement : MonoBehaviour
 
         if (IsEndPointWalkable())
         {
-            NavMesh.CalculatePath(transform.position, movePositionForMouse,
-                NavMesh.AllAreas, path);
+            _ = NavMesh.CalculatePath(
+                transform.position,
+                movePositionForMouse,
+                NavMesh.AllAreas,
+                path
+            );
             speedChanger.CalculatePathDistance(path);
         }
         else
