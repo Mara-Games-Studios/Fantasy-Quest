@@ -1,6 +1,6 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
-using Cinemachine;
 using UnityEngine;
 
 public class CamManager : MonoBehaviour
@@ -8,7 +8,7 @@ public class CamManager : MonoBehaviour
     public static CamManager Instance;
 
     [SerializeField]
-    private List<CinemachineVirtualCamera> cameras = new List<CinemachineVirtualCamera>();
+    private List<CinemachineVirtualCamera> cameras = new();
 
     [SerializeField]
     private CinemachineVirtualCamera activeCam;
