@@ -12,7 +12,7 @@ public class CameraFollow : MonoBehaviour
 
     private void Awake()
     {
-        isRight = true;
+        isRight = false;
     }
 
     private void Update()

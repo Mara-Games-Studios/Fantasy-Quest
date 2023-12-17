@@ -46,6 +46,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private Vector3 rightRotation;
 
+    [SerializeField]
+    private bool facingRight = true;
+
     private NavMeshPath path;
     private PlayerInput playerInput;
 
@@ -113,13 +116,27 @@ public class PlayerMovement : MonoBehaviour
             _ = agent.SetDestination(movePositionForMouse);
         }
 
-        if (agent.desiredVelocity.x > 0 && agent.desiredVelocity.x != 0)
+        //if (agent.desiredVelocity.x > 0 && agent.desiredVelocity.x != 0)
+        //{
+        //    Flip();
+        //    //transform.rotation = Quaternion.Euler(rightRotation);
+        //}
+        //else if (agent.desiredVelocity.x != 0)
+        //{
+        //    Flip();
+        //    //transform.rotation = Quaternion.Euler(leftRotation);
+        //}
+        Vector3 movePositionMouseV3 = movePositionForMouse;
+        Vector3 playerDirection = transform.position - movePositionMouseV3;
+        Debug.Log(playerDirection);
+
+        if (playerDirection.x < 0 && !facingRight)
         {
-            transform.rotation = Quaternion.Euler(rightRotation);
+            Flip();
         }
-        else if (agent.desiredVelocity.x != 0)
+        else if (playerDirection.x > 0 && facingRight)
         {
-            transform.rotation = Quaternion.Euler(leftRotation);
+            Flip();
         }
 
         if (agent.desiredVelocity == Vector3.zero && girlAnimation.AnimationName != idleAnimation)
@@ -127,11 +144,21 @@ public class PlayerMovement : MonoBehaviour
             _ = girlAnimation.AnimationState.SetAnimation(0, idleAnimation, true);
         }
         else if (
-            agent.desiredVelocity != Vector3.zero && girlAnimation.AnimationName != walkAnimation
+            agent.desiredVelocity != Vector3.zero
+            && girlAnimation.AnimationName != walkAnimation
         )
         {
             _ = girlAnimation.AnimationState.SetAnimation(0, walkAnimation, true);
         }
+    }
+
+    private void Flip()
+    {
+        facingRight = !facingRight;
+        Vector3 Scaler = transform.localScale;
+        Scaler.x *= -1;
+        cameraFollow.CallTurn();
+        transform.localScale = Scaler;
     }
 
     private void OnDrawGizmos()
