@@ -28,7 +28,7 @@ jobs:
           printf "[System.Console]::WriteLine(\"\")\n" >> Fantasy-Quest/AddContentToProject.ps1
           printf "[System.Console]::WriteLine(\"AddItemToProject {0} on {1}\", \$include,\$path)\n" >> Fantasy-Quest/AddContentToProject.ps1
           printf "\$xmlns = \"http://schemas.microsoft.com/developer/msbuild/2003\"\n" >> Fantasy-Quest/AddContentToProject.ps1
-          printf "\$itemGroup = \$proj.CreateElement(\"ItemGroup\", $xmlns);\n" >> Fantasy-Quest/AddContentToProject.ps1
+          printf "\$itemGroup = \$proj.CreateElement(\"ItemGroup\", \$xmlns);\n" >> Fantasy-Quest/AddContentToProject.ps1
           printf "\$proj.Project.AppendChild($itemGroup);\n" >> Fantasy-Quest/AddContentToProject.ps1
           printf "\$contentNode = \$proj.CreateElement(\"Content\", \$xmlns);\n" >> Fantasy-Quest/AddContentToProject.ps1
           printf "\$contentNode.SetAttribute(\"Include\", \$include);\n" >> Fantasy-Quest/AddContentToProject.ps1
