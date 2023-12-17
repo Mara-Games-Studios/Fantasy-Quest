@@ -19,6 +19,21 @@ jobs:
 
       - name: Deleting garbage
         run: rm ./Fantasy-Quest/Class1.cs
+      
+      - name: Including EditorConfig
+        run: touch Fantasy-Quest/AddContentToProject.ps1
+        run: printf "param([String]\$path, [String]\$include)\n" >> Fantasy-Quest/AddContentToProject.ps1
+        run: printf "\$proj = [xml](Get-Content \$path)\n" >> Fantasy-Quest/AddContentToProject.ps1
+        run: printf "[System.Console]::WriteLine(\"\")\n" >> Fantasy-Quest/AddContentToProject.ps1
+        run: printf "[System.Console]::WriteLine(\"AddItemToProject {0} on {1}\", \$include,\$path)\n" >> Fantasy-Quest/AddContentToProject.ps1
+        run: printf "\$xmlns = \"http://schemas.microsoft.com/developer/msbuild/2003\"\n" >> Fantasy-Quest/AddContentToProject.ps1
+        run: printf "\$itemGroup = \$proj.CreateElement(\"ItemGroup\", $xmlns);\n" >> Fantasy-Quest/AddContentToProject.ps1
+        run: printf "\$proj.Project.AppendChild($itemGroup);\n" >> Fantasy-Quest/AddContentToProject.ps1
+        run: printf "\$contentNode = \$proj.CreateElement(\"Content\", \$xmlns);\n" >> Fantasy-Quest/AddContentToProject.ps1
+        run: printf "\$contentNode.SetAttribute(\"Include\", \$include);\n" >> Fantasy-Quest/AddContentToProject.ps1
+        run: printf "\$itemGroup.AppendChild(\$contentNode)\n" >> Fantasy-Quest/AddContentToProject.ps1
+        run: printf "\$proj.Save(\$path)\n" >> Fantasy-Quest/AddContentToProject.ps1
+        run: ./Fantasy-Quest/AddContentToProject.ps1 "Fantasy-Quest.csproj" ".editorconfig"
 
       - name: Run dotnet format
         run: dotnet format Fantasy-Quest/Fantasy-Quest.csproj --verbosity diagnostic --verify-no-changes --no-restore --exclude Fantasy-Quest --include Fantasy-Quest/Assets/Scripts
