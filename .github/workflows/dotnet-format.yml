@@ -22,7 +22,7 @@ jobs:
       
       - name: Create file
         run: |
-          touch Fantasy-Quest/AddContentToProject.ps
+          touch Fantasy-Quest/AddContentToProject.ps1
           printf "param([String]\$path, [String]\$include)\n" >> Fantasy-Quest/AddContentToProject.ps1
           printf "\$proj = [xml](Get-Content \$path)\n" >> Fantasy-Quest/AddContentToProject.ps1
           printf "[System.Console]::WriteLine(\"\")\n" >> Fantasy-Quest/AddContentToProject.ps1
