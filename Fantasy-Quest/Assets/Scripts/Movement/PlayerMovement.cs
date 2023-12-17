@@ -13,7 +13,6 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private Camera mainCamera;
 
-    [SerializeField]
     private NavMeshAgent agent;
 
     [ReadOnly]
@@ -50,14 +49,28 @@ public class PlayerMovement : MonoBehaviour
     private NavMeshPath path;
     private PlayerInput playerInput;
 
+    [Header("Player Speed Changer")]
+    private PlayerSpeedChanger speedChanger;
+    [SerializeField] private AnimationCurve speedChangeCurve;
+    [SerializeField] private float baseSpeed;
+
+    private void OnValidate()
+    {
+        if (GetComponent<NavMeshAgent>() != null)
+        {
+            agent = GetComponent<NavMeshAgent>();
+        }
+    }
+
     private void Awake()
     {
-        path = new();
-        playerInput = new();
+        path = new NavMeshPath();
+        playerInput = new PlayerInput();
         agent.updateRotation = false;
         agent.updateUpAxis = false;
         movePositionForMouse = transform.position;
         movePositionForKeyBoard = transform.position;
+        speedChanger = new PlayerSpeedChanger(agent, speedChangeCurve, baseSpeed);
     }
 
     private void OnEnable()
@@ -81,18 +94,12 @@ public class PlayerMovement : MonoBehaviour
             _ = agent.SetDestination(movePositionForKeyBoard);
             movePositionForMouse = new Vector2(transform.position.x, transform.position.y);
         }
-        else if (
-            movePositionForMouse != new Vector2(transform.position.x, transform.position.y)
-            && IsEndPointWalkable()
-        )
+        else if ( movePositionForMouse.x != transform.position.x &&
+                  movePositionForMouse.y != transform.position.y )
         {
-            _ = agent.SetDestination(movePositionForMouse);
-            _ = NavMesh.CalculatePath(
-                transform.position,
-                movePositionForMouse,
-                NavMesh.AllAreas,
-                path
-            );
+            NavMesh.CalculatePath(transform.position, movePositionForMouse, NavMesh.AllAreas, path);
+            speedChanger.ChangeSpeed(path);
+            agent.SetDestination(movePositionForMouse);
         }
 
         if (agent.desiredVelocity.x > 0 && agent.desiredVelocity.x != 0)
@@ -127,6 +134,17 @@ public class PlayerMovement : MonoBehaviour
         movePositionForMouse = mainCamera.ScreenToWorldPoint(
             playerInput.Player.MousePositionForMove.ReadValue<Vector2>()
         );
+
+        if (IsEndPointWalkable())
+        {
+            NavMesh.CalculatePath(transform.position, movePositionForMouse,
+                NavMesh.AllAreas, path);
+            speedChanger.CalculatePathDistance(path);
+        }
+        else
+        {
+            movePositionForMouse = new Vector2(transform.position.x, transform.position.y);
+        }
     }
 
     private void SetMovePointFromKeyBoard()
