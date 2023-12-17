@@ -38,7 +38,7 @@ jobs:
       - name: Give execution permission
         run: chmod +x ./Fantasy-Quest/AddContentToProject.ps1
       - name: Execute file
-        run: pwsh ./Fantasy-Quest/AddContentToProject.ps1 "Fantasy-Quest.csproj" ".editorconfig"
+        run: pwsh ./Fantasy-Quest/AddContentToProject.ps1 "../Fantasy-Quest.csproj" "../.editorconfig"
 
       - name: Run dotnet format
         run: dotnet format Fantasy-Quest/Fantasy-Quest.csproj --verbosity diagnostic --verify-no-changes --no-restore --exclude Fantasy-Quest --include Fantasy-Quest/Assets/Scripts
