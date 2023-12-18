@@ -13,33 +13,17 @@ jobs:
     steps:
       - name: Check out code
         uses: actions/checkout@v4
+        with: 
+          clean: false
 
       - name: Creating project
         run: dotnet new classlib --name Fantasy-Quest --output ./Fantasy-Quest
 
       - name: Deleting garbage
         run: rm ./Fantasy-Quest/Class1.cs
-      
-      - name: Create file
-        run: |
-          touch Fantasy-Quest/AddContentToProject.ps1
-          printf "param([String]\$path, [String]\$include)\n" >> Fantasy-Quest/AddContentToProject.ps1
-          printf "\$proj = [xml](Get-Content \$path)\n" >> Fantasy-Quest/AddContentToProject.ps1
-          printf "[System.Console]::WriteLine(\"\")\n" >> Fantasy-Quest/AddContentToProject.ps1
-          printf "[System.Console]::WriteLine(\"AddItemToProject {0} on {1}\", \$include,\$path)\n" >> Fantasy-Quest/AddContentToProject.ps1
-          printf "\$xmlns = \"http://schemas.microsoft.com/developer/msbuild/2003\"\n" >> Fantasy-Quest/AddContentToProject.ps1
-          printf "\$itemGroup = \$proj.CreateElement(\"ItemGroup\", \$xmlns);\n" >> Fantasy-Quest/AddContentToProject.ps1
-          printf "\$proj.Project.AppendChild($itemGroup);\n" >> Fantasy-Quest/AddContentToProject.ps1
-          printf "\$contentNode = \$proj.CreateElement(\"Content\", \$xmlns);\n" >> Fantasy-Quest/AddContentToProject.ps1
-          printf "\$contentNode.SetAttribute(\"Include\", \$include);\n" >> Fantasy-Quest/AddContentToProject.ps1
-          printf "\$itemGroup.AppendChild(\$contentNode)\n" >> Fantasy-Quest/AddContentToProject.ps1
-          printf "\$proj.Save(\$path)\n" >> Fantasy-Quest/AddContentToProject.ps1
 
-      - name: Cat csproj
-        run: |
-          cat ./Fantasy-Quest/AddContentToProject.ps1
-          cat ./Fantasy-Quest/Fantasy-Quest.csproj
-          ls Fantasy-Quest/
+      - name: ls files
+        run: ls Fantasy-Quest/
       - name: Give execution permission
         run: chmod +x ./Fantasy-Quest/AddContentToProject.ps1
       - name: Execute file
