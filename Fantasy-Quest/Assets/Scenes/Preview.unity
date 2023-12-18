@@ -281,8 +281,8 @@ Transform:
   m_GameObject: {fileID: 341465276}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.36, y: 0.8, z: -0.057067513}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalPosition: {x: 5.917, y: 1.081, z: -1}
+  m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -690,9 +690,9 @@ MonoBehaviour:
     materialsInsideMask: []
     materialsOutsideMask: []
   disableRenderingOnOverride: 1
-  _animationName: Walk
+  _animationName: animation
   loop: 1
-  timeScale: 2
+  timeScale: 1
 --- !u!23 &734874060
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1129,6 +1129,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2101218607157205096, guid: e76951c65bfa19a45b5931be28b058f3, type: 3}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
     - target: {fileID: 2526407117002568778, guid: e76951c65bfa19a45b5931be28b058f3, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.83
@@ -1139,19 +1143,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2526407117002568778, guid: e76951c65bfa19a45b5931be28b058f3, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.9999966
+      value: 0.9999088
       objectReference: {fileID: 0}
     - target: {fileID: 2526407117002568778, guid: e76951c65bfa19a45b5931be28b058f3, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.0011673355
+      value: -0.013304134
       objectReference: {fileID: 0}
     - target: {fileID: 2526407117002568778, guid: e76951c65bfa19a45b5931be28b058f3, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.0023346872
+      value: -0.002334482
       objectReference: {fileID: 0}
     - target: {fileID: 2526407117002568778, guid: e76951c65bfa19a45b5931be28b058f3, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.0000027253718
+      value: -0.000031061096
+      objectReference: {fileID: 0}
+    - target: {fileID: 2526407117002568778, guid: e76951c65bfa19a45b5931be28b058f3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2526407117002568778, guid: e76951c65bfa19a45b5931be28b058f3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5170830260239411825, guid: e76951c65bfa19a45b5931be28b058f3, type: 3}
       propertyPath: m_Name
@@ -1159,19 +1171,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6231374749004388429, guid: e76951c65bfa19a45b5931be28b058f3, type: 3}
       propertyPath: m_Size.x
-      value: 4.7709885
+      value: 3.9741411
       objectReference: {fileID: 0}
     - target: {fileID: 6231374749004388429, guid: e76951c65bfa19a45b5931be28b058f3, type: 3}
       propertyPath: m_Size.y
-      value: 6.79006
+      value: 1.7541885
       objectReference: {fileID: 0}
     - target: {fileID: 6231374749004388429, guid: e76951c65bfa19a45b5931be28b058f3, type: 3}
       propertyPath: m_Offset.x
-      value: -2.4110928
+      value: -2.0126688
       objectReference: {fileID: 0}
     - target: {fileID: 6231374749004388429, guid: e76951c65bfa19a45b5931be28b058f3, type: 3}
       propertyPath: m_Offset.y
-      value: -0.028652668
+      value: 3.0198731
       objectReference: {fileID: 0}
     - target: {fileID: 6231374749004388429, guid: e76951c65bfa19a45b5931be28b058f3, type: 3}
       propertyPath: m_IsTrigger
@@ -1183,11 +1195,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6488468750148052823, guid: e76951c65bfa19a45b5931be28b058f3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.88
+      value: 2.4
       objectReference: {fileID: 0}
     - target: {fileID: 6548909611601645270, guid: e76951c65bfa19a45b5931be28b058f3, type: 3}
       propertyPath: m_Lens.OrthographicSize
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1208,7 +1220,7 @@ GameObject:
   - component: {fileID: 1251046390}
   - component: {fileID: 1251046391}
   m_Layer: 0
-  m_Name: Simon
+  m_Name: Symon
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1255,8 +1267,8 @@ MonoBehaviour:
   minDistanceForWalkable: 0.2
   speedCorrection: 0.7
   girlAnimation: {fileID: 734874059}
-  idleAnimation: Idle
-  walkAnimation: Walk
+  idleAnimation: animation
+  walkAnimation: animation
   leftRotation: {x: 0, y: 180, z: 0}
   rightRotation: {x: 0, y: 0, z: 0}
   facingRight: 1
@@ -1264,54 +1276,45 @@ MonoBehaviour:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0
-      value: 0.2
-      inSlope: 5.333333
-      outSlope: 5.333333
-      tangentMode: 34
+      time: -0.002521515
+      value: 0.8500024
+      inSlope: 0.11120329
+      outSlope: 0.11120329
+      tangentMode: 0
       weightedMode: 0
       inWeight: 0
+      outWeight: 0.480597
+    - serializedVersion: 3
+      time: 0.1917481
+      value: 0.99957085
+      inSlope: -0.014530783
+      outSlope: -0.014530783
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 0.15
-      value: 1
-      inSlope: -0.0008185748
-      outSlope: -0.0008185748
+      time: 0.5612769
+      value: 0.75251955
+      inSlope: -1.263357
+      outSlope: -1.263357
       tangentMode: 0
       weightedMode: 0
       inWeight: 0.33333334
-      outWeight: 0.06262103
+      outWeight: 0.056650035
     - serializedVersion: 3
-      time: 0.8
-      value: 1
-      inSlope: 0.000980965
-      outSlope: 0.000980965
+      time: 0.98428345
+      value: 0.50317764
+      inSlope: 0
+      outSlope: 0
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.06718457
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.9
-      value: 0.35
-      inSlope: -3.1526718
-      outSlope: -3.1526718
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.3372871
-    - serializedVersion: 3
-      time: 1
-      value: 0.2
-      inSlope: -1.4999995
-      outSlope: -1.4999995
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0.33333334
+      inWeight: 0
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  baseSpeed: 5
+  baseSpeed: 3
 --- !u!4 &1251046389
 Transform:
   m_ObjectHideFlags: 0
@@ -1321,8 +1324,8 @@ Transform:
   m_GameObject: {fileID: 1251046386}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -4.05, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalPosition: {x: 0, y: -4.36, z: 0}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 734874058}
