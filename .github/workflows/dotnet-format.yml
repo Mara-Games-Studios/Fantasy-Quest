@@ -34,8 +34,9 @@ jobs:
           printf "\$contentNode.SetAttribute(\"Include\", \$include);\n" >> Fantasy-Quest/AddContentToProject.ps1
           printf "\$itemGroup.AppendChild(\$contentNode)\n" >> Fantasy-Quest/AddContentToProject.ps1
           printf "\$proj.Save(\$path)\n" >> Fantasy-Quest/AddContentToProject.ps1
-          echo "$(<Fantasy-Quest/AddContentToProject.ps1)"
 
+      - name: Cat csproj
+        run: cat ./Fantasy-Quest/AddContentToProject.ps1
       - name: Give execution permission
         run: chmod +x ./Fantasy-Quest/AddContentToProject.ps1
       - name: Execute file
