@@ -36,7 +36,9 @@ jobs:
           printf "\$proj.Save(\$path)\n" >> Fantasy-Quest/AddContentToProject.ps1
 
       - name: Cat csproj
-        run: cat ./Fantasy-Quest/AddContentToProject.ps1
+        run: |
+          cat ./Fantasy-Quest/AddContentToProject.ps1
+          cat ./Fantasy-Quest/Fantasy-Quest.csproj
       - name: Give execution permission
         run: chmod +x ./Fantasy-Quest/AddContentToProject.ps1
       - name: Execute file
