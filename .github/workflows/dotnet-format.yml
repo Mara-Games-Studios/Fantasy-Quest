@@ -20,9 +20,9 @@ jobs:
       - name: Deleting garbage
         run: rm ./Fantasy-Quest/Class1.cs
 
-      - name: add .editorconfig
+      - name: Add .editorconfig
         run: |
-         cp /home/jubiland/Editor-config-files/.editorconfig ./Fantasy-Quest
+         curl -O ./Fantasy-Quest/.editorconfig https://github.com/Kiuh/KiuhTools/blob/main/VSEditorConfig/.editorconfig
          ll ./Fantasy-Quest
 
       - name: Run dotnet format
