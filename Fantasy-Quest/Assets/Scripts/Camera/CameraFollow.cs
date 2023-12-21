@@ -9,7 +9,6 @@ public class CameraFollow : MonoBehaviour
     private float flipTime = 0.5f;
 
     private bool isRight;
-    private bool _isLeft;
 
     private void Awake()
     {
