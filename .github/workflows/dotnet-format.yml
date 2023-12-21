@@ -29,7 +29,7 @@ jobs:
           cat Fantasy-Quest/.editorconfig
 
       - name: Run dotnet format
-        run: dotnet format Fantasy-Quest/Fantasy-Quest.csproj --verbosity diagnostic --verify-no-changes --no-restore --exclude Fantasy-Quest/
+        run: dotnet format Fantasy-Quest/Fantasy-Quest.csproj --verbosity diagnostic --verify-no-changes
       
       - name: Run csharpier format
         run: dotnet-csharpier 'Fantasy-Quest\Assets\Scripts\' --check
