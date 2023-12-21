@@ -22,8 +22,8 @@ jobs:
 
       - name: Add .editorconfig
         run: |
-         curl -O ./Fantasy-Quest/.editorconfig https://github.com/Kiuh/KiuhTools/blob/main/VSEditorConfig/.editorconfig
-         ll ./Fantasy-Quest
+         wget https://raw.githubusercontent.com/Kiuh/KiuhTools/main/VSEditorConfig/vs.editorconfig -o Fantasy-Quest/.editorconfig
+         ll Fantasy-Quest
 
       - name: Run dotnet format
         run: dotnet format Fantasy-Quest/Fantasy-Quest.csproj --verbosity diagnostic --verify-no-changes --no-restore --exclude Fantasy-Quest --include Fantasy-Quest/Assets/Scripts
