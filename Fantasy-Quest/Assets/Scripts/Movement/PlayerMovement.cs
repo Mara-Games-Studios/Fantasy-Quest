@@ -14,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
     private Camera mainCamera;
 
     private NavMeshAgent agent;
+    private int _value;
 
     [ReadOnly]
     [SerializeField]
