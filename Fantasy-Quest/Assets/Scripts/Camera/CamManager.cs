@@ -14,7 +14,6 @@ public class CamManager : MonoBehaviour
     private CinemachineVirtualCamera activeCam;
 
     private CinemachineFramingTransposer transposer;
-    private Coroutine panCameraCoroutine;
     private Vector2 startOffset;
 
     public int ActiveCameraNum = 1;
@@ -74,9 +73,7 @@ public class CamManager : MonoBehaviour
         bool panToStartingPos
     )
     {
-        panCameraCoroutine = StartCoroutine(
-            PanCamera(distance, panSpeed, panDir, panToStartingPos)
-        );
+        _ = StartCoroutine(PanCamera(distance, panSpeed, panDir, panToStartingPos));
     }
 
     private IEnumerator PanCamera(

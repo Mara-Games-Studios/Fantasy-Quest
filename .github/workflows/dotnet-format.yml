@@ -7,7 +7,7 @@ on:
     branches: [ "main" ]
 
 jobs:
-  check-format-dotnet:
+  check-code-formatting:
     runs-on: self-hosted
     
     steps:
@@ -23,16 +23,14 @@ jobs:
       - name: Add .editorconfig
         run: wget https://raw.githubusercontent.com/Kiuh/KiuhTools/main/VSEditorConfig/vs.editorconfig -o Fantasy-Quest/.editorconfig
 
+      - name: Show content
+        run: ls -a -l Fantasy-Quest
+
       - name: Run dotnet format
-        run: dotnet format Fantasy-Quest/Fantasy-Quest.csproj --verbosity diagnostic --verify-no-changes --no-restore --exclude Fantasy-Quest --include Fantasy-Quest/Assets/Scripts
-
-  check-format-cscharpier:
-    runs-on: self-hosted
-
-    steps:
-      - name: Check out code
-        uses: actions/checkout@v3
-
+        run: dotnet format Fantasy-Quest/Fantasy-Quest.csproj --verbosity diagnostic --verify-no-changes --no-restore --exclude Fantasy-Quest/
+      
       - name: Run csharpier format
-        run: dotnet csharpier '.\Fantasy-Quest\Assets\Scripts\' --check
+        run: dotnet-csharpier ./Fantasy-Quest/Assets/Scripts --check
+
+      
   
