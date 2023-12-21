@@ -12,13 +12,19 @@ jobs:
     
     steps:
       - name: Check out code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
-      - name: Creating sln
-        run: dotnet new sln --name Fantasy-Quest --output ./Fantasy-Quest
+      - name: Creating project
+        run: dotnet new classlib --name Fantasy-Quest --output ./Fantasy-Quest
+
+      - name: Deleting garbage
+        run: rm ./Fantasy-Quest/Class1.cs
+
+      - name: Add .editorconfig
+        run: wget https://raw.githubusercontent.com/Kiuh/KiuhTools/main/VSEditorConfig/vs.editorconfig -o Fantasy-Quest/.editorconfig
 
       - name: Run dotnet format
-        run: dotnet format Fantasy-Quest/Fantasy-Quest.sln --verbosity diagnostic --verify-no-changes --no-restore
+        run: dotnet format Fantasy-Quest/Fantasy-Quest.csproj --verbosity diagnostic --verify-no-changes --no-restore --exclude Fantasy-Quest --include Fantasy-Quest/Assets/Scripts
 
   check-format-cscharpier:
     runs-on: self-hosted
