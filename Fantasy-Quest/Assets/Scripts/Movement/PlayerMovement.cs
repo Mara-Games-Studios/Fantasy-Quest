@@ -14,7 +14,6 @@ public class PlayerMovement : MonoBehaviour
     private Camera mainCamera;
 
     private NavMeshAgent agent;
-    private int _value;
 
     [ReadOnly]
     [SerializeField]
@@ -134,7 +133,8 @@ public class PlayerMovement : MonoBehaviour
             _ = girlAnimation.AnimationState.SetAnimation(0, idleAnimation, true);
         }
         else if (
-            agent.desiredVelocity != Vector3.zero && girlAnimation.AnimationName != walkAnimation
+            agent.desiredVelocity != Vector3.zero
+            && girlAnimation.AnimationName != walkAnimation
         )
         {
             _ = girlAnimation.AnimationState.SetAnimation(0, walkAnimation, true);
