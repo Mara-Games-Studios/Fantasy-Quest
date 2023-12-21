@@ -21,7 +21,7 @@ jobs:
         run: rm ./Fantasy-Quest/Class1.cs
 
       - name: Add .editorconfig
-        run: wget https://raw.githubusercontent.com/Kiuh/KiuhTools/main/VSEditorConfig/vs.editorconfig -o Fantasy-Quest/.editorconfig
+        run: wget -O Fantasy-Quest/.editorconfig https://raw.githubusercontent.com/Kiuh/KiuhTools/main/VSEditorConfig/vs.editorconfig
 
       - name: Show content
         run: ls -a -l Fantasy-Quest
