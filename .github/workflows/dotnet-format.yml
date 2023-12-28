@@ -28,6 +28,11 @@ jobs:
           ls -a -l Fantasy-Quest
           cat Fantasy-Quest/.editorconfig
 
+      - name: Install csharpier locally
+        run: |
+          dotnet new tool-manifest
+          dotnet tool install --local csharpier
+
       - name: Check versions
         run: |
           dotnet format --version
