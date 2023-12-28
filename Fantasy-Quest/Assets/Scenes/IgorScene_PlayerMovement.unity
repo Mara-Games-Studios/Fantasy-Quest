@@ -1374,6 +1374,69 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19fc7edd7764cd7408faedcf87df5661, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cameraFollow: {fileID: 0}
+  mainCamera: {fileID: 519420031}
+  movePositionForMouse: {x: 0, y: 0}
+  movePositionForKeyBoard: {x: 0, y: 0}
+  minDistanceForWalkable: 0.2
+  speedCorrection: 0.7
+  girlAnimation: {fileID: 0}
+  idleAnimation: 
+  walkAnimation: 
+  leftRotation: {x: 0, y: 0, z: 0}
+  rightRotation: {x: 0, y: 0, z: 0}
+  speedChangeCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.2
+      inSlope: 5.333333
+      outSlope: 5.333333
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.15
+      value: 1
+      inSlope: -0.0008185748
+      outSlope: -0.0008185748
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.06262103
+    - serializedVersion: 3
+      time: 0.8
+      value: 1
+      inSlope: 0.000980965
+      outSlope: 0.000980965
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.06718457
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.9
+      value: 0.35
+      inSlope: -3.1526718
+      outSlope: -3.1526718
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.3372871
+    - serializedVersion: 3
+      time: 1
+      value: 0.2
+      inSlope: -1.4999995
+      outSlope: -1.4999995
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  baseSpeed: 5
 --- !u!4 &1380892201
 Transform:
   m_ObjectHideFlags: 0
@@ -1652,7 +1715,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.16666667
+  m_VoxelSize: 0.06666667
   m_BuildHeightMesh: 0
   m_HideEditorLogs: 0
   m_NavMeshData: {fileID: 23800000, guid: a7c1ae00d0c6424498a2b979739f63a6, type: 2}
