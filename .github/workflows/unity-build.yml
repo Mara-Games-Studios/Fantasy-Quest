@@ -15,8 +15,11 @@ jobs:
       matrix:
         targetPlatform:
           - StandaloneWindows # Build a Windows standalone.
-          - StandaloneWindows64 # Build a Windows 64-bit standalone.
+         # - StandaloneWindows64 # Build a Windows 64-bit standalone.
     steps:
+      - name: See current user
+        run: echo $USER 
+
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
