@@ -24,12 +24,13 @@ jobs:
       - uses: actions/cache@v3
         with:
           path: Fantasy-Quest/Library
-          key: Fantasy-Quest/Library-${{ matrix.targetPlatform }}
+          key: Library-${{ matrix.targetPlatform }}
           restore-keys: Library-
       - uses: game-ci/unity-builder@v4
         env:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
         with:
+          projectPath: Fantasy-Quest
           targetPlatform: ${{ matrix.targetPlatform }}
       #- uses: actions/upload-artifact@v3
       #  with:
