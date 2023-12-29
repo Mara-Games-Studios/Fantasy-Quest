@@ -23,8 +23,8 @@ jobs:
           lfs: true
       - uses: actions/cache@v3
         with:
-          path: Library
-          key: Library-${{ matrix.targetPlatform }}
+          path: Fantasy-Quest/Library
+          key: Fantasy-Quest/Library-${{ matrix.targetPlatform }}
           restore-keys: Library-
       - uses: game-ci/unity-builder@v4
         env:
