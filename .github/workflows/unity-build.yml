@@ -17,6 +17,9 @@ jobs:
           - StandaloneWindows # Build a Windows standalone.
          # - StandaloneWindows64 # Build a Windows 64-bit standalone.
     steps:
+      - name: Who am I
+        run: whoami
+        
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
