@@ -37,7 +37,6 @@ jobs:
         with:
           projectPath: Fantasy-Quest
           targetPlatform: ${{ matrix.targetPlatform }}
-          chownFilesTo: "1000:1000"
       #- uses: actions/upload-artifact@v3
       #  with:
       #    name: Build-${{ matrix.targetPlatform }}
