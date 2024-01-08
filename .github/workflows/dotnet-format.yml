@@ -9,8 +9,13 @@ on:
 jobs:
   check-code-formatting:
     runs-on: self-hosted
+    container:
+      image: mcr.microsoft.com/dotnet/sdk:8.0
     
     steps:
+      - name: Remove git lfs hooks
+        run: rm -rf ./.git/hooks
+
       - name: Check out code
         uses: actions/checkout@v4
 
@@ -42,7 +47,6 @@ jobs:
         run: dotnet format Fantasy-Quest/Fantasy-Quest.csproj --verify-no-changes --include Fantasy-Quest/Assets/Scripts -v d
       
       - name: Run csharpier format
-        run: dotnet csharpier 'Fantasy-Quest\Assets\Scripts\' --check
-
+        run: dotnet csharpier --config-path "Fantasy-Quest/.csharpierrc.json" 'Fantasy-Quest\Assets\Scripts\' --check
       
   
