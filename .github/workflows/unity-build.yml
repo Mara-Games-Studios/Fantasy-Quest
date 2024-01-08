@@ -17,6 +17,9 @@ jobs:
           - StandaloneWindows
           - StandaloneWindows64
     steps:
+      - name: Chown files to koala
+        run: sudo chown -R 'koala:' ~/quest-runner/_work --recursive
+
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
