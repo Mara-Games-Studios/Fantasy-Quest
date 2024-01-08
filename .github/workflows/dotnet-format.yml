@@ -50,7 +50,7 @@ jobs:
         run: dotnet csharpier --config-path "Fantasy-Quest/.csharpierrc.json" 'Fantasy-Quest\Assets\Scripts\' --check
       
       - name: Chown files to koala
-        run: sudo chown -R 'koala:' ~/quest-runner/_work --recursive
+        run: chown -R 'koala:' ~/quest-runner/_work --recursive
 
       
   
