@@ -42,4 +42,4 @@ jobs:
         if: github.event.pull_request.merged
       
       - name: Chown files to koala
-        run: sudo chown -R 'koala:' ./ --recursive
+        run: sudo chown -R 'koala:' ~/quest-runner/_work --recursive
