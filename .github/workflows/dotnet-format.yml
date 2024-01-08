@@ -44,7 +44,7 @@ jobs:
         run: dotnet format Fantasy-Quest/Fantasy-Quest.csproj --verify-no-changes --include Fantasy-Quest/Assets/Scripts -v d
       
       - name: Run csharpier format
-        run: dotnet csharpier 'Fantasy-Quest\Assets\Scripts\' --check
+        run: dotnet csharpier --config-path "Fantasy-Quest/.csharpierrc.json" 'Fantasy-Quest\Assets\Scripts\' --check
 
       
   
