@@ -9,6 +9,8 @@ on:
 jobs:
   check-code-formatting:
     runs-on: self-hosted
+    container:
+      image: mcr.microsoft.com/dotnet/sdk:8.0
     
     steps:
       - name: Check out code
