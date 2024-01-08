@@ -49,12 +49,4 @@ jobs:
       - name: Run csharpier format
         run: dotnet csharpier --config-path "Fantasy-Quest/.csharpierrc.json" 'Fantasy-Quest\Assets\Scripts\' --check
       
-  chown-generated-files:
-    needs: check-code-formatting
-    runs-on: self-hosted
-
-    steps:
-      - name: Chown files to koala
-        run: chown -R 'koala:' ~/quest-runner/_work --recursive
-      
   
