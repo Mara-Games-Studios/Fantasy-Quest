@@ -14,12 +14,9 @@ jobs:
       fail-fast: false
       matrix:
         targetPlatform:
-          - StandaloneWindows # Build a Windows standalone.
-         # - StandaloneWindows64 # Build a Windows 64-bit standalone.
+          - StandaloneWindows
+          - StandaloneWindows64
     steps:
-      - name: Who am I
-        run: whoami
-        
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
@@ -37,7 +34,9 @@ jobs:
         with:
           projectPath: Fantasy-Quest
           targetPlatform: ${{ matrix.targetPlatform }}
-      #- uses: actions/upload-artifact@v3
-      #  with:
-      #    name: Build-${{ matrix.targetPlatform }}
-      #    path: build/${{ matrix.targetPlatform }}
+      
+      - uses: actions/upload-artifact@v3
+        with:
+          name: Build-${{ matrix.targetPlatform }}
+          path: build/${{ matrix.targetPlatform }}
+        if: github.event.pull_request.merged
