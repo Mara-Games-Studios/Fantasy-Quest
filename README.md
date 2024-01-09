@@ -18,7 +18,7 @@ Project uses two formatters: `.NET format` and `CSharpier`.
 ### *CI integration*
 
 Project uses Continious Integration with Github Actions.\
-Both <b>.NET format</b> and <b>CSharpier</b> checks included in CI checks and *triggers when any pull request in main* was created.
+Both <b>.NET format</b> and <b>CSharpier</b> checks included in CI checks and *triggers when any pull request for main branch* was created.
 
 ### *Visual Studio configuration*
 
@@ -56,3 +56,11 @@ Project's naming convention follows by [this](https://unity.com/how-to/naming-an
 ``` 
 
 For comfortable executing this rule, shud be used [This Unity Package](https://github.com/Kiuh/Item-Templates-For-Unity) or [This Visual Studio Extention](https://marketplace.visualstudio.com/items?itemName=nikolay-khimich.unity-class-template).
+
+## Continious integration
+The project uses 2 ci parts, one for formatting that described in *Formatting* section, one for build unity project.
+
+### Unity Build CI
+After any pull request for main branch, CI try to build project for Windows x32 and x64, and tells if build was failed.
+After pull request is merged into main branch, CI create two artifacts for each tested build that can be downloaded.
+
