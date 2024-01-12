@@ -2,20 +2,6 @@ name: Build unity project
 
 on:
   workflow_dispatch:
-    inputs:
-      logLevel:
-        description: 'Log level'
-        required: true
-        default: 'warning'
-        type: choice
-        options:
-        - info
-        - warning
-        - debug
-  #push:
-  #  branches: [ "main" ]
-  #pull_request:
-  #  branches: [ "main" ]
 
 jobs:
   buildForAllSupportedPlatforms:
@@ -53,7 +39,6 @@ jobs:
         with:
           name: Build-${{ matrix.targetPlatform }}
           path: build/${{ matrix.targetPlatform }}
-        #if: github.event.pull_request.merged
       
       - name: Chown files to koala
         run: sudo chown -R 'koala:' ~/quest-runner/_work --recursive
