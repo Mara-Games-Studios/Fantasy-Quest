@@ -1,10 +1,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace DBubble
+namespace DialogueBubble
 {
-    [AddComponentMenu("Scripts/DBubble/DBubble.ShowBubble")]
-    internal class ShowBubble : MonoBehaviour
+    [RequireComponent(typeof(SpriteRenderer))]
+    [AddComponentMenu("Scripts/DialogueBubble/DialogueBubble.Show")]
+    internal class Show : MonoBehaviour
     {
         [Header("Show Settings")]
         [SerializeField]
@@ -25,7 +26,6 @@ namespace DBubble
 
         private void Awake()
         {
-            bubbleSprite = GetComponent<SpriteRenderer>();
             iconSprite = gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>();
             iconSprite.sprite = IconList[0];
 
@@ -41,7 +41,7 @@ namespace DBubble
 
         private void OnEnable()
         {
-            BubbleEventSystem.OnTriggerBubble += CanShowSwitch;
+            EventSystem.OnTriggerBubble += CanShowSwitch;
         }
 
         public void CanShowSwitch(bool newCanShow)
@@ -60,30 +60,30 @@ namespace DBubble
 
         private void EnableBubble()
         {
-            Color MaxAlpha = bubbleSprite.color;
-            MaxAlpha.a = 1f;
-            Color LerpedColor = Color.Lerp(bubbleSprite.color, MaxAlpha, lerpRate);
+            Color maxAlpha = bubbleSprite.color;
+            maxAlpha.a = 1f;
+            Color lerpedColor = Color.Lerp(bubbleSprite.color, maxAlpha, lerpRate);
 
-            if (LerpedColor.a > 0.95f)
+            if (lerpedColor.a > 0.95f)
             {
                 return;
             }
-            bubbleSprite.color = LerpedColor;
-            iconSprite.color = LerpedColor;
+            bubbleSprite.color = lerpedColor;
+            iconSprite.color = lerpedColor;
         }
 
         private void DisableBubble()
         {
-            Color MinAlpha = bubbleSprite.color;
-            MinAlpha.a = 0f;
-            Color LerpedColor = Color.Lerp(bubbleSprite.color, MinAlpha, lerpRate);
-            if (LerpedColor.a < 0.09f)
+            Color minAlpha = bubbleSprite.color;
+            minAlpha.a = 0f;
+            Color lerpedColor = Color.Lerp(bubbleSprite.color, minAlpha, lerpRate);
+            if (lerpedColor.a < 0.09f)
             {
                 gameObject.SetActive(false);
                 return;
             }
-            bubbleSprite.color = LerpedColor;
-            iconSprite.color = LerpedColor;
+            bubbleSprite.color = lerpedColor;
+            iconSprite.color = lerpedColor;
         }
 
         private void Update()
@@ -100,7 +100,7 @@ namespace DBubble
 
         private void OnDisable()
         {
-            BubbleEventSystem.OnTriggerBubble -= CanShowSwitch;
+            EventSystem.OnTriggerBubble -= CanShowSwitch;
         }
     }
 }

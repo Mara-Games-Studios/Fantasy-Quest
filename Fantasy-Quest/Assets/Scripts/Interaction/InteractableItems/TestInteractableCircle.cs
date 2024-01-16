@@ -1,7 +1,7 @@
 using Interaction.InteractableItem;
 using UnityEngine;
 
-namespace Interaction.InteractableItems
+namespace Interaction.Items
 {
     [AddComponentMenu(
         "Scripts/Interaction/InteractableItems/Interaction.InteractableItems.TestInteractableCircle"
