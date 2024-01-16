@@ -41,4 +41,5 @@ jobs:
           path: build/${{ matrix.targetPlatform }}
       
       - name: Chown files to koala
+        if: success() || failure()
         run: sudo chown -R 'koala:' ~/quest-runner/_work --recursive
