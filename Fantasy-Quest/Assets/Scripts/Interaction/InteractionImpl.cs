@@ -92,9 +92,9 @@ namespace Interaction
             {
                 if (hit.transform != null)
                     GOList.Add(hit.transform.gameObject);
-                else
-                    //For future needs
-                    break;
+                //else
+                //    //For future needs maybe
+                //    break;
             }
 
             return GOList;

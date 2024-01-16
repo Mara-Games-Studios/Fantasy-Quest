@@ -6,7 +6,7 @@ namespace DialogueBubble
     internal class Controller : MonoBehaviour
     {
         [SerializeField]
-        private GameObject bubble;
+        private Show bubble;
 
         private void OnEnable()
         {
@@ -20,7 +20,7 @@ namespace DialogueBubble
 
         private void SetBubbleShow(bool state)
         {
-            bubble.GetComponent<Show>().CanShowSwitch(state);
+            bubble.CanShowSwitch(state);
         }
     }
 }

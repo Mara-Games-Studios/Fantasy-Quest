@@ -26,7 +26,6 @@ namespace DialogueBubble
 
         private void Awake()
         {
-            iconSprite = gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>();
             iconSprite.sprite = IconList[0];
 
             Color bubbleColor = bubbleSprite.GetComponent<SpriteRenderer>().color;
