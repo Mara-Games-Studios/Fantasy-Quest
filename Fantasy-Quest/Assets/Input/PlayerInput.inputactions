@@ -1,5 +1,5 @@
 {
-    "name": "CatInput",
+    "name": "PlayerInput",
     "maps": [
         {
             "name": "Player",
@@ -27,6 +27,24 @@
                     "name": "MousePositionForMove",
                     "type": "Button",
                     "id": "ef0a96a5-f767-4a4e-bebd-b01357541ac5",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "CallHumanInteraction",
+                    "type": "Button",
+                    "id": "81a1e6a7-eb4b-4561-8dac-90cc10aa0a8b",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "CatInteraction",
+                    "type": "Button",
+                    "id": "eddb7b3c-bd37-48cb-92be-3112f52b461a",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -108,6 +126,28 @@
                     "processors": "",
                     "groups": "KeyBoardAndMouse",
                     "action": "MousePositionForMove",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c0ee1b7d-a349-4824-8095-8570376e6dd5",
+                    "path": "<Keyboard>/1",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CallHumanInteraction",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "727e9280-d83c-4df4-97c5-a47385b7dfd4",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CatInteraction",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

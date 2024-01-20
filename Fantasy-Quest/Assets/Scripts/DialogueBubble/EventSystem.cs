@@ -10,7 +10,7 @@ namespace DialogueBubble
 
         public static Action<bool> OnTriggerBubble;
 
-        void Start()
+        private void Start()
         {
             if (Instance != null)
             {

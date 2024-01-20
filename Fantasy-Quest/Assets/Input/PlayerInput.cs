@@ -53,6 +53,24 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""CallHumanInteraction"",
+                    ""type"": ""Button"",
+                    ""id"": ""81a1e6a7-eb4b-4561-8dac-90cc10aa0a8b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""CatInteraction"",
+                    ""type"": ""Button"",
+                    ""id"": ""eddb7b3c-bd37-48cb-92be-3112f52b461a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -132,6 +150,28 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""action"": ""MousePositionForMove"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c0ee1b7d-a349-4824-8095-8570376e6dd5"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CallHumanInteraction"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""727e9280-d83c-4df4-97c5-a47385b7dfd4"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CatInteraction"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -160,6 +200,8 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_Player_KeyBoardMove = m_Player.FindAction("KeyBoardMove", throwIfNotFound: true);
         m_Player_MouseMove = m_Player.FindAction("MouseMove", throwIfNotFound: true);
         m_Player_MousePositionForMove = m_Player.FindAction("MousePositionForMove", throwIfNotFound: true);
+        m_Player_CallHumanInteraction = m_Player.FindAction("CallHumanInteraction", throwIfNotFound: true);
+        m_Player_CatInteraction = m_Player.FindAction("CatInteraction", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -224,6 +266,8 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_KeyBoardMove;
     private readonly InputAction m_Player_MouseMove;
     private readonly InputAction m_Player_MousePositionForMove;
+    private readonly InputAction m_Player_CallHumanInteraction;
+    private readonly InputAction m_Player_CatInteraction;
     public struct PlayerActions
     {
         private @PlayerInput m_Wrapper;
@@ -231,6 +275,8 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         public InputAction @KeyBoardMove => m_Wrapper.m_Player_KeyBoardMove;
         public InputAction @MouseMove => m_Wrapper.m_Player_MouseMove;
         public InputAction @MousePositionForMove => m_Wrapper.m_Player_MousePositionForMove;
+        public InputAction @CallHumanInteraction => m_Wrapper.m_Player_CallHumanInteraction;
+        public InputAction @CatInteraction => m_Wrapper.m_Player_CatInteraction;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -249,6 +295,12 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @MousePositionForMove.started += instance.OnMousePositionForMove;
             @MousePositionForMove.performed += instance.OnMousePositionForMove;
             @MousePositionForMove.canceled += instance.OnMousePositionForMove;
+            @CallHumanInteraction.started += instance.OnCallHumanInteraction;
+            @CallHumanInteraction.performed += instance.OnCallHumanInteraction;
+            @CallHumanInteraction.canceled += instance.OnCallHumanInteraction;
+            @CatInteraction.started += instance.OnCatInteraction;
+            @CatInteraction.performed += instance.OnCatInteraction;
+            @CatInteraction.canceled += instance.OnCatInteraction;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -262,6 +314,12 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @MousePositionForMove.started -= instance.OnMousePositionForMove;
             @MousePositionForMove.performed -= instance.OnMousePositionForMove;
             @MousePositionForMove.canceled -= instance.OnMousePositionForMove;
+            @CallHumanInteraction.started -= instance.OnCallHumanInteraction;
+            @CallHumanInteraction.performed -= instance.OnCallHumanInteraction;
+            @CallHumanInteraction.canceled -= instance.OnCallHumanInteraction;
+            @CatInteraction.started -= instance.OnCatInteraction;
+            @CatInteraction.performed -= instance.OnCatInteraction;
+            @CatInteraction.canceled -= instance.OnCatInteraction;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -293,5 +351,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         void OnKeyBoardMove(InputAction.CallbackContext context);
         void OnMouseMove(InputAction.CallbackContext context);
         void OnMousePositionForMove(InputAction.CallbackContext context);
+        void OnCallHumanInteraction(InputAction.CallbackContext context);
+        void OnCatInteraction(InputAction.CallbackContext context);
     }
 }

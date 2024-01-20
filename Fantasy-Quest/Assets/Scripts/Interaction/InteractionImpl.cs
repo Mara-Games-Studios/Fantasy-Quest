@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Interaction.InteractableItem;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Interaction
 {
@@ -9,14 +10,8 @@ namespace Interaction
     [AddComponentMenu("Scripts/Interaction/Interaction")]
     internal class InteractionImpl : MonoBehaviour
     {
-        //Can be replaced by InputEventManager, so new InputSystem wasn't used
-        [Header("Input")]
         [SerializeField]
-        private KeyCode catInteractionButton = KeyCode.E;
-
-        //Can be replaced by InputEventManager, so new InputSystem wasn't used
-        [SerializeField]
-        private KeyCode humanInteractionButton = KeyCode.Alpha1;
+        private Rigidbody2D playerRigidBody;
 
         [Header("Filter Settings")]
         [SerializeField]
@@ -32,72 +27,82 @@ namespace Interaction
         [SerializeField]
         private bool useTrigger = false;
 
-        private Rigidbody2D playerRigidBody;
-
-        private void Awake() { }
+        private PlayerInput playerInput;
+        private ContactFilter2D contactFilter;
 
         //Can be easily reworked to work with ActionEvents
-        private void Update()
+        private void Awake()
         {
-            if (Input.GetKeyDown(catInteractionButton))
+            playerInput = new PlayerInput();
+            contactFilter = new()
             {
-                List<GameObject> GOList = GetInteractableGOList();
-                foreach (GameObject go in GOList)
+                layerMask = filterMask,
+                useLayerMask = useFilterMask,
+                useTriggers = useTrigger
+            };
+        }
+
+        private void OnEnable()
+        {
+            playerInput.Enable();
+            playerInput.Player.CallHumanInteraction.performed += InteractHuman;
+            playerInput.Player.CatInteraction.performed += InteractCat;
+        }
+
+        public void InteractHuman(InputAction.CallbackContext context)
+        {
+            List<GameObject> GOList = GetInteractableGOList();
+            foreach (GameObject go in GOList)
+            {
+                if (go.GetComponent<IInteractableItem>() != null)
                 {
-                    if (go.GetComponent<IInteractableItem>() != null)
-                    {
-                        go.GetComponent<IInteractableItem>().InteractionByCat();
-                    }
-                    else if (go.GetComponent<ICarryableItem>() != null)
-                    {
-                        go.GetComponent<ICarryableItem>().CarryByCat();
-                    }
+                    go.GetComponent<IInteractableItem>().InteractionByHuman();
+                }
+                else
+                {
+                    go.GetComponent<ICarryableItem>()?.CarryByHuman();
                 }
             }
+        }
 
-            if (Input.GetKeyDown(humanInteractionButton))
+        public void InteractCat(InputAction.CallbackContext context)
+        {
+            List<GameObject> GOList = GetInteractableGOList();
+            foreach (GameObject go in GOList)
             {
-                List<GameObject> GOList = GetInteractableGOList();
-                foreach (GameObject go in GOList)
+                if (go.GetComponent<IInteractableItem>() != null)
                 {
-                    if (go.GetComponent<IInteractableItem>() != null)
-                    {
-                        go.GetComponent<IInteractableItem>().InteractionByHuman();
-                    }
-                    else if (go.GetComponent<ICarryableItem>() != null)
-                    {
-                        go.GetComponent<ICarryableItem>().CarryByHuman();
-                    }
+                    go.GetComponent<IInteractableItem>().InteractionByCat();
+                }
+                else
+                {
+                    go.GetComponent<ICarryableItem>()?.CarryByCat();
                 }
             }
         }
 
         private List<GameObject> GetInteractableGOList()
         {
-            RaycastHit2D[] hits = new RaycastHit2D[10];
-            ContactFilter2D filter = new ContactFilter2D();
-            filter.layerMask = filterMask;
-            filter.useLayerMask = useFilterMask;
-            filter.useTriggers = useTrigger;
+            List<RaycastHit2D> hits = new();
 
-            Vector2 Direction = new Vector2(
-                playerRigidBody.transform.forward.x,
-                playerRigidBody.transform.forward.y
-            );
+            Vector2 direction =
+                new(playerRigidBody.transform.forward.x, playerRigidBody.transform.forward.y);
+            _ = playerRigidBody.Cast(direction, contactFilter, hits, colDistance);
 
-            int num = playerRigidBody.Cast(Direction, filter, hits, colDistance);
-
-            List<GameObject> GOList = new List<GameObject>();
+            List<GameObject> GOList = new();
             foreach (RaycastHit2D hit in hits)
             {
-                if (hit.transform != null)
-                    GOList.Add(hit.transform.gameObject);
-                //else
-                //    //For future needs maybe
-                //    break;
+                GOList.Add(hit.transform.gameObject);
             }
 
             return GOList;
+        }
+
+        private void OnDisable()
+        {
+            playerInput.Disable();
+            playerInput.Player.CallHumanInteraction.performed -= InteractHuman;
+            playerInput.Player.CatInteraction.performed -= InteractCat;
         }
     }
 }

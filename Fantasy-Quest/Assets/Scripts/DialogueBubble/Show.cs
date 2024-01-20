@@ -16,7 +16,7 @@ namespace DialogueBubble
 
         [Header("Sprites/Renderers")]
         [SerializeField]
-        public List<Sprite> IconList = new List<Sprite>();
+        public List<Sprite> IconList = new();
 
         [SerializeField]
         private SpriteRenderer bubbleSprite;

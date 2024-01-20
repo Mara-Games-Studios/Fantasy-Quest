@@ -3,10 +3,8 @@ using UnityEngine;
 
 namespace Interaction.Items
 {
-    [AddComponentMenu(
-        "Scripts/Interaction/InteractableItems/Interaction.InteractableItems.TestInteractableCircle"
-    )]
-    internal class TestInteractableCircle : MonoBehaviour, IInteractableItem
+    [AddComponentMenu("Scripts/Interaction/Items/Interaction.Items.TestInteractableCircle")]
+    internal class TestCircle : MonoBehaviour, IInteractableItem
     {
         public bool CanCatInteract()
         {

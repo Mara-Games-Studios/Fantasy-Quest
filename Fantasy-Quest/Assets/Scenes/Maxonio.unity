@@ -1027,16 +1027,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &672813301 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8696119928218545953, guid: 98a70092d917cfb44a54f3bc28cbb7bb, type: 3}
-  m_PrefabInstance: {fileID: 84728798373783073}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &672813302 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4921942725932324818, guid: 98a70092d917cfb44a54f3bc28cbb7bb, type: 3}
   m_PrefabInstance: {fileID: 84728798373783073}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &672813303 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3923616751739912382, guid: 98a70092d917cfb44a54f3bc28cbb7bb, type: 3}
+  m_PrefabInstance: {fileID: 84728798373783073}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e3865116c3a55241b87e154f8501504, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &691233804
 GameObject:
   m_ObjectHideFlags: 0
@@ -1403,7 +1409,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98dac819a60dd634eb1f1399a71557b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bubble: {fileID: 672813301}
+  bubble: {fileID: 672813303}
 --- !u!1 &1182367884
 GameObject:
   m_ObjectHideFlags: 0
@@ -2024,10 +2030,10 @@ GameObject:
   m_Component:
   - component: {fileID: 2124926302}
   - component: {fileID: 2124926306}
+  - component: {fileID: 2124926307}
   - component: {fileID: 2124926305}
   - component: {fileID: 2124926304}
   - component: {fileID: 2124926303}
-  - component: {fileID: 2124926307}
   m_Layer: 0
   m_Name: Symon
   m_TagString: Player
@@ -2224,8 +2230,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bf04377b26e6cd41b4a755db165e63e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  catInteractionButton: 101
-  humanInteractionButton: 49
+  playerRigidBody: {fileID: 2124926303}
   colDistance: 1
   useFilterMask: 1
   filterMask:
