@@ -1,11 +1,27 @@
 using System.Collections.Generic;
-using Interaction.InteractableItem;
+using System.Linq;
+using Interaction.Item;
 using Sirenix.OdinInspector;
+using Speakable;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace Interaction
 {
+    internal struct InteractableObjects
+    {
+        public List<ISpeakable> Speakables;
+        public List<ICarryable> Carryables;
+        public List<IInteractable> Interactables;
+
+        public InteractableObjects(int a)
+        {
+            Speakables = new();
+            Carryables = new();
+            Interactables = new();
+        }
+    }
+
     [RequireComponent(typeof(Rigidbody2D))]
     [AddComponentMenu("Scripts/Interaction/Interaction")]
     internal class InteractionImpl : MonoBehaviour
@@ -29,8 +45,8 @@ namespace Interaction
 
         private PlayerInput playerInput;
         private ContactFilter2D contactFilter;
+        private InteractableObjects interactableObjects = new(0);
 
-        //Can be easily reworked to work with ActionEvents
         private void Awake()
         {
             playerInput = new PlayerInput();
@@ -51,37 +67,27 @@ namespace Interaction
 
         public void InteractHuman(InputAction.CallbackContext context)
         {
-            List<GameObject> GOList = GetInteractableGOList();
-            foreach (GameObject go in GOList)
-            {
-                if (go.GetComponent<IInteractableItem>() != null)
-                {
-                    go.GetComponent<IInteractableItem>().InteractionByHuman();
-                }
-                else
-                {
-                    go.GetComponent<ICarryableItem>()?.CarryByHuman();
-                }
-            }
+            interactableObjects = FindInteractableObjects();
+
+            interactableObjects.Speakables.ForEach(speakable => speakable.Speak());
+            interactableObjects.Carryables.ForEach(carryable => carryable.CarryByHuman());
+            interactableObjects.Interactables.ForEach(interactable =>
+                interactable.InteractionByHuman()
+            );
         }
 
         public void InteractCat(InputAction.CallbackContext context)
         {
-            List<GameObject> GOList = GetInteractableGOList();
-            foreach (GameObject go in GOList)
-            {
-                if (go.GetComponent<IInteractableItem>() != null)
-                {
-                    go.GetComponent<IInteractableItem>().InteractionByCat();
-                }
-                else
-                {
-                    go.GetComponent<ICarryableItem>()?.CarryByCat();
-                }
-            }
+            interactableObjects = FindInteractableObjects();
+
+            interactableObjects.Speakables.ForEach(speakable => speakable.Speak());
+            interactableObjects.Carryables.ForEach(carryable => carryable.CarryByCat());
+            interactableObjects.Interactables.ForEach(interactable =>
+                interactable.InteractionByCat()
+            );
         }
 
-        private List<GameObject> GetInteractableGOList()
+        private InteractableObjects FindInteractableObjects()
         {
             List<RaycastHit2D> hits = new();
 
@@ -89,13 +95,32 @@ namespace Interaction
                 new(playerRigidBody.transform.forward.x, playerRigidBody.transform.forward.y);
             _ = playerRigidBody.Cast(direction, contactFilter, hits, colDistance);
 
-            List<GameObject> GOList = new();
-            foreach (RaycastHit2D hit in hits)
+            List<ISpeakable> speakables = new();
+            List<ICarryable> carryables = new();
+            List<IInteractable> interactables = new();
+
+            foreach (Transform hit in hits.Select(x => x.transform))
             {
-                GOList.Add(hit.transform.gameObject);
+                if (hit.TryGetComponent(out ISpeakable speakable))
+                {
+                    speakables.Add(speakable);
+                }
+                else if (hit.TryGetComponent(out ICarryable carryable))
+                {
+                    carryables.Add(carryable);
+                }
+                else if (hit.TryGetComponent(out IInteractable interactable))
+                {
+                    interactables.Add(interactable);
+                }
             }
 
-            return GOList;
+            return new InteractableObjects
+            {
+                Speakables = speakables,
+                Carryables = carryables,
+                Interactables = interactables
+            };
         }
 
         private void OnDisable()

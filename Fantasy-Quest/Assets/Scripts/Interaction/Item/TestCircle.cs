@@ -1,10 +1,9 @@
-using Interaction.InteractableItem;
 using UnityEngine;
 
-namespace Interaction.Items
+namespace Interaction.Item
 {
-    [AddComponentMenu("Scripts/Interaction/Items/Interaction.Items.TestInteractableCircle")]
-    internal class TestCircle : MonoBehaviour, IInteractableItem
+    [AddComponentMenu("Scripts/Interaction/Item/Interaction.Item.TestInteractableCircle")]
+    internal class TestCircle : MonoBehaviour, IInteractable
     {
         public bool CanCatInteract()
         {

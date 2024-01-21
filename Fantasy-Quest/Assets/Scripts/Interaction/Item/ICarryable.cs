@@ -1,6 +1,6 @@
-namespace Interaction.InteractableItem
+namespace Interaction.Item
 {
-    internal interface ICarryableItem
+    internal interface ICarryable
     {
         public bool CanCatCarry();
         public void CarryByCat();

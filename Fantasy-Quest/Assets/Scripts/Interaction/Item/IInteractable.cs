@@ -1,6 +1,6 @@
-namespace Interaction.InteractableItem
+namespace Interaction.Item
 {
-    internal interface IInteractableItem
+    internal interface IInteractable
     {
         public bool CanCatInteract();
         public void InteractionByCat();
