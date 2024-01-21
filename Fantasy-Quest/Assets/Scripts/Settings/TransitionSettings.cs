@@ -7,8 +7,11 @@ namespace Settings
         menuName = "Settings/Create Transition Settings",
         order = 1
     )]
-    public class TransitionSettings : ScriptableObject
+    internal class TransitionSettings : SingletonScriptableObject<TransitionSettings>
     {
-        // TODO
+        [Min(0)]
+        [SerializeField]
+        private float minLoadingDuration;
+        public float MinLoadingDuration => minLoadingDuration;
     }
 }

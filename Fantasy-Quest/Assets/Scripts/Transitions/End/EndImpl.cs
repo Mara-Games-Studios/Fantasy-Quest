@@ -5,9 +5,12 @@ using UnityEngine.SceneManagement;
 
 namespace Transitions.End
 {
-    [AddComponentMenu("Scripts/Transitions/End/Transitions.End.EndImpl")]
+    [AddComponentMenu("Scripts/Transitions/End/Transitions.End")]
     internal class EndImpl : MonoBehaviour
     {
+        [SerializeField]
+        private GameObject view;
+
         [SerializeField]
         private Animator animator;
 
@@ -24,29 +27,33 @@ namespace Transitions.End
 
         public void LoadScene(string nextScene, float minDuration)
         {
-            gameObject.SetActive(true);
+            view.SetActive(true);
             animator.enabled = true;
             this.nextScene = nextScene;
             this.minDuration = minDuration;
         }
 
-        // Called by animation clip event
-        public void AppearanceEnd()
+        // Must me called by view callback
+        public void StartLoading()
         {
             AsyncOperation loading = SceneManager.LoadSceneAsync(nextScene);
+            loading.allowSceneActivation = false;
             _ = StartCoroutine(LoadSceneRoutine(minDuration, loading));
         }
+
+        private const float max_loading_progress = 0.9f;
 
         private IEnumerator LoadSceneRoutine(float minDuration, AsyncOperation loading)
         {
             float timer = 0f;
-            while (timer < minDuration || !loading.isDone)
+            while (timer <= minDuration || loading.progress != max_loading_progress)
             {
-                yield return new WaitForEndOfFrame();
+                yield return null;
                 timer += Time.deltaTime;
                 float percentage = timer / minDuration;
+                float loadingPercentage = loading.progress / max_loading_progress;
                 progressBar.SetProgress(
-                    percentage > loading.progress ? loading.progress : percentage
+                    percentage > loadingPercentage ? loadingPercentage : percentage
                 );
             }
             loading.allowSceneActivation = true;

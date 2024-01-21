@@ -1,20 +1,23 @@
 using UnityEngine;
 
-namespace Transitions
+namespace Transitions.Start
 {
     [AddComponentMenu("Scripts/Transitions/Transitions.Start")]
-    internal class Start : MonoBehaviour
+    internal class StartImpl : MonoBehaviour
     {
+        [SerializeField]
+        private GameObject view;
+
         [SerializeField]
         private Animator animator;
 
-        private void Awake()
+        private void Start()
         {
-            gameObject.SetActive(true);
+            view.SetActive(true);
             animator.enabled = true;
         }
 
-        // Called by animation clip event
+        // Must me called by view callback
         public void DestroySelf()
         {
             Destroy(gameObject);

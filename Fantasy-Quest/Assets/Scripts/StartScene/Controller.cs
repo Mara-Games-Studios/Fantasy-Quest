@@ -1,4 +1,5 @@
 ﻿using Common;
+using Settings;
 using Transitions.End;
 using UnityEngine;
 
@@ -14,9 +15,17 @@ namespace StartScene
         [SerializeField]
         private EndImpl endTransition;
 
+        // Must be called by view (button) callback
         public void PlayGame()
         {
-            endTransition.LoadScene(nextScene, 3);
+            Debug.Log(TransitionSettings.Instance.MinLoadingDuration);
+            endTransition.LoadScene(nextScene, TransitionSettings.Instance.MinLoadingDuration);
         }
+
+        // Must be called by view (button) callback
+        public void OpenSettings() { }
+
+        // Must be called by view (button) callback
+        public void QuitGame() { }
     }
 }
