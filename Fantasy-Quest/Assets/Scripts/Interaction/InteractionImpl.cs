@@ -13,13 +13,6 @@ namespace Interaction
         public List<ISpeakable> Speakables;
         public List<ICarryable> Carryables;
         public List<IInteractable> Interactables;
-
-        public InteractableObjects(int a)
-        {
-            Speakables = new();
-            Carryables = new();
-            Interactables = new();
-        }
     }
 
     [RequireComponent(typeof(Rigidbody2D))]
@@ -45,7 +38,6 @@ namespace Interaction
 
         private PlayerInput playerInput;
         private ContactFilter2D contactFilter;
-        private InteractableObjects interactableObjects = new(0);
 
         private void Awake()
         {
@@ -67,7 +59,7 @@ namespace Interaction
 
         public void InteractHuman(InputAction.CallbackContext context)
         {
-            interactableObjects = FindInteractableObjects();
+            InteractableObjects interactableObjects = FindInteractableObjects();
 
             interactableObjects.Speakables.ForEach(speakable => speakable.Speak());
             interactableObjects.Carryables.ForEach(carryable => carryable.CarryByHuman());
@@ -78,7 +70,7 @@ namespace Interaction
 
         public void InteractCat(InputAction.CallbackContext context)
         {
-            interactableObjects = FindInteractableObjects();
+            InteractableObjects interactableObjects = FindInteractableObjects();
 
             interactableObjects.Speakables.ForEach(speakable => speakable.Speak());
             interactableObjects.Carryables.ForEach(carryable => carryable.CarryByCat());

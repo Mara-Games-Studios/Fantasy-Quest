@@ -14,28 +14,28 @@ namespace DialogueBubble
 
         [Header("Sprites/Renderers")]
         [SerializeField]
-        public List<Sprite> IconList = new();
+        private List<Sprite> iconSprites = new();
 
         [SerializeField]
-        private SpriteRenderer bubbleSprite;
+        private SpriteRenderer bubbleSpriteRenderer;
 
         [SerializeField]
-        private SpriteRenderer iconSprite;
+        private SpriteRenderer iconSpriteRenderer;
 
         private Tween fadeTween;
 
         private void Awake()
         {
-            iconSprite.sprite = IconList[0];
+            iconSpriteRenderer.sprite = iconSprites[0];
 
-            Color bubbleColor = bubbleSprite.GetComponent<SpriteRenderer>().color;
-            Color iconColor = iconSprite.GetComponent<SpriteRenderer>().color;
+            Color bubbleColor = bubbleSpriteRenderer.GetComponent<SpriteRenderer>().color;
+            Color iconColor = iconSpriteRenderer.GetComponent<SpriteRenderer>().color;
 
             bubbleColor.a = 0f;
             iconColor.a = 0f;
 
-            bubbleSprite.color = bubbleColor;
-            iconSprite.color = iconColor;
+            bubbleSpriteRenderer.color = bubbleColor;
+            iconSpriteRenderer.color = iconColor;
         }
 
         private void OnEnable()
@@ -70,8 +70,8 @@ namespace DialogueBubble
         {
             fadeTween?.Kill(false);
 
-            fadeTween = bubbleSprite.DOFade(endValue, duration);
-            fadeTween = iconSprite.DOFade(endValue, duration);
+            fadeTween = bubbleSpriteRenderer.DOFade(endValue, duration);
+            fadeTween = iconSpriteRenderer.DOFade(endValue, duration);
             fadeTween.onComplete += onEnd;
         }
 
