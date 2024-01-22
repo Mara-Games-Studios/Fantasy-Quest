@@ -8,6 +8,6 @@ namespace Dialogue
     {
         public string Text;
         public AudioClip Audio;
-        public float delayAfterSaid = 1.2f;
+        public float DelayAfterSaid = 1.2f;
     }
 }

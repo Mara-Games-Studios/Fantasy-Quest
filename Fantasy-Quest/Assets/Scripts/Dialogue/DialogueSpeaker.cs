@@ -11,15 +11,17 @@ namespace Dialogue
     public class DialogueSpeaker : MonoBehaviour, ISpeakable
     {
         #region Fields
-        
-        [Header("Speech")] 
-        [SerializeField] 
+
+        [Header("Speech")]
+        [SerializeField]
         private List<Replica> firstTrySpeech;
-        [SerializeField] 
+
+        [SerializeField]
         private List<Replica> alternativeSpeech;
+
         [Space]
         [Header("Components")]
-        [SerializeField] 
+        [SerializeField]
         private GameObject subtitlesView;
 
         private bool wasSaid;
@@ -62,7 +64,7 @@ namespace Dialogue
                 StopCoroutine(waitCoroutine);
                 waitCoroutine = null;
             }
-            
+
             voice.Silence();
             iSubtitlesView.Hide();
         }
@@ -78,7 +80,7 @@ namespace Dialogue
 
             waitCoroutine = StartCoroutine(SayQueue());
         }
-        
+
         private IEnumerator SayQueue()
         {
             Replica replica;
@@ -88,8 +90,8 @@ namespace Dialogue
                 replica = replicasToShow.Dequeue();
                 audioLength = replica.Audio.length;
                 voice.Say(replica.Audio);
-                iSubtitlesView.Show(replica.Text, audioLength, replica.delayAfterSaid);
-                yield return new WaitForSecondsRealtime(audioLength + replica.delayAfterSaid);
+                iSubtitlesView.Show(replica.Text, audioLength, replica.DelayAfterSaid);
+                yield return new WaitForSecondsRealtime(audioLength + replica.DelayAfterSaid);
             }
             Stop();
         }
