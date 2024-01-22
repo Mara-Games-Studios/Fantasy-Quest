@@ -20,7 +20,7 @@ namespace DialogueBubble
 
         private void SetBubbleShow(bool state)
         {
-            bubble.CanShowSwitch(state);
+            bubble.SwitchFade(state);
         }
     }
 }

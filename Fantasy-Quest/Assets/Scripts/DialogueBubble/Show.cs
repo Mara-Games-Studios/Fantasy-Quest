@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 
 namespace DialogueBubble
@@ -9,10 +10,7 @@ namespace DialogueBubble
     {
         [Header("Show Settings")]
         [SerializeField]
-        private bool canShow = false;
-
-        [SerializeField]
-        private float lerpRate = 0.01f;
+        private float duration = 1f;
 
         [Header("Sprites/Renderers")]
         [SerializeField]
@@ -23,6 +21,8 @@ namespace DialogueBubble
 
         [SerializeField]
         private SpriteRenderer iconSprite;
+
+        private Tween fadeTween;
 
         private void Awake()
         {
@@ -40,66 +40,44 @@ namespace DialogueBubble
 
         private void OnEnable()
         {
-            EventSystem.OnTriggerBubble += CanShowSwitch;
+            EventSystem.OnTriggerBubble += SwitchFade;
         }
 
-        public void CanShowSwitch(bool newCanShow)
-        {
-            canShow = newCanShow;
-
-            //-------FOR TEST PURPOSE---------
-            if (newCanShow)
-            {
-                gameObject.SetActive(true);
-                iconSprite.sprite = IconList[Random.Range(0, IconList.Count)];
-            }
-
-            //--------------------------------
-        }
-
-        private void EnableBubble()
-        {
-            Color maxAlpha = bubbleSprite.color;
-            maxAlpha.a = 1f;
-            Color lerpedColor = Color.Lerp(bubbleSprite.color, maxAlpha, lerpRate);
-
-            if (lerpedColor.a > 0.95f)
-            {
-                return;
-            }
-            bubbleSprite.color = lerpedColor;
-            iconSprite.color = lerpedColor;
-        }
-
-        private void DisableBubble()
-        {
-            Color minAlpha = bubbleSprite.color;
-            minAlpha.a = 0f;
-            Color lerpedColor = Color.Lerp(bubbleSprite.color, minAlpha, lerpRate);
-            if (lerpedColor.a < 0.09f)
-            {
-                gameObject.SetActive(false);
-                return;
-            }
-            bubbleSprite.color = lerpedColor;
-            iconSprite.color = lerpedColor;
-        }
-
-        private void Update()
+        public void SwitchFade(bool canShow)
         {
             if (canShow)
             {
-                EnableBubble();
+                gameObject.SetActive(true);
+                FadeIn(duration);
             }
             else
             {
-                DisableBubble();
+                FadeOut(duration);
             }
+        }
+
+        private void FadeIn(float duration)
+        {
+            Fade(1f, duration, () => { });
+        }
+
+        private void FadeOut(float duration)
+        {
+            Fade(0f, duration, () => gameObject.SetActive(false));
+        }
+
+        private void Fade(float endValue, float duration, TweenCallback onEnd)
+        {
+            fadeTween?.Kill(false);
+
+            fadeTween = bubbleSprite.DOFade(endValue, duration);
+            fadeTween = iconSprite.DOFade(endValue, duration);
+            fadeTween.onComplete += onEnd;
         }
 
         private void OnDisable()
         {
-            EventSystem.OnTriggerBubble -= CanShowSwitch;
+            EventSystem.OnTriggerBubble -= SwitchFade;
         }
     }
 }
