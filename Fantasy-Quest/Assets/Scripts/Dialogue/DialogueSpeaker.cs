@@ -1,42 +1,51 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using SubtitlesSystem;
+using Sirenix.OdinInspector;
+using Subtitles;
 using UnityEngine;
 
 namespace Dialogue
 {
+    [Serializable]
+    public struct Replica
+    {
+        public string Text;
+        public AudioClip Audio;
+        public float DelayAfterSaid;
+
+        public Replica(string text, AudioClip audioClip, float delay = 1.2f)
+        {
+            Text = text;
+            Audio = audioClip;
+            DelayAfterSaid = delay;
+        }
+    }
+
     [RequireComponent(typeof(Collider2D), typeof(AudioSource))]
+    [AddComponentMenu("Scripts/Dialogue/Dialogue.DialogueSpeaker")]
     public class DialogueSpeaker : MonoBehaviour, ISpeakable
     {
-        #region Fields
-
         [Header("Speech")]
         [SerializeField]
         private List<Replica> firstTrySpeech;
-
         [SerializeField]
         private List<Replica> alternativeSpeech;
-
         [Space]
         [Header("Components")]
         [SerializeField]
-        private GameObject subtitlesView;
+        [ValidateInput("HasISubtitlesView", "GameObject must have ISubtitlesView")]
+        private GameObject subtitlesViewGameObject;
 
         private bool wasSaid;
-        private Coroutine waitCoroutine;
+        private Coroutine sayCoroutine;
         private Voice voice;
-        private ISubtitlesView iSubtitlesView;
-        private Queue<Replica> replicasToShow;
-
-        #endregion
+        private ISubtitlesView subtitlesView;
 
         private void Awake()
         {
-            iSubtitlesView = subtitlesView.GetComponent<ISubtitlesView>();
+            subtitlesView = subtitlesViewGameObject.GetComponent<ISubtitlesView>();
             voice = new Voice(GetComponent<AudioSource>());
-            replicasToShow = new Queue<Replica>(firstTrySpeech.Count);
         }
 
         public void Speak()
@@ -54,46 +63,35 @@ namespace Dialogue
 
         public void Stop()
         {
-            if (replicasToShow.Any())
+            if (sayCoroutine != null)
             {
-                replicasToShow.Clear();
+                StopCoroutine(sayCoroutine);
+                sayCoroutine = null;
             }
-
-            if (waitCoroutine != null)
-            {
-                StopCoroutine(waitCoroutine);
-                waitCoroutine = null;
-            }
-
             voice.Silence();
-            iSubtitlesView.Hide();
+            subtitlesView.Hide();
         }
 
         private void Say(List<Replica> speech)
         {
             Stop();
-
-            foreach (Replica replica in speech)
-            {
-                replicasToShow.Enqueue(replica);
-            }
-
-            waitCoroutine = StartCoroutine(SayQueue());
+            sayCoroutine = StartCoroutine(SayList(speech));
         }
 
-        private IEnumerator SayQueue()
+        private IEnumerator SayList(List<Replica> replicas)
         {
-            Replica replica;
-            float audioLength;
-            while (replicasToShow.Count > 0)
+            foreach (Replica replica in replicas)
             {
-                replica = replicasToShow.Dequeue();
-                audioLength = replica.Audio.length;
                 voice.Say(replica.Audio);
-                iSubtitlesView.Show(replica.Text, audioLength, replica.DelayAfterSaid);
-                yield return new WaitForSecondsRealtime(audioLength + replica.DelayAfterSaid);
+                subtitlesView.Show(replica.Text, replica.Audio.length, replica.DelayAfterSaid);
+                yield return new WaitForSecondsRealtime(replica.Audio.length + replica.DelayAfterSaid);
             }
             Stop();
+        }
+
+        private bool HasISubtitlesView(GameObject gameObject)
+        {
+            return gameObject.TryGetComponent(out ISubtitlesView view);
         }
     }
 }

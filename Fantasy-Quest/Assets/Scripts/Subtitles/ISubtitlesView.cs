@@ -1,4 +1,4 @@
-﻿namespace SubtitlesSystem
+﻿namespace Subtitles
 {
     public interface ISubtitlesView
     {

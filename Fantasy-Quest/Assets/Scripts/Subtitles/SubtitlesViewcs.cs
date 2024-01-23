@@ -2,21 +2,16 @@
 using TMPro;
 using UnityEngine;
 
-namespace SubtitlesSystem
+namespace Subtitles
 {
-    [AddComponentMenu("Scripts/SubtitlesSystem/SubtitlesSystem.SubtitlesView")]
+    [AddComponentMenu("Scripts/Subtitles/Subtitles.SubtitlesView")]
     public class SubtitlesView : MonoBehaviour, ISubtitlesView
     {
-        [Header("Default settings")]
         [SerializeField]
         private float defaultTimeSpeedForASymbol = 0.5f;
-
-        [Header("Must have settings")]
         [SerializeField]
         private TMP_Text outputTmpText;
-
         [SerializeField]
-        [Tooltip("You can find eases meaning by googling 'ease types unity', then go to pictures")]
         private Ease typingEase;
 
         private Tween typeWriterTween;
@@ -41,10 +36,7 @@ namespace SubtitlesSystem
 
         public void Hide()
         {
-            if (typeWriterTween != null)
-            {
-                typeWriterTween.Kill();
-            }
+            typeWriterTween?.Kill();
             outputTmpText.SetText("");
         }
     }
