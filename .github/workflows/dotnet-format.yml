@@ -7,26 +7,44 @@ on:
     branches: [ "main" ]
 
 jobs:
-  check-format-dotnet:
+  check-code-formatting:
     runs-on: self-hosted
+    container:
+      image: mcr.microsoft.com/dotnet/sdk:8.0
     
     steps:
-      - name: Check out code
-        uses: actions/checkout@v3
+      - name: Remove git lfs hooks
+        run: rm -rf ./.git/hooks
 
-      - name: Creating sln
-        run: dotnet new sln --name Fantasy-Quest --output ./Fantasy-Quest
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - name: Creating project
+        run: dotnet new classlib --name Fantasy-Quest --output ./Fantasy-Quest
+
+      - name: Deleting garbage
+        run: rm ./Fantasy-Quest/Class1.cs
+
+      - name: Add .editorconfig
+        run: wget -O Fantasy-Quest/.editorconfig https://raw.githubusercontent.com/Mara-Games-Studios/Fantasy-Quest/main/Fantasy-Quest/.editorconfig
+
+      - name: Check content
+        run: |
+          ls -a -l Fantasy-Quest
+          cat Fantasy-Quest/.editorconfig
+
+      - name: Install csharpier locally
+        run: dotnet tool restore --tool-manifest ./Fantasy-Quest/.config/dotnet-tools.json
+
+      - name: Check versions
+        run: |
+          dotnet format --version
+          cd Fantasy-Quest/ && dotnet tool list
 
       - name: Run dotnet format
-        run: dotnet format Fantasy-Quest/Fantasy-Quest.sln --verbosity diagnostic --verify-no-changes --no-restore
-
-  check-format-cscharpier:
-    runs-on: self-hosted
-
-    steps:
-      - name: Check out code
-        uses: actions/checkout@v3
-
+        run: dotnet format Fantasy-Quest/Fantasy-Quest.csproj --verify-no-changes --include Fantasy-Quest/Assets/Scripts -v d
+      
       - name: Run csharpier format
-        run: dotnet csharpier '.\Fantasy-Quest\Assets\Scripts\' --check
+        run: cd Fantasy-Quest/ && dotnet tool run dotnet-csharpier --config-path "./.csharpierrc.json" 'Assets\Scripts\' --check
+      
   

@@ -3,9 +3,6 @@ using UnityEngine;
 public class LookDown : MonoBehaviour
 {
     [Header("LookParameters")]
-    //[SerializeField]
-    //private CinemachineVirtualCamera playerCam;
-
     [SerializeField]
     private PanDirection panDir;
 

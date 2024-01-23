@@ -9,7 +9,7 @@ public class SwitchToFocusCamera : MonoBehaviour
     [SerializeField]
     private int priority = 1000;
 
-    private void OnTriggerEnter2D(UnityEngine.Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
@@ -17,7 +17,7 @@ public class SwitchToFocusCamera : MonoBehaviour
         }
     }
 
-    private void OnTriggerExit2D(UnityEngine.Collider2D collision)
+    private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {

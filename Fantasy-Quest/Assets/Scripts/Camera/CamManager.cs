@@ -8,18 +8,16 @@ public class CamManager : MonoBehaviour
     public static CamManager Instance;
 
     [SerializeField]
-    private List<CinemachineVirtualCamera> cameras = new List<CinemachineVirtualCamera>();
+    private List<CinemachineVirtualCamera> cameras = new();
 
     [SerializeField]
     private CinemachineVirtualCamera activeCam;
 
     private CinemachineFramingTransposer transposer;
-    private Coroutine panCameraCoroutine;
     private Vector2 startOffset;
 
     public int ActiveCameraNum = 1;
 
-    // Start is called before the first frame update
     private void Awake()
     {
         if (Instance == null)
@@ -74,9 +72,7 @@ public class CamManager : MonoBehaviour
         bool panToStartingPos
     )
     {
-        panCameraCoroutine = StartCoroutine(
-            PanCamera(distance, panSpeed, panDir, panToStartingPos)
-        );
+        _ = StartCoroutine(PanCamera(distance, panSpeed, panDir, panToStartingPos));
     }
 
     private IEnumerator PanCamera(
@@ -86,26 +82,18 @@ public class CamManager : MonoBehaviour
         bool panToStartingPos
     )
     {
-        Vector2 endPos = Vector2.zero;
-        _ = Vector2.zero;
         Vector2 startPos;
+        Vector2 endPos;
         if (!panToStartingPos)
         {
-            switch (panDir)
+            endPos = panDir switch
             {
-                case PanDirection.Left:
-                    endPos = Vector2.left;
-                    break;
-                case PanDirection.Right:
-                    endPos = Vector2.right;
-                    break;
-                case PanDirection.Up:
-                    endPos = Vector2.up;
-                    break;
-                case PanDirection.Down:
-                    endPos = Vector2.down;
-                    break;
-            }
+                PanDirection.Left => Vector2.left,
+                PanDirection.Right => Vector2.right,
+                PanDirection.Up => Vector2.up,
+                PanDirection.Down => Vector2.down,
+                _ => Vector2.zero
+            };
             endPos *= distance;
             startPos = startOffset;
             endPos += startOffset;
