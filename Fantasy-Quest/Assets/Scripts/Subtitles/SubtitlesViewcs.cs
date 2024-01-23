@@ -9,10 +9,8 @@ namespace Subtitles
     {
         [SerializeField]
         private float defaultTimeSpeedForASymbol = 0.5f;
-        
         [SerializeField]
         private TMP_Text outputTmpText;
-        
         [SerializeField]
         private Ease typingEase;
 
