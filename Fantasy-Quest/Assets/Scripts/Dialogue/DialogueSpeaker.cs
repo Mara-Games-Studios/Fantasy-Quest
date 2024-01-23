@@ -29,9 +29,10 @@ namespace Dialogue
         [Header("Speech")]
         [SerializeField]
         private List<Replica> firstTrySpeech;
-        
-        [SerializeField] 
+
+        [SerializeField]
         private List<Replica> alternativeSpeech;
+
         [Space]
         [Header("Components")]
         [SerializeField]
@@ -85,14 +86,16 @@ namespace Dialogue
             {
                 voice.Say(replica.Audio);
                 subtitlesView.Show(replica.Text, replica.Audio.length, replica.DelayAfterSaid);
-                yield return new WaitForSecondsRealtime(replica.Audio.length + replica.DelayAfterSaid);
+                yield return new WaitForSecondsRealtime(
+                    replica.Audio.length + replica.DelayAfterSaid
+                );
             }
             Stop();
         }
 
         private bool HasISubtitlesView(GameObject gameObject)
         {
-            return gameObject.TryGetComponent(out ISubtitlesView view);
+            return gameObject.TryGetComponent(out ISubtitlesView _);
         }
     }
 }
