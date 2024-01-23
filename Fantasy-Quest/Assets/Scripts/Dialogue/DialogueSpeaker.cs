@@ -29,6 +29,7 @@ namespace Dialogue
         [Header("Speech")]
         [SerializeField]
         private List<Replica> firstTrySpeech;
+        
         [SerializeField] 
         private List<Replica> alternativeSpeech;
         [Space]
