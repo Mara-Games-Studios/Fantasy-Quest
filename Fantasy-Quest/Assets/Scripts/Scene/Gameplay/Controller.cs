@@ -16,12 +16,14 @@ namespace Scene.Gameplay
         public void OpenSettings()
         {
             OnSettingsOpened?.Invoke();
+            Time.timeScale = 0.0f;
             settingsController.ShowSettings();
         }
 
         // Called by Settings controller callback
         public void SettingsClosed()
         {
+            Time.timeScale = 1.0f;
             OnSettingsClosed?.Invoke();
         }
     }
