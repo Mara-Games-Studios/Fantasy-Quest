@@ -8,7 +8,7 @@ namespace Dialogue
     public struct Replica
     {
         private float cachedDuration;
-        
+
         public string Text;
         public AudioClip Audio;
         public float DelayAfterSaid;
@@ -23,7 +23,7 @@ namespace Dialogue
 
             return cachedDuration;
         }
-        
+
         private void CalculateDuration()
         {
             float length = Audio == null ? Text.Length : Audio.length;
