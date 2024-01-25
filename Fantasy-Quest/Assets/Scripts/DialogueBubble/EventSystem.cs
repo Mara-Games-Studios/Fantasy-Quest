@@ -8,7 +8,7 @@ namespace DialogueBubble
     {
         public static EventSystem Instance = null;
 
-        public static Action<bool> OnTriggerBubble;
+        public static Action<bool, bool, Sprite> OnTriggerBubble;
 
         private void Start()
         {
