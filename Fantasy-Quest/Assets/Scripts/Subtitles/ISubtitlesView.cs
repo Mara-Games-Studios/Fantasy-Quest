@@ -1,8 +1,10 @@
-﻿namespace Subtitles
+﻿using Dialogue;
+
+namespace Subtitles
 {
     public interface ISubtitlesView
     {
-        public void Show(string text, float timeToShow, float delayAfterSaid);
+        public void Show(Replica replica);
         public void Hide();
     }
 }

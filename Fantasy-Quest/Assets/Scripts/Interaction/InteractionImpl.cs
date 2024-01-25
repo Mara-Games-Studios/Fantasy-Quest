@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using System.Linq;
+using Dialogue;
 using Interaction.Item;
 using Sirenix.OdinInspector;
-using Speakable;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
