@@ -7,7 +7,7 @@ namespace Dialogue
     [Serializable]
     public struct Replica
     {
-        private float duration;
+        private float cachedDuration;
         
         public string Text;
         public AudioClip Audio;
@@ -16,18 +16,18 @@ namespace Dialogue
 
         public float GetDuration()
         {
-            if (duration <= 0)
+            if (cachedDuration <= 0)
             {
-                SetDuration();
+                CalculateDuration();
             }
 
-            return duration;
+            return cachedDuration;
         }
         
-        private void SetDuration()
+        private void CalculateDuration()
         {
             float length = Audio == null ? Text.Length : Audio.length;
-            duration = length * SubtitlesSettings.Instance.SymbolTimeSpeed;
+            cachedDuration = length * SubtitlesSettings.Instance.SymbolTimeSpeed;
         }
     }
 }
