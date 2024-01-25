@@ -33,7 +33,7 @@ namespace Dialogue
         {
             if (!subtitlesViewGameObject.TryGetComponent(out subtitlesView))
             {
-                Debug.Log($"{subtitlesView} is NULL\n{GetType()} callback in {gameObject.name}");
+                Debug.LogError($"{subtitlesView} is NULL\n{GetType()} callback in {gameObject.name}");
             }
 
             voice = new Voice(GetComponent<AudioSource>());

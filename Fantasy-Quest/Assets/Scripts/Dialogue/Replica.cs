@@ -5,9 +5,9 @@ using UnityEngine;
 namespace Dialogue
 {
     [Serializable]
-    public class Replica
+    public struct Replica
     {
-        private float duration = float.MinValue;
+        private float duration;
         
         public string Text;
         public AudioClip Audio;
