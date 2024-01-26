@@ -18,9 +18,9 @@ namespace DialogueBubble
             EventSystem.OnTriggerBubble -= SetBubbleShow;
         }
 
-        private void SetBubbleShow(bool state)
+        private void SetBubbleShow(BubbleSettings settings)
         {
-            bubble.SwitchFade(state);
+            bubble.SwitchFade(settings);
         }
     }
 }

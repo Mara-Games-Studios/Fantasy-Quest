@@ -14,7 +14,10 @@ namespace DialogueBubble
 
         [Header("Sprites/Renderers")]
         [SerializeField]
-        private List<Sprite> iconSprites = new();
+        private List<Sprite> bubbleSprites = new();
+
+        //[SerializeField]
+        //private List<Sprite> iconSprites = new();
 
         [SerializeField]
         private SpriteRenderer bubbleSpriteRenderer;
@@ -26,7 +29,7 @@ namespace DialogueBubble
 
         private void Awake()
         {
-            iconSpriteRenderer.sprite = iconSprites[0];
+            //iconSpriteRenderer.sprite = iconSprites[0];
 
             Color bubbleColor = bubbleSpriteRenderer.GetComponent<SpriteRenderer>().color;
             Color iconColor = iconSpriteRenderer.GetComponent<SpriteRenderer>().color;
@@ -43,10 +46,14 @@ namespace DialogueBubble
             EventSystem.OnTriggerBubble += SwitchFade;
         }
 
-        public void SwitchFade(bool canShow)
+        public void SwitchFade(BubbleSettings settings)
         {
-            if (canShow)
+            if (settings.CanShow)
             {
+                bubbleSpriteRenderer.sprite = settings.IsEmote
+                    ? bubbleSprites[0]
+                    : bubbleSprites[1];
+                iconSpriteRenderer.sprite = settings.Icon;
                 gameObject.SetActive(true);
                 FadeIn(duration);
             }
