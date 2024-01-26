@@ -15,12 +15,26 @@ namespace DialogueBubble
 
         private void OnTriggerEnter2D(Collider2D other)
         {
-            EventSystem.OnTriggerBubble?.Invoke(true, isEmote, icon[0]);
+            EventSystem.OnTriggerBubble?.Invoke(
+                new BubbleSettings
+                {
+                    CanShow = true,
+                    IsEmote = isEmote,
+                    Icon = icon[0]
+                }
+            );
         }
 
         private void OnTriggerExit2D(Collider2D other)
         {
-            EventSystem.OnTriggerBubble?.Invoke(false, isEmote, icon[0]);
+            EventSystem.OnTriggerBubble?.Invoke(
+                new BubbleSettings
+                {
+                    CanShow = false,
+                    IsEmote = isEmote,
+                    Icon = icon[0]
+                }
+            );
         }
     }
 }

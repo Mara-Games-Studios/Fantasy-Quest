@@ -46,12 +46,14 @@ namespace DialogueBubble
             EventSystem.OnTriggerBubble += SwitchFade;
         }
 
-        public void SwitchFade(bool canShow, bool isEmote, Sprite icon)
+        public void SwitchFade(BubbleSettings settings)
         {
-            if (canShow)
+            if (settings.CanShow)
             {
-                bubbleSpriteRenderer.sprite = isEmote ? bubbleSprites[0] : bubbleSprites[1];
-                iconSpriteRenderer.sprite = icon;
+                bubbleSpriteRenderer.sprite = settings.IsEmote
+                    ? bubbleSprites[0]
+                    : bubbleSprites[1];
+                iconSpriteRenderer.sprite = settings.Icon;
                 gameObject.SetActive(true);
                 FadeIn(duration);
             }

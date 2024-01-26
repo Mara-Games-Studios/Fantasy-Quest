@@ -18,9 +18,9 @@ namespace DialogueBubble
             EventSystem.OnTriggerBubble -= SetBubbleShow;
         }
 
-        private void SetBubbleShow(bool state, bool isEmote, Sprite icon)
+        private void SetBubbleShow(BubbleSettings settings)
         {
-            bubble.SwitchFade(state, isEmote, icon);
+            bubble.SwitchFade(settings);
         }
     }
 }
