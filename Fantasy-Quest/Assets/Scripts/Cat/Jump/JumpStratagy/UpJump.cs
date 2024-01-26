@@ -15,7 +15,14 @@ public class UpJump : IJumpable
 
     public void Jump()
     {
-        data.XVelosity = upJumpConfig.StartXVelocity;
+        if ((target.transform.localScale.x) / (Mathf.Abs(target.transform.localScale.x)) > 0)
+        {
+            data.XVelosity = upJumpConfig.StartXVelocity;
+        }
+        else
+        {
+            data.XVelosity = upJumpConfig.StartXVelocity * (-1);
+        }
         data.YVelosity = upJumpConfig.StartYVelocity;
     }
 
@@ -23,29 +30,28 @@ public class UpJump : IJumpable
     {
         target.Translate(GetConvertedVelocity() * Time.deltaTime);
         data.YVelosity -= upJumpConfig.BaseGravity * Time.deltaTime;
-        data.XVelosity -= upJumpConfig.XMoveResistance * Time.deltaTime;
-        //if ((CatPlayer.transform.localScale.x) / (Mathf.Abs(CatPlayer.transform.localScale.x)) > 0)
-        //{
-        //    if (Data.XVelosity > 0)
-        //    {
-        //        Data.XVelosity -= airConfig.XMoveResistance * Time.deltaTime;
-        //    }
-        //    else
-        //    {
-        //        Data.XVelosity = 0;
-        //    }
-        //}
-        //else
-        //{
-        //    if (Data.XVelosity < 0)
-        //    {
-        //        Data.XVelosity += airConfig.XMoveResistance * Time.deltaTime;
-        //    }
-        //    else
-        //    {
-        //        Data.XVelosity = 0;
-        //    }
-        //}
+        if ((target.transform.localScale.x) / (Mathf.Abs(target.transform.localScale.x)) > 0)
+        {
+            if (data.XVelosity > 0)
+            {
+                data.XVelosity -= upJumpConfig.XMoveResistance * Time.deltaTime;
+            }
+            else
+            {
+                data.XVelosity = 0;
+            }
+        }
+        else
+        {
+            if (data.XVelosity < 0)
+            {
+                data.XVelosity += upJumpConfig.XMoveResistance * Time.deltaTime;
+            }
+            else
+            {
+                data.XVelosity = 0;
+            }
+        }
     }
 
     protected Vector2 GetConvertedVelocity()

@@ -15,7 +15,15 @@ public class DownJump :  IJumpable
 
     public void Jump()
     {
-        data.XVelosity = downJumpConfig.StartXVelocity ;
+        if((target.transform.localScale.x) / (Mathf.Abs(target.transform.localScale.x)) > 0)
+        {
+            data.XVelosity = downJumpConfig.StartXVelocity;
+        }
+        else
+        {
+            data.XVelosity = downJumpConfig.StartXVelocity * (-1);
+        }
+       
         data.YVelosity = downJumpConfig.StartYVelocity;
     }
 
@@ -23,7 +31,29 @@ public class DownJump :  IJumpable
     {
         target.Translate(GetConvertedVelocity() * Time.deltaTime);
         data.YVelosity -= downJumpConfig.BaseGravity * Time.deltaTime;
-        data.XVelosity -= downJumpConfig.XMoveResistance * Time.deltaTime;
+        // data.XVelosity -= downJumpConfig.XMoveResistance * Time.deltaTime;
+        if ((target.transform.localScale.x) / (Mathf.Abs(target.transform.localScale.x)) > 0)
+        {
+            if (data.XVelosity > 0)
+            {
+                data.XVelosity -= downJumpConfig.XMoveResistance * Time.deltaTime;
+            }
+            else
+            {
+                data.XVelosity = 0;
+            }
+        }
+        else
+        {
+            if (data.XVelosity < 0)
+            {
+                data.XVelosity += downJumpConfig.XMoveResistance * Time.deltaTime;
+            }
+            else
+            {
+                data.XVelosity = 0;
+            }
+        }
     }
 
     protected Vector2 GetConvertedVelocity()
