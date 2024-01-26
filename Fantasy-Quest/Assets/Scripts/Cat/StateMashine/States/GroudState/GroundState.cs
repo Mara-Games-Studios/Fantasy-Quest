@@ -37,7 +37,15 @@ public class GroundState : MoveState
         Input.CatInput.Movement.DownJump.started -= OnDownJumpKeyPressed;
     }
 
-    private void OnDownJumpKeyPressed(InputAction.CallbackContext obj) => StateSwitcher.SwitchState<DownJumpState>();
+    private void OnDownJumpKeyPressed(InputAction.CallbackContext context)
+    {
+        CatPlayer.SetActiveDownJumpType();
+        StateSwitcher.SwitchState<DownJumpState>();
+    }
 
-    private void OnUpJumpKeyPressed(InputAction.CallbackContext obj) => StateSwitcher.SwitchState<UpJumpState>();
+    private void OnUpJumpKeyPressed(InputAction.CallbackContext context)
+    {
+        CatPlayer.SetActiveUpJumpType();
+        StateSwitcher.SwitchState<UpJumpState>();
+    }
 }

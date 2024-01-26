@@ -2,35 +2,30 @@ using UnityEngine;
 
 public class Cat : MonoBehaviour
 {
-    [SerializeField] private CatView view;
     [SerializeField] private CatConfig config;
     [SerializeField] private GroundChecker checker;
-
     private IMoveable currentMovementType;
     private IJumpable currentUpJumpType;
     private IJumpable currentDownJumpType;
+    private IJumpable activeJumpType;
     private HandleInput playerInput;
     private CatStateMashine stateMashine;
 
     public HandleInput Input => playerInput;
     public IMoveable CurrentMoveType => currentMovementType;
-    public CatView CatView => CatView;
+    public IJumpable ActiveJumpType => activeJumpType;
     public CatConfig Config => config;
-
-    public IJumpable CurrentUpJumpType => currentUpJumpType;
-    public IJumpable CurrentDownJumpType => currentDownJumpType;
-
     public GroundChecker GroundChecker => checker;
+    public CatStateMashine StateMashine => stateMashine;
 
     private void Awake()
     {
-        view.Initialize();
         playerInput = new HandleInput(new CatInput());
         stateMashine = new CatStateMashine(this);
         currentMovementType = new Movement(transform, stateMashine.Data);
-        FindObjectOfType<Factory>().Initialize(this.transform, stateMashine.Data);
-        currentUpJumpType = new NoJump(this.transform, stateMashine.Data);
-        currentDownJumpType = new NoJump(this.transform, stateMashine.Data);
+        currentUpJumpType = new NoJump();
+        currentDownJumpType = new NoJump();
+        activeJumpType = new NoJump();
     }
 
     private void OnEnable()
@@ -64,5 +59,15 @@ public class Cat : MonoBehaviour
     public void ChangeDownJumpType(IJumpable jumpType)
     {
         currentDownJumpType = jumpType;
+    }
+
+    public void SetActiveDownJumpType()
+    {
+        activeJumpType = currentDownJumpType;
+    }
+
+    public void SetActiveUpJumpType()
+    {
+        activeJumpType = currentUpJumpType;
     }
 }

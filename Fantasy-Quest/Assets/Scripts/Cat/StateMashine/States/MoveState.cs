@@ -17,7 +17,6 @@ public class MoveState : BaseState
     }
 
     protected HandleInput Input => CatPlayer.Input;
-    protected CatView View => CatPlayer.CatView;
 
     public override void Enter()
     {

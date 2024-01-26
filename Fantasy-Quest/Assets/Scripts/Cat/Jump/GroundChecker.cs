@@ -10,9 +10,8 @@ public class GroundChecker : MonoBehaviour
 
     public bool IsTouch { get; private set; }
 
-    private void Update()
+    private void FixedUpdate()
     {
-        //IsTouch = Physics.CheckSphere(transform.position, distanceToCheckGround, ground);
         IsTouch = Physics2D.OverlapCircle(transform.position, distanceToCheckGround, ground);
     }
 }
