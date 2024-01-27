@@ -1,3 +1,5 @@
+using Cat;
+using Cat.Strategies.Jump;
 using UnityEngine;
 
 public class FlorRightSideBench : MonoBehaviour
@@ -7,16 +9,16 @@ public class FlorRightSideBench : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.TryGetComponent<Cat>(out Cat cat))
+        if (collision.TryGetComponent<CatImpl>(out CatImpl cat))
         {
-            cat.ChangeUpJumpType(new UpJump(cat.transform, upJumpConfig, cat.StateMashine.Data));
+            cat.ChangeUpJumpType(new Up(cat.transform, upJumpConfig, cat.StateMachine.Data));
             cat.ChangeDownJumpType(new NoJump());
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.TryGetComponent<Cat>(out Cat cat))
+        if (collision.TryGetComponent<CatImpl>(out CatImpl cat))
         {
             if (cat.GroundChecker.IsTouch)
             {

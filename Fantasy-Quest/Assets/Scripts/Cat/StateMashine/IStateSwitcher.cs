@@ -1,5 +1,10 @@
-public interface IStateSwitcher
+using Cat.StateMachine.States;
+
+namespace Cat.StateMachine
 {
-    void SwitchState<State>()
-        where State : BaseState;
+    public interface IStateSwitcher
+    {
+        void SwitchState<State>()
+            where State : StateBase;
+    }
 }
