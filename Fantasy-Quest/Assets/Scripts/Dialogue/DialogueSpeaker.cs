@@ -43,6 +43,7 @@ namespace Dialogue
 
         public void Speak()
         {
+            Debug.Log("Trying to talk");
             if (wasSaid)
             {
                 Say(alternativeSpeech);

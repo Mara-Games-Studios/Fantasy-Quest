@@ -7,11 +7,11 @@ namespace DialogueBubble
     public class Trigger : MonoBehaviour
     {
         [SerializeField]
-        private bool isEmote = false;
+        private ETypes isEmote = ETypes.Thought;
 
         //Script can be changed for different situation, so different icons cab be used from one trigger
         [SerializeField]
-        private List<Sprite> icon = new();
+        private List<Sprite> icons = new();
 
         private void OnTriggerEnter2D(Collider2D other)
         {
@@ -19,8 +19,8 @@ namespace DialogueBubble
                 new BubbleSettings
                 {
                     CanShow = true,
-                    IsEmote = isEmote,
-                    Icon = icon[0]
+                    BubbleType = isEmote,
+                    Icons = icons
                 }
             );
         }
@@ -31,8 +31,8 @@ namespace DialogueBubble
                 new BubbleSettings
                 {
                     CanShow = false,
-                    IsEmote = isEmote,
-                    Icon = icon[0]
+                    BubbleType = isEmote,
+                    Icons = icons
                 }
             );
         }

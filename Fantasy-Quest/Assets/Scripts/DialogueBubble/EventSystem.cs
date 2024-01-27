@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace DialogueBubble
@@ -6,8 +7,8 @@ namespace DialogueBubble
     public struct BubbleSettings
     {
         public bool CanShow;
-        public bool IsEmote;
-        public Sprite Icon;
+        public ETypes BubbleType;
+        public List<Sprite> Icons;
     }
 
     [AddComponentMenu("Scripts/DialogueBubble/DialogueBubble.EventSystem")]

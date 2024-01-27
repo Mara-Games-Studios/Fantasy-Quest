@@ -1,61 +1,50 @@
-using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 
 namespace DialogueBubble
 {
-    [RequireComponent(typeof(SpriteRenderer))]
-    [AddComponentMenu("Scripts/DialogueBubble/DialogueBubble.Show")]
-    internal class Show : MonoBehaviour, IShowBubble
+    [AddComponentMenu("Scripts/DialogueBubble/DialogueBubble.ShowKBHint")]
+    internal class ShowKBHint : MonoBehaviour, IShowBubble
     {
+        private static int id = 0;
+
         [Header("Show Settings")]
         [SerializeField]
         private float duration = 1f;
 
-        [Header("Sprites/Renderers")]
         [SerializeField]
-        private List<Sprite> bubbleSprites = new();
-
-        [SerializeField]
-        private SpriteRenderer bubbleSpriteRenderer;
-
-        [SerializeField]
-        private SpriteRenderer iconSpriteRenderer;
+        private SpriteRenderer keyboardSpriteRenderer;
 
         private Tween fadeTween;
 
         private void Awake()
         {
-            Color bubbleColor = bubbleSpriteRenderer.GetComponent<SpriteRenderer>().color;
-            Color iconColor = iconSpriteRenderer.GetComponent<SpriteRenderer>().color;
-
+            Color bubbleColor = keyboardSpriteRenderer.GetComponent<SpriteRenderer>().color;
             bubbleColor.a = 0f;
-            iconColor.a = 0f;
-
-            bubbleSpriteRenderer.color = bubbleColor;
-            iconSpriteRenderer.color = iconColor;
+            keyboardSpriteRenderer.color = bubbleColor;
         }
 
         private void OnEnable()
         {
             EventSystem.OnTriggerBubble += SwitchShow;
+            id += 1;
         }
 
         public void SwitchShow(BubbleSettings settings)
         {
             if (settings.CanShow)
             {
+                gameObject.SetActive(true);
                 switch (settings.BubbleType)
                 {
-                    case ETypes.Dialogue:
-                        bubbleSpriteRenderer.sprite = bubbleSprites[0];
+                    case ETypes.OneButton:
+                        keyboardSpriteRenderer.sprite = settings.Icons[0];
                         break;
-                    case ETypes.Thought:
-                        bubbleSpriteRenderer.sprite = bubbleSprites[1];
+                    case ETypes.TwoButtons:
+                        keyboardSpriteRenderer.sprite = settings.Icons[id - 1];
                         break;
                 }
-                iconSpriteRenderer.sprite = settings.Icons[0];
-                gameObject.SetActive(true);
+
                 FadeIn(duration);
             }
             else
@@ -78,14 +67,15 @@ namespace DialogueBubble
         {
             fadeTween?.Kill(false);
 
-            fadeTween = bubbleSpriteRenderer.DOFade(endValue, duration);
-            fadeTween = iconSpriteRenderer.DOFade(endValue, duration);
+            fadeTween = keyboardSpriteRenderer.DOFade(endValue, duration);
+
             fadeTween.onComplete += onEnd;
         }
 
         private void OnDisable()
         {
             EventSystem.OnTriggerBubble -= SwitchShow;
+            id -= 1;
         }
     }
 }
