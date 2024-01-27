@@ -1,12 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 public class DownJumpState : AirState
 {
-    public DownJumpState(IStateSwitcher stateSwitcher, StateMashineData data, Cat cat) : base(stateSwitcher, data, cat)
-    {
-    }
+    public DownJumpState(IStateSwitcher stateSwitcher, StateMashineData data, Cat cat)
+        : base(stateSwitcher, data, cat) { }
 
     public override void Enter()
     {

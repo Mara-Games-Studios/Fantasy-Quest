@@ -1,8 +1,7 @@
 using UnityEngine;
 
-public interface IMoveable 
+public interface IMoveable
 {
-    void Move( Vector2 moveDirection);
-    void Update( );
-   
+    void Move(Vector2 moveDirection);
+    void Update();
 }

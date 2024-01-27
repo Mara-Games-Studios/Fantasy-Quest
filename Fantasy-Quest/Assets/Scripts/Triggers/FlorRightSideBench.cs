@@ -2,7 +2,8 @@ using UnityEngine;
 
 public class FlorRightSideBench : MonoBehaviour
 {
-    [SerializeField] private UpJumpConfig upJumpConfig;
+    [SerializeField]
+    private UpJumpConfig upJumpConfig;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

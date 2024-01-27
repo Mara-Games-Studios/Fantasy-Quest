@@ -1,12 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 public class RunState : GroundState
 {
     private readonly RunStateConfig config;
 
-    public RunState(IStateSwitcher stateSwitcher, StateMashineData data, Cat cat) : base(stateSwitcher, data, cat)
+    public RunState(IStateSwitcher stateSwitcher, StateMashineData data, Cat cat)
+        : base(stateSwitcher, data, cat)
     {
         config = cat.Config.RunStateConfig;
     }
@@ -26,7 +23,7 @@ public class RunState : GroundState
         if (IsHorizontalMoveZero())
         {
             StateSwitcher.SwitchState<IdleState>();
-        }        
+        }
     }
 
     public override void Exit()

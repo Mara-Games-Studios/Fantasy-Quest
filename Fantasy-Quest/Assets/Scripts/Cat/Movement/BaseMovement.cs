@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BaseMovement 
+public class BaseMovement
 {
     protected Transform Target;
     protected StateMashineData Data;
@@ -19,7 +19,7 @@ public class BaseMovement
     private float CatZScale => Target.localScale.z;
 
     public virtual void Update()
-    {        
+    {
         Data.XVelosity = Data.XInput * Data.Speed;
 
         Vector2 velocity = GetConvertedVelocity();

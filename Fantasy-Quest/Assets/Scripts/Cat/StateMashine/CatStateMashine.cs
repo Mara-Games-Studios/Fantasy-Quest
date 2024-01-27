@@ -1,8 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
-using UnityEngine;
 
-public class CatStateMashine :IStateSwitcher
+public class CatStateMashine : IStateSwitcher
 {
     private List<BaseState> states;
     private StateMashineData data;
@@ -12,8 +11,8 @@ public class CatStateMashine :IStateSwitcher
 
     public CatStateMashine(Cat cat)
     {
-         data = new StateMashineData();
-        
+        data = new StateMashineData();
+
         states = new List<BaseState>()
         {
             new IdleState(this, data, cat),
@@ -27,7 +26,8 @@ public class CatStateMashine :IStateSwitcher
         currentState.Enter();
     }
 
-    public void SwitchState<State>() where State : BaseState
+    public void SwitchState<State>()
+        where State : BaseState
     {
         BaseState state = states.FirstOrDefault(s => s is State);
 

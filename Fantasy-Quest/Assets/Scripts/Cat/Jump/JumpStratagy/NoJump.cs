@@ -1,16 +1,8 @@
-using UnityEngine;
-
 public class NoJump : IJumpable
-{    
-    public NoJump()
-    {
-    }
+{
+    public NoJump() { }
 
-    public void Jump()
-    {        
-    }
+    public void Jump() { }
 
-    public void Update()
-    {        
-    }
+    public void Update() { }
 }

@@ -1,14 +1,11 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class GroundState : MoveState
 {
     private GroundChecker groundChecker;
 
-    public GroundState(IStateSwitcher stateSwitcher, StateMashineData data, Cat cat) : base(stateSwitcher, data, cat)
+    public GroundState(IStateSwitcher stateSwitcher, StateMashineData data, Cat cat)
+        : base(stateSwitcher, data, cat)
     {
         groundChecker = cat.GroundChecker;
     }
@@ -17,7 +14,7 @@ public class GroundState : MoveState
     {
         base.Update();
 
-        if (groundChecker.IsTouch ==false)
+        if (groundChecker.IsTouch == false)
         {
             StateSwitcher.SwitchState<FallState>();
         }

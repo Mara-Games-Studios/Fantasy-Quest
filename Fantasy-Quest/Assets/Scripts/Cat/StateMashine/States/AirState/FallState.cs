@@ -1,11 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 public class FallState : AirState
 {
     private readonly GroundChecker groundChecker;
-    public FallState(IStateSwitcher stateSwitcher, StateMashineData data, Cat cat) : base(stateSwitcher, data, cat)
+
+    public FallState(IStateSwitcher stateSwitcher, StateMashineData data, Cat cat)
+        : base(stateSwitcher, data, cat)
     {
         groundChecker = cat.GroundChecker;
     }
@@ -18,7 +16,7 @@ public class FallState : AirState
         {
             Data.YVelosity = 0f;
             Data.XVelosity = 0f;
-            StateSwitcher.SwitchState<IdleState>();                     
+            StateSwitcher.SwitchState<IdleState>();
         }
     }
 }

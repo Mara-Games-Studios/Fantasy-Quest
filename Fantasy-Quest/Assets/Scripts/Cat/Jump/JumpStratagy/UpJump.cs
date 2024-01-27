@@ -58,5 +58,4 @@ public class UpJump : IJumpable
     {
         return new Vector2(data.XVelosity, data.YVelosity);
     }
-
 }

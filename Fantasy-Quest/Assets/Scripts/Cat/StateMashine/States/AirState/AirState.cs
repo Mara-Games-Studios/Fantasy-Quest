@@ -1,8 +1,7 @@
 public class AirState : MoveState
 {
-    public AirState(IStateSwitcher stateSwitcher, StateMashineData data, Cat cat) : base(stateSwitcher, data, cat)
-    {
-    }
+    public AirState(IStateSwitcher stateSwitcher, StateMashineData data, Cat cat)
+        : base(stateSwitcher, data, cat) { }
 
     public override void Enter()
     {

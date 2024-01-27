@@ -1,4 +1,5 @@
-public interface IStateSwitcher 
+public interface IStateSwitcher
 {
-    void SwitchState<State>() where State : BaseState;
+    void SwitchState<State>()
+        where State : BaseState;
 }

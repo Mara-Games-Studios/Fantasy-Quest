@@ -1,9 +1,13 @@
 using UnityEngine;
 
+[AddComponentMenu("Scripts/Cat/Cat.Cat")]
 public class Cat : MonoBehaviour
 {
-    [SerializeField] private CatConfig config;
-    [SerializeField] private GroundChecker checker;
+    [SerializeField]
+    private CatConfig config;
+
+    [SerializeField]
+    private GroundChecker checker;
     private IMoveable currentMovementType;
     private IJumpable currentUpJumpType;
     private IJumpable currentDownJumpType;
@@ -40,7 +44,6 @@ public class Cat : MonoBehaviour
 
     private void Update()
     {
-
         stateMashine.CheckInput();
 
         stateMashine.Update();

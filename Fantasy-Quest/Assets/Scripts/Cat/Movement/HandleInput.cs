@@ -1,6 +1,4 @@
-using UnityEngine;
-
-public  class HandleInput 
+public class HandleInput
 {
     public CatInput CatInput;
     private float moveValue;
@@ -14,7 +12,7 @@ public  class HandleInput
 
     public float GetHorizontalInput()
     {
-        return  InputValue;
+        return InputValue;
     }
 
     public void EnableInput()

@@ -1,9 +1,9 @@
 using UnityEngine;
 
-public class DownJump :  IJumpable
+public class DownJump : IJumpable
 {
     private Transform target;
-    private  StateMashineData data;
+    private StateMashineData data;
     private DownJumpConfig downJumpConfig;
 
     public DownJump(Transform targetTransform, DownJumpConfig config, StateMashineData data)
@@ -15,7 +15,7 @@ public class DownJump :  IJumpable
 
     public void Jump()
     {
-        if((target.transform.localScale.x) / (Mathf.Abs(target.transform.localScale.x)) > 0)
+        if ((target.transform.localScale.x) / (Mathf.Abs(target.transform.localScale.x)) > 0)
         {
             data.XVelosity = downJumpConfig.StartXVelocity;
         }
@@ -23,11 +23,11 @@ public class DownJump :  IJumpable
         {
             data.XVelosity = downJumpConfig.StartXVelocity * (-1);
         }
-       
+
         data.YVelosity = downJumpConfig.StartYVelocity;
     }
 
-    public  void Update()
+    public void Update()
     {
         target.Translate(GetConvertedVelocity() * Time.deltaTime);
         data.YVelosity -= downJumpConfig.BaseGravity * Time.deltaTime;

@@ -1,9 +1,7 @@
-
 public class UpJumpState : AirState
 {
-    public UpJumpState(IStateSwitcher stateSwitcher, StateMashineData data, Cat cat) : base(stateSwitcher, data, cat)
-    {
-    }
+    public UpJumpState(IStateSwitcher stateSwitcher, StateMashineData data, Cat cat)
+        : base(stateSwitcher, data, cat) { }
 
     public override void Enter()
     {
@@ -15,9 +13,9 @@ public class UpJumpState : AirState
     {
         base.Update();
 
-        if(Data.YVelosity <= 0)
+        if (Data.YVelosity <= 0)
         {
-            StateSwitcher.SwitchState<FallState>(); 
+            StateSwitcher.SwitchState<FallState>();
         }
     }
 }
