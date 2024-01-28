@@ -4,16 +4,20 @@ using UnityEngine;
 [Serializable]
 public class UpJumpConfig
 {
-    [SerializeField, Range(0, 10)]
+    [SerializeField]
+    [Range(0, 10)]
     private float maxJumpHeight;
 
-    [SerializeField, Range(0, 10)]
+    [SerializeField]
+    [Range(0, 10)]
     private float timeToReachMaxHeight;
 
-    [SerializeField, Range(0, 10)]
+    [SerializeField]
+    [Range(0, 10)]
     private float xVelocity;
 
-    [SerializeField, Range(0, 10)]
+    [SerializeField]
+    [Range(0, 10)]
     private float xMoveResistance;
 
     public float MaxJumpHeight => maxJumpHeight;

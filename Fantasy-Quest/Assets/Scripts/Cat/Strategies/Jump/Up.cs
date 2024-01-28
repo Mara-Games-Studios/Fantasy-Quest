@@ -32,6 +32,7 @@ namespace Cat.Strategies.Jump
 
         public void Update()
         {
+            Debug.Log(GetConvertedVelocity());
             target.Translate(GetConvertedVelocity() * Time.deltaTime);
             data.YVelocity -= upJumpConfig.BaseGravity * Time.deltaTime;
 
