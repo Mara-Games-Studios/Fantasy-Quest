@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Sirenix.OdinInspector;
-using UnityEditor.Animations;
+﻿using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -9,7 +6,7 @@ using UnityEngine.UI;
 namespace Panel.Settings
 {
     [AddComponentMenu("Scripts/Panel/Settings/Panel.Settings.Controller")]
-    internal class Controller : MonoBehaviour
+    internal partial class Controller : MonoBehaviour
     {
         [SerializeField]
         private Slider musicSlider;
@@ -21,14 +18,8 @@ namespace Panel.Settings
         private Animator animator;
 
         [SerializeField]
-        private AnimatorController controller;
-
-        [SerializeField]
-        [ValueDropdown("@" + nameof(AnimatorBools))]
+        [ValueDropdown("@AnimatorBools")]
         private string isShownBoolAnimatorFlagName;
-
-        private IEnumerable<string> AnimatorBools =>
-            animator == null ? null : controller.parameters.Select(x => x.name);
 
         public UnityEvent OnSettingsClosed;
 
@@ -53,13 +44,13 @@ namespace Panel.Settings
         {
             Configs.AudioSettings config = Configs.AudioSettings.Instance;
             musicSlider.value = config.MusicValue;
-            volumeSlider.value = config.VolumeValue;
+            volumeSlider.value = config.SoundsValue;
         }
 
         // Called by volume slider Callback
         public void VolumeValueChanged(float value)
         {
-            Configs.AudioSettings.Instance.VolumeValue = value;
+            Configs.AudioSettings.Instance.SoundsValue = value;
         }
 
         // Called by music slider Callback
