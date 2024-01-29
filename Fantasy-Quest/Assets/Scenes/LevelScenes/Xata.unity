@@ -373,6 +373,7 @@ GameObject:
   - component: {fileID: 373067291}
   - component: {fileID: 373067293}
   - component: {fileID: 373067294}
+  - component: {fileID: 373067295}
   m_Layer: 0
   m_Name: FlorRightSideBench
   m_TagString: Untagged
@@ -454,10 +455,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   changeJumpUp: 1
   changeJumpDown: 0
-  changeAnyWayMove: 1
-  changeOnlyLeftMove: 0
-  changeOnlyRightMove: 0
-  changeIdle: 0
   downJumpConfig:
     maxJumpHeight: 2.47
     timeToReachMaxHeight: 0.5
@@ -468,6 +465,22 @@ MonoBehaviour:
     timeToReachMaxHeight: 1.06
     xVelocity: 3.25
     xMoveResistance: 1.82
+--- !u!114 &373067295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 373067290}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 915fbf95daa497a4ba855d4cecc1af74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  changeAnyWayMove: 1
+  changeOnlyLeftMove: 0
+  changeOnlyRightMove: 0
+  changeIdle: 0
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -727,25 +740,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 524566123}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5766a803d838f5041b11d1c41a913355, type: 3}
+  m_Script: {fileID: 11500000, guid: 915fbf95daa497a4ba855d4cecc1af74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  changeJumpUp: 0
-  changeJumpDown: 0
   changeAnyWayMove: 0
   changeOnlyLeftMove: 0
   changeOnlyRightMove: 1
   changeIdle: 0
-  downJumpConfig:
-    maxJumpHeight: 0
-    timeToReachMaxHeight: 0
-    xVelocity: 0
-    xMoveResistance: 0
-  upJumpConfig:
-    maxJumpHeight: 0
-    timeToReachMaxHeight: 0
-    xVelocity: 0
-    xMoveResistance: 0
 --- !u!1 &543180802
 GameObject:
   m_ObjectHideFlags: 0
@@ -1611,6 +1612,7 @@ GameObject:
   - component: {fileID: 1333802452}
   - component: {fileID: 1333802450}
   - component: {fileID: 1333802453}
+  - component: {fileID: 1333802454}
   m_Layer: 0
   m_Name: RightTrigger
   m_TagString: Untagged
@@ -1632,10 +1634,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   changeJumpUp: 0
   changeJumpDown: 1
-  changeAnyWayMove: 0
-  changeOnlyLeftMove: 1
-  changeOnlyRightMove: 0
-  changeIdle: 0
   downJumpConfig:
     maxJumpHeight: 2.47
     timeToReachMaxHeight: 0.5
@@ -1706,6 +1704,22 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.3304453, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &1333802454
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1333802449}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 915fbf95daa497a4ba855d4cecc1af74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  changeAnyWayMove: 0
+  changeOnlyLeftMove: 1
+  changeOnlyRightMove: 0
+  changeIdle: 0
 --- !u!1 &1679587772
 GameObject:
   m_ObjectHideFlags: 0
@@ -1925,25 +1939,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1999656736}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5766a803d838f5041b11d1c41a913355, type: 3}
+  m_Script: {fileID: 11500000, guid: 915fbf95daa497a4ba855d4cecc1af74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  changeJumpUp: 0
-  changeJumpDown: 0
   changeAnyWayMove: 0
   changeOnlyLeftMove: 0
   changeOnlyRightMove: 1
   changeIdle: 0
-  downJumpConfig:
-    maxJumpHeight: 0
-    timeToReachMaxHeight: 0
-    xVelocity: 0
-    xMoveResistance: 0
-  upJumpConfig:
-    maxJumpHeight: 0
-    timeToReachMaxHeight: 0
-    xVelocity: 0
-    xMoveResistance: 0
 --- !u!1 &2021781713
 GameObject:
   m_ObjectHideFlags: 0
