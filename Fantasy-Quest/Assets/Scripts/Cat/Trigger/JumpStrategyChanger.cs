@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Cat.Trigger
 {
-    [AddComponentMenu("Scripts/Cat/Trigger/JumpStrategyChanger")]
+    [AddComponentMenu("Scripts/Cat/Trigger/Jump.Strategy.Changer")]
     public class JumpStrategyChanger : MonoBehaviour
     {
         [Header("Change Jump strategy")]

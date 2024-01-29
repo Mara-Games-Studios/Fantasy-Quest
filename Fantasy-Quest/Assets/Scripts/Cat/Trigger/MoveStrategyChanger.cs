@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Cat.Trigger
 {
-    [AddComponentMenu("Scripts/Cat/Trigger/MoveStrategyChanger")]
+    [AddComponentMenu("Scripts/Cat/Trigger/Move.Strategy.Changer")]
     public class MoveStrategyChanger : MonoBehaviour
     {
         [Header("Change Move strategy")]
