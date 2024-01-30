@@ -8,6 +8,9 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField]
+    private bool locked = false;
+
+    [SerializeField]
     private CameraFollow cameraFollow;
 
     [SerializeField]
@@ -158,23 +161,26 @@ public class PlayerMovement : MonoBehaviour
 
     private void SetMovePointFromMouse(InputAction.CallbackContext context)
     {
-        movePositionForMouse = mainCamera.ScreenToWorldPoint(
-            playerInput.Player.MousePositionForMove.ReadValue<Vector2>()
-        );
-
-        if (IsEndPointWalkable())
+        if (!locked)
         {
-            _ = NavMesh.CalculatePath(
-                transform.position,
-                movePositionForMouse,
-                NavMesh.AllAreas,
-                path
+            movePositionForMouse = mainCamera.ScreenToWorldPoint(
+                playerInput.Player.MousePositionForMove.ReadValue<Vector2>()
             );
-            speedChanger.CalculatePathDistance(path);
-        }
-        else
-        {
-            movePositionForMouse = new Vector2(transform.position.x, transform.position.y);
+
+            if (IsEndPointWalkable())
+            {
+                _ = NavMesh.CalculatePath(
+                    transform.position,
+                    movePositionForMouse,
+                    NavMesh.AllAreas,
+                    path
+                );
+                speedChanger.CalculatePathDistance(path);
+            }
+            else
+            {
+                movePositionForMouse = new Vector2(transform.position.x, transform.position.y);
+            }
         }
     }
 
@@ -222,5 +228,15 @@ public class PlayerMovement : MonoBehaviour
                 Gizmos.DrawLine(path.corners[i], path.corners[i + 1]);
             }
         }
+    }
+
+    public void UnlockMovement()
+    {
+        locked = false;
+    }
+
+    public void LockMovement()
+    {
+        locked = true;
     }
 }

@@ -7,6 +7,9 @@ namespace DialogueBubble
     public class Trigger : MonoBehaviour
     {
         [SerializeField]
+        private static bool canTrigger = false;
+
+        [SerializeField]
         private ETypes isEmote = ETypes.Thought;
 
         //Script can be changed for different situation, so different icons cab be used from one trigger
@@ -15,26 +18,42 @@ namespace DialogueBubble
 
         private void OnTriggerEnter2D(Collider2D other)
         {
-            EventSystem.OnTriggerBubble?.Invoke(
-                new BubbleSettings
-                {
-                    CanShow = true,
-                    BubbleType = isEmote,
-                    Icons = icons
-                }
-            );
+            if (canTrigger)
+            {
+                EventSystem.OnTriggerBubble?.Invoke(
+                    new BubbleSettings
+                    {
+                        CanShow = true,
+                        BubbleType = isEmote,
+                        Icons = icons
+                    }
+                );
+            }
         }
 
         private void OnTriggerExit2D(Collider2D other)
         {
-            EventSystem.OnTriggerBubble?.Invoke(
-                new BubbleSettings
-                {
-                    CanShow = false,
-                    BubbleType = isEmote,
-                    Icons = icons
-                }
-            );
+            if (canTrigger)
+            {
+                EventSystem.OnTriggerBubble?.Invoke(
+                    new BubbleSettings
+                    {
+                        CanShow = false,
+                        BubbleType = isEmote,
+                        Icons = icons
+                    }
+                );
+            }
+        }
+
+        public void LockTriggers()
+        {
+            canTrigger = false;
+        }
+
+        public void UnlockTriggers()
+        {
+            canTrigger = true;
         }
     }
 }
