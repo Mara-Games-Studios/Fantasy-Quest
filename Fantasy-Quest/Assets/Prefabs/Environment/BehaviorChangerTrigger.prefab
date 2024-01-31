@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2398441156569905623
+--- !u!1 &6966289354216983618
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,38 +8,38 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1077451426587632979}
-  - component: {fileID: 5628423197081861382}
-  - component: {fileID: 3080764682371252177}
+  - component: {fileID: 3922661017216571667}
+  - component: {fileID: 8109023961207118427}
+  - component: {fileID: 8943030870296524384}
   m_Layer: 0
-  m_Name: LookDown
+  m_Name: BehaviorChangerTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1077451426587632979
+--- !u!4 &3922661017216571667
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2398441156569905623}
+  m_GameObject: {fileID: 6966289354216983618}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.33, y: -2.58, z: -10.159315}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &5628423197081861382
+--- !u!61 &8109023961207118427
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2398441156569905623}
+  m_GameObject: {fileID: 6966289354216983618}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -65,7 +65,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.5268574}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -76,20 +76,33 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3.64, y: 10.18}
+  m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &3080764682371252177
+--- !u!114 &8943030870296524384
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2398441156569905623}
+  m_GameObject: {fileID: 6966289354216983618}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d17104cbb299a794799dfe05b3ee6b40, type: 3}
+  m_Script: {fileID: 11500000, guid: 5766a803d838f5041b11d1c41a913355, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  panDir: 1
-  panDistance: 4
-  panSpeed: 0.35
+  changeJumpUp: 1
+  changeJumpDown: 1
+  changeAnyWayMove: 1
+  changeOnlyLeftMove: 1
+  changeOnlyRightMove: 1
+  changeIdle: 1
+  downJumpConfig:
+    maxJumpHeight: 0
+    timeToReachMaxHeight: 0
+    xVelocity: 0
+    xMoveResistance: 0
+  upJumpConfig:
+    maxJumpHeight: 0
+    timeToReachMaxHeight: 0
+    xVelocity: 0
+    xMoveResistance: 0
