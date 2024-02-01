@@ -10,7 +10,10 @@ namespace DialogueBubble
     {
         [Header("Show Settings")]
         [SerializeField]
-        private float duration = 1f;
+        private float fadeInDuration = 1f;
+
+        [SerializeField]
+        private float fadeOutDuration = 0.3f;
 
         [Header("Sprites/Renderers")]
         [SerializeField]
@@ -56,11 +59,11 @@ namespace DialogueBubble
                 }
                 iconSpriteRenderer.sprite = settings.Icons[0];
                 gameObject.SetActive(true);
-                FadeIn(duration);
+                FadeIn(fadeInDuration);
             }
             else
             {
-                FadeOut(duration);
+                FadeOut(fadeOutDuration);
             }
         }
 

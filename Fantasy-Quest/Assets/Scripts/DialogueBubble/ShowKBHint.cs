@@ -10,7 +10,10 @@ namespace DialogueBubble
 
         [Header("Show Settings")]
         [SerializeField]
-        private float duration = 1f;
+        private float fadeInDuration = 1f;
+
+        [SerializeField]
+        private float fadeOutDuration = 0.3f;
 
         [SerializeField]
         private SpriteRenderer keyboardSpriteRenderer;
@@ -45,11 +48,11 @@ namespace DialogueBubble
                         break;
                 }
 
-                FadeIn(duration);
+                FadeIn(fadeInDuration);
             }
             else
             {
-                FadeOut(duration);
+                FadeOut(fadeOutDuration);
             }
         }
 
