@@ -26,13 +26,12 @@ namespace Audio
             this.InitSingleton();
             musicSource = GetComponent<AudioSource>();
             Debug.Assert(musicSource != null, "Music Source is NULL", musicSource);
-            SwitchPlaylist(startPlaylist, true);
-            musicSource.Play();
         }
 
         private void Start()
         {
             Configs.AudioSettings.Instance.RefreshAudio();
+            SwitchPlaylist(startPlaylist, true);
         }
 
         private void Update()
@@ -59,12 +58,14 @@ namespace Audio
         {
             musicSource.clip = clip;
             musicSource.loop = loop;
+            musicSource.Play();
         }
 
         [Button]
         private void ChooseFromPlaylist()
         {
             musicSource.clip = currentClips[Random.Range(0, currentClips.Count)];
+            musicSource.Play();
         }
 
         public void MigrateSingleton(MusicManager instance) { }
