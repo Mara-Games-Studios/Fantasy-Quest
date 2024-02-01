@@ -26,15 +26,15 @@ namespace Cat.StateMachine.States.Ground
         protected override void AddInputActionCallback()
         {
             base.AddInputActionCallback();
-            Input.CatInput.Movement.UpJump.started += OnUpJumpKeyPressed;
-            Input.CatInput.Movement.DownJump.started += OnDownJumpKeyPressed;
+            Input.CatInput.Player.UpJump.started += OnUpJumpKeyPressed;
+            Input.CatInput.Player.DownJump.started += OnDownJumpKeyPressed;
         }
 
         protected override void RemoveInputActionCallback()
         {
             base.RemoveInputActionCallback();
-            Input.CatInput.Movement.UpJump.started -= OnUpJumpKeyPressed;
-            Input.CatInput.Movement.DownJump.started -= OnDownJumpKeyPressed;
+            Input.CatInput.Player.UpJump.started -= OnUpJumpKeyPressed;
+            Input.CatInput.Player.DownJump.started -= OnDownJumpKeyPressed;
         }
 
         private void OnDownJumpKeyPressed(InputAction.CallbackContext context)

@@ -14,11 +14,11 @@ namespace Cutscene
         [SerializeField]
         private float endTime = 0;
 
-        private PlayerInput playerInput;
+        private GameplayInput playerInput;
 
         private void Awake()
         {
-            playerInput = new PlayerInput();
+            playerInput = new GameplayInput();
         }
 
         private void OnEnable()

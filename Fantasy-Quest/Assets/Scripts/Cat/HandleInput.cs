@@ -2,14 +2,14 @@ namespace Cat
 {
     public class HandleInput
     {
-        public CatInput CatInput;
+        public GameplayInput CatInput;
 
-        public HandleInput(CatInput input)
+        public HandleInput(GameplayInput input)
         {
             CatInput = input;
         }
 
-        private float InputValue => CatInput.Movement.HorizontalMove.ReadValue<float>();
+        private float InputValue => CatInput.Player.HorizontalMove.ReadValue<float>();
 
         public float GetHorizontalInput()
         {

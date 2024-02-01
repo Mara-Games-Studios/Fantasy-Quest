@@ -139,6 +139,15 @@ public partial class @GameplayInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Skip"",
+                    ""type"": ""Button"",
+                    ""id"": ""6e933569-1262-45de-ad3f-b2fce4b7bf38"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -218,6 +227,17 @@ public partial class @GameplayInput: IInputActionCollection2, IDisposable
                     ""action"": ""DownJump"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8c60c7f3-cc67-4b2b-b47c-bd85771a4ed6"",
+                    ""path"": ""<Keyboard>/anyKey"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Skip"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -236,6 +256,7 @@ public partial class @GameplayInput: IInputActionCollection2, IDisposable
         m_Player_HorizontalMove = m_Player.FindAction("HorizontalMove", throwIfNotFound: true);
         m_Player_UpJump = m_Player.FindAction("UpJump", throwIfNotFound: true);
         m_Player_DownJump = m_Player.FindAction("DownJump", throwIfNotFound: true);
+        m_Player_Skip = m_Player.FindAction("Skip", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -364,6 +385,7 @@ public partial class @GameplayInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_HorizontalMove;
     private readonly InputAction m_Player_UpJump;
     private readonly InputAction m_Player_DownJump;
+    private readonly InputAction m_Player_Skip;
     public struct PlayerActions
     {
         private @GameplayInput m_Wrapper;
@@ -373,6 +395,7 @@ public partial class @GameplayInput: IInputActionCollection2, IDisposable
         public InputAction @HorizontalMove => m_Wrapper.m_Player_HorizontalMove;
         public InputAction @UpJump => m_Wrapper.m_Player_UpJump;
         public InputAction @DownJump => m_Wrapper.m_Player_DownJump;
+        public InputAction @Skip => m_Wrapper.m_Player_Skip;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -397,6 +420,9 @@ public partial class @GameplayInput: IInputActionCollection2, IDisposable
             @DownJump.started += instance.OnDownJump;
             @DownJump.performed += instance.OnDownJump;
             @DownJump.canceled += instance.OnDownJump;
+            @Skip.started += instance.OnSkip;
+            @Skip.performed += instance.OnSkip;
+            @Skip.canceled += instance.OnSkip;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -416,6 +442,9 @@ public partial class @GameplayInput: IInputActionCollection2, IDisposable
             @DownJump.started -= instance.OnDownJump;
             @DownJump.performed -= instance.OnDownJump;
             @DownJump.canceled -= instance.OnDownJump;
+            @Skip.started -= instance.OnSkip;
+            @Skip.performed -= instance.OnSkip;
+            @Skip.canceled -= instance.OnSkip;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -446,5 +475,6 @@ public partial class @GameplayInput: IInputActionCollection2, IDisposable
         void OnHorizontalMove(InputAction.CallbackContext context);
         void OnUpJump(InputAction.CallbackContext context);
         void OnDownJump(InputAction.CallbackContext context);
+        void OnSkip(InputAction.CallbackContext context);
     }
 }

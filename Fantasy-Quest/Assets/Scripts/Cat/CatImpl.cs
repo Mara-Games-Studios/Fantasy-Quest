@@ -29,7 +29,7 @@ namespace Cat
 
         private void Awake()
         {
-            playerInput = new HandleInput(new CatInput());
+            playerInput = new HandleInput(new GameplayInput());
             stateMachine = new StateMachineImpl(this);
             currentMovementType = new AnyWay(transform, stateMachine.Data);
             currentUpJumpType = new NoJump();
