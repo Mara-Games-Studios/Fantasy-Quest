@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Interaction;
 using UnityEngine;
 
 namespace DialogueBubble
@@ -20,14 +21,17 @@ namespace DialogueBubble
         {
             if (canTrigger)
             {
-                EventSystem.OnTriggerBubble?.Invoke(
-                    new BubbleSettings
-                    {
-                        CanShow = true,
-                        BubbleType = isEmote,
-                        Icons = icons
-                    }
-                );
+                if (other.TryGetComponent<InteractionImpl>(out InteractionImpl interaction))
+                {
+                    EventSystem.OnTriggerBubble?.Invoke(
+                        new BubbleSettings
+                        {
+                            CanShow = true,
+                            BubbleType = isEmote,
+                            Icons = icons
+                        }
+                    );
+                }
             }
         }
 
@@ -35,14 +39,17 @@ namespace DialogueBubble
         {
             if (canTrigger)
             {
-                EventSystem.OnTriggerBubble?.Invoke(
-                    new BubbleSettings
-                    {
-                        CanShow = false,
-                        BubbleType = isEmote,
-                        Icons = icons
-                    }
-                );
+                if (other.TryGetComponent<InteractionImpl>(out InteractionImpl interaction))
+                {
+                    EventSystem.OnTriggerBubble?.Invoke(
+                        new BubbleSettings
+                        {
+                            CanShow = false,
+                            BubbleType = isEmote,
+                            Icons = icons
+                        }
+                    );
+                }
             }
         }
 

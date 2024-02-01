@@ -66,7 +66,6 @@ namespace DialogueBubble
         private void Fade(float endValue, float duration, TweenCallback onEnd)
         {
             fadeTween?.Kill(false);
-
             fadeTween = keyboardSpriteRenderer.DOFade(endValue, duration);
 
             fadeTween.onComplete += onEnd;
