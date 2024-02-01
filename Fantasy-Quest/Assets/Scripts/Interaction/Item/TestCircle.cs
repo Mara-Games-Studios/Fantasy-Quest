@@ -5,10 +5,7 @@ namespace Interaction.Item
     [AddComponentMenu("Scripts/Interaction/Item/Interaction.Item.TestInteractableCircle")]
     internal class TestCircle : MonoBehaviour, IInteractable
     {
-        public bool CanCatInteract()
-        {
-            return true;
-        }
+        public bool CanCatInteract => true;
 
         public void InteractionByCat()
         {

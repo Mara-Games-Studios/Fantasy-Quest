@@ -6,18 +6,18 @@ namespace DialogueBubble
 {
     [RequireComponent(typeof(SpriteRenderer))]
     [AddComponentMenu("Scripts/DialogueBubble/DialogueBubble.Show")]
-    internal class Show : MonoBehaviour
+    internal class Show : MonoBehaviour, IShowBubble
     {
         [Header("Show Settings")]
         [SerializeField]
-        private float duration = 1f;
+        private float fadeInDuration = 1f;
+
+        [SerializeField]
+        private float fadeOutDuration = 0.3f;
 
         [Header("Sprites/Renderers")]
         [SerializeField]
         private List<Sprite> bubbleSprites = new();
-
-        //[SerializeField]
-        //private List<Sprite> iconSprites = new();
 
         [SerializeField]
         private SpriteRenderer bubbleSpriteRenderer;
@@ -29,8 +29,6 @@ namespace DialogueBubble
 
         private void Awake()
         {
-            //iconSpriteRenderer.sprite = iconSprites[0];
-
             Color bubbleColor = bubbleSpriteRenderer.GetComponent<SpriteRenderer>().color;
             Color iconColor = iconSpriteRenderer.GetComponent<SpriteRenderer>().color;
 
@@ -43,23 +41,29 @@ namespace DialogueBubble
 
         private void OnEnable()
         {
-            EventSystem.OnTriggerBubble += SwitchFade;
+            EventSystem.OnTriggerBubble += SwitchShow;
         }
 
-        public void SwitchFade(BubbleSettings settings)
+        public void SwitchShow(BubbleSettings settings)
         {
             if (settings.CanShow)
             {
-                bubbleSpriteRenderer.sprite = settings.IsEmote
-                    ? bubbleSprites[0]
-                    : bubbleSprites[1];
-                iconSpriteRenderer.sprite = settings.Icon;
+                switch (settings.BubbleType)
+                {
+                    case ETypes.Dialogue:
+                        bubbleSpriteRenderer.sprite = bubbleSprites[0];
+                        break;
+                    case ETypes.Thought:
+                        bubbleSpriteRenderer.sprite = bubbleSprites[1];
+                        break;
+                }
+                iconSpriteRenderer.sprite = settings.Icons[0];
                 gameObject.SetActive(true);
-                FadeIn(duration);
+                FadeIn(fadeInDuration);
             }
             else
             {
-                FadeOut(duration);
+                FadeOut(fadeOutDuration);
             }
         }
 
@@ -84,7 +88,7 @@ namespace DialogueBubble
 
         private void OnDisable()
         {
-            EventSystem.OnTriggerBubble -= SwitchFade;
+            EventSystem.OnTriggerBubble -= SwitchShow;
         }
     }
 }

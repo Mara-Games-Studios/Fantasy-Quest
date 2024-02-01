@@ -85,6 +85,7 @@ namespace Interaction
 
             Vector2 direction =
                 new(playerRigidBody.transform.forward.x, playerRigidBody.transform.forward.y);
+
             _ = playerRigidBody.Cast(direction, contactFilter, hits, colDistance);
 
             List<ISpeakable> speakables = new();

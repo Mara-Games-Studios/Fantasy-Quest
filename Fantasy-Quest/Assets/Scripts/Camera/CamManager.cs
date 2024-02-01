@@ -30,39 +30,39 @@ public class CamManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            ActiveCameraNum++;
-            if (ActiveCameraNum <= cameras.Count - 1)
-            {
-                activeCam.Priority = 1;
-                activeCam = cameras[ActiveCameraNum];
-                transposer = activeCam.GetCinemachineComponent<CinemachineFramingTransposer>();
-                startOffset = transposer.m_TrackedObjectOffset;
-                activeCam.Priority = 100;
-            }
-            else
-            {
-                ActiveCameraNum--;
-            }
-        }
+        //if (Input.GetKeyDown(KeyCode.E))
+        //{
+        //    ActiveCameraNum++;
+        //    if (ActiveCameraNum <= cameras.Count - 1)
+        //    {
+        //        activeCam.Priority = 1;
+        //        activeCam = cameras[ActiveCameraNum];
+        //        transposer = activeCam.GetCinemachineComponent<CinemachineFramingTransposer>();
+        //        startOffset = transposer.m_TrackedObjectOffset;
+        //        activeCam.Priority = 100;
+        //    }
+        //    else
+        //    {
+        //        ActiveCameraNum--;
+        //    }
+        //}
 
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            ActiveCameraNum--;
-            if (ActiveCameraNum > -1)
-            {
-                activeCam.Priority = 1;
-                activeCam = cameras[ActiveCameraNum];
-                transposer = activeCam.GetCinemachineComponent<CinemachineFramingTransposer>();
-                startOffset = transposer.m_TrackedObjectOffset;
-                activeCam.Priority = 100;
-            }
-            else
-            {
-                ActiveCameraNum++;
-            }
-        }
+        //if (Input.GetKeyDown(KeyCode.Q))
+        //{
+        //    ActiveCameraNum--;
+        //    if (ActiveCameraNum > -1)
+        //    {
+        //        activeCam.Priority = 1;
+        //        activeCam = cameras[ActiveCameraNum];
+        //        transposer = activeCam.GetCinemachineComponent<CinemachineFramingTransposer>();
+        //        startOffset = transposer.m_TrackedObjectOffset;
+        //        activeCam.Priority = 100;
+        //    }
+        //    else
+        //    {
+        //        ActiveCameraNum++;
+        //    }
+        //}
     }
 
     public void PanCameraCoroutineTrigger(
