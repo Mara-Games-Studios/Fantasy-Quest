@@ -1,3 +1,4 @@
+using DG.Tweening;
 using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
@@ -22,13 +23,14 @@ public class CameraFollow : MonoBehaviour
 
     public void CallTurn()
     {
-        _ = LeanTween.rotateY(gameObject, RotateTransform(), flipTime);
+        Vector3 vector = transform.rotation.eulerAngles;
+        vector.y = RotateTransform();
+        _ = transform.DORotate(vector, flipTime);
     }
 
     private float RotateTransform()
     {
         isRight = !isRight;
-
         return isRight ? 180.0f : 0f;
     }
 }
