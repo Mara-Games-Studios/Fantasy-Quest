@@ -46,6 +46,11 @@ namespace Audio
         public void SwitchPlaylist(PlaylistConfig playlist, bool playImmediately)
         {
             currentClips = playlist.AudioClips.ToList();
+            if (!currentClips.Any())
+            {
+                Debug.LogError("There are no clips in given playlist", playlist);
+                return;
+            }
             if (playImmediately)
             {
                 ChooseFromPlaylist();
