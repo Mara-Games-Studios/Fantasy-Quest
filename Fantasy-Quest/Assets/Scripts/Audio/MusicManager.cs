@@ -11,8 +11,9 @@ namespace Audio
     [AddComponentMenu("Scripts/Audio/Audio.MusicManager")]
     internal class MusicManager : MonoBehaviour, ISceneSingleton<MusicManager>
     {
+        [AssetList]
         [SerializeField]
-        private PlaylistHolder startPlaylist;
+        private PlaylistConfig startPlaylist;
 
         [ReadOnly]
         [SerializeField]
@@ -25,8 +26,13 @@ namespace Audio
             this.InitSingleton();
             musicSource = GetComponent<AudioSource>();
             Debug.Assert(musicSource != null, "Music Source is NULL", musicSource);
-            SwitchPlaylist(startPlaylist.Value, true);
+            SwitchPlaylist(startPlaylist, true);
             musicSource.Play();
+        }
+
+        private void Start()
+        {
+            Configs.AudioSettings.Instance.RefreshAudio();
         }
 
         private void Update()
