@@ -9,6 +9,9 @@ namespace Panel.Settings
     internal partial class Controller : MonoBehaviour
     {
         [SerializeField]
+        private Input input;
+
+        [SerializeField]
         private Slider musicSlider;
 
         [SerializeField]
@@ -22,9 +25,11 @@ namespace Panel.Settings
         private string isShownBoolAnimatorFlagName;
 
         public UnityEvent OnSettingsClosed;
+        public bool IsOpened => animator.GetBool(isShownBoolAnimatorFlagName);
 
         public void ShowSettings()
         {
+            input.enabled = true;
             animator.SetBool(isShownBoolAnimatorFlagName, true);
             LoadFromConfig();
         }
@@ -33,6 +38,7 @@ namespace Panel.Settings
         public void HideSettings()
         {
             animator.SetBool(isShownBoolAnimatorFlagName, false);
+            input.enabled = false;
         }
 
         public void OnSettingsClosedViewCallback()

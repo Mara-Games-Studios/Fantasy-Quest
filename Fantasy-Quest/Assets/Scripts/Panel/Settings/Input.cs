@@ -1,15 +1,15 @@
 ﻿using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
-namespace Scene.Gameplay
+namespace Panel.Settings
 {
-    [AddComponentMenu("Scripts/Scene/Gameplay/Scene.Gameplay.Input")]
+    [AddComponentMenu("Scripts/Scripts/Panel/Settings/Panel.Settings.Input")]
     internal class Input : MonoBehaviour
     {
-        private GameplayInput gameplayInputActions;
+        [SerializeField]
+        private Controller controller;
 
-        public UnityEvent EscPressed;
+        private GameplayInput gameplayInputActions;
 
         private void Awake()
         {
@@ -27,7 +27,7 @@ namespace Scene.Gameplay
         {
             if (gameplayInputActions.UI.Pause.WasPressedThisFrame())
             {
-                EscPressed?.Invoke();
+                controller.HideSettings();
             }
         }
 

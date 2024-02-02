@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using Audio;
+using Common;
+using UnityEngine;
 using UnityEngine.Events;
 
 namespace Scene.Gameplay
@@ -17,12 +19,14 @@ namespace Scene.Gameplay
         {
             OnSettingsOpened?.Invoke();
             Time.timeScale = 0.0f;
+            ISceneSingleton<MusicManager>.Instance.PauseMusic();
             settingsController.ShowSettings();
         }
 
         // Called by Settings controller callback
         public void SettingsClosed()
         {
+            ISceneSingleton<MusicManager>.Instance.ResumeMusic();
             Time.timeScale = 1.0f;
             OnSettingsClosed?.Invoke();
         }
