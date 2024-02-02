@@ -83,7 +83,6 @@ namespace Dialogue
                     replica.Audio.length + replica.DelayAfterSaid
                 );
             }
-
             Stop();
         }
 

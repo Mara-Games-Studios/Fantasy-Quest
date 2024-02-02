@@ -1,3 +1,5 @@
+using Configs;
+
 namespace Cat
 {
     public class HandleInput
@@ -13,6 +15,10 @@ namespace Cat
 
         public float GetHorizontalInput()
         {
+            if (LockerSettings.Instance.IsCatMovementLocked)
+            {
+                return 0;
+            }
             return InputValue;
         }
 

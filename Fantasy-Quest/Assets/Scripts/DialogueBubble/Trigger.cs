@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Configs;
 using Interaction;
 using UnityEngine;
 
@@ -8,9 +9,6 @@ namespace DialogueBubble
     public class Trigger : MonoBehaviour
     {
         [SerializeField]
-        private static bool canTrigger = false;
-
-        [SerializeField]
         private ETypes isEmote = ETypes.Thought;
 
         //Script can be changed for different situation, so different icons cab be used from one trigger
@@ -19,9 +17,9 @@ namespace DialogueBubble
 
         private void OnTriggerEnter2D(Collider2D other)
         {
-            if (canTrigger)
+            if (!LockerSettings.Instance.IsDialogueBubbleLocked)
             {
-                if (other.TryGetComponent<InteractionImpl>(out InteractionImpl interaction))
+                if (other.TryGetComponent(out InteractionImpl interaction))
                 {
                     EventSystem.OnTriggerBubble?.Invoke(
                         new BubbleSettings
@@ -37,9 +35,9 @@ namespace DialogueBubble
 
         private void OnTriggerExit2D(Collider2D other)
         {
-            if (canTrigger)
+            if (!LockerSettings.Instance.IsDialogueBubbleLocked)
             {
-                if (other.TryGetComponent<InteractionImpl>(out InteractionImpl interaction))
+                if (other.TryGetComponent(out InteractionImpl interaction))
                 {
                     EventSystem.OnTriggerBubble?.Invoke(
                         new BubbleSettings
@@ -51,16 +49,6 @@ namespace DialogueBubble
                     );
                 }
             }
-        }
-
-        public void LockTriggers()
-        {
-            canTrigger = false;
-        }
-
-        public void UnlockTriggers()
-        {
-            canTrigger = true;
         }
     }
 }

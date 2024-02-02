@@ -8,9 +8,6 @@ namespace Scene.Gameplay
     [AddComponentMenu("Scripts/Scene/Gameplay/Scene.Gameplay.Controller")]
     internal class Controller : MonoBehaviour
     {
-        [SerializeField]
-        private Panel.Settings.Controller settingsController;
-
         public UnityEvent OnSettingsOpened;
         public UnityEvent OnSettingsClosed;
 
@@ -20,7 +17,6 @@ namespace Scene.Gameplay
             OnSettingsOpened?.Invoke();
             Time.timeScale = 0.0f;
             ISceneSingleton<MusicManager>.Instance.PauseMusic();
-            settingsController.ShowSettings();
         }
 
         // Called by Settings controller callback

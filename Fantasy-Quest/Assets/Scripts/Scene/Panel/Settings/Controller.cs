@@ -25,13 +25,16 @@ namespace Panel.Settings
         private string isShownBoolAnimatorFlagName;
 
         public UnityEvent OnSettingsClosed;
-        public bool IsOpened => animator.GetBool(isShownBoolAnimatorFlagName);
 
         public void ShowSettings()
         {
-            input.enabled = true;
             animator.SetBool(isShownBoolAnimatorFlagName, true);
             LoadFromConfig();
+        }
+
+        public void ShowSettingsComplete()
+        {
+            input.enabled = true;
         }
 
         // Must be called by view (button) callback
