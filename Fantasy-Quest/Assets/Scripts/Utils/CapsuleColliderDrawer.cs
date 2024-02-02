@@ -4,19 +4,19 @@ using UnityEngine;
 
 namespace Utils
 {
-    [RequireComponent(typeof(BoxCollider2D))]
-    [AddComponentMenu("Scripts/Scripts/Utils/Utils.BoxColliderDrawer")]
-    internal class BoxColliderDrawer : MonoBehaviour
+    [RequireComponent(typeof(CapsuleCollider2D))]
+    [AddComponentMenu("Scripts/Utils/Utils.CapsuleColliderDrawer")]
+    internal class CapsuleColliderDrawer : MonoBehaviour
     {
         [SerializeField]
-        private BoxCollider2D boxCollider;
+        private CapsuleCollider2D capsuleCollider;
 
         [SerializeField]
         private Color color = Color.white;
 
         private void OnValidate()
         {
-            boxCollider = GetComponent<BoxCollider2D>();
+            capsuleCollider = GetComponent<CapsuleCollider2D>();
         }
 
         private void OnDrawGizmos()
@@ -24,8 +24,8 @@ namespace Utils
             Color tempColor = Handles.color;
             Handles.color = color;
             Handles.DrawWireCube(
-                transform.position + (Vector3)boxCollider.offset,
-                boxCollider.size
+                transform.position + (Vector3)capsuleCollider.offset,
+                capsuleCollider.size
             );
             Handles.color = tempColor;
         }
