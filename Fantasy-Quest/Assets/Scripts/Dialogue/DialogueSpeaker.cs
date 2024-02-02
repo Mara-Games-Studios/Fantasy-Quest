@@ -29,8 +29,6 @@ namespace Dialogue
         private Voice voice;
         private bool wasSaid;
 
-        public Voice Voice => voice;
-
         private void Awake()
         {
             if (!subtitlesViewGameObject.TryGetComponent(out subtitlesView))
