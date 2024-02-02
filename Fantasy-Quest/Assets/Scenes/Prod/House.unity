@@ -1138,6 +1138,7 @@ GameObject:
   - component: {fileID: 253593660}
   - component: {fileID: 253593662}
   - component: {fileID: 253593661}
+  - component: {fileID: 253593663}
   m_Layer: 0
   m_Name: FlorLeftSideBench
   m_TagString: Untagged
@@ -1154,8 +1155,8 @@ Transform:
   m_GameObject: {fileID: 253593659}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.8, y: 0.71, z: 0}
-  m_LocalScale: {x: 0.026232949, y: 1, z: 1}
+  m_LocalPosition: {x: -30.43, y: 0.71, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1882408127}
@@ -1221,6 +1222,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.8630961, y: 2.4975328}
   m_EdgeRadius: 0
+--- !u!114 &253593663
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 253593659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 043dee6d8a41d93429e317a78e313390, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boxCollider: {fileID: 253593662}
+  color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &276327136
 GameObject:
   m_ObjectHideFlags: 0
@@ -1369,8 +1384,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 1
   m_ShadowVolumeIntensity: 0.869
   m_LocalBounds:
-    m_Center: {x: -1.78865, y: -5.5994997, z: 0}
-    m_Extent: {x: 1.9612501, y: 1.8566, z: 0}
+    m_Center: {x: -1.79155, y: -5.5967503, z: 0}
+    m_Extent: {x: 1.96235, y: 1.85485, z: 0}
   m_PointLightInnerAngle: 359.6
   m_PointLightOuterAngle: 359.6
   m_PointLightInnerRadius: 2
@@ -1680,8 +1695,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 1
   m_ShadowVolumeIntensity: 0.869
   m_LocalBounds:
-    m_Center: {x: -1.3466, y: -5.5773997, z: 0}
-    m_Extent: {x: 1.766, y: 1.9186, z: 0}
+    m_Center: {x: -1.3501, y: -5.5649, z: 0}
+    m_Extent: {x: 1.7593, y: 1.9187999, z: 0}
   m_PointLightInnerAngle: 359.6
   m_PointLightOuterAngle: 359.6
   m_PointLightInnerRadius: 2
@@ -2626,6 +2641,7 @@ GameObject:
   - component: {fileID: 845086542}
   - component: {fileID: 845086544}
   - component: {fileID: 845086543}
+  - component: {fileID: 845086545}
   m_Layer: 0
   m_Name: LeftStopper
   m_TagString: Untagged
@@ -2709,6 +2725,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.3304453, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &845086545
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 845086541}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 043dee6d8a41d93429e317a78e313390, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boxCollider: {fileID: 845086544}
+  color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &873356372
 GameObject:
   m_ObjectHideFlags: 0
@@ -2803,7 +2833,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 904228631}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: CatMovementTriggers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2825,7 +2855,6 @@ Transform:
   m_Children:
   - {fileID: 1358685002}
   - {fileID: 1882408127}
-  - {fileID: 1927288417}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &925824242 stripped
@@ -2970,8 +2999,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 1
   m_ShadowVolumeIntensity: 0.869
   m_LocalBounds:
-    m_Center: {x: 0.46174997, y: -5.5886, z: 0}
-    m_Extent: {x: 1.4670501, y: 1.9600999, z: 0}
+    m_Center: {x: 0.46590003, y: -5.58815, z: 0}
+    m_Extent: {x: 1.4547, y: 1.96255, z: 0}
   m_PointLightInnerAngle: 359.6
   m_PointLightOuterAngle: 359.6
   m_PointLightInnerRadius: 2
@@ -4494,6 +4523,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1358685002}
+  - component: {fileID: 1358685004}
   - component: {fileID: 1358685003}
   m_Layer: 6
   m_Name: Bench
@@ -4519,13 +4549,29 @@ Transform:
   - {fileID: 845086542}
   m_Father: {fileID: 904228631}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &1358685003
-BoxCollider:
+--- !u!114 &1358685003
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1358685001}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 043dee6d8a41d93429e317a78e313390, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boxCollider: {fileID: 1358685004}
+  color: {r: 1, g: 1, b: 1, a: 1}
+--- !u!61 &1358685004
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1358685001}
+  m_Enabled: 1
+  m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -4534,12 +4580,34 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
   m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 11.096048, y: 0.76616776, z: 1}
-  m_Center: {x: -0.74276066, y: -0.22695476, z: 0}
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.5887337, y: -0.20409471}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 10.9378395, y: 0.6546091}
+  m_EdgeRadius: 0
 --- !u!1001 &1387620800
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5523,6 +5591,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   distanceToCheckGround: 0.25
+  isTouch: 0
 --- !u!1 &1612898350
 GameObject:
   m_ObjectHideFlags: 0
@@ -5739,6 +5808,7 @@ GameObject:
   - component: {fileID: 1707646176}
   - component: {fileID: 1707646180}
   - component: {fileID: 1707646181}
+  - component: {fileID: 1707646182}
   m_Layer: 0
   m_Name: Cat
   m_TagString: Player
@@ -5876,6 +5946,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   config: {fileID: 11400000, guid: 981e21cfb03056e449f4011d0f7b0e1b, type: 2}
   checker: {fileID: 1577868539}
+--- !u!114 &1707646182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1707646172}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 043dee6d8a41d93429e317a78e313390, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boxCollider: {fileID: 1707646180}
+  color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1739491621
 GameObject:
   m_ObjectHideFlags: 0
@@ -5888,6 +5972,7 @@ GameObject:
   - component: {fileID: 1739491625}
   - component: {fileID: 1739491624}
   - component: {fileID: 1739491623}
+  - component: {fileID: 1739491626}
   m_Layer: 0
   m_Name: FlorRightSideBench
   m_TagString: Untagged
@@ -5904,8 +5989,8 @@ Transform:
   m_GameObject: {fileID: 1739491621}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.495, y: 2.91, z: 0}
-  m_LocalScale: {x: 0.026232949, y: 1, z: 1}
+  m_LocalPosition: {x: -15.94, y: 0.44, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1882408127}
@@ -5995,6 +6080,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.84, y: 0.24}
   m_EdgeRadius: 0
+--- !u!114 &1739491626
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1739491621}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 043dee6d8a41d93429e317a78e313390, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boxCollider: {fileID: 1739491625}
+  color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!224 &1772464815 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7798542755255171994, guid: 37feff697b740ba46960eba0560fdd1a, type: 3}
@@ -6131,6 +6230,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1882408127}
   - component: {fileID: 1882408128}
+  - component: {fileID: 1882408129}
   m_Layer: 6
   m_Name: FloorForMove
   m_TagString: Untagged
@@ -6148,7 +6248,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: -7.34, z: 0}
-  m_LocalScale: {x: 38.12, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 253593660}
@@ -6187,7 +6287,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.028189868, y: 0}
+  m_Offset: {x: -0.66664314, y: -0.028706789}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -6198,8 +6298,22 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.5483289, y: 1}
+  m_Size: {x: 60.21072, y: 0.9425864}
   m_EdgeRadius: 0
+--- !u!114 &1882408129
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1882408126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 043dee6d8a41d93429e317a78e313390, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boxCollider: {fileID: 1882408128}
+  color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1885351566
 GameObject:
   m_ObjectHideFlags: 0
@@ -6483,37 +6597,6 @@ MonoBehaviour:
         m_Calls: []
   m_LegacyBlendHint: 0
   m_ComponentOwner: {fileID: 1524370455}
---- !u!1 &1927288416
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1927288417}
-  m_Layer: 0
-  m_Name: BehavioursChangers
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1927288417
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1927288416}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 904228631}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1929218150
 GameObject:
   m_ObjectHideFlags: 0
@@ -6580,8 +6663,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 1
   m_ShadowVolumeIntensity: 0.869
   m_LocalBounds:
-    m_Center: {x: -2.8925002, y: -7.5258503, z: 0}
-    m_Extent: {x: 1.9840001, y: 1.2706501, z: 0}
+    m_Center: {x: -2.8948, y: -7.5154505, z: 0}
+    m_Extent: {x: 1.9877999, y: 1.2685502, z: 0}
   m_PointLightInnerAngle: 359.6
   m_PointLightOuterAngle: 359.6
   m_PointLightInnerRadius: 2
@@ -7045,6 +7128,7 @@ GameObject:
   - component: {fileID: 2084652132}
   - component: {fileID: 2084652131}
   - component: {fileID: 2084652130}
+  - component: {fileID: 2084652133}
   m_Layer: 0
   m_Name: RightStopper
   m_TagString: Untagged
@@ -7152,6 +7236,20 @@ MonoBehaviour:
     timeToReachMaxHeight: 0.5
     xVelocity: 4.32
     xMoveResistance: 1.5
+--- !u!114 &2084652133
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2084652128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 043dee6d8a41d93429e317a78e313390, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boxCollider: {fileID: 2084652131}
+  color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &2095549447
 GameObject:
   m_ObjectHideFlags: 0
@@ -7328,8 +7426,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 1
   m_ShadowVolumeIntensity: 0.869
   m_LocalBounds:
-    m_Center: {x: -0.65465, y: -7.4448, z: 0}
-    m_Extent: {x: 2.60775, y: 1.3248, z: 0}
+    m_Center: {x: -0.65604997, y: -7.4349, z: 0}
+    m_Extent: {x: 2.60195, y: 1.3302999, z: 0}
   m_PointLightInnerAngle: 359.6
   m_PointLightOuterAngle: 359.6
   m_PointLightInnerRadius: 2

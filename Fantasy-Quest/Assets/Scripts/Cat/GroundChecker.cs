@@ -1,4 +1,8 @@
+using Sirenix.OdinInspector;
 using UnityEngine;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 namespace Cat
 {
@@ -12,11 +16,22 @@ namespace Cat
         [Range(0.01f, 1)]
         private float distanceToCheckGround;
 
-        public bool IsTouch { get; private set; }
+        [ReadOnly]
+        [SerializeField]
+        private bool isTouch;
+
+        public bool IsTouch => isTouch;
 
         private void FixedUpdate()
         {
-            IsTouch = Physics2D.OverlapCircle(transform.position, distanceToCheckGround, ground);
+            isTouch = Physics2D.OverlapCircle(transform.position, distanceToCheckGround, ground);
         }
+
+#if UNITY_EDITOR
+        private void OnDrawGizmos()
+        {
+            Handles.DrawSolidDisc(transform.position, Vector3.forward, distanceToCheckGround);
+        }
+#endif
     }
 }
