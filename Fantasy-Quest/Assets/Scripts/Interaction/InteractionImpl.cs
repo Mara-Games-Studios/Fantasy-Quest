@@ -36,12 +36,12 @@ namespace Interaction
         [SerializeField]
         private bool useTrigger = false;
 
-        private PlayerInput playerInput;
+        private GameplayInput playerInput;
         private ContactFilter2D contactFilter;
 
         private void Awake()
         {
-            playerInput = new PlayerInput();
+            playerInput = new GameplayInput();
             contactFilter = new()
             {
                 layerMask = filterMask,

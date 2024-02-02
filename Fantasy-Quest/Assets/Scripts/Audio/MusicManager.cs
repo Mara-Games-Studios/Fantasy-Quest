@@ -19,6 +19,10 @@ namespace Audio
         [SerializeField]
         private List<AudioClip> currentClips;
 
+        [ReadOnly]
+        [SerializeField]
+        private bool isOnPause = false;
+
         private AudioSource musicSource;
 
         private void Awake()
@@ -36,7 +40,7 @@ namespace Audio
 
         private void Update()
         {
-            if (!musicSource.isPlaying)
+            if (!musicSource.isPlaying && !isOnPause)
             {
                 ChooseFromPlaylist();
             }
@@ -48,7 +52,7 @@ namespace Audio
             currentClips = playlist.AudioClips.ToList();
             if (!currentClips.Any())
             {
-                Debug.LogError("There are no clips in given playlist", playlist);
+                Debug.LogError("There is no clips in given playlist", playlist);
                 return;
             }
             if (playImmediately)
@@ -73,6 +77,21 @@ namespace Audio
             musicSource.Play();
         }
 
-        public void MigrateSingleton(MusicManager instance) { }
+        public void MigrateSingleton(MusicManager instance)
+        {
+            instance.PauseMusic();
+        }
+
+        public void PauseMusic()
+        {
+            musicSource.Pause();
+            isOnPause = true;
+        }
+
+        public void ResumeMusic()
+        {
+            musicSource.UnPause();
+            isOnPause = false;
+        }
     }
 }

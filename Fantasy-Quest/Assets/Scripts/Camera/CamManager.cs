@@ -1,14 +1,10 @@
 using System.Collections;
-using System.Collections.Generic;
 using Cinemachine;
 using UnityEngine;
 
 public class CamManager : MonoBehaviour
 {
     public static CamManager Instance;
-
-    [SerializeField]
-    private List<CinemachineVirtualCamera> cameras = new();
 
     [SerializeField]
     private CinemachineVirtualCamera activeCam;
@@ -26,43 +22,6 @@ public class CamManager : MonoBehaviour
         }
         transposer = activeCam.GetCinemachineComponent<CinemachineFramingTransposer>();
         startOffset = transposer.m_TrackedObjectOffset;
-    }
-
-    private void Update()
-    {
-        //if (Input.GetKeyDown(KeyCode.E))
-        //{
-        //    ActiveCameraNum++;
-        //    if (ActiveCameraNum <= cameras.Count - 1)
-        //    {
-        //        activeCam.Priority = 1;
-        //        activeCam = cameras[ActiveCameraNum];
-        //        transposer = activeCam.GetCinemachineComponent<CinemachineFramingTransposer>();
-        //        startOffset = transposer.m_TrackedObjectOffset;
-        //        activeCam.Priority = 100;
-        //    }
-        //    else
-        //    {
-        //        ActiveCameraNum--;
-        //    }
-        //}
-
-        //if (Input.GetKeyDown(KeyCode.Q))
-        //{
-        //    ActiveCameraNum--;
-        //    if (ActiveCameraNum > -1)
-        //    {
-        //        activeCam.Priority = 1;
-        //        activeCam = cameras[ActiveCameraNum];
-        //        transposer = activeCam.GetCinemachineComponent<CinemachineFramingTransposer>();
-        //        startOffset = transposer.m_TrackedObjectOffset;
-        //        activeCam.Priority = 100;
-        //    }
-        //    else
-        //    {
-        //        ActiveCameraNum++;
-        //    }
-        //}
     }
 
     public void PanCameraCoroutineTrigger(

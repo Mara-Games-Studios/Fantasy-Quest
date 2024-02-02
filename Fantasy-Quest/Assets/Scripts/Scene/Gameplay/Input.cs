@@ -25,7 +25,10 @@ namespace Scene.Gameplay
 
         private void PausePerformed(InputAction.CallbackContext context)
         {
-            EscPressed?.Invoke();
+            if (gameplayInputActions.UI.Pause.WasPressedThisFrame())
+            {
+                EscPressed?.Invoke();
+            }
         }
 
         private void OnDisable()

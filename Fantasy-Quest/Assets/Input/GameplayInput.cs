@@ -90,6 +90,156 @@ public partial class @GameplayInput: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Player"",
+            ""id"": ""a6204a56-f071-4ce4-a93f-7aa8add5a6dc"",
+            ""actions"": [
+                {
+                    ""name"": ""CallHumanInteraction"",
+                    ""type"": ""Button"",
+                    ""id"": ""3bae8a71-044d-4744-9117-dfcc8199d673"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""CatInteraction"",
+                    ""type"": ""Button"",
+                    ""id"": ""816e9369-78e7-471a-9bc0-b56a2eef0b17"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""HorizontalMove"",
+                    ""type"": ""Value"",
+                    ""id"": ""4d2e4cb5-b3d0-4e5a-950a-b7881e06c34d"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""UpJump"",
+                    ""type"": ""Button"",
+                    ""id"": ""ba3f8af6-0c7a-465e-9595-de81f8ab5390"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""DownJump"",
+                    ""type"": ""Button"",
+                    ""id"": ""b0f72c8c-0d9c-48ae-8d01-c55cd0ef1c8f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Skip"",
+                    ""type"": ""Button"",
+                    ""id"": ""6e933569-1262-45de-ad3f-b2fce4b7bf38"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""b4065826-8da3-4c2b-baa2-cff9ac8e1389"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CallHumanInteraction"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ff2de162-7395-4b3c-8311-1a2162136b26"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CatInteraction"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""1D Axis"",
+                    ""id"": ""b0bcc134-d92f-476b-a44d-c8197bf9754d"",
+                    ""path"": ""1DAxis(whichSideWins=1)"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""HorizontalMove"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""9bd4cce0-a734-4635-a5b7-19f8347714c1"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""HorizontalMove"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""690676da-58a2-4f69-87a5-d8f8a227e4cb"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""HorizontalMove"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""17eda3cb-9a66-4b45-9833-edea8a6aeed1"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""UpJump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2018d3d2-1658-4e27-9707-f84914fb2a5e"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DownJump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8c60c7f3-cc67-4b2b-b47c-bd85771a4ed6"",
+                    ""path"": ""<Keyboard>/anyKey"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Skip"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -99,6 +249,14 @@ public partial class @GameplayInput: IInputActionCollection2, IDisposable
         m_UI_Pause = m_UI.FindAction("Pause", throwIfNotFound: true);
         m_UI_Point = m_UI.FindAction("Point", throwIfNotFound: true);
         m_UI_Click = m_UI.FindAction("Click", throwIfNotFound: true);
+        // Player
+        m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
+        m_Player_CallHumanInteraction = m_Player.FindAction("CallHumanInteraction", throwIfNotFound: true);
+        m_Player_CatInteraction = m_Player.FindAction("CatInteraction", throwIfNotFound: true);
+        m_Player_HorizontalMove = m_Player.FindAction("HorizontalMove", throwIfNotFound: true);
+        m_Player_UpJump = m_Player.FindAction("UpJump", throwIfNotFound: true);
+        m_Player_DownJump = m_Player.FindAction("DownJump", throwIfNotFound: true);
+        m_Player_Skip = m_Player.FindAction("Skip", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -218,10 +376,105 @@ public partial class @GameplayInput: IInputActionCollection2, IDisposable
         }
     }
     public UIActions @UI => new UIActions(this);
+
+    // Player
+    private readonly InputActionMap m_Player;
+    private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
+    private readonly InputAction m_Player_CallHumanInteraction;
+    private readonly InputAction m_Player_CatInteraction;
+    private readonly InputAction m_Player_HorizontalMove;
+    private readonly InputAction m_Player_UpJump;
+    private readonly InputAction m_Player_DownJump;
+    private readonly InputAction m_Player_Skip;
+    public struct PlayerActions
+    {
+        private @GameplayInput m_Wrapper;
+        public PlayerActions(@GameplayInput wrapper) { m_Wrapper = wrapper; }
+        public InputAction @CallHumanInteraction => m_Wrapper.m_Player_CallHumanInteraction;
+        public InputAction @CatInteraction => m_Wrapper.m_Player_CatInteraction;
+        public InputAction @HorizontalMove => m_Wrapper.m_Player_HorizontalMove;
+        public InputAction @UpJump => m_Wrapper.m_Player_UpJump;
+        public InputAction @DownJump => m_Wrapper.m_Player_DownJump;
+        public InputAction @Skip => m_Wrapper.m_Player_Skip;
+        public InputActionMap Get() { return m_Wrapper.m_Player; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(PlayerActions set) { return set.Get(); }
+        public void AddCallbacks(IPlayerActions instance)
+        {
+            if (instance == null || m_Wrapper.m_PlayerActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_PlayerActionsCallbackInterfaces.Add(instance);
+            @CallHumanInteraction.started += instance.OnCallHumanInteraction;
+            @CallHumanInteraction.performed += instance.OnCallHumanInteraction;
+            @CallHumanInteraction.canceled += instance.OnCallHumanInteraction;
+            @CatInteraction.started += instance.OnCatInteraction;
+            @CatInteraction.performed += instance.OnCatInteraction;
+            @CatInteraction.canceled += instance.OnCatInteraction;
+            @HorizontalMove.started += instance.OnHorizontalMove;
+            @HorizontalMove.performed += instance.OnHorizontalMove;
+            @HorizontalMove.canceled += instance.OnHorizontalMove;
+            @UpJump.started += instance.OnUpJump;
+            @UpJump.performed += instance.OnUpJump;
+            @UpJump.canceled += instance.OnUpJump;
+            @DownJump.started += instance.OnDownJump;
+            @DownJump.performed += instance.OnDownJump;
+            @DownJump.canceled += instance.OnDownJump;
+            @Skip.started += instance.OnSkip;
+            @Skip.performed += instance.OnSkip;
+            @Skip.canceled += instance.OnSkip;
+        }
+
+        private void UnregisterCallbacks(IPlayerActions instance)
+        {
+            @CallHumanInteraction.started -= instance.OnCallHumanInteraction;
+            @CallHumanInteraction.performed -= instance.OnCallHumanInteraction;
+            @CallHumanInteraction.canceled -= instance.OnCallHumanInteraction;
+            @CatInteraction.started -= instance.OnCatInteraction;
+            @CatInteraction.performed -= instance.OnCatInteraction;
+            @CatInteraction.canceled -= instance.OnCatInteraction;
+            @HorizontalMove.started -= instance.OnHorizontalMove;
+            @HorizontalMove.performed -= instance.OnHorizontalMove;
+            @HorizontalMove.canceled -= instance.OnHorizontalMove;
+            @UpJump.started -= instance.OnUpJump;
+            @UpJump.performed -= instance.OnUpJump;
+            @UpJump.canceled -= instance.OnUpJump;
+            @DownJump.started -= instance.OnDownJump;
+            @DownJump.performed -= instance.OnDownJump;
+            @DownJump.canceled -= instance.OnDownJump;
+            @Skip.started -= instance.OnSkip;
+            @Skip.performed -= instance.OnSkip;
+            @Skip.canceled -= instance.OnSkip;
+        }
+
+        public void RemoveCallbacks(IPlayerActions instance)
+        {
+            if (m_Wrapper.m_PlayerActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IPlayerActions instance)
+        {
+            foreach (var item in m_Wrapper.m_PlayerActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_PlayerActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public PlayerActions @Player => new PlayerActions(this);
     public interface IUIActions
     {
         void OnPause(InputAction.CallbackContext context);
         void OnPoint(InputAction.CallbackContext context);
         void OnClick(InputAction.CallbackContext context);
+    }
+    public interface IPlayerActions
+    {
+        void OnCallHumanInteraction(InputAction.CallbackContext context);
+        void OnCatInteraction(InputAction.CallbackContext context);
+        void OnHorizontalMove(InputAction.CallbackContext context);
+        void OnUpJump(InputAction.CallbackContext context);
+        void OnDownJump(InputAction.CallbackContext context);
+        void OnSkip(InputAction.CallbackContext context);
     }
 }
