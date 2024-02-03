@@ -98,11 +98,11 @@ namespace Interaction
                 {
                     speakables.Add(speakable);
                 }
-                else if (hit.TryGetComponent(out ICarryable carryable))
+                if (hit.TryGetComponent(out ICarryable carryable))
                 {
                     carryables.Add(carryable);
                 }
-                else if (hit.TryGetComponent(out IInteractable interactable))
+                if (hit.TryGetComponent(out IInteractable interactable))
                 {
                     interactables.Add(interactable);
                 }
