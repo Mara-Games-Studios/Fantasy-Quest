@@ -1,4 +1,5 @@
-﻿using Cinemachine;
+﻿#if UNITY_EDITOR
+using Cinemachine;
 using Cinemachine.PostFX;
 using UnityEditor;
 using UnityEngine;
@@ -21,10 +22,18 @@ namespace Utils
         private void OnGUI()
         {
             volumeProfiler = (VolumeProfile)
-                EditorGUILayout.ObjectField("My Texture", null, typeof(VolumeProfile), false);
+                EditorGUILayout.ObjectField(
+                    "Volume Profile",
+                    volumeProfiler,
+                    typeof(VolumeProfile),
+                    false
+                );
 
             _ = EditorGUILayout.BeginHorizontal();
-            if (GUILayout.Button("Add Cinemashine VolumeSettings extensions"))
+            if (
+                GUILayout.Button("Add Cinemashine VolumeSettings extensions")
+                && volumeProfiler != null
+            )
             {
                 CinemachineVirtualCamera[] virtualCameras =
                     GameObject.FindObjectsOfType<CinemachineVirtualCamera>();
@@ -32,11 +41,11 @@ namespace Utils
                 {
                     if (camera.TryGetComponent(out CinemachineVolumeSettings volumeSettings))
                     {
-                        GameObject.Destroy(volumeSettings);
+                        GameObject.DestroyImmediate(volumeSettings);
                     }
-                    CinemachineVolumeSettings newVolumeSettings =
-                        new() { m_Profile = volumeProfiler };
-                    camera.AddExtension(newVolumeSettings);
+                    CinemachineVolumeSettings newCinemachineVolumeSettings =
+                        camera.gameObject.AddComponent<CinemachineVolumeSettings>();
+                    newCinemachineVolumeSettings.m_Profile = volumeProfiler;
                 }
                 Debug.Log("Cinemashine VolumeSettings extension added");
             }
@@ -44,3 +53,4 @@ namespace Utils
         }
     }
 }
+#endif
