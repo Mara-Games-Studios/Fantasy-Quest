@@ -12,7 +12,7 @@ namespace Cutscene
         private PlayableDirector playableDirector;
 
         [SerializeField]
-        private float endTime = 0;
+        private float endFrame = 0;
 
         private GameplayInput playerInput;
 
@@ -29,9 +29,12 @@ namespace Cutscene
 
         public void SkipCutscene(InputAction.CallbackContext context)
         {
-            playableDirector.time = endTime;
-            playerInput.Disable();
-            playerInput.Player.Skip.performed -= SkipCutscene;
+            if (playableDirector.state == PlayState.Playing)
+            {
+                playableDirector.time = endFrame / 60;
+                playerInput.Disable();
+                playerInput.Player.Skip.performed -= SkipCutscene;
+            }
         }
 
         private void OnDisable()

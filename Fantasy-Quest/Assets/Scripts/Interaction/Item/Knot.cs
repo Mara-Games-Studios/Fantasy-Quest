@@ -33,11 +33,15 @@ namespace Interaction.Item
                 switch (state)
                 {
                     case State.Left:
+                        Debug.Log("Move To Right");
+                        canCatInteract = false;
                         animator.SetTrigger("MoveToRight");
                         hintAnimator.SetTrigger("ToRight");
                         state = State.Right;
                         break;
                     case State.Right:
+                        Debug.Log("Move To Left");
+                        canCatInteract = false;
                         animator.SetTrigger("MoveToLeft");
                         hintAnimator.SetTrigger("ToLeft");
                         state = State.Left;
