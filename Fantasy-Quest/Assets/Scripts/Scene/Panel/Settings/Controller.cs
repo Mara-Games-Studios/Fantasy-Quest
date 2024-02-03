@@ -1,4 +1,5 @@
-﻿using Sirenix.OdinInspector;
+﻿using Configs;
+using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -66,6 +67,11 @@ namespace Panel.Settings
         public void MusicValueChanged(float value)
         {
             Configs.AudioSettings.Instance.MusicValue = value;
+        }
+
+        public void ShowSubtitlesChanged(Toggle change)
+        {
+            SubtitlesSettings.Instance.SetShowSubtitles(change.isOn);
         }
     }
 }

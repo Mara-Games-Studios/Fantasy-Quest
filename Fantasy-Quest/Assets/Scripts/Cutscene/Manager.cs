@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Configs;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Playables;
@@ -18,6 +19,14 @@ namespace Cutscene
             foreach (PlayableDirector director in playableDirectors)
             {
                 director.Pause();
+            }
+        }
+
+        public void LockFromSettings()
+        {
+            if (playableDirectors.Any(x => x.state == PlayState.Paused))
+            {
+                LockerSettings.Instance.LockAll();
             }
         }
 

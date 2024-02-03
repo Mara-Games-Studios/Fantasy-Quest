@@ -1686,8 +1686,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 1
   m_ShadowVolumeIntensity: 0.869
   m_LocalBounds:
-    m_Center: {x: -1.7855, y: -5.5928497, z: 0}
-    m_Extent: {x: 1.96, y: 1.85865, z: 0}
+    m_Center: {x: -1.7859501, y: -5.5931, z: 0}
+    m_Extent: {x: 1.95865, y: 1.8582999, z: 0}
   m_PointLightInnerAngle: 359.6
   m_PointLightOuterAngle: 359.6
   m_PointLightInnerRadius: 2
@@ -2185,8 +2185,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 1
   m_ShadowVolumeIntensity: 0.869
   m_LocalBounds:
-    m_Center: {x: -1.3541, y: -5.56965, z: 0}
-    m_Extent: {x: 1.7577, y: 1.91525, z: 0}
+    m_Center: {x: -1.3454, y: -5.5657997, z: 0}
+    m_Extent: {x: 1.7675, y: 1.9185998, z: 0}
   m_PointLightInnerAngle: 359.6
   m_PointLightOuterAngle: 359.6
   m_PointLightInnerRadius: 2
@@ -2787,7 +2787,7 @@ MonoBehaviour:
   playableDirector: {fileID: 513049886}
   endFrame: 1890
   canvas: {fileID: 1630584903}
-  blackScreenPrefab: {fileID: 842843242430689482, guid: 4f62371d1ca4e204c978fe7c684489aa, type: 3}
+  blackScreenPrefab: {fileID: 2610472150544469574, guid: 4f62371d1ca4e204c978fe7c684489aa, type: 3}
 --- !u!1 &650290301
 GameObject:
   m_ObjectHideFlags: 0
@@ -2896,7 +2896,7 @@ MonoBehaviour:
   playableDirector: {fileID: 650290304}
   endFrame: 1590
   canvas: {fileID: 1630584903}
-  blackScreenPrefab: {fileID: 842843242430689482, guid: 4f62371d1ca4e204c978fe7c684489aa, type: 3}
+  blackScreenPrefab: {fileID: 2610472150544469574, guid: 4f62371d1ca4e204c978fe7c684489aa, type: 3}
 --- !u!1 &681937884
 GameObject:
   m_ObjectHideFlags: 0
@@ -2983,7 +2983,7 @@ MonoBehaviour:
   playableDirector: {fileID: 681937885}
   endFrame: 870
   canvas: {fileID: 1630584903}
-  blackScreenPrefab: {fileID: 842843242430689482, guid: 4f62371d1ca4e204c978fe7c684489aa, type: 3}
+  blackScreenPrefab: {fileID: 2610472150544469574, guid: 4f62371d1ca4e204c978fe7c684489aa, type: 3}
 --- !u!1 &698130713
 GameObject:
   m_ObjectHideFlags: 0
@@ -3707,8 +3707,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 1
   m_ShadowVolumeIntensity: 0.869
   m_LocalBounds:
-    m_Center: {x: 0.46349996, y: -5.5839, z: 0}
-    m_Extent: {x: 1.4652, y: 1.9643, z: 0}
+    m_Center: {x: 0.46835, y: -5.5826, z: 0}
+    m_Extent: {x: 1.4626501, y: 1.9676, z: 0}
   m_PointLightInnerAngle: 359.6
   m_PointLightOuterAngle: 359.6
   m_PointLightInnerRadius: 2
@@ -4678,7 +4678,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playableDirectors:
+  - {fileID: 324369290}
   - {fileID: 513049886}
+  - {fileID: 650290304}
   - {fileID: 681937885}
 --- !u!1001 &1270068322
 PrefabInstance:
@@ -5197,7 +5199,7 @@ PrefabInstance:
       objectReference: {fileID: 1834771759}
     - target: {fileID: 4199822054368283373, guid: dcf0906c0b503264580d030b2c5d74e6, type: 3}
       propertyPath: OnSettingsClosed.m_PersistentCalls.m_Calls.Array.size
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4199822054368283373, guid: dcf0906c0b503264580d030b2c5d74e6, type: 3}
       propertyPath: OnSettingsOpened.m_PersistentCalls.m_Calls.Array.size
@@ -5213,6 +5215,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4199822054368283373, guid: dcf0906c0b503264580d030b2c5d74e6, type: 3}
       propertyPath: OnSettingsClosed.m_PersistentCalls.m_Calls.Array.data[3].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4199822054368283373, guid: dcf0906c0b503264580d030b2c5d74e6, type: 3}
+      propertyPath: OnSettingsClosed.m_PersistentCalls.m_Calls.Array.data[4].m_Mode
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4199822054368283373, guid: dcf0906c0b503264580d030b2c5d74e6, type: 3}
@@ -5244,6 +5250,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2039918417}
     - target: {fileID: 4199822054368283373, guid: dcf0906c0b503264580d030b2c5d74e6, type: 3}
+      propertyPath: OnSettingsClosed.m_PersistentCalls.m_Calls.Array.data[4].m_Target
+      value: 
+      objectReference: {fileID: 1175439700}
+    - target: {fileID: 4199822054368283373, guid: dcf0906c0b503264580d030b2c5d74e6, type: 3}
       propertyPath: OnSettingsOpened.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 1175439700}
@@ -5269,6 +5279,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4199822054368283373, guid: dcf0906c0b503264580d030b2c5d74e6, type: 3}
       propertyPath: OnSettingsClosed.m_PersistentCalls.m_Calls.Array.data[3].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4199822054368283373, guid: dcf0906c0b503264580d030b2c5d74e6, type: 3}
+      propertyPath: OnSettingsClosed.m_PersistentCalls.m_Calls.Array.data[4].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4199822054368283373, guid: dcf0906c0b503264580d030b2c5d74e6, type: 3}
@@ -5300,6 +5314,10 @@ PrefabInstance:
       value: Resume
       objectReference: {fileID: 0}
     - target: {fileID: 4199822054368283373, guid: dcf0906c0b503264580d030b2c5d74e6, type: 3}
+      propertyPath: OnSettingsClosed.m_PersistentCalls.m_Calls.Array.data[4].m_MethodName
+      value: LockFromSettings
+      objectReference: {fileID: 0}
+    - target: {fileID: 4199822054368283373, guid: dcf0906c0b503264580d030b2c5d74e6, type: 3}
       propertyPath: OnSettingsOpened.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
       value: Pause
       objectReference: {fileID: 0}
@@ -5326,6 +5344,10 @@ PrefabInstance:
     - target: {fileID: 4199822054368283373, guid: dcf0906c0b503264580d030b2c5d74e6, type: 3}
       propertyPath: OnSettingsClosed.m_PersistentCalls.m_Calls.Array.data[3].m_TargetAssemblyTypeName
       value: Dialogue.Manager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4199822054368283373, guid: dcf0906c0b503264580d030b2c5d74e6, type: 3}
+      propertyPath: OnSettingsClosed.m_PersistentCalls.m_Calls.Array.data[4].m_TargetAssemblyTypeName
+      value: Cutscene.Manager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 4199822054368283373, guid: dcf0906c0b503264580d030b2c5d74e6, type: 3}
       propertyPath: OnSettingsOpened.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
@@ -5356,6 +5378,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4199822054368283373, guid: dcf0906c0b503264580d030b2c5d74e6, type: 3}
+      propertyPath: OnSettingsClosed.m_PersistentCalls.m_Calls.Array.data[4].m_Arguments.m_BoolArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4199822054368283373, guid: dcf0906c0b503264580d030b2c5d74e6, type: 3}
       propertyPath: OnSettingsClosed.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
@@ -5365,6 +5391,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4199822054368283373, guid: dcf0906c0b503264580d030b2c5d74e6, type: 3}
       propertyPath: OnSettingsClosed.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 4199822054368283373, guid: dcf0906c0b503264580d030b2c5d74e6, type: 3}
+      propertyPath: OnSettingsClosed.m_PersistentCalls.m_Calls.Array.data[4].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 4199822054368283373, guid: dcf0906c0b503264580d030b2c5d74e6, type: 3}
@@ -7586,8 +7616,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 1
   m_ShadowVolumeIntensity: 0.869
   m_LocalBounds:
-    m_Center: {x: -2.8888998, y: -7.52295, z: 0}
-    m_Extent: {x: 1.9932998, y: 1.27425, z: 0}
+    m_Center: {x: -2.89685, y: -7.5139, z: 0}
+    m_Extent: {x: 1.9820501, y: 1.2696998, z: 0}
   m_PointLightInnerAngle: 359.6
   m_PointLightOuterAngle: 359.6
   m_PointLightInnerRadius: 2
@@ -7901,7 +7931,7 @@ MonoBehaviour:
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
+  m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
@@ -8459,8 +8489,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 1
   m_ShadowVolumeIntensity: 0.869
   m_LocalBounds:
-    m_Center: {x: -0.6645, y: -7.43565, z: 0}
-    m_Extent: {x: 2.6094, y: 1.3344498, z: 0}
+    m_Center: {x: -0.66075, y: -7.43355, z: 0}
+    m_Extent: {x: 2.60975, y: 1.3192501, z: 0}
   m_PointLightInnerAngle: 359.6
   m_PointLightOuterAngle: 359.6
   m_PointLightInnerRadius: 2

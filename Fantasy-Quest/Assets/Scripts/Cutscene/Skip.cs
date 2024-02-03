@@ -22,7 +22,7 @@ namespace Cutscene
         private GameObject canvas;
 
         [SerializeField]
-        private GameObject blackScreenPrefab;
+        private CutsceneFade blackScreenPrefab;
 
         private CutsceneFade blackScreen;
 
@@ -47,7 +47,6 @@ namespace Cutscene
                     .GetComponent<CutsceneFade>();
                 blackScreen.SetSkipScript(this);
                 playerInput.Disable();
-                playerInput.Player.Skip.performed -= SkipCutscene;
             }
         }
 
