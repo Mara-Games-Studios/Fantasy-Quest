@@ -9,6 +9,9 @@ public class CameraFollow : MonoBehaviour
     [SerializeField]
     private float flipTime = 0.5f;
 
+    [SerializeField]
+    private Vector3 shift;
+
     private bool isRight;
 
     private void Awake()
@@ -18,7 +21,7 @@ public class CameraFollow : MonoBehaviour
 
     private void Update()
     {
-        transform.position = playerTransform.position;
+        transform.position = playerTransform.position + shift;
     }
 
     public void CallTurn()

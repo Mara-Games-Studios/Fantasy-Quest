@@ -6,7 +6,7 @@ namespace Interaction.Item
     [AddComponentMenu("Scripts/Interaction/Item/Interaction.Item.Knot")]
     internal class Knot : MonoBehaviour, IInteractable
     {
-        private enum KnotState
+        private enum State
         {
             Left,
             Right
@@ -22,7 +22,7 @@ namespace Interaction.Item
         private Animator hintAnimator;
 
         [SerializeField]
-        private KnotState state = KnotState.Left;
+        private State state = State.Left;
 
         bool IInteractable.CanCatInteract => canCatInteract;
 
@@ -32,15 +32,19 @@ namespace Interaction.Item
             {
                 switch (state)
                 {
-                    case KnotState.Left:
+                    case State.Left:
+                        Debug.Log("Move To Right");
+                        canCatInteract = false;
                         animator.SetTrigger("MoveToRight");
                         hintAnimator.SetTrigger("ToRight");
-                        state = KnotState.Right;
+                        state = State.Right;
                         break;
-                    case KnotState.Right:
+                    case State.Right:
+                        Debug.Log("Move To Left");
+                        canCatInteract = false;
                         animator.SetTrigger("MoveToLeft");
                         hintAnimator.SetTrigger("ToLeft");
-                        state = KnotState.Left;
+                        state = State.Left;
                         break;
                 }
             }

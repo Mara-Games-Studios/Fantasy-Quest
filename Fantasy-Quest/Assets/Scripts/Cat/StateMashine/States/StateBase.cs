@@ -1,5 +1,3 @@
-using UnityEngine;
-
 namespace Cat.StateMachine.States
 {
     public abstract class StateBase
@@ -27,10 +25,7 @@ namespace Cat.StateMachine.States
             RemoveInputActionCallback();
         }
 
-        public virtual void Update()
-        {
-            Debug.Log(GetType());
-        }
+        public virtual void Update() { }
 
         protected virtual void AddInputActionCallback() { }
 

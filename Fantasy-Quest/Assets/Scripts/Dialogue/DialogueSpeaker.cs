@@ -79,17 +79,29 @@ namespace Dialogue
             {
                 voice.Say(replica.Audio);
                 subtitlesView.Show(replica);
-                yield return new WaitForSecondsRealtime(
-                    replica.Audio.length + replica.DelayAfterSaid
-                );
+                yield return new WaitForSeconds(replica.Audio.length + replica.DelayAfterSaid);
             }
-
             Stop();
         }
 
         private bool HasISubtitlesView(GameObject gameObject)
         {
             return gameObject.TryGetComponent(out ISubtitlesView _);
+        }
+
+        public void Pause()
+        {
+            voice.Pause();
+        }
+
+        public void Resume()
+        {
+            voice.Resume();
+        }
+
+        public void Kill()
+        {
+            Stop();
         }
     }
 }

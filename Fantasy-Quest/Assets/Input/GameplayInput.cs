@@ -231,7 +231,7 @@ public partial class @GameplayInput: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""8c60c7f3-cc67-4b2b-b47c-bd85771a4ed6"",
-                    ""path"": ""<Keyboard>/anyKey"",
+                    ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",

@@ -1,5 +1,6 @@
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Configs
 {
@@ -13,11 +14,21 @@ namespace Configs
         [Min(0)]
         [SerializeField]
         private float defaultTimeSpeedForASymbol = 0.5f;
+        public float SymbolTimeSpeed => defaultTimeSpeedForASymbol;
 
         [SerializeField]
         private Ease typingEase = Ease.Linear;
-
-        public float SymbolTimeSpeed => defaultTimeSpeedForASymbol;
         public Ease TypingEase => typingEase;
+
+        [SerializeField]
+        private bool showSubtitles = true;
+
+        public UnityEvent<bool> OnShowSubtitlesChanged;
+
+        public void SetShowSubtitles(bool value)
+        {
+            showSubtitles = value;
+            OnShowSubtitlesChanged?.Invoke(showSubtitles);
+        }
     }
 }

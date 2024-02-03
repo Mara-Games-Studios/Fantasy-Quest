@@ -14,10 +14,26 @@ namespace Subtitles
 
         private Tween typeWriterTween;
 
+        private void OnEnable()
+        {
+            SubtitlesSettings.Instance.OnShowSubtitlesChanged.AddListener(OnSubtitlesShowChanged);
+        }
+
+        private void OnDisable()
+        {
+            SubtitlesSettings.Instance.OnShowSubtitlesChanged.RemoveListener(
+                OnSubtitlesShowChanged
+            );
+        }
+
+        private void OnSubtitlesShowChanged(bool value)
+        {
+            outputTmpText.alpha = value ? 1 : 0;
+        }
+
         public void Show(Replica replica)
         {
             string curText = "";
-
             typeWriterTween = DOTween
                 .To(() => curText, x => curText = x, replica.Text, replica.Duration)
                 .SetEase(SubtitlesSettings.Instance.TypingEase)

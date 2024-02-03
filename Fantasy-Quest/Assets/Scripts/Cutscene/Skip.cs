@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Playables;
@@ -9,10 +10,21 @@ namespace Cutscene
     internal class Skip : MonoBehaviour
     {
         [SerializeField]
+        private Dialogue.Manager dialogueManager;
+
+        [SerializeField]
         private PlayableDirector playableDirector;
 
         [SerializeField]
-        private float endTime = 0;
+        private float endFrame = 0;
+
+        [SerializeField]
+        private GameObject canvas;
+
+        [SerializeField]
+        private CutsceneFade blackScreenPrefab;
+
+        private CutsceneFade blackScreen;
 
         private GameplayInput playerInput;
 
@@ -29,9 +41,26 @@ namespace Cutscene
 
         public void SkipCutscene(InputAction.CallbackContext context)
         {
-            playableDirector.time = endTime;
-            playerInput.Disable();
-            playerInput.Player.Skip.performed -= SkipCutscene;
+            if (playableDirector.state == PlayState.Playing)
+            {
+                blackScreen = Instantiate(blackScreenPrefab, canvas.transform)
+                    .GetComponent<CutsceneFade>();
+                blackScreen.SetSkipScript(this);
+                playerInput.Disable();
+            }
+        }
+
+        public void FadeInEndCallback()
+        {
+            playableDirector.time = endFrame / 60;
+            dialogueManager.KillCurrentSpeakers();
+            _ = StartCoroutine(WaitForSeconds(1f));
+        }
+
+        private IEnumerator WaitForSeconds(float duration)
+        {
+            yield return new WaitForSeconds(duration);
+            blackScreen.FadeOut();
         }
 
         private void OnDisable()

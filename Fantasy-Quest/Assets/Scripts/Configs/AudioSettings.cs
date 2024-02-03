@@ -55,12 +55,11 @@ namespace Configs
         }
 
         private const float min_db = -80;
-        private const float max_db = 0;
-        private const float min_threshold = 0.05f;
+        private const float max_db = 20;
 
         private float CalculateVolume(float value)
         {
-            return value <= min_threshold ? min_db : Mathf.Lerp(min_db, max_db, value);
+            return Mathf.Clamp(20 * Mathf.Log10(value), min_db, max_db);
         }
 
         public void RefreshAudio()
