@@ -98,5 +98,10 @@ namespace Dialogue
         {
             voice.Resume();
         }
+
+        public void Kill()
+        {
+            Stop();
+        }
     }
 }

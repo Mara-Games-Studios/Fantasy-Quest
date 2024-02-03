@@ -20,6 +20,14 @@ namespace Dialogue
             }
         }
 
+        public void KillCurrentSpeakers()
+        {
+            foreach (DialogueSpeaker speaker in speakers)
+            {
+                speaker.Kill();
+            }
+        }
+
         public void Resume()
         {
             foreach (DialogueSpeaker speaker in speakers)
