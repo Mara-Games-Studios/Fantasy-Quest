@@ -79,7 +79,7 @@ namespace Dialogue
             {
                 voice.Say(replica.Audio);
                 subtitlesView.Show(replica);
-                yield return new WaitForSeconds(replica.Audio.length + replica.DelayAfterSaid);
+                yield return new WaitForSeconds(replica.Duration + replica.DelayAfterSaid);
             }
             Stop();
         }

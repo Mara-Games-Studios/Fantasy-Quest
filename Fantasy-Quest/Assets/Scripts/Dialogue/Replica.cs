@@ -14,7 +14,7 @@ namespace Dialogue
         public float DelayAfterSaid;
         public float Duration => GetDuration();
 
-        public float GetDuration()
+        private float GetDuration()
         {
             if (cachedDuration <= 0)
             {
@@ -26,8 +26,7 @@ namespace Dialogue
 
         private void CalculateDuration()
         {
-            float length = Audio == null ? Text.Length : Audio.length;
-            cachedDuration = length * SubtitlesSettings.Instance.SymbolTimeSpeed;
+            cachedDuration = Audio == null ? Text.Length * SubtitlesSettings.Instance.SymbolTimeSpeed : Audio.length;
         }
     }
 }
