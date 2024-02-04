@@ -26,9 +26,9 @@ namespace Dialogue
 
         private void CalculateDuration()
         {
-            cachedDuration = 
-                Audio == null 
-                    ? Text.Length * SubtitlesSettings.Instance.SymbolTimeSpeed 
+            cachedDuration =
+                Audio == null
+                    ? Text.Length * SubtitlesSettings.Instance.SymbolTimeSpeed
                     : Audio.length;
         }
     }
