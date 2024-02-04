@@ -13,90 +13,90 @@ namespace Dialogue
     {
         [Header("Speech")]
         [SerializeField]
-        protected List<Replica> FirstTrySpeech;
+        private List<Replica> firstTrySpeech;
 
         [SerializeField]
-        protected List<Replica> AlternativeSpeech;
+        private List<Replica> alternativeSpeech;
 
         [Space]
         [Header("Components")]
         [SerializeField]
         [ValidateInput(nameof(HasISubtitlesView), "GameObject must have ISubtitlesView")]
-        protected GameObject SubtitlesViewGameObject;
+        private GameObject subtitlesViewGameObject;
 
-        protected Coroutine SayCoroutine;
-        protected ISubtitlesView SubtitlesView;
-        protected Voice Voice;
-        protected bool WasSaid;
+        private Coroutine sayCoroutine;
+        private ISubtitlesView subtitlesView;
+        private Voice voice;
+        private bool wasSaid;
 
         private void Awake()
         {
-            if (!SubtitlesViewGameObject.TryGetComponent(out SubtitlesView))
+            if (!subtitlesViewGameObject.TryGetComponent(out subtitlesView))
             {
                 Debug.LogError(
-                    $"{SubtitlesView} is NULL\n{GetType()} callback in {gameObject.name}"
+                    $"{subtitlesView} is NULL\n{GetType()} callback in {gameObject.name}"
                 );
             }
 
-            Voice = new Voice(GetComponent<AudioSource>());
+            voice = new Voice(GetComponent<AudioSource>());
         }
 
         public void Speak()
         {
             Debug.Log("Trying to talk");
-            if (WasSaid)
+            if (wasSaid)
             {
-                Say(AlternativeSpeech);
+                Say(alternativeSpeech);
             }
             else
             {
-                Say(FirstTrySpeech);
-                WasSaid = true;
+                Say(firstTrySpeech);
+                wasSaid = true;
             }
         }
 
-        public virtual void Stop()
+        public void Stop()
         {
-            if (SayCoroutine != null)
+            if (sayCoroutine != null)
             {
-                StopCoroutine(SayCoroutine);
-                SayCoroutine = null;
+                StopCoroutine(sayCoroutine);
+                sayCoroutine = null;
             }
 
-            Voice.Silence();
-            SubtitlesView.Hide();
+            voice.Silence();
+            subtitlesView.Hide();
         }
 
-        protected virtual void Say(List<Replica> speech)
+        private void Say(List<Replica> speech)
         {
             Stop();
-            SayCoroutine = StartCoroutine(SayList(speech));
+            sayCoroutine = StartCoroutine(SayList(speech));
         }
 
-        protected IEnumerator SayList(List<Replica> replicas)
+        private IEnumerator SayList(List<Replica> replicas)
         {
             foreach (Replica replica in replicas)
             {
-                Voice.Say(replica.Audio);
-                SubtitlesView.Show(replica);
-                yield return new WaitForSeconds(replica.Audio.length + replica.DelayAfterSaid);
+                voice.Say(replica.Audio);
+                subtitlesView.Show(replica);
+                yield return new WaitForSeconds(replica.Duration + replica.DelayAfterSaid);
             }
             Stop();
         }
 
-        protected bool HasISubtitlesView(GameObject gameObject)
+        private bool HasISubtitlesView(GameObject gameObject)
         {
             return gameObject.TryGetComponent(out ISubtitlesView _);
         }
 
         public void Pause()
         {
-            Voice.Pause();
+            voice.Pause();
         }
 
         public void Resume()
         {
-            Voice.Resume();
+            voice.Resume();
         }
 
         public void Kill()
