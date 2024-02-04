@@ -8,6 +8,12 @@ namespace Interaction.Item
     {
         [SerializeField]
         private Start start;
+
+        [SerializeField]
+        private DialogueBubble.Trigger trigger;
+
+        [SerializeField]
+        private Sprite newIcon;
         public bool CanCatInteract => true;
 
         public void InteractionByCat()
@@ -18,7 +24,17 @@ namespace Interaction.Item
         public void InteractionByHuman()
         {
             start.StartCutscene();
+            if (trigger != null)
+            {
+                ChangeShortcutIcon();
+            }
+
             Destroy(this);
+        }
+
+        private void ChangeShortcutIcon()
+        {
+            trigger.SetNewIcon(newIcon);
         }
     }
 }
