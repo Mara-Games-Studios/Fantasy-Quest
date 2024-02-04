@@ -50,5 +50,11 @@ namespace DialogueBubble
                 }
             }
         }
+
+        public void SetNewIcon(Sprite newIcon)
+        {
+            icons.Clear();
+            icons.Add(newIcon);
+        }
     }
 }
