@@ -10,6 +10,12 @@ namespace Dialogue
         [SerializeField]
         private SkeletonAnimation skeletonAnimation;
 
+        [SerializeField]
+        private AnimationReferenceAsset idleAniamtion;
+
+        [SerializeField]
+        private AnimationReferenceAsset talkAnimation;
+
         protected override void Awake()
         {
             if (skeletonAnimation == null)
@@ -34,12 +40,12 @@ namespace Dialogue
 
         protected void StartSpeakAnimation()
         {
-            _ = skeletonAnimation.AnimationState.SetAnimation(0, "talk", true);
+            _ = skeletonAnimation.AnimationState.SetAnimation(0, talkAnimation, true);
         }
 
         protected void StopSpeakAnimation()
         {
-            _ = skeletonAnimation.AnimationState.SetAnimation(0, "idle", true);
+            _ = skeletonAnimation.AnimationState.SetAnimation(0, idleAniamtion, true);
         }
     }
 }
