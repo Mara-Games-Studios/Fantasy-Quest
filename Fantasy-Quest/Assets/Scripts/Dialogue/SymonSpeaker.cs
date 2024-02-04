@@ -4,36 +4,25 @@ using UnityEngine;
 
 namespace Dialogue
 {
-    [RequireComponent(typeof(Collider2D))]
-    [RequireComponent(typeof(AudioSource))]
     [AddComponentMenu("Scripts/Dialogue/Dialogue.SymonSpeaker")]
     public class SymonSpeaker : DialogueSpeaker
     {
         [SerializeField]
         private SkeletonAnimation skeletonAnimation;
 
-        private void Awake()
+        protected override void Awake()
         {
-            if (!SubtitlesViewGameObject.TryGetComponent(out SubtitlesView))
+            if (skeletonAnimation == null)
             {
-                Debug.LogError(
-                    $"{SubtitlesView} is NULL\n{GetType()} callback in {gameObject.name}"
-                );
+                Debug.LogError("There's no skeleton animation(Symon)\n");
             }
-
-            Voice = new Voice(GetComponent<AudioSource>());
+            base.Awake();
         }
 
         public override void Stop()
         {
-            if (SayCoroutine != null)
-            {
-                StopCoroutine(SayCoroutine);
-                SayCoroutine = null;
-            }
+            base.Stop();
             StopSpeakAnimation();
-            Voice.Silence();
-            SubtitlesView.Hide();
         }
 
         protected override void Say(List<Replica> speech)
