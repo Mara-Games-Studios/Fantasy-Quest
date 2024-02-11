@@ -13,7 +13,16 @@ MonoBehaviour:
   m_Name: RuleConfig
   m_EditorClassIdentifier: 
   projectRules:
-  - Enabled: 0
+  - Enabled: 1
+    EnabledOverridden: 1
+    Type: Sirenix.OdinValidator.Editor.Validators.ReferenceRequiredByDefaultValidator,
+      Sirenix.OdinValidator.Editor
+    Override: 
+  - Enabled: 1
+    EnabledOverridden: 1
+    Type: Sirenix.OdinValidator.Editor.Validators.NoEmptyStringsValidator, Sirenix.OdinValidator.Editor
+    Override: 
+  - Enabled: 1
     EnabledOverridden: 1
     Type: Sirenix.OdinValidator.Editor.Validators.ListNullElementValidator, Sirenix.OdinValidator.Editor
     Override: 
