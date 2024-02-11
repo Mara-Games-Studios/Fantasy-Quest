@@ -1108,8 +1108,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 184287207}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 16.13, y: 0.64, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1574,7 +1574,7 @@ Transform:
   m_GameObject: {fileID: 267130482}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -28.58991, y: -6.7460523, z: 0}
+  m_LocalPosition: {x: -28.551655, y: -6.8990674, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1728,8 +1728,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 1
   m_ShadowVolumeIntensity: 0.869
   m_LocalBounds:
-    m_Center: {x: -1.7928, y: -5.6038, z: 0}
-    m_Extent: {x: 1.964, y: 1.8561, z: 0}
+    m_Center: {x: -1.7876, y: -5.6004, z: 0}
+    m_Extent: {x: 1.9612, y: 1.8525, z: 0}
   m_PointLightInnerAngle: 359.6
   m_PointLightOuterAngle: 359.6
   m_PointLightInnerRadius: 2
@@ -1907,6 +1907,7 @@ GameObject:
   - component: {fileID: 350709318}
   - component: {fileID: 350709313}
   - component: {fileID: 350709317}
+  - component: {fileID: 350709319}
   m_Layer: 3
   m_Name: Knot
   m_TagString: Untagged
@@ -2101,6 +2102,20 @@ MonoBehaviour:
   animator: {fileID: 350709314}
   hintAnimator: {fileID: 1081929967}
   state: 0
+--- !u!114 &350709319
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 350709311}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 043dee6d8a41d93429e317a78e313390, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boxCollider: {fileID: 350709317}
+  color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &359583695
 GameObject:
   m_ObjectHideFlags: 0
@@ -2167,8 +2182,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 1
   m_ShadowVolumeIntensity: 0.869
   m_LocalBounds:
-    m_Center: {x: -1.35535, y: -5.57335, z: 0}
-    m_Extent: {x: 1.76075, y: 1.9131498, z: 0}
+    m_Center: {x: -1.345, y: -5.57855, z: 0}
+    m_Extent: {x: 1.7574, y: 1.9227499, z: 0}
   m_PointLightInnerAngle: 359.6
   m_PointLightOuterAngle: 359.6
   m_PointLightInnerRadius: 2
@@ -2861,6 +2876,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rails: {fileID: 553665279}
   value: 0.21832691
+  showPoint: 1
   step: 1
   pointName: Point
   color: {r: 0, g: 0, b: 0, a: 1}
@@ -3342,7 +3358,7 @@ Transform:
   m_GameObject: {fileID: 770802054}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 27.458494, y: -6.7460523, z: 2}
+  m_LocalPosition: {x: 28.019234, y: -6.6339045, z: 2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3714,8 +3730,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 1
   m_ShadowVolumeIntensity: 0.869
   m_LocalBounds:
-    m_Center: {x: 0.46815, y: -5.582, z: 0}
-    m_Extent: {x: 1.4647499, y: 1.9560999, z: 0}
+    m_Center: {x: 0.47015, y: -5.5914, z: 0}
+    m_Extent: {x: 1.46745, y: 1.9610999, z: 0}
   m_PointLightInnerAngle: 359.6
   m_PointLightOuterAngle: 359.6
   m_PointLightInnerRadius: 2
@@ -4730,7 +4746,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.19720173, y: 0.96}
@@ -5837,6 +5853,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rails: {fileID: 1405161616}
   value: 0.264
+  showPoint: 1
   step: 1
   pointName: To jump down
   color: {r: 0, g: 0, b: 0, a: 1}
@@ -6144,6 +6161,7 @@ GameObject:
   - component: {fileID: 1474902140}
   - component: {fileID: 1474902142}
   - component: {fileID: 1474902143}
+  - component: {fileID: 1474902144}
   m_Layer: 3
   m_Name: Bowl
   m_TagString: Untagged
@@ -6450,6 +6468,20 @@ MonoBehaviour:
             m_StringArgument: AddMilk
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &1474902144
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1474902135}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 043dee6d8a41d93429e317a78e313390, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boxCollider: {fileID: 1474902139}
+  color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &1485274201
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7222,7 +7254,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bindOnStart: 1
   point: {fileID: 553665280}
-  speed: 2
+  speed: 7
   state: 1
   vector: 0
   movingThreshold: 0.1
@@ -7811,8 +7843,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 1
   m_ShadowVolumeIntensity: 0.869
   m_LocalBounds:
-    m_Center: {x: -2.89165, y: -7.5212, z: 0}
-    m_Extent: {x: 1.9821498, y: 1.2770998, z: 0}
+    m_Center: {x: -2.88705, y: -7.52845, z: 0}
+    m_Extent: {x: 1.9867499, y: 1.2666502, z: 0}
   m_PointLightInnerAngle: 359.6
   m_PointLightOuterAngle: 359.6
   m_PointLightInnerRadius: 2
@@ -7980,7 +8012,7 @@ Transform:
   m_GameObject: {fileID: 1962040501}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 27.009098, y: 1.5003965, z: -10.071678}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8517,8 +8549,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 1
   m_ShadowVolumeIntensity: 0.869
   m_LocalBounds:
-    m_Center: {x: -0.66355, y: -7.4361496, z: 0}
-    m_Extent: {x: 2.5984502, y: 1.3340499, z: 0}
+    m_Center: {x: -0.65454996, y: -7.428, z: 0}
+    m_Extent: {x: 2.60155, y: 1.3227, z: 0}
   m_PointLightInnerAngle: 359.6
   m_PointLightOuterAngle: 359.6
   m_PointLightInnerRadius: 2
@@ -8577,7 +8609,7 @@ Transform:
   m_GameObject: {fileID: 5170830261307693722}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.66, y: -0.45, z: -10.159315}
+  m_LocalPosition: {x: 0.66, y: -0.45, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

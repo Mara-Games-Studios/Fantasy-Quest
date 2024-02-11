@@ -25,7 +25,6 @@ namespace DialogueBubble
                 Debug.LogError("More than one BubbleEventSystem in scene.");
             }
             Instance = this;
-
             DontDestroyOnLoad(gameObject);
         }
     }

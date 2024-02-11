@@ -55,8 +55,7 @@ namespace Rails
         [Button(Style = ButtonStyle.Box)]
         public void RideBody(Point start, Point end, float time)
         {
-            _ = this.KillCoroutine(rideCoroutine);
-            rideCoroutine = StartCoroutine(RideRoutine(start.Value, end.Value, time));
+            RideBody(start.Value, end.Value, time);
         }
 
         private IEnumerator RideRoutine(float start, float end, float time)
@@ -85,8 +84,7 @@ namespace Rails
 
         public void BindBody(Transform transform, Point point)
         {
-            body = transform;
-            currentPosition = point.Value;
+            BindBody(transform, point.Value);
         }
 
         [Button(Style = ButtonStyle.Box)]

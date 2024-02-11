@@ -1,4 +1,5 @@
 ﻿using Configs;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Cat
@@ -6,6 +7,7 @@ namespace Cat
     [AddComponentMenu("Scripts/Cat/Cat.Input")]
     internal class Input : MonoBehaviour
     {
+        [Required]
         [SerializeField]
         private Movement railMovement;
         private GameplayInput input;
