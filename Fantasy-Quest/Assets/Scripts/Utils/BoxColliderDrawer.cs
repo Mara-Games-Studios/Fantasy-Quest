@@ -25,8 +25,8 @@ namespace Utils
             Handles.color = color;
             Handles.DrawWireCube(
                 transform.position
-                    + Vector3.Scale((Vector3)boxCollider.offset, transform.localScale),
-                Vector3.Scale(boxCollider.size, transform.localScale)
+                    + Vector3.Scale((Vector3)boxCollider.offset, transform.lossyScale),
+                Vector3.Scale(boxCollider.size, transform.lossyScale)
             );
             Handles.color = tempColor;
         }

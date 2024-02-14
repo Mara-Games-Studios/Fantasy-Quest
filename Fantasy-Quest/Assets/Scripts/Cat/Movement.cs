@@ -1,7 +1,7 @@
-﻿using Rails;
+﻿using System;
+using Rails;
 using Sirenix.OdinInspector;
 using UnityEngine;
-using UnityEngine.Events;
 
 namespace Cat
 {
@@ -66,8 +66,8 @@ namespace Cat
         private float movingThreshold = 0.1f;
         private float thresholdTimer = 0f;
 
-        public UnityEvent<State> OnStateChanged;
-        public UnityEvent<Vector> OnVectorChanged;
+        public event Action<State> OnStateChanged;
+        public event Action<Vector> OnVectorChanged;
 
         private void Start()
         {

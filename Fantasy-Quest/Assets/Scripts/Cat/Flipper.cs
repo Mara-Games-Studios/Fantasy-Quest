@@ -20,6 +20,9 @@ namespace Cat
     internal class Flipper : MonoBehaviour
     {
         [SerializeField]
+        private Movement catMovement;
+
+        [SerializeField]
         private float flipTime = 0.5f;
 
         [ReadOnly]
@@ -35,7 +38,7 @@ namespace Cat
         private Dictionary<Vector, Vector3> RotationByVectors =>
             rotationByVectorsRaw.ToDictionary(x => x.Vector, x => x.Rotation);
 
-        public void VectorChanged(Vector vector)
+        private void VectorChanged(Vector vector)
         {
             if (toFlip != vector && !flipping)
             {
@@ -61,6 +64,16 @@ namespace Cat
             {
                 StartFlipping(toFlip);
             }
+        }
+
+        private void OnEnable()
+        {
+            catMovement.OnVectorChanged += VectorChanged;
+        }
+
+        private void OnDisable()
+        {
+            catMovement.OnVectorChanged -= VectorChanged;
         }
     }
 }
