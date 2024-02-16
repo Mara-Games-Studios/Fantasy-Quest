@@ -6,12 +6,11 @@ using UnityEditor;
 
 namespace Rails
 {
-    [RequireComponent(typeof(RailsImpl))]
     [AddComponentMenu("Scripts/Rails/Rails.Point")]
     internal class Point : MonoBehaviour
     {
         [Title("Main info")]
-        [ReadOnly]
+        [Required]
         [SerializeField]
         private RailsImpl rails;
         public RailsImpl Rails => rails;
@@ -30,18 +29,10 @@ namespace Rails
         private float step = 1;
 
         [SerializeField]
-        private string pointName = "Point";
-
-        [SerializeField]
         private Color color = Color.black;
 
         [SerializeField]
         private float radius = 0.2f;
-
-        private void OnValidate()
-        {
-            rails = GetComponent<RailsImpl>();
-        }
 
         [Button]
         public void MoveRight()
@@ -65,7 +56,7 @@ namespace Rails
 
             if (rails == null)
             {
-                Debug.LogError("Null rails");
+                Debug.LogError($"Null rails, Please assign instance to {name}", gameObject);
                 return;
             }
 
@@ -73,7 +64,9 @@ namespace Rails
             Handles.color = color;
             Vector3 center = transform.position + rails.Curve.GetPointAt(value);
             Handles.DrawSolidDisc(center, Vector3.forward, radius);
-            Handles.Label(center + (0.8f * radius * Vector3.left), pointName);
+            GUIStyle style = new() { fontSize = 12 };
+            style.normal.textColor = Color.white;
+            Handles.Label(center + (0.8f * radius * Vector3.left), gameObject.name, style);
             Handles.color = tempColor;
         }
 #endif

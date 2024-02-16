@@ -16,14 +16,12 @@ namespace Subtitles
 
         private void OnEnable()
         {
-            SubtitlesSettings.Instance.OnShowSubtitlesChanged.AddListener(OnSubtitlesShowChanged);
+            SubtitlesSettings.Instance.OnShowSubtitlesChanged += OnSubtitlesShowChanged;
         }
 
         private void OnDisable()
         {
-            SubtitlesSettings.Instance.OnShowSubtitlesChanged.RemoveListener(
-                OnSubtitlesShowChanged
-            );
+            SubtitlesSettings.Instance.OnShowSubtitlesChanged -= OnSubtitlesShowChanged;
         }
 
         private void OnSubtitlesShowChanged(bool value)

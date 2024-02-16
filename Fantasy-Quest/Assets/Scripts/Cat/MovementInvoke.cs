@@ -15,20 +15,24 @@ namespace Cat
 
         [ShowIf(nameof(invokeSetOnRails))]
         [SerializeField]
-        private bool byPoint = true;
+        private bool removeFromRailsBeforeSetOnRails = true;
 
         [ShowIf(nameof(invokeSetOnRails))]
-        [ShowIf(nameof(byPoint))]
+        [SerializeField]
+        private bool byPoint = true;
+
+        private bool InvokeAndSetOnRails => invokeSetOnRails && byPoint;
+        private bool InvokeAndNotSetOnRails => invokeSetOnRails && !byPoint;
+
+        [ShowIf(nameof(InvokeAndSetOnRails))]
         [SerializeField]
         private Point railsPoint;
 
-        [ShowIf(nameof(invokeSetOnRails))]
-        [HideIf(nameof(byPoint))]
+        [ShowIf(nameof(InvokeAndNotSetOnRails))]
         [SerializeField]
         private RailsImpl railsImpl;
 
-        [ShowIf(nameof(invokeSetOnRails))]
-        [HideIf(nameof(byPoint))]
+        [ShowIf(nameof(InvokeAndNotSetOnRails))]
         [SerializeField]
         private float point;
 
@@ -36,8 +40,16 @@ namespace Cat
         {
             if (!invokeSetOnRails)
             {
-                Debug.LogError("Try to invoke InvokeSetOnRails while invokeSetOnRails if false");
+                Debug.LogError(
+                    $"Try to invoke {nameof(InvokeSetOnRails)} while {nameof(invokeSetOnRails)} is false.",
+                    gameObject
+                );
                 return;
+            }
+
+            if (removeFromRailsBeforeSetOnRails)
+            {
+                movement.RemoveFromRails();
             }
 
             if (byPoint)

@@ -22,9 +22,6 @@ namespace Rails
         [SerializeField]
         private float currentPosition;
 
-        [SerializeField]
-        private float magnetSpeed = 0.5f;
-
         private Coroutine rideCoroutine;
 
         private void OnValidate()
@@ -39,9 +36,18 @@ namespace Rails
                 body.position = Vector3.Lerp(
                     body.position,
                     curve.GetPointAt(currentPosition),
-                    magnetSpeed * Time.deltaTime
+                    Configs.RailsSettings.Instance.MagnetSpeed * Time.deltaTime
                 );
             }
+        }
+
+        private void OnDrawGizmos()
+        {
+            if (body == null)
+            {
+                return;
+            }
+            Gizmos.DrawLine(curve.GetPointAt(currentPosition), body.position);
         }
 
         [Title("Debug buttons for testing")]
@@ -87,6 +93,7 @@ namespace Rails
         [Button(Style = ButtonStyle.Box)]
         public void MoveBody(float length)
         {
+            Debug.Log($"Len {curve.length} and {length}, current {currentPosition}");
             currentPosition = Mathf.Clamp01(currentPosition + (length / curve.length));
         }
 

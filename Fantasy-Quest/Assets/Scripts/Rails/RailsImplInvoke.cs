@@ -17,25 +17,24 @@ namespace Rails
         [SerializeField]
         private bool byPoints;
 
+        private bool InvokeAndByPoints => invokeRideBody && byPoints;
+        private bool InvokeAndNotByPoints => invokeRideBody && !byPoints;
+
         [Range(0f, 1f)]
-        [HideIf(nameof(byPoints))]
-        [ShowIf(nameof(invokeRideBody))]
+        [ShowIf(nameof(InvokeAndNotByPoints))]
         [SerializeField]
         private float start = 0f;
 
         [Range(0f, 1f)]
-        [HideIf(nameof(byPoints))]
-        [ShowIf(nameof(invokeRideBody))]
+        [ShowIf(nameof(InvokeAndNotByPoints))]
         [SerializeField]
         private float end = 1f;
 
-        [ShowIf(nameof(byPoints))]
-        [ShowIf(nameof(invokeRideBody))]
+        [ShowIf(nameof(InvokeAndByPoints))]
         [SerializeField]
         private Point startPoint;
 
-        [ShowIf(nameof(byPoints))]
-        [ShowIf(nameof(invokeRideBody))]
+        [ShowIf(nameof(InvokeAndByPoints))]
         [SerializeField]
         private Point endPoint;
 
@@ -43,8 +42,9 @@ namespace Rails
         [SerializeField]
         private bool withCurve = false;
 
-        [ShowIf(nameof(invokeRideBody))]
-        [ShowIf(nameof(withCurve))]
+        private bool InvokeAndWithCurve => invokeRideBody && withCurve;
+
+        [ShowIf(nameof(InvokeAndWithCurve))]
         [SerializeField]
         private AnimationCurve curve;
 
@@ -56,6 +56,10 @@ namespace Rails
         {
             if (!invokeRideBody)
             {
+                Debug.LogError(
+                    $"Try to invoke {nameof(RideBodyInvoke)} while {nameof(invokeRideBody)} is false.",
+                    gameObject
+                );
                 return;
             }
 
@@ -73,11 +77,19 @@ namespace Rails
         {
             if (!invokeRideBody)
             {
+                Debug.LogError(
+                    $"Try to invoke {nameof(RideBodyByCurveInvoke)} while {nameof(invokeRideBody)} is false.",
+                    gameObject
+                );
                 return;
             }
 
             if (!withCurve)
             {
+                Debug.LogError(
+                    $"Try to invoke {nameof(RideBodyByCurveInvoke)} while {nameof(withCurve)} is false.",
+                    gameObject
+                );
                 return;
             }
 

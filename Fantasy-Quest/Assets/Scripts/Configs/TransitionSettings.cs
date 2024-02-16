@@ -4,8 +4,7 @@ namespace Configs
 {
     [CreateAssetMenu(
         fileName = "Transition Settings",
-        menuName = "Settings/Create Transition Settings",
-        order = 1
+        menuName = "Settings/Create Transition Settings"
     )]
     internal class TransitionSettings : SingletonScriptableObject<TransitionSettings>
     {

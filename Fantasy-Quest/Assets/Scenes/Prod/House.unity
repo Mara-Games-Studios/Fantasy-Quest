@@ -1408,8 +1408,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 1
   m_ShadowVolumeIntensity: 0.869
   m_LocalBounds:
-    m_Center: {x: -1.79785, y: -5.59585, z: 0}
-    m_Extent: {x: 1.95495, y: 1.8559499, z: 0}
+    m_Center: {x: -1.79385, y: -5.59735, z: 0}
+    m_Extent: {x: 1.95715, y: 1.85985, z: 0}
   m_PointLightInnerAngle: 359.6
   m_PointLightOuterAngle: 359.6
   m_PointLightInnerRadius: 2
@@ -1555,6 +1555,56 @@ PlayableDirector:
     m_References:
     - 566fc46b28e9a7846bc190f38f57ee43: {fileID: 698130716}
     - f236ce61622ed30438c78331d879da47: {fileID: 6732909966977288568}
+--- !u!1 &346837506
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 346837507}
+  - component: {fileID: 346837508}
+  m_Layer: 0
+  m_Name: StartPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &346837507
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 346837506}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 553665277}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &346837508
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 346837506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d4eaf55ad610cd47ae81961aa111151, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rails: {fileID: 553665279}
+  value: 0
+  showPoint: 1
+  step: 1
+  color: {r: 0, g: 0, b: 0, a: 1}
+  radius: 0.2
 --- !u!1 &350709311
 GameObject:
   m_ObjectHideFlags: 0
@@ -1859,8 +1909,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 1
   m_ShadowVolumeIntensity: 0.869
   m_LocalBounds:
-    m_Center: {x: -1.34825, y: -5.5748, z: 0}
-    m_Extent: {x: 1.7687501, y: 1.9117999, z: 0}
+    m_Center: {x: -1.35145, y: -5.57485, z: 0}
+    m_Extent: {x: 1.75915, y: 1.9217501, z: 0}
   m_PointLightInnerAngle: 359.6
   m_PointLightOuterAngle: 359.6
   m_PointLightInnerRadius: 2
@@ -2549,7 +2599,6 @@ GameObject:
   - component: {fileID: 553665277}
   - component: {fileID: 553665278}
   - component: {fileID: 553665279}
-  - component: {fileID: 553665280}
   m_Layer: 0
   m_Name: Bench
   m_TagString: Untagged
@@ -2572,6 +2621,7 @@ Transform:
   m_Children:
   - {fileID: 277815588}
   - {fileID: 1216012594}
+  - {fileID: 346837507}
   m_Father: {fileID: 1642252707}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &553665278
@@ -2610,26 +2660,6 @@ MonoBehaviour:
   curve: {fileID: 553665278}
   body: {fileID: 0}
   currentPosition: 0
-  magnetSpeed: 10
---- !u!114 &553665280
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 553665276}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d4eaf55ad610cd47ae81961aa111151, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rails: {fileID: 553665279}
-  value: 0
-  showPoint: 1
-  step: 1
-  pointName: Point
-  color: {r: 0, g: 0, b: 0, a: 1}
-  radius: 0.2
 --- !u!1 &628632644
 GameObject:
   m_ObjectHideFlags: 0
@@ -3357,8 +3387,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 1
   m_ShadowVolumeIntensity: 0.869
   m_LocalBounds:
-    m_Center: {x: 0.45749998, y: -5.58335, z: 0}
-    m_Extent: {x: 1.467, y: 1.9611499, z: 0}
+    m_Center: {x: 0.4728, y: -5.5832, z: 0}
+    m_Extent: {x: 1.4646, y: 1.9559001, z: 0}
   m_PointLightInnerAngle: 359.6
   m_PointLightOuterAngle: 359.6
   m_PointLightInnerRadius: 2
@@ -4762,6 +4792,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movement: {fileID: 7703565356622517968}
   invokeSetOnRails: 1
+  removeFromRailsBeforeSetOnRails: 1
   byPoint: 1
   railsPoint: {fileID: 1405161617}
   railsImpl: {fileID: 0}
@@ -4780,6 +4811,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movement: {fileID: 7703565356622517968}
   invokeSetOnRails: 1
+  removeFromRailsBeforeSetOnRails: 1
   byPoint: 1
   railsPoint: {fileID: 1634523032}
   railsImpl: {fileID: 0}
@@ -4803,18 +4835,6 @@ MonoBehaviour:
     m_Events:
     - m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1296383450}
-          m_TargetAssemblyTypeName: Cat.MovementInvoke, Assembly-CSharp
-          m_MethodName: InvokeRemoveFromRails
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
         - m_Target: {fileID: 1296383450}
           m_TargetAssemblyTypeName: Cat.MovementInvoke, Assembly-CSharp
           m_MethodName: InvokeSetOnRails
@@ -4841,18 +4861,6 @@ MonoBehaviour:
           m_CallState: 2
     - m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1296383449}
-          m_TargetAssemblyTypeName: Cat.MovementInvoke, Assembly-CSharp
-          m_MethodName: InvokeRemoveFromRails
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
         - m_Target: {fileID: 1296383449}
           m_TargetAssemblyTypeName: Cat.MovementInvoke, Assembly-CSharp
           m_MethodName: InvokeSetOnRails
@@ -4982,7 +4990,6 @@ MonoBehaviour:
   curve: {fileID: 1405161615}
   body: {fileID: 0}
   currentPosition: 0
-  magnetSpeed: 10
 --- !u!114 &1405161617
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4999,7 +5006,6 @@ MonoBehaviour:
   value: 0.264
   showPoint: 1
   step: 1
-  pointName: To jump down
   color: {r: 0, g: 0, b: 0, a: 1}
   radius: 0.2
 --- !u!114 &1419099755
@@ -5927,16 +5933,16 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1479972682491945994, guid: 1e5bd5d801656d5468b3ed2ef398a0d1, type: 3}
       propertyPath: playableDirectors.Array.size
-      value: 4
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1479972682491945994, guid: 1e5bd5d801656d5468b3ed2ef398a0d1, type: 3}
       propertyPath: playableDirectors.Array.data[0]
       value: 
-      objectReference: {fileID: 1269624520}
+      objectReference: {fileID: 324369290}
     - target: {fileID: 1479972682491945994, guid: 1e5bd5d801656d5468b3ed2ef398a0d1, type: 3}
       propertyPath: playableDirectors.Array.data[1]
       value: 
-      objectReference: {fileID: 324369290}
+      objectReference: {fileID: 513049886}
     - target: {fileID: 1479972682491945994, guid: 1e5bd5d801656d5468b3ed2ef398a0d1, type: 3}
       propertyPath: playableDirectors.Array.data[2]
       value: 
@@ -5945,6 +5951,14 @@ PrefabInstance:
       propertyPath: playableDirectors.Array.data[3]
       value: 
       objectReference: {fileID: 681937885}
+    - target: {fileID: 1479972682491945994, guid: 1e5bd5d801656d5468b3ed2ef398a0d1, type: 3}
+      propertyPath: playableDirectors.Array.data[4]
+      value: 
+      objectReference: {fileID: 1098430743}
+    - target: {fileID: 1479972682491945994, guid: 1e5bd5d801656d5468b3ed2ef398a0d1, type: 3}
+      propertyPath: playableDirectors.Array.data[5]
+      value: 
+      objectReference: {fileID: 1269624520}
     - target: {fileID: 2806913378437250307, guid: 1e5bd5d801656d5468b3ed2ef398a0d1, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -6158,7 +6172,6 @@ MonoBehaviour:
   value: 1
   showPoint: 1
   step: 1
-  pointName: EndJumpDownBench
   color: {r: 0, g: 0, b: 0, a: 1}
   radius: 0.2
 --- !u!114 &1634523032
@@ -6177,7 +6190,6 @@ MonoBehaviour:
   value: 0
   showPoint: 1
   step: 1
-  pointName: StartJumpDownBench
   color: {r: 0, g: 0, b: 0, a: 1}
   radius: 0.2
 --- !u!114 &1634523033
@@ -6195,7 +6207,6 @@ MonoBehaviour:
   curve: {fileID: 1634523029}
   body: {fileID: 0}
   currentPosition: 0
-  magnetSpeed: 1000
 --- !u!1 &1642252706
 GameObject:
   m_ObjectHideFlags: 0
@@ -6644,8 +6655,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 1
   m_ShadowVolumeIntensity: 0.869
   m_LocalBounds:
-    m_Center: {x: -2.8943, y: -7.53055, z: 0}
-    m_Extent: {x: 1.9793, y: 1.2716501, z: 0}
+    m_Center: {x: -2.88475, y: -7.52375, z: 0}
+    m_Extent: {x: 1.98315, y: 1.27665, z: 0}
   m_PointLightInnerAngle: 359.6
   m_PointLightOuterAngle: 359.6
   m_PointLightInnerRadius: 2
@@ -7247,8 +7258,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 1
   m_ShadowVolumeIntensity: 0.869
   m_LocalBounds:
-    m_Center: {x: -0.66209996, y: -7.4277997, z: 0}
-    m_Extent: {x: 2.6065998, y: 1.3246999, z: 0}
+    m_Center: {x: -0.6556, y: -7.4375, z: 0}
+    m_Extent: {x: 2.6088, y: 1.3319998, z: 0}
   m_PointLightInnerAngle: 359.6
   m_PointLightOuterAngle: 359.6
   m_PointLightInnerRadius: 2
@@ -7975,10 +7986,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cat
       objectReference: {fileID: 0}
+    - target: {fileID: 5374469698757798622, guid: b226e54f4be684b4f82c70458cacaaab, type: 3}
+      propertyPath: _animationName
+      value: Drink_Milk
+      objectReference: {fileID: 0}
     - target: {fileID: 5384320320187699602, guid: b226e54f4be684b4f82c70458cacaaab, type: 3}
       propertyPath: point
       value: 
-      objectReference: {fileID: 553665280}
+      objectReference: {fileID: 346837508}
+    - target: {fileID: 5384320320187699602, guid: b226e54f4be684b4f82c70458cacaaab, type: 3}
+      propertyPath: speed
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 5604529788810756605, guid: b226e54f4be684b4f82c70458cacaaab, type: 3}
       propertyPath: fadeOutDuration
       value: 0.1
