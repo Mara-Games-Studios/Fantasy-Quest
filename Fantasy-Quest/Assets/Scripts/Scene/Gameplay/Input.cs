@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using UnityEngine.Events;
+﻿using Sirenix.OdinInspector;
+using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace Scene.Gameplay
@@ -7,9 +7,11 @@ namespace Scene.Gameplay
     [AddComponentMenu("Scripts/Scene/Gameplay/Scene.Gameplay.Input")]
     internal class Input : MonoBehaviour
     {
-        private GameplayInput gameplayInputActions;
+        [Required]
+        [SerializeField]
+        private Controller gameplayController;
 
-        public UnityEvent EscPressed;
+        private GameplayInput gameplayInputActions;
 
         private void Awake()
         {
@@ -27,7 +29,7 @@ namespace Scene.Gameplay
         {
             if (gameplayInputActions.UI.Pause.WasPressedThisFrame())
             {
-                EscPressed?.Invoke();
+                gameplayController.OpenSettings();
             }
         }
 
