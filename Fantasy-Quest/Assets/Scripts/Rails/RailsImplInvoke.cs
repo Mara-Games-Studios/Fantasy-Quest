@@ -45,6 +45,7 @@ namespace Rails
 
         [ShowIf(nameof(invokeRideBody))]
         [ShowIf(nameof(withCurve))]
+        [SerializeField]
         private AnimationCurve curve;
 
         [ShowIf(nameof(invokeRideBody))]
