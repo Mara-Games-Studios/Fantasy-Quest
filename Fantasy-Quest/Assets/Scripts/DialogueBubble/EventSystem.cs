@@ -7,7 +7,7 @@ namespace DialogueBubble
     public struct BubbleSettings
     {
         public bool CanShow;
-        public ETypes BubbleType;
+        public Type BubbleType;
         public List<Sprite> Icons;
     }
 

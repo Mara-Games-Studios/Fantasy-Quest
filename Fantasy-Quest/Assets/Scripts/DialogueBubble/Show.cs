@@ -50,10 +50,10 @@ namespace DialogueBubble
             {
                 switch (settings.BubbleType)
                 {
-                    case ETypes.Dialogue:
+                    case Type.Dialogue:
                         bubbleSpriteRenderer.sprite = bubbleSprites[0];
                         break;
-                    case ETypes.Thought:
+                    case Type.Thought:
                         bubbleSpriteRenderer.sprite = bubbleSprites[1];
                         break;
                 }

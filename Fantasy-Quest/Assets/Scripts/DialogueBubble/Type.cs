@@ -1,6 +1,6 @@
 namespace DialogueBubble
 {
-    public enum ETypes
+    public enum Type
     {
         Thought,
         Dialogue,

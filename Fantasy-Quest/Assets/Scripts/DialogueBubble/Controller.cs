@@ -26,14 +26,14 @@ namespace DialogueBubble
         {
             switch (settings.BubbleType)
             {
-                case ETypes.Dialogue:
-                case ETypes.Thought:
+                case Type.Dialogue:
+                case Type.Thought:
                     dialogueBubble.GetComponent<IShowBubble>().SwitchShow(settings);
                     break;
-                case ETypes.OneButton:
+                case Type.OneButton:
                     keyboardHints[0].GetComponent<IShowBubble>().SwitchShow(settings);
                     break;
-                case ETypes.TwoButtons:
+                case Type.TwoButtons:
                     for (int i = 1; i < keyboardHints.Count; i++)
                     {
                         keyboardHints[i].GetComponent<IShowBubble>().SwitchShow(settings);

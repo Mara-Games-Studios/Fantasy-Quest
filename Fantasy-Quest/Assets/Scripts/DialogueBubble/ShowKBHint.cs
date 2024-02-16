@@ -40,10 +40,10 @@ namespace DialogueBubble
                 gameObject.SetActive(true);
                 switch (settings.BubbleType)
                 {
-                    case ETypes.OneButton:
+                    case Type.OneButton:
                         keyboardSpriteRenderer.sprite = settings.Icons[0];
                         break;
-                    case ETypes.TwoButtons:
+                    case Type.TwoButtons:
                         keyboardSpriteRenderer.sprite = settings.Icons[id - 1];
                         break;
                 }

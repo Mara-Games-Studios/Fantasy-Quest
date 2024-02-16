@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Interaction.Item
 {
-    [AddComponentMenu("Scripts/Interaction/Item/Interaction.Item.Bowl")]
+    [AddComponentMenu("Scripts/Interaction/Item/Interaction.Item.HumanCutsceneStarter")]
     internal class HumanCutsceneStarter : MonoBehaviour, IInteractable
     {
         [SerializeField]
