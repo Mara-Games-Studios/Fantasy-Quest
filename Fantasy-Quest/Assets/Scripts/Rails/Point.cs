@@ -65,6 +65,7 @@ namespace Rails
 
             if (rails == null)
             {
+                Debug.LogError("Null rails");
                 return;
             }
 

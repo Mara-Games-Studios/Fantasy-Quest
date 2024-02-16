@@ -49,7 +49,9 @@ namespace Rails
         public void RideBody(float start, float end, float time)
         {
             _ = this.KillCoroutine(rideCoroutine);
-            rideCoroutine = StartCoroutine(RideRoutine(start, end, time));
+            rideCoroutine = StartCoroutine(
+                RideRoutine(start, end, time, AnimationCurve.Linear(0, 0, 1, 1))
+            );
         }
 
         [Button(Style = ButtonStyle.Box)]
@@ -58,12 +60,25 @@ namespace Rails
             RideBody(start.Value, end.Value, time);
         }
 
-        private IEnumerator RideRoutine(float start, float end, float time)
+        [Button(Style = ButtonStyle.Box)]
+        public void RideBodyByCurve(float start, float end, AnimationCurve curve, float time)
+        {
+            _ = this.KillCoroutine(rideCoroutine);
+            rideCoroutine = StartCoroutine(RideRoutine(start, end, time, curve));
+        }
+
+        [Button(Style = ButtonStyle.Box)]
+        public void RideBodyByCurve(Point start, Point end, AnimationCurve curve, float time)
+        {
+            RideBodyByCurve(start.Value, end.Value, curve, time);
+        }
+
+        private IEnumerator RideRoutine(float start, float end, float time, AnimationCurve curve)
         {
             float timer = 0;
             while (timer <= time)
             {
-                currentPosition = Mathf.Lerp(start, end, timer / time);
+                currentPosition = Mathf.Lerp(start, end, curve.Evaluate(timer / time));
                 timer += Time.deltaTime;
                 yield return null;
             }
