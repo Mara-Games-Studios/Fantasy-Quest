@@ -11,9 +11,6 @@ namespace Cat
         [SerializeField]
         private bool isInTrigger = false;
 
-        [SerializeField]
-        private RailsImpl rails;
-
         [Required]
         [SerializeField]
         private Point point;
@@ -32,7 +29,7 @@ namespace Cat
             if (isInTrigger && input.Player.DownJump.WasPressedThisFrame())
             {
                 cat.RemoveFromRails();
-                cat.SetOnRails(rails, point);
+                cat.SetOnRails(point);
                 cat = null;
                 isInTrigger = false;
             }

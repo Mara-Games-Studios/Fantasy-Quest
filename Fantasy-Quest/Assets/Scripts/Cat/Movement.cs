@@ -73,7 +73,7 @@ namespace Cat
         {
             if (bindOnStart)
             {
-                SetOnRails(point.Rails, point);
+                SetOnRails(point);
                 rails = point.Rails;
             }
         }
@@ -115,9 +115,9 @@ namespace Cat
         }
 
         [Button(Style = ButtonStyle.Box)]
-        public void SetOnRails(RailsImpl rails, Point point)
+        public void SetOnRails(Point point)
         {
-            this.rails = rails;
+            rails = point.Rails;
             rails.BindBody(transform, point);
         }
 
