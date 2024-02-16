@@ -44,6 +44,7 @@ namespace Scene.Gameplay
             LockerSettings.Instance.UnlockAll();
             Time.timeScale = 1.0f;
             cutsceneManager.LockFromSettings();
+            cutsceneManager.Resume();
             dialogueManager.Resume();
         }
     }

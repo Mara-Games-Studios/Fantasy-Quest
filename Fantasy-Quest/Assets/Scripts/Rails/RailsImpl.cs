@@ -93,7 +93,6 @@ namespace Rails
         [Button(Style = ButtonStyle.Box)]
         public void MoveBody(float length)
         {
-            Debug.Log($"Len {curve.length} and {length}, current {currentPosition}");
             currentPosition = Mathf.Clamp01(currentPosition + (length / curve.length));
         }
 

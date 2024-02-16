@@ -62,6 +62,7 @@ namespace Cutscene
         {
             yield return new WaitForSeconds(duration);
             blackScreen.FadeOut();
+            dialogueManager.KillCurrentSpeakers();
         }
 
         private void OnDisable()
