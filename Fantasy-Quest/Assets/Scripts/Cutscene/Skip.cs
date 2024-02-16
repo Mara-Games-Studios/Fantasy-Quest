@@ -1,4 +1,5 @@
 using System.Collections;
+using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Playables;
@@ -67,6 +68,14 @@ namespace Cutscene
         {
             playerInput.Disable();
             playerInput.Player.Skip.performed -= SkipCutscene;
+        }
+
+        [Button]
+        private void FindComponents()
+        {
+            dialogueManager = FindAnyObjectByType<Dialogue.Manager>();
+            playableDirector = GetComponent<PlayableDirector>();
+            canvas = FindAnyObjectByType<Canvas>().gameObject;
         }
     }
 }

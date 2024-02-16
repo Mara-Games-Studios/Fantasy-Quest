@@ -4,8 +4,9 @@ using UnityEngine;
 
 namespace Interaction.Item
 {
-    [AddComponentMenu("Scripts/Interaction/Item/Interaction.Item.HumanCutsceneStarter")]
-    internal class HumanCutsceneStarter : MonoBehaviour, IInteractable
+    //After first cutscene played, script switches icon hint and on new interactable button plays new cutscene
+    [AddComponentMenu("Scripts/Interaction/Item/Interaction.Item.CutsceneInteractTransition")]
+    internal class CutsceneInteractTransition : MonoBehaviour, IInteractable
     {
         [Required]
         [SerializeField]
