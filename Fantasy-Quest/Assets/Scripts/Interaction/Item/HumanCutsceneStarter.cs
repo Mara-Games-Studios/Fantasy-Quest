@@ -1,4 +1,5 @@
 using Cutscene;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Interaction.Item
@@ -6,15 +7,19 @@ namespace Interaction.Item
     [AddComponentMenu("Scripts/Interaction/Item/Interaction.Item.HumanCutsceneStarter")]
     internal class HumanCutsceneStarter : MonoBehaviour, IInteractable
     {
+        [Required]
         [SerializeField]
         private Start startCat;
 
+        [Required]
         [SerializeField]
         private Start startHuman;
 
+        [Required]
         [SerializeField]
         private DialogueBubble.Trigger trigger;
 
+        [Required]
         [SerializeField]
         private Sprite newIcon;
 
