@@ -35,7 +35,6 @@ namespace Interaction.Item
             if (canCatInteract)
             {
                 startCat.StartCutscene();
-                Debug.Log("Drink Milk");
                 Destroy(this);
             }
         }

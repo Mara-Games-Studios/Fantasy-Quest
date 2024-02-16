@@ -1,39 +1,43 @@
 using DG.Tweening;
 using UnityEngine;
 
-public class CameraFollow : MonoBehaviour
+namespace Camera
 {
-    [SerializeField]
-    private Transform playerTransform;
-
-    [SerializeField]
-    private float flipTime = 0.5f;
-
-    [SerializeField]
-    private Vector3 shift;
-
-    private bool isRight;
-
-    private void Awake()
+    [AddComponentMenu("Scripts/Camera/Camera.FollowTarget")]
+    public class CameraFollow : MonoBehaviour
     {
-        isRight = false;
-    }
+        [SerializeField]
+        private Transform playerTransform;
 
-    private void Update()
-    {
-        transform.position = playerTransform.position + shift;
-    }
+        [SerializeField]
+        private float flipTime = 0.5f;
 
-    public void CallTurn()
-    {
-        Vector3 vector = transform.rotation.eulerAngles;
-        vector.y = RotateTransform();
-        _ = transform.DORotate(vector, flipTime);
-    }
+        [SerializeField]
+        private Vector3 shift;
 
-    private float RotateTransform()
-    {
-        isRight = !isRight;
-        return isRight ? 180.0f : 0f;
+        private bool isRight;
+
+        private void Awake()
+        {
+            isRight = false;
+        }
+
+        private void Update()
+        {
+            transform.position = playerTransform.position + shift;
+        }
+
+        public void CallTurn()
+        {
+            Vector3 vector = transform.rotation.eulerAngles;
+            vector.y = RotateTransform();
+            _ = transform.DORotate(vector, flipTime);
+        }
+
+        private float RotateTransform()
+        {
+            isRight = !isRight;
+            return isRight ? 180.0f : 0f;
+        }
     }
 }

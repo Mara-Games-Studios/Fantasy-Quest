@@ -1,27 +1,31 @@
 using Cinemachine;
 using UnityEngine;
 
-public class SwitchToFocusCamera : MonoBehaviour
+namespace Camera
 {
-    [SerializeField]
-    private CinemachineVirtualCamera virtualCamera;
-
-    [SerializeField]
-    private int priority = 1000;
-
-    private void OnTriggerEnter2D(Collider2D collision)
+    [AddComponentMenu("Scripts/Camera/Camera.SwitchToFocusCamera")]
+    public class SwitchToFocusCamera : MonoBehaviour
     {
-        if (collision.CompareTag("Player"))
+        [SerializeField]
+        private CinemachineVirtualCamera virtualCamera;
+
+        [SerializeField]
+        private int priority = 1000;
+
+        private void OnTriggerEnter2D(Collider2D collision)
         {
-            virtualCamera.Priority = priority;
+            if (collision.CompareTag("Player"))
+            {
+                virtualCamera.Priority = priority;
+            }
         }
-    }
 
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Player"))
+        private void OnTriggerExit2D(Collider2D collision)
         {
-            virtualCamera.Priority = 1;
+            if (collision.CompareTag("Player"))
+            {
+                virtualCamera.Priority = 1;
+            }
         }
     }
 }

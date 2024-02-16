@@ -19,9 +19,6 @@ namespace Interaction.Item
         private Animator animator;
 
         [SerializeField]
-        private Animator hintAnimator;
-
-        [SerializeField]
         private State state = State.Left;
 
         public void InteractionByCat()
@@ -34,14 +31,12 @@ namespace Interaction.Item
                         Debug.Log("Move To Right");
                         canCatInteract = false;
                         animator.SetTrigger("MoveToRight");
-                        hintAnimator.SetTrigger("ToRight");
                         state = State.Right;
                         break;
                     case State.Right:
                         Debug.Log("Move To Left");
                         canCatInteract = false;
                         animator.SetTrigger("MoveToLeft");
-                        hintAnimator.SetTrigger("ToLeft");
                         state = State.Left;
                         break;
                 }
