@@ -7,29 +7,46 @@ namespace Interaction.Item
     internal class HumanCutsceneStarter : MonoBehaviour, IInteractable
     {
         [SerializeField]
-        private Start start;
+        private Start startCat;
+
+        [SerializeField]
+        private Start startHuman;
 
         [SerializeField]
         private DialogueBubble.Trigger trigger;
 
         [SerializeField]
         private Sprite newIcon;
-        public bool CanCatInteract => true;
+
+        private bool canCatInteract;
+        bool IInteractable.CanCatInteract
+        {
+            get => canCatInteract;
+            set => canCatInteract = value;
+        }
 
         public void InteractionByCat()
         {
-            return;
+            if (canCatInteract)
+            {
+                startCat.StartCutscene();
+                Debug.Log("Drink Milk");
+                Destroy(this);
+            }
         }
 
         public void InteractionByHuman()
         {
-            start.StartCutscene();
-            if (trigger != null)
+            if (!canCatInteract)
             {
-                ChangeShortcutIcon();
-            }
+                startHuman.StartCutscene();
+                if (trigger != null)
+                {
+                    ChangeShortcutIcon();
+                }
 
-            Destroy(this);
+                canCatInteract = true;
+            }
         }
 
         private void ChangeShortcutIcon()
