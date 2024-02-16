@@ -25,11 +25,8 @@ namespace Interaction.Item
         private Sprite newIcon;
 
         private bool canCatInteract;
-        bool IInteractable.CanCatInteract
-        {
-            get => canCatInteract;
-            set => canCatInteract = value;
-        }
+
+        bool IInteractable.CanCatInteract => throw new System.NotImplementedException();
 
         public void InteractionByCat()
         {

@@ -14,11 +14,7 @@ namespace Interaction.Item
 
         [SerializeField]
         private bool canCatInteract;
-        bool IInteractable.CanCatInteract
-        {
-            get => canCatInteract;
-            set => canCatInteract = value;
-        }
+        bool IInteractable.CanCatInteract => canCatInteract;
 
         public void InteractionByCat()
         {
