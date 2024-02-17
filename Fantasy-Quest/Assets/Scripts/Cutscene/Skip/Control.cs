@@ -4,11 +4,11 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Playables;
 
-namespace Cutscene
+namespace Cutscene.Skip
 {
     [RequireComponent(typeof(PlayableDirector))]
-    [AddComponentMenu("Scripts/Cutscene/Cutscene.Skip")]
-    internal class Skip : MonoBehaviour
+    [AddComponentMenu("Scripts/Cutscene/Skip/Cutscene.Skip.Control")]
+    internal class Control : MonoBehaviour
     {
         [SerializeField]
         private Dialogue.Manager dialogueManager;
@@ -20,12 +20,9 @@ namespace Cutscene
         private float endFrame = 0;
 
         [SerializeField]
-        private GameObject canvas;
+        private Creator blackScreenCreator;
 
-        [SerializeField]
-        private CutsceneFade blackScreenPrefab;
-
-        private CutsceneFade blackScreen;
+        private Panel blackScreen;
 
         private GameplayInput playerInput;
 
@@ -44,8 +41,7 @@ namespace Cutscene
         {
             if (playableDirector.state == PlayState.Playing)
             {
-                blackScreen = Instantiate(blackScreenPrefab, canvas.transform)
-                    .GetComponent<CutsceneFade>();
+                blackScreen = blackScreenCreator.Create();
                 blackScreen.SetSkipScript(this);
                 playerInput.Disable();
             }
@@ -76,7 +72,7 @@ namespace Cutscene
         {
             dialogueManager = FindAnyObjectByType<Dialogue.Manager>();
             playableDirector = GetComponent<PlayableDirector>();
-            canvas = FindAnyObjectByType<Canvas>().gameObject;
+            blackScreenCreator = FindAnyObjectByType<Creator>();
         }
     }
 }

@@ -1,17 +1,17 @@
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace Cutscene
+namespace Cutscene.Skip
 {
-    [AddComponentMenu("Scripts/Cutscene/Cutscene.CutsceneFade")]
-    internal class CutsceneFade : MonoBehaviour
+    [AddComponentMenu("Scripts/Cutscene/Skip/Cutscene.Skip.Panel")]
+    internal class Panel : MonoBehaviour
     {
         [SerializeField]
         private Animator animator;
 
         [SerializeField]
         [ReadOnly]
-        private Skip skip;
+        private Control skip;
 
         public void FadeInEndCallback()
         {
@@ -23,7 +23,7 @@ namespace Cutscene
             animator.Play("BlackOut");
         }
 
-        public void SetSkipScript(Skip parentSkip)
+        public void SetSkipScript(Control parentSkip)
         {
             skip = parentSkip;
         }

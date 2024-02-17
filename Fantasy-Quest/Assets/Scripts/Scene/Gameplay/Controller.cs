@@ -1,7 +1,6 @@
 ﻿using Audio;
 using Common;
 using Configs;
-using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Scene.Gameplay
@@ -9,15 +8,12 @@ namespace Scene.Gameplay
     [AddComponentMenu("Scripts/Scene/Gameplay/Scene.Gameplay.Controller")]
     internal class Controller : MonoBehaviour
     {
-        [Required]
         [SerializeField]
         private Input gameplayInput;
 
-        [Required]
         [SerializeField]
         private Cutscene.Manager cutsceneManager;
 
-        [Required]
         [SerializeField]
         private Dialogue.Manager dialogueManager;
 
