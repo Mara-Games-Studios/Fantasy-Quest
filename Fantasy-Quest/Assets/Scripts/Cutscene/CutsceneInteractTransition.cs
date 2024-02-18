@@ -1,11 +1,11 @@
-using Cutscene;
+using Interaction.Item;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace Interaction.Item
+namespace Cutscene
 {
     //After first cutscene played, script switches icon hint and on new interactable button plays new cutscene
-    [AddComponentMenu("Scripts/Interaction/Item/Interaction.Item.CutsceneInteractTransition")]
+    [AddComponentMenu("Scripts/Cutscene/Cutscene.CutsceneInteractTransition")]
     internal class CutsceneInteractTransition : MonoBehaviour, IInteractable
     {
         [Required]

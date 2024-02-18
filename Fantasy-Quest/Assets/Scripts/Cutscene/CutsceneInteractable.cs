@@ -1,11 +1,11 @@
-using Cutscene;
+using Interaction.Item;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace Interaction.Item
+namespace Cutscene
 {
     //Cutscene played depends on canCatInteract condition(Can = E, Can't = 1)
-    [AddComponentMenu("Scripts/Interaction/Item/Interaction.Item.CutsceneInteractable")]
+    [AddComponentMenu("Scripts/Cutscene/Cutscene.CutsceneInteract")]
     internal class CutsceneInteractable : MonoBehaviour, IInteractable
     {
         [Required]
