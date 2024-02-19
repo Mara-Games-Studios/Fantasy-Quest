@@ -23,6 +23,11 @@ namespace Cutscene
             playerInput = new GameplayInput();
         }
 
+        private void OnEnable()
+        {
+            playerInput.Enable();
+        }
+
         private void OnTriggerEnter2D(Collider2D collision)
         {
             if (collision.TryGetComponent<InteractionImpl>(out _))
@@ -57,11 +62,14 @@ namespace Cutscene
             }
         }
 
-        private void StartCutscene(InputAction.CallbackContext context)
+        public void StartCutscene(InputAction.CallbackContext context)
         {
             cutsceneStarter.StartCutscene();
         }
 
-        private void OnDisable() { }
+        private void OnDisable()
+        {
+            playerInput.Disable();
+        }
     }
 }
