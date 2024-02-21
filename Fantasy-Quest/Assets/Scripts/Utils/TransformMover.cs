@@ -79,9 +79,9 @@ namespace Utils
             float timer = time;
             while (timer >= 0)
             {
-                body.position = Vector3.Lerp(body.position, to, curve.Evaluate(timer / time));
+                body.position = Vector3.Lerp(body.position, to, curve.Evaluate(1 - (timer / time)));
                 yield return null;
-                time -= Time.deltaTime;
+                timer -= Time.deltaTime;
             }
             MoveFinished?.Invoke();
         }
