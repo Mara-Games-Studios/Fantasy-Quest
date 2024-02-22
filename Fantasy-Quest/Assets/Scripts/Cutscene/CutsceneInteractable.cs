@@ -21,7 +21,7 @@ namespace Cutscene
             if (canCatInteract)
             {
                 cutsceneStarter.StartCutscene();
-                Destroy(this);
+                gameObject.SetActive(false);
             }
         }
 
@@ -30,7 +30,7 @@ namespace Cutscene
             if (!canCatInteract)
             {
                 cutsceneStarter.StartCutscene();
-                Destroy(this);
+                gameObject.SetActive(false);
             }
         }
     }

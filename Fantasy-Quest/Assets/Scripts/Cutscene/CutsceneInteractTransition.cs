@@ -33,7 +33,7 @@ namespace Cutscene
             if (canCatInteract)
             {
                 startCat.StartCutscene();
-                Destroy(this);
+                gameObject.SetActive(false);
             }
         }
 

@@ -48,14 +48,6 @@ namespace Utils
 
         public UnityEvent MoveFinished;
 
-        private void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.R))
-            {
-                Move();
-            }
-        }
-
         public void Move()
         {
             Vector3 to = mode switch
