@@ -24,7 +24,7 @@ namespace Cutscene
 
         public void LockFromSettings()
         {
-            if (playableDirectors.Any(x => x.state == PlayState.Paused))
+            if (playableDirectors.Any(x => x.state == PlayState.Playing))
             {
                 LockerSettings.Instance.LockAll();
             }

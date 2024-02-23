@@ -9,7 +9,7 @@ namespace DialogueBubble
     public class Trigger : MonoBehaviour
     {
         [SerializeField]
-        private ETypes isEmote = ETypes.Thought;
+        private Type isEmote = Type.Thought;
 
         //Script can be changed for different situation, so different icons cab be used from one trigger
         [SerializeField]

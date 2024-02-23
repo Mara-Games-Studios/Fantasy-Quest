@@ -1,13 +1,12 @@
+using System;
 using DG.Tweening;
 using UnityEngine;
-using UnityEngine.Events;
 
 namespace Configs
 {
     [CreateAssetMenu(
         fileName = "Subtitles Settings",
-        menuName = "Settings/Create Subtitles Settings",
-        order = 3
+        menuName = "Settings/Create Subtitles Settings"
     )]
     internal class SubtitlesSettings : SingletonScriptableObject<SubtitlesSettings>
     {
@@ -23,7 +22,7 @@ namespace Configs
         [SerializeField]
         private bool showSubtitles = true;
 
-        public UnityEvent<bool> OnShowSubtitlesChanged;
+        public event Action<bool> OnShowSubtitlesChanged;
 
         public void SetShowSubtitles(bool value)
         {

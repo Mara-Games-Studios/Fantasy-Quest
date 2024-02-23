@@ -64,7 +64,7 @@ namespace Interaction
             interactableObjects.Speakables.ForEach(speakable => speakable.Speak());
             interactableObjects.Carryables.ForEach(carryable => carryable.CarryByHuman());
             interactableObjects.Interactables.ForEach(interactable =>
-                interactable.InteractionByHuman()
+                interactable.InteractByHuman()
             );
         }
 
@@ -74,9 +74,7 @@ namespace Interaction
 
             interactableObjects.Speakables.ForEach(speakable => speakable.Speak());
             interactableObjects.Carryables.ForEach(carryable => carryable.CarryByCat());
-            interactableObjects.Interactables.ForEach(interactable =>
-                interactable.InteractionByCat()
-            );
+            interactableObjects.Interactables.ForEach(interactable => interactable.InteractByCat());
         }
 
         private InteractableObjects FindInteractableObjects()

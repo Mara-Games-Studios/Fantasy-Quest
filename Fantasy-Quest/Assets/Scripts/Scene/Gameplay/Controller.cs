@@ -1,30 +1,47 @@
 ﻿using Audio;
 using Common;
+using Configs;
 using UnityEngine;
-using UnityEngine.Events;
 
 namespace Scene.Gameplay
 {
     [AddComponentMenu("Scripts/Scene/Gameplay/Scene.Gameplay.Controller")]
     internal class Controller : MonoBehaviour
     {
-        public UnityEvent OnSettingsOpened;
-        public UnityEvent OnSettingsClosed;
+        [SerializeField]
+        private Input gameplayInput;
+
+        [SerializeField]
+        private Cutscene.Manager cutsceneManager;
+
+        [SerializeField]
+        private Dialogue.Manager dialogueManager;
+
+        [SerializeField]
+        private Panel.Settings.Controller settingsController;
 
         // Called by Input Manager or UI buttons
         public void OpenSettings()
         {
-            OnSettingsOpened?.Invoke();
             Time.timeScale = 0.0f;
             ISceneSingleton<MusicManager>.Instance.PauseMusic();
+            gameplayInput.enabled = false;
+            cutsceneManager.Pause();
+            dialogueManager.Pause();
+            settingsController.ShowSettings();
+            LockerSettings.Instance.LockAll();
         }
 
         // Called by Settings controller callback
         public void SettingsClosed()
         {
+            gameplayInput.enabled = true;
             ISceneSingleton<MusicManager>.Instance.ResumeMusic();
+            LockerSettings.Instance.UnlockAll();
             Time.timeScale = 1.0f;
-            OnSettingsClosed?.Invoke();
+            cutsceneManager.LockFromSettings();
+            cutsceneManager.Resume();
+            dialogueManager.Resume();
         }
     }
 }

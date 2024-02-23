@@ -7,7 +7,7 @@ namespace DialogueBubble
     public struct BubbleSettings
     {
         public bool CanShow;
-        public ETypes BubbleType;
+        public Type BubbleType;
         public List<Sprite> Icons;
     }
 
@@ -25,7 +25,6 @@ namespace DialogueBubble
                 Debug.LogError("More than one BubbleEventSystem in scene.");
             }
             Instance = this;
-
             DontDestroyOnLoad(gameObject);
         }
     }

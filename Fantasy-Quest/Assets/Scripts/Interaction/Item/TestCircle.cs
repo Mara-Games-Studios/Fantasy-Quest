@@ -7,12 +7,12 @@ namespace Interaction.Item
     {
         public bool CanCatInteract => true;
 
-        public void InteractionByCat()
+        public void InteractByCat()
         {
             Debug.Log("Cat Interacted");
         }
 
-        public void InteractionByHuman()
+        public void InteractByHuman()
         {
             Debug.Log("Human Interacted");
         }

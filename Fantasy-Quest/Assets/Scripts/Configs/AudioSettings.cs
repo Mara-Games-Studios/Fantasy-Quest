@@ -3,11 +3,7 @@ using UnityEngine.Audio;
 
 namespace Configs
 {
-    [CreateAssetMenu(
-        fileName = "Audio Settings",
-        menuName = "Settings/Create Audio Settings",
-        order = 2
-    )]
+    [CreateAssetMenu(fileName = "Audio Settings", menuName = "Settings/Create Audio Settings")]
     internal class AudioSettings : SingletonScriptableObject<AudioSettings>
     {
         [SerializeField]

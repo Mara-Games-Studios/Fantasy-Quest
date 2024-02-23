@@ -2,13 +2,9 @@ namespace Interaction.Item
 {
     internal interface IInteractable
     {
-        public bool CanCatInteract
-        {
-            set => CanCatInteract = value;
-            get => CanCatInteract;
-        }
+        public bool CanCatInteract { get; }
 
-        public void InteractionByCat();
-        public void InteractionByHuman();
+        public void InteractByCat();
+        public void InteractByHuman();
     }
 }
