@@ -28,7 +28,7 @@ namespace Cutscene
 
         bool IInteractable.CanCatInteract => throw new System.NotImplementedException();
 
-        public void InteractionByCat()
+        public void InteractByCat()
         {
             if (canCatInteract)
             {
@@ -37,7 +37,7 @@ namespace Cutscene
             }
         }
 
-        public void InteractionByHuman()
+        public void InteractByHuman()
         {
             if (!canCatInteract)
             {

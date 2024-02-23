@@ -23,7 +23,7 @@ namespace Interaction.Item
 
         public bool CanCatInteract => canCatInteract;
 
-        public void InteractionByCat()
+        public void InteractByCat()
         {
             if (canCatInteract)
             {
@@ -45,7 +45,7 @@ namespace Interaction.Item
             }
         }
 
-        public void InteractionByHuman()
+        public void InteractByHuman()
         {
             return;
         }

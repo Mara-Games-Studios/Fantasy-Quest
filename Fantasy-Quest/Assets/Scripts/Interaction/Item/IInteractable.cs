@@ -4,7 +4,7 @@ namespace Interaction.Item
     {
         public bool CanCatInteract { get; }
 
-        public void InteractionByCat();
-        public void InteractionByHuman();
+        public void InteractByCat();
+        public void InteractByHuman();
     }
 }

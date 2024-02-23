@@ -16,7 +16,7 @@ namespace Cutscene
         private bool canCatInteract;
         bool IInteractable.CanCatInteract => canCatInteract;
 
-        public void InteractionByCat()
+        public void InteractByCat()
         {
             if (canCatInteract)
             {
@@ -25,7 +25,7 @@ namespace Cutscene
             }
         }
 
-        public void InteractionByHuman()
+        public void InteractByHuman()
         {
             if (!canCatInteract)
             {
