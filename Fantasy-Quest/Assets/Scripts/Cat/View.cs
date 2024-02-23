@@ -32,22 +32,20 @@ namespace Cat
 
         private void StateChanged(State state)
         {
-            switch (state)
+            string animationName = state switch
             {
-                case State.Moving:
-                    if (skeletonAnimation.AnimationName != walkAnimation)
-                    {
-                        skeletonAnimation.AnimationName = walkAnimation;
-                    }
-                    break;
-                case State.Staying:
-                    if (skeletonAnimation.AnimationName != idleAnimation)
-                    {
-                        skeletonAnimation.AnimationName = idleAnimation;
-                    }
-                    break;
-                default:
-                    break;
+                State.Moving => walkAnimation,
+                State.Staying => idleAnimation,
+                _ => throw new System.ArgumentException()
+            };
+            SetAnimation(animationName);
+        }
+
+        private void SetAnimation(string animation)
+        {
+            if (skeletonAnimation.AnimationName != animation)
+            {
+                skeletonAnimation.AnimationName = animation;
             }
         }
     }

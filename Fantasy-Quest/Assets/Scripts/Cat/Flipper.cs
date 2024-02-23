@@ -31,7 +31,7 @@ namespace Cat
 
         [ReadOnly]
         [SerializeField]
-        private bool flipping;
+        private bool isFlipping;
 
         [SerializeField]
         private List<RotationByVector> rotationByVectorsRaw;
@@ -40,7 +40,7 @@ namespace Cat
 
         private void VectorChanged(Vector vector)
         {
-            if (toFlip != vector && !flipping)
+            if (toFlip != vector && !isFlipping)
             {
                 StartFlipping(vector);
             }
@@ -49,7 +49,7 @@ namespace Cat
 
         private void StartFlipping(Vector vector)
         {
-            flipping = true;
+            isFlipping = true;
             TweenerCore<Quaternion, Vector3, QuaternionOptions> rotation = transform.DORotate(
                 RotationByVectors[vector],
                 flipTime
@@ -59,7 +59,7 @@ namespace Cat
 
         private void EndFlipping(Vector flippedTo)
         {
-            flipping = false;
+            isFlipping = false;
             if (toFlip != flippedTo)
             {
                 StartFlipping(toFlip);

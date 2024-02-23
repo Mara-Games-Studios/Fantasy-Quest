@@ -40,10 +40,10 @@ namespace Utils
         private float time;
 
         [SerializeField]
-        private bool useCurve = false;
+        private bool isUsingCurve = false;
 
         [SerializeField]
-        [ShowIf(nameof(useCurve))]
+        [ShowIf(nameof(isUsingCurve))]
         private AnimationCurve curve;
 
         public UnityEvent MoveFinished;
@@ -57,7 +57,7 @@ namespace Utils
                 Mode.Vector3 => finalPositionV3,
                 _ => throw new System.ArgumentException()
             };
-            AnimationCurve tempCurve = useCurve ? curve : AnimationCurve.Linear(0, 0, 1, 1);
+            AnimationCurve tempCurve = isUsingCurve ? curve : AnimationCurve.Linear(0, 0, 1, 1);
             _ = StartCoroutine(MoveRoutine(movingBody, to, time, tempCurve));
         }
 
