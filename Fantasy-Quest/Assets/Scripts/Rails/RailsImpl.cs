@@ -1,18 +1,19 @@
 using System.Collections;
 using Common;
+using PathCreation;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Rails
 {
-    [RequireComponent(typeof(BezierCurve))]
+    [RequireComponent(typeof(PathCreator))]
     [AddComponentMenu("Scripts/Scripts/Rails/Rails")]
     internal class RailsImpl : MonoBehaviour
     {
         [ReadOnly]
         [SerializeField]
-        private BezierCurve curve;
-        public BezierCurve Curve => curve;
+        private PathCreator pathCreator;
+        public VertexPath Path => pathCreator.path;
 
         [ReadOnly]
         [SerializeField]
@@ -26,7 +27,7 @@ namespace Rails
 
         private void OnValidate()
         {
-            curve = GetComponent<BezierCurve>();
+            pathCreator = GetComponent<PathCreator>();
         }
 
         private void Update()
@@ -35,7 +36,7 @@ namespace Rails
             {
                 body.position = Vector3.Lerp(
                     body.position,
-                    curve.GetPointAt(currentPosition),
+                    Path.GetPointAtTime(currentPosition),
                     Configs.RailsSettings.Instance.MagnetSpeed * Time.deltaTime
                 );
             }
@@ -47,7 +48,7 @@ namespace Rails
             {
                 return;
             }
-            Gizmos.DrawLine(curve.GetPointAt(currentPosition), body.position);
+            Gizmos.DrawLine(Path.GetPointAtTime(currentPosition), body.position);
         }
 
         [Title("Debug buttons for testing")]
@@ -93,7 +94,9 @@ namespace Rails
         [Button(Style = ButtonStyle.Box)]
         public void MoveBody(float length)
         {
-            currentPosition = Mathf.Clamp01(currentPosition + (length / curve.length));
+            currentPosition = MathfTools.Clamp01UpperExclusive(
+                currentPosition + (length / Path.length)
+            );
         }
 
         [Button(Style = ButtonStyle.Box)]

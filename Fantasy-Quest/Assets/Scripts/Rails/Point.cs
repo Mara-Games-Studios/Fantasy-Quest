@@ -1,4 +1,5 @@
-﻿using Sirenix.OdinInspector;
+﻿using Common;
+using Sirenix.OdinInspector;
 using UnityEngine;
 #if UNITY_EDITOR
 using UnityEditor;
@@ -15,7 +16,7 @@ namespace Rails
         private RailsImpl rails;
         public RailsImpl Rails => rails;
 
-        [Range(0f, 1f)]
+        [Range(0f, 0.99999f)]
         [SerializeField]
         private float value;
         public float Value => value;
@@ -37,13 +38,13 @@ namespace Rails
         [Button]
         public void MoveRight()
         {
-            value = Mathf.Clamp01(value + (step / rails.Curve.length));
+            value = MathfTools.Clamp01UpperExclusive(value + (step / rails.Path.length));
         }
 
         [Button]
         public void MoveLeft()
         {
-            value = Mathf.Clamp01(value - (step / rails.Curve.length));
+            value = MathfTools.Clamp01UpperExclusive(value - (step / rails.Path.length));
         }
 
 #if UNITY_EDITOR
@@ -62,7 +63,7 @@ namespace Rails
 
             Color tempColor = Handles.color;
             Handles.color = color;
-            transform.position = rails.Curve.GetPointAt(value);
+            transform.position = rails.Path.GetPointAtTime(value);
             Vector3 center = transform.position;
             Handles.DrawSolidDisc(center, Vector3.forward, radius);
             GUIStyle style = new() { fontSize = 12 };
