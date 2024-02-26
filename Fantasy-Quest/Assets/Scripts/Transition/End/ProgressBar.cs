@@ -21,7 +21,7 @@ namespace Transition.End
 
         public void SetProgress(float progress)
         {
-            mask.sizeDelta = new Vector2(progress * maxWidth, mask.sizeDelta.y);
+            mask.sizeDelta = new Vector2(Mathf.Clamp01(progress) * maxWidth, mask.sizeDelta.y);
         }
     }
 }
