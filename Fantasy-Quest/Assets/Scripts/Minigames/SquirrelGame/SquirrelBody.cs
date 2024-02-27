@@ -5,11 +5,11 @@ namespace Minigames.SquirrelGame
     [AddComponentMenu("Scripts/Minigames/SquirrelGame/Minigames.SquirrelGame.SquirrelBody")]
     internal class SquirrelBody : MonoBehaviour
     {
-        private void OnTriggerEnter2D(Collider2D collision)
+        private void OnTriggerEnter2D(Collider2D collider)
         {
-            if (collision.TryGetComponent(out Pat pat))
+            if (collider.TryGetComponent(out Paw paw))
             {
-                pat.SquirrelTouch();
+                paw.SquirrelTouch();
             }
         }
     }

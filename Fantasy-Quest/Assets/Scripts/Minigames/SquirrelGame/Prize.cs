@@ -6,7 +6,7 @@ namespace Minigames.SquirrelGame
     [AddComponentMenu("Scripts/Minigames/SquirrelGame/Minigames.SquirrelGame.Prize")]
     internal class Prize : MonoBehaviour
     {
-        private Pat pat = null;
+        private Paw paw = null;
         private Transform target = null;
         private SqirrelGame input;
 
@@ -28,10 +28,10 @@ namespace Minigames.SquirrelGame
 
         private void GrabPerformed(InputAction.CallbackContext context)
         {
-            if (pat != null && !pat.IsPrizeGrabbed)
+            if (paw != null && !paw.IsPrizeGrabbed)
             {
-                pat.IsPrizeGrabbed = true;
-                BindToTransform(pat.transform);
+                paw.IsPrizeGrabbed = true;
+                BindToTransform(paw.transform);
             }
         }
 
@@ -50,17 +50,17 @@ namespace Minigames.SquirrelGame
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            if (collision.TryGetComponent(out Pat pat))
+            if (collision.TryGetComponent(out Paw paw))
             {
-                this.pat = pat;
+                this.paw = paw;
             }
         }
 
         private void OnTriggerExit2D(Collider2D collision)
         {
-            if (collision.TryGetComponent(out Pat _))
+            if (collision.TryGetComponent(out Paw _))
             {
-                pat = null;
+                paw = null;
             }
         }
     }

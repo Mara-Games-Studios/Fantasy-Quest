@@ -7,9 +7,9 @@ namespace Minigames.SquirrelGame
     {
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            if (collision.TryGetComponent(out Pat pat))
+            if (collision.TryGetComponent(out Paw paw))
             {
-                pat.ExitReached();
+                paw.ExitReached();
             }
         }
     }

@@ -3,12 +3,13 @@ using UnityEngine;
 
 namespace Minigames.SquirrelGame
 {
-    [AddComponentMenu("Scripts/Minigames/SquirrelGame/Minigames.SquirrelGame.Pat")]
-    internal class Pat : MonoBehaviour
+    [AddComponentMenu("Scripts/Minigames/SquirrelGame/Minigames.SquirrelGame.Paw")]
+    internal class Paw : MonoBehaviour
     {
         [SerializeField]
         private StatusPanel statusPanel;
 
+        [Required]
         [SerializeField]
         private Rigidbody2D rigidBody;
 
