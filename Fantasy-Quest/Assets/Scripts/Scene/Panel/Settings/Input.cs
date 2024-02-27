@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 
 namespace Panel.Settings
 {
-    [AddComponentMenu("Scripts/Scripts/Panel/Settings/Panel.Settings.Input")]
+    [AddComponentMenu("Scripts/Panel/Settings/Panel.Settings.Input")]
     internal class Input : MonoBehaviour
     {
         [SerializeField]

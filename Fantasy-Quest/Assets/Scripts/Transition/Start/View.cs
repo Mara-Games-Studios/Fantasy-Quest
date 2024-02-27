@@ -3,7 +3,7 @@ using UnityEngine.Events;
 
 namespace Transition.Start
 {
-    [AddComponentMenu("Scripts/Scripts/Transitions/Start/Transitions.Start.View")]
+    [AddComponentMenu("Scripts/Transitions/Start/Transitions.Start.View")]
     internal class View : MonoBehaviour
     {
         public UnityEvent FadeEndCallback;

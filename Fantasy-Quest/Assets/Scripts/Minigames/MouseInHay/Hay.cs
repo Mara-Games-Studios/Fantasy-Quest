@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Minigames.MouseInHay
 {
-    [AddComponentMenu("Scripts/Scripts/Minigames/MouseInHay/Minigames.MouseInHay.Hay")]
+    [AddComponentMenu("Scripts/Minigames/MouseInHay/Minigames.MouseInHay.Hay")]
     internal class Hay : MonoBehaviour
     {
         [ReadOnly]

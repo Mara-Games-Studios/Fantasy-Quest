@@ -1,5 +1,4 @@
 ﻿using Common;
-using Configs;
 using UnityEngine;
 
 namespace StartScene
@@ -20,7 +19,7 @@ namespace StartScene
         // Must be called by view (button) callback
         public void PlayGame()
         {
-            endTransition.LoadScene(nextScene, TransitionSettings.Instance.MinLoadingDuration);
+            endTransition.LoadScene(nextScene);
         }
 
         // Must be called by view (button) callback

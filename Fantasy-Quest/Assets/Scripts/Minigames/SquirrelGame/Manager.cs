@@ -50,7 +50,7 @@ namespace Minigames.SquirrelGame
         public void ExitMinigame()
         {
             _ = StartCoroutine(
-                WaitRoutine(statusPanelShowDuration, () => endController.LoadScene(exitScene, 1f))
+                WaitRoutine(statusPanelShowDuration, () => endController.LoadScene(exitScene))
             );
         }
 

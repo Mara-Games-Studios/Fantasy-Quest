@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Minigames.SquirrelGame
 {
-    [AddComponentMenu("Scripts/Scripts/Minigames/SquirrelGame/Minigames.SquirrelGame.StatusPanel")]
+    [AddComponentMenu("Scripts/Minigames/SquirrelGame/Minigames.SquirrelGame.StatusPanel")]
     internal class StatusPanel : MonoBehaviour
     {
         public enum State

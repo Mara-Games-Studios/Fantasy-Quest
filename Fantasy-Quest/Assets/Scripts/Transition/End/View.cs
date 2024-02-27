@@ -3,7 +3,7 @@ using UnityEngine.Events;
 
 namespace Transition.End
 {
-    [AddComponentMenu("Scripts/Scripts/Transitions/End/Transitions.End.View")]
+    [AddComponentMenu("Scripts/Transitions/End/Transitions.End.View")]
     internal class View : MonoBehaviour
     {
         public UnityEvent AppearanceEndCallback;

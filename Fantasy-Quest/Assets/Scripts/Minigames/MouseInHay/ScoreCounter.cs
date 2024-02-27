@@ -41,7 +41,7 @@ namespace Minigames.MouseInHay
 
         private void WinGame()
         {
-            endController.LoadScene(nextScene, 1f);
+            endController.LoadScene(nextScene);
         }
     }
 }
