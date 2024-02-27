@@ -14,7 +14,6 @@ namespace Cutscene
 
         [SerializeField]
         private bool canCatInteract;
-        bool IInteractable.CanCatInteract => canCatInteract;
 
         public void InteractByCat()
         {
