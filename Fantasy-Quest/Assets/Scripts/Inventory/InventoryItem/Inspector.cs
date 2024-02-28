@@ -3,7 +3,7 @@
 using System;
 using Sirenix.OdinInspector;
 
-namespace Item
+namespace Inventory
 {
     internal partial class ItemImpl
     {

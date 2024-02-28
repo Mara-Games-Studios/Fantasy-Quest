@@ -1,9 +1,9 @@
 ﻿using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace Item
+namespace Inventory
 {
-    [AddComponentMenu("Scripts/Scripts/Item/Item")]
+    [AddComponentMenu("Scripts/Inventory/InventoryItem/Inventory.InventoryItem.ItemImpl")]
     internal partial class ItemImpl : MonoBehaviour
     {
         [ReadOnly]

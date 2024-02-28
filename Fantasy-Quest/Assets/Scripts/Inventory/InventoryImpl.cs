@@ -2,7 +2,6 @@
 using System.Collections.Specialized;
 using System.Linq;
 using Common;
-using Item;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -36,6 +35,7 @@ namespace Inventory
             else
             {
                 items.Add(newItem);
+                Debug.Log("Added item '" + newItem.ItemName + "' to inventory");
                 return new SuccessResult();
             }
         }
