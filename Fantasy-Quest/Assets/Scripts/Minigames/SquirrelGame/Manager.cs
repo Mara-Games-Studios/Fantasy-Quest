@@ -22,11 +22,11 @@ namespace Minigames.SquirrelGame
         [SerializeField]
         private StatusPanel statusPanel;
 
-        private SqirrelGame input;
+        private SquirrelGameInput input;
 
         private void Awake()
         {
-            input = new SqirrelGame();
+            input = new SquirrelGameInput();
         }
 
         private void ExitPerformed(InputAction.CallbackContext context)
@@ -57,7 +57,7 @@ namespace Minigames.SquirrelGame
         private IEnumerator WaitRoutine(float time, Action action)
         {
             yield return new WaitForSeconds(time);
-            action();
+            action?.Invoke();
         }
     }
 }

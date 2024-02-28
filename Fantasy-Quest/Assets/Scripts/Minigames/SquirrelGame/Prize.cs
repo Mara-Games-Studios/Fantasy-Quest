@@ -8,11 +8,11 @@ namespace Minigames.SquirrelGame
     {
         private Paw paw = null;
         private Transform target = null;
-        private SqirrelGame input;
+        private SquirrelGameInput input;
 
         private void Awake()
         {
-            input = new SqirrelGame();
+            input = new SquirrelGameInput();
             input.Player.Grab.performed += GrabPerformed;
         }
 

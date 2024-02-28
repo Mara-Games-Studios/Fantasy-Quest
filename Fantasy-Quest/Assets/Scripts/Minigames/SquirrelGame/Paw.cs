@@ -32,11 +32,11 @@ namespace Minigames.SquirrelGame
         [SerializeField]
         private ContactFilter2D contactFilter;
 
-        private SqirrelGame input;
+        private SquirrelGameInput input;
 
         private void Awake()
         {
-            input = new SqirrelGame();
+            input = new SquirrelGameInput();
         }
 
         private void OnEnable()
