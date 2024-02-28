@@ -9,7 +9,7 @@ namespace Minigames.AltarGame
     internal class Altar : MonoBehaviour
     {
         [SerializeField]
-        private Hand hand;
+        private Manager manager;
 
         [SerializeField]
         private Animator animator;
@@ -25,7 +25,7 @@ namespace Minigames.AltarGame
         // Must be called by animation clip
         public void AltarTurnedOnEnd()
         {
-            hand.TellWinAndQuit();
+            manager.TellWinAndQuit();
         }
 
         public IEnumerable<Slot> GetFreeSlots()

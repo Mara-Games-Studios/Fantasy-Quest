@@ -311,12 +311,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 92746894}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -6.78, y: -3.4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 880997072}
+  m_Father: {fileID: 198813279}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &92746896
 MonoBehaviour:
@@ -462,6 +462,54 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &198813278
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 198813279}
+  - component: {fileID: 198813280}
+  m_Layer: 0
+  m_Name: Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &198813279
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 198813278}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 92746895}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &198813280
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 198813278}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8cae761abc4837418a1bf7edabd1103, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  endController: {fileID: 1087139981}
+  nextScene: Assets/Scenes/Prod/Minigames/Altar.unity
+  winSpeech: {fileID: 92746896}
 --- !u!1 &400055866
 GameObject:
   m_ObjectHideFlags: 0
@@ -1497,6 +1545,7 @@ GameObject:
   m_Component:
   - component: {fileID: 880997072}
   - component: {fileID: 880997073}
+  - component: {fileID: 880997077}
   - component: {fileID: 880997074}
   - component: {fileID: 880997076}
   m_Layer: 0
@@ -1522,7 +1571,6 @@ Transform:
   - {fileID: 1973610986}
   - {fileID: 58880915}
   - {fileID: 2049182631}
-  - {fileID: 92746895}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &880997073
@@ -1534,7 +1582,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 880997071}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4fa8adae9f17d247b9e18654edb1500, type: 3}
+  m_Script: {fileID: 11500000, guid: e90685d9b3b8255498aadd59e7d78c50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   itemsToCreate:
@@ -1542,9 +1590,8 @@ MonoBehaviour:
   - {fileID: 8840805510623124010, guid: b2efd9cd134aa964eaa6f861f0f387b0, type: 3}
   - {fileID: 1462475293057918389, guid: d8e103b947ff81947b15e4e7fceaae0e, type: 3}
   altar: {fileID: 1760148676}
+  manager: {fileID: 198813280}
   animator: {fileID: 880997076}
-  endController: {fileID: 1087139981}
-  nextScene: Assets/Scenes/Prod/Minigames/Altar.unity
   takeItemPoint:
     Point: {fileID: 873071220}
     Duration: 2
@@ -1555,7 +1602,6 @@ MonoBehaviour:
     Duration: 2
   firstMoveSpeech: {fileID: 58880916}
   wrongPlacingSpeech: {fileID: 2049182632}
-  winSpeech: {fileID: 92746896}
   isChoosing: 0
   holdingItem: {fileID: 0}
   chosenSlot: {fileID: 0}
@@ -1677,6 +1723,19 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &880997077
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 880997071}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b53535810914f6c45925a42a6d37f66a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hand: {fileID: 880997073}
 --- !u!114 &1004678967 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8797315435415026358, guid: 79ebc9a83d0721c48a620c4536eef5a9, type: 3}
@@ -1947,7 +2006,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2ff59562917ed4489f7d29b72a43d1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hand: {fileID: 880997073}
+  manager: {fileID: 198813280}
   animator: {fileID: 1760148677}
   slots:
   - {fileID: 1150939185}
@@ -2218,3 +2277,4 @@ SceneRoots:
   - {fileID: 873071220}
   - {fileID: 142276254}
   - {fileID: 689409042}
+  - {fileID: 198813279}

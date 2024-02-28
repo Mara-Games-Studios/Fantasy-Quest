@@ -2,19 +2,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Common;
 using DG.Tweening;
-using DG.Tweening.Core;
-using DG.Tweening.Plugins.Options;
 using Dialogue;
 using Sirenix.OdinInspector;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
-namespace Minigames.AltarGame
+namespace Minigames.AltarGame.Hand
 {
     [AddComponentMenu("Scripts/Minigames/AltarGame/Minigames.AltarGame.Hand")]
-    internal class Hand : MonoBehaviour
+    internal class HandImpl : MonoBehaviour
     {
         [Serializable]
         private struct PointToMove
@@ -33,14 +29,10 @@ namespace Minigames.AltarGame
         private Altar altar;
 
         [SerializeField]
+        private Manager manager;
+
+        [SerializeField]
         private Animator animator;
-
-        [SerializeField]
-        private Transition.End.Controller endController;
-
-        [Scene]
-        [SerializeField]
-        private string nextScene;
 
         [SerializeField]
         private PointToMove takeItemPoint;
@@ -59,9 +51,6 @@ namespace Minigames.AltarGame
 
         [SerializeField]
         private ChainSpeaker wrongPlacingSpeech;
-
-        [SerializeField]
-        private ChainSpeaker winSpeech;
 
         [ReadOnly]
         [SerializeField]
@@ -83,14 +72,6 @@ namespace Minigames.AltarGame
         [SerializeField]
         private bool isFirstMove = true;
         private Coroutine waitingForDecide;
-        private AltarGameInput input;
-
-        private void Awake()
-        {
-            input = new();
-            input.Player.Agree.performed += AgreePerformed;
-            input.Player.Disagree.performed += DisagreePerformed;
-        }
 
         private void Start()
         {
@@ -99,19 +80,18 @@ namespace Minigames.AltarGame
 
         private void TakeItem()
         {
-            TweenerCore<Vector3, Vector3, VectorOptions> moveTween = transform.DOMove(
-                takeItemPoint.Position,
-                takeItemPoint.Duration
-            );
-            moveTween.onComplete += () =>
-            {
-                Item item = itemsToCreate[UnityEngine.Random.Range(0, itemsToCreate.Count)];
-                _ = itemsToCreate.Remove(item);
-                Item created = Instantiate(item, transform);
-                created.transform.position += Vector3.back;
-                holdingItem = created;
-                StartPlaceItem();
-            };
+            Tween moveTween = transform.DOMove(takeItemPoint.Position, takeItemPoint.Duration);
+            moveTween.onComplete += CreateItem;
+        }
+
+        private void CreateItem()
+        {
+            Item item = itemsToCreate[UnityEngine.Random.Range(0, itemsToCreate.Count)];
+            _ = itemsToCreate.Remove(item);
+            Item created = Instantiate(item, transform);
+            created.transform.position += Vector3.back;
+            holdingItem = created;
+            StartPlaceItem();
         }
 
         private void StartPlaceItem()
@@ -122,15 +102,15 @@ namespace Minigames.AltarGame
                 Debug.LogError("No slots in created query");
                 return;
             }
-            MoveToNextPlace();
+            MoveToNextSlot();
         }
 
-        private void MoveToNextPlace()
+        private void MoveToNextSlot()
         {
             if (query.Any())
             {
                 chosenSlot = query.Dequeue();
-                TweenerCore<Vector3, Vector3, VectorOptions> moveTween = transform.DOMove(
+                Tween moveTween = transform.DOMove(
                     chosenSlot.transform.position,
                     moveToSlotDuration
                 );
@@ -162,12 +142,6 @@ namespace Minigames.AltarGame
             PlaceItemInSlot();
         }
 
-        private void MoveToNextSlot()
-        {
-            isChoosing = false;
-            MoveToNextPlace();
-        }
-
         private void PlaceItemInSlot()
         {
             isChoosing = false;
@@ -184,10 +158,7 @@ namespace Minigames.AltarGame
             }
             else
             {
-                TweenerCore<Vector3, Vector3, VectorOptions> moveTween = transform.DOMove(
-                    endGamePoint.Position,
-                    endGamePoint.Duration
-                );
+                Tween moveTween = transform.DOMove(endGamePoint.Position, endGamePoint.Duration);
                 moveTween.onComplete += EndPointReached;
             }
         }
@@ -200,24 +171,11 @@ namespace Minigames.AltarGame
             }
             else
             {
-                wrongPlacingSpeech.Tell(() => QuitMiniGame());
+                wrongPlacingSpeech.Tell(() => manager.QuitMiniGame());
             }
         }
 
-        public void TellWinAndQuit()
-        {
-            winSpeech.Tell(() => QuitMiniGame());
-        }
-
-        private void QuitMiniGame()
-        {
-            endController.LoadScene(
-                nextScene,
-                Configs.TransitionSettings.Instance.MinLoadingDuration
-            );
-        }
-
-        private void DisagreePerformed(InputAction.CallbackContext context)
+        public void ChooseDisagree()
         {
             if (!isChoosing)
             {
@@ -225,10 +183,11 @@ namespace Minigames.AltarGame
             }
 
             StopCoroutine(waitingForDecide);
+            isChoosing = false;
             MoveToNextSlot();
         }
 
-        private void AgreePerformed(InputAction.CallbackContext context)
+        public void ChooseAgree()
         {
             if (!isChoosing)
             {
@@ -237,16 +196,6 @@ namespace Minigames.AltarGame
 
             StopCoroutine(waitingForDecide);
             PlaceItemInSlot();
-        }
-
-        private void OnEnable()
-        {
-            input.Enable();
-        }
-
-        private void OnDisable()
-        {
-            input.Disable();
         }
     }
 }

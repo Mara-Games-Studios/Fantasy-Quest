@@ -16,8 +16,8 @@ namespace Configs
         public float SymbolTimeSpeed => timeSpeedForASymbol;
 
         [SerializeField]
-        private bool showSubtitles = true;
-        public bool ShowSubtitles => showSubtitles;
+        private bool isSubtitlesShowing = true;
+        public bool IsSubtitlesShowing => isSubtitlesShowing;
 
         public event Action<bool> OnShowSubtitlesChanged;
 
@@ -28,8 +28,8 @@ namespace Configs
 
         public void SetShowSubtitles(bool value)
         {
-            showSubtitles = value;
-            OnShowSubtitlesChanged?.Invoke(showSubtitles);
+            isSubtitlesShowing = value;
+            OnShowSubtitlesChanged?.Invoke(isSubtitlesShowing);
         }
     }
 }

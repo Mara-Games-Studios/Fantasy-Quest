@@ -46,16 +46,11 @@ namespace Subtitles
 
         private void DoFade(float endAlpha)
         {
-            if (!SubtitlesSettings.Instance.ShowSubtitles)
+            if (!SubtitlesSettings.Instance.IsSubtitlesShowing)
             {
                 return;
             }
-            fadeTween = DOTween.ToAlpha(
-                () => outputTmpText.color,
-                (x) => outputTmpText.color = x,
-                endAlpha,
-                SubtitlesSettings.Instance.TextFadeDuration
-            );
+            fadeTween = outputTmpText.DOFade(endAlpha, SubtitlesSettings.Instance.TextFadeDuration);
         }
     }
 }
