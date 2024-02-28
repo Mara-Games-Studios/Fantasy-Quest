@@ -24,7 +24,7 @@ namespace CameraShake
             this.sourcePosition = sourcePosition;
             pars = parameters;
             Displacement rnd = Displacement.InsideUnitSpheres();
-            direction = Displacement.Scale(rnd, pars.axesMultiplier).Normalized;
+            direction = Displacement.Scale(rnd, pars.AxesMultiplier).Normalized;
         }
 
         /// <summary>
@@ -41,7 +41,7 @@ namespace CameraShake
         {
             this.sourcePosition = sourcePosition;
             pars = parameters;
-            direction = Displacement.Scale(initialDirection, pars.axesMultiplier).Normalized;
+            direction = Displacement.Scale(initialDirection, pars.AxesMultiplier).Normalized;
         }
 
         public Displacement CurrentDisplacement { get; private set; }
@@ -52,17 +52,17 @@ namespace CameraShake
             attenuation =
                 sourcePosition == null
                     ? 1
-                    : Attenuator.Strength(pars.attenuation, sourcePosition.Value, cameraPosition);
+                    : Attenuator.Strength(pars.Attenuation, sourcePosition.Value, cameraPosition);
             currentWaypoint =
-                attenuation * direction.ScaledBy(pars.positionStrength, pars.rotationStrength);
+                attenuation * direction.ScaledBy(pars.PositionStrength, pars.RotationStrength);
         }
 
         public void Update(float deltaTime, Vector3 cameraPosition, Quaternion cameraRotation)
         {
             if (t < 1)
             {
-                t += deltaTime * pars.freq;
-                if (pars.freq == 0)
+                t += deltaTime * pars.Frequency;
+                if (pars.Frequency == 0)
                 {
                     t = 1;
                 }
@@ -79,7 +79,7 @@ namespace CameraShake
                 CurrentDisplacement = currentWaypoint;
                 previousWaypoint = currentWaypoint;
                 bounceIndex++;
-                if (bounceIndex > pars.numBounces)
+                if (bounceIndex > pars.NumberOfBounces)
                 {
                     IsFinished = true;
                     return;
@@ -88,14 +88,14 @@ namespace CameraShake
                 Displacement rnd = Displacement.InsideUnitSpheres();
                 direction =
                     -direction
-                    + (pars.randomness * Displacement.Scale(rnd, pars.axesMultiplier).Normalized);
+                    + (pars.Randomness * Displacement.Scale(rnd, pars.AxesMultiplier).Normalized);
                 direction = direction.Normalized;
-                float decayValue = 1 - ((float)bounceIndex / pars.numBounces);
+                float decayValue = 1 - ((float)bounceIndex / pars.NumberOfBounces);
                 currentWaypoint =
                     decayValue
                     * decayValue
                     * attenuation
-                    * direction.ScaledBy(pars.positionStrength, pars.rotationStrength);
+                    * direction.ScaledBy(pars.PositionStrength, pars.RotationStrength);
             }
         }
 
@@ -106,44 +106,44 @@ namespace CameraShake
             /// Strength of the shake for positional axes.
             /// </summary>
             [Tooltip("Strength of the shake for positional axes.")]
-            public float positionStrength = 0.05f;
+            public float PositionStrength = 0.05f;
 
             /// <summary>
             /// Strength of the shake for rotational axes.
             /// </summary>
             [Tooltip("Strength of the shake for rotational axes.")]
-            public float rotationStrength = 0.1f;
+            public float RotationStrength = 0.1f;
 
             /// <summary>
             /// Preferred direction of shaking.
             /// </summary>
             [Tooltip("Preferred direction of shaking.")]
-            public Displacement axesMultiplier = new(Vector2.one, Vector3.forward);
+            public Displacement AxesMultiplier = new(Vector2.one, Vector3.forward);
 
             /// <summary>
             /// Frequency of shaking.
             /// </summary>
             [Tooltip("Frequency of shaking.")]
-            public float freq = 25;
+            public float Frequency = 25;
 
             /// <summary>
             /// Number of vibrations before stop.
             /// </summary>
             [Tooltip("Number of vibrations before stop.")]
-            public int numBounces = 5;
+            public int NumberOfBounces = 5;
 
             /// <summary>
             /// Randomness of motion.
             /// </summary>
             [Range(0, 1)]
             [Tooltip("Randomness of motion.")]
-            public float randomness = 0.5f;
+            public float Randomness = 0.5f;
 
             /// <summary>
             /// How strength falls with distance from the shake source.
             /// </summary>
             [Tooltip("How strength falls with distance from the shake source.")]
-            public Attenuator.StrengthAttenuationParams attenuation;
+            public Attenuator.StrengthAttenuationParams Attenuation;
         }
     }
 }

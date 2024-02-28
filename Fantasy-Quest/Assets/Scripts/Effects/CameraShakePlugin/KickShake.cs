@@ -52,13 +52,13 @@ namespace CameraShake
                 if (attenuateStrength)
                 {
                     direction *= Attenuator.Strength(
-                        pars.attenuation,
+                        pars.Attenuation,
                         sourcePosition.Value,
                         cameraPosition
                     );
                 }
             }
-            currentWaypoint = Displacement.Scale(direction, pars.strength);
+            currentWaypoint = Displacement.Scale(direction, pars.Strength);
         }
 
         public void Update(float deltaTime, Vector3 cameraPosition, Quaternion cameraRotation)
@@ -67,8 +67,8 @@ namespace CameraShake
             {
                 Move(
                     deltaTime,
-                    release ? pars.releaseTime : pars.attackTime,
-                    release ? pars.releaseCurve : pars.attackCurve
+                    release ? pars.ReleaseTime : pars.AttackTime,
+                    release ? pars.ReleaseCurve : pars.AttackCurve
                 );
             }
             else
@@ -114,27 +114,27 @@ namespace CameraShake
             /// Strength of the shake for each axis.
             /// </summary>
             [Tooltip("Strength of the shake for each axis.")]
-            public Displacement strength = new(Vector3.zero, Vector3.one);
+            public Displacement Strength = new(Vector3.zero, Vector3.one);
 
             /// <summary>
             /// How long it takes to move forward.
             /// </summary>
             [Tooltip("How long it takes to move forward.")]
-            public float attackTime = 0.05f;
-            public AnimationCurve attackCurve = AnimationCurve.EaseInOut(0, 0, 1, 1);
+            public float AttackTime = 0.05f;
+            public AnimationCurve AttackCurve = AnimationCurve.EaseInOut(0, 0, 1, 1);
 
             /// <summary>
             /// How long it takes to move back.
             /// </summary>
             [Tooltip("How long it takes to move back.")]
-            public float releaseTime = 0.2f;
-            public AnimationCurve releaseCurve = AnimationCurve.EaseInOut(0, 0, 1, 1);
+            public float ReleaseTime = 0.2f;
+            public AnimationCurve ReleaseCurve = AnimationCurve.EaseInOut(0, 0, 1, 1);
 
             /// <summary>
             /// How strength falls with distance from the shake source.
             /// </summary>
             [Tooltip("How strength falls with distance from the shake source.")]
-            public Attenuator.StrengthAttenuationParams attenuation;
+            public Attenuator.StrengthAttenuationParams Attenuation;
         }
     }
 }

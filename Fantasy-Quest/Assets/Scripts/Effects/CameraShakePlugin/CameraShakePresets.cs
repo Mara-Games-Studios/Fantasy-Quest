@@ -3,7 +3,7 @@
 namespace CameraShake
 {
     /// <summary>
-    /// Contains shorthands for creating common shake types.
+    /// Contains short hands for creating common shake types.
     /// </summary>
     public class CameraShakePresets
     {
@@ -19,22 +19,22 @@ namespace CameraShake
         /// </summary>
         /// <param name="positionStrength">Strength of motion in X and Y axes.</param>
         /// <param name="rotationStrength">Strength of rotation in Z axis.</param>
-        /// <param name="freq">Frequency of shaking.</param>
+        /// <param name="frequency">Frequency of shaking.</param>
         /// <param name="numBounces">Number of vibrations before stop.</param>
         public void ShortShake2D(
             float positionStrength = 0.08f,
             float rotationStrength = 0.1f,
-            float freq = 25,
+            float frequency = 25,
             int numBounces = 5
         )
         {
             BounceShake.Params pars =
                 new()
                 {
-                    positionStrength = positionStrength,
-                    rotationStrength = rotationStrength,
-                    freq = freq,
-                    numBounces = numBounces
+                    PositionStrength = positionStrength,
+                    RotationStrength = rotationStrength,
+                    Frequency = frequency,
+                    NumberOfBounces = numBounces
                 };
             shaker.RegisterShake(new BounceShake(pars));
         }
@@ -50,10 +50,10 @@ namespace CameraShake
             BounceShake.Params pars =
                 new()
                 {
-                    axesMultiplier = new Displacement(Vector3.zero, new Vector3(1, 1, 0.4f)),
-                    rotationStrength = strength,
-                    freq = freq,
-                    numBounces = numBounces
+                    AxesMultiplier = new Displacement(Vector3.zero, new Vector3(1, 1, 0.4f)),
+                    RotationStrength = strength,
+                    Frequency = freq,
+                    NumberOfBounces = numBounces
                 };
             shaker.RegisterShake(new BounceShake(pars));
         }
@@ -72,16 +72,16 @@ namespace CameraShake
         {
             PerlinShake.NoiseMode[] modes = { new(8, 1), new(20, 0.3f) };
             Envelope.EnvelopeParams envelopePars =
-                new() { decay = duration <= 0 ? 1 : 1 / duration };
+                new() { Decay = duration <= 0 ? 1 : 1 / duration };
             PerlinShake.Params pars =
                 new()
                 {
-                    strength = new Displacement(
+                    Strength = new Displacement(
                         new Vector3(1, 1) * positionStrength,
                         Vector3.forward * rotationStrength
                     ),
-                    noiseModes = modes,
-                    envelope = envelopePars,
+                    NoiseModes = modes,
+                    Envelope = envelopePars,
                 };
             shaker.RegisterShake(new PerlinShake(pars));
         }
@@ -95,13 +95,13 @@ namespace CameraShake
         {
             PerlinShake.NoiseMode[] modes = { new(6, 1), new(20, 0.2f) };
             Envelope.EnvelopeParams envelopePars =
-                new() { decay = duration <= 0 ? 1 : 1 / duration };
+                new() { Decay = duration <= 0 ? 1 : 1 / duration };
             PerlinShake.Params pars =
                 new()
                 {
-                    strength = new Displacement(Vector3.zero, new Vector3(1, 1, 0.5f) * strength),
-                    noiseModes = modes,
-                    envelope = envelopePars,
+                    Strength = new Displacement(Vector3.zero, new Vector3(1, 1, 0.5f) * strength),
+                    NoiseModes = modes,
+                    Envelope = envelopePars,
                 };
             shaker.RegisterShake(new PerlinShake(pars));
         }

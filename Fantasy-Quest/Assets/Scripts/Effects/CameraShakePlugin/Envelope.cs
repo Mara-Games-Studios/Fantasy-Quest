@@ -75,18 +75,18 @@ namespace CameraShake
 
             if (state == EnvelopeState.Increase)
             {
-                if (pars.attack > 0)
+                if (pars.Attack > 0)
                 {
-                    amplitude += deltaTime * pars.attack;
+                    amplitude += deltaTime * pars.Attack;
                 }
 
-                if (amplitude > targetAmplitude || pars.attack <= 0)
+                if (amplitude > targetAmplitude || pars.Attack <= 0)
                 {
                     amplitude = targetAmplitude;
                     state = EnvelopeState.Sustain;
                     if (controlMode == EnvelopeControlMode.Auto)
                     {
-                        sustainEndTime = Time.time + pars.sustain;
+                        sustainEndTime = Time.time + pars.Sustain;
                     }
                 }
             }
@@ -94,12 +94,12 @@ namespace CameraShake
             {
                 if (state == EnvelopeState.Decrease)
                 {
-                    if (pars.decay > 0)
+                    if (pars.Decay > 0)
                     {
-                        amplitude -= deltaTime * pars.decay;
+                        amplitude -= deltaTime * pars.Decay;
                     }
 
-                    if (amplitude < targetAmplitude || pars.decay <= 0)
+                    if (amplitude < targetAmplitude || pars.Decay <= 0)
                     {
                         amplitude = targetAmplitude;
                         state = EnvelopeState.Sustain;
@@ -115,7 +115,7 @@ namespace CameraShake
             }
 
             amplitude = Mathf.Clamp01(amplitude);
-            Intensity = Power.Evaluate(amplitude, pars.degree);
+            Intensity = Power.Evaluate(amplitude, pars.Degree);
         }
 
         public void SetTargetAmplitude(float value)
@@ -139,25 +139,25 @@ namespace CameraShake
             /// How fast the amplitude rises.
             /// </summary>
             [Tooltip("How fast the amplitude increases.")]
-            public float attack = 10;
+            public float Attack = 10;
 
             /// <summary>
             /// How long in seconds the amplitude holds a maximum value.
             /// </summary>
             [Tooltip("How long in seconds the amplitude holds maximum value.")]
-            public float sustain = 0;
+            public float Sustain = 0;
 
             /// <summary>
             /// How fast the amplitude falls.
             /// </summary>
             [Tooltip("How fast the amplitude decreases.")]
-            public float decay = 1f;
+            public float Decay = 1f;
 
             /// <summary>
             /// Power in which the amplitude is raised to get intensity.
             /// </summary>
             [Tooltip("Power in which the amplitude is raised to get intensity.")]
-            public Degree degree = Degree.Cubic;
+            public Degree Degree = Degree.Cubic;
         }
 
         public enum EnvelopeControlMode

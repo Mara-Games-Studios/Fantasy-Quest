@@ -4,7 +4,7 @@ using UnityEngine;
 namespace CameraShake
 {
     /// <summary>
-    /// Camera shaker component registeres new shakes, holds a list of active shakes, and applies them to the camera additively.
+    /// Camera shaker component registers new shakes, holds a list of active shakes, and applies them to the camera additively.
     /// </summary>
     public class CameraShaker : MonoBehaviour
     {
@@ -92,9 +92,9 @@ namespace CameraShake
                     cameraDisplacement += activeShakes[i].CurrentDisplacement;
                 }
             }
-            cameraTransform.localPosition = StrengthMultiplier * cameraDisplacement.position;
-            cameraTransform.localRotation = Quaternion.Euler(
-                StrengthMultiplier * cameraDisplacement.eulerAngles
+            cameraTransform.SetLocalPositionAndRotation(
+                StrengthMultiplier * cameraDisplacement.Position,
+                Quaternion.Euler(StrengthMultiplier * cameraDisplacement.EulerAngles)
             );
         }
 

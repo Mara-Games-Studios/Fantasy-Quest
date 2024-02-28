@@ -29,7 +29,7 @@ namespace CameraShake
         {
             pars = parameters;
             envelope = new Envelope(
-                pars.envelope,
+                pars.Envelope,
                 maxAmplitude,
                 manualStrengthControl
                     ? Envelope.EnvelopeControlMode.Manual
@@ -44,12 +44,12 @@ namespace CameraShake
 
         public void Initialize(Vector3 cameraPosition, Quaternion cameraRotation)
         {
-            seeds = new Vector2[pars.noiseModes.Length];
+            seeds = new Vector2[pars.NoiseModes.Length];
             norm = 0;
             for (int i = 0; i < seeds.Length; i++)
             {
                 seeds[i] = Random.insideUnitCircle * 20;
-                norm += pars.noiseModes[i].amplitude;
+                norm += pars.NoiseModes[i].Amplitude;
             }
         }
 
@@ -64,19 +64,19 @@ namespace CameraShake
             envelope.Update(deltaTime);
 
             Displacement disp = Displacement.Zero;
-            for (int i = 0; i < pars.noiseModes.Length; i++)
+            for (int i = 0; i < pars.NoiseModes.Length; i++)
             {
                 disp +=
-                    pars.noiseModes[i].amplitude
+                    pars.NoiseModes[i].Amplitude
                     / norm
-                    * SampleNoise(seeds[i], pars.noiseModes[i].freq);
+                    * SampleNoise(seeds[i], pars.NoiseModes[i].Frequency);
             }
 
-            CurrentDisplacement = envelope.Intensity * Displacement.Scale(disp, pars.strength);
+            CurrentDisplacement = envelope.Intensity * Displacement.Scale(disp, pars.Strength);
             if (sourcePosition != null)
             {
                 CurrentDisplacement *= Attenuator.Strength(
-                    pars.attenuation,
+                    pars.Attenuation,
                     sourcePosition.Value,
                     cameraPosition
                 );
@@ -111,48 +111,48 @@ namespace CameraShake
             /// Strength of the shake for each axis.
             /// </summary>
             [Tooltip("Strength of the shake for each axis.")]
-            public Displacement strength = new(Vector3.zero, new Vector3(2, 2, 0.8f));
+            public Displacement Strength = new(Vector3.zero, new Vector3(2, 2, 0.8f));
 
             /// <summary>
             /// Layers of perlin noise with different frequencies.
             /// </summary>
             [Tooltip("Layers of perlin noise with different frequencies.")]
-            public NoiseMode[] noiseModes = { new(12, 1) };
+            public NoiseMode[] NoiseModes = { new(12, 1) };
 
             /// <summary>
             /// Strength over time.
             /// </summary>
             [Tooltip("Strength of the shake over time.")]
-            public Envelope.EnvelopeParams envelope;
+            public Envelope.EnvelopeParams Envelope;
 
             /// <summary>
             /// How strength falls with distance from the shake source.
             /// </summary>
             [Tooltip("How strength falls with distance from the shake source.")]
-            public Attenuator.StrengthAttenuationParams attenuation;
+            public Attenuator.StrengthAttenuationParams Attenuation;
         }
 
         [System.Serializable]
         public struct NoiseMode
         {
-            public NoiseMode(float freq, float amplitude)
+            public NoiseMode(float frequency, float amplitude)
             {
-                this.freq = freq;
-                this.amplitude = amplitude;
+                Frequency = frequency;
+                Amplitude = amplitude;
             }
 
             /// <summary>
             /// Frequency multiplier for the noise.
             /// </summary>
             [Tooltip("Frequency multiplier for the noise.")]
-            public float freq;
+            public float Frequency;
 
             /// <summary>
             /// Amplitude of the mode.
             /// </summary>
             [Tooltip("Amplitude of the mode.")]
             [Range(0, 1)]
-            public float amplitude;
+            public float Amplitude;
         }
     }
 }

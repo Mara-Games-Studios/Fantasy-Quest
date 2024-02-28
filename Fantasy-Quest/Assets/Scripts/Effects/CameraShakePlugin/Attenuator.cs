@@ -17,12 +17,12 @@ namespace CameraShake
         )
         {
             Vector3 vec = cameraPosition - sourcePosition;
-            float distance = Vector3.Scale(pars.axesMultiplier, vec).magnitude;
+            float distance = Vector3.Scale(pars.AxesMultiplier, vec).magnitude;
             float strength = Mathf.Clamp01(
-                1 - ((distance - pars.clippingDistance) / pars.falloffScale)
+                1 - ((distance - pars.ClippingDistance) / pars.FalloffScale)
             );
 
-            return Power.Evaluate(strength, pars.falloffDegree);
+            return Power.Evaluate(strength, pars.FalloffDegree);
         }
 
         /// <summary>
@@ -35,12 +35,12 @@ namespace CameraShake
         )
         {
             Displacement direction = Displacement.Zero;
-            direction.position = (cameraPosition - sourcePosition).normalized;
-            direction.position = Quaternion.Inverse(cameraRotation) * direction.position;
+            direction.Position = (cameraPosition - sourcePosition).normalized;
+            direction.Position = Quaternion.Inverse(cameraRotation) * direction.Position;
 
-            direction.eulerAngles.x = direction.position.z;
-            direction.eulerAngles.y = direction.position.x;
-            direction.eulerAngles.z = -direction.position.x;
+            direction.EulerAngles.x = direction.Position.z;
+            direction.EulerAngles.y = direction.Position.x;
+            direction.EulerAngles.z = -direction.Position.x;
 
             return direction;
         }
@@ -52,19 +52,19 @@ namespace CameraShake
             /// Radius in which shake doesn't lose strength.
             /// </summary>
             [Tooltip("Radius in which shake doesn't lose strength.")]
-            public float clippingDistance = 10;
+            public float ClippingDistance = 10;
 
             /// <summary>
             /// Defines how fast strength falls with distance.
             /// </summary>
             [Tooltip("How fast strength falls with distance.")]
-            public float falloffScale = 50;
+            public float FalloffScale = 50;
 
             /// <summary>
             /// Power of the falloff function.
             /// </summary>
             [Tooltip("Power of the falloff function.")]
-            public Degree falloffDegree = Degree.Quadratic;
+            public Degree FalloffDegree = Degree.Quadratic;
 
             /// <summary>
             /// Contribution of each axis to distance. E. g. (1, 1, 0) for a 2D game in XY plane.
@@ -72,7 +72,7 @@ namespace CameraShake
             [Tooltip(
                 "Contribution of each axis to distance. E. g. (1, 1, 0) for a 2D game in XY plane."
             )]
-            public Vector3 axesMultiplier = Vector3.one;
+            public Vector3 AxesMultiplier = Vector3.one;
         }
     }
 }
