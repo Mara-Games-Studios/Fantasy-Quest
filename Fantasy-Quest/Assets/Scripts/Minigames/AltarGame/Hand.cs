@@ -1,10 +1,12 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Common;
 using DG.Tweening;
 using DG.Tweening.Core;
 using DG.Tweening.Plugins.Options;
+using Dialogue;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -14,12 +16,24 @@ namespace Minigames.AltarGame
     [AddComponentMenu("Scripts/Minigames/AltarGame/Minigames.AltarGame.Hand")]
     internal class Hand : MonoBehaviour
     {
+        [Serializable]
+        private struct PointToMove
+        {
+            public Transform Point;
+            public float Duration;
+
+            public Vector3 Position => Point.position;
+        }
+
         [AssetsOnly]
         [SerializeField]
         private List<Item> itemsToCreate;
 
         [SerializeField]
         private Altar altar;
+
+        [SerializeField]
+        private Animator animator;
 
         [SerializeField]
         private Transition.End.Controller endController;
@@ -29,10 +43,7 @@ namespace Minigames.AltarGame
         private string nextScene;
 
         [SerializeField]
-        private Transform takeItemPoint;
-
-        [SerializeField]
-        private float takeItemDuration = 2.0f;
+        private PointToMove takeItemPoint;
 
         [SerializeField]
         private float moveToSlotDuration = 2.0f;
@@ -40,9 +51,21 @@ namespace Minigames.AltarGame
         [SerializeField]
         private float decideWaitingTime = 3.0f;
 
+        [SerializeField]
+        private PointToMove endGamePoint;
+
+        [SerializeField]
+        private ChainSpeaker firstMoveSpeech;
+
+        [SerializeField]
+        private ChainSpeaker wrongPlacingSpeech;
+
+        [SerializeField]
+        private ChainSpeaker winSpeech;
+
         [ReadOnly]
         [SerializeField]
-        private bool isChoosing;
+        private bool isChoosing = false;
 
         [ReadOnly]
         [SerializeField]
@@ -56,6 +79,9 @@ namespace Minigames.AltarGame
         [SerializeField]
         private Slot chosenSlot;
 
+        [ReadOnly]
+        [SerializeField]
+        private bool isFirstMove = true;
         private Coroutine waitingForDecide;
         private AltarGameInput input;
 
@@ -74,12 +100,12 @@ namespace Minigames.AltarGame
         private void TakeItem()
         {
             TweenerCore<Vector3, Vector3, VectorOptions> moveTween = transform.DOMove(
-                takeItemPoint.position,
-                takeItemDuration
+                takeItemPoint.Position,
+                takeItemPoint.Duration
             );
             moveTween.onComplete += () =>
             {
-                Item item = itemsToCreate[Random.Range(0, itemsToCreate.Count)];
+                Item item = itemsToCreate[UnityEngine.Random.Range(0, itemsToCreate.Count)];
                 _ = itemsToCreate.Remove(item);
                 Item created = Instantiate(item, transform);
                 created.transform.position += Vector3.back;
@@ -108,16 +134,26 @@ namespace Minigames.AltarGame
                     chosenSlot.transform.position,
                     moveToSlotDuration
                 );
-                moveTween.onComplete += () =>
+                if (isFirstMove)
                 {
-                    isChoosing = true;
-                    waitingForDecide = StartCoroutine(WaitForDecide(decideWaitingTime));
-                };
+                    moveTween.onComplete += () => firstMoveSpeech.Tell(() => StartWaitForDecide());
+                    isFirstMove = false;
+                }
+                else
+                {
+                    moveTween.onComplete += StartWaitForDecide;
+                }
             }
             else
             {
                 StartPlaceItem();
             }
+        }
+
+        private void StartWaitForDecide()
+        {
+            isChoosing = true;
+            waitingForDecide = StartCoroutine(WaitForDecide(decideWaitingTime));
         }
 
         private IEnumerator WaitForDecide(float waitTime)
@@ -136,26 +172,49 @@ namespace Minigames.AltarGame
         {
             isChoosing = false;
             chosenSlot.PlaceItem(holdingItem);
+            animator.SetTrigger("PlaceItem");
+        }
+
+        // Called by animation callback
+        private void CompletePlacingItemInSlot()
+        {
             if (itemsToCreate.Any())
             {
                 TakeItem();
             }
-            else if (altar.IsAllRightPlaced())
+            else
             {
-                Debug.Log("You win");
-                endController.LoadScene(
-                    nextScene,
-                    Configs.TransitionSettings.Instance.MinLoadingDuration
+                TweenerCore<Vector3, Vector3, VectorOptions> moveTween = transform.DOMove(
+                    endGamePoint.Position,
+                    endGamePoint.Duration
                 );
+                moveTween.onComplete += EndPointReached;
+            }
+        }
+
+        private void EndPointReached()
+        {
+            if (altar.IsAllRightPlaced())
+            {
+                altar.TurnOnAltar();
             }
             else
             {
-                Debug.Log("You lose");
-                endController.LoadScene(
-                    nextScene,
-                    Configs.TransitionSettings.Instance.MinLoadingDuration
-                );
+                wrongPlacingSpeech.Tell(() => QuitMiniGame());
             }
+        }
+
+        public void TellWinAndQuit()
+        {
+            winSpeech.Tell(() => QuitMiniGame());
+        }
+
+        private void QuitMiniGame()
+        {
+            endController.LoadScene(
+                nextScene,
+                Configs.TransitionSettings.Instance.MinLoadingDuration
+            );
         }
 
         private void DisagreePerformed(InputAction.CallbackContext context)

@@ -1,5 +1,6 @@
 using System;
 using Configs;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Dialogue
@@ -7,29 +8,32 @@ namespace Dialogue
     [Serializable]
     public struct Replica
     {
-        private float cachedDuration;
-
         public string Text;
         public AudioClip Audio;
         public float DelayAfterSaid;
-        public float Duration => GetDuration();
 
-        private float GetDuration()
+        [ReadOnly]
+        [SerializeField]
+        private float cachedDuration;
+        public float Duration
         {
-            if (cachedDuration <= 0)
+            get
             {
-                CalculateDuration();
+                if (cachedDuration <= 0)
+                {
+                    cachedDuration = CalculateDuration();
+                }
+                return cachedDuration;
             }
-
-            return cachedDuration;
         }
 
-        private void CalculateDuration()
+        private float CalculateDuration()
         {
-            cachedDuration =
-                Audio == null
-                    ? Text.Length * SubtitlesSettings.Instance.SymbolTimeSpeed
-                    : Audio.length;
+            if (Audio == null)
+            {
+                return Text.Length * SubtitlesSettings.Instance.SymbolTimeSpeed;
+            }
+            return Audio.length;
         }
     }
 }

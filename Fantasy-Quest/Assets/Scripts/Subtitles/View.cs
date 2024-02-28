@@ -12,7 +12,7 @@ namespace Subtitles
         [SerializeField]
         private TMP_Text outputTmpText;
 
-        private Tween typeWriterTween;
+        private Tween fadeTween;
 
         private void OnEnable()
         {
@@ -26,22 +26,36 @@ namespace Subtitles
 
         private void OnSubtitlesShowChanged(bool value)
         {
+            fadeTween?.Kill(true);
             outputTmpText.alpha = value ? 1 : 0;
         }
 
         public void Show(Replica replica)
         {
-            string curText = "";
-            typeWriterTween = DOTween
-                .To(() => curText, x => curText = x, replica.Text, replica.Duration)
-                .SetEase(SubtitlesSettings.Instance.TypingEase)
-                .OnUpdate(() => outputTmpText.SetText(curText));
+            fadeTween?.Kill(true);
+            outputTmpText.SetText(replica.Text);
+            DoFade(1);
         }
 
         public void Hide()
         {
-            typeWriterTween?.Kill();
-            outputTmpText.SetText("");
+            fadeTween?.Kill(true);
+            DoFade(0);
+            fadeTween.onComplete += () => outputTmpText.SetText("");
+        }
+
+        private void DoFade(float endAlpha)
+        {
+            if (!SubtitlesSettings.Instance.ShowSubtitles)
+            {
+                return;
+            }
+            fadeTween = DOTween.ToAlpha(
+                () => outputTmpText.color,
+                (x) => outputTmpText.color = x,
+                endAlpha,
+                SubtitlesSettings.Instance.TextFadeDuration
+            );
         }
     }
 }

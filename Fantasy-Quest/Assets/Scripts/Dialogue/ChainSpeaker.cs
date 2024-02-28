@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using Subtitles;
 using TNRD;
@@ -11,7 +12,7 @@ namespace Dialogue
     internal class ChainSpeaker : MonoBehaviour
     {
         [SerializeField]
-        private Replica replica;
+        private List<Replica> replicas;
 
         [Required]
         [SerializeField]
@@ -19,6 +20,7 @@ namespace Dialogue
 
         [SerializeField]
         private SerializableInterface<ISubtitlesView> subtitles;
+        private ISubtitlesView Subtitles => subtitles.Value;
 
         private Voice voice;
 
@@ -34,9 +36,14 @@ namespace Dialogue
 
         private IEnumerator TellRoutine(Action nextAction)
         {
-            voice.Say(replica.Audio);
-            subtitles.Value.Show(replica);
-            yield return new WaitForSeconds(replica.Duration + replica.DelayAfterSaid);
+            foreach (Replica replica in replicas)
+            {
+                voice.Say(replica.Audio);
+                Subtitles.Show(replica);
+                yield return new WaitForSeconds(replica.Duration + replica.DelayAfterSaid);
+            }
+            Subtitles.Hide();
+            nextAction?.Invoke();
         }
     }
 }
