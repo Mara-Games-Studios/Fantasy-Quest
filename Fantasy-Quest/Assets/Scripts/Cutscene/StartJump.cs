@@ -32,15 +32,12 @@ namespace Cutscene
         {
             if (collision.TryGetComponent<InteractionImpl>(out _))
             {
-                Debug.Log("Ready for jump");
                 if (isJumpUp)
                 {
-                    Debug.Log("Assigned for jump up");
                     playerInput.Player.UpJump.performed += StartCutscene;
                 }
                 else
                 {
-                    Debug.Log("Assigned for jump down");
                     playerInput.Player.DownJump.performed += StartCutscene;
                 }
             }
@@ -50,7 +47,6 @@ namespace Cutscene
         {
             if (collision.TryGetComponent<InteractionImpl>(out _))
             {
-                Debug.Log("Exit from jump");
                 if (isJumpUp)
                 {
                     playerInput.Player.UpJump.performed -= StartCutscene;

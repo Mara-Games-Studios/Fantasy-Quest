@@ -10,8 +10,9 @@ namespace Scene.NewScene
     [AddComponentMenu("Scripts/Scene/NewScene/Scene.NewScene.EnterNewScene")]
     internal class EnterNewScene : MonoBehaviour, IInteractable
     {
+        [Required]
         [SerializeField]
-        private bool isJumpUp = true;
+        private GameObject cat;
 
         [SerializeField]
         private List<ParticleSystem> effects = new();
@@ -55,9 +56,9 @@ namespace Scene.NewScene
             {
                 effects.ForEach(effect =>
                 {
+                    effect.Play();
                     if (effect.main.duration > duration)
                     {
-                        effect.Play();
                         duration = effect.main.duration;
                     }
                 });
@@ -73,16 +74,23 @@ namespace Scene.NewScene
             {
                 effect.Play();
                 yield return new WaitForSeconds(effect.main.duration);
+                effect.Stop();
             }
             LoadAnotherScene();
         }
 
+        //New scene must not contain Player Character, it will be transfered from current scene
         private void LoadAnotherScene()
         {
-            UnityEngine.SceneManagement.Scene activeScene = SceneManager.GetActiveScene();
-            SceneManager.LoadScene(newScene, LoadSceneMode.Additive);
-            _ = SceneManager.UnloadSceneAsync(activeScene);
-            _ = SceneManager.SetActiveScene(SceneManager.GetSceneByName(newScene));
+            UnityEngine.SceneManagement.Scene initialScene = SceneManager.GetActiveScene();
+            AsyncOperation loadOper = SceneManager.LoadSceneAsync(newScene, LoadSceneMode.Additive);
+            loadOper.completed += (asyncOperation) =>
+            {
+                _ = SceneManager.SetActiveScene(SceneManager.GetSceneByName(newScene));
+                SceneManager.MoveGameObjectToScene(cat, SceneManager.GetActiveScene());
+                AsyncOperation unloadOper = SceneManager.UnloadSceneAsync(initialScene);
+                //or SceneManager.MergeScenes(SceneManager.GetActiveScene(), initialScene);
+            };
         }
 
         public void InteractByHuman()
