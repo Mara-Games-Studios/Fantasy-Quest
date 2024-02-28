@@ -45,6 +45,7 @@ namespace Minigames.MouseInHay
 
         public UnityEvent SuccessMouseHit;
         public UnityEvent FailMouseHit;
+        public UnityEvent MouseCatches;
 
         private void Awake()
         {
@@ -75,7 +76,17 @@ namespace Minigames.MouseInHay
             if (result.Success)
             {
                 scoreCounter.AddPoint();
-                SuccessMouseHit?.Invoke();
+                if (scoreCounter.IsWinGame)
+                {
+                    MouseCatches?.Invoke();
+                    Debug.Log("You win game");
+                    scoreCounter.ExitGame();
+                    return;
+                }
+                else
+                {
+                    SuccessMouseHit?.Invoke();
+                }
             }
             else
             {

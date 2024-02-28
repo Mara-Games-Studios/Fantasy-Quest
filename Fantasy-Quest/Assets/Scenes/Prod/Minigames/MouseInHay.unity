@@ -386,12 +386,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 527771435}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 891258703}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &527771439
 MonoBehaviour:
@@ -683,8 +683,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   holes: []
-  showMouseTime: 1
+  mousesShowed: 0
+  scoreCounter: {fileID: 1992936608}
+  mouseShowTime:
+    Min: 1
+    Max: 3
   noMouseTime: 3
+  maxMousesToShow: 10
 --- !u!1 &813617723
 GameObject:
   m_ObjectHideFlags: 0
@@ -788,6 +793,53 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &891258702
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 891258703}
+  - component: {fileID: 891258704}
+  m_Layer: 0
+  m_Name: Camera Parent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &891258703
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 891258702}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 527771438}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &891258704
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 891258702}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8e204c71c8d43f438f80936b412c483, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cameraTransform: {fileID: 891258703}
+  StrengthMultiplier: 1
 --- !u!1 &1741950315
 GameObject:
   m_ObjectHideFlags: 0
@@ -1305,6 +1357,23 @@ MonoBehaviour:
   scoreLabel: {fileID: 1897222484}
   neededScore: 3
   endController: {fileID: 1890338100}
+  quitGameInputAction:
+    m_Name: Quit Game Input
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 68d9a8ce-f4ca-4a6f-a097-147bd1ee1b02
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 9821f1f1-c4c3-402d-bbaa-022cef1ffd50
+      m_Path: <Keyboard>/escape
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Quit Game Input
+      m_Flags: 0
+    m_Flags: 0
   nextScene: Assets/Scenes/Prod/Minigames/MouseInHay.unity
 --- !u!1 &2010914671
 GameObject:
@@ -1402,6 +1471,7 @@ GameObject:
   - component: {fileID: 2023851992}
   - component: {fileID: 2023851991}
   - component: {fileID: 2023851994}
+  - component: {fileID: 2023851995}
   m_Layer: 0
   m_Name: Paw
   m_TagString: Untagged
@@ -1577,10 +1647,50 @@ MonoBehaviour:
       m_Flags: 0
   SuccessMouseHit:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2023851995}
+        m_TargetAssemblyTypeName: Minigames.MouseInHay.CameraShake, Assembly-CSharp
+        m_MethodName: Invoke
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   FailMouseHit:
     m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2023851995}
+        m_TargetAssemblyTypeName: Minigames.MouseInHay.CameraShake, Assembly-CSharp
+        m_MethodName: Invoke
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  MouseCatches:
+    m_PersistentCalls:
       m_Calls: []
+--- !u!114 &2023851995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2023851989}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20066d261170f07438e72e1d62f3a97e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cameraShaker: {fileID: 891258704}
 --- !u!1 &2088341176
 GameObject:
   m_ObjectHideFlags: 0
@@ -1680,10 +1790,10 @@ PrefabInstance:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 527771438}
+  - {fileID: 891258703}
   - {fileID: 813617727}
   - {fileID: 2088341177}
   - {fileID: 2023851993}
   - {fileID: 739229493}
-  - {fileID: 556167688}
   - {fileID: 1992936607}
+  - {fileID: 556167688}

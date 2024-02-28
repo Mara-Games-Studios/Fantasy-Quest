@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Common;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -13,13 +14,21 @@ namespace Minigames.MouseInHay
         [SerializeField]
         private List<Hole> holes;
 
+        [ReadOnly]
         [SerializeField]
-        private float showMouseTime;
+        private int mousesShowed = 0;
+
+        [SerializeField]
+        private ScoreCounter scoreCounter;
+
+        [SerializeField]
+        private FloatRange mouseShowTime;
 
         [SerializeField]
         private float noMouseTime;
 
-        private float WaitTime => showMouseTime + noMouseTime;
+        [SerializeField]
+        private int maxMousesToShow = 10;
 
         private void Awake()
         {
@@ -28,15 +37,30 @@ namespace Minigames.MouseInHay
 
         private void Start()
         {
-            _ = StartCoroutine(CallMouseAndWait(showMouseTime, WaitTime));
+            Launch();
+        }
+
+        private void Launch()
+        {
+            float showTime = mouseShowTime.GetRandomFloatInRange();
+            _ = StartCoroutine(CallMouseAndWait(showTime, showTime + noMouseTime));
         }
 
         private IEnumerator CallMouseAndWait(float showMouseTime, float waitTime)
         {
             Hole hole = holes[Random.Range(0, holes.Count)];
             hole.ShowMouse(showMouseTime);
-            yield return new WaitForSeconds(noMouseTime);
-            _ = StartCoroutine(CallMouseAndWait(showMouseTime, waitTime));
+            mousesShowed++;
+            yield return new WaitForSeconds(waitTime);
+            if (mousesShowed >= maxMousesToShow)
+            {
+                Debug.Log("You lose game");
+                scoreCounter.ExitGame();
+            }
+            else
+            {
+                Launch();
+            }
         }
     }
 }
