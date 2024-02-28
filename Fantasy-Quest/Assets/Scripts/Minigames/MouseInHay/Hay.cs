@@ -19,7 +19,7 @@ namespace Minigames.MouseInHay
         private int mousesShowed = 0;
 
         [SerializeField]
-        private ScoreCounter scoreCounter;
+        private Manager manager;
 
         [SerializeField]
         private FloatRange mouseShowTime;
@@ -55,7 +55,7 @@ namespace Minigames.MouseInHay
             if (mousesShowed >= maxMousesToShow)
             {
                 Debug.Log("You lose game");
-                scoreCounter.ExitGame();
+                manager.ExitGame();
             }
             else
             {

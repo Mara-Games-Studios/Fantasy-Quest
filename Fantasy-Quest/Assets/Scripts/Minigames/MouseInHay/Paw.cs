@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Common;
 using DG.Tweening;
-using DG.Tweening.Core;
-using DG.Tweening.Plugins.Options;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Events;
@@ -39,6 +37,9 @@ namespace Minigames.MouseInHay
         private ScoreCounter scoreCounter;
 
         [SerializeField]
+        private Manager manager;
+
+        [SerializeField]
         private List<HoleByInputAction> holesWithInput;
         private Dictionary<Hole, InputAction> HolesWithInput =>
             holesWithInput.ToDictionary(x => x.Hole, x => x.InputAction);
@@ -51,11 +52,11 @@ namespace Minigames.MouseInHay
         {
             foreach (KeyValuePair<Hole, InputAction> pair in HolesWithInput)
             {
-                pair.Value.performed += (context) => InputPerformed(pair.Key);
+                pair.Value.performed += (context) => MoveTo(pair.Key);
             }
         }
 
-        private void InputPerformed(Hole hole)
+        private void MoveTo(Hole hole)
         {
             if (isInAction)
             {
@@ -63,14 +64,11 @@ namespace Minigames.MouseInHay
             }
 
             isInAction = true;
-            TweenerCore<Vector3, Vector3, VectorOptions> moveToHole = transform.DOMove(
-                hole.transform.position,
-                moveToHoleTime
-            );
-            moveToHole.onComplete += () => GrabMouse(hole);
+            Tween moveToHole = transform.DOMove(hole.transform.position, moveToHoleTime);
+            moveToHole.onComplete += () => SlapMouse(hole);
         }
 
-        private void GrabMouse(Hole hole)
+        private void SlapMouse(Hole hole)
         {
             Result result = hole.TryGrabMouse();
             if (result.Success)
@@ -80,7 +78,7 @@ namespace Minigames.MouseInHay
                 {
                     MouseCatches?.Invoke();
                     Debug.Log("You win game");
-                    scoreCounter.ExitGame();
+                    manager.ExitGame();
                     return;
                 }
                 else
@@ -92,10 +90,7 @@ namespace Minigames.MouseInHay
             {
                 FailMouseHit?.Invoke();
             }
-            TweenerCore<Vector3, Vector3, VectorOptions> moveFromHole = transform.DOMove(
-                startPosition.position,
-                moveFromHoleTime
-            );
+            Tween moveFromHole = transform.DOMove(startPosition.position, moveFromHoleTime);
             moveFromHole.onComplete += () => isInAction = false;
         }
 

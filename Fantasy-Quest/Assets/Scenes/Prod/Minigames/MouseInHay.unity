@@ -684,7 +684,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   holes: []
   mousesShowed: 0
-  scoreCounter: {fileID: 1992936608}
+  manager: {fileID: 2009549247}
   mouseShowTime:
     Min: 1
     Max: 3
@@ -1354,19 +1354,63 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   score: 0
-  scoreLabel: {fileID: 1897222484}
   neededScore: 3
+  scoreLabel: {fileID: 1897222484}
+--- !u!1 &2009549245
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2009549246}
+  - component: {fileID: 2009549247}
+  m_Layer: 0
+  m_Name: Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2009549246
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2009549245}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2009549247
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2009549245}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ca2bad3c90a02741baebdc15766dbf5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   endController: {fileID: 1890338100}
   quitGameInputAction:
     m_Name: Quit Game Input
     m_Type: 0
     m_ExpectedControlType: 
-    m_Id: 68d9a8ce-f4ca-4a6f-a097-147bd1ee1b02
+    m_Id: 7423be5b-e6c3-4b35-ae62-3edee0f3740f
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings:
     - m_Name: 
-      m_Id: 9821f1f1-c4c3-402d-bbaa-022cef1ffd50
+      m_Id: 46a277cc-fb17-4b92-9b5a-5999f7a8a98f
       m_Path: <Keyboard>/escape
       m_Interactions: 
       m_Processors: 
@@ -1590,6 +1634,7 @@ MonoBehaviour:
   moveFromHoleTime: 2
   startPosition: {fileID: 2088341177}
   scoreCounter: {fileID: 1992936608}
+  manager: {fileID: 2009549247}
   holesWithInput:
   - Hole: {fileID: 1795949783}
     InputAction:
@@ -1797,3 +1842,4 @@ SceneRoots:
   - {fileID: 739229493}
   - {fileID: 1992936607}
   - {fileID: 556167688}
+  - {fileID: 2009549246}
