@@ -1,5 +1,5 @@
 using System;
-using DG.Tweening;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Configs
@@ -10,24 +10,26 @@ namespace Configs
     )]
     internal class SubtitlesSettings : SingletonScriptableObject<SubtitlesSettings>
     {
-        [Min(0)]
+        [MinValue(0)]
         [SerializeField]
-        private float defaultTimeSpeedForASymbol = 0.5f;
-        public float SymbolTimeSpeed => defaultTimeSpeedForASymbol;
+        private float timeSpeedForASymbol = 0.5f;
+        public float SymbolTimeSpeed => timeSpeedForASymbol;
 
         [SerializeField]
-        private Ease typingEase = Ease.Linear;
-        public Ease TypingEase => typingEase;
-
-        [SerializeField]
-        private bool showSubtitles = true;
+        private bool isSubtitlesShowing = true;
+        public bool IsSubtitlesShowing => isSubtitlesShowing;
 
         public event Action<bool> OnShowSubtitlesChanged;
 
+        [MinValue(0)]
+        [SerializeField]
+        private float textFadeDuration = 0.2f;
+        public float TextFadeDuration => textFadeDuration;
+
         public void SetShowSubtitles(bool value)
         {
-            showSubtitles = value;
-            OnShowSubtitlesChanged?.Invoke(showSubtitles);
+            isSubtitlesShowing = value;
+            OnShowSubtitlesChanged?.Invoke(isSubtitlesShowing);
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using Sirenix.OdinInspector;
 using Subtitles;
+using TNRD;
 using UnityEngine;
 
 namespace Dialogue
@@ -21,23 +21,14 @@ namespace Dialogue
         [Space]
         [Header("Components")]
         [SerializeField]
-        [ValidateInput(nameof(HasISubtitlesView), "GameObject must have ISubtitlesView")]
-        protected GameObject SubtitlesViewGameObject;
+        protected SerializableInterface<ISubtitlesView> SubtitlesView;
 
         protected Coroutine SayCoroutine;
-        protected ISubtitlesView SubtitlesView;
         protected Voice Voice;
         protected bool WasSaid;
 
         protected virtual void Awake()
         {
-            if (!SubtitlesViewGameObject.TryGetComponent(out SubtitlesView))
-            {
-                Debug.LogError(
-                    $"{SubtitlesView} is NULL\n{GetType()} callback in {gameObject.name}"
-                );
-            }
-
             Voice = new Voice(GetComponent<AudioSource>());
         }
 
@@ -64,7 +55,7 @@ namespace Dialogue
             }
 
             Voice.Silence();
-            SubtitlesView.Hide();
+            SubtitlesView.Value.Hide();
         }
 
         protected virtual void Say(List<Replica> speech)
@@ -78,7 +69,7 @@ namespace Dialogue
             foreach (Replica replica in replicas)
             {
                 Voice.Say(replica.Audio);
-                SubtitlesView.Show(replica);
+                SubtitlesView.Value.Show(replica);
                 yield return new WaitForSeconds(replica.Duration + replica.DelayAfterSaid);
             }
             Stop();

@@ -68,12 +68,7 @@ namespace Effects
             List<Func<bool>> conditions = new();
             foreach (Material material in renderer.materials)
             {
-                Tweener tween = DOTween.ToAlpha(
-                    () => material.color,
-                    (x) => material.color = x,
-                    endAlpha,
-                    fadeDuration
-                );
+                Tween tween = material.DOFade(endAlpha, fadeDuration);
                 tweens.Add(tween);
                 conditions.Add(GetOnTweenComplete(tween));
             }
