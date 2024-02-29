@@ -19,10 +19,7 @@ namespace Minigames.AltarGame
 
         public void QuitMiniGame()
         {
-            endController.LoadScene(
-                nextScene,
-                Configs.TransitionSettings.Instance.MinLoadingDuration
-            );
+            endController.LoadScene(nextScene);
         }
 
         public void TellWinAndQuit()

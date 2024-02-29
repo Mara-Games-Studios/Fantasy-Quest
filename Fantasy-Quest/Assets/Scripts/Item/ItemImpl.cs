@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Item
 {
-    [AddComponentMenu("Scripts/Scripts/Item/Item")]
+    [AddComponentMenu("Scripts/Item/Item")]
     internal partial class ItemImpl : MonoBehaviour
     {
         [ReadOnly]

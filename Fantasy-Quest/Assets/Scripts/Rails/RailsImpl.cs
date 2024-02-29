@@ -7,7 +7,7 @@ using UnityEngine;
 namespace Rails
 {
     [RequireComponent(typeof(PathCreator))]
-    [AddComponentMenu("Scripts/Scripts/Rails/Rails")]
+    [AddComponentMenu("Scripts/Rails/Rails")]
     internal class RailsImpl : MonoBehaviour
     {
         [ReadOnly]

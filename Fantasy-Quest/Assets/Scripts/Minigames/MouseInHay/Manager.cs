@@ -1,5 +1,4 @@
 ﻿using Common;
-using Configs;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -31,7 +30,7 @@ namespace Minigames.MouseInHay
 
         public void ExitGame()
         {
-            endController.LoadScene(nextScene, TransitionSettings.Instance.MinLoadingDuration);
+            endController.LoadScene(nextScene);
         }
 
         private void OnEnable()
