@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Utils
 {
     [RequireComponent(typeof(CapsuleCollider2D))]
-    [AddComponentMenu("Scripts/Utils/Utils.CapsuleColliderDrawer")]
+    [AddComponentMenu("Utils/Utils.CapsuleColliderDrawer")]
     internal class CapsuleColliderDrawer : MonoBehaviour
     {
         [SerializeField]

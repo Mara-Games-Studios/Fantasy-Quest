@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Utils
 {
     [RequireComponent(typeof(BoxCollider2D))]
-    [AddComponentMenu("Scripts/Scripts/Utils/Utils.BoxColliderDrawer")]
+    [AddComponentMenu("Scripts/Utils/Utils.BoxColliderDrawer")]
     internal class BoxColliderDrawer : MonoBehaviour
     {
         [SerializeField]

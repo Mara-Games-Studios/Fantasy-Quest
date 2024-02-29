@@ -6,7 +6,7 @@ using UnityEngine.Events;
 
 namespace Utils
 {
-    [AddComponentMenu("Scripts/Scripts/Utils/Utils.TransformMover")]
+    [AddComponentMenu("Scripts/Utils/Utils.TransformMover")]
     internal class TransformMover : MonoBehaviour
     {
         private enum Mode

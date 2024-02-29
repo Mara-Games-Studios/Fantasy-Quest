@@ -1,4 +1,5 @@
 using System.Collections;
+using Configs;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -21,16 +22,11 @@ namespace Transition.End
         [SerializeField]
         private string nextScene = "NULL";
 
-        [ReadOnly]
-        [SerializeField]
-        private float minDuration = 0f;
-
-        public void LoadScene(string nextScene, float minDuration)
+        public void LoadScene(string nextScene)
         {
             view.SetActive(true);
             animator.enabled = true;
             this.nextScene = nextScene;
-            this.minDuration = minDuration;
         }
 
         // Must me called by view callback
@@ -38,7 +34,9 @@ namespace Transition.End
         {
             AsyncOperation loading = SceneManager.LoadSceneAsync(nextScene);
             loading.allowSceneActivation = false;
-            _ = StartCoroutine(LoadSceneRoutine(minDuration, loading));
+            _ = StartCoroutine(
+                LoadSceneRoutine(TransitionSettings.Instance.MinLoadingDuration, loading)
+            );
         }
 
         private const float max_loading_progress = 0.9f;
