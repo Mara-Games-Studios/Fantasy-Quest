@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using Cat;
 using Rails;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -46,15 +47,17 @@ namespace Utils
         [ShowIf(nameof(isUsingCurve))]
         private AnimationCurve curve;
 
+        public UnityEvent<Vector> MoveStarted;
+
         public UnityEvent MoveFinished;
 
-        //private void Update()
-        //{
-        //    if (Input.GetKeyDown(KeyCode.R))
-        //    {
-        //        Move();
-        //    }
-        //}
+        private void Update()
+        {
+            if (UnityEngine.Input.GetKeyDown(KeyCode.R))
+            {
+                Move();
+            }
+        }
 
         public void Move()
         {
@@ -66,6 +69,17 @@ namespace Utils
                 _ => throw new System.ArgumentException()
             };
             AnimationCurve tempCurve = isUsingCurve ? curve : AnimationCurve.Linear(0, 0, 1, 1);
+
+            float direction = to.x - movingBody.position.x;
+            if (direction < 0)
+            {
+                MoveStarted?.Invoke(Vector.Left);
+            }
+            else
+            {
+                MoveStarted?.Invoke(Vector.Right);
+            }
+
             _ = StartCoroutine(MoveRoutine(movingBody, to, time, tempCurve));
         }
 

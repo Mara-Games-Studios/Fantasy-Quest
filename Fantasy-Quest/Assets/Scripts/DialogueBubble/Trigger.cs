@@ -21,10 +21,10 @@ namespace DialogueBubble
         {
             if (!LockerSettings.Instance.IsDialogueBubbleLocked)
             {
-                Debug.Log($"!LockerSettings.Instance.IsDialogueBubbleLocked = true");
+                //Debug.Log($"!LockerSettings.Instance.IsDialogueBubbleLocked = true");
                 if (other.TryGetComponent(out InteractionImpl interaction))
                 {
-                    Debug.Log($"InteractionImpl is found");
+                    //Debug.Log($"InteractionImpl is found");
                     EventSystem.OnTriggerBubble?.Invoke(
                         new BubbleSettings
                         {
@@ -33,7 +33,6 @@ namespace DialogueBubble
                             Icons = icons
                         }
                     );
-                    Debug.Log($"EventSystem invoked");
                 }
             }
         }
