@@ -48,13 +48,13 @@ namespace Utils
 
         public UnityEvent MoveFinished;
 
-        private void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.R))
-            {
-                Move();
-            }
-        }
+        //private void Update()
+        //{
+        //    if (Input.GetKeyDown(KeyCode.R))
+        //    {
+        //        Move();
+        //    }
+        //}
 
         public void Move()
         {
