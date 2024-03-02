@@ -10,6 +10,7 @@ namespace Dialogue
     {
         public string Text;
         public AudioClip Audio;
+        public float DelayBeforeSaid;
         public float DelayAfterSaid;
 
         [ReadOnly]

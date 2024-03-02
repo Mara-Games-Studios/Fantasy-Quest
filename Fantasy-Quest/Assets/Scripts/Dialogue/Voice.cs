@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using UnityEngine;
 
 namespace Dialogue
@@ -15,6 +16,7 @@ namespace Dialogue
 
         public void Say(AudioClip audioClip)
         {
+            Silence();
             audioSource.clip = audioClip;
             audioSource.volume = 1f;
             audioSource.Play();
