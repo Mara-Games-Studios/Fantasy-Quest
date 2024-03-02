@@ -1,71 +1,36 @@
-using Interaction;
+using Interaction.Item;
 using Sirenix.OdinInspector;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 namespace Cutscene
 {
     [RequireComponent(typeof(BoxCollider2D))]
     [AddComponentMenu("Scripts/Cutscene/Cutscene.StartJump")]
-    internal class StartJump : MonoBehaviour
+    internal class StartJump : MonoBehaviour, IJumpTranstition
     {
-        [Required]
         [SerializeField]
-        private Start cutsceneStarter;
+        private bool canJumpBoth;
 
-        [SerializeField]
-        private bool isJumpUp = true;
+        [SerializeField, HideIf("@downJump && !canJumpBoth")]
+        private Start upJump;
 
-        private GameplayInput playerInput;
+        [SerializeField, HideIf("@upJump && !canJumpBoth")]
+        private Start downJump;
 
-        private void Awake()
+        public void JumpUp()
         {
-            playerInput = new GameplayInput();
-        }
-
-        private void OnEnable()
-        {
-            playerInput.Enable();
-        }
-
-        private void OnTriggerEnter2D(Collider2D collision)
-        {
-            if (collision.TryGetComponent<InteractionImpl>(out _))
+            if (upJump != null)
             {
-                if (isJumpUp)
-                {
-                    playerInput.Player.UpJump.performed += StartCutscene;
-                }
-                else
-                {
-                    playerInput.Player.DownJump.performed += StartCutscene;
-                }
+                upJump.StartCutscene();
             }
         }
 
-        private void OnTriggerExit2D(Collider2D collision)
+        public void JumpDown()
         {
-            if (collision.TryGetComponent<InteractionImpl>(out _))
+            if (downJump != null)
             {
-                if (isJumpUp)
-                {
-                    playerInput.Player.UpJump.performed -= StartCutscene;
-                }
-                else
-                {
-                    playerInput.Player.DownJump.performed -= StartCutscene;
-                }
+                downJump.StartCutscene();
             }
-        }
-
-        public void StartCutscene(InputAction.CallbackContext context)
-        {
-            cutsceneStarter.StartCutscene();
-        }
-
-        private void OnDisable()
-        {
-            playerInput.Disable();
         }
     }
 }

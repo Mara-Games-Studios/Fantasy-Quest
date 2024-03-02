@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 namespace Scene.NewScene
 {
     [AddComponentMenu("Scripts/Scene/NewScene/Scene.NewScene.EnterNewScene")]
-    internal class EnterNewScene : MonoBehaviour, IInteractable
+    internal class EnterNewScene : MonoBehaviour, ISceneTransition
     {
         [Required]
         [SerializeField]
@@ -32,7 +32,7 @@ namespace Scene.NewScene
 
         private float duration = 0f;
 
-        public void InteractByCat()
+        public void ToNewScene()
         {
             if (isFiringInParallel)
             {
@@ -91,11 +91,6 @@ namespace Scene.NewScene
                 AsyncOperation unloadOper = SceneManager.UnloadSceneAsync(initialScene);
                 //or SceneManager.MergeScenes(SceneManager.GetActiveScene(), initialScene);
             };
-        }
-
-        public void InteractByHuman()
-        {
-            return;
         }
     }
 }
