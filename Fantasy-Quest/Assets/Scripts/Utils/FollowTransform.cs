@@ -8,13 +8,9 @@ namespace Utils
         [SerializeField]
         private Transform targetTransform;
 
-        [SerializeField]
-        //private float speed = 0.2f;
-
         private void Update()
         {
             transform.position = targetTransform.position;
-            //Vector3.Lerp(transform.position, targetTransform.position, speed);
         }
     }
 }

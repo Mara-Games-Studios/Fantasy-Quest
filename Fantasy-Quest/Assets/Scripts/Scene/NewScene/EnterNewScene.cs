@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using Common;
 using Interaction.Item;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace Scene.NewScene
+namespace Scene
 {
     [AddComponentMenu("Scripts/Scene/NewScene/Scene.NewScene.EnterNewScene")]
     internal class EnterNewScene : MonoBehaviour, ISceneTransition
@@ -18,15 +19,13 @@ namespace Scene.NewScene
         private List<ParticleSystem> effects = new();
 
         [SerializeField]
+        [Scene]
         private string newScene;
 
         [SerializeField]
         private bool isFiringInParallel = false;
 
-        //[SerializeField]
-        //private bool afterAllEffects = false;
-
-        [ShowIf("isFiringInParallel")]
+        [ShowIf(nameof(isFiringInParallel))]
         [SerializeField]
         private bool afterFirstEffect = false;
 
@@ -36,11 +35,11 @@ namespace Scene.NewScene
         {
             if (isFiringInParallel)
             {
-                _ = StartCoroutine("GoInParallel");
+                _ = StartCoroutine(GoInParallel());
             }
             else
             {
-                _ = StartCoroutine("GoOneByOne");
+                _ = StartCoroutine(GoOneByOne());
             }
         }
 

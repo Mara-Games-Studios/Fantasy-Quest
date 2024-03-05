@@ -369,7 +369,7 @@ MonoBehaviour:
   finalPosition: {fileID: 0}
   finalPositionV3: {x: 0, y: 0, z: 0}
   finalPositionPoint: {fileID: 1462181995}
-  time: 20
+  duration: 1
   isUsingCurve: 0
   curve:
     serializedVersion: 2
@@ -382,7 +382,19 @@ MonoBehaviour:
       m_Calls: []
   MoveFinished:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2102473614}
+        m_TargetAssemblyTypeName: Cat.MovementInvoke, Assembly-CSharp
+        m_MethodName: InvokeSetOnRails
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &63751185
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1636,8 +1648,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 1
   m_ShadowVolumeIntensity: 0.869
   m_LocalBounds:
-    m_Center: {x: -1.78675, y: -5.5943003, z: 0}
-    m_Extent: {x: 1.95725, y: 1.8563001, z: 0}
+    m_Center: {x: -1.79955, y: -5.59595, z: 0}
+    m_Extent: {x: 1.95645, y: 1.85515, z: 0}
   m_PointLightInnerAngle: 359.6
   m_PointLightOuterAngle: 359.6
   m_PointLightInnerRadius: 2
@@ -2154,8 +2166,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 1
   m_ShadowVolumeIntensity: 0.869
   m_LocalBounds:
-    m_Center: {x: -1.3493, y: -5.57025, z: 0}
-    m_Extent: {x: 1.7612001, y: 1.91745, z: 0}
+    m_Center: {x: -1.3452, y: -5.5713, z: 0}
+    m_Extent: {x: 1.7673, y: 1.9267001, z: 0}
   m_PointLightInnerAngle: 359.6
   m_PointLightOuterAngle: 359.6
   m_PointLightInnerRadius: 2
@@ -3755,8 +3767,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 1
   m_ShadowVolumeIntensity: 0.869
   m_LocalBounds:
-    m_Center: {x: 0.46059996, y: -5.5862503, z: 0}
-    m_Extent: {x: 1.4638, y: 1.95805, z: 0}
+    m_Center: {x: 0.46094996, y: -5.5783997, z: 0}
+    m_Extent: {x: 1.4677501, y: 1.9600999, z: 0}
   m_PointLightInnerAngle: 359.6
   m_PointLightOuterAngle: 359.6
   m_PointLightInnerRadius: 2
@@ -5700,7 +5712,7 @@ MonoBehaviour:
   finalPosition: {fileID: 1495213570}
   finalPositionV3: {x: 0, y: 0, z: 0}
   finalPositionPoint: {fileID: 0}
-  time: 1
+  duration: 1
   isUsingCurve: 0
   curve:
     serializedVersion: 2
@@ -7955,8 +7967,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 1
   m_ShadowVolumeIntensity: 0.869
   m_LocalBounds:
-    m_Center: {x: -2.89275, y: -7.5202, z: 0}
-    m_Extent: {x: 1.98155, y: 1.2699001, z: 0}
+    m_Center: {x: -2.88825, y: -7.52155, z: 0}
+    m_Extent: {x: 1.97875, y: 1.2741501, z: 0}
   m_PointLightInnerAngle: 359.6
   m_PointLightOuterAngle: 359.6
   m_PointLightInnerRadius: 2
@@ -8227,6 +8239,37 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   totalTime: 1
+--- !u!1 &1990200296
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1990200297}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1990200297
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1990200296}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1707646173}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2019876810
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8706,8 +8749,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 1
   m_ShadowVolumeIntensity: 0.869
   m_LocalBounds:
-    m_Center: {x: -0.65779996, y: -7.43715, z: 0}
-    m_Extent: {x: 2.6078, y: 1.3316498, z: 0}
+    m_Center: {x: -0.66335005, y: -7.43165, z: 0}
+    m_Extent: {x: 2.59845, y: 1.3224499, z: 0}
   m_PointLightInnerAngle: 359.6
   m_PointLightOuterAngle: 359.6
   m_PointLightInnerRadius: 2
@@ -9863,7 +9906,7 @@ PrefabInstance:
     - target: {fileID: 5384320320187699602, guid: b226e54f4be684b4f82c70458cacaaab, type: 3}
       propertyPath: point
       value: 
-      objectReference: {fileID: 346837508}
+      objectReference: {fileID: 1462181995}
     - target: {fileID: 5384320320187699602, guid: b226e54f4be684b4f82c70458cacaaab, type: 3}
       propertyPath: speed
       value: 3
@@ -9891,6 +9934,9 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 182963880363041228, guid: b226e54f4be684b4f82c70458cacaaab, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1990200297}
     - targetCorrespondingSourceObject: {fileID: 7209340483256552939, guid: b226e54f4be684b4f82c70458cacaaab, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1101761688}
