@@ -31,7 +31,7 @@ namespace Cutscene
             if (canCatInteract)
             {
                 startCat.StartCutscene();
-                //Destroy(this);
+                Destroy(this);
             }
         }
 

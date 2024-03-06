@@ -4,17 +4,19 @@ using UnityEngine;
 
 namespace Cutscene
 {
-    [RequireComponent(typeof(BoxCollider2D))]
+    [RequireComponent(typeof(Collider2D))]
     [AddComponentMenu("Scripts/Cutscene/Cutscene.StartJump")]
     internal class StartJump : MonoBehaviour, IJumpTranstition
     {
         [SerializeField]
         private bool canJumpBoth;
 
-        [SerializeField, HideIf("@downJump && !canJumpBoth")]
+        [HideIf("@downJump && !canJumpBoth")]
+        [SerializeField]
         private Start upJump;
 
-        [SerializeField, HideIf("@upJump && !canJumpBoth")]
+        [HideIf("@upJump && !canJumpBoth")]
+        [SerializeField]
         private Start downJump;
 
         public void JumpUp()

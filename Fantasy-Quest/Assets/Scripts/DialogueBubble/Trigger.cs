@@ -15,8 +15,6 @@ namespace DialogueBubble
         [SerializeField]
         private List<Sprite> icons = new();
 
-        private void OnEnable() { }
-
         private void OnTriggerEnter2D(Collider2D other)
         {
             if (!LockerSettings.Instance.IsDialogueBubbleLocked)

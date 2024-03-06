@@ -35,7 +35,6 @@ namespace Inventory
             else
             {
                 items.Add(newItem);
-                Debug.Log("Added item '" + newItem.ItemName + "' to inventory");
                 return new SuccessResult();
             }
         }
