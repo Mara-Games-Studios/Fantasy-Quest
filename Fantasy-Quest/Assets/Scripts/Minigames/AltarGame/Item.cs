@@ -1,5 +1,5 @@
-﻿using Sirenix.OdinInspector;
-using UnityEditor;
+﻿using System;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Minigames.AltarGame
@@ -15,7 +15,7 @@ namespace Minigames.AltarGame
         [Button]
         private void GenerateUid()
         {
-            uid = GUID.Generate().ToString();
+            uid = Guid.NewGuid().ToString();
         }
 
         public bool Compare(Item other)
