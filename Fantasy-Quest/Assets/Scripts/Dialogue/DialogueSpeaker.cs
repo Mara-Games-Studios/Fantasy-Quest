@@ -68,8 +68,9 @@ namespace Dialogue
         {
             foreach (Replica replica in replicas)
             {
-                Voice.Say(replica.Audio);
                 SubtitlesView.Value.Show(replica);
+                yield return new WaitForSeconds(replica.DelayBeforeSaid);
+                Voice.Say(replica.Audio);
                 yield return new WaitForSeconds(replica.Duration + replica.DelayAfterSaid);
             }
             Stop();
