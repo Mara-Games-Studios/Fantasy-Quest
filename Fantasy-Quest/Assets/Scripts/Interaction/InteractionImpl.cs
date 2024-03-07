@@ -15,6 +15,12 @@ namespace Interaction
         public List<IInteractable> Interactables;
     }
 
+    internal struct TransitionObjects
+    {
+        public List<ISceneTransition> SceneTransitors;
+        public List<IJumpTranstition> JumpTranstitors;
+    }
+
     [RequireComponent(typeof(Rigidbody2D))]
     [AddComponentMenu("Scripts/Interaction/Interaction")]
     internal class InteractionImpl : MonoBehaviour
@@ -55,6 +61,8 @@ namespace Interaction
             playerInput.Enable();
             playerInput.Player.CallHumanInteraction.performed += InteractHuman;
             playerInput.Player.CatInteraction.performed += InteractCat;
+            playerInput.Player.UpJump.performed += TransitionUp;
+            playerInput.Player.DownJump.performed += TransitionDown;
         }
 
         public void InteractHuman(InputAction.CallbackContext context)
@@ -75,6 +83,21 @@ namespace Interaction
             interactableObjects.Speakables.ForEach(speakable => speakable.Speak());
             interactableObjects.Carryables.ForEach(carryable => carryable.CarryByCat());
             interactableObjects.Interactables.ForEach(interactable => interactable.InteractByCat());
+        }
+
+        public void TransitionUp(InputAction.CallbackContext context)
+        {
+            TransitionObjects transitionObjects = FindTransitionObjects();
+
+            transitionObjects.SceneTransitors.ForEach(sceneTrans => sceneTrans.ToNewScene());
+            transitionObjects.JumpTranstitors.ForEach(jumpTrans => jumpTrans.JumpUp());
+        }
+
+        public void TransitionDown(InputAction.CallbackContext context)
+        {
+            TransitionObjects transitionObjects = FindTransitionObjects();
+
+            transitionObjects.JumpTranstitors.ForEach(jumpTrans => jumpTrans.JumpDown());
         }
 
         private InteractableObjects FindInteractableObjects()
@@ -114,11 +137,44 @@ namespace Interaction
             };
         }
 
+        private TransitionObjects FindTransitionObjects()
+        {
+            List<RaycastHit2D> hits = new();
+
+            Vector2 direction =
+                new(playerRigidBody.transform.forward.x, playerRigidBody.transform.forward.y);
+
+            _ = playerRigidBody.Cast(direction, contactFilter, hits, colDistance);
+
+            List<IJumpTranstition> jumpTransitors = new();
+            List<ISceneTransition> sceneTransitors = new();
+
+            foreach (Transform hit in hits.Select(x => x.transform))
+            {
+                if (hit.TryGetComponent(out IJumpTranstition jumpTrans))
+                {
+                    jumpTransitors.Add(jumpTrans);
+                }
+                if (hit.TryGetComponent(out ISceneTransition sceneTrans))
+                {
+                    sceneTransitors.Add(sceneTrans);
+                }
+            }
+
+            return new TransitionObjects
+            {
+                JumpTranstitors = jumpTransitors,
+                SceneTransitors = sceneTransitors,
+            };
+        }
+
         private void OnDisable()
         {
             playerInput.Disable();
             playerInput.Player.CallHumanInteraction.performed -= InteractHuman;
             playerInput.Player.CatInteraction.performed -= InteractCat;
+            playerInput.Player.UpJump.performed -= TransitionUp;
+            playerInput.Player.DownJump.performed -= TransitionDown;
         }
     }
 }

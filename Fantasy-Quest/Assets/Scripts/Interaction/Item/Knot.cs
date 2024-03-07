@@ -21,8 +21,6 @@ namespace Interaction.Item
         [SerializeField]
         private State state = State.Left;
 
-        public bool CanCatInteract => canCatInteract;
-
         public void InteractByCat()
         {
             if (canCatInteract)

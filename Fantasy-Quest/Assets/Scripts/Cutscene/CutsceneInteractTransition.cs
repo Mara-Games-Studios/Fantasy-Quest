@@ -26,14 +26,12 @@ namespace Cutscene
 
         private bool canCatInteract;
 
-        bool IInteractable.CanCatInteract => throw new System.NotImplementedException();
-
         public void InteractByCat()
         {
             if (canCatInteract)
             {
                 startCat.StartCutscene();
-                gameObject.SetActive(false);
+                Destroy(this);
             }
         }
 
