@@ -26,7 +26,6 @@ namespace Subtitles
 
         private void OnSubtitlesShowChanged(bool value)
         {
-            
             fadeTween?.Kill(true);
             outputTmpText.alpha = value ? 1 : 0;
         }
@@ -41,7 +40,7 @@ namespace Subtitles
                 DoFade(1);
             };
         }
-        
+
         public void Hide()
         {
             fadeTween?.Kill(true);
@@ -55,7 +54,7 @@ namespace Subtitles
             {
                 return;
             }
-            
+
             fadeTween = outputTmpText.DOFade(endAlpha, SubtitlesSettings.Instance.TextFadeDuration);
         }
     }
