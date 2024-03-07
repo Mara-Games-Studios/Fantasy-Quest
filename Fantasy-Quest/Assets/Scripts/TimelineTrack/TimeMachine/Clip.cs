@@ -5,18 +5,17 @@ using Sirenix.OdinInspector;
 using TNRD;
 using UnityEngine;
 using UnityEngine.Playables;
-using UnityEngine.Timeline;
 
 namespace TimelineTrack.TimeMachine
 {
     [Serializable]
-    public class Clip : PlayableAsset, ITimelineClipAsset
+    public class Clip : PlayableAsset
     {
         private Behaviour template = new();
 
         [Title("Marker Label")]
         [SerializeField]
-        private string markerLabel = "";
+        private string markerLabel = "MarkerName";
         public string MarkerLabel => markerLabel;
 
         [Title("Action Type")]
@@ -41,10 +40,8 @@ namespace TimelineTrack.TimeMachine
 
         [SerializeField]
         [ShowIf(nameof(condition), ConditionType.Custom)]
-        private List<SerializableInterface<IConditionSource>> referenceCondition;
+        private List<SerializableInterface<IConditionSource>> referenceCondition = new();
         public IEnumerable<IConditionSource> Conditions => referenceCondition.Select(x => x.Value);
-
-        public ClipCaps clipCaps => ClipCaps.None;
 
         public override Playable CreatePlayable(PlayableGraph graph, GameObject owner)
         {

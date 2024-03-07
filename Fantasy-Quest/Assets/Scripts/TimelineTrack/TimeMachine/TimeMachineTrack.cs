@@ -7,7 +7,7 @@ namespace TimelineTrack.TimeMachine
 {
     [TrackColor(0.74f, 0.33f, 0.85f)]
     [TrackClipType(typeof(Clip))]
-    public class Track : TrackAsset
+    public class TimeMachineTrack : TrackAsset
     {
         public override Playable CreateTrackMixer(
             PlayableGraph graph,
