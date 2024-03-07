@@ -19,6 +19,7 @@ public class BlackLinesShower : MonoBehaviour
     private float duration;
 
     [SerializeField]
+    [Range(0f, 1f)]
     private float targetAlpha;
 
     [SerializeField]
