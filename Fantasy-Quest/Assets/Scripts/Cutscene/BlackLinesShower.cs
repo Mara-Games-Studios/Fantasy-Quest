@@ -4,6 +4,7 @@ using DG.Tweening;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
+[AddComponentMenu("Scripts/Cutscene/Cutscene.BlackLinesShower")]
 public class BlackLinesShower : MonoBehaviour
 {
     [Serializable] 
@@ -23,7 +24,7 @@ public class BlackLinesShower : MonoBehaviour
     [SerializeField] 
     private List<Line> lines;
 
-    //used by Timeline
+    // Prepared to be invoked by Timeline.
     [Button]
     public void Show()
     {
@@ -35,7 +36,7 @@ public class BlackLinesShower : MonoBehaviour
         }        
     }
 
-    //used by Timeline
+    // Prepared to be invoked by Timeline.
     [Button]
     public void Hide()
     {
