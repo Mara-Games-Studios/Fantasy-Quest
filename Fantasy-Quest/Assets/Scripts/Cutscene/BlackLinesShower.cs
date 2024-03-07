@@ -7,7 +7,7 @@ using UnityEngine;
 [AddComponentMenu("Scripts/Cutscene/Cutscene.BlackLinesShower")]
 public class BlackLinesShower : MonoBehaviour
 {
-    [Serializable] 
+    [Serializable]
     private struct Line
     {
         public RectTransform StartPoint;
@@ -15,38 +15,36 @@ public class BlackLinesShower : MonoBehaviour
         public UnityEngine.UI.Image Image;
     }
 
-    [SerializeField] 
+    [SerializeField]
     private float duration;
 
-    [SerializeField] 
+    [SerializeField]
     private float targetAlpha;
-    
-    [SerializeField] 
+
+    [SerializeField]
     private List<Line> lines;
 
     // Prepared to be invoked by Timeline.
     [Button]
     public void Show()
     {
-        foreach (var line in lines)
+        foreach (Line line in lines)
         {
             line.Image.rectTransform.position = line.StartPoint.position;
-            var moveTween = line.Image.rectTransform.DOMove(line.EndPoint.position, duration);
-            var fadeTween = line.Image.DOFade(targetAlpha, duration);
-        }        
+            _ = line.Image.rectTransform.DOMove(line.EndPoint.position, duration);
+            _ = line.Image.DOFade(targetAlpha, duration);
+        }
     }
 
     // Prepared to be invoked by Timeline.
     [Button]
     public void Hide()
     {
-        foreach (var line in lines)
+        foreach (Line line in lines)
         {
             line.Image.rectTransform.position = line.EndPoint.position;
-            var moveTween = line.Image.rectTransform.DOMove(line.StartPoint.position, duration);
-            var fadeTween = line.Image.DOFade(0f, duration);
-        }        
+            _ = line.Image.rectTransform.DOMove(line.StartPoint.position, duration);
+            _ = line.Image.DOFade(0f, duration);
+        }
     }
 }
-
-
