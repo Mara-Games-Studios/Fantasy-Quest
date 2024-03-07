@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using Cat;
 using Rails;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -37,7 +38,7 @@ namespace Utils
         private Point finalPositionPoint;
 
         [SerializeField]
-        private float time;
+        private float duration;
 
         [SerializeField]
         private bool isUsingCurve = false;
@@ -46,8 +47,11 @@ namespace Utils
         [ShowIf(nameof(isUsingCurve))]
         private AnimationCurve curve;
 
+        public UnityEvent<Vector> MoveStarted;
+
         public UnityEvent MoveFinished;
 
+        [Button]
         public void Move()
         {
             Vector3 to = mode switch
@@ -58,22 +62,34 @@ namespace Utils
                 _ => throw new System.ArgumentException()
             };
             AnimationCurve tempCurve = isUsingCurve ? curve : AnimationCurve.Linear(0, 0, 1, 1);
-            _ = StartCoroutine(MoveRoutine(movingBody, to, time, tempCurve));
+
+            float direction = to.x - movingBody.position.x;
+            if (direction < 0)
+            {
+                MoveStarted?.Invoke(Vector.Left);
+            }
+            else
+            {
+                MoveStarted?.Invoke(Vector.Right);
+            }
+
+            _ = StartCoroutine(MoveRoutine(movingBody, to, duration, tempCurve));
         }
 
         private IEnumerator MoveRoutine(
             Transform body,
             Vector3 to,
-            float time,
+            float duration,
             AnimationCurve curve
         )
         {
-            float timer = time;
-            while (timer >= 0)
+            Vector3 startPos = body.position;
+            float timer = 0;
+            while (timer <= duration)
             {
-                body.position = Vector3.Lerp(body.position, to, curve.Evaluate(1 - (timer / time)));
+                body.position = Vector3.Lerp(startPos, to, curve.Evaluate(timer / duration));
                 yield return null;
-                timer -= Time.deltaTime;
+                timer += Time.deltaTime;
             }
             MoveFinished?.Invoke();
         }

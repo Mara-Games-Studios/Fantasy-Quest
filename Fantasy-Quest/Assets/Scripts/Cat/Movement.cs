@@ -106,6 +106,11 @@ namespace Cat
             }
         }
 
+        public void ChangeVector(Vector newVector)
+        {
+            Vector = newVector;
+        }
+
         [Title("Debug buttons for testing")]
         [Button(Style = ButtonStyle.Box)]
         public void SetOnRails(RailsImpl rails, float point)
