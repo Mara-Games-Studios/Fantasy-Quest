@@ -32,9 +32,13 @@ namespace Subtitles
 
         public void Show(Replica replica)
         {
-            fadeTween?.Kill(true);
-            outputTmpText.SetText(replica.Text);
-            DoFade(1);
+            DoFade(0);
+            fadeTween.onComplete += () =>
+            {
+                fadeTween?.Kill();
+                outputTmpText.SetText(replica.Text);
+                DoFade(1);
+            };
         }
 
         public void Hide()
@@ -50,6 +54,7 @@ namespace Subtitles
             {
                 return;
             }
+
             fadeTween = outputTmpText.DOFade(endAlpha, SubtitlesSettings.Instance.TextFadeDuration);
         }
     }
