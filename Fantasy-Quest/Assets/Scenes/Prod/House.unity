@@ -1259,10 +1259,8 @@ GameObject:
   m_Component:
   - component: {fileID: 199431207}
   - component: {fileID: 199431208}
-  - component: {fileID: 199431209}
-  - component: {fileID: 199431210}
   m_Layer: 0
-  m_Name: Milk
+  m_Name: MilkFull
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1335,57 +1333,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &199431209
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 199431206}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 90531c89e7a0d2c429ea968194cde13e, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
---- !u!114 &199431210
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 199431206}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Events:
-    m_Signals:
-    - {fileID: 11400000, guid: 53ad171fe57b5f243b9a467f95769a60, type: 2}
-    m_Events:
-    - m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 199431209}
-          m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
-          m_MethodName: SetTrigger
-          m_Mode: 5
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: RemoveMilk
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!1 &211461296
 GameObject:
   m_ObjectHideFlags: 0
@@ -1743,8 +1690,13 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 1
   m_ShadowVolumeIntensity: 0.869
   m_LocalBounds:
+<<<<<<< Updated upstream
     m_Center: {x: -1.7833, y: -5.5967503, z: 0}
     m_Extent: {x: 1.959, y: 1.86055, z: 0}
+=======
+    m_Center: {x: -1.78855, y: -5.59655, z: 0}
+    m_Extent: {x: 1.95445, y: 1.85275, z: 0}
+>>>>>>> Stashed changes
   m_PointLightInnerAngle: 359.6
   m_PointLightOuterAngle: 359.6
   m_PointLightInnerRadius: 2
@@ -2261,8 +2213,13 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 1
   m_ShadowVolumeIntensity: 0.869
   m_LocalBounds:
+<<<<<<< Updated upstream
     m_Center: {x: -1.3435501, y: -5.57575, z: 0}
     m_Extent: {x: 1.76045, y: 1.92415, z: 0}
+=======
+    m_Center: {x: -1.3513501, y: -5.57605, z: 0}
+    m_Extent: {x: 1.75435, y: 1.9151499, z: 0}
+>>>>>>> Stashed changes
   m_PointLightInnerAngle: 359.6
   m_PointLightOuterAngle: 359.6
   m_PointLightInnerRadius: 2
@@ -3352,6 +3309,7 @@ Transform:
   - {fileID: 1837785235}
   - {fileID: 27713290}
   - {fileID: 199431207}
+  - {fileID: 1129111303}
   m_Father: {fileID: 106903181}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &650290303
@@ -3397,13 +3355,17 @@ PlayableDirector:
   - key: {fileID: -5274574942413381506, guid: bc02affea331f0c4a8ece55d2e0b0df3, type: 2}
     value: {fileID: 84311745}
   - key: {fileID: -1500098584500805858, guid: bc02affea331f0c4a8ece55d2e0b0df3, type: 2}
-    value: {fileID: 199431210}
+    value: {fileID: 0}
   - key: {fileID: -6714942015857933744, guid: bc02affea331f0c4a8ece55d2e0b0df3, type: 2}
     value: {fileID: 84311747}
   - key: {fileID: 4195317424832436673, guid: bc02affea331f0c4a8ece55d2e0b0df3, type: 2}
     value: {fileID: 1474902147}
   - key: {fileID: -2325669017287070179, guid: bc02affea331f0c4a8ece55d2e0b0df3, type: 2}
     value: {fileID: 988119208}
+  - key: {fileID: 5244834851162851343, guid: bc02affea331f0c4a8ece55d2e0b0df3, type: 2}
+    value: {fileID: 1129111302}
+  - key: {fileID: 2848339493483494791, guid: bc02affea331f0c4a8ece55d2e0b0df3, type: 2}
+    value: {fileID: 84311742}
   m_ExposedReferences:
     m_References:
     - def7d135f55a3bf47a8ca214b5f53c09: {fileID: 1054450547}
@@ -3731,6 +3693,7 @@ GameObject:
   m_Component:
   - component: {fileID: 761626747}
   - component: {fileID: 761626749}
+  - component: {fileID: 761626750}
   - component: {fileID: 761626748}
   m_Layer: 0
   m_Name: MoveToStart
@@ -3826,7 +3789,33 @@ MonoBehaviour:
         m_CallState: 2
   MoveFinished:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 761626750}
+        m_TargetAssemblyTypeName: Utils.ChangeWatchDir, Assembly-CSharp
+        m_MethodName: ChangeWatchDirection
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &761626750
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 761626746}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 962dcb5021f15c14b892faf28be50807, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  watchDirection: 0
+  catMovement: {fileID: 7703565356622517968}
 --- !u!60 &761692360 stripped
 PolygonCollider2D:
   m_CorrespondingSourceObject: {fileID: 8940498917770854116, guid: 28d9e3495a29edc46b1365288dc22921, type: 3}
@@ -4129,8 +4118,13 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 1
   m_ShadowVolumeIntensity: 0.869
   m_LocalBounds:
+<<<<<<< Updated upstream
     m_Center: {x: 0.46750003, y: -5.58725, z: 0}
     m_Extent: {x: 1.4695001, y: 1.9585501, z: 0}
+=======
+    m_Center: {x: 0.46275002, y: -5.58805, z: 0}
+    m_Extent: {x: 1.46505, y: 1.96425, z: 0}
+>>>>>>> Stashed changes
   m_PointLightInnerAngle: 359.6
   m_PointLightOuterAngle: 359.6
   m_PointLightInnerRadius: 2
@@ -5241,6 +5235,8 @@ PlayableDirector:
     value: {fileID: 761626748}
   - key: {fileID: -1564958048048734497, guid: 080a73f210897c946acf6b19f1ca64f7, type: 2}
     value: {fileID: 1054450560}
+  - key: {fileID: -3054515027776770748, guid: 080a73f210897c946acf6b19f1ca64f7, type: 2}
+    value: {fileID: 0}
   m_ExposedReferences:
     m_References:
     - 164c1ad3005b2014ba5a3141eaa8efa4: {fileID: 6732909966977288568}
@@ -5493,7 +5489,11 @@ MonoBehaviour:
   icons:
   - {fileID: 21300000, guid: cd5ae4abc80d8044c9c0f56d4885c4c8, type: 3}
   - {fileID: 21300000, guid: 567abc815eaa8204899ba32f2d63188f, type: 3}
+<<<<<<< Updated upstream
 --- !u!1 &1116647176
+=======
+--- !u!1 &1129111302
+>>>>>>> Stashed changes
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5501,6 +5501,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
+<<<<<<< Updated upstream
   - component: {fileID: 1116647179}
   - component: {fileID: 1116647178}
   - component: {fileID: 1116647177}
@@ -5513,10 +5514,24 @@ GameObject:
   m_IsActive: 1
 --- !u!114 &1116647177
 MonoBehaviour:
+=======
+  - component: {fileID: 1129111303}
+  - component: {fileID: 1129111304}
+  m_Layer: 0
+  m_Name: MilkEmpty
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 2147483647
+  m_IsActive: 0
+--- !u!4 &1129111303
+Transform:
+>>>>>>> Stashed changes
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< Updated upstream
   m_GameObject: {fileID: 1116647176}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -5627,6 +5642,69 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -200, y: -30}
   m_Pivot: {x: 0.5, y: 0.5}
+=======
+  m_GameObject: {fileID: 1129111302}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -2.9100008, y: 0.83, z: 1}
+  m_LocalScale: {x: 1.4999999, y: 1.4999999, z: 1.4999999}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 650290302}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &1129111304
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1129111302}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: -1553855423
+  m_SortingLayer: 3
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: 804f3fd52725d664fb11700969eff0d8, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+>>>>>>> Stashed changes
 --- !u!1 &1143326346
 GameObject:
   m_ObjectHideFlags: 0
@@ -6325,6 +6403,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1293893718}
   - component: {fileID: 1293893719}
+  - component: {fileID: 1293893721}
   - component: {fileID: 1293893720}
   m_Layer: 0
   m_Name: MoveToBowl
@@ -6391,7 +6470,19 @@ MonoBehaviour:
         m_CallState: 2
   MoveFinished:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1293893721}
+        m_TargetAssemblyTypeName: Utils.ChangeWatchDir, Assembly-CSharp
+        m_MethodName: ChangeWatchDirection
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1293893720
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6422,6 +6513,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+<<<<<<< Updated upstream
 --- !u!1 &1294932366
 GameObject:
   m_ObjectHideFlags: 0
@@ -6463,11 +6555,15 @@ RectTransform:
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &1294932368
+=======
+--- !u!114 &1293893721
+>>>>>>> Stashed changes
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< Updated upstream
   m_GameObject: {fileID: 1294932366}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -6508,6 +6604,16 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+=======
+  m_GameObject: {fileID: 1293893717}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 962dcb5021f15c14b892faf28be50807, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  watchDirection: 1
+  catMovement: {fileID: 7703565356622517968}
+>>>>>>> Stashed changes
 --- !u!1 &1296383447
 GameObject:
   m_ObjectHideFlags: 0
@@ -6659,6 +6765,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1392083404}
   - component: {fileID: 1392083406}
+  - component: {fileID: 1392083407}
   - component: {fileID: 1392083405}
   m_Layer: 0
   m_Name: MoveToStart
@@ -6754,7 +6861,33 @@ MonoBehaviour:
         m_CallState: 2
   MoveFinished:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1392083407}
+        m_TargetAssemblyTypeName: Utils.ChangeWatchDir, Assembly-CSharp
+        m_MethodName: ChangeWatchDirection
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1392083407
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1392083403}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 962dcb5021f15c14b892faf28be50807, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  watchDirection: 1
+  catMovement: {fileID: 7703565356622517968}
 --- !u!1 &1405161613
 GameObject:
   m_ObjectHideFlags: 0
@@ -7189,7 +7322,6 @@ GameObject:
   - component: {fileID: 1474902148}
   - component: {fileID: 1474902147}
   - component: {fileID: 1474902146}
-  - component: {fileID: 1474902151}
   - component: {fileID: 1474902150}
   m_Layer: 3
   m_Name: Bowl
@@ -7527,7 +7659,7 @@ MonoBehaviour:
     m_Events:
     - m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1474902151}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: Utils.ActivateObject, Assembly-CSharp
           m_MethodName: Activation
           m_Mode: 1
@@ -7539,19 +7671,6 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
---- !u!114 &1474902151
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1474902135}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2ad58aff34d658843b753e2fbc6f30a6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  objs: []
 --- !u!1 &1495213569
 GameObject:
   m_ObjectHideFlags: 0
@@ -8859,8 +8978,13 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 1
   m_ShadowVolumeIntensity: 0.869
   m_LocalBounds:
+<<<<<<< Updated upstream
     m_Center: {x: -2.8897, y: -7.5247, z: 0}
     m_Extent: {x: 1.9752, y: 1.2731001, z: 0}
+=======
+    m_Center: {x: -2.8939, y: -7.51805, z: 0}
+    m_Extent: {x: 1.985, y: 1.2715502, z: 0}
+>>>>>>> Stashed changes
   m_PointLightInnerAngle: 359.6
   m_PointLightOuterAngle: 359.6
   m_PointLightInnerRadius: 2
@@ -9725,8 +9849,13 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 1
   m_ShadowVolumeIntensity: 0.869
   m_LocalBounds:
+<<<<<<< Updated upstream
     m_Center: {x: -0.65524995, y: -7.4414997, z: 0}
     m_Extent: {x: 2.6027498, y: 1.3212001, z: 0}
+=======
+    m_Center: {x: -0.6603, y: -7.4378, z: 0}
+    m_Extent: {x: 2.6024, y: 1.3309999, z: 0}
+>>>>>>> Stashed changes
   m_PointLightInnerAngle: 359.6
   m_PointLightOuterAngle: 359.6
   m_PointLightInnerRadius: 2
@@ -10975,7 +11104,7 @@ PrefabInstance:
     - target: {fileID: 5384320320187699602, guid: b226e54f4be684b4f82c70458cacaaab, type: 3}
       propertyPath: point
       value: 
-      objectReference: {fileID: 346837508}
+      objectReference: {fileID: 1462181995}
     - target: {fileID: 5384320320187699602, guid: b226e54f4be684b4f82c70458cacaaab, type: 3}
       propertyPath: speed
       value: 3
