@@ -1,10 +1,10 @@
 using UnityEngine;
 
-namespace Sprites
+namespace Utils
 {
     [RequireComponent(typeof(SpriteRenderer))]
-    [AddComponentMenu("Scripts/Sprites/Sprites.NewSpriteSet")]
-    internal class NewSpriteSet : MonoBehaviour
+    [AddComponentMenu("Scripts/Utils/Utils.SpriteSwitcher")]
+    internal class SpriteSwitcher : MonoBehaviour
     {
         [SerializeField]
         private SpriteRenderer spriteRenderer;
