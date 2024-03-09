@@ -18,7 +18,7 @@ namespace Interaction
     internal struct TransitionObjects
     {
         public List<ISceneTransition> SceneTransitors;
-        public List<IJumpTranstition> JumpTranstitors;
+        public List<IJumpTransition> JumpTranstitors;
     }
 
     [RequireComponent(typeof(Rigidbody2D))]
@@ -146,12 +146,12 @@ namespace Interaction
 
             _ = playerRigidBody.Cast(direction, contactFilter, hits, colDistance);
 
-            List<IJumpTranstition> jumpTransitors = new();
+            List<IJumpTransition> jumpTransitors = new();
             List<ISceneTransition> sceneTransitors = new();
 
             foreach (Transform hit in hits.Select(x => x.transform))
             {
-                if (hit.TryGetComponent(out IJumpTranstition jumpTrans))
+                if (hit.TryGetComponent(out IJumpTransition jumpTrans))
                 {
                     jumpTransitors.Add(jumpTrans);
                 }
