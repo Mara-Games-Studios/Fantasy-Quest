@@ -11,6 +11,7 @@ namespace Utils
         private Vector watchDirection = Vector.Right;
 
         [SerializeField]
+        [RequiredIn(PrefabKind.PrefabInstanceAndNonPrefabInstance)]
         private Movement catMovement;
 
         public void ChangeWatchDirection()
@@ -21,7 +22,7 @@ namespace Utils
         [Button]
         public void FindCat()
         {
-            catMovement = GameObject.Find("Cat").GetComponent<Movement>();
+            catMovement = FindAnyObjectByType<Cat.Movement>().GetComponent<Cat.Movement>();
         }
     }
 }
