@@ -16,16 +16,23 @@ namespace Configs
         private bool isCatMovementLocked = false;
         public bool IsCatMovementLocked => isCatMovementLocked;
 
+        [ReadOnly]
+        [SerializeField]
+        private bool isCatInteractionLocked = false;
+        public bool IsCatInteractionLocked => isCatInteractionLocked;
+
         public void LockAll()
         {
             isDialogueBubbleLocked = true;
             isCatMovementLocked = true;
+            isCatInteractionLocked = true;
         }
 
         public void UnlockAll()
         {
             isDialogueBubbleLocked = false;
             isCatMovementLocked = false;
+            isCatInteractionLocked = false;
         }
     }
 }

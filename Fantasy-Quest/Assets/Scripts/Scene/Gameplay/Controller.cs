@@ -43,5 +43,15 @@ namespace Scene.Gameplay
             cutsceneManager.Resume();
             dialogueManager.Resume();
         }
+
+        public void DisableInput()
+        {
+            gameplayInput.enabled = false;
+        }
+
+        public void EnableInput()
+        {
+            gameplayInput.enabled = true;
+        }
     }
 }
