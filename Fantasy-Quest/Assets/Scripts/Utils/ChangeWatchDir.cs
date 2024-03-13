@@ -12,7 +12,7 @@ namespace Utils
 
         [SerializeField]
         [RequiredIn(PrefabKind.PrefabInstanceAndNonPrefabInstance)]
-        private Movement catMovement;
+        private Cat.Movement catMovement;
 
         public void ChangeWatchDirection()
         {

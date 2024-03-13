@@ -156,7 +156,7 @@ MonoBehaviour:
   catMovement: {fileID: 5384320320187699602}
   flipTime: 0.5
   toFlip: 0
-  flipping: 0
+  isFlipping: 0
   rotationByVectorsRaw:
   - Rotation: {x: 0, y: 180, z: 0}
     Vector: 0
@@ -567,11 +567,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerRigidBody: {fileID: 3048288317685710039}
   colDistance: 1
-  useFilterMask: 1
-  filterMask:
-    serializedVersion: 2
-    m_Bits: 8
-  useTrigger: 1
+  contactFilter:
+    useTriggers: 1
+    useLayerMask: 1
+    useDepth: 0
+    useOutsideDepth: 0
+    useNormalAngle: 0
+    useOutsideNormalAngle: 0
+    layerMask:
+      serializedVersion: 2
+      m_Bits: 8
+    minDepth: 0
+    maxDepth: 0
+    minNormalAngle: 0
+    maxNormalAngle: 0
 --- !u!70 &1560389952819519362
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

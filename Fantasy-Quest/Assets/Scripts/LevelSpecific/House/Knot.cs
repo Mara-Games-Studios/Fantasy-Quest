@@ -1,9 +1,10 @@
+using Interaction.Item;
 using UnityEngine;
 
-namespace Interaction.Item
+namespace LevelSpecific.House
 {
     [RequireComponent(typeof(Animator))]
-    [AddComponentMenu("Scripts/Interaction/Item/Interaction.Item.Knot")]
+    [AddComponentMenu("Scripts/LevelSpecific/House/LevelSpecific.House.Knot")]
     internal class Knot : MonoBehaviour, IInteractable
     {
         private enum State

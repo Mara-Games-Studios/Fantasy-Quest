@@ -2,11 +2,9 @@
 using System.Collections;
 using Sirenix.OdinInspector;
 using UnityEngine;
-using UnityEngine.Events;
 
 namespace Effects.Screen
 {
-    [ExecuteAlways]
     [AddComponentMenu("Scripts/Effects/Screen/Effects.Screen.Disappearing")]
     internal class CutoutMask : MonoBehaviour, IEffect
     {
@@ -34,8 +32,6 @@ namespace Effects.Screen
 
         [SerializeField]
         private AnimationCurve curve = AnimationCurve.Linear(0, 0, 1, 1);
-
-        public UnityEvent OnCutoutEnds;
 
         private RectTransform rectTransform;
 
@@ -77,7 +73,6 @@ namespace Effects.Screen
                 );
                 yield return null;
             }
-            OnCutoutEnds?.Invoke();
             OnEffectEnded?.Invoke();
         }
 

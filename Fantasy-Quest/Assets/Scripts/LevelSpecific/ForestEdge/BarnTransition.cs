@@ -7,10 +7,10 @@ using Sirenix.OdinInspector;
 using TNRD;
 using UnityEngine;
 
-namespace Levels.SublevelSwitchers
+namespace LevelSpecific.ForestEdge
 {
-    [AddComponentMenu("Scripts/Levels/SublevelSwitchers/Levels.SublevelSwitchers.ToBarn")]
-    internal class ToBarn : MonoBehaviour, ISceneTransition
+    [AddComponentMenu("Scripts/LevelSpecific/ForestEdge/LevelSpecific.ForestEdge.BarnTransition")]
+    internal class BarnTransition : MonoBehaviour, ISceneTransition
     {
         [Required]
         [SerializeField]
@@ -40,15 +40,11 @@ namespace Levels.SublevelSwitchers
         private SerializableInterface<IEffect> outEffect;
         private IEffect OutEffect => outEffect.Value;
 
-        private void Awake()
-        {
-            InEffect.OnEffectEnded += OnInEffectEnded;
-            OutEffect.OnEffectEnded += OnOutEffectEnded;
-        }
-
         public void ToNewScene()
         {
             LockerSettings.Instance.LockAll();
+            InEffect.OnEffectEnded += OnInEffectEnded;
+            OutEffect.OnEffectEnded += OnOutEffectEnded;
             InEffect.DoEffect();
         }
 
@@ -70,6 +66,8 @@ namespace Levels.SublevelSwitchers
         private void OnOutEffectEnded()
         {
             OutEffect.RefreshEffect();
+            InEffect.OnEffectEnded -= OnInEffectEnded;
+            OutEffect.OnEffectEnded -= OnOutEffectEnded;
             LockerSettings.Instance.UnlockAll();
         }
     }
