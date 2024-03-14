@@ -21,6 +21,7 @@ namespace Configs
         private bool isCatInteractionLocked = false;
         public bool IsCatInteractionLocked => isCatInteractionLocked;
 
+        [Button]
         public void LockAll()
         {
             isDialogueBubbleLocked = true;
@@ -28,6 +29,7 @@ namespace Configs
             isCatInteractionLocked = true;
         }
 
+        [Button]
         public void UnlockAll()
         {
             isDialogueBubbleLocked = false;
