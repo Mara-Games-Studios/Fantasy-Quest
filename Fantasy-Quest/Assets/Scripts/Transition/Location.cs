@@ -1,48 +1,36 @@
 ﻿using System.Collections;
-using Cinemachine;
-using Configs;
 using Effects;
-using Interaction.Item;
 using Sirenix.OdinInspector;
 using TNRD;
 using UnityEngine;
+using UnityEngine.Events;
 
-namespace LevelSpecific.ForestEdge
+namespace Transition
 {
-    [AddComponentMenu("Scripts/LevelSpecific/ForestEdge/LevelSpecific.ForestEdge.BarnTransition")]
-    internal class BarnTransition : MonoBehaviour, ISceneTransition
+    [AddComponentMenu("Scripts/Transition/Transition.Location")]
+    internal class Location : MonoBehaviour
     {
-        [Required]
+        [MinValue(0)]
         [SerializeField]
-        private Cat.Movement catMovement;
+        private float transitionTime = 1f;
 
-        [Required]
-        [SerializeField]
-        private Rails.Point railsPointToBind;
-
-        [Required]
-        [SerializeField]
-        private CinemachineVirtualCamera virtualCamera;
-
-        [SerializeField]
-        private int newCameraPriority = 1000;
-
-        [SerializeField]
-        private float transitionTime = 2f;
-
-        [Required]
+        [RequiredIn(PrefabKind.PrefabInstanceAndNonPrefabInstance)]
         [SerializeField]
         private SerializableInterface<IEffect> inEffect;
         private IEffect InEffect => inEffect.Value;
 
-        [Required]
+        [RequiredIn(PrefabKind.PrefabInstanceAndNonPrefabInstance)]
         [SerializeField]
         private SerializableInterface<IEffect> outEffect;
         private IEffect OutEffect => outEffect.Value;
 
-        public void ToNewScene()
+        public UnityEvent InEffectStarted;
+        public UnityEvent InEffectEnded;
+        public UnityEvent OutEffectEnded;
+
+        public void TriggerTransition()
         {
-            LockerSettings.Instance.LockAll();
+            InEffectStarted?.Invoke();
             InEffect.OnEffectEnded += OnInEffectEnded;
             OutEffect.OnEffectEnded += OnOutEffectEnded;
             InEffect.DoEffect();
@@ -50,9 +38,7 @@ namespace LevelSpecific.ForestEdge
 
         public void OnInEffectEnded()
         {
-            virtualCamera.Priority = newCameraPriority;
-            catMovement.RemoveFromRails();
-            catMovement.SetOnRails(railsPointToBind);
+            InEffectEnded?.Invoke();
             _ = StartCoroutine(WaitRoutine(transitionTime));
         }
 
@@ -68,7 +54,7 @@ namespace LevelSpecific.ForestEdge
             OutEffect.RefreshEffect();
             InEffect.OnEffectEnded -= OnInEffectEnded;
             OutEffect.OnEffectEnded -= OnOutEffectEnded;
-            LockerSettings.Instance.UnlockAll();
+            OutEffectEnded?.Invoke();
         }
     }
 }
