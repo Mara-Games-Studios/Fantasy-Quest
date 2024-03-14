@@ -27,15 +27,15 @@ namespace Interaction
         private void Awake()
         {
             playerInput = new GameplayInput();
-            playerInput.Player.CallHumanInteraction.performed += InteractHuman;
-            playerInput.Player.CatInteraction.performed += InteractCat;
-            playerInput.Player.UpJump.performed += TransitionUp;
-            playerInput.Player.DownJump.performed += TransitionDown;
         }
 
         private void OnEnable()
         {
             playerInput.Enable();
+            playerInput.Player.CallHumanInteraction.performed += InteractHuman;
+            playerInput.Player.CatInteraction.performed += InteractCat;
+            playerInput.Player.UpJump.performed += TransitionUp;
+            playerInput.Player.DownJump.performed += TransitionDown;
         }
 
         public void InteractHuman(InputAction.CallbackContext context)
@@ -89,6 +89,10 @@ namespace Interaction
 
         private void OnDisable()
         {
+            playerInput.Player.CallHumanInteraction.performed -= InteractHuman;
+            playerInput.Player.CatInteraction.performed -= InteractCat;
+            playerInput.Player.UpJump.performed -= TransitionUp;
+            playerInput.Player.DownJump.performed -= TransitionDown;
             playerInput.Disable();
         }
     }

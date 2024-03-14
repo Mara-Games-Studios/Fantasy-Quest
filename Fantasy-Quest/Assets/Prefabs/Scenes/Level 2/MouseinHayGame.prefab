@@ -128,7 +128,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ca2bad3c90a02741baebdc15766dbf5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  endController: {fileID: 0}
   quitGameInputAction:
     m_Name: Quit Game Input
     m_Type: 0
@@ -146,7 +145,50 @@ MonoBehaviour:
       m_Action: Quit Game Input
       m_Flags: 0
     m_Flags: 0
-  nextScene: Assets/Scenes/Prod/ForestEdge.unity
+  disableInputOnStart: 1
+  hay: {fileID: 4920672364197276875}
+  paw: {fileID: 4720551004917506865}
+  OnManualExitGame:
+    m_PersistentCalls:
+      m_Calls: []
+  OnLoseExitGame:
+    m_PersistentCalls:
+      m_Calls: []
+  OnWinExitGame:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!1 &3072062791603768533
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4471364523769752462}
+  m_Layer: 0
+  m_Name: CameraParent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4471364523769752462
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3072062791603768533}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 4491360185254577813}
+  m_Father: {fileID: 5146389986065270534}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3195526947449270759
 GameObject:
   m_ObjectHideFlags: 0
@@ -787,7 +829,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6738882202850826601}
-  - {fileID: 4491360185254577813}
+  - {fileID: 4471364523769752462}
   - {fileID: 1226594301672875076}
   - {fileID: 5638307220189260857}
   m_Father: {fileID: 0}
@@ -1122,7 +1164,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8e204c71c8d43f438f80936b412c483, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraTransform: {fileID: 0}
+  cameraTransform: {fileID: 4471364523769752462}
   StrengthMultiplier: 1
 --- !u!1 &7935883254610414650
 GameObject:
@@ -1149,13 +1191,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7935883254610414650}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3427563681756586176}
-  m_Father: {fileID: 5146389986065270534}
+  m_Father: {fileID: 4471364523769752462}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3598438246713378077
 MonoBehaviour:
@@ -1178,7 +1220,7 @@ MonoBehaviour:
   m_LookAt: {fileID: 0}
   m_Follow: {fileID: 0}
   m_Lens:
-    FieldOfView: 40
+    FieldOfView: 5.07
     OrthographicSize: 5
     NearClipPlane: 0.1
     FarClipPlane: 5000

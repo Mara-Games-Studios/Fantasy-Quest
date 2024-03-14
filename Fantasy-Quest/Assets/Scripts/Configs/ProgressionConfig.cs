@@ -1,4 +1,6 @@
-﻿using Common;
+﻿using System;
+using Common;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Configs
@@ -9,6 +11,17 @@ namespace Configs
     )]
     internal class ProgressionConfig : SingletonScriptableObject<ProgressionConfig>
     {
+        [Serializable]
+        private struct DefaultConfig
+        {
+            [Scene]
+            [SerializeField]
+            public string SceneToLoad;
+        }
+
+        [SerializeField]
+        private DefaultConfig defaultConfig;
+
         [Scene]
         [SerializeField]
         private string sceneToLoad;
@@ -17,6 +30,12 @@ namespace Configs
         public void SetSceneToLoad(string sceneToLoad)
         {
             this.sceneToLoad = sceneToLoad;
+        }
+
+        [Button]
+        public void ResetToDefault()
+        {
+            sceneToLoad = defaultConfig.SceneToLoad;
         }
     }
 }
