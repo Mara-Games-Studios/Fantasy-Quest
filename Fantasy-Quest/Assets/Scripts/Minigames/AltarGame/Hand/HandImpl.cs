@@ -73,12 +73,7 @@ namespace Minigames.AltarGame.Hand
         private bool isFirstMove = true;
         private Coroutine waitingForDecide;
 
-        private void Start()
-        {
-            TakeItem();
-        }
-
-        private void TakeItem()
+        public void TakeItem()
         {
             Tween moveTween = transform.DOMove(takeItemPoint.Position, takeItemPoint.Duration);
             moveTween.onComplete += CreateItem;

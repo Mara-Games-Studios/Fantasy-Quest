@@ -17,9 +17,6 @@ namespace Minigames.SquirrelGame
     internal class Manager : MonoBehaviour
     {
         [SerializeField]
-        private bool disableAllInputOnStart = true;
-
-        [SerializeField]
         private float statusPanelShowDuration = 1f;
 
         [Required]
@@ -44,15 +41,6 @@ namespace Minigames.SquirrelGame
         private void Awake()
         {
             exitAction.performed += (c) => ExitGame(ExitGameState.Manual);
-            exitAction.Enable();
-        }
-
-        private void Start()
-        {
-            if (disableAllInputOnStart)
-            {
-                DisableAllMinigameInput();
-            }
         }
 
         public void ExitGame(ExitGameState exitState)

@@ -1,30 +1,58 @@
-﻿using Common;
-using Dialogue;
+﻿using Dialogue;
+using Minigames.AltarGame.Hand;
+using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Minigames.AltarGame
 {
     [AddComponentMenu("Scripts/Minigames/AltarGame/Minigames.AltarGame.Manager")]
     internal class Manager : MonoBehaviour
     {
-        [SerializeField]
-        private Transition.End.Controller endController;
-
-        [Scene]
-        [SerializeField]
-        private string nextScene;
-
+        [Required]
         [SerializeField]
         private ChainSpeaker winSpeech;
 
+        [Required]
+        [SerializeField]
+        private HandImpl hand;
+
+        [Required]
+        [SerializeField]
+        private Hand.Input handInput;
+
+        public UnityEvent OnGameFinishedWin;
+        public UnityEvent OnGameFinishedLose;
+
+        [Button]
+        public void StartMiniGame()
+        {
+            hand.TakeItem();
+        }
+
+        [Button]
+        public void RefreshMiniGame() { }
+
+        [Button]
+        public void EnableAllMinigameInput()
+        {
+            handInput.Enable();
+        }
+
+        [Button]
+        public void DisableAllMinigameInput()
+        {
+            handInput.Disable();
+        }
+
         public void QuitMiniGame()
         {
-            endController.LoadScene(nextScene);
+            OnGameFinishedLose?.Invoke();
         }
 
         public void TellWinAndQuit()
         {
-            winSpeech.Tell(() => QuitMiniGame());
+            winSpeech.Tell(() => OnGameFinishedWin?.Invoke());
         }
     }
 }

@@ -18,9 +18,6 @@ namespace Minigames.MouseInHay
         [SerializeField]
         private InputAction quitGameInputAction;
 
-        [SerializeField]
-        private bool disableInputOnStart = true;
-
         [Required]
         [SerializeField]
         private Hay hay;
@@ -36,14 +33,6 @@ namespace Minigames.MouseInHay
         private void Awake()
         {
             quitGameInputAction.performed += (c) => ExitGame(ExitGameState.Manual);
-        }
-
-        private void Start()
-        {
-            if (disableInputOnStart)
-            {
-                DisableAllMinigameInput();
-            }
         }
 
         [Button]
