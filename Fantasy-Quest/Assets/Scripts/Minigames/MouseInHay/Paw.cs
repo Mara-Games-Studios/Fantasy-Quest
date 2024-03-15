@@ -77,8 +77,7 @@ namespace Minigames.MouseInHay
                 if (scoreCounter.IsWinGame)
                 {
                     MouseCatches?.Invoke();
-                    manager.WinExitGame();
-                    return;
+                    manager.ExitGame(ExitGameState.Win);
                 }
                 else
                 {
