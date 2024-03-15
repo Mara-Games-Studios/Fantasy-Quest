@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Transition.Start
 {
@@ -11,6 +12,8 @@ namespace Transition.Start
         [SerializeField]
         private Animator animator;
 
+        public UnityEvent StartTransitionEnd;
+
         private void Start()
         {
             view.SetActive(true);
@@ -20,6 +23,7 @@ namespace Transition.Start
         // Must me called by view callback
         public void DestroySelf()
         {
+            StartTransitionEnd?.Invoke();
             Destroy(gameObject);
         }
     }

@@ -6,63 +6,43 @@ namespace Rails
     [AddComponentMenu("Scripts/Rails/Rails.RailsImplInvoke")]
     internal class RailsImplInvoke : MonoBehaviour
     {
-        [Required]
+        [RequiredIn(PrefabKind.PrefabInstanceAndNonPrefabInstance)]
         [SerializeField]
         private RailsImpl railsImpl;
 
         [SerializeField]
-        private bool invokeRideBody = false;
-
-        [ShowIf(nameof(invokeRideBody))]
-        [SerializeField]
         private bool byPoints;
 
-        private bool InvokeAndByPoints => invokeRideBody && byPoints;
-        private bool InvokeAndNotByPoints => invokeRideBody && !byPoints;
-
         [Range(0f, 1f)]
-        [ShowIf(nameof(InvokeAndNotByPoints))]
+        [HideIf(nameof(byPoints))]
         [SerializeField]
         private float start = 0f;
 
         [Range(0f, 1f)]
-        [ShowIf(nameof(InvokeAndNotByPoints))]
+        [HideIf(nameof(byPoints))]
         [SerializeField]
         private float end = 1f;
 
-        [ShowIf(nameof(InvokeAndByPoints))]
+        [ShowIf(nameof(byPoints))]
         [SerializeField]
         private Point startPoint;
 
-        [ShowIf(nameof(InvokeAndByPoints))]
+        [ShowIf(nameof(byPoints))]
         [SerializeField]
         private Point endPoint;
 
-        [ShowIf(nameof(invokeRideBody))]
         [SerializeField]
         private bool withCurve = false;
 
-        private bool InvokeAndWithCurve => invokeRideBody && withCurve;
-
-        [ShowIf(nameof(InvokeAndWithCurve))]
+        [ShowIf(nameof(withCurve))]
         [SerializeField]
         private AnimationCurve curve;
 
-        [ShowIf(nameof(invokeRideBody))]
         [SerializeField]
         private float totalTime = 1f;
 
         public void RideBodyInvoke()
         {
-            if (!invokeRideBody)
-            {
-                Debug.LogError(
-                    $"Try to invoke {nameof(RideBodyInvoke)} while {nameof(invokeRideBody)} is false.",
-                    gameObject
-                );
-                return;
-            }
-
             if (byPoints)
             {
                 railsImpl.RideBody(start, end, totalTime);
@@ -75,15 +55,6 @@ namespace Rails
 
         public void RideBodyByCurveInvoke()
         {
-            if (!invokeRideBody)
-            {
-                Debug.LogError(
-                    $"Try to invoke {nameof(RideBodyByCurveInvoke)} while {nameof(invokeRideBody)} is false.",
-                    gameObject
-                );
-                return;
-            }
-
             if (!withCurve)
             {
                 Debug.LogError(

@@ -6,7 +6,7 @@ namespace Cutscene
 {
     [RequireComponent(typeof(Collider2D))]
     [AddComponentMenu("Scripts/Cutscene/Cutscene.StartJump")]
-    internal class StartJump : MonoBehaviour, IJumpTranstition
+    internal class StartJump : MonoBehaviour, IJumpTransition
     {
         [SerializeField]
         private bool canJumpBoth;

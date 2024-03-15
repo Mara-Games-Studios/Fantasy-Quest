@@ -1,26 +1,13 @@
 using System.Collections.Generic;
 using System.Linq;
+using Configs;
 using Dialogue;
 using Interaction.Item;
-using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace Interaction
 {
-    internal struct InteractableObjects
-    {
-        public List<ISpeakable> Speakables;
-        public List<ICarryable> Carryables;
-        public List<IInteractable> Interactables;
-    }
-
-    internal struct TransitionObjects
-    {
-        public List<ISceneTransition> SceneTransitors;
-        public List<IJumpTranstition> JumpTranstitors;
-    }
-
     [RequireComponent(typeof(Rigidbody2D))]
     [AddComponentMenu("Scripts/Interaction/Interaction")]
     internal class InteractionImpl : MonoBehaviour
@@ -33,27 +20,13 @@ namespace Interaction
         private float colDistance = 0.0f;
 
         [SerializeField]
-        private bool useFilterMask = true;
-
-        [ShowIf("useFilterMask")]
-        [SerializeField]
-        private LayerMask filterMask;
-
-        [SerializeField]
-        private bool useTrigger = false;
+        private ContactFilter2D contactFilter;
 
         private GameplayInput playerInput;
-        private ContactFilter2D contactFilter;
 
         private void Awake()
         {
             playerInput = new GameplayInput();
-            contactFilter = new()
-            {
-                layerMask = filterMask,
-                useLayerMask = useFilterMask,
-                useTriggers = useTrigger
-            };
         }
 
         private void OnEnable()
@@ -67,114 +40,60 @@ namespace Interaction
 
         public void InteractHuman(InputAction.CallbackContext context)
         {
-            InteractableObjects interactableObjects = FindInteractableObjects();
-
-            interactableObjects.Speakables.ForEach(speakable => speakable.Speak());
-            interactableObjects.Carryables.ForEach(carryable => carryable.CarryByHuman());
-            interactableObjects.Interactables.ForEach(interactable =>
-                interactable.InteractByHuman()
-            );
+            CastInterfaces<ISpeakable>().ForEach(x => x.Speak());
+            CastInterfaces<ICarryable>().ForEach(x => x.CarryByHuman());
+            CastInterfaces<IInteractable>().ForEach(x => x.InteractByHuman());
         }
 
         public void InteractCat(InputAction.CallbackContext context)
         {
-            InteractableObjects interactableObjects = FindInteractableObjects();
-
-            interactableObjects.Speakables.ForEach(speakable => speakable.Speak());
-            interactableObjects.Carryables.ForEach(carryable => carryable.CarryByCat());
-            interactableObjects.Interactables.ForEach(interactable => interactable.InteractByCat());
+            CastInterfaces<ISpeakable>().ForEach(x => x.Speak());
+            CastInterfaces<ICarryable>().ForEach(x => x.CarryByCat());
+            CastInterfaces<IInteractable>().ForEach(x => x.InteractByCat());
         }
 
         public void TransitionUp(InputAction.CallbackContext context)
         {
-            TransitionObjects transitionObjects = FindTransitionObjects();
-
-            transitionObjects.SceneTransitors.ForEach(sceneTrans => sceneTrans.ToNewScene());
-            transitionObjects.JumpTranstitors.ForEach(jumpTrans => jumpTrans.JumpUp());
+            CastInterfaces<ISceneTransition>().ForEach(x => x.ToNewScene());
+            CastInterfaces<IJumpTransition>().ForEach(x => x.JumpUp());
         }
 
         public void TransitionDown(InputAction.CallbackContext context)
         {
-            TransitionObjects transitionObjects = FindTransitionObjects();
-
-            transitionObjects.JumpTranstitors.ForEach(jumpTrans => jumpTrans.JumpDown());
+            CastInterfaces<IJumpTransition>().ForEach(x => x.JumpDown());
         }
 
-        private InteractableObjects FindInteractableObjects()
+        private List<T> CastInterfaces<T>()
         {
-            List<RaycastHit2D> hits = new();
-
-            Vector2 direction =
-                new(playerRigidBody.transform.forward.x, playerRigidBody.transform.forward.y);
-
-            _ = playerRigidBody.Cast(direction, contactFilter, hits, colDistance);
-
-            List<ISpeakable> speakables = new();
-            List<ICarryable> carryables = new();
-            List<IInteractable> interactables = new();
-
-            foreach (Transform hit in hits.Select(x => x.transform))
+            // TODO: make correct interaction blocking
+            if (LockerSettings.Instance.IsCatInteractionLocked)
             {
-                if (hit.TryGetComponent(out ISpeakable speakable))
-                {
-                    speakables.Add(speakable);
-                }
-                if (hit.TryGetComponent(out ICarryable carryable))
-                {
-                    carryables.Add(carryable);
-                }
-                if (hit.TryGetComponent(out IInteractable interactable))
-                {
-                    interactables.Add(interactable);
-                }
+                return new List<T>();
             }
 
-            return new InteractableObjects
-            {
-                Speakables = speakables,
-                Carryables = carryables,
-                Interactables = interactables
-            };
-        }
-
-        private TransitionObjects FindTransitionObjects()
-        {
             List<RaycastHit2D> hits = new();
 
-            Vector2 direction =
-                new(playerRigidBody.transform.forward.x, playerRigidBody.transform.forward.y);
-
+            Vector2 direction = (Vector2)playerRigidBody.transform.forward;
             _ = playerRigidBody.Cast(direction, contactFilter, hits, colDistance);
 
-            List<IJumpTranstition> jumpTransitors = new();
-            List<ISceneTransition> sceneTransitors = new();
-
+            List<T> founded = new();
             foreach (Transform hit in hits.Select(x => x.transform))
             {
-                if (hit.TryGetComponent(out IJumpTranstition jumpTrans))
+                if (hit.TryGetComponent(out T reference))
                 {
-                    jumpTransitors.Add(jumpTrans);
-                }
-                if (hit.TryGetComponent(out ISceneTransition sceneTrans))
-                {
-                    sceneTransitors.Add(sceneTrans);
+                    founded.Add(reference);
                 }
             }
-
-            return new TransitionObjects
-            {
-                JumpTranstitors = jumpTransitors,
-                SceneTransitors = sceneTransitors,
-            };
+            return founded;
         }
 
         private void OnDisable()
         {
-            playerInput.Disable();
             playerInput.Player.CallHumanInteraction.performed -= InteractHuman;
             playerInput.Player.CatInteraction.performed -= InteractCat;
             playerInput.Player.UpJump.performed -= TransitionUp;
             playerInput.Player.DownJump.performed -= TransitionDown;
+            playerInput.Disable();
         }
     }
 }

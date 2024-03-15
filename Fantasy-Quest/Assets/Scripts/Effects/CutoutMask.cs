@@ -2,13 +2,11 @@
 using System.Collections;
 using Sirenix.OdinInspector;
 using UnityEngine;
-using UnityEngine.Events;
 
 namespace Effects.Screen
 {
-    [ExecuteAlways]
     [AddComponentMenu("Scripts/Effects/Screen/Effects.Screen.Disappearing")]
-    internal class CutoutMask : MonoBehaviour
+    internal class CutoutMask : MonoBehaviour, IEffect
     {
         [Serializable]
         private struct PositionAndSize
@@ -16,6 +14,9 @@ namespace Effects.Screen
             public Vector2 Position;
             public Vector2 Size;
         }
+
+        [SerializeField]
+        private bool disableOnStart = true;
 
         [SerializeField]
         private RectTransform maskRectTransform;
@@ -32,24 +33,26 @@ namespace Effects.Screen
         [SerializeField]
         private AnimationCurve curve = AnimationCurve.Linear(0, 0, 1, 1);
 
-        public UnityEvent OnCutoutEnds;
-
         private RectTransform rectTransform;
+
+        public event Action OnEffectEnded;
 
         private void Awake()
         {
             rectTransform = GetComponent<RectTransform>();
         }
 
+        private void Start()
+        {
+            if (disableOnStart)
+            {
+                gameObject.SetActive(false);
+            }
+        }
+
         private void Update()
         {
             maskRectTransform.localPosition = -transform.localPosition;
-        }
-
-        [Button]
-        public void DoCutout()
-        {
-            _ = StartCoroutine(CutoutRoutine());
         }
 
         private IEnumerator CutoutRoutine()
@@ -70,7 +73,20 @@ namespace Effects.Screen
                 );
                 yield return null;
             }
-            OnCutoutEnds?.Invoke();
+            OnEffectEnded?.Invoke();
+        }
+
+        [Button]
+        public void DoEffect()
+        {
+            gameObject.SetActive(true);
+            _ = StartCoroutine(CutoutRoutine());
+        }
+
+        [Button]
+        public void RefreshEffect()
+        {
+            gameObject.SetActive(false);
         }
     }
 }

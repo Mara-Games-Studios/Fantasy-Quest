@@ -77,8 +77,7 @@ namespace Minigames.MouseInHay
                 if (scoreCounter.IsWinGame)
                 {
                     MouseCatches?.Invoke();
-                    Debug.Log("You win game");
-                    manager.ExitGame();
+                    manager.WinExitGame();
                     return;
                 }
                 else
@@ -94,7 +93,7 @@ namespace Minigames.MouseInHay
             moveFromHole.onComplete += () => isInAction = false;
         }
 
-        private void OnEnable()
+        public void EnableInput()
         {
             foreach (InputAction inputAction in HolesWithInput.Values)
             {
@@ -102,7 +101,7 @@ namespace Minigames.MouseInHay
             }
         }
 
-        private void OnDisable()
+        public void DisableInput()
         {
             foreach (InputAction inputAction in HolesWithInput.Values)
             {

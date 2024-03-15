@@ -1,5 +1,6 @@
-﻿using Common;
+﻿using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 namespace Minigames.MouseInHay
@@ -8,39 +9,70 @@ namespace Minigames.MouseInHay
     internal class Manager : MonoBehaviour
     {
         [SerializeField]
-        private Transition.End.Controller endController;
-
-        [SerializeField]
         private InputAction quitGameInputAction;
 
-        [Scene]
         [SerializeField]
-        private string nextScene;
+        private bool disableInputOnStart = true;
+
+        [Required]
+        [SerializeField]
+        private Hay hay;
+
+        [Required]
+        [SerializeField]
+        private Paw paw;
+
+        public UnityEvent OnManualExitGame;
+        public UnityEvent OnLoseExitGame;
+        public UnityEvent OnWinExitGame;
 
         private void Awake()
         {
-            quitGameInputAction.performed += QuitGameInputActionPerformed;
+            quitGameInputAction.performed += (c) => ManualExitGame();
         }
 
-        private void QuitGameInputActionPerformed(InputAction.CallbackContext context)
+        private void Start()
         {
-            Debug.Log("Exit by key");
-            ExitGame();
+            if (disableInputOnStart)
+            {
+                DisableAllMinigameInput();
+            }
         }
 
-        public void ExitGame()
+        [Button]
+        public void StartGame()
         {
-            endController.LoadScene(nextScene);
+            hay.ResetHay();
+            hay.Launch();
         }
 
-        private void OnEnable()
+        public void ManualExitGame()
+        {
+            OnManualExitGame?.Invoke();
+        }
+
+        public void WinExitGame()
+        {
+            OnWinExitGame?.Invoke();
+        }
+
+        public void LoseExitGame()
+        {
+            OnLoseExitGame?.Invoke();
+        }
+
+        [Button]
+        public void EnableAllMinigameInput()
         {
             quitGameInputAction.Enable();
+            paw.EnableInput();
         }
 
-        private void OnDisable()
+        [Button]
+        public void DisableAllMinigameInput()
         {
             quitGameInputAction.Disable();
+            paw.DisableInput();
         }
     }
 }

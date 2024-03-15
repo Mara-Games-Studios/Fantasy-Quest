@@ -1,4 +1,4 @@
-﻿using Common;
+﻿using Configs;
 using UnityEngine;
 
 namespace StartScene
@@ -6,10 +6,6 @@ namespace StartScene
     [AddComponentMenu("Scripts/Scene/Start/Scene.Start.Controller")]
     internal class Controller : MonoBehaviour
     {
-        [Scene]
-        [SerializeField]
-        private string nextScene;
-
         [SerializeField]
         private Transition.End.Controller endTransition;
 
@@ -19,6 +15,7 @@ namespace StartScene
         // Must be called by view (button) callback
         public void PlayGame()
         {
+            string nextScene = ProgressionConfig.Instance.SceneToLoad;
             endTransition.LoadScene(nextScene);
         }
 
