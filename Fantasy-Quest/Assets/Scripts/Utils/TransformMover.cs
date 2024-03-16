@@ -17,7 +17,7 @@ namespace Utils
             Point
         }
 
-        [Required]
+        [RequiredIn(PrefabKind.PrefabInstanceAndNonPrefabInstance)]
         [SerializeField]
         private Transform movingBody;
 
@@ -92,6 +92,11 @@ namespace Utils
                 timer += Time.deltaTime;
             }
             MoveFinished?.Invoke();
+        }
+
+        public float GetDuration()
+        {
+            return duration;
         }
     }
 }

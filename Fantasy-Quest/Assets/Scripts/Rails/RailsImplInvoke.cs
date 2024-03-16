@@ -73,5 +73,10 @@ namespace Rails
                 railsImpl.RideBodyByCurve(startPoint, endPoint, curve, totalTime);
             }
         }
+
+        public float GetDuration()
+        {
+            return totalTime;
+        }
     }
 }
