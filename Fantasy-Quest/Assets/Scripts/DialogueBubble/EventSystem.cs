@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Common;
 using UnityEngine;
 
 namespace DialogueBubble
@@ -12,20 +13,15 @@ namespace DialogueBubble
     }
 
     [AddComponentMenu("Scripts/DialogueBubble/DialogueBubble.EventSystem")]
-    public class EventSystem : MonoBehaviour
+    public class EventSystem : MonoBehaviour, ISceneSingleton<EventSystem>
     {
-        public static EventSystem Instance = null;
-
         public static Action<BubbleSettings> OnTriggerBubble;
 
-        private void Start()
+        private void Awake()
         {
-            if (Instance != null)
-            {
-                Debug.LogError("More than one BubbleEventSystem in scene.");
-            }
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
+            this.InitSingleton();
         }
+
+        public void MigrateSingleton(EventSystem instance) { }
     }
 }

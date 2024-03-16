@@ -1,6 +1,6 @@
 namespace Interaction.Item
 {
-    internal interface IJumpTranstition
+    internal interface IJumpTransition
     {
         public void JumpUp();
 

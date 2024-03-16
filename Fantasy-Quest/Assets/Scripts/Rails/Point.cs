@@ -22,9 +22,6 @@ namespace Rails
         public float Value => value;
 
         [Title("Cosmetic")]
-        [SerializeField]
-        private bool showPoint = true;
-
         [MinValue(0)]
         [SerializeField]
         private float step = 1;
@@ -32,8 +29,13 @@ namespace Rails
         [SerializeField]
         private Color color = Color.black;
 
+#if UNITY_EDITOR
+        [SerializeField]
+        private bool showPoint = true;
+
         [SerializeField]
         private float radius = 0.2f;
+#endif
 
         [Button]
         public void MoveRight()

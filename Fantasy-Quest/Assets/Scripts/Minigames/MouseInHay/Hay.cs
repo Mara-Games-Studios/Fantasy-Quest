@@ -35,12 +35,12 @@ namespace Minigames.MouseInHay
             holes = GetComponentsInChildren<Hole>().ToList();
         }
 
-        private void Start()
+        public void ResetHay()
         {
-            Launch();
+            mousesShowed = 0;
         }
 
-        private void Launch()
+        public void Launch()
         {
             float showTime = mouseShowTime.GetRandomFloatInRange();
             _ = StartCoroutine(CallMouseAndWait(showTime, showTime + noMouseTime));
@@ -54,8 +54,7 @@ namespace Minigames.MouseInHay
             yield return new WaitForSeconds(waitTime);
             if (mousesShowed >= maxMousesToShow)
             {
-                Debug.Log("You lose game");
-                manager.ExitGame();
+                manager.LoseExitGame();
             }
             else
             {

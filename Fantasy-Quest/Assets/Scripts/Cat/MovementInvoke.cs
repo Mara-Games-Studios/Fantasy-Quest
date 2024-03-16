@@ -7,46 +7,30 @@ namespace Cat
     [AddComponentMenu("Scripts/Cat/Cat.MovementInvoke")]
     internal class MovementInvoke : MonoBehaviour
     {
+        [RequiredIn(PrefabKind.PrefabInstanceAndNonPrefabInstance)]
         [SerializeField]
         private Movement movement;
 
         [SerializeField]
-        private bool invokeSetOnRails = false;
-
-        [ShowIf(nameof(invokeSetOnRails))]
-        [SerializeField]
         private bool removeFromRailsBeforeSetOnRails = true;
 
-        [ShowIf(nameof(invokeSetOnRails))]
         [SerializeField]
         private bool byPoint = true;
 
-        private bool InvokeAndSetOnRails => invokeSetOnRails && byPoint;
-        private bool InvokeAndNotSetOnRails => invokeSetOnRails && !byPoint;
-
-        [ShowIf(nameof(InvokeAndSetOnRails))]
+        [ShowIf(nameof(byPoint))]
         [SerializeField]
         private Point railsPoint;
 
-        [ShowIf(nameof(InvokeAndNotSetOnRails))]
+        [HideIf(nameof(byPoint))]
         [SerializeField]
         private RailsImpl railsImpl;
 
-        [ShowIf(nameof(InvokeAndNotSetOnRails))]
+        [HideIf(nameof(byPoint))]
         [SerializeField]
         private float point;
 
         public void InvokeSetOnRails()
         {
-            if (!invokeSetOnRails)
-            {
-                Debug.LogError(
-                    $"Try to invoke {nameof(InvokeSetOnRails)} while {nameof(invokeSetOnRails)} is false.",
-                    gameObject
-                );
-                return;
-            }
-
             if (removeFromRailsBeforeSetOnRails)
             {
                 movement.RemoveFromRails();
