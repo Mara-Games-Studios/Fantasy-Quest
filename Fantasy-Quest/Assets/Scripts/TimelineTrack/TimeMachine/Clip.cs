@@ -38,16 +38,10 @@ namespace TimelineTrack.TimeMachine
         public ConditionType ConditionType => condition;
 
         [SerializeField]
-        //[ValidateInput("$" + nameof(ValidateList))]
         [ShowIf(nameof(condition), ConditionType.Custom)]
         private List<GameObject> referenceCondition = new();
         public IEnumerable<IConditionSource> Conditions =>
             referenceCondition.Select(x => x.GetComponent<IConditionSource>());
-
-        //private bool ValidateList(List<GameObject> gameObjects)
-        //{
-        //    return gameObjects.All(x => x.TryGetComponent(out IConditionSource _));
-        //}
 
         public override Playable CreatePlayable(PlayableGraph graph, GameObject owner)
         {
