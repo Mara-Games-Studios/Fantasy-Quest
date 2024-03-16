@@ -15,6 +15,15 @@ namespace Minigames.AltarGame
         private Item placedItem;
         public bool IsItemPlaced => placedItem != null;
 
+        public void FreeSlot()
+        {
+            if (placedItem != null)
+            {
+                Destroy(placedItem.gameObject);
+                placedItem = null;
+            }
+        }
+
         public void PlaceItem(Item item)
         {
             placedItem = item;

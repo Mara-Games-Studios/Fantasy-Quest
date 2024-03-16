@@ -21,6 +21,10 @@ namespace Minigames.AltarGame
         [SerializeField]
         private Hand.Input handInput;
 
+        [Required]
+        [SerializeField]
+        private Altar altar;
+
         public UnityEvent OnGameFinishedWin;
         public UnityEvent OnGameFinishedLose;
 
@@ -31,7 +35,11 @@ namespace Minigames.AltarGame
         }
 
         [Button]
-        public void RefreshMiniGame() { }
+        public void RefreshMiniGame()
+        {
+            altar.ResetAltar();
+            hand.ResetHand();
+        }
 
         [Button]
         public void EnableAllMinigameInput()

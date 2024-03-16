@@ -1,5 +1,39 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &61881214526500068
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7445346199961568579}
+  m_Layer: 0
+  m_Name: Speeshes
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7445346199961568579
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 61881214526500068}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 224682746331196291}
+  - {fileID: 5167357882744602499}
+  - {fileID: 5512039286826744538}
+  m_Father: {fileID: 2391293915093059660}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &901774315452551119
 GameObject:
   m_ObjectHideFlags: 0
@@ -148,6 +182,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   manager: {fileID: 6396290319722952414}
   animator: {fileID: 8977149969412770302}
+  normalAnimation: NormalAltar
+  riseAnimation: AltarRize
   slots:
   - {fileID: 1107621153087083576}
   - {fileID: 5884147569465969391}
@@ -287,7 +323,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2391293915093059660}
+  m_Father: {fileID: 7445346199961568579}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &430498624372054755
 MonoBehaviour:
@@ -1111,9 +1147,10 @@ Transform:
   - {fileID: 6836878019675308703}
   - {fileID: 6003560647891482231}
   - {fileID: 4153514458104580612}
+  - {fileID: 4533312060893190153}
   - {fileID: 1272180088089907339}
   - {fileID: 5848622003059605727}
-  - {fileID: 5167357882744602499}
+  - {fileID: 7445346199961568579}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6396290319722952414
@@ -1131,12 +1168,44 @@ MonoBehaviour:
   winSpeech: {fileID: 430498624372054755}
   hand: {fileID: 7946977860573502272}
   handInput: {fileID: 8730182900276307933}
+  altar: {fileID: 928569164113983974}
   OnGameFinishedWin:
     m_PersistentCalls:
       m_Calls: []
   OnGameFinishedLose:
     m_PersistentCalls:
       m_Calls: []
+--- !u!1 &5065327015215622565
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4533312060893190153}
+  m_Layer: 0
+  m_Name: HandStartPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4533312060893190153
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5065327015215622565}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -6.78, y: -3.4, z: 10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2391293915093059660}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5238333438139014845
 GameObject:
   m_ObjectHideFlags: 0
@@ -1171,8 +1240,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4360851671198676539}
-  - {fileID: 224682746331196291}
-  - {fileID: 5512039286826744538}
   m_Father: {fileID: 2391293915093059660}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7946977860573502272
@@ -1204,6 +1271,7 @@ MonoBehaviour:
     Duration: 2
   firstMoveSpeech: {fileID: 4162371922099804737}
   wrongPlacingSpeech: {fileID: 2902854876274026762}
+  startPosition: {fileID: 4533312060893190153}
   isChoosing: 0
   holdingItem: {fileID: 0}
   chosenSlot: {fileID: 0}
@@ -1383,7 +1451,7 @@ GameObject:
   - component: {fileID: 5512039286826744538}
   - component: {fileID: 2902854876274026762}
   m_Layer: 0
-  m_Name: WrongCmpletion
+  m_Name: WrongCmpletionSpeech
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1397,12 +1465,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5612424552024951464}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -6.78, y: -3.4, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 4153514458104580612}
+  m_Father: {fileID: 7445346199961568579}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2902854876274026762
 MonoBehaviour:
@@ -1630,12 +1698,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6409299644607835890}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -6.78, y: -3.4, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 4153514458104580612}
+  m_Father: {fileID: 7445346199961568579}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4162371922099804737
 MonoBehaviour:
