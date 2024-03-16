@@ -24,6 +24,9 @@ namespace Minigames.AltarGame.Hand
         [AssetsOnly]
         [SerializeField]
         private List<Item> itemsToCreate = new();
+
+        [ReadOnly]
+        [SerializeField]
         private List<Item> temporaryItemsToCreate = new();
 
         [Required]
