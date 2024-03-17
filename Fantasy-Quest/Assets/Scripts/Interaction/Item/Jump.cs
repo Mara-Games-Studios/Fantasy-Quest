@@ -11,20 +11,30 @@ namespace Interaction.Item
     [AddComponentMenu("Scripts/Interaction/Item/Interaction.Item.Jump")]
     internal class Jump : MonoBehaviour, IJumpTransition
     {
+        [Header("Jump direction")]
         [SerializeField]
         private bool upJump;
 
+        [Header("Controllers")]
         [SerializeField]
+        [RequiredIn(PrefabKind.InstanceInPrefab)]
         private TransformMover transformMove;
 
         [SerializeField]
+        [RequiredIn(PrefabKind.InstanceInPrefab)]
         private MovementInvoke moveInvoke;
 
         [SerializeField]
+        [RequiredIn(PrefabKind.InstanceInPrefab)]
         private ChangeWatchDir changeWatchDir;
 
         [SerializeField]
+        [RequiredIn(PrefabKind.InstanceInPrefab)]
         private RailsImplInvoke railImpl;
+
+        [Header("Movement return correction")]
+        [SerializeField]
+        private float waitOffset = -0.2f;
 
         private void StartJump()
         {
@@ -36,28 +46,24 @@ namespace Interaction.Item
         {
             float waitTime =
                 transformMove.GetDuration() + railImpl.GetDuration() + changeWatchDir.GetDuration();
-            Debug.Log(waitTime);
-            yield return new WaitForSeconds(waitTime);
+            yield return new WaitForSeconds(waitTime - waitOffset);
+
             moveInvoke.InvokeSetOnRails();
             LockerSettings.Instance.UnlockAll();
         }
 
         public void JumpDown()
         {
-            Debug.Log("Try to jump down");
             if (!upJump)
             {
-                Debug.Log("jump down");
                 StartJump();
             }
         }
 
         public void JumpUp()
         {
-            Debug.Log("Try to jump up");
             if (upJump)
             {
-                Debug.Log("jump up");
                 StartJump();
             }
         }

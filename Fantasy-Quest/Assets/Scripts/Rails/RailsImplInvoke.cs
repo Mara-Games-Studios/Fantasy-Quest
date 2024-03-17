@@ -11,7 +11,7 @@ namespace Rails
         private RailsImpl railsImpl;
 
         [SerializeField]
-        private bool byPoints;
+        private bool byPoints = false;
 
         [Range(0f, 1f)]
         [HideIf(nameof(byPoints))]
@@ -43,7 +43,7 @@ namespace Rails
 
         public void RideBodyInvoke()
         {
-            if (byPoints)
+            if (!byPoints)
             {
                 railsImpl.RideBody(start, end, totalTime);
             }
