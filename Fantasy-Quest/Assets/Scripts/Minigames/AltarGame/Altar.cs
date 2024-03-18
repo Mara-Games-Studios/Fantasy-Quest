@@ -8,18 +8,32 @@ namespace Minigames.AltarGame
     [AddComponentMenu("Scripts/Minigames/AltarGame/Minigames.AltarGame.Altar")]
     internal class Altar : MonoBehaviour
     {
+        [Required]
         [SerializeField]
         private Manager manager;
 
+        [Required]
         [SerializeField]
         private Animator animator;
 
         [SerializeField]
-        private List<Slot> slots;
+        private string normalAnimation;
+
+        [SerializeField]
+        private string riseAnimation;
+
+        [SerializeField]
+        private List<Slot> slots = new();
 
         public void TurnOnAltar()
         {
-            animator.enabled = true;
+            animator.Play(riseAnimation);
+        }
+
+        public void ResetAltar()
+        {
+            animator.Play(normalAnimation);
+            slots.ForEach(x => x.FreeSlot());
         }
 
         // Must be called by animation clip

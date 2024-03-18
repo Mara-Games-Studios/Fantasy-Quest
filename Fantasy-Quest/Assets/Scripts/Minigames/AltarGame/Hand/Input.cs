@@ -11,33 +11,28 @@ namespace Minigames.AltarGame.Hand
         [SerializeField]
         private HandImpl hand;
 
-        private AltarGameInput input;
+        [SerializeField]
+        private InputAction agreeAction;
+
+        [SerializeField]
+        private InputAction disagreeAction;
 
         private void Awake()
         {
-            input = new();
-            input.Player.Agree.performed += AgreePerformed;
-            input.Player.Disagree.performed += DisagreePerformed;
+            agreeAction.performed += (c) => hand.ChooseAgree();
+            disagreeAction.performed += (c) => hand.ChooseDisagree();
         }
 
-        private void AgreePerformed(InputAction.CallbackContext context)
+        public void Enable()
         {
-            hand.ChooseAgree();
+            agreeAction.Enable();
+            disagreeAction.Enable();
         }
 
-        private void DisagreePerformed(InputAction.CallbackContext context)
+        public void Disable()
         {
-            hand.ChooseDisagree();
-        }
-
-        private void OnEnable()
-        {
-            input.Enable();
-        }
-
-        private void OnDisable()
-        {
-            input.Disable();
+            agreeAction.Disable();
+            disagreeAction.Disable();
         }
     }
 }

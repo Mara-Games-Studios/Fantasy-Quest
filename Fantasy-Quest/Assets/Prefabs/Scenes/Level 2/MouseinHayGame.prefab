@@ -84,79 +84,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &1773815214964046481
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1350945760447685748}
-  - component: {fileID: 358652158190619584}
-  m_Layer: 0
-  m_Name: Manager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1350945760447685748
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1773815214964046481}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 5638307220189260857}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &358652158190619584
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1773815214964046481}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ca2bad3c90a02741baebdc15766dbf5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  quitGameInputAction:
-    m_Name: Quit Game Input
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 7423be5b-e6c3-4b35-ae62-3edee0f3740f
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: 46a277cc-fb17-4b92-9b5a-5999f7a8a98f
-      m_Path: <Keyboard>/escape
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Quit Game Input
-      m_Flags: 0
-    m_Flags: 0
-  disableInputOnStart: 1
-  hay: {fileID: 4920672364197276875}
-  paw: {fileID: 4720551004917506865}
-  OnManualExitGame:
-    m_PersistentCalls:
-      m_Calls: []
-  OnLoseExitGame:
-    m_PersistentCalls:
-      m_Calls: []
-  OnWinExitGame:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &3072062791603768533
 GameObject:
   m_ObjectHideFlags: 0
@@ -522,7 +449,7 @@ Transform:
   - {fileID: 5218653764459727562}
   - {fileID: 14060077815140184}
   - {fileID: 7398517364023705418}
-  m_Father: {fileID: 5638307220189260857}
+  m_Father: {fileID: 5146389986065270534}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4920672364197276875
 MonoBehaviour:
@@ -538,7 +465,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   holes: []
   mousesShowed: 0
-  manager: {fileID: 358652158190619584}
+  manager: {fileID: 7208512694599781745}
   mouseShowTime:
     Min: 1
     Max: 3
@@ -569,12 +496,12 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4690812926704190147}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 5146389986065270534}
+  m_Father: {fileID: 6751192581439464924}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -740,12 +667,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5863600535365998570}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 20, y: 10, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 5146389986065270534}
+  m_Father: {fileID: 6751192581439464924}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &6944429896447746388
 SpriteRenderer:
@@ -808,6 +735,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5146389986065270534}
+  - component: {fileID: 7208512694599781745}
   m_Layer: 0
   m_Name: MouseinHayGame
   m_TagString: Untagged
@@ -828,11 +756,87 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 6738882202850826601}
+  - {fileID: 6751192581439464924}
   - {fileID: 4471364523769752462}
-  - {fileID: 1226594301672875076}
-  - {fileID: 5638307220189260857}
+  - {fileID: 4327616480839285918}
+  - {fileID: 3177646536899294305}
+  - {fileID: 367173760542604547}
+  - {fileID: 3674173494404917487}
   m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7208512694599781745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5926202610852498109}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ca2bad3c90a02741baebdc15766dbf5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  quitGameInputAction:
+    m_Name: Quit Game Input
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 7423be5b-e6c3-4b35-ae62-3edee0f3740f
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 46a277cc-fb17-4b92-9b5a-5999f7a8a98f
+      m_Path: <Keyboard>/q
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Quit Game Input
+      m_Flags: 0
+    m_Flags: 0
+  disableInputOnStart: 1
+  hay: {fileID: 4920672364197276875}
+  paw: {fileID: 4720551004917506865}
+  OnManualExitGame:
+    m_PersistentCalls:
+      m_Calls: []
+  OnLoseExitGame:
+    m_PersistentCalls:
+      m_Calls: []
+  OnWinExitGame:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!1 &6251284977597759591
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6751192581439464924}
+  m_Layer: 0
+  m_Name: Background
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6751192581439464924
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6251284977597759591}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 6738882202850826601}
+  - {fileID: 1226594301672875076}
+  m_Father: {fileID: 5146389986065270534}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6982881097879228720
 GameObject:
@@ -927,8 +931,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3177646536899294305}
-  - component: {fileID: 8582082272675093589}
-  - component: {fileID: 694444803082147447}
   - component: {fileID: 4720551004917506865}
   - component: {fileID: 8126054145586142000}
   - component: {fileID: 4806746512580213808}
@@ -954,85 +956,8 @@ Transform:
   m_Children:
   - {fileID: 5754112189273969211}
   - {fileID: 7094241501305323431}
-  m_Father: {fileID: 5638307220189260857}
+  m_Father: {fileID: 5146389986065270534}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!60 &8582082272675093589
-PolygonCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7155428062457224441}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: -0.005099058, y: 0.53598785}
-      - {x: -0.5125396, y: 0.38040355}
-      - {x: -0.10847601, y: -0.48777807}
-      - {x: 0.10847607, y: -0.48777747}
-      - {x: 0.5023415, y: 0.36510652}
-  m_UseDelaunayMesh: 0
---- !u!50 &694444803082147447
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7155428062457224441}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 1
-  m_AngularDrag: 1
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 4
 --- !u!114 &4720551004917506865
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1050,7 +975,7 @@ MonoBehaviour:
   moveFromHoleTime: 2
   startPosition: {fileID: 4327616480839285918}
   scoreCounter: {fileID: 7710876720432657111}
-  manager: {fileID: 358652158190619584}
+  manager: {fileID: 7208512694599781745}
   holesWithInput:
   - Hole: {fileID: 1628577584810172817}
     InputAction:
@@ -1269,7 +1194,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 276691413033270008}
-  m_Father: {fileID: 5638307220189260857}
+  m_Father: {fileID: 5146389986065270534}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7710876720432657111
 MonoBehaviour:
@@ -1315,42 +1240,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 5638307220189260857}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &8788263998230883440
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 5638307220189260857}
-  m_Layer: 0
-  m_Name: MouseMiniGame
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &5638307220189260857
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8788263998230883440}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 4327616480839285918}
-  - {fileID: 3177646536899294305}
-  - {fileID: 367173760542604547}
-  - {fileID: 3674173494404917487}
-  - {fileID: 1350945760447685748}
   m_Father: {fileID: 5146389986065270534}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1603485073122955304
