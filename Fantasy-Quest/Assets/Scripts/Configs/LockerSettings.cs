@@ -30,6 +30,13 @@ namespace Configs
         }
 
         [Button]
+        public void LockAllExceptBubble()
+        {
+            isCatMovementLocked = true;
+            isCatInteractionLocked = true;
+        }
+
+        [Button]
         public void UnlockAll()
         {
             isDialogueBubbleLocked = false;

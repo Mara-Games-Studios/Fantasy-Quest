@@ -66,6 +66,11 @@ namespace Cat
             }
         }
 
+        public float GetFlipTime()
+        {
+            return flipTime;
+        }
+
         private void OnEnable()
         {
             catMovement.OnVectorChanged += VectorChanged;
