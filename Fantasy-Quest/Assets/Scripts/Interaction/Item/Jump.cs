@@ -47,9 +47,8 @@ namespace Interaction.Item
             float waitTime =
                 transformMove.GetDuration() + railImpl.GetDuration() + changeWatchDir.GetDuration();
             yield return new WaitForSeconds(waitTime - waitOffset);
-
-            moveInvoke.InvokeSetOnRails();
             LockerSettings.Instance.UnlockAll();
+            moveInvoke.InvokeSetOnRails();
         }
 
         public void JumpDown()
