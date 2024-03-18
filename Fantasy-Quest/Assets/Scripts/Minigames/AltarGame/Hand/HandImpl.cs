@@ -23,17 +23,25 @@ namespace Minigames.AltarGame.Hand
 
         [AssetsOnly]
         [SerializeField]
-        private List<Item> itemsToCreate;
+        private List<Item> itemsToCreate = new();
 
+        [ReadOnly]
+        [SerializeField]
+        private List<Item> temporaryItemsToCreate = new();
+
+        [Required]
         [SerializeField]
         private Altar altar;
 
+        [Required]
         [SerializeField]
         private Manager manager;
 
+        [Required]
         [SerializeField]
         private Animator animator;
 
+        [Required]
         [SerializeField]
         private PointToMove takeItemPoint;
 
@@ -43,14 +51,21 @@ namespace Minigames.AltarGame.Hand
         [SerializeField]
         private float decideWaitingTime = 3.0f;
 
+        [Required]
         [SerializeField]
         private PointToMove endGamePoint;
 
+        [Required]
         [SerializeField]
         private ChainSpeaker firstMoveSpeech;
 
+        [Required]
         [SerializeField]
         private ChainSpeaker wrongPlacingSpeech;
+
+        [Required]
+        [SerializeField]
+        private Transform startPosition;
 
         [ReadOnly]
         [SerializeField]
@@ -73,12 +88,14 @@ namespace Minigames.AltarGame.Hand
         private bool isFirstMove = true;
         private Coroutine waitingForDecide;
 
-        private void Start()
+        public void ResetHand()
         {
-            TakeItem();
+            transform.position = startPosition.position;
+            temporaryItemsToCreate.Clear();
+            temporaryItemsToCreate.AddRange(itemsToCreate);
         }
 
-        private void TakeItem()
+        public void TakeItem()
         {
             Tween moveTween = transform.DOMove(takeItemPoint.Position, takeItemPoint.Duration);
             moveTween.onComplete += CreateItem;
@@ -86,8 +103,10 @@ namespace Minigames.AltarGame.Hand
 
         private void CreateItem()
         {
-            Item item = itemsToCreate[UnityEngine.Random.Range(0, itemsToCreate.Count)];
-            _ = itemsToCreate.Remove(item);
+            Item item = temporaryItemsToCreate[
+                UnityEngine.Random.Range(0, temporaryItemsToCreate.Count)
+            ];
+            _ = temporaryItemsToCreate.Remove(item);
             Item created = Instantiate(item, transform);
             created.transform.position += Vector3.back;
             holdingItem = created;
@@ -152,7 +171,7 @@ namespace Minigames.AltarGame.Hand
         // Called by animation callback
         private void CompletePlacingItemInSlot()
         {
-            if (itemsToCreate.Any())
+            if (temporaryItemsToCreate.Any())
             {
                 TakeItem();
             }

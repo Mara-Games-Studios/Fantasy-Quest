@@ -5,14 +5,18 @@ using UnityEngine.InputSystem;
 
 namespace Minigames.MouseInHay
 {
+    internal enum ExitGameState
+    {
+        Win,
+        Lose,
+        Manual
+    }
+
     [AddComponentMenu("Scripts/Minigames/MouseInHay/Minigames.MouseInHay.Manager")]
     internal class Manager : MonoBehaviour
     {
         [SerializeField]
         private InputAction quitGameInputAction;
-
-        [SerializeField]
-        private bool disableInputOnStart = true;
 
         [Required]
         [SerializeField]
@@ -28,37 +32,31 @@ namespace Minigames.MouseInHay
 
         private void Awake()
         {
-            quitGameInputAction.performed += (c) => ManualExitGame();
-        }
-
-        private void Start()
-        {
-            if (disableInputOnStart)
-            {
-                DisableAllMinigameInput();
-            }
+            quitGameInputAction.performed += (c) => ExitGame(ExitGameState.Manual);
         }
 
         [Button]
-        public void StartGame()
+        public void RefreshGame()
         {
             hay.ResetHay();
             hay.Launch();
         }
 
-        public void ManualExitGame()
+        public void ExitGame(ExitGameState gameState)
         {
+            switch (gameState)
+            {
+                case ExitGameState.Win:
+                    OnWinExitGame?.Invoke();
+                    break;
+                case ExitGameState.Lose:
+                    OnLoseExitGame?.Invoke();
+                    break;
+                case ExitGameState.Manual:
+                    OnManualExitGame?.Invoke();
+                    break;
+            }
             OnManualExitGame?.Invoke();
-        }
-
-        public void WinExitGame()
-        {
-            OnWinExitGame?.Invoke();
-        }
-
-        public void LoseExitGame()
-        {
-            OnLoseExitGame?.Invoke();
         }
 
         [Button]

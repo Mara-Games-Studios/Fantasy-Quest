@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;
 
@@ -9,42 +10,47 @@ namespace Minigames.SquirrelGame
     [AddComponentMenu("Scripts/Minigames/SquirrelGame/Minigames.SquirrelGame.StatusPanel")]
     internal class StatusPanel : MonoBehaviour
     {
-        public enum State
-        {
-            Win,
-            Lose,
-            NotFinished
-        }
-
         [Serializable]
         private struct LabelByState
         {
-            public State State;
+            public ExitGameState State;
             public string Name;
         }
 
+        [Required]
         [SerializeField]
         private Manager manager;
 
         [SerializeField]
         private List<LabelByState> labels;
-        private Dictionary<State, string> Labels => labels.ToDictionary(x => x.State, x => x.Name);
+        private Dictionary<ExitGameState, string> Labels =>
+            labels.ToDictionary(x => x.State, x => x.Name);
 
+        [Required]
         [SerializeField]
-        private Animator animator;
+        private GameObject panel;
 
+        [Required]
         [SerializeField]
         private TMP_Text label;
 
-        public void ShowPanel(State state)
+        private Action panelShowed;
+
+        public void HidePanel()
+        {
+            panel.SetActive(false);
+        }
+
+        public void ShowPanel(ExitGameState state, Action panelShowed)
         {
             label.text = Labels[state];
-            animator.enabled = true;
+            panel.SetActive(true);
+            ShowEndCallback();
         }
 
         public void ShowEndCallback()
         {
-            manager.ExitMinigame();
+            panelShowed?.Invoke();
         }
     }
 }
