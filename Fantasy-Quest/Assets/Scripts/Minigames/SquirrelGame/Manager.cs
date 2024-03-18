@@ -1,63 +1,96 @@
-﻿using System;
-using System.Collections;
-using Common;
+﻿using System.Collections;
+using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 namespace Minigames.SquirrelGame
 {
+    internal enum ExitGameState
+    {
+        Win,
+        Lose,
+        Manual
+    }
+
     [AddComponentMenu("Scripts/Minigames/SquirrelGame/Minigames.SquirrelGame.Manager")]
     internal class Manager : MonoBehaviour
     {
-        [Scene]
-        [SerializeField]
-        private string exitScene;
-
-        [SerializeField]
-        private Transition.End.Controller endController;
-
         [SerializeField]
         private float statusPanelShowDuration = 1f;
 
+        [Required]
         [SerializeField]
         private StatusPanel statusPanel;
 
-        private SquirrelGameInput input;
+        [Required]
+        [SerializeField]
+        private Paw paw;
+
+        [Required]
+        [SerializeField]
+        private Prize prize;
+
+        [SerializeField]
+        private InputAction exitAction;
+
+        public UnityEvent OnGameFinishedWin;
+        public UnityEvent OnGameFinishedLose;
+        public UnityEvent OnGameFinishedManual;
 
         private void Awake()
         {
-            input = new SquirrelGameInput();
+            exitAction.performed += (c) => ExitGame(ExitGameState.Manual);
         }
 
-        private void ExitPerformed(InputAction.CallbackContext context)
+        public void ExitGame(ExitGameState exitState)
         {
-            input.Disable();
-            statusPanel.ShowPanel(StatusPanel.State.NotFinished);
-        }
-
-        private void OnEnable()
-        {
-            input.Enable();
-            input.Player.Exit.performed += ExitPerformed;
-        }
-
-        private void OnDisable()
-        {
-            input.Player.Exit.performed -= ExitPerformed;
-            input.Disable();
-        }
-
-        public void ExitMinigame()
-        {
-            _ = StartCoroutine(
-                WaitRoutine(statusPanelShowDuration, () => endController.LoadScene(exitScene))
+            DisableAllMinigameInput();
+            statusPanel.ShowPanel(
+                exitState,
+                () => _ = StartCoroutine(WaitRoutine(statusPanelShowDuration, exitState))
             );
         }
 
-        private IEnumerator WaitRoutine(float time, Action action)
+        private IEnumerator WaitRoutine(float time, ExitGameState exitState)
         {
             yield return new WaitForSeconds(time);
-            action?.Invoke();
+            switch (exitState)
+            {
+                case ExitGameState.Win:
+                    OnGameFinishedWin?.Invoke();
+                    break;
+                case ExitGameState.Lose:
+                    OnGameFinishedLose?.Invoke();
+                    break;
+                case ExitGameState.Manual:
+                    OnGameFinishedManual?.Invoke();
+                    break;
+            }
+        }
+
+        [Button]
+        public void RefreshGame()
+        {
+            prize.RestorePosition();
+            paw.RestorePosition();
+            statusPanel.HidePanel();
+        }
+
+        [Button]
+        public void EnableAllMinigameInput()
+        {
+            exitAction.Enable();
+            paw.Input.Enable();
+            prize.Input.Enable();
+        }
+
+        [Button]
+        public void DisableAllMinigameInput()
+        {
+            exitAction.Disable();
+            paw.Input.Disable();
+            prize.Input.Disable();
         }
     }
 }

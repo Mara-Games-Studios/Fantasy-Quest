@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Sirenix.OdinInspector;
+using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace Minigames.SquirrelGame
@@ -6,24 +7,31 @@ namespace Minigames.SquirrelGame
     [AddComponentMenu("Scripts/Minigames/SquirrelGame/Minigames.SquirrelGame.Prize")]
     internal class Prize : MonoBehaviour
     {
+        [SerializeField]
+        private InputAction grabAction;
+        public InputAction Input => grabAction;
+
+        [Required]
+        [SerializeField]
+        private Transform startBindTransform;
+
         private Paw paw = null;
         private Transform target = null;
-        private SquirrelGameInput input;
 
         private void Awake()
         {
-            input = new SquirrelGameInput();
-            input.Player.Grab.performed += GrabPerformed;
+            grabAction.performed += GrabPerformed;
+            grabAction.Enable();
         }
 
-        private void OnEnable()
+        private void Start()
         {
-            input.Enable();
+            RestorePosition();
         }
 
-        private void OnDisable()
+        public void RestorePosition()
         {
-            input.Disable();
+            target = startBindTransform;
         }
 
         private void GrabPerformed(InputAction.CallbackContext context)
@@ -31,13 +39,8 @@ namespace Minigames.SquirrelGame
             if (paw != null && !paw.IsPrizeGrabbed)
             {
                 paw.IsPrizeGrabbed = true;
-                BindToTransform(paw.transform);
+                target = paw.transform;
             }
-        }
-
-        public void BindToTransform(Transform transform)
-        {
-            target = transform;
         }
 
         private void Update()

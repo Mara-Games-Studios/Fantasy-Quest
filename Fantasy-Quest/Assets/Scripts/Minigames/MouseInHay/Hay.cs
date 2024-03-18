@@ -30,6 +30,8 @@ namespace Minigames.MouseInHay
         [SerializeField]
         private int maxMousesToShow = 10;
 
+        private Coroutine launchCoroutine;
+
         private void Awake()
         {
             holes = GetComponentsInChildren<Hole>().ToList();
@@ -38,12 +40,13 @@ namespace Minigames.MouseInHay
         public void ResetHay()
         {
             mousesShowed = 0;
+            _ = this.KillCoroutine(launchCoroutine);
         }
 
         public void Launch()
         {
             float showTime = mouseShowTime.GetRandomFloatInRange();
-            _ = StartCoroutine(CallMouseAndWait(showTime, showTime + noMouseTime));
+            launchCoroutine = StartCoroutine(CallMouseAndWait(showTime, showTime + noMouseTime));
         }
 
         private IEnumerator CallMouseAndWait(float showMouseTime, float waitTime)
@@ -54,7 +57,7 @@ namespace Minigames.MouseInHay
             yield return new WaitForSeconds(waitTime);
             if (mousesShowed >= maxMousesToShow)
             {
-                manager.LoseExitGame();
+                manager.ExitGame(ExitGameState.Lose);
             }
             else
             {

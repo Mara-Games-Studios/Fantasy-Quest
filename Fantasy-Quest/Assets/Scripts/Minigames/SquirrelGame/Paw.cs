@@ -1,13 +1,15 @@
 ﻿using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Minigames.SquirrelGame
 {
     [AddComponentMenu("Scripts/Minigames/SquirrelGame/Minigames.SquirrelGame.Paw")]
     internal class Paw : MonoBehaviour
     {
+        [Required]
         [SerializeField]
-        private StatusPanel statusPanel;
+        private Manager manager;
 
         [Required]
         [SerializeField]
@@ -15,6 +17,17 @@ namespace Minigames.SquirrelGame
 
         [SerializeField]
         private float speed = 1.0f;
+
+        [SerializeField]
+        private ContactFilter2D contactFilter;
+
+        [SerializeField]
+        private InputAction moveAction;
+        public InputAction Input => moveAction;
+
+        [Required]
+        [SerializeField]
+        private Transform startPosition;
 
         [ReadOnly]
         [SerializeField]
@@ -29,29 +42,19 @@ namespace Minigames.SquirrelGame
         [SerializeField]
         private Vector2 inputVector;
 
-        [SerializeField]
-        private ContactFilter2D contactFilter;
-
-        private SquirrelGameInput input;
-
         private void Awake()
         {
-            input = new SquirrelGameInput();
+            moveAction.Enable();
         }
 
-        private void OnEnable()
+        public void RestorePosition()
         {
-            input.Enable();
-        }
-
-        private void OnDisable()
-        {
-            input.Disable();
+            transform.position = startPosition.position;
         }
 
         private void Update()
         {
-            inputVector = input.Player.PatMove.ReadValue<Vector2>();
+            inputVector = moveAction.ReadValue<Vector2>();
         }
 
         private void FixedUpdate()
@@ -61,16 +64,14 @@ namespace Minigames.SquirrelGame
 
         public void SquirrelTouch()
         {
-            input.Disable();
-            statusPanel.ShowPanel(StatusPanel.State.Lose);
+            manager.ExitGame(ExitGameState.Lose);
         }
 
         public void ExitReached()
         {
             if (IsPrizeGrabbed)
             {
-                input.Disable();
-                statusPanel.ShowPanel(StatusPanel.State.Win);
+                manager.ExitGame(ExitGameState.Win);
             }
         }
     }
