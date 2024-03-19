@@ -1,4 +1,4 @@
-﻿using Configs;
+﻿using Configs.Progression;
 using UnityEngine;
 
 namespace StartScene

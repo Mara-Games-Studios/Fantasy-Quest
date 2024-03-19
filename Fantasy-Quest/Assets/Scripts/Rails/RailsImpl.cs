@@ -22,6 +22,7 @@ namespace Rails
         [ReadOnly]
         [SerializeField]
         private float currentPosition;
+        public float CurrentPosition => currentPosition;
 
         private Coroutine rideCoroutine;
 
@@ -59,6 +60,11 @@ namespace Rails
             rideCoroutine = StartCoroutine(
                 RideRoutine(start, end, time, AnimationCurve.Linear(0, 0, 1, 1))
             );
+        }
+
+        public Coroutine RideBodyByCoroutine(float start, float end, float time)
+        {
+            return StartCoroutine(RideRoutine(start, end, time, AnimationCurve.Linear(0, 0, 1, 1)));
         }
 
         [Button(Style = ButtonStyle.Box)]
@@ -115,6 +121,11 @@ namespace Rails
         public void UnBindBody()
         {
             body = null;
+        }
+
+        public float GetPathLengthBetweenPoints(float start, float end)
+        {
+            return Mathf.Abs(Path.length * (end - start));
         }
     }
 }

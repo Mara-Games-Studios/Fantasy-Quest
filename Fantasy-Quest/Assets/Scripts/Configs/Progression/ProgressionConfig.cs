@@ -3,7 +3,7 @@ using Common;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace Configs
+namespace Configs.Progression
 {
     [CreateAssetMenu(
         fileName = "Progression Config",
@@ -27,6 +27,15 @@ namespace Configs
         private string sceneToLoad;
         public string SceneToLoad => sceneToLoad;
 
+        [SerializeField]
+        private ForestEdgeLevel forestEdgeLevel;
+
+        public ForestEdgeLevel ForestEdgeLevel
+        {
+            get => forestEdgeLevel;
+            set => forestEdgeLevel = value;
+        }
+
         public void SetSceneToLoad(string sceneToLoad)
         {
             this.sceneToLoad = sceneToLoad;
@@ -36,6 +45,7 @@ namespace Configs
         public void ResetToDefault()
         {
             sceneToLoad = defaultConfig.SceneToLoad;
+            forestEdgeLevel = new();
         }
     }
 }

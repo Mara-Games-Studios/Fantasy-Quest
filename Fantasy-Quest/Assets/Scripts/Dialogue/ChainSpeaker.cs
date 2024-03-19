@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Sirenix.OdinInspector;
 using Subtitles;
 using TNRD;
@@ -34,6 +35,11 @@ namespace Dialogue
             _ = StartCoroutine(TellRoutine(nextAction));
         }
 
+        public IEnumerator Tell()
+        {
+            yield return TellRoutine(() => { });
+        }
+
         private IEnumerator TellRoutine(Action nextAction)
         {
             foreach (Replica replica in replicas)
@@ -44,6 +50,14 @@ namespace Dialogue
             }
             Subtitles.Hide();
             nextAction?.Invoke();
+        }
+
+        [Button]
+        private void FindSubtitlesView()
+        {
+            subtitles.Value =
+                FindObjectsOfType<MonoBehaviour>().First(x => x is ISubtitlesView)
+                as ISubtitlesView;
         }
     }
 }
