@@ -8,9 +8,19 @@ namespace Effects
     [AddComponentMenu("Scripts/Effects/Effects.EyeBlink")]
     internal class EyeBlink : MonoBehaviour, IEffect
     {
+        private enum EffectType
+        {
+            OpenEyes,
+            CloseEyes,
+            FullBlink
+        }
+
         [SerializeField]
         [Required]
         private Animator anim;
+
+        [SerializeField]
+        private EffectType effectType = EffectType.OpenEyes;
 
         [SerializeField]
         private float duration = 1f;
@@ -28,21 +38,22 @@ namespace Effects
         }
 
         [Button]
-        public void CloseEyes()
-        {
-            _ = StartCoroutine(CloseEyesCoroutine());
-        }
-
-        [Button]
-        public void OpenEyes()
-        {
-            _ = StartCoroutine(OpenEyesCoroutine());
-        }
-
-        [Button]
         public void DoEffect()
         {
-            _ = StartCoroutine(FullBlinkCoroutine());
+            switch (effectType)
+            {
+                case EffectType.OpenEyes:
+                    _ = StartCoroutine(OpenEyesCoroutine());
+                    break;
+                case EffectType.CloseEyes:
+                    _ = StartCoroutine(CloseEyesCoroutine());
+                    break;
+                case EffectType.FullBlink:
+                    _ = StartCoroutine(FullBlinkCoroutine());
+                    break;
+                default:
+                    break;
+            }
         }
 
         [Button]
@@ -55,12 +66,14 @@ namespace Effects
         {
             anim.SetTrigger(CLOSE);
             yield return new WaitForSeconds(duration);
+            OnEffectEnded?.Invoke();
         }
 
         private IEnumerator OpenEyesCoroutine()
         {
             anim.SetTrigger(OPEN);
             yield return new WaitForSeconds(duration);
+            OnEffectEnded?.Invoke();
         }
 
         private IEnumerator FullBlinkCoroutine()
@@ -69,6 +82,7 @@ namespace Effects
             yield return new WaitForSeconds(duration);
             anim.SetTrigger(OPEN);
             yield return new WaitForSeconds(duration);
+            OnEffectEnded?.Invoke();
         }
     }
 }

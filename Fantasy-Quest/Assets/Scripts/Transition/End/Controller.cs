@@ -39,17 +39,17 @@ namespace Transition.End
             );
         }
 
-        private const float max_loading_progress = 0.9f;
+        private const float MAX_LOADING_PROGRESS = 0.9f;
 
         private IEnumerator LoadSceneRoutine(float minDuration, AsyncOperation loading)
         {
             float timer = 0f;
-            while (timer <= minDuration || loading.progress != max_loading_progress)
+            while (timer <= minDuration || loading.progress != MAX_LOADING_PROGRESS)
             {
                 yield return null;
                 timer += Time.deltaTime;
                 float percentage = timer / minDuration;
-                float loadingPercentage = loading.progress / max_loading_progress;
+                float loadingPercentage = loading.progress / MAX_LOADING_PROGRESS;
                 progressBar.SetProgress(
                     percentage > loadingPercentage ? loadingPercentage : percentage
                 );

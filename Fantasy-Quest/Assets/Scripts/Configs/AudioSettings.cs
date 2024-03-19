@@ -37,25 +37,25 @@ namespace Configs
             }
         }
 
-        private const string music_volume_label = "Music";
-        private const string sounds_volume_label = "Sounds";
+        private const string MUSIC_VOLUME_LABEL = "Music";
+        private const string SOUND_VOLUME_LABEL = "Sounds";
 
         private void SetMusicVolume(float value)
         {
-            _ = audioMixer.SetFloat(music_volume_label, CalculateVolume(value));
+            _ = audioMixer.SetFloat(MUSIC_VOLUME_LABEL, CalculateVolume(value));
         }
 
         private void SetSoundsVolume(float value)
         {
-            _ = audioMixer.SetFloat(sounds_volume_label, CalculateVolume(value));
+            _ = audioMixer.SetFloat(SOUND_VOLUME_LABEL, CalculateVolume(value));
         }
 
-        private const float min_db = -80;
-        private const float max_db = 20;
+        private const float MIN_DB = -80;
+        private const float MAX_DB = 20;
 
         private float CalculateVolume(float value)
         {
-            return Mathf.Clamp(20 * Mathf.Log10(value), min_db, max_db);
+            return Mathf.Clamp(20 * Mathf.Log10(value), MIN_DB, MAX_DB);
         }
 
         public void RefreshAudio()
