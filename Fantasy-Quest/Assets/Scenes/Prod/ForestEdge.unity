@@ -243,10 +243,11 @@ GameObject:
   m_Component:
   - component: {fileID: 55958846}
   - component: {fileID: 55958849}
-  - component: {fileID: 55958848}
   - component: {fileID: 55958847}
+  - component: {fileID: 55958851}
+  - component: {fileID: 55958850}
   m_Layer: 3
-  m_Name: GoToSwing
+  m_Name: TriggerMonsterCutscene
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -261,7 +262,7 @@ Transform:
   m_GameObject: {fileID: 55958845}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 17.09, y: -1.01, z: 0.05118084}
+  m_LocalPosition: {x: 44.94, y: -1.34, z: 0.05118084}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -281,21 +282,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boxCollider: {fileID: 55958849}
   color: {r: 1, g: 0, b: 0, a: 1}
---- !u!114 &55958848
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 55958845}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2a7df89ef3e01b14ab822c019ac480aa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isEmote: 2
-  icons:
-  - {fileID: 21300000, guid: 82c55483448af594aa2460b6e9783b67, type: 3}
 --- !u!61 &55958849
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -341,6 +327,32 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.9698272, y: 1.7610271}
   m_EdgeRadius: 0
+--- !u!114 &55958850
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 55958845}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb45555db0fcc12438612fc38a7796f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playableDirector: {fileID: 0}
+--- !u!114 &55958851
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 55958845}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fea2661697958974ea022216664b7569, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cutsceneStarter: {fileID: 55958850}
 --- !u!1 &84311740
 GameObject:
   m_ObjectHideFlags: 0
@@ -4234,6 +4246,24 @@ MonoBehaviour:
   color: {r: 0, g: 0, b: 0, a: 1}
   showPoint: 1
   radius: 0.2
+--- !u!1 &1968286196 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3222066297321154383, guid: e301a832a8da0a34d9bef3780c7b43a8, type: 3}
+  m_PrefabInstance: {fileID: 1073053718275521415}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1968286203
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1968286196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bdcabe2f10478e4a9380d7227929aea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  miniGameManager: {fileID: 4294706770205216667}
 --- !u!1001 &2019876810
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4772,7 +4802,7 @@ PrefabInstance:
     - target: {fileID: 2207580321607615616, guid: e301a832a8da0a34d9bef3780c7b43a8, type: 3}
       propertyPath: OutEffectEnded.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 4294706770205216667}
+      objectReference: {fileID: 1968286203}
     - target: {fileID: 2207580321607615616, guid: e301a832a8da0a34d9bef3780c7b43a8, type: 3}
       propertyPath: OutEffectEnded.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
@@ -4819,7 +4849,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2207580321607615616, guid: e301a832a8da0a34d9bef3780c7b43a8, type: 3}
       propertyPath: OutEffectEnded.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: EnableAllMinigameInput
+      value: StartMiniGame
       objectReference: {fileID: 0}
     - target: {fileID: 2207580321607615616, guid: e301a832a8da0a34d9bef3780c7b43a8, type: 3}
       propertyPath: OutEffectEnded.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
@@ -4847,7 +4877,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2207580321607615616, guid: e301a832a8da0a34d9bef3780c7b43a8, type: 3}
       propertyPath: OutEffectEnded.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: Minigames.SquirrelGame.Manager, Assembly-CSharp
+      value: LevelSpecific.ForestEdge.SquirrelGameEnter, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 2207580321607615616, guid: e301a832a8da0a34d9bef3780c7b43a8, type: 3}
       propertyPath: OutEffectEnded.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
@@ -4952,6 +4982,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6288538031566752757, guid: e301a832a8da0a34d9bef3780c7b43a8, type: 3}
       insertIndex: -1
       addedObject: {fileID: 0}
+    - targetCorrespondingSourceObject: {fileID: 3222066297321154383, guid: e301a832a8da0a34d9bef3780c7b43a8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1968286203}
   m_SourcePrefab: {fileID: 100100000, guid: e301a832a8da0a34d9bef3780c7b43a8, type: 3}
 --- !u!114 &1479972681942824260 stripped
 MonoBehaviour:
@@ -5834,18 +5867,6 @@ MonoBehaviour:
   OutEffectEnded:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6943755223806689838}
-        m_TargetAssemblyTypeName: Minigames.MouseInHay.Manager, Assembly-CSharp
-        m_MethodName: EnableAllMinigameInput
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 3941851768610491987}
         m_TargetAssemblyTypeName: LevelSpecific.ForestEdge.MouseInHayMinigameGate,
           Assembly-CSharp
@@ -6054,7 +6075,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3796047799122369621, guid: b5c81db2869cb3e41b4d7e6fc2a5ac7e, type: 3}
       propertyPath: OnGameFinishedWin.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3796047799122369621, guid: b5c81db2869cb3e41b4d7e6fc2a5ac7e, type: 3}
       propertyPath: OnGameFinishedLose.m_PersistentCalls.m_Calls.Array.size
@@ -6069,6 +6090,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3796047799122369621, guid: b5c81db2869cb3e41b4d7e6fc2a5ac7e, type: 3}
+      propertyPath: OnGameFinishedWin.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3796047799122369621, guid: b5c81db2869cb3e41b4d7e6fc2a5ac7e, type: 3}
       propertyPath: OnGameFinishedLose.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 1
       objectReference: {fileID: 0}
@@ -6076,6 +6101,10 @@ PrefabInstance:
       propertyPath: OnGameFinishedWin.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 4294706770205216670}
+    - target: {fileID: 3796047799122369621, guid: b5c81db2869cb3e41b4d7e6fc2a5ac7e, type: 3}
+      propertyPath: OnGameFinishedWin.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 4294706770205216671}
     - target: {fileID: 3796047799122369621, guid: b5c81db2869cb3e41b4d7e6fc2a5ac7e, type: 3}
       propertyPath: OnGameFinishedLose.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -6093,12 +6122,20 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3796047799122369621, guid: b5c81db2869cb3e41b4d7e6fc2a5ac7e, type: 3}
+      propertyPath: OnGameFinishedWin.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3796047799122369621, guid: b5c81db2869cb3e41b4d7e6fc2a5ac7e, type: 3}
       propertyPath: OnGameFinishedLose.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3796047799122369621, guid: b5c81db2869cb3e41b4d7e6fc2a5ac7e, type: 3}
       propertyPath: OnGameFinishedWin.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: TriggerTransition
+      objectReference: {fileID: 0}
+    - target: {fileID: 3796047799122369621, guid: b5c81db2869cb3e41b4d7e6fc2a5ac7e, type: 3}
+      propertyPath: OnGameFinishedWin.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: SetMiniGamePassed
       objectReference: {fileID: 0}
     - target: {fileID: 3796047799122369621, guid: b5c81db2869cb3e41b4d7e6fc2a5ac7e, type: 3}
       propertyPath: OnGameFinishedLose.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
@@ -6117,6 +6154,10 @@ PrefabInstance:
       value: Transition.Location, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 3796047799122369621, guid: b5c81db2869cb3e41b4d7e6fc2a5ac7e, type: 3}
+      propertyPath: OnGameFinishedWin.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: LevelSpecific.ForestEdge.SquirrelGameExit, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3796047799122369621, guid: b5c81db2869cb3e41b4d7e6fc2a5ac7e, type: 3}
       propertyPath: OnGameFinishedLose.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: Transition.Location, Assembly-CSharp
       objectReference: {fileID: 0}
@@ -6126,6 +6167,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3796047799122369621, guid: b5c81db2869cb3e41b4d7e6fc2a5ac7e, type: 3}
       propertyPath: OnGameFinishedWin.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3796047799122369621, guid: b5c81db2869cb3e41b4d7e6fc2a5ac7e, type: 3}
+      propertyPath: OnGameFinishedWin.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 3796047799122369621, guid: b5c81db2869cb3e41b4d7e6fc2a5ac7e, type: 3}
@@ -6155,6 +6200,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5961267224838741698, guid: b5c81db2869cb3e41b4d7e6fc2a5ac7e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4294706770205216670}
+    - targetCorrespondingSourceObject: {fileID: 5961267224838741698, guid: b5c81db2869cb3e41b4d7e6fc2a5ac7e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4294706770205216671}
     - targetCorrespondingSourceObject: {fileID: 1482221921184644915, guid: b5c81db2869cb3e41b4d7e6fc2a5ac7e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 0}
@@ -6271,6 +6319,18 @@ MonoBehaviour:
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
+--- !u!114 &4294706770205216671
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4294706770205216669}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52559a4dff9f6d44baf149b4e6a076fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &5385594215837567394 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6659766520282865983, guid: 3b3be3009afd91946b8459d397c1b621, type: 3}

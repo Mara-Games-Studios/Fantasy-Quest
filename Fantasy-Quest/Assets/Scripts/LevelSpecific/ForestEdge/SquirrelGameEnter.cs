@@ -1,24 +1,24 @@
 ﻿using Configs.Progression;
-using Minigames.MouseInHay;
+using Minigames.SquirrelGame;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace LevelSpecific.ForestEdge
 {
     [AddComponentMenu(
-        "Scripts/LevelSpecific/ForestEdge/LevelSpecific.ForestEdge.MouseInHayMinigameGate"
+        "Scripts/LevelSpecific/ForestEdge/LevelSpecific.ForestEdge.SquirrelGameEnter"
     )]
-    internal class MouseInHayMinigameGate : MonoBehaviour
+    internal class SquirrelGameEnter : MonoBehaviour
     {
         [Required]
         [SerializeField]
         private Manager miniGameManager;
 
-        public void ActivateMiniGame()
+        public void StartMiniGame()
         {
             if (
-                ProgressionConfig.Instance.ForestEdgeLevel.BagTaken
-                && !ProgressionConfig.Instance.ForestEdgeLevel.MouseInHayGamePassed
+                ProgressionConfig.Instance.ForestEdgeLevel.MonsterCutsceneTriggered
+                && !ProgressionConfig.Instance.ForestEdgeLevel.SquirrelGamePassed
             )
             {
                 miniGameManager.EnableAllMinigameInput();
