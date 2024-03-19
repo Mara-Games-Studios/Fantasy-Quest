@@ -1,30 +1,30 @@
+using System;
 using System.Collections;
 using Sirenix.OdinInspector;
 using UnityEngine;
-using UnityEngine.Events;
 
-namespace UI
+namespace Effects
 {
-    [AddComponentMenu("Scripts/UI/UI.EyeBlink")]
-    internal class EyeBlink : MonoBehaviour
+    [AddComponentMenu("Scripts/Effects/Effects.EyeBlink")]
+    internal class EyeBlink : MonoBehaviour, IEffect
     {
         [SerializeField]
-        [RequiredIn(PrefabKind.PrefabInstanceAndNonPrefabInstance)]
+        [Required]
         private Animator anim;
 
         [SerializeField]
         private float duration = 1f;
 
-        public UnityEvent EyesClosed;
-        public UnityEvent EyesOpened;
+        private const string SPEEDMULTIPLIER = "SpeedMultiplier";
+        private const string OPEN = "Open";
+        private const string CLOSE = "Close";
+        private const string DEFAULT = "Default";
 
-        private const string c_SPEEDMULTIPLIER = "SpeedMultiplier";
-        private const string c_OPEN = "Open";
-        private const string c_CLOSE = "Close";
+        public event Action OnEffectEnded;
 
         private void Awake()
         {
-            anim.SetFloat(c_SPEEDMULTIPLIER, 1 / duration);
+            anim.SetFloat(SPEEDMULTIPLIER, 1 / duration);
         }
 
         [Button]
@@ -40,33 +40,35 @@ namespace UI
         }
 
         [Button]
-        public void FullBlink()
+        public void DoEffect()
         {
             _ = StartCoroutine(FullBlinkCoroutine());
         }
 
+        [Button]
+        public void RefreshEffect()
+        {
+            anim.SetTrigger(DEFAULT);
+        }
+
         private IEnumerator CloseEyesCoroutine()
         {
-            anim.SetTrigger(c_CLOSE);
+            anim.SetTrigger(CLOSE);
             yield return new WaitForSeconds(duration);
-            EyesClosed?.Invoke();
         }
 
         private IEnumerator OpenEyesCoroutine()
         {
-            anim.SetTrigger(c_OPEN);
+            anim.SetTrigger(OPEN);
             yield return new WaitForSeconds(duration);
-            EyesOpened?.Invoke();
         }
 
         private IEnumerator FullBlinkCoroutine()
         {
-            anim.SetTrigger(c_CLOSE);
+            anim.SetTrigger(CLOSE);
             yield return new WaitForSeconds(duration);
-            EyesClosed?.Invoke();
-            anim.SetTrigger(c_OPEN);
+            anim.SetTrigger(OPEN);
             yield return new WaitForSeconds(duration);
-            EyesOpened?.Invoke();
         }
     }
 }
