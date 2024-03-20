@@ -58,6 +58,7 @@ namespace Minigames.SquirrelGame
             switch (exitState)
             {
                 case ExitGameState.Win:
+                    prize.gameObject.SetActive(false);
                     OnGameFinishedWin?.Invoke();
                     break;
                 case ExitGameState.Lose:
@@ -72,6 +73,7 @@ namespace Minigames.SquirrelGame
         [Button]
         public void RefreshGame()
         {
+            prize.gameObject.SetActive(true);
             prize.RestorePosition();
             paw.RestorePosition();
             statusPanel.HidePanel();

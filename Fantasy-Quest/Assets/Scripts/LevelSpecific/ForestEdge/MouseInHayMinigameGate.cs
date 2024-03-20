@@ -1,5 +1,7 @@
-﻿using UnityEngine;
-using UnityEngine.Events;
+﻿using Configs.Progression;
+using Minigames.MouseInHay;
+using Sirenix.OdinInspector;
+using UnityEngine;
 
 namespace LevelSpecific.ForestEdge
 {
@@ -8,11 +10,20 @@ namespace LevelSpecific.ForestEdge
     )]
     internal class MouseInHayMinigameGate : MonoBehaviour
     {
-        public UnityEvent OnEnterSucceed;
+        [Required]
+        [SerializeField]
+        private Manager miniGameManager;
 
-        public void EnterMinigame()
+        public void ActivateMiniGame()
         {
-            OnEnterSucceed?.Invoke();
+            if (
+                ProgressionConfig.Instance.ForestEdgeLevel.BagTaken
+                && !ProgressionConfig.Instance.ForestEdgeLevel.MouseInHayGamePassed
+            )
+            {
+                miniGameManager.EnableAllMinigameInput();
+                miniGameManager.RefreshGame();
+            }
         }
     }
 }

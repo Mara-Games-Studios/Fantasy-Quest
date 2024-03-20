@@ -1,7 +1,6 @@
 ﻿using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.InputSystem;
 
 namespace Minigames.MouseInHay
 {
@@ -15,9 +14,6 @@ namespace Minigames.MouseInHay
     [AddComponentMenu("Scripts/Minigames/MouseInHay/Minigames.MouseInHay.Manager")]
     internal class Manager : MonoBehaviour
     {
-        [SerializeField]
-        private InputAction quitGameInputAction;
-
         [Required]
         [SerializeField]
         private Hay hay;
@@ -29,11 +25,6 @@ namespace Minigames.MouseInHay
         public UnityEvent OnManualExitGame;
         public UnityEvent OnLoseExitGame;
         public UnityEvent OnWinExitGame;
-
-        private void Awake()
-        {
-            quitGameInputAction.performed += (c) => ExitGame(ExitGameState.Manual);
-        }
 
         [Button]
         public void RefreshGame()
@@ -62,14 +53,12 @@ namespace Minigames.MouseInHay
         [Button]
         public void EnableAllMinigameInput()
         {
-            quitGameInputAction.Enable();
             paw.EnableInput();
         }
 
         [Button]
         public void DisableAllMinigameInput()
         {
-            quitGameInputAction.Disable();
             paw.DisableInput();
         }
     }

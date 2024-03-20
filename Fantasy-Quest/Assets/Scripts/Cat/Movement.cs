@@ -17,6 +17,7 @@ namespace Cat
         Left
     }
 
+    [SelectionBase]
     [AddComponentMenu("Scripts/Cat/Cat.Movement")]
     internal class Movement : MonoBehaviour
     {
