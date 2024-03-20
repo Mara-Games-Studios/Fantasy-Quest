@@ -30,6 +30,11 @@ namespace Dialogue
             voice = new(audioSource);
         }
 
+        public void JustTell()
+        {
+            _ = StartCoroutine(JustTellRoutine());
+        }
+
         public void Tell(Action nextAction)
         {
             _ = StartCoroutine(TellRoutine(nextAction));
@@ -50,6 +55,17 @@ namespace Dialogue
             }
             Subtitles.Hide();
             nextAction?.Invoke();
+        }
+
+        private IEnumerator JustTellRoutine()
+        {
+            foreach (Replica replica in replicas)
+            {
+                voice.Say(replica.Audio);
+                Subtitles.Show(replica);
+                yield return new WaitForSeconds(replica.Duration + replica.DelayAfterSaid);
+            }
+            Subtitles.Hide();
         }
 
         [Button]

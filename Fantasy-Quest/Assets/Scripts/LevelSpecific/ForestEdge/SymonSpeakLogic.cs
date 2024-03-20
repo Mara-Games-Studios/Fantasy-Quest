@@ -1,4 +1,5 @@
 ﻿using Configs.Progression;
+using Cutscene;
 using Dialogue;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -12,12 +13,17 @@ namespace LevelSpecific.ForestEdge
         [SerializeField]
         private ChainSpeaker introductionSpeak;
 
+        [Required]
+        [SerializeField]
+        private Start cutsceneStarter;
+
         public void Speak()
         {
             if (!ProgressionConfig.Instance.ForestEdgeLevel.FirstDialoguePassed)
             {
-                introductionSpeak.Tell(() => { });
+                cutsceneStarter.StartCutscene();
                 ProgressionConfig.Instance.ForestEdgeLevel.FirstDialoguePassed = true;
+                gameObject.SetActive(false);
                 return;
             }
         }
