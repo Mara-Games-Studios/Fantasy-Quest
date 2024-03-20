@@ -47,14 +47,14 @@ namespace Cutscene.Skip
             }
         }
 
-        private const float frames_per_second = 60;
-        private const float fade_duration = 1f;
+        private const float FRAMES_PER_SECOND = 60;
+        private const float FADE_DURATION = 1f;
 
         public void FadeInEndCallback()
         {
-            playableDirector.time = endFrame / frames_per_second;
+            playableDirector.time = endFrame / FRAMES_PER_SECOND;
             dialogueManager.KillCurrentSpeakers();
-            _ = StartCoroutine(WaitForSeconds(fade_duration));
+            _ = StartCoroutine(WaitForSeconds(FADE_DURATION));
         }
 
         private IEnumerator WaitForSeconds(float duration)
