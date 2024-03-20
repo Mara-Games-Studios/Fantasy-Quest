@@ -7,5 +7,8 @@
         public bool MouseInHayGamePassed = false;
         public bool MonsterCutsceneTriggered = false;
         public bool SquirrelGamePassed = false;
+        public bool EggTakenByCymon = false;
+        public bool AcornTakenByCymon = false;
+        public bool AltarGamePassedCorrectly = false;
     }
 }
