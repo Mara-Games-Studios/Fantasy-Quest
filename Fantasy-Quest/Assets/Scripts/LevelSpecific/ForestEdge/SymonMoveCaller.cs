@@ -48,7 +48,7 @@ namespace LevelSpecific.ForestEdge
                 return;
             }
 
-            if (correctZone.bounds.Contains(callPoint.position))
+            if (correctZone.OverlapPoint(callPoint.position))
             {
                 // Start cutscene
                 _ = StartCoroutine(CutsceneWithExplanation());

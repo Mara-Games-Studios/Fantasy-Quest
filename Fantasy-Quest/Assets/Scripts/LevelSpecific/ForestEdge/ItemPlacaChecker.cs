@@ -39,7 +39,7 @@ namespace LevelSpecific.ForestEdge
                 {
                     // TODO: Trigger mini cutscene
                     ProgressionConfig.Instance.ForestEdgeLevel.EggTakenByCymon = true;
-                    egg.gameObject.SetActive(false);
+                    Destroy(item.gameObject);
                     _ = StartCoroutine(EggTaken());
                 }
 
@@ -47,7 +47,7 @@ namespace LevelSpecific.ForestEdge
                 {
                     // TODO: Trigger mini cutscene
                     ProgressionConfig.Instance.ForestEdgeLevel.AcornTakenByCymon = true;
-                    acorn.gameObject.SetActive(false);
+                    Destroy(item.gameObject);
                     _ = StartCoroutine(AcornTaken());
                 }
             }

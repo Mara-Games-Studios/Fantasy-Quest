@@ -478,7 +478,7 @@ MonoBehaviour:
   - m_Script
   m_LockStageInInspector: 
   m_StreamingVersion: 20170927
-  m_Priority: -100
+  m_Priority: -10
   m_StandbyUpdate: 2
   m_LookAt: {fileID: 0}
   m_Follow: {fileID: 0}
@@ -672,6 +672,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2391293915093059660}
   - component: {fileID: 6396290319722952414}
+  - component: {fileID: 4684907441168984683}
   m_Layer: 0
   m_Name: AltarGame
   m_TagString: Untagged
@@ -724,6 +725,79 @@ MonoBehaviour:
   OnGameFinishedLose:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &4684907441168984683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4912804306984447520}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0bccede3b90bba4fb9400863636eaa4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  transitionTime: 1
+  inEffect:
+    mode: 0
+    unityReference: {fileID: 0}
+    rawReference:
+      rid: -2
+  outEffect:
+    mode: 0
+    unityReference: {fileID: 0}
+    rawReference:
+      rid: -2
+  InEffectStarted:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6396290319722952414}
+        m_TargetAssemblyTypeName: Minigames.AltarGame.Manager, Assembly-CSharp
+        m_MethodName: DisableAllMinigameInput
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  InEffectEnded:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3256395829398342165}
+        m_TargetAssemblyTypeName: Cinemachine.CinemachineVirtualCameraBase, Cinemachine
+        m_MethodName: set_Priority
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: -10
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OutEffectEnded:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 4c552f663c8ac264d9f53fc8accc92d3, type: 2}
+        m_TargetAssemblyTypeName: Configs.LockerSettings, Assembly-CSharp
+        m_MethodName: UnlockAll
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
 --- !u!1 &5065327015215622565
 GameObject:
   m_ObjectHideFlags: 0

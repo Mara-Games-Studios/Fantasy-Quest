@@ -563,6 +563,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5146389986065270534}
+  - component: {fileID: 7511879257993565485}
   - component: {fileID: 7208512694599781745}
   m_Layer: 0
   m_Name: MouseinHayGame
@@ -592,6 +593,36 @@ Transform:
   - {fileID: 3674173494404917487}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7511879257993565485
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5926202610852498109}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1d835d18d63e114c936efd2ae43ba7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  manager: {fileID: 7208512694599781745}
+  quitGameInputAction:
+    m_Name: Quit Game Input
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 1f5b5414-4d9b-48f8-bc81-f47acffeebf1
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 0b5f8ad5-ac8f-468f-a58e-c229ed0e50b8
+      m_Path: <Keyboard>/q
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Quit Game Input
+      m_Flags: 0
+    m_Flags: 0
 --- !u!114 &7208512694599781745
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -604,23 +635,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ca2bad3c90a02741baebdc15766dbf5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  quitGameInputAction:
-    m_Name: Quit Game Input
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 7423be5b-e6c3-4b35-ae62-3edee0f3740f
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: 46a277cc-fb17-4b92-9b5a-5999f7a8a98f
-      m_Path: <Keyboard>/q
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Quit Game Input
-      m_Flags: 0
-    m_Flags: 0
   hay: {fileID: 4920672364197276875}
   paw: {fileID: 4720551004917506865}
   OnManualExitGame:
@@ -658,7 +672,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.93, y: 0.93, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2514669771810750881}
