@@ -25,16 +25,16 @@ namespace Effects
         [SerializeField]
         private float duration = 1f;
 
-        private const string SPEEDMULTIPLIER = "SpeedMultiplier";
-        private const string OPEN = "Open";
-        private const string CLOSE = "Close";
-        private const string DEFAULT = "Default";
+        private const string SPEED_MULTIPLIER = "SpeedMultiplier";
+        private const string OPEN_ANIM = "Open";
+        private const string CLOSE_ANIM = "Close";
+        private const string DEFAULT_ANIM = "Default";
 
         public event Action OnEffectEnded;
 
         private void Awake()
         {
-            anim.SetFloat(SPEEDMULTIPLIER, 1 / duration);
+            anim.SetFloat(SPEED_MULTIPLIER, 1 / duration);
         }
 
         [Button]
@@ -59,28 +59,28 @@ namespace Effects
         [Button]
         public void RefreshEffect()
         {
-            anim.SetTrigger(DEFAULT);
+            anim.SetTrigger(DEFAULT_ANIM);
         }
 
         private IEnumerator CloseEyesCoroutine()
         {
-            anim.SetTrigger(CLOSE);
+            anim.SetTrigger(CLOSE_ANIM);
             yield return new WaitForSeconds(duration);
             OnEffectEnded?.Invoke();
         }
 
         private IEnumerator OpenEyesCoroutine()
         {
-            anim.SetTrigger(OPEN);
+            anim.SetTrigger(OPEN_ANIM);
             yield return new WaitForSeconds(duration);
             OnEffectEnded?.Invoke();
         }
 
         private IEnumerator FullBlinkCoroutine()
         {
-            anim.SetTrigger(CLOSE);
+            anim.SetTrigger(CLOSE_ANIM);
             yield return new WaitForSeconds(duration);
-            anim.SetTrigger(OPEN);
+            anim.SetTrigger(OPEN_ANIM);
             yield return new WaitForSeconds(duration);
             OnEffectEnded?.Invoke();
         }
