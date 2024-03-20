@@ -18,7 +18,7 @@ namespace Inventory
             uid = Guid.NewGuid().ToString();
         }
 
-        public bool Compare(Item other)
+        public bool UidEquals(Item other)
         {
             return other.Uid == uid;
         }

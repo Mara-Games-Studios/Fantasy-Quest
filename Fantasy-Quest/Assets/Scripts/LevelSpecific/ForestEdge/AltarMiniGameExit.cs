@@ -5,17 +5,17 @@ using UnityEngine.Events;
 namespace LevelSpecific.ForestEdge
 {
     [AddComponentMenu(
-        "Scripts/LevelSpecific/ForestEdge/LevelSpecific.ForestEdge.MouseInHayMinigameExit"
+        "Scripts/LevelSpecific/ForestEdge/LevelSpecific.ForestEdge.AltarMiniGameExit"
     )]
-    internal class MouseInHayMinigameExit : MonoBehaviour
+    internal class AltarMiniGameExit : MonoBehaviour
     {
         public UnityEvent PassedFirstTime;
 
         public void SetMiniGamePassed()
         {
-            if (!ProgressionConfig.Instance.ForestEdgeLevel.MouseInHayGamePassed)
+            if (!ProgressionConfig.Instance.ForestEdgeLevel.AltarGamePassedCorrectly)
             {
-                ProgressionConfig.Instance.ForestEdgeLevel.MouseInHayGamePassed = true;
+                ProgressionConfig.Instance.ForestEdgeLevel.AltarGamePassedCorrectly = true;
                 PassedFirstTime?.Invoke();
             }
         }

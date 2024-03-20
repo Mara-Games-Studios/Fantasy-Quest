@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace Symon
 {
+    [SelectionBase]
     [AddComponentMenu("Scripts/Symon/Symon.Movement")]
     internal class Movement : MonoBehaviour
     {
