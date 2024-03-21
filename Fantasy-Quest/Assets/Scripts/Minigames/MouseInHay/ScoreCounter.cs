@@ -18,6 +18,12 @@ namespace Minigames.MouseInHay
         [SerializeField]
         private TMP_Text scoreLabel;
 
+        public void ResetScore()
+        {
+            score = 0;
+            scoreLabel.text = score.ToString();
+        }
+
         public void AddPoint()
         {
             score++;

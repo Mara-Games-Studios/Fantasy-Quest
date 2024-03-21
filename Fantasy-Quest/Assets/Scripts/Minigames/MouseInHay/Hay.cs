@@ -41,27 +41,29 @@ namespace Minigames.MouseInHay
         {
             mousesShowed = 0;
             _ = this.KillCoroutine(launchCoroutine);
+            holes.ForEach(x => x.HideMouse());
         }
 
-        public void Launch()
+        public void StartShowMouse()
         {
-            float showTime = mouseShowTime.GetRandomFloatInRange();
-            launchCoroutine = StartCoroutine(CallMouseAndWait(showTime, showTime + noMouseTime));
+            _ = this.KillCoroutine(launchCoroutine);
+            launchCoroutine = StartCoroutine(Launch());
         }
 
-        private IEnumerator CallMouseAndWait(float showMouseTime, float waitTime)
+        public IEnumerator Launch()
         {
+            float showMouseTime = mouseShowTime.GetRandomFloatInRange();
             Hole hole = holes[Random.Range(0, holes.Count)];
-            hole.ShowMouse(showMouseTime);
+            yield return hole.ShowMouse(showMouseTime);
             mousesShowed++;
-            yield return new WaitForSeconds(waitTime);
+            yield return new WaitForSeconds(noMouseTime);
             if (mousesShowed >= maxMousesToShow)
             {
                 manager.ExitGame(ExitGameState.Lose);
             }
             else
             {
-                Launch();
+                StartShowMouse();
             }
         }
     }
