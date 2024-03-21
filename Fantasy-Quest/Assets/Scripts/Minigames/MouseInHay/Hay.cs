@@ -17,6 +17,7 @@ namespace Minigames.MouseInHay
         [ReadOnly]
         [SerializeField]
         private int mousesShowed = 0;
+        public int MousesShowed => mousesShowed;
 
         [SerializeField]
         private Manager manager;
@@ -31,6 +32,22 @@ namespace Minigames.MouseInHay
         private int maxMousesToShow = 10;
 
         private Coroutine launchCoroutine;
+
+        public float NoMouseTime
+        {
+            get => noMouseTime;
+            set => noMouseTime = value;
+        }
+        public int MaxMousesToShow
+        {
+            get => maxMousesToShow;
+            set => maxMousesToShow = value;
+        }
+        public FloatRange MouseShowTime
+        {
+            get => mouseShowTime;
+            set => mouseShowTime = value;
+        }
 
         private void Awake()
         {
@@ -52,12 +69,12 @@ namespace Minigames.MouseInHay
 
         public IEnumerator Launch()
         {
-            float showMouseTime = mouseShowTime.GetRandomFloatInRange();
+            float showMouseTime = MouseShowTime.GetRandomFloatInRange();
             Hole hole = holes[Random.Range(0, holes.Count)];
             yield return hole.ShowMouse(showMouseTime);
             mousesShowed++;
-            yield return new WaitForSeconds(noMouseTime);
-            if (mousesShowed >= maxMousesToShow)
+            yield return new WaitForSeconds(NoMouseTime);
+            if (mousesShowed >= MaxMousesToShow)
             {
                 manager.ExitGame(ExitGameState.Lose);
             }

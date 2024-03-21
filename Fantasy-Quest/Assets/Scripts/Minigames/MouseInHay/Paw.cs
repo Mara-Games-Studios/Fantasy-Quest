@@ -42,10 +42,19 @@ namespace Minigames.MouseInHay
         [SerializeField]
         private List<HoleByInputAction> holesWithInput;
 
-        private Coroutine slapCoroutine;
-
         public UnityEvent SuccessMouseHit;
         public UnityEvent FailMouseHit;
+
+        public float MoveToHoleTime
+        {
+            get => moveToHoleTime;
+            set => moveToHoleTime = value;
+        }
+        public float MoveFromHoleTime
+        {
+            get => moveFromHoleTime;
+            set => moveFromHoleTime = value;
+        }
 
         private void Awake()
         {
@@ -65,7 +74,7 @@ namespace Minigames.MouseInHay
         {
             isInAction = true;
             yield return transform
-                .DOMove(hole.transform.position, moveToHoleTime)
+                .DOMove(hole.transform.position, MoveToHoleTime)
                 .WaitForCompletion();
             Result result = hole.TryGrabMouse();
             if (result.Success)
@@ -82,7 +91,7 @@ namespace Minigames.MouseInHay
                 FailMouseHit?.Invoke();
             }
             yield return transform
-                .DOMove(startPosition.position, moveFromHoleTime)
+                .DOMove(startPosition.position, MoveFromHoleTime)
                 .WaitForCompletion();
             isInAction = false;
         }
