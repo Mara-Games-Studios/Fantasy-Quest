@@ -57,7 +57,7 @@ namespace Dialogue
             nextAction?.Invoke();
         }
 
-        private IEnumerator JustTellRoutine()
+        public IEnumerator JustTellRoutine()
         {
             foreach (Replica replica in replicas)
             {

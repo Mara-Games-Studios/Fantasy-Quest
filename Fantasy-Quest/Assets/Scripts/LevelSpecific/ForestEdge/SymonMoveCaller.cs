@@ -76,13 +76,13 @@ namespace LevelSpecific.ForestEdge
             yield return explanationSpeak.Tell();
             yield return symonMovement.MoveToPoint(callPoint.position);
             cutsceneStarter.StartCutscene();
+            ProgressionConfig.Instance.ForestEdgeLevel.BagTaken = true;
         }
 
         private IEnumerator GoToStartPointAfterCutscene()
         {
             yield return symonMovement.MoveToStartPoint();
             LockerSettings.Instance.UnlockAll();
-            ProgressionConfig.Instance.ForestEdgeLevel.BagTaken = true;
         }
 
         private IEnumerator TravelToPoint()
