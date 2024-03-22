@@ -1,6 +1,6 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using Common;
 using DG.Tweening;
 using Sirenix.OdinInspector;
@@ -41,72 +41,69 @@ namespace Minigames.MouseInHay
 
         [SerializeField]
         private List<HoleByInputAction> holesWithInput;
-        private Dictionary<Hole, InputAction> HolesWithInput =>
-            holesWithInput.ToDictionary(x => x.Hole, x => x.InputAction);
 
         public UnityEvent SuccessMouseHit;
         public UnityEvent FailMouseHit;
-        public UnityEvent MouseCatches;
+
+        public float MoveToHoleTime
+        {
+            get => moveToHoleTime;
+            set => moveToHoleTime = value;
+        }
+        public float MoveFromHoleTime
+        {
+            get => moveFromHoleTime;
+            set => moveFromHoleTime = value;
+        }
 
         private void Awake()
         {
-            foreach (KeyValuePair<Hole, InputAction> pair in HolesWithInput)
+            foreach (HoleByInputAction hole in holesWithInput)
             {
-                pair.Value.performed += (context) => MoveTo(pair.Key);
+                hole.InputAction.performed += (c) =>
+                {
+                    if (!isInAction)
+                    {
+                        _ = StartCoroutine(SlapMouse(hole.Hole));
+                    }
+                };
             }
         }
 
-        private void MoveTo(Hole hole)
+        private IEnumerator SlapMouse(Hole hole)
         {
-            if (isInAction)
-            {
-                return;
-            }
-
             isInAction = true;
-            Tween moveToHole = transform.DOMove(hole.transform.position, moveToHoleTime);
-            moveToHole.onComplete += () => SlapMouse(hole);
-        }
-
-        private void SlapMouse(Hole hole)
-        {
+            yield return transform
+                .DOMove(hole.transform.position, MoveToHoleTime)
+                .WaitForCompletion();
             Result result = hole.TryGrabMouse();
             if (result.Success)
             {
                 scoreCounter.AddPoint();
+                SuccessMouseHit?.Invoke();
                 if (scoreCounter.IsWinGame)
                 {
-                    MouseCatches?.Invoke();
                     manager.ExitGame(ExitGameState.Win);
-                    return;
-                }
-                else
-                {
-                    SuccessMouseHit?.Invoke();
                 }
             }
             else
             {
                 FailMouseHit?.Invoke();
             }
-            Tween moveFromHole = transform.DOMove(startPosition.position, moveFromHoleTime);
-            moveFromHole.onComplete += () => isInAction = false;
+            yield return transform
+                .DOMove(startPosition.position, MoveFromHoleTime)
+                .WaitForCompletion();
+            isInAction = false;
         }
 
         public void EnableInput()
         {
-            foreach (InputAction inputAction in HolesWithInput.Values)
-            {
-                inputAction.Enable();
-            }
+            holesWithInput.ForEach(x => x.InputAction.Enable());
         }
 
         public void DisableInput()
         {
-            foreach (InputAction inputAction in HolesWithInput.Values)
-            {
-                inputAction.Disable();
-            }
+            holesWithInput.ForEach(x => x.InputAction.Disable());
         }
     }
 }
