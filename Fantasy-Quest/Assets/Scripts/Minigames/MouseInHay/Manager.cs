@@ -16,11 +16,19 @@ namespace Minigames.MouseInHay
     {
         [Required]
         [SerializeField]
+        private AudioSource music;
+
+        [Required]
+        [SerializeField]
         private Hay hay;
 
         [Required]
         [SerializeField]
         private Paw paw;
+
+        [Required]
+        [SerializeField]
+        private ScoreCounter scoreCounter;
 
         public UnityEvent OnManualExitGame;
         public UnityEvent OnLoseExitGame;
@@ -29,8 +37,21 @@ namespace Minigames.MouseInHay
         [Button]
         public void RefreshGame()
         {
+            scoreCounter.ResetScore();
+        }
+
+        [Button]
+        public void StopGame()
+        {
+            music.Stop();
             hay.ResetHay();
-            hay.Launch();
+        }
+
+        [Button]
+        public void StartGame()
+        {
+            music.Play();
+            hay.StartShowMouse();
         }
 
         public void ExitGame(ExitGameState gameState)
@@ -47,7 +68,6 @@ namespace Minigames.MouseInHay
                     OnManualExitGame?.Invoke();
                     break;
             }
-            OnManualExitGame?.Invoke();
         }
 
         [Button]

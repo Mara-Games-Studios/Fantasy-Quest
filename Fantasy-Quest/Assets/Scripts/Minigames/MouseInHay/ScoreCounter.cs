@@ -1,5 +1,4 @@
 ﻿using Sirenix.OdinInspector;
-using TMPro;
 using UnityEngine;
 
 namespace Minigames.MouseInHay
@@ -10,18 +9,26 @@ namespace Minigames.MouseInHay
         [ReadOnly]
         [SerializeField]
         private int score = 0;
+        public int Score => score;
 
         [SerializeField]
         private int neededScore = 3;
-        public bool IsWinGame => score == neededScore;
+        public bool IsWinGame => score == NeededScore;
 
-        [SerializeField]
-        private TMP_Text scoreLabel;
+        public int NeededScore
+        {
+            get => neededScore;
+            set => neededScore = value;
+        }
+
+        public void ResetScore()
+        {
+            score = 0;
+        }
 
         public void AddPoint()
         {
             score++;
-            scoreLabel.text = score.ToString();
         }
     }
 }

@@ -17,6 +17,7 @@ namespace Minigames.MouseInHay
         [ReadOnly]
         [SerializeField]
         private int mousesShowed = 0;
+        public int MousesShowed => mousesShowed;
 
         [SerializeField]
         private Manager manager;
@@ -32,6 +33,22 @@ namespace Minigames.MouseInHay
 
         private Coroutine launchCoroutine;
 
+        public float NoMouseTime
+        {
+            get => noMouseTime;
+            set => noMouseTime = value;
+        }
+        public int MaxMousesToShow
+        {
+            get => maxMousesToShow;
+            set => maxMousesToShow = value;
+        }
+        public FloatRange MouseShowTime
+        {
+            get => mouseShowTime;
+            set => mouseShowTime = value;
+        }
+
         private void Awake()
         {
             holes = GetComponentsInChildren<Hole>().ToList();
@@ -41,27 +58,29 @@ namespace Minigames.MouseInHay
         {
             mousesShowed = 0;
             _ = this.KillCoroutine(launchCoroutine);
+            holes.ForEach(x => x.HideMouse());
         }
 
-        public void Launch()
+        public void StartShowMouse()
         {
-            float showTime = mouseShowTime.GetRandomFloatInRange();
-            launchCoroutine = StartCoroutine(CallMouseAndWait(showTime, showTime + noMouseTime));
+            _ = this.KillCoroutine(launchCoroutine);
+            launchCoroutine = StartCoroutine(Launch());
         }
 
-        private IEnumerator CallMouseAndWait(float showMouseTime, float waitTime)
+        public IEnumerator Launch()
         {
+            float showMouseTime = MouseShowTime.GetRandomFloatInRange();
             Hole hole = holes[Random.Range(0, holes.Count)];
-            hole.ShowMouse(showMouseTime);
+            yield return hole.ShowMouse(showMouseTime);
             mousesShowed++;
-            yield return new WaitForSeconds(waitTime);
-            if (mousesShowed >= maxMousesToShow)
+            yield return new WaitForSeconds(NoMouseTime);
+            if (mousesShowed >= MaxMousesToShow)
             {
                 manager.ExitGame(ExitGameState.Lose);
             }
             else
             {
-                Launch();
+                StartShowMouse();
             }
         }
     }

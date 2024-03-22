@@ -2,7 +2,6 @@
 using Common;
 using Sirenix.OdinInspector;
 using UnityEngine;
-using UnityEngine.Events;
 
 namespace Minigames.MouseInHay
 {
@@ -12,37 +11,41 @@ namespace Minigames.MouseInHay
         [ReadOnly]
         [SerializeField]
         private bool isShowed = false;
-        private Coroutine showCoroutine;
-        public UnityEvent OnMouseShowed;
-        public UnityEvent OnMouseHidden;
 
-        public void ShowMouse(float time)
+        [Required]
+        [SerializeField]
+        private Animator animator;
+
+        [SerializeField]
+        private string isShowedAnimationLabel;
+
+        [SerializeField]
+        private string hiddenAnimationStateLabel;
+
+        private void Update()
         {
-            isShowed = true;
-            OnMouseShowed?.Invoke();
-            showCoroutine = StartCoroutine(ShowRoutine(time));
+            animator.SetBool(isShowedAnimationLabel, isShowed);
         }
 
-        private IEnumerator ShowRoutine(float time)
+        public IEnumerator ShowMouse(float time)
         {
+            isShowed = true;
             yield return new WaitForSeconds(time);
-            EndShowMouse();
+            HideMouse();
         }
 
         public Result TryGrabMouse()
         {
             if (isShowed)
             {
-                StopCoroutine(showCoroutine);
-                EndShowMouse();
+                HideMouse();
                 return new SuccessResult();
             }
             return new FailResult("No mouse in hole");
         }
 
-        private void EndShowMouse()
+        public void HideMouse()
         {
-            OnMouseHidden?.Invoke();
             isShowed = false;
         }
     }
