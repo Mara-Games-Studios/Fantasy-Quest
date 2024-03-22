@@ -44,6 +44,33 @@ public partial class @MainMenuInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""IndicateUp"",
+                    ""type"": ""Button"",
+                    ""id"": ""10ec9584-d611-4fed-8bea-115d5d9c2998"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""IndicateDown"",
+                    ""type"": ""Button"",
+                    ""id"": ""270f817b-0f19-41e3-8bff-030ab6a5b124"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""MenuClick"",
+                    ""type"": ""Button"",
+                    ""id"": ""01b28373-6345-4402-914e-3565a9a828c9"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -68,6 +95,39 @@ public partial class @MainMenuInput: IInputActionCollection2, IDisposable
                     ""action"": ""Click"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""04885fb0-8640-4e5a-9ea5-41652c3b836e"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""IndicateDown"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""88500960-aea2-4814-9731-1b989d5f5c03"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""IndicateUp"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5d307298-04fb-4f92-8af5-d9a84c09a600"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MenuClick"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -78,6 +138,9 @@ public partial class @MainMenuInput: IInputActionCollection2, IDisposable
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Point = m_UI.FindAction("Point", throwIfNotFound: true);
         m_UI_Click = m_UI.FindAction("Click", throwIfNotFound: true);
+        m_UI_IndicateUp = m_UI.FindAction("IndicateUp", throwIfNotFound: true);
+        m_UI_IndicateDown = m_UI.FindAction("IndicateDown", throwIfNotFound: true);
+        m_UI_MenuClick = m_UI.FindAction("MenuClick", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -141,12 +204,18 @@ public partial class @MainMenuInput: IInputActionCollection2, IDisposable
     private List<IUIActions> m_UIActionsCallbackInterfaces = new List<IUIActions>();
     private readonly InputAction m_UI_Point;
     private readonly InputAction m_UI_Click;
+    private readonly InputAction m_UI_IndicateUp;
+    private readonly InputAction m_UI_IndicateDown;
+    private readonly InputAction m_UI_MenuClick;
     public struct UIActions
     {
         private @MainMenuInput m_Wrapper;
         public UIActions(@MainMenuInput wrapper) { m_Wrapper = wrapper; }
         public InputAction @Point => m_Wrapper.m_UI_Point;
         public InputAction @Click => m_Wrapper.m_UI_Click;
+        public InputAction @IndicateUp => m_Wrapper.m_UI_IndicateUp;
+        public InputAction @IndicateDown => m_Wrapper.m_UI_IndicateDown;
+        public InputAction @MenuClick => m_Wrapper.m_UI_MenuClick;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -162,6 +231,15 @@ public partial class @MainMenuInput: IInputActionCollection2, IDisposable
             @Click.started += instance.OnClick;
             @Click.performed += instance.OnClick;
             @Click.canceled += instance.OnClick;
+            @IndicateUp.started += instance.OnIndicateUp;
+            @IndicateUp.performed += instance.OnIndicateUp;
+            @IndicateUp.canceled += instance.OnIndicateUp;
+            @IndicateDown.started += instance.OnIndicateDown;
+            @IndicateDown.performed += instance.OnIndicateDown;
+            @IndicateDown.canceled += instance.OnIndicateDown;
+            @MenuClick.started += instance.OnMenuClick;
+            @MenuClick.performed += instance.OnMenuClick;
+            @MenuClick.canceled += instance.OnMenuClick;
         }
 
         private void UnregisterCallbacks(IUIActions instance)
@@ -172,6 +250,15 @@ public partial class @MainMenuInput: IInputActionCollection2, IDisposable
             @Click.started -= instance.OnClick;
             @Click.performed -= instance.OnClick;
             @Click.canceled -= instance.OnClick;
+            @IndicateUp.started -= instance.OnIndicateUp;
+            @IndicateUp.performed -= instance.OnIndicateUp;
+            @IndicateUp.canceled -= instance.OnIndicateUp;
+            @IndicateDown.started -= instance.OnIndicateDown;
+            @IndicateDown.performed -= instance.OnIndicateDown;
+            @IndicateDown.canceled -= instance.OnIndicateDown;
+            @MenuClick.started -= instance.OnMenuClick;
+            @MenuClick.performed -= instance.OnMenuClick;
+            @MenuClick.canceled -= instance.OnMenuClick;
         }
 
         public void RemoveCallbacks(IUIActions instance)
@@ -193,5 +280,8 @@ public partial class @MainMenuInput: IInputActionCollection2, IDisposable
     {
         void OnPoint(InputAction.CallbackContext context);
         void OnClick(InputAction.CallbackContext context);
+        void OnIndicateUp(InputAction.CallbackContext context);
+        void OnIndicateDown(InputAction.CallbackContext context);
+        void OnMenuClick(InputAction.CallbackContext context);
     }
 }

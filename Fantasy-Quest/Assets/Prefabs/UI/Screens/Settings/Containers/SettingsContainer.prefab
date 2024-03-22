@@ -538,6 +538,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3860063284117033342}
   - component: {fileID: 2979005597300226998}
+  - component: {fileID: 8617512533428824355}
+  - component: {fileID: 434515068449905064}
   m_Layer: 5
   m_Name: IndicateImages [Default left padding = -18. If you add spacing, then padding
     left = -spacing/2 - 18
@@ -593,6 +595,36 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &8617512533428824355
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4255298744817689871}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3b792dbe4e48cd48a626e58241b2bec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rectTransform: {fileID: 3860063284117033342}
+  indicates: {fileID: 2979005597300226998}
+  indicatesAlpha: {fileID: 434515068449905064}
+  fadeDuration: 0
+  defaultLeftOffset: 18
+  additiveSpacing: 30
+--- !u!225 &434515068449905064
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4255298744817689871}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &4384173676013938083
 GameObject:
   m_ObjectHideFlags: 0
