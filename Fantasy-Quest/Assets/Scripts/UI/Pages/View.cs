@@ -23,23 +23,23 @@ namespace UI.Pages
 
         private void Awake()
         {
-            model.pageInfo.canvasGroup.alpha = model.minAlpha;
-            model.pageInfo.rectTransform.position = model.startPoint.position;
-            model.pageInfo.canvasGroup.gameObject.SetActive(model.isActiveOnAwake);
+            model.PageInfo.CanvasGroup.alpha = model.MinAlpha;
+            model.PageInfo.RectTransform.position = model.StartPoint.position;
+            model.PageInfo.CanvasGroup.gameObject.SetActive(model.IsActiveOnAwake);
         }
 
         [Button]
         public void Show()
         {
-            model.pageInfo.canvasGroup.gameObject.SetActive(true);
+            model.PageInfo.CanvasGroup.gameObject.SetActive(true);
             StopTweens();
-            fadeTween = model.pageInfo.canvasGroup.DOFade(model.maxAlpha, model.duration);
+            fadeTween = model.PageInfo.CanvasGroup.DOFade(model.MaxAlpha, model.Duration);
             fadeTween.onComplete += () => OnPageShowing?.Invoke(imageButtons);
-            if (model.isUsingMovement)
+            if (model.IsUsingMovement)
             {
-                moveTween = model.pageInfo.rectTransform.DOMove(
-                    model.endPoint.position,
-                    model.duration
+                moveTween = model.PageInfo.RectTransform.DOMove(
+                    model.EndPoint.position,
+                    model.Duration
                 );
             }
         }
@@ -49,13 +49,13 @@ namespace UI.Pages
         {
             StopTweens();
             OnPageHiding?.Invoke();
-            fadeTween = model.pageInfo.canvasGroup.DOFade(model.minAlpha, model.duration);
-            fadeTween.onComplete += () => model.pageInfo.canvasGroup.gameObject.SetActive(false);
-            if (model.isUsingMovement)
+            fadeTween = model.PageInfo.CanvasGroup.DOFade(model.MinAlpha, model.Duration);
+            fadeTween.onComplete += () => model.PageInfo.CanvasGroup.gameObject.SetActive(false);
+            if (model.IsUsingMovement)
             {
-                moveTween = model.pageInfo.rectTransform.DOMove(
-                    model.startPoint.position,
-                    model.duration
+                moveTween = model.PageInfo.RectTransform.DOMove(
+                    model.StartPoint.position,
+                    model.Duration
                 );
             }
         }

@@ -7,30 +7,30 @@ namespace UI.Pages
     [Serializable]
     public class Model
     {
-        public PageInfo pageInfo;
+        public PageInfo PageInfo;
 
-        public RectTransform startPoint;
+        public RectTransform StartPoint;
 
-        public RectTransform endPoint;
+        public RectTransform EndPoint;
 
-        public bool isUsingMovement = true;
+        public bool IsUsingMovement = true;
 
-        public bool isActiveOnAwake = false;
+        public bool IsActiveOnAwake = false;
 
-        public float minAlpha = 0.3f;
+        public float MinAlpha = 0.3f;
 
-        public float maxAlpha = 1f;
+        public float MaxAlpha = 1f;
 
-        public float duration = 1f;
+        public float Duration = 1f;
     }
 
     [Serializable]
     public struct PageInfo
     {
         [Required]
-        public CanvasGroup canvasGroup;
+        public CanvasGroup CanvasGroup;
 
         [Required]
-        public RectTransform rectTransform;
+        public RectTransform RectTransform;
     }
 }
