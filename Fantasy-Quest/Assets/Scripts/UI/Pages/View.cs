@@ -9,18 +9,18 @@ namespace UI.Pages
     [AddComponentMenu("Scripts/UI/Pages/Pages.View")]
     public class View : MonoBehaviour
     {
-        [SerializeField] 
+        [SerializeField]
         private UI.Pages.Model model;
 
         [SerializeField]
-        private List<Image> imageButtons = new ();
+        private List<Image> imageButtons = new();
 
         private Tween moveTween;
         private Tween fadeTween;
-        
+
         public static event System.Action<List<Image>> OnPageShowing;
         public static event System.Action OnPageHiding;
-        
+
         private void Awake()
         {
             model.pageInfo.canvasGroup.alpha = model.minAlpha;
@@ -34,23 +34,29 @@ namespace UI.Pages
             model.pageInfo.canvasGroup.gameObject.SetActive(true);
             StopTweens();
             fadeTween = model.pageInfo.canvasGroup.DOFade(model.maxAlpha, model.duration);
-            fadeTween.onComplete += () => { OnPageShowing?.Invoke(imageButtons); };
+            fadeTween.onComplete += () => OnPageShowing?.Invoke(imageButtons);
             if (model.isUsingMovement)
             {
-                moveTween = model.pageInfo.rectTransform.DOMove(model.endPoint.position, model.duration);
+                moveTween = model.pageInfo.rectTransform.DOMove(
+                    model.endPoint.position,
+                    model.duration
+                );
             }
         }
-    
+
         [Button]
         public void Hide()
         {
             StopTweens();
             OnPageHiding?.Invoke();
             fadeTween = model.pageInfo.canvasGroup.DOFade(model.minAlpha, model.duration);
-            fadeTween.onComplete += () => { model.pageInfo.canvasGroup.gameObject.SetActive(false); };
+            fadeTween.onComplete += () => model.pageInfo.canvasGroup.gameObject.SetActive(false);
             if (model.isUsingMovement)
             {
-                moveTween = model.pageInfo.rectTransform.DOMove(model.startPoint.position, model.duration);
+                moveTween = model.pageInfo.rectTransform.DOMove(
+                    model.startPoint.position,
+                    model.duration
+                );
             }
         }
 
