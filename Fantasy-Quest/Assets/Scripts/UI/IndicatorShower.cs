@@ -24,6 +24,12 @@ public class IndicatorShower : MonoBehaviour
     [SerializeField]
     private float fadeDuration;
 
+    [SerializeField] 
+    private float minAlpha = 0.1f;
+    
+    [SerializeField] 
+    private float maxAlpha = 1f;
+
     [SerializeField]
     private int defaultLeftOffset = 18;
 
@@ -39,12 +45,12 @@ public class IndicatorShower : MonoBehaviour
     {
         mainMenuInput = new();
         mainMenuInput.Enable();
-        indicatesAlpha.alpha = 0f;
+        indicatesAlpha.alpha = minAlpha;
     }
 
     private void OnEnable()
     {
-        View.OnPageShowing += ShowIndicates;
+        View.OnPageShowed += ShowIndicates;
         View.OnPageHiding += HideIndicates;
         mainMenuInput.UI.IndicateDown.performed += ctx => GoDown();
         mainMenuInput.UI.IndicateUp.performed += ctx => GoUp();
@@ -53,16 +59,16 @@ public class IndicatorShower : MonoBehaviour
 
     private void OnDisable()
     {
-        View.OnPageShowing -= ShowIndicates;
+        View.OnPageShowed -= ShowIndicates;
         View.OnPageHiding -= HideIndicates;
         mainMenuInput.UI.IndicateDown.performed -= ctx => GoDown();
         mainMenuInput.UI.IndicateUp.performed -= ctx => GoUp();
         mainMenuInput.UI.MenuClick.performed -= ctx => Click();
     }
 
-    private void ShowIndicates(List<Image> images)
+    private void ShowIndicates(View view)
     {
-        this.images = images;
+        images = view.ImageButtons;
         if (images == null || images.Count == 0)
         {
             return;
@@ -71,28 +77,32 @@ public class IndicatorShower : MonoBehaviour
         currentImageIndex = images.Count - 1;
         ShowOn(images[^1]);
         vanishingTween?.Kill();
-        _ = indicatesAlpha.DOFade(1, fadeDuration);
+        _ = indicatesAlpha.DOFade(maxAlpha, fadeDuration);
     }
 
     private void HideIndicates()
     {
         vanishingTween?.Kill();
-        vanishingTween = indicatesAlpha.DOFade(0, 0);
+        vanishingTween = indicatesAlpha.DOFade(minAlpha, 0);
+        indicatesAlpha.gameObject.SetActive(false);
     }
 
     private void Click()
     {
-        images[currentImageIndex].GetComponent<Button>().onClick.Invoke();
+        if(images == null)
+            return;
+        if (images[currentImageIndex].TryGetComponent(out Button button))
+            button.onClick.Invoke();
     }
 
     private void GoDown()
     {
         if (images == null || images.Count == 0)
         {
-            indicates.gameObject.SetActive(false);
+            // indicates.gameObject.SetActive(false);
             return;
         }
-        indicates.gameObject.SetActive(true);
+        // indicates.gameObject.SetActive(true);
 
         currentImageIndex--;
         if (currentImageIndex < 0)
@@ -107,10 +117,10 @@ public class IndicatorShower : MonoBehaviour
     {
         if (images == null || images.Count == 0)
         {
-            indicates.gameObject.SetActive(false);
+            // indicates.gameObject.SetActive(false);
             return;
         }
-        indicates.gameObject.SetActive(true);
+        // indicates.gameObject.SetActive(true);
 
         currentImageIndex++;
         if (currentImageIndex >= images.Count)

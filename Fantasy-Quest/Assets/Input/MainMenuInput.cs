@@ -71,6 +71,15 @@ public partial class @MainMenuInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Exit"",
+                    ""type"": ""Button"",
+                    ""id"": ""8961d12c-c102-4c65-96e5-456c9f9a62fe"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -128,6 +137,17 @@ public partial class @MainMenuInput: IInputActionCollection2, IDisposable
                     ""action"": ""MenuClick"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3ac3036a-a871-4a21-b87a-92c6c75ac03a"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Exit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -141,6 +161,7 @@ public partial class @MainMenuInput: IInputActionCollection2, IDisposable
         m_UI_IndicateUp = m_UI.FindAction("IndicateUp", throwIfNotFound: true);
         m_UI_IndicateDown = m_UI.FindAction("IndicateDown", throwIfNotFound: true);
         m_UI_MenuClick = m_UI.FindAction("MenuClick", throwIfNotFound: true);
+        m_UI_Exit = m_UI.FindAction("Exit", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -207,6 +228,7 @@ public partial class @MainMenuInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_UI_IndicateUp;
     private readonly InputAction m_UI_IndicateDown;
     private readonly InputAction m_UI_MenuClick;
+    private readonly InputAction m_UI_Exit;
     public struct UIActions
     {
         private @MainMenuInput m_Wrapper;
@@ -216,6 +238,7 @@ public partial class @MainMenuInput: IInputActionCollection2, IDisposable
         public InputAction @IndicateUp => m_Wrapper.m_UI_IndicateUp;
         public InputAction @IndicateDown => m_Wrapper.m_UI_IndicateDown;
         public InputAction @MenuClick => m_Wrapper.m_UI_MenuClick;
+        public InputAction @Exit => m_Wrapper.m_UI_Exit;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -240,6 +263,9 @@ public partial class @MainMenuInput: IInputActionCollection2, IDisposable
             @MenuClick.started += instance.OnMenuClick;
             @MenuClick.performed += instance.OnMenuClick;
             @MenuClick.canceled += instance.OnMenuClick;
+            @Exit.started += instance.OnExit;
+            @Exit.performed += instance.OnExit;
+            @Exit.canceled += instance.OnExit;
         }
 
         private void UnregisterCallbacks(IUIActions instance)
@@ -259,6 +285,9 @@ public partial class @MainMenuInput: IInputActionCollection2, IDisposable
             @MenuClick.started -= instance.OnMenuClick;
             @MenuClick.performed -= instance.OnMenuClick;
             @MenuClick.canceled -= instance.OnMenuClick;
+            @Exit.started -= instance.OnExit;
+            @Exit.performed -= instance.OnExit;
+            @Exit.canceled -= instance.OnExit;
         }
 
         public void RemoveCallbacks(IUIActions instance)
@@ -283,5 +312,6 @@ public partial class @MainMenuInput: IInputActionCollection2, IDisposable
         void OnIndicateUp(InputAction.CallbackContext context);
         void OnIndicateDown(InputAction.CallbackContext context);
         void OnMenuClick(InputAction.CallbackContext context);
+        void OnExit(InputAction.CallbackContext context);
     }
 }
