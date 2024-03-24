@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Sirenix.Utilities.Editor;
+using UnityEngine;
 
 namespace UI
 {
@@ -6,6 +7,7 @@ namespace UI
     public class PageEscaper : MonoBehaviour
     {
         private Pages.View currentPage;
+        private Pages.View lastPage;
         private MainMenuInput mainMenuInput;    
 
         private void Awake()
@@ -32,13 +34,16 @@ namespace UI
                 return;
             if(currentPage.LastPage == null)
                 return;
-
+            lastPage = currentPage.LastPage;
+            
             currentPage.Hide();
-            currentPage.LastPage.Show();
+            lastPage.Show();    
         }
         
         private void SetPage(Pages.View page)
         {
+            if(page == null)
+                return;
             currentPage = page;
         }
     }

@@ -35,8 +35,8 @@ namespace UI.Pages
 
         public void Show()
         {
-            OnPageShowing?.Invoke(this);
             effectShower.Show();
+            OnPageShowing?.Invoke(this);
         }
         
         public void Hide()
