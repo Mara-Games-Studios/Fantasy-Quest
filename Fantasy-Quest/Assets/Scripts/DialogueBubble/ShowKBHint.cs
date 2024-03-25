@@ -18,8 +18,6 @@ namespace DialogueBubble
         [SerializeField]
         private SpriteRenderer keyboardSpriteRenderer;
 
-        private Tween fadeTween;
-
         private void Awake()
         {
             Color bubbleColor = keyboardSpriteRenderer.GetComponent<SpriteRenderer>().color;
@@ -29,7 +27,6 @@ namespace DialogueBubble
 
         private void OnEnable()
         {
-            EventSystem.OnTriggerBubble += SwitchShow;
             id += 1;
         }
 
@@ -41,10 +38,10 @@ namespace DialogueBubble
                 switch (settings.BubbleType)
                 {
                     case Type.OneButton:
-                        keyboardSpriteRenderer.sprite = settings.Icons[0];
+                        keyboardSpriteRenderer.sprite = settings.KBicons[0];
                         break;
                     case Type.TwoButtons:
-                        keyboardSpriteRenderer.sprite = settings.Icons[id - 1];
+                        keyboardSpriteRenderer.sprite = settings.KBicons[id - 1];
                         break;
                 }
 
@@ -68,7 +65,7 @@ namespace DialogueBubble
 
         private void Fade(float endValue, float duration, TweenCallback onEnd)
         {
-            fadeTween?.Kill(false);
+            Tween fadeTween;
             fadeTween = keyboardSpriteRenderer.DOFade(endValue, duration);
 
             fadeTween.onComplete += onEnd;
@@ -76,7 +73,6 @@ namespace DialogueBubble
 
         private void OnDisable()
         {
-            EventSystem.OnTriggerBubble -= SwitchShow;
             id -= 1;
         }
     }
