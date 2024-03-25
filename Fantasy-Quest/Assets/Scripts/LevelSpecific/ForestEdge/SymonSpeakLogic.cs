@@ -15,15 +15,45 @@ namespace LevelSpecific.ForestEdge
 
         [Required]
         [SerializeField]
-        private Start cutsceneStarter;
+        private Start introCustcene;
+
+        [Required]
+        [SerializeField]
+        private Start explanationCutscene;
+
+        [Required]
+        [SerializeField]
+        private Start hintCutscene;
+
+        [Required]
+        [SerializeField]
+        private Start tryToAltar;
 
         public void Speak()
         {
             if (!ProgressionConfig.Instance.ForestEdgeLevel.FirstDialoguePassed)
             {
-                cutsceneStarter.StartCutscene();
+                introCustcene.StartCutscene();
                 ProgressionConfig.Instance.ForestEdgeLevel.FirstDialoguePassed = true;
-                gameObject.SetActive(false);
+                return;
+            }
+            else if (
+                !ProgressionConfig.Instance.ForestEdgeLevel.ExplanationListened
+                && ProgressionConfig.Instance.ForestEdgeLevel.BagTaken
+            )
+            {
+                explanationCutscene.StartCutscene();
+                ProgressionConfig.Instance.ForestEdgeLevel.ExplanationListened = true;
+                return;
+            }
+            else if (!ProgressionConfig.Instance.ForestEdgeLevel.AllItemTaken)
+            {
+                hintCutscene.StartCutscene();
+                return;
+            }
+            else if (ProgressionConfig.Instance.ForestEdgeLevel.AllItemTaken)
+            {
+                tryToAltar.StartCutscene();
                 return;
             }
         }

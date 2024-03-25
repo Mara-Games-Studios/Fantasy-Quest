@@ -845,6 +845,7 @@ GameObject:
   m_Component:
   - component: {fileID: 116643855}
   - component: {fileID: 116643856}
+  - component: {fileID: 116643857}
   m_Layer: 0
   m_Name: TryToAltarCutscene
   m_TagString: Untagged
@@ -880,7 +881,7 @@ PlayableDirector:
   m_Enabled: 1
   serializedVersion: 3
   m_PlayableAsset: {fileID: 11400000, guid: 2b2d3c9c06312764b878efc3a35b4f20, type: 2}
-  m_InitialState: 1
+  m_InitialState: 0
   m_WrapMode: 2
   m_DirectorUpdateMode: 1
   m_InitialTime: 0
@@ -904,6 +905,19 @@ PlayableDirector:
     - 48b1985df8073d243b5e6e5e70344e2b: {fileID: 810026366}
     - f56e50bf1a1d49f41a9cc0a73cfe3a39: {fileID: 810026366}
     - 45dc3dab463c9aa4489b1607a3fcbab2: {fileID: 452328026}
+--- !u!114 &116643857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 116643854}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb45555db0fcc12438612fc38a7796f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playableDirector: {fileID: 116643856}
 --- !u!1 &118153766
 GameObject:
   m_ObjectHideFlags: 0
@@ -1841,6 +1855,14 @@ PrefabInstance:
       propertyPath: curve.m_Curve.Array.data[1].outWeight
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7931700506185485493, guid: f75b8445c7d836f42a89a16a0c679861, type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7931700506185485493, guid: f75b8445c7d836f42a89a16a0c679861, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2089,7 +2111,7 @@ Transform:
   m_GameObject: {fileID: 366882176}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 30.945978, y: -2.389555, z: 0}
+  m_LocalPosition: {x: 32.11362, y: -3.3468685, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2108,7 +2130,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rails: {fileID: 187231270}
-  value: 0.538
+  value: 0.99999
   step: 1
   color: {r: 0, g: 0, b: 0, a: 1}
   showPoint: 1
@@ -2441,7 +2463,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   introductionSpeak: {fileID: 507370712}
-  cutsceneStarter: {fileID: 1781733686}
+  introCustcene: {fileID: 1781733686}
+  explanationCutscene: {fileID: 625399172}
+  hintCutscene: {fileID: 1602268234}
+  tryToAltar: {fileID: 116643857}
 --- !u!114 &404905222
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3293,6 +3318,8 @@ PlayableDirector:
     value: {fileID: 84311742}
   - key: {fileID: -4593060456468419789, guid: 8d698b6d615fec649a380373e3afc087, type: 2}
     value: {fileID: 830124396}
+  - key: {fileID: 3633677496296769082, guid: 8d698b6d615fec649a380373e3afc087, type: 2}
+    value: {fileID: 1262291775}
   m_ExposedReferences:
     m_References:
     - 2a22d10ab3df2d948a7e25573797c28b: {fileID: 1779070972}
@@ -3608,6 +3635,10 @@ PrefabInstance:
       propertyPath: curve.m_Curve.Array.data[1].outWeight
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7931700506185485493, guid: f75b8445c7d836f42a89a16a0c679861, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4023,6 +4054,7 @@ GameObject:
   m_Component:
   - component: {fileID: 798239076}
   - component: {fileID: 798239077}
+  - component: {fileID: 798239078}
   m_Layer: 0
   m_Name: PavetnikMissionCutscene
   m_TagString: Untagged
@@ -4058,7 +4090,7 @@ PlayableDirector:
   m_Enabled: 1
   serializedVersion: 3
   m_PlayableAsset: {fileID: 11400000, guid: 7d0db450f4369a541b6491f45bd8e6e9, type: 2}
-  m_InitialState: 1
+  m_InitialState: 0
   m_WrapMode: 2
   m_DirectorUpdateMode: 1
   m_InitialTime: 0
@@ -4082,6 +4114,19 @@ PlayableDirector:
     - 94462f5b85ebee642b45b5aa8677783c: {fileID: 588637221}
     - fdf9755373fe5754f8b65ef98fc7bca1: {fileID: 810026366}
     - 0e2e141a736aca64e8523616cdc38fef: {fileID: 810026366}
+--- !u!114 &798239078
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 798239075}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb45555db0fcc12438612fc38a7796f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playableDirector: {fileID: 798239077}
 --- !u!1 &800411208
 GameObject:
   m_ObjectHideFlags: 0
@@ -5631,6 +5676,7 @@ Transform:
   - {fileID: 55958846}
   - {fileID: 915688296}
   - {fileID: 845792163}
+  - {fileID: 1262291776}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1051909360
@@ -6004,6 +6050,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1159698887}
   - component: {fileID: 1159698888}
+  - component: {fileID: 1159698889}
   m_Layer: 0
   m_Name: PavetnikGraditudeCutscene
   m_TagString: Untagged
@@ -6038,7 +6085,7 @@ PlayableDirector:
   m_Enabled: 1
   serializedVersion: 3
   m_PlayableAsset: {fileID: 11400000, guid: a4c3b49a0007b0047b257242b5fdbb12, type: 2}
-  m_InitialState: 1
+  m_InitialState: 0
   m_WrapMode: 2
   m_DirectorUpdateMode: 1
   m_InitialTime: 0
@@ -6075,6 +6122,19 @@ PlayableDirector:
     - fdf9755373fe5754f8b65ef98fc7bca1: {fileID: 810026366}
     - a9c7b04c34bd76e4ba4e3462b23a4561: {fileID: 810026366}
     - 0e2e141a736aca64e8523616cdc38fef: {fileID: 810026366}
+--- !u!114 &1159698889
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1159698886}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb45555db0fcc12438612fc38a7796f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playableDirector: {fileID: 1159698888}
 --- !u!1 &1179298554
 GameObject:
   m_ObjectHideFlags: 0
@@ -6322,6 +6382,98 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45e653bab7fb20e499bda25e1b646fea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1262291775
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1262291776}
+  - component: {fileID: 1262291778}
+  - component: {fileID: 1262291777}
+  m_Layer: 0
+  m_Name: PavetnikTrigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1262291776
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1262291775}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.24, y: -1.62, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1051157850}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1262291777
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1262291775}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfc2dcde2e8050447988196b423ede72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  firstEncounter: {fileID: 798239078}
+  winEncounter: {fileID: 1159698889}
+--- !u!61 &1262291778
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1262291775}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 6, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &1298971692
 GameObject:
   m_ObjectHideFlags: 0
@@ -7536,6 +7688,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1602268232}
   - component: {fileID: 1602268233}
+  - component: {fileID: 1602268234}
   m_Layer: 0
   m_Name: Find3ItemsCutscene
   m_TagString: Untagged
@@ -7571,7 +7724,7 @@ PlayableDirector:
   m_Enabled: 1
   serializedVersion: 3
   m_PlayableAsset: {fileID: 11400000, guid: 2688e46f535f06c4fa7330aa60f51565, type: 2}
-  m_InitialState: 1
+  m_InitialState: 0
   m_WrapMode: 2
   m_DirectorUpdateMode: 1
   m_InitialTime: 0
@@ -7594,6 +7747,19 @@ PlayableDirector:
     - 997671a0909c5394da0d717a7df3c2b0: {fileID: 863591687}
     - f2ae4eb1220d74e43bf87dbf7f496cd5: {fileID: 863591687}
     - cc45e4b6e82e31947af0a58f5aba7a94: {fileID: 810026366}
+--- !u!114 &1602268234
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1602268231}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb45555db0fcc12438612fc38a7796f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playableDirector: {fileID: 1602268233}
 --- !u!1 &1630584903
 GameObject:
   m_ObjectHideFlags: 0
@@ -10208,10 +10374,10 @@ PlayableDirector:
   m_ExposedReferences:
     m_References:
     - 2a22d10ab3df2d948a7e25573797c28b: {fileID: 387853660}
-    - da3c29790998c6c4ab95d19ef9038512: {fileID: 810026366}
+    - da3c29790998c6c4ab95d19ef9038512: {fileID: 2026981927}
     - 51e680444a4e2a74a926de9917e445ba: {fileID: 810026366}
     - d0a30e6033492264796342af89a4b4d3: {fileID: 387853660}
-    - 183fef640796e0d4cb762a025525b004: {fileID: 810026366}
+    - 183fef640796e0d4cb762a025525b004: {fileID: 2026981927}
     - 6624369267c58a54391398e876eab340: {fileID: 387853660}
     - 9b368d98970dfe74a9a76e0f09e9fd9d: {fileID: 810026366}
 --- !u!1001 &2102943816
@@ -12031,6 +12197,10 @@ PrefabInstance:
       propertyPath: OnManualExitGame.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 3598438246713378077, guid: a60823007fa896643929acf6391f0fb8, type: 3}
+      propertyPath: m_Lens.OrthographicSize
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 5146389986065270534, guid: a60823007fa896643929acf6391f0fb8, type: 3}
       propertyPath: m_LocalPosition.x
       value: -6.85
@@ -12077,7 +12247,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7208512694599781745, guid: a60823007fa896643929acf6391f0fb8, type: 3}
       propertyPath: OnWinExitGame.m_PersistentCalls.m_Calls.Array.size
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7208512694599781745, guid: a60823007fa896643929acf6391f0fb8, type: 3}
       propertyPath: OnLoseExitGame.m_PersistentCalls.m_Calls.Array.size
@@ -12320,6 +12490,18 @@ MonoBehaviour:
       - m_Target: {fileID: 11400000, guid: 4c552f663c8ac264d9f53fc8accc92d3, type: 2}
         m_TargetAssemblyTypeName: Configs.LockerSettings, Assembly-CSharp
         m_MethodName: UnlockAll
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2097276664}
+        m_TargetAssemblyTypeName: Cutscene.Start, Assembly-CSharp
+        m_MethodName: StartCutscene
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
