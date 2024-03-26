@@ -17,9 +17,6 @@ namespace Minigames.MouseInHay
         private Animator animator;
 
         [SerializeField]
-        private float hideShowAnimationDuration;
-
-        [SerializeField]
         private string isShowedAnimationLabel;
 
         [SerializeField]
@@ -40,7 +37,7 @@ namespace Minigames.MouseInHay
         private IEnumerator ShowRoutine(float time)
         {
             isShowed = true;
-            yield return new WaitForSeconds(time - (hideShowAnimationDuration * 2));
+            yield return new WaitForSeconds(time);
             HideMouse();
         }
 

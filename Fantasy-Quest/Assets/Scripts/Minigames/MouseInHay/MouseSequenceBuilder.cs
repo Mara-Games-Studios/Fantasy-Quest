@@ -84,6 +84,7 @@ namespace Minigames.MouseInHay
             if (toSelect.Count < doubleShowMouseCount)
             {
                 Debug.LogError("Not enough places to set lucky show times");
+                toSelect.ForEach(x => x.ShowTime = luckyMouseShowTime);
                 return sequence;
             }
 

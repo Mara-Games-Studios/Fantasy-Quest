@@ -17,7 +17,8 @@ namespace Minigames.MouseInHay
 
         private void Update()
         {
-            scoreLabel.text = scoreCounter.Score.ToString() + "/" + hay.AllMousesCount;
+            scoreLabel.text =
+                scoreCounter.Score + "/" + scoreCounter.NeededScore + "/" + hay.AllMousesCount;
         }
     }
 }
