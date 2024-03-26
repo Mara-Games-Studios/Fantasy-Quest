@@ -4247,6 +4247,11 @@ MonoBehaviour:
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
+--- !u!4 &754065778 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2517877958783471565, guid: 28d9e3495a29edc46b1365288dc22921, type: 3}
+  m_PrefabInstance: {fileID: 947763738562461670}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &767340231
 GameObject:
   m_ObjectHideFlags: 0
@@ -6262,7 +6267,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3656412982187214541, guid: b8700a04bf6028f4aa8f48df4a163ec1, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5303726201522281219, guid: b8700a04bf6028f4aa8f48df4a163ec1, type: 3}
       propertyPath: m_Name
@@ -6270,15 +6275,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5303726201522281219, guid: b8700a04bf6028f4aa8f48df4a163ec1, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5817360373321789215, guid: b8700a04bf6028f4aa8f48df4a163ec1, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7165115526933870883, guid: b8700a04bf6028f4aa8f48df4a163ec1, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7170914658237516115, guid: b8700a04bf6028f4aa8f48df4a163ec1, type: 3}
       propertyPath: OnSettingsClosed.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -6290,7 +6295,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7733347201650621685, guid: b8700a04bf6028f4aa8f48df4a163ec1, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7905178670253527130, guid: b8700a04bf6028f4aa8f48df4a163ec1, type: 3}
       propertyPath: m_Pivot.x
@@ -8264,10 +8269,10 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 241206110}
   - {fileID: 1772464815}
   - {fileID: 521443081}
   - {fileID: 928711136}
+  - {fileID: 241206110}
   - {fileID: 93917073}
   - {fileID: 1579123526}
   - {fileID: 1834771760}
@@ -11185,15 +11190,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1947430392642056277, guid: 28d9e3495a29edc46b1365288dc22921, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -27.024292
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1947430392642056277, guid: 28d9e3495a29edc46b1365288dc22921, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.12507993
+      value: 2.7000003
       objectReference: {fileID: 0}
     - target: {fileID: 1947430392642056277, guid: 28d9e3495a29edc46b1365288dc22921, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.34778976
+      value: -10
       objectReference: {fileID: 0}
     - target: {fileID: 2271018122913253879, guid: 28d9e3495a29edc46b1365288dc22921, type: 3}
       propertyPath: m_Name
@@ -11201,11 +11206,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2797802224516571385, guid: 28d9e3495a29edc46b1365288dc22921, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -27.02
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2797802224516571385, guid: 28d9e3495a29edc46b1365288dc22921, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.57999986
+      value: 2.7000003
+      objectReference: {fileID: 0}
+    - target: {fileID: 2797802224516571385, guid: 28d9e3495a29edc46b1365288dc22921, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -10
       objectReference: {fileID: 0}
     - target: {fileID: 3611691449410215130, guid: 28d9e3495a29edc46b1365288dc22921, type: 3}
       propertyPath: m_LocalPosition.x
@@ -12895,6 +12904,10 @@ PrefabInstance:
       propertyPath: m_Lens.OrthographicSize
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 4806746512580213808, guid: a60823007fa896643929acf6391f0fb8, type: 3}
+      propertyPath: cameraTransform
+      value: 
+      objectReference: {fileID: 754065778}
     - target: {fileID: 5146389986065270534, guid: a60823007fa896643929acf6391f0fb8, type: 3}
       propertyPath: m_LocalPosition.x
       value: -6.85
@@ -13142,6 +13155,18 @@ MonoBehaviour:
       - m_Target: {fileID: 6943755223806689838}
         m_TargetAssemblyTypeName: Minigames.MouseInHay.Manager, Assembly-CSharp
         m_MethodName: DisableAllMinigameInput
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 6943755223806689838}
+        m_TargetAssemblyTypeName: Minigames.MouseInHay.Manager, Assembly-CSharp
+        m_MethodName: StopGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
