@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Common;
 using DG.Tweening;
 using Dialogue;
 using Sirenix.OdinInspector;
@@ -13,7 +14,7 @@ namespace Minigames.AltarGame.Hand
     internal class HandImpl : MonoBehaviour
     {
         [Serializable]
-        private struct PointToMove
+        public class PointToMove
         {
             public Transform Point;
             public float Duration;
@@ -88,8 +89,30 @@ namespace Minigames.AltarGame.Hand
         private bool isFirstMove = true;
         private Coroutine waitingForDecide;
 
+        public PointToMove TakeItemPoint
+        {
+            get => takeItemPoint;
+            set => takeItemPoint = value;
+        }
+        public float MoveToSlotDuration
+        {
+            get => moveToSlotDuration;
+            set => moveToSlotDuration = value;
+        }
+        public float DecideWaitingTime
+        {
+            get => decideWaitingTime;
+            set => decideWaitingTime = value;
+        }
+        public PointToMove EndGamePoint
+        {
+            get => endGamePoint;
+            set => endGamePoint = value;
+        }
+
         public void ResetHand()
         {
+            isFirstMove = true;
             transform.position = startPosition.position;
             temporaryItemsToCreate.Clear();
             temporaryItemsToCreate.AddRange(itemsToCreate);
@@ -97,7 +120,7 @@ namespace Minigames.AltarGame.Hand
 
         public void TakeItem()
         {
-            Tween moveTween = transform.DOMove(takeItemPoint.Position, takeItemPoint.Duration);
+            Tween moveTween = transform.DOMove(TakeItemPoint.Position, TakeItemPoint.Duration);
             moveTween.onComplete += CreateItem;
         }
 
@@ -110,10 +133,10 @@ namespace Minigames.AltarGame.Hand
             Item created = Instantiate(item, transform);
             created.transform.position += Vector3.back;
             holdingItem = created;
-            StartPlaceItem();
+            StartChoosePlaceItems();
         }
 
-        private void StartPlaceItem()
+        private void StartChoosePlaceItems()
         {
             query = new Queue<Slot>(altar.GetFreeSlots());
             if (query.Count == 0)
@@ -131,7 +154,7 @@ namespace Minigames.AltarGame.Hand
                 chosenSlot = query.Dequeue();
                 Tween moveTween = transform.DOMove(
                     chosenSlot.transform.position,
-                    moveToSlotDuration
+                    MoveToSlotDuration
                 );
                 if (isFirstMove)
                 {
@@ -143,16 +166,21 @@ namespace Minigames.AltarGame.Hand
                     moveTween.onComplete += StartWaitForDecide;
                 }
             }
+            else if (altar.GetFreeSlots().Count() != 1)
+            {
+                StartChoosePlaceItems();
+            }
             else
             {
-                StartPlaceItem();
+                StartWaitForDecide();
             }
         }
 
         private void StartWaitForDecide()
         {
             isChoosing = true;
-            waitingForDecide = StartCoroutine(WaitForDecide(decideWaitingTime));
+            _ = this.KillCoroutine(waitingForDecide);
+            waitingForDecide = StartCoroutine(WaitForDecide(DecideWaitingTime));
         }
 
         private IEnumerator WaitForDecide(float waitTime)
@@ -177,7 +205,7 @@ namespace Minigames.AltarGame.Hand
             }
             else
             {
-                Tween moveTween = transform.DOMove(endGamePoint.Position, endGamePoint.Duration);
+                Tween moveTween = transform.DOMove(EndGamePoint.Position, EndGamePoint.Duration);
                 moveTween.onComplete += EndPointReached;
             }
         }

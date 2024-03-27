@@ -21,9 +21,28 @@ namespace Minigames.SquirrelGame
         [SerializeField]
         private ContactFilter2D contactFilter;
 
+        [ReadOnly]
+        [SerializeField]
+        private bool inputEnabled = false;
+
         [SerializeField]
         private InputAction moveAction;
-        public InputAction Input => moveAction;
+        public bool InputEnabled
+        {
+            set
+            {
+                inputEnabled = value;
+                if (inputEnabled)
+                {
+                    moveAction.Enable();
+                }
+                else
+                {
+                    moveAction.Disable();
+                }
+            }
+            get => inputEnabled;
+        }
 
         [Required]
         [SerializeField]
@@ -37,6 +56,11 @@ namespace Minigames.SquirrelGame
             get => isPrizeGrabbed;
             set => isPrizeGrabbed = value;
         }
+        public float Speed
+        {
+            get => speed;
+            set => speed = value;
+        }
 
         [ReadOnly]
         [SerializeField]
@@ -47,9 +71,10 @@ namespace Minigames.SquirrelGame
             moveAction.Enable();
         }
 
-        public void RestorePosition()
+        public void Refresh()
         {
             transform.position = startPosition.position;
+            IsPrizeGrabbed = false;
         }
 
         private void Update()
@@ -59,17 +84,20 @@ namespace Minigames.SquirrelGame
 
         private void FixedUpdate()
         {
-            rigidBody.velocity = speed * Time.fixedDeltaTime * inputVector.normalized;
+            rigidBody.velocity = Speed * Time.fixedDeltaTime * inputVector.normalized;
         }
 
         public void SquirrelTouch()
         {
-            manager.ExitGame(ExitGameState.Lose);
+            if (InputEnabled)
+            {
+                manager.ExitGame(ExitGameState.Lose);
+            }
         }
 
         public void ExitReached()
         {
-            if (IsPrizeGrabbed)
+            if (IsPrizeGrabbed && InputEnabled)
             {
                 manager.ExitGame(ExitGameState.Win);
             }

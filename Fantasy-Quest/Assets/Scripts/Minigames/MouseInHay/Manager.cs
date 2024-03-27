@@ -44,14 +44,14 @@ namespace Minigames.MouseInHay
         public void StopGame()
         {
             music.Stop();
-            hay.ResetHay();
+            hay.StopShowMouses();
         }
 
         [Button]
         public void StartGame()
         {
             music.Play();
-            hay.StartShowMouse();
+            hay.StartShowMouses();
         }
 
         public void ExitGame(ExitGameState gameState)
