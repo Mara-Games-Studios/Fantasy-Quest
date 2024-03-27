@@ -852,9 +852,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3177646536899294305}
   - component: {fileID: 4720551004917506865}
-  - component: {fileID: 8126054145586142000}
-  - component: {fileID: 4806746512580213808}
   - component: {fileID: 5886007649299545582}
+  - component: {fileID: 6430300113897460149}
   m_Layer: 0
   m_Name: Paw
   m_TagString: Untagged
@@ -954,9 +953,9 @@ MonoBehaviour:
   SuccessMouseHit:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8126054145586142000}
-        m_TargetAssemblyTypeName: Minigames.MouseInHay.CameraShake, Assembly-CSharp
-        m_MethodName: Invoke
+      - m_Target: {fileID: 6430300113897460149}
+        m_TargetAssemblyTypeName: Minigames.MouseInHay.CinemachineShake, Assembly-CSharp
+        m_MethodName: ShakeCamera
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -981,9 +980,9 @@ MonoBehaviour:
   FailMouseHit:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8126054145586142000}
-        m_TargetAssemblyTypeName: Minigames.MouseInHay.CameraShake, Assembly-CSharp
-        m_MethodName: Invoke
+      - m_Target: {fileID: 6430300113897460149}
+        m_TargetAssemblyTypeName: Minigames.MouseInHay.CinemachineShake, Assembly-CSharp
+        m_MethodName: ShakeCamera
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -993,33 +992,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &8126054145586142000
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7155428062457224441}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 20066d261170f07438e72e1d62f3a97e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cameraShaker: {fileID: 4806746512580213808}
---- !u!114 &4806746512580213808
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7155428062457224441}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8e204c71c8d43f438f80936b412c483, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cameraTransform: {fileID: 0}
-  StrengthMultiplier: 1
 --- !u!82 &5886007649299545582
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1116,6 +1088,23 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &6430300113897460149
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7155428062457224441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b77c69186e31f945a607566317ad9ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  camera: {fileID: 3598438246713378077}
+  slowDrop: 0
+  amplitude: 1
+  frequency: 1
+  shakeDuration: 1
 --- !u!1 &7935883254610414650
 GameObject:
   m_ObjectHideFlags: 0
