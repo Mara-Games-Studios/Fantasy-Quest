@@ -1,48 +1,64 @@
 ﻿using System.Collections.Generic;
+using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace UI.Pages
 {
     [AddComponentMenu("Scripts/UI/Pages/Pages.View")]
+    [RequireComponent(typeof(EffectsShower))]
     public class View : MonoBehaviour
     {
+        [Required]
         [SerializeField] 
-        private EffectsShower effectShower;
+        private EffectsShower pageEffectShower;
 
         private int effectsShowedAmount;
 
         public View LastPage;
         public List<Image> ImageButtons = new();
+        
         public static event System.Action<View> OnPageShowing;
         public static event System.Action<View> OnPageShowed;
         public static event System.Action OnPageHiding;
 
         private void Awake()
         {
-            effectShower.Initialize();
+            pageEffectShower.Initialize();
         }
 
         private void OnEnable()
         {
-            effectShower.OnEffectShowed += () => OnPageShowed?.Invoke(this);
+            pageEffectShower.OnEffectShowed += () => OnPageShowed?.Invoke(this);
         }
         
         private void OnDisable()
         {
-            effectShower.OnEffectShowed -= () => OnPageShowed.Invoke(this);
+            pageEffectShower.OnEffectShowed -= () => OnPageShowed.Invoke(this);
         }
 
-        public void Show()
+        public void ShowFromStart()
         {
-            effectShower.Show();
+            pageEffectShower.ShowFromStart();
+            OnPageShowing?.Invoke(this);
+        }
+
+        public void ShowFromEnd()
+        {
+            pageEffectShower.ShowFromEnd();
             OnPageShowing?.Invoke(this);
         }
         
-        public void Hide()
+        public void HideToStart()
         {
             OnPageHiding?.Invoke();
-            effectShower.Hide();
+            pageEffectShower.HideToStart();
+        }
+        
+        public void HideToEnd()
+        {
+            OnPageHiding?.Invoke();
+            pageEffectShower.HideToEnd();
         }
     }
 }

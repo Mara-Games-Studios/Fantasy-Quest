@@ -1,5 +1,4 @@
-﻿using Sirenix.Utilities.Editor;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace UI
 {
@@ -36,8 +35,8 @@ namespace UI
                 return;
             lastPage = currentPage.LastPage;
             
-            currentPage.Hide();
-            lastPage.Show();    
+            currentPage.HideToStart();
+            lastPage.ShowFromStart();    
         }
         
         private void SetPage(Pages.View page)

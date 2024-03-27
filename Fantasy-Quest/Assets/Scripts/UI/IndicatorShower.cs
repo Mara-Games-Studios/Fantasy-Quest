@@ -99,11 +99,8 @@ public class IndicatorShower : MonoBehaviour
     {
         if (images == null || images.Count == 0)
         {
-            // indicates.gameObject.SetActive(false);
             return;
         }
-        // indicates.gameObject.SetActive(true);
-
         currentImageIndex--;
         if (currentImageIndex < 0)
         {
@@ -117,11 +114,8 @@ public class IndicatorShower : MonoBehaviour
     {
         if (images == null || images.Count == 0)
         {
-            // indicates.gameObject.SetActive(false);
             return;
         }
-        // indicates.gameObject.SetActive(true);
-
         currentImageIndex++;
         if (currentImageIndex >= images.Count)
         {

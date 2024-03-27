@@ -5,8 +5,7 @@ using UnityEngine;
 
 namespace UI.Pages
 {
-    [Serializable]
-    public class EffectsShower
+    public class EffectsShower: MonoBehaviour
     {
         [SerializeField]
         private PageInfo pageInfo;
@@ -27,10 +26,10 @@ namespace UI.Pages
         private float maxAlpha = 1f;
 
         [SerializeField]
-        private float moveDuration = 1f;
+        private float moveDuration = 1.5f;
         
         [SerializeField]
-        private float fadeDuration = 1f;
+        private float fadeDuration = 1.5f;
 
         private Tween moveTween;
         private Tween fadeTween;
@@ -45,9 +44,21 @@ namespace UI.Pages
         }
 
         [Button]
-        public void Show()
+        public void ShowFromStart()
         {
-            MoveToStartPosition();
+            MoveToPoint(startPoint);
+            Show();
+        }
+        
+        [Button]
+        public void ShowFromEnd()
+        {
+            MoveToPoint(endPoint);
+            Show();
+        }
+
+        private void Show()
+        {
             pageInfo.CanvasGroup.gameObject.SetActive(true);
             StopTweens();
             
@@ -61,7 +72,7 @@ namespace UI.Pages
         }
 
         [Button]
-        public void Hide()
+        public void HideToEnd()
         {
             StopTweens();
             fadeTween = pageInfo.CanvasGroup.DOFade(minAlpha, fadeDuration);
@@ -71,12 +82,25 @@ namespace UI.Pages
                 moveDuration
             );
 
-            moveTween.onComplete += MoveToStartPosition;
+            moveTween.onComplete += () => MoveToPoint(startPoint);
         }
 
-        private void MoveToStartPosition()
+        [Button]
+        public void HideToStart()
         {
-            pageInfo.RectTransform.DOMove(startPoint.position, 0);
+            StopTweens();
+            fadeTween = pageInfo.CanvasGroup.DOFade(minAlpha, fadeDuration);
+            
+            moveTween = pageInfo.RectTransform.DOMove(
+                startPoint.position,
+                moveDuration
+            );
+
+            moveTween.onComplete += () => MoveToPoint(startPoint);
+        }
+        private void MoveToPoint(RectTransform point)
+        {
+            pageInfo.RectTransform.DOMove(point.position, 0);
             pageInfo.CanvasGroup.DOFade(minAlpha, 0);
             pageInfo.CanvasGroup.gameObject.SetActive(false);
         }
