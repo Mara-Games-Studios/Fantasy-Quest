@@ -74,6 +74,7 @@ namespace Effects
             anim.SetTrigger(OPEN_ANIM);
             yield return new WaitForSeconds(duration);
             OnEffectEnded?.Invoke();
+            anim.SetTrigger(DEFAULT_ANIM);
         }
 
         private IEnumerator FullBlinkCoroutine()
@@ -83,6 +84,7 @@ namespace Effects
             anim.SetTrigger(OPEN_ANIM);
             yield return new WaitForSeconds(duration);
             OnEffectEnded?.Invoke();
+            anim.SetTrigger(DEFAULT_ANIM);
         }
     }
 }

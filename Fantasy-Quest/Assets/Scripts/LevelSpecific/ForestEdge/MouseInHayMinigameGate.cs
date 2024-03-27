@@ -23,6 +23,12 @@ namespace LevelSpecific.ForestEdge
             {
                 miniGameManager.EnableAllMinigameInput();
                 miniGameManager.RefreshGame();
+                miniGameManager.StartGame();
+            }
+            else
+            {
+                miniGameManager.RefreshGame();
+                miniGameManager.StopGame();
             }
         }
     }

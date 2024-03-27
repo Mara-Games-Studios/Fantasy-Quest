@@ -31,16 +31,16 @@ namespace Utils
             FlipFinished?.Invoke();
         }
 
+        public void ChangeWatchDirection(Vector newWatchDirection)
+        {
+            catMovement.ChangeVector(newWatchDirection);
+            _ = StartCoroutine(WaitForFlip());
+            FlipFinished?.Invoke();
+        }
+
         private IEnumerator WaitForFlip()
         {
-            if (flipTime != null)
-            {
-                yield return new WaitForSeconds(flipTime);
-            }
-            else
-            {
-                yield return new WaitForSeconds(0);
-            }
+            yield return new WaitForSeconds(flipTime);
         }
 
         public float GetDuration()
