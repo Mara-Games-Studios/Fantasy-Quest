@@ -27,6 +27,7 @@ namespace Minigames.AltarGame
 
         public UnityEvent OnGameFinishedWin;
         public UnityEvent OnGameFinishedLose;
+        public UnityEvent OnGameFinishedManual;
 
         [Button]
         public void StartMiniGame()
@@ -56,6 +57,11 @@ namespace Minigames.AltarGame
         public void QuitMiniGame()
         {
             OnGameFinishedLose?.Invoke();
+        }
+
+        public void QuitMiniGameManual()
+        {
+            OnGameFinishedManual?.Invoke();
         }
 
         public void TellWinAndQuit()

@@ -112,6 +112,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5675406901695435242}
+  - {fileID: 4091878841442099491}
   m_Father: {fileID: 2391293915093059660}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &928569164113983974
@@ -327,11 +328,11 @@ Transform:
   m_GameObject: {fileID: 2716715776347351272}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 0.93, y: 0.93, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 4774495542323799157}
+  m_Father: {fileID: 6003560647891482231}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &5776022504934492760
 SpriteRenderer:
@@ -671,6 +672,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2391293915093059660}
+  - component: {fileID: 1277694714172413174}
   - component: {fileID: 6396290319722952414}
   - component: {fileID: 4684907441168984683}
   m_Layer: 0
@@ -703,6 +705,36 @@ Transform:
   - {fileID: 7445346199961568579}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1277694714172413174
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4912804306984447520}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32a5821908367704caf7675a67e0aad8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  manager: {fileID: 6396290319722952414}
+  quitGameInputAction:
+    m_Name: Quit Game Input
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 26a964a9-eeff-4f7c-9806-fc62336b114e
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 2cea27e9-30f1-4ea1-9b85-7106cbb8ddb1
+      m_Path: <Keyboard>/q
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Quit Game Input
+      m_Flags: 0
+    m_Flags: 0
 --- !u!114 &6396290319722952414
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -723,6 +755,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   OnGameFinishedLose:
+    m_PersistentCalls:
+      m_Calls: []
+  OnGameFinishedManual:
     m_PersistentCalls:
       m_Calls: []
 --- !u!114 &4684907441168984683
@@ -1431,7 +1466,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 4091878841442099491}
   - {fileID: 588886992838139641}
   - {fileID: 7332876342668989717}
   - {fileID: 5297984543250412634}

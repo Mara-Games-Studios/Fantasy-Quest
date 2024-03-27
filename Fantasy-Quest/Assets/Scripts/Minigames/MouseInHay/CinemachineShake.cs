@@ -8,11 +8,10 @@ namespace Minigames.MouseInHay
     [AddComponentMenu("Scripts/Minigames/MouseInHay/Minigames.MouseInHay.CinemachineShake")]
     internal class CinemachineShake : MonoBehaviour
     {
+        [RequiredIn(PrefabKind.PrefabInstanceAndNonPrefabInstance)]
         [SerializeField]
-        private CinemachineVirtualCamera cam;
+        private new CinemachineVirtualCamera camera;
 
-        //When false - shakes for a period of time then instantly stops
-        //When true - shake become less effective during time 'till stops
         [SerializeField]
         private bool slowDrop = false;
 
@@ -29,7 +28,7 @@ namespace Minigames.MouseInHay
 
         private void Awake()
         {
-            shakeComponent = cam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+            shakeComponent = camera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
         }
 
         [Button]
@@ -49,17 +48,17 @@ namespace Minigames.MouseInHay
         private IEnumerator TimerShake(float time)
         {
             shakeComponent.m_AmplitudeGain = amplitude;
-            yield return new WaitForSeconds(shakeDuration);
+            yield return new WaitForSeconds(time);
             shakeComponent.m_AmplitudeGain = 0;
         }
 
         private IEnumerator SlowDropShake(float time)
         {
             float timer = 0;
-            while (timer < shakeDuration)
+            while (timer < time)
             {
                 timer += Time.deltaTime;
-                shakeComponent.m_AmplitudeGain = Mathf.Lerp(amplitude, 0f, timer / shakeDuration);
+                shakeComponent.m_AmplitudeGain = Mathf.Lerp(amplitude, 0f, timer / time);
                 yield return null;
             }
         }

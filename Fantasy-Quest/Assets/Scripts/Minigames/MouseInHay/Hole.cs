@@ -22,12 +22,19 @@ namespace Minigames.MouseInHay
         [SerializeField]
         private string hiddenAnimationStateLabel;
 
+        private Coroutine showCoroutine;
+
         private void Update()
         {
             animator.SetBool(isShowedAnimationLabel, isShowed);
         }
 
-        public IEnumerator ShowMouse(float time)
+        public void ShowMouse(float time)
+        {
+            showCoroutine = StartCoroutine(ShowRoutine(time));
+        }
+
+        private IEnumerator ShowRoutine(float time)
         {
             isShowed = true;
             yield return new WaitForSeconds(time);
@@ -38,6 +45,7 @@ namespace Minigames.MouseInHay
         {
             if (isShowed)
             {
+                _ = this.KillCoroutine(showCoroutine);
                 HideMouse();
                 return new SuccessResult();
             }
