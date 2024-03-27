@@ -13,7 +13,10 @@ namespace DialogueBubble
 
         //Script can be changed for different situation, so different icons cab be used from one trigger
         [SerializeField]
-        private List<Sprite> icons = new();
+        private List<Sprite> kbIcons = new();
+
+        [SerializeField]
+        private List<Sprite> emoteIcons = new();
 
         private void OnTriggerEnter2D(Collider2D other)
         {
@@ -26,7 +29,8 @@ namespace DialogueBubble
                         {
                             CanShow = true,
                             BubbleType = isEmote,
-                            Icons = icons
+                            KBicons = kbIcons,
+                            EmoteIcons = emoteIcons
                         }
                     );
                 }
@@ -44,7 +48,8 @@ namespace DialogueBubble
                         {
                             CanShow = false,
                             BubbleType = isEmote,
-                            Icons = icons
+                            KBicons = kbIcons,
+                            EmoteIcons = emoteIcons
                         }
                     );
                 }
@@ -53,8 +58,8 @@ namespace DialogueBubble
 
         public void SetNewIcon(Sprite newIcon)
         {
-            icons.Clear();
-            icons.Add(newIcon);
+            kbIcons.Clear();
+            kbIcons.Add(newIcon);
         }
     }
 }

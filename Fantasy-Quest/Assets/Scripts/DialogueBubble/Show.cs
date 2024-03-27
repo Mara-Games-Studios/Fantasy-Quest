@@ -39,11 +39,6 @@ namespace DialogueBubble
             iconSpriteRenderer.color = iconColor;
         }
 
-        private void OnEnable()
-        {
-            EventSystem.OnTriggerBubble += SwitchShow;
-        }
-
         public void SwitchShow(BubbleSettings settings)
         {
             if (settings.CanShow)
@@ -57,7 +52,7 @@ namespace DialogueBubble
                         bubbleSpriteRenderer.sprite = bubbleSprites[1];
                         break;
                 }
-                iconSpriteRenderer.sprite = settings.Icons[0];
+                iconSpriteRenderer.sprite = settings.EmoteIcons[0];
                 gameObject.SetActive(true);
                 FadeIn(fadeInDuration);
             }
@@ -79,16 +74,11 @@ namespace DialogueBubble
 
         private void Fade(float endValue, float duration, TweenCallback onEnd)
         {
-            fadeTween?.Kill(false);
+            fadeTween.Kill(false);
 
             fadeTween = bubbleSpriteRenderer.DOFade(endValue, duration);
             fadeTween = iconSpriteRenderer.DOFade(endValue, duration);
             fadeTween.onComplete += onEnd;
-        }
-
-        private void OnDisable()
-        {
-            EventSystem.OnTriggerBubble -= SwitchShow;
         }
     }
 }

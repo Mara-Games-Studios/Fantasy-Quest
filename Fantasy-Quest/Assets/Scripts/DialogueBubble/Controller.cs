@@ -34,10 +34,8 @@ namespace DialogueBubble
                     keyboardHints[0].GetComponent<IShowBubble>().SwitchShow(settings);
                     break;
                 case Type.TwoButtons:
-                    for (int i = 1; i < keyboardHints.Count; i++)
-                    {
-                        keyboardHints[i].GetComponent<IShowBubble>().SwitchShow(settings);
-                    }
+                    keyboardHints[1].GetComponent<IShowBubble>().SwitchShow(settings);
+                    keyboardHints[2].GetComponent<IShowBubble>().SwitchShow(settings);
                     break;
             }
         }
