@@ -24,6 +24,16 @@ namespace Symon
             rails.BindBody(transform, startPoint);
         }
 
+        public void BindOnRails()
+        {
+            rails.BindBody(transform, startPoint);
+        }
+
+        public void UnbindFromRails()
+        {
+            rails.UnBindBody();
+        }
+
         public Coroutine MoveToStartPoint()
         {
             return MoveFromToPoints(rails.CurrentPosition, startPoint.Value);
