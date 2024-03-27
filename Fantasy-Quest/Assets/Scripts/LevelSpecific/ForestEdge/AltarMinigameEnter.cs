@@ -14,6 +14,10 @@ namespace LevelSpecific.ForestEdge
         [SerializeField]
         private Manager miniGameManager;
 
+        [Required]
+        [SerializeField]
+        private QuitInput quitInput;
+
         public void StartMiniGame()
         {
             if (
@@ -24,6 +28,10 @@ namespace LevelSpecific.ForestEdge
             {
                 miniGameManager.EnableAllMinigameInput();
                 miniGameManager.RefreshMiniGame();
+            }
+            else
+            {
+                quitInput.enabled = true;
             }
         }
     }
