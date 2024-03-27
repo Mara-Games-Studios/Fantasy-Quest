@@ -40,14 +40,7 @@ namespace Utils
 
         private IEnumerator WaitForFlip()
         {
-            if (flipTime != null)
-            {
-                yield return new WaitForSeconds(flipTime);
-            }
-            else
-            {
-                yield return new WaitForSeconds(0);
-            }
+            yield return new WaitForSeconds(flipTime);
         }
 
         public float GetDuration()
