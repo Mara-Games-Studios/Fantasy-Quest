@@ -16,7 +16,7 @@ namespace UI.Pages
         private int effectsShowedAmount;
 
         public View LastPage;
-        public List<Image> ImageButtons = new();
+        public List<Button> Buttons = new();
         
         public static event System.Action<View> OnPageShowing;
         public static event System.Action<View> OnPageShowed;

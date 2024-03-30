@@ -38,7 +38,7 @@ public class IndicatorShower : MonoBehaviour
 
     private int currentImageIndex;
     private Tween vanishingTween;
-    private List<Image> images = new();
+    private List<Button> buttons = new();
     private MainMenuInput mainMenuInput;
 
     private void Awake()
@@ -68,14 +68,14 @@ public class IndicatorShower : MonoBehaviour
 
     private void ShowIndicates(View view)
     {
-        images = view.ImageButtons;
-        if (images == null || images.Count == 0)
+        buttons = view.Buttons;
+        if (buttons == null || buttons.Count == 0)
         {
             return;
         }
         indicates.gameObject.SetActive(true);
-        currentImageIndex = images.Count - 1;
-        ShowOn(images[^1]);
+        currentImageIndex = buttons.Count - 1;
+        ShowOn(buttons[^1]);
         vanishingTween?.Kill();
         _ = indicatesAlpha.DOFade(maxAlpha, fadeDuration);
     }
@@ -89,48 +89,49 @@ public class IndicatorShower : MonoBehaviour
 
     private void Click()
     {
-        if(images == null)
+        if(buttons == null)
             return;
-        if (images[currentImageIndex].TryGetComponent(out Button button))
+        if (buttons[currentImageIndex].TryGetComponent(out Button button))
             button.onClick.Invoke();
     }
 
     private void GoDown()
     {
-        if (images == null || images.Count == 0)
+        if (buttons == null || buttons.Count == 0)
         {
             return;
         }
         currentImageIndex--;
         if (currentImageIndex < 0)
         {
-            currentImageIndex = images.Count - 1;
+            currentImageIndex = buttons.Count - 1;
         }
 
-        ShowOn(images[currentImageIndex]);
+        ShowOn(buttons[currentImageIndex]);
     }
 
     private void GoUp()
     {
-        if (images == null || images.Count == 0)
+        if (buttons == null || buttons.Count == 0)
         {
             return;
         }
         currentImageIndex++;
-        if (currentImageIndex >= images.Count)
+        if (currentImageIndex >= buttons.Count)
         {
             currentImageIndex = 0;
         }
 
-        ShowOn(images[currentImageIndex]);
+        ShowOn(buttons[currentImageIndex]);
     }
 
     [Button]
-    public void ShowOn(Image image)
+    public void ShowOn(Button button)
     {
-        int spacing = Convert.ToInt32(Mathf.Round(image.sprite.rect.width)) + additiveSpacing;
+        var rectTransform = button.GetComponent<RectTransform>();
+        int spacing = Convert.ToInt32(Mathf.Round(rectTransform.rect.width)) + additiveSpacing;
         indicates.spacing = spacing;
         indicates.padding.left = (-spacing / 2) - defaultLeftOffset;
-        rectTransform.position = image.rectTransform.position;
+        this.rectTransform.position = rectTransform.position;
     }
 }
