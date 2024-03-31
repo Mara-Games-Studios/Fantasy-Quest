@@ -10,6 +10,9 @@ namespace Minigames.AltarGame
         [SerializeField]
         private Item neededItem;
 
+        [SerializeField]
+        private int newLayerOrder = 0;
+
         [ReadOnly]
         [SerializeField]
         private Item placedItem;
