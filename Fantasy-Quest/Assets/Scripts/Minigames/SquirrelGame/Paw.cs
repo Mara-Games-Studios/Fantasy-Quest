@@ -25,6 +25,11 @@ namespace Minigames.SquirrelGame
         [SerializeField]
         private bool inputEnabled = false;
 
+        [Required]
+        [SerializeField]
+        private Transform bindPrizeTransform;
+        public Transform BindPrizeTransform => bindPrizeTransform;
+
         [SerializeField]
         private InputAction moveAction;
         public bool InputEnabled
