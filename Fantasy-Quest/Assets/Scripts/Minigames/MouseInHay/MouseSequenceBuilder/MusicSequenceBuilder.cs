@@ -3,18 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace Minigames.MouseInHay
+namespace Minigames.MouseInHay.MouseSequenceBuilder
 {
     [Serializable]
-    public class ShowMouseConfig
-    {
-        public int ShowTime;
-        public int Delay;
-        public int HolesCount;
-    }
-
-    [Serializable]
-    internal class MouseSequenceBuilder
+    internal class MusicSequenceBuilder : ISequenceBuilder
     {
         [Serializable]
         private class MouseDhowDelayByChance
@@ -45,6 +37,9 @@ namespace Minigames.MouseInHay
         [SerializeField]
         private int luckyMouseShowTime;
 
+        [SerializeField]
+        private float secondsPerBit;
+
         private int GetRandomDelay()
         {
             float sumChance = 0;
@@ -60,7 +55,7 @@ namespace Minigames.MouseInHay
             throw new Exception();
         }
 
-        public List<ShowMouseConfig> BuildSequence()
+        public IEnumerable<ShowMouseConfig> BuildSequence()
         {
             List<ShowMouseConfig> sequence = new();
 
@@ -69,8 +64,8 @@ namespace Minigames.MouseInHay
                 ShowMouseConfig config =
                     new()
                     {
-                        ShowTime = defaultMouseShowTime,
-                        Delay = GetRandomDelay(),
+                        ShowTime = defaultMouseShowTime * secondsPerBit,
+                        Delay = GetRandomDelay() * secondsPerBit,
                         HolesCount = UnityEngine.Random.value <= mousesInTwoHolesChance ? 2 : 1,
                     };
                 sequence.Add(config);

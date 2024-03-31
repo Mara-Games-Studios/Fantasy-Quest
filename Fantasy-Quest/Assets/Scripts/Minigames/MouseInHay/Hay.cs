@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Common;
+using Minigames.MouseInHay.MouseSequenceBuilder;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -14,12 +15,9 @@ namespace Minigames.MouseInHay
         private Manager manager;
 
         [HideLabel]
-        [SerializeField]
+        [SerializeReference]
         [FoldoutGroup("Mouse sequence parameters")]
-        private MouseSequenceBuilder mouseSequenceBuilder;
-
-        [SerializeField]
-        private float secondsPerBit;
+        private ISequenceBuilder mouseSequenceBuilder;
 
         [SerializeField]
         private int maxMousesInRow;
@@ -52,7 +50,7 @@ namespace Minigames.MouseInHay
 
         public void StartShowMouses()
         {
-            showMouseConfigs = mouseSequenceBuilder.BuildSequence();
+            showMouseConfigs = mouseSequenceBuilder.BuildSequence().ToList();
             _ = this.KillCoroutine(launchCoroutine);
             launchCoroutine = StartCoroutine(ShowMouseRoutine());
         }
@@ -61,9 +59,9 @@ namespace Minigames.MouseInHay
         {
             foreach (ShowMouseConfig showMouseConfig in showMouseConfigs)
             {
-                float showTime = showMouseConfig.ShowTime * secondsPerBit;
+                float showTime = showMouseConfig.ShowTime;
                 ShowMousesInHoles(showMouseConfig.HolesCount, showTime);
-                yield return new WaitForSeconds(showMouseConfig.Delay * secondsPerBit);
+                yield return new WaitForSeconds(showMouseConfig.Delay);
             }
             manager.ExitGame(ExitGameState.Lose);
         }
