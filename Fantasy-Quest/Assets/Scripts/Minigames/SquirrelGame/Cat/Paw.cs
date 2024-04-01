@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 
 namespace Minigames.SquirrelGame
 {
-    [AddComponentMenu("Scripts/Minigames/SquirrelGame/Minigames.SquirrelGame.Paw")]
+    [AddComponentMenu("Scripts/Minigames/SquirrelGame/Cat/Minigames.SquirrelGame.Cat.Paw")]
     internal class Paw : MonoBehaviour, ISquirrelTouchable
     {
         [Required]

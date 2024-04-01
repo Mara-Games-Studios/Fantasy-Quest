@@ -1,18 +1,22 @@
 ﻿using DG.Tweening;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Minigames.SquirrelGame
 {
     [RequireComponent(typeof(Collider2D))]
-    [AddComponentMenu("Scripts/Minigames/SquirrelGame/Minigames.SquirrelGame.PrearmView")]
+    [AddComponentMenu("Scripts/Minigames/SquirrelGame/Cat/Minigames.SquirrelGame.Cat.PrearmView")]
     public class PrearmView : MonoBehaviour, ISquirrelTouchable
     {
+        [Required]
         [SerializeField] 
         private SpriteRenderer view;
 
+        [Range(0, 1)]
         [SerializeField] 
         private float minFadeValue;
         
+        [Range(0, 1)]
         [SerializeField] 
         private float maxFadeValue;
         
