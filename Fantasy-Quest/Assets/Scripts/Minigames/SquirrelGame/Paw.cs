@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 namespace Minigames.SquirrelGame
 {
     [AddComponentMenu("Scripts/Minigames/SquirrelGame/Minigames.SquirrelGame.Paw")]
-    internal class Paw : MonoBehaviour
+    internal class Paw : MonoBehaviour, ISquirrelTouchable
     {
         [Required]
         [SerializeField]
@@ -78,7 +78,7 @@ namespace Minigames.SquirrelGame
 
         public void Refresh()
         {
-            transform.position = startPosition.position;
+            rigidBody.position = startPosition.position;
             IsPrizeGrabbed = false;
         }
 
@@ -92,13 +92,15 @@ namespace Minigames.SquirrelGame
             rigidBody.velocity = Speed * Time.fixedDeltaTime * inputVector.normalized;
         }
 
-        public void SquirrelTouch()
+        public void Touch()
         {
             if (InputEnabled)
             {
                 manager.ExitGame(ExitGameState.Lose);
             }
         }
+        
+        public void UnTouch(){}
 
         public void ExitReached()
         {
@@ -107,5 +109,11 @@ namespace Minigames.SquirrelGame
                 manager.ExitGame(ExitGameState.Win);
             }
         }
+    }
+
+    public interface ISquirrelTouchable
+    {
+        public void Touch();
+        public void UnTouch();
     }
 }

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Minigames.SquirrelGame
 {
@@ -7,9 +8,17 @@ namespace Minigames.SquirrelGame
     {
         private void OnTriggerEnter2D(Collider2D collider)
         {
-            if (collider.TryGetComponent(out Paw paw))
+            if (collider.TryGetComponent(out ISquirrelTouchable touchable))
             {
-                paw.SquirrelTouch();
+                touchable.Touch();
+            }
+        }
+
+        private void OnTriggerExit2D(Collider2D other)
+        {
+            if (other.TryGetComponent(out ISquirrelTouchable touchable))
+            {
+                touchable.UnTouch();
             }
         }
     }
