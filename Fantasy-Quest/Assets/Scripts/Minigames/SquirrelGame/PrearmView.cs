@@ -20,6 +20,7 @@ namespace Minigames.SquirrelGame
         private float fadeTime;
 
         private Tween fadeTween;
+        private int triggersInteractingAmount;
 
         private void Start()
         {
@@ -28,14 +29,24 @@ namespace Minigames.SquirrelGame
 
         public void Touch()
         {
-            fadeTween?.Kill();
-            fadeTween = view.DOFade(minFadeValue, fadeTime);
+            if (triggersInteractingAmount == 0)
+            {
+                fadeTween?.Kill();
+                fadeTween = view.DOFade(minFadeValue, fadeTime);
+            }
+
+            triggersInteractingAmount++;
         }
 
         public void UnTouch()
         {
-            fadeTween?.Kill();
-            fadeTween = view.DOFade(maxFadeValue, fadeTime);
+            if (triggersInteractingAmount == 1)
+            {
+                fadeTween?.Kill();
+                fadeTween = view.DOFade(maxFadeValue, fadeTime);
+            }
+
+            triggersInteractingAmount--;
         }
     }
 }
