@@ -30,9 +30,20 @@ namespace Minigames.SquirrelGame
         [SerializeField]
         private Prize prize;
 
+        [SerializeField]
+        private bool disableInputOnStart = true;
+
         public UnityEvent OnGameFinishedWin;
         public UnityEvent OnGameFinishedLose;
         public UnityEvent OnGameFinishedManual;
+
+        private void Start()
+        {
+            if (disableInputOnStart)
+            {
+                DisableAllMinigameInput();
+            }
+        }
 
         public void ExitGame(ExitGameState exitState)
         {

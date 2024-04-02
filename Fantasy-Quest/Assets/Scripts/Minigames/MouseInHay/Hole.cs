@@ -2,6 +2,7 @@
 using Common;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Minigames.MouseInHay
 {
@@ -21,6 +22,8 @@ namespace Minigames.MouseInHay
 
         [SerializeField]
         private string hiddenAnimationStateLabel;
+
+        public UnityEvent OnHoleHit;
 
         private Coroutine showCoroutine;
 
@@ -43,6 +46,7 @@ namespace Minigames.MouseInHay
 
         public Result TryGrabMouse()
         {
+            OnHoleHit.Invoke();
             if (isShowed)
             {
                 _ = this.KillCoroutine(showCoroutine);

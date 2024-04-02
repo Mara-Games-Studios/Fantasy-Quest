@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -11,6 +12,17 @@ namespace Minigames.AltarGame
         [SerializeField]
         private string uid;
         public string Uid => uid;
+
+        [SerializeField]
+        private List<SpriteRenderer> spriteRenderers;
+
+        public void SetNewLayerOrder(int order)
+        {
+            foreach (SpriteRenderer renderer in spriteRenderers)
+            {
+                renderer.sortingOrder = order;
+            }
+        }
 
         [Button]
         private void GenerateUid()
