@@ -9,18 +9,18 @@ namespace Minigames.SquirrelGame
     public class PrearmView : MonoBehaviour, ISquirrelTouchable
     {
         [Required]
-        [SerializeField] 
+        [SerializeField]
         private SpriteRenderer view;
 
         [Range(0, 1)]
-        [SerializeField] 
+        [SerializeField]
         private float minFadeValue;
-        
+
         [Range(0, 1)]
-        [SerializeField] 
+        [SerializeField]
         private float maxFadeValue;
-        
-        [SerializeField] 
+
+        [SerializeField]
         private float fadeTime;
 
         private Tween fadeTween;
@@ -28,7 +28,7 @@ namespace Minigames.SquirrelGame
 
         private void Start()
         {
-            view.DOFade(maxFadeValue, 0);
+            _ = view.DOFade(maxFadeValue, 0);
         }
 
         public void Touch()

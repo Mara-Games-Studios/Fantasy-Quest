@@ -1,10 +1,11 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Minigames.SquirrelGame
 {
-    [AddComponentMenu("Scripts/Minigames/SquirrelGame/Squirrel/Minigames.SquirrelGame.Squirrel.SquirrelBody")]
-    internal class SquirrelBody : MonoBehaviour
+    [AddComponentMenu(
+        "Scripts/Minigames/SquirrelGame/Squirrel/Minigames.SquirrelGame.Squirrel.Body"
+    )]
+    internal class Body : MonoBehaviour
     {
         private void OnTriggerEnter2D(Collider2D collider)
         {

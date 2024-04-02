@@ -61,7 +61,7 @@ namespace Minigames.MouseInHay
             {
                 float showTime = showMouseConfig.ShowTime;
                 ShowMousesInHoles(showMouseConfig.HolesCount, showTime);
-                yield return new WaitForSeconds(showMouseConfig.Delay);
+                yield return new WaitForSeconds(showMouseConfig.Delay + showMouseConfig.ShowTime);
             }
             manager.ExitGame(ExitGameState.Lose);
         }

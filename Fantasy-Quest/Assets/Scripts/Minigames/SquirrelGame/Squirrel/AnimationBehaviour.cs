@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections;
-using System.Diagnostics;
 using Sirenix.OdinInspector;
-using Spine;
 using Spine.Unity;
 using UnityEngine;
 using AnimationState = Spine.AnimationState;
@@ -11,8 +9,8 @@ using Random = UnityEngine.Random;
 namespace Minigames.SquirrelGame
 {
     [RequireComponent(typeof(SkeletonAnimation))]
-    [AddComponentMenu("Scripts/Minigames/SquirrelGame/Squirrel/Squirrel.SquirrelAnimationBehaviour")]
-    public class SquirrelAnimationBehaviour : MonoBehaviour
+    [AddComponentMenu("Scripts/Minigames/SquirrelGame/Squirrel/Squirrel.AnimationBehaviour")]
+    public class AnimationBehaviour : MonoBehaviour
     {
         [Serializable]
         private struct RandomizedValue
@@ -20,43 +18,49 @@ namespace Minigames.SquirrelGame
             public float MinInclusive;
             public float MaxExclusive;
         }
-        
+
         [Required]
-        [SerializeField] 
+        [SerializeField]
         private SkeletonAnimation skeletonAnimation;
 
         [Required]
-        [SerializeField] 
+        [SerializeField]
         private AnimationReferenceAsset idle;
-        
+
         [Required]
-        [SerializeField] 
+        [SerializeField]
         private AnimationReferenceAsset tailMove;
 
-        [SerializeField] 
+        [SerializeField]
         private RandomizedValue delayBeforeMakeTailMove;
-        
-        [SerializeField] 
+
+        [SerializeField]
         private RandomizedValue timeBeforeTailMovement;
-        
+
         private AnimationState animationState;
         private const int TRACK_INDEX = 1;
-        
+
         private void Start()
         {
             animationState = skeletonAnimation.AnimationState;
             StartIdle();
-            StartCoroutine(MakeTailMove());
+            _ = StartCoroutine(MakeTailMove());
         }
 
         private IEnumerator MakeTailMove()
         {
-            var time = Random.Range(delayBeforeMakeTailMove.MinInclusive, delayBeforeMakeTailMove.MaxExclusive);
+            float time = Random.Range(
+                delayBeforeMakeTailMove.MinInclusive,
+                delayBeforeMakeTailMove.MaxExclusive
+            );
             yield return new WaitForSeconds(time);
-            
+
             while (true)
             {
-                time = Random.Range(timeBeforeTailMovement.MinInclusive, timeBeforeTailMovement.MaxExclusive);
+                time = Random.Range(
+                    timeBeforeTailMovement.MinInclusive,
+                    timeBeforeTailMovement.MaxExclusive
+                );
                 yield return new WaitForSeconds(time);
                 MoveTail();
             }
@@ -65,14 +69,14 @@ namespace Minigames.SquirrelGame
         [Button]
         private void MoveTail()
         {
-            animationState.AddAnimation(TRACK_INDEX, tailMove, false, 0);
+            _ = animationState.AddAnimation(TRACK_INDEX, tailMove, false, 0);
             StartIdle();
         }
 
         [Button]
         private void StartIdle()
         {
-            animationState.AddAnimation(TRACK_INDEX, idle, true, 0);
+            _ = animationState.AddAnimation(TRACK_INDEX, idle, true, 0);
         }
     }
 }

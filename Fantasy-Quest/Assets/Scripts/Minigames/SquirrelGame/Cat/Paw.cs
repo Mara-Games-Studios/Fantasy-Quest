@@ -99,8 +99,8 @@ namespace Minigames.SquirrelGame
                 manager.ExitGame(ExitGameState.Lose);
             }
         }
-        
-        public void UnTouch(){}
+
+        public void UnTouch() { }
 
         public void ExitReached()
         {
