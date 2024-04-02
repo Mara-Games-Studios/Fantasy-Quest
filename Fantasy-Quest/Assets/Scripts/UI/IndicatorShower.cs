@@ -38,7 +38,7 @@ public class IndicatorShower : MonoBehaviour
 
     private int currentImageIndex;
     private Tween vanishingTween;
-    private List<Button> buttons = new();
+    private List<Button> verticalButtons = new();
     private MainMenuInput mainMenuInput;
 
     private void Awake()
@@ -54,6 +54,8 @@ public class IndicatorShower : MonoBehaviour
         View.OnPageHiding += HideIndicates;
         mainMenuInput.UI.IndicateDown.performed += ctx => GoDown();
         mainMenuInput.UI.IndicateUp.performed += ctx => GoUp();
+        mainMenuInput.UI.IndicateLeft.performed += ctx => GoLeft();
+        mainMenuInput.UI.IndicateRight.performed += ctx => GoRight();
         mainMenuInput.UI.MenuClick.performed += ctx => Click();
     }
 
@@ -63,19 +65,21 @@ public class IndicatorShower : MonoBehaviour
         View.OnPageHiding -= HideIndicates;
         mainMenuInput.UI.IndicateDown.performed -= ctx => GoDown();
         mainMenuInput.UI.IndicateUp.performed -= ctx => GoUp();
+        mainMenuInput.UI.IndicateLeft.performed -= ctx => GoLeft();
+        mainMenuInput.UI.IndicateRight.performed -= ctx => GoRight();
         mainMenuInput.UI.MenuClick.performed -= ctx => Click();
     }
 
     private void ShowIndicates(View view)
     {
-        buttons = view.Buttons;
-        if (buttons == null || buttons.Count == 0)
+        verticalButtons = view.Buttons;
+        if (verticalButtons == null || verticalButtons.Count == 0)
         {
             return;
         }
         indicates.gameObject.SetActive(true);
-        currentImageIndex = buttons.Count - 1;
-        ShowOn(buttons[^1]);
+        currentImageIndex = verticalButtons.Count - 1;
+        ShowOn(verticalButtons[^1]);
         vanishingTween?.Kill();
         _ = indicatesAlpha.DOFade(maxAlpha, fadeDuration);
     }
@@ -89,42 +93,59 @@ public class IndicatorShower : MonoBehaviour
 
     private void Click()
     {
-        if(buttons == null)
-            return;
-        if (buttons[currentImageIndex].TryGetComponent(out Button button))
-            button.onClick.Invoke();
+        verticalButtons?[currentImageIndex].onClick.Invoke();
     }
 
     private void GoDown()
     {
-        if (buttons == null || buttons.Count == 0)
+        if (verticalButtons == null || verticalButtons.Count == 0)
         {
             return;
         }
         currentImageIndex--;
         if (currentImageIndex < 0)
         {
-            currentImageIndex = buttons.Count - 1;
+            currentImageIndex = verticalButtons.Count - 1;
         }
 
-        ShowOn(buttons[currentImageIndex]);
+        ShowOn(verticalButtons[currentImageIndex]);
     }
 
     private void GoUp()
     {
-        if (buttons == null || buttons.Count == 0)
+        if (verticalButtons == null || verticalButtons.Count == 0)
         {
             return;
         }
         currentImageIndex++;
-        if (currentImageIndex >= buttons.Count)
+        if (currentImageIndex >= verticalButtons.Count)
         {
             currentImageIndex = 0;
         }
 
-        ShowOn(buttons[currentImageIndex]);
+        ShowOn(verticalButtons[currentImageIndex]);
     }
 
+    private void GoLeft()
+    {
+        if(verticalButtons == null)
+            return;
+        if (verticalButtons[currentImageIndex].TryGetComponent(out IHorizontalSlider horizontalSlider))
+        {
+            horizontalSlider.MoveLeft();
+        }
+    }
+
+    private void GoRight()
+    {
+        if(verticalButtons == null)
+            return;
+        if (verticalButtons[currentImageIndex].TryGetComponent(out IHorizontalSlider horizontalSlider))
+        {
+            horizontalSlider.MoveRight();
+        }
+    }
+    
     [Button]
     public void ShowOn(Button button)
     {

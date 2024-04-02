@@ -80,6 +80,24 @@ public partial class @MainMenuInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""IndicateLeft"",
+                    ""type"": ""Button"",
+                    ""id"": ""ecb0adfd-bbab-4656-a9ca-1fec687fb0f4"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""IndicateRight"",
+                    ""type"": ""Button"",
+                    ""id"": ""dd79b9ea-b886-456f-a77d-24ef19d0074b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -148,6 +166,28 @@ public partial class @MainMenuInput: IInputActionCollection2, IDisposable
                     ""action"": ""Exit"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d9f99c58-cde2-465e-a936-7c23b1e0c6d7"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""IndicateLeft"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""68256739-f268-4330-a9e1-f1398a0385e0"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""IndicateRight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -162,6 +202,8 @@ public partial class @MainMenuInput: IInputActionCollection2, IDisposable
         m_UI_IndicateDown = m_UI.FindAction("IndicateDown", throwIfNotFound: true);
         m_UI_MenuClick = m_UI.FindAction("MenuClick", throwIfNotFound: true);
         m_UI_Exit = m_UI.FindAction("Exit", throwIfNotFound: true);
+        m_UI_IndicateLeft = m_UI.FindAction("IndicateLeft", throwIfNotFound: true);
+        m_UI_IndicateRight = m_UI.FindAction("IndicateRight", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -229,6 +271,8 @@ public partial class @MainMenuInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_UI_IndicateDown;
     private readonly InputAction m_UI_MenuClick;
     private readonly InputAction m_UI_Exit;
+    private readonly InputAction m_UI_IndicateLeft;
+    private readonly InputAction m_UI_IndicateRight;
     public struct UIActions
     {
         private @MainMenuInput m_Wrapper;
@@ -239,6 +283,8 @@ public partial class @MainMenuInput: IInputActionCollection2, IDisposable
         public InputAction @IndicateDown => m_Wrapper.m_UI_IndicateDown;
         public InputAction @MenuClick => m_Wrapper.m_UI_MenuClick;
         public InputAction @Exit => m_Wrapper.m_UI_Exit;
+        public InputAction @IndicateLeft => m_Wrapper.m_UI_IndicateLeft;
+        public InputAction @IndicateRight => m_Wrapper.m_UI_IndicateRight;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -266,6 +312,12 @@ public partial class @MainMenuInput: IInputActionCollection2, IDisposable
             @Exit.started += instance.OnExit;
             @Exit.performed += instance.OnExit;
             @Exit.canceled += instance.OnExit;
+            @IndicateLeft.started += instance.OnIndicateLeft;
+            @IndicateLeft.performed += instance.OnIndicateLeft;
+            @IndicateLeft.canceled += instance.OnIndicateLeft;
+            @IndicateRight.started += instance.OnIndicateRight;
+            @IndicateRight.performed += instance.OnIndicateRight;
+            @IndicateRight.canceled += instance.OnIndicateRight;
         }
 
         private void UnregisterCallbacks(IUIActions instance)
@@ -288,6 +340,12 @@ public partial class @MainMenuInput: IInputActionCollection2, IDisposable
             @Exit.started -= instance.OnExit;
             @Exit.performed -= instance.OnExit;
             @Exit.canceled -= instance.OnExit;
+            @IndicateLeft.started -= instance.OnIndicateLeft;
+            @IndicateLeft.performed -= instance.OnIndicateLeft;
+            @IndicateLeft.canceled -= instance.OnIndicateLeft;
+            @IndicateRight.started -= instance.OnIndicateRight;
+            @IndicateRight.performed -= instance.OnIndicateRight;
+            @IndicateRight.canceled -= instance.OnIndicateRight;
         }
 
         public void RemoveCallbacks(IUIActions instance)
@@ -313,5 +371,7 @@ public partial class @MainMenuInput: IInputActionCollection2, IDisposable
         void OnIndicateDown(InputAction.CallbackContext context);
         void OnMenuClick(InputAction.CallbackContext context);
         void OnExit(InputAction.CallbackContext context);
+        void OnIndicateLeft(InputAction.CallbackContext context);
+        void OnIndicateRight(InputAction.CallbackContext context);
     }
 }
