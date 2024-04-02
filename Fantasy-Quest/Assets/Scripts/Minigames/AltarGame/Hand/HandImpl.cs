@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Common;
 using DG.Tweening;
 using Dialogue;
 using Sirenix.OdinInspector;
@@ -13,7 +14,7 @@ namespace Minigames.AltarGame.Hand
     internal class HandImpl : MonoBehaviour
     {
         [Serializable]
-        private struct PointToMove
+        public class PointToMove
         {
             public Transform Point;
             public float Duration;
@@ -67,6 +68,10 @@ namespace Minigames.AltarGame.Hand
         [SerializeField]
         private Transform startPosition;
 
+        [Required]
+        [SerializeField]
+        private Transform createItemPosition;
+
         [ReadOnly]
         [SerializeField]
         private bool isChoosing = false;
@@ -90,6 +95,7 @@ namespace Minigames.AltarGame.Hand
 
         public void ResetHand()
         {
+            isFirstMove = true;
             transform.position = startPosition.position;
             temporaryItemsToCreate.Clear();
             temporaryItemsToCreate.AddRange(itemsToCreate);
@@ -108,12 +114,12 @@ namespace Minigames.AltarGame.Hand
             ];
             _ = temporaryItemsToCreate.Remove(item);
             Item created = Instantiate(item, transform);
-            created.transform.position += Vector3.back;
+            created.transform.position = createItemPosition.position;
             holdingItem = created;
-            StartPlaceItem();
+            StartChoosePlaceItems();
         }
 
-        private void StartPlaceItem()
+        private void StartChoosePlaceItems()
         {
             query = new Queue<Slot>(altar.GetFreeSlots());
             if (query.Count == 0)
@@ -135,23 +141,25 @@ namespace Minigames.AltarGame.Hand
                 );
                 if (isFirstMove)
                 {
-                    moveTween.onComplete += () => firstMoveSpeech.Tell(() => StartWaitForDecide());
+                    moveTween.onComplete += () => firstMoveSpeech.Tell(() => { });
                     isFirstMove = false;
                 }
-                else
-                {
-                    moveTween.onComplete += StartWaitForDecide;
-                }
+                moveTween.onComplete += StartWaitForDecide;
+            }
+            else if (altar.GetFreeSlots().Count() != 1)
+            {
+                StartChoosePlaceItems();
             }
             else
             {
-                StartPlaceItem();
+                StartWaitForDecide();
             }
         }
 
         private void StartWaitForDecide()
         {
             isChoosing = true;
+            _ = this.KillCoroutine(waitingForDecide);
             waitingForDecide = StartCoroutine(WaitForDecide(decideWaitingTime));
         }
 

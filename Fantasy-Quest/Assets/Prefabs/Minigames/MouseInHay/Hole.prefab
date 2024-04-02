@@ -31,6 +31,7 @@ Transform:
   m_LocalScale: {x: 0.8, y: 0.8, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 3164992826560823443}
   - {fileID: 2221181519509419005}
   - {fileID: 1106717305139189624}
   - {fileID: 4797707862849763883}
@@ -74,6 +75,21 @@ MonoBehaviour:
   animator: {fileID: 822329703840730961}
   isShowedAnimationLabel: IsShowed
   hiddenAnimationStateLabel: Hidden
+  OnHoleHit:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2538597043793300775}
+        m_TargetAssemblyTypeName: UnityEngine.ParticleSystem, UnityEngine
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2372894541823460291
 GameObject:
   m_ObjectHideFlags: 0
@@ -314,12 +330,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: d8f2c66c33acdca47ab7585ff7f1fd00, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 88dead41894a3464d81117dc352deae8, type: 3}
   m_Color: {r: 0.6698113, g: 0.6698113, b: 0.6698113, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 2}
+  m_Size: {x: 4.67, y: 5.87}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -408,3 +424,70 @@ SpriteMask:
   m_BackSortingOrder: 0
   m_IsCustomRangeActive: 0
   m_SpriteSortPoint: 0
+--- !u!1001 &847437472721569345
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 8136994600953032546}
+    m_Modifications:
+    - target: {fileID: 2319041344078464722, guid: b371f3a2ae3becb41a913272ed3c3106, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2319041344078464722, guid: b371f3a2ae3becb41a913272ed3c3106, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2319041344078464722, guid: b371f3a2ae3becb41a913272ed3c3106, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2319041344078464722, guid: b371f3a2ae3becb41a913272ed3c3106, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2319041344078464722, guid: b371f3a2ae3becb41a913272ed3c3106, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2319041344078464722, guid: b371f3a2ae3becb41a913272ed3c3106, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2319041344078464722, guid: b371f3a2ae3becb41a913272ed3c3106, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2319041344078464722, guid: b371f3a2ae3becb41a913272ed3c3106, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2319041344078464722, guid: b371f3a2ae3becb41a913272ed3c3106, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2319041344078464722, guid: b371f3a2ae3becb41a913272ed3c3106, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5658056851869361222, guid: b371f3a2ae3becb41a913272ed3c3106, type: 3}
+      propertyPath: m_Name
+      value: StrawEffect
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b371f3a2ae3becb41a913272ed3c3106, type: 3}
+--- !u!198 &2538597043793300775 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 2952210073373674342, guid: b371f3a2ae3becb41a913272ed3c3106, type: 3}
+  m_PrefabInstance: {fileID: 847437472721569345}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &3164992826560823443 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2319041344078464722, guid: b371f3a2ae3becb41a913272ed3c3106, type: 3}
+  m_PrefabInstance: {fileID: 847437472721569345}
+  m_PrefabAsset: {fileID: 0}

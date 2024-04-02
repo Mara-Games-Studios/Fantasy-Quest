@@ -1,8 +1,6 @@
-﻿using System.Collections;
-using Sirenix.OdinInspector;
+﻿using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.InputSystem;
 
 namespace Minigames.SquirrelGame
 {
@@ -16,8 +14,9 @@ namespace Minigames.SquirrelGame
     [AddComponentMenu("Scripts/Minigames/SquirrelGame/Minigames.SquirrelGame.Manager")]
     internal class Manager : MonoBehaviour
     {
+        [Required]
         [SerializeField]
-        private float statusPanelShowDuration = 1f;
+        private QuitInput quitInput;
 
         [Required]
         [SerializeField]
@@ -32,33 +31,32 @@ namespace Minigames.SquirrelGame
         private Prize prize;
 
         [SerializeField]
-        private InputAction exitAction;
+        private bool disableInputOnStart = true;
 
         public UnityEvent OnGameFinishedWin;
         public UnityEvent OnGameFinishedLose;
         public UnityEvent OnGameFinishedManual;
 
-        private void Awake()
+        private void Start()
         {
-            exitAction.performed += (c) => ExitGame(ExitGameState.Manual);
+            if (disableInputOnStart)
+            {
+                DisableAllMinigameInput();
+            }
         }
 
         public void ExitGame(ExitGameState exitState)
         {
+            quitInput.enabled = false;
             DisableAllMinigameInput();
-            statusPanel.ShowPanel(
-                exitState,
-                () => _ = StartCoroutine(WaitRoutine(statusPanelShowDuration, exitState))
-            );
+            statusPanel.ShowPanel(exitState, () => TriggerEvent(exitState));
         }
 
-        private IEnumerator WaitRoutine(float time, ExitGameState exitState)
+        private void TriggerEvent(ExitGameState exitState)
         {
-            yield return new WaitForSeconds(time);
             switch (exitState)
             {
                 case ExitGameState.Win:
-                    prize.gameObject.SetActive(false);
                     OnGameFinishedWin?.Invoke();
                     break;
                 case ExitGameState.Lose:
@@ -75,23 +73,21 @@ namespace Minigames.SquirrelGame
         {
             prize.gameObject.SetActive(true);
             prize.RestorePosition();
-            paw.RestorePosition();
+            paw.Refresh();
             statusPanel.HidePanel();
         }
 
         [Button]
         public void EnableAllMinigameInput()
         {
-            exitAction.Enable();
-            paw.Input.Enable();
+            paw.InputEnabled = true;
             prize.Input.Enable();
         }
 
         [Button]
         public void DisableAllMinigameInput()
         {
-            exitAction.Disable();
-            paw.Input.Disable();
+            paw.InputEnabled = false;
             prize.Input.Disable();
         }
     }

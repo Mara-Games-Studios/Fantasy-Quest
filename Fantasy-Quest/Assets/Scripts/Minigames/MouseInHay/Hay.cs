@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Common;
+using Minigames.MouseInHay.MouseSequenceBuilder;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -10,77 +11,78 @@ namespace Minigames.MouseInHay
     [AddComponentMenu("Scripts/Minigames/MouseInHay/Minigames.MouseInHay.Hay")]
     internal class Hay : MonoBehaviour
     {
+        [SerializeField]
+        private Manager manager;
+
+        [HideLabel]
+        [SerializeReference]
+        [FoldoutGroup("Mouse sequence parameters")]
+        private ISequenceBuilder mouseSequenceBuilder;
+
+        [SerializeField]
+        private int maxMousesInRow;
+
+        [ReadOnly]
+        [SerializeField]
+        private List<Hole> lastSameVisited;
+
         [ReadOnly]
         [SerializeField]
         private List<Hole> holes;
 
         [ReadOnly]
         [SerializeField]
-        private int mousesShowed = 0;
-        public int MousesShowed => mousesShowed;
-
-        [SerializeField]
-        private Manager manager;
-
-        [SerializeField]
-        private FloatRange mouseShowTime;
-
-        [SerializeField]
-        private float noMouseTime;
-
-        [SerializeField]
-        private int maxMousesToShow = 10;
+        private List<ShowMouseConfig> showMouseConfigs;
+        public int AllMousesCount => showMouseConfigs.Count;
 
         private Coroutine launchCoroutine;
-
-        public float NoMouseTime
-        {
-            get => noMouseTime;
-            set => noMouseTime = value;
-        }
-        public int MaxMousesToShow
-        {
-            get => maxMousesToShow;
-            set => maxMousesToShow = value;
-        }
-        public FloatRange MouseShowTime
-        {
-            get => mouseShowTime;
-            set => mouseShowTime = value;
-        }
 
         private void Awake()
         {
             holes = GetComponentsInChildren<Hole>().ToList();
         }
 
-        public void ResetHay()
+        public void StopShowMouses()
         {
-            mousesShowed = 0;
             _ = this.KillCoroutine(launchCoroutine);
             holes.ForEach(x => x.HideMouse());
         }
 
-        public void StartShowMouse()
+        public void StartShowMouses()
         {
+            showMouseConfigs = mouseSequenceBuilder.BuildSequence().ToList();
             _ = this.KillCoroutine(launchCoroutine);
-            launchCoroutine = StartCoroutine(Launch());
+            launchCoroutine = StartCoroutine(ShowMouseRoutine());
         }
 
-        public IEnumerator Launch()
+        public IEnumerator ShowMouseRoutine()
         {
-            float showMouseTime = MouseShowTime.GetRandomFloatInRange();
-            Hole hole = holes[Random.Range(0, holes.Count)];
-            yield return hole.ShowMouse(showMouseTime);
-            mousesShowed++;
-            yield return new WaitForSeconds(NoMouseTime);
-            if (mousesShowed >= MaxMousesToShow)
+            foreach (ShowMouseConfig showMouseConfig in showMouseConfigs)
             {
-                manager.ExitGame(ExitGameState.Lose);
+                float showTime = showMouseConfig.ShowTime;
+                ShowMousesInHoles(showMouseConfig.HolesCount, showTime);
+                yield return new WaitForSeconds(showMouseConfig.Delay + showMouseConfig.ShowTime);
             }
-            else
+            manager.ExitGame(ExitGameState.Lose);
+        }
+
+        private void ShowMousesInHoles(int mousesCount, float showTime)
+        {
+            List<Hole> list = new(holes);
+            for (int i = 0; i < mousesCount; i++)
             {
-                StartShowMouse();
+                Hole hole;
+                do
+                {
+                    hole = list.ElementAt(Random.Range(0, list.Count));
+                } while (lastSameVisited.Contains(hole) && lastSameVisited.Count >= maxMousesInRow);
+                hole.ShowMouse(showTime);
+                _ = list.Remove(hole);
+                if (!lastSameVisited.Contains(hole))
+                {
+                    lastSameVisited.Clear();
+                }
+                lastSameVisited.Add(hole);
             }
         }
     }

@@ -22,6 +22,9 @@ namespace Minigames.SquirrelGame
         private Manager manager;
 
         [SerializeField]
+        private float statusPanelShowDuration = 1f;
+
+        [SerializeField]
         private List<LabelByState> labels;
         private Dictionary<ExitGameState, string> Labels =>
             labels.ToDictionary(x => x.State, x => x.Name);
@@ -45,7 +48,10 @@ namespace Minigames.SquirrelGame
         {
             label.text = Labels[state];
             panel.SetActive(true);
-            ShowEndCallback();
+            this.panelShowed = panelShowed;
+
+            // TODO: call from animator
+            Invoke(nameof(ShowEndCallback), statusPanelShowDuration);
         }
 
         public void ShowEndCallback()

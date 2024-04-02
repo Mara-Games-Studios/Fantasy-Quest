@@ -15,6 +15,9 @@ namespace Minigames.SquirrelGame
         [SerializeField]
         private Transform startBindTransform;
 
+        [SerializeField]
+        private float magnetSpeed = 0.7f;
+
         private Paw paw = null;
         private Transform target = null;
 
@@ -39,7 +42,7 @@ namespace Minigames.SquirrelGame
             if (paw != null && !paw.IsPrizeGrabbed)
             {
                 paw.IsPrizeGrabbed = true;
-                target = paw.transform;
+                target = paw.BindPrizeTransform;
             }
         }
 
@@ -47,7 +50,11 @@ namespace Minigames.SquirrelGame
         {
             if (target != null)
             {
-                transform.position = target.position;
+                transform.position = Vector3.Lerp(
+                    transform.position,
+                    target.position,
+                    magnetSpeed * Time.deltaTime
+                );
             }
         }
 

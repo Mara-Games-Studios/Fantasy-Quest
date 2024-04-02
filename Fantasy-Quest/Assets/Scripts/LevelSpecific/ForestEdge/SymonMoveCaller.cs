@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using Configs;
 using Configs.Progression;
+using Cutscene;
 using Dialogue;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -30,6 +31,10 @@ namespace LevelSpecific.ForestEdge
         [SerializeField]
         private ChainSpeaker explanationSpeak;
 
+        [Required]
+        [SerializeField]
+        private Start cutsceneStarter;
+
         [Button]
         public void CallSymon()
         {
@@ -51,7 +56,7 @@ namespace LevelSpecific.ForestEdge
             if (correctZone.OverlapPoint(callPoint.position))
             {
                 // Start cutscene
-                _ = StartCoroutine(CutsceneWithExplanation());
+                _ = StartCoroutine(GoToCutscene());
             }
             else
             {
@@ -60,14 +65,24 @@ namespace LevelSpecific.ForestEdge
             }
         }
 
-        private IEnumerator CutsceneWithExplanation()
+        public void SendSymonToStartAfterCutscene()
+        {
+            _ = StartCoroutine(GoToStartPointAfterCutscene());
+        }
+
+        private IEnumerator GoToCutscene()
         {
             LockerSettings.Instance.LockAll();
-            yield return symonMovement.MoveToPoint(callPoint.position);
             yield return explanationSpeak.Tell();
+            yield return symonMovement.MoveToPoint(callPoint.position);
+            cutsceneStarter.StartCutscene();
+            ProgressionConfig.Instance.ForestEdgeLevel.BagTaken = true;
+        }
+
+        private IEnumerator GoToStartPointAfterCutscene()
+        {
             yield return symonMovement.MoveToStartPoint();
             LockerSettings.Instance.UnlockAll();
-            ProgressionConfig.Instance.ForestEdgeLevel.BagTaken = true;
         }
 
         private IEnumerator TravelToPoint()
