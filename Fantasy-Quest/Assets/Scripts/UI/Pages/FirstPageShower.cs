@@ -10,5 +10,7 @@ namespace UI
         {
             page.ShowFromStart();
         }
+        
+        //in future -- cutscene starter then first page shower 
     }
 }

@@ -18,16 +18,16 @@ namespace UI
         private void OnEnable()
         {
             Pages.View.OnPageShowing += SetPage;
-            mainMenuInput.UI.Exit.performed += ctx => GetBack();
+            mainMenuInput.UI.Exit.performed += ctx => Exit();
         }
 
         private void OnDisable()
         {
             Pages.View.OnPageShowing -= SetPage;
-            mainMenuInput.UI.Exit.performed -= ctx => GetBack();
+            mainMenuInput.UI.Exit.performed -= ctx => Exit();
         }
         
-        private void GetBack()
+        private void Exit()
         {
             if (currentPage == null)
                 return;

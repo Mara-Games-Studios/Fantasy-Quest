@@ -1,11 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 
 namespace UI.Pages
 {
-    [RequireComponent(typeof(UnityEngine.UI.Button))]
+    public interface IHorizontalSlider
+    {
+        public void MoveLeft();
+        public void MoveRight();
+    }
+    
     public class HorizontalSlider : MonoBehaviour, IHorizontalSlider
     {
         [SerializeField] 
@@ -29,24 +33,24 @@ namespace UI.Pages
 
             foreach (var element in slidedElements)
             {
-                element.localPosition = localPoints.LeftPoint.localPosition;
+                element.localPosition = localPoints.StartPoint.localPosition;
             }
             slidedElements[currentElementIndex].localPosition = localPoints.MiddlePoint.localPosition;
         }
 
         public void MoveRight()
         {
-            slidedElements[currentElementIndex].DOMove(localPoints.LeftPoint.position, movementTime);
+            slidedElements[currentElementIndex].DOMove(localPoints.StartPoint.position, movementTime);
             IncreaseElementIndex(1);
-            slidedElements[currentElementIndex].DOMove(localPoints.RightPoint.position, 0);
+            slidedElements[currentElementIndex].DOMove(localPoints.EndPoint.position, 0);
             slidedElements[currentElementIndex].DOMove(localPoints.MiddlePoint.position, movementTime);
         }
         
         public void MoveLeft()
         {
-            slidedElements[currentElementIndex].DOMove(localPoints.RightPoint.position, movementTime);
+            slidedElements[currentElementIndex].DOMove(localPoints.EndPoint.position, movementTime);
             DecreaseElementIndex(1);
-            slidedElements[currentElementIndex].DOMove(localPoints.LeftPoint.position, 0);
+            slidedElements[currentElementIndex].DOMove(localPoints.StartPoint.position, 0);
             slidedElements[currentElementIndex].DOMove(localPoints.MiddlePoint.position, movementTime);
         }
 
@@ -67,19 +71,5 @@ namespace UI.Pages
                 currentElementIndex = slidedElements.Count - 1;
             }
         }
-    }
-    
-    [Serializable]
-    public struct PivotPoints
-    {
-        public RectTransform LeftPoint;
-        public RectTransform MiddlePoint;
-        public RectTransform RightPoint;
-    }
-
-    public interface IHorizontalSlider
-    {
-        public void MoveLeft();
-        public void MoveRight();
     }
 }

@@ -36,9 +36,9 @@ public class IndicatorShower : MonoBehaviour
     [SerializeField]
     private int additiveSpacing = 30;
 
-    private int currentImageIndex;
+    private int currentButtonIndex;
     private Tween vanishingTween;
-    private List<Button> verticalButtons = new();
+    private List<IndicatedButton> verticalButtons = new();
     private MainMenuInput mainMenuInput;
 
     private void Awake()
@@ -52,6 +52,7 @@ public class IndicatorShower : MonoBehaviour
     {
         View.OnPageShowed += ShowIndicates;
         View.OnPageHiding += HideIndicates;
+        IndicatedButton.OnPointerEntered += ShowButtonByMouse;
         mainMenuInput.UI.IndicateDown.performed += ctx => GoDown();
         mainMenuInput.UI.IndicateUp.performed += ctx => GoUp();
         mainMenuInput.UI.IndicateLeft.performed += ctx => GoLeft();
@@ -63,6 +64,7 @@ public class IndicatorShower : MonoBehaviour
     {
         View.OnPageShowed -= ShowIndicates;
         View.OnPageHiding -= HideIndicates;
+        IndicatedButton.OnPointerEntered -= ShowButtonByMouse;
         mainMenuInput.UI.IndicateDown.performed -= ctx => GoDown();
         mainMenuInput.UI.IndicateUp.performed -= ctx => GoUp();
         mainMenuInput.UI.IndicateLeft.performed -= ctx => GoLeft();
@@ -78,7 +80,7 @@ public class IndicatorShower : MonoBehaviour
             return;
         }
         indicates.gameObject.SetActive(true);
-        currentImageIndex = verticalButtons.Count - 1;
+        currentButtonIndex = verticalButtons.Count - 1;
         ShowOn(verticalButtons[^1]);
         vanishingTween?.Kill();
         _ = indicatesAlpha.DOFade(maxAlpha, fadeDuration);
@@ -93,7 +95,7 @@ public class IndicatorShower : MonoBehaviour
 
     private void Click()
     {
-        verticalButtons?[currentImageIndex].onClick.Invoke();
+        verticalButtons?[currentButtonIndex].onClick.Invoke();
     }
 
     private void GoDown()
@@ -102,13 +104,13 @@ public class IndicatorShower : MonoBehaviour
         {
             return;
         }
-        currentImageIndex--;
-        if (currentImageIndex < 0)
+        currentButtonIndex--;
+        if (currentButtonIndex < 0)
         {
-            currentImageIndex = verticalButtons.Count - 1;
+            currentButtonIndex = verticalButtons.Count - 1;
         }
 
-        ShowOn(verticalButtons[currentImageIndex]);
+        ShowOn(verticalButtons[currentButtonIndex]);
     }
 
     private void GoUp()
@@ -117,20 +119,20 @@ public class IndicatorShower : MonoBehaviour
         {
             return;
         }
-        currentImageIndex++;
-        if (currentImageIndex >= verticalButtons.Count)
+        currentButtonIndex++;
+        if (currentButtonIndex >= verticalButtons.Count)
         {
-            currentImageIndex = 0;
+            currentButtonIndex = 0;
         }
 
-        ShowOn(verticalButtons[currentImageIndex]);
+        ShowOn(verticalButtons[currentButtonIndex]);
     }
 
     private void GoLeft()
     {
         if(verticalButtons == null)
             return;
-        if (verticalButtons[currentImageIndex].TryGetComponent(out IHorizontalSlider horizontalSlider))
+        if (verticalButtons[currentButtonIndex].TryGetComponent(out IHorizontalSlider horizontalSlider))
         {
             horizontalSlider.MoveLeft();
         }
@@ -140,19 +142,25 @@ public class IndicatorShower : MonoBehaviour
     {
         if(verticalButtons == null)
             return;
-        if (verticalButtons[currentImageIndex].TryGetComponent(out IHorizontalSlider horizontalSlider))
+        if (verticalButtons[currentButtonIndex].TryGetComponent(out IHorizontalSlider horizontalSlider))
         {
             horizontalSlider.MoveRight();
         }
     }
     
     [Button]
-    public void ShowOn(Button button)
+    private void ShowOn(Button button)
     {
         var rectTransform = button.GetComponent<RectTransform>();
         int spacing = Convert.ToInt32(Mathf.Round(rectTransform.rect.width)) + additiveSpacing;
         indicates.spacing = spacing;
         indicates.padding.left = (-spacing / 2) - defaultLeftOffset;
         this.rectTransform.position = rectTransform.position;
+    }
+
+    private void ShowButtonByMouse(IndicatedButton button)
+    {
+        currentButtonIndex = verticalButtons.IndexOf(button);
+        ShowOn(button);
     }
 }
