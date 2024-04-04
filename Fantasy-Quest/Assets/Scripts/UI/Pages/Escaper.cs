@@ -2,8 +2,8 @@
 
 namespace UI
 {
-    [AddComponentMenu("Scripts/UI/Pages/Pages.PageEscaper")]
-    public class PageEscaper : MonoBehaviour
+    [AddComponentMenu("Scripts/UI/Pages/Pages.Escaper")]
+    public class Escaper : MonoBehaviour
     {
         private Pages.View currentPage;
         private Pages.View lastPage;
@@ -31,9 +31,9 @@ namespace UI
         {
             if (currentPage == null)
                 return;
-            if(currentPage.LastPage == null)
+            if(currentPage.PreviousPage == null)
                 return;
-            lastPage = currentPage.LastPage;
+            lastPage = currentPage.PreviousPage;
             
             currentPage.HideToStart();
             lastPage.ShowFromStart();    

@@ -3,15 +3,15 @@ using UnityEngine;
 
 namespace UI.Pages
 {
-    [AddComponentMenu("Scripts/UI/Pages/Pages.View")]
+    [AddComponentMenu("Scripts/UI/Pages/UI.Pages.View")]
     [RequireComponent(typeof(PageEffectsShower))]
     public class View : MonoBehaviour
     { 
         private PageEffectsShower pagePageEffectShower;
         private int effectsShowedAmount;
 
-        public View LastPage;
-        public List<IndicatedButton> Buttons = new();
+        public View PreviousPage;
+        public List<IndicatedButton> VerticalButtons = new();
         
         public static event System.Action<View> OnPageShowing;
         public static event System.Action<View> OnPageShowed;

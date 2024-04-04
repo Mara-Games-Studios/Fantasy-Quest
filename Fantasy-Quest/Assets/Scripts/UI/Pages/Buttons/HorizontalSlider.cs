@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 
@@ -38,22 +39,36 @@ namespace UI.Pages
             slidedElements[currentElementIndex].localPosition = localPoints.MiddlePoint.localPosition;
         }
 
+        private void OnDisable()
+        {
+            
+        }
+
         public void MoveRight()
         {
+            //Hide element
             slidedElements[currentElementIndex].DOMove(localPoints.StartPoint.position, movementTime);
             IncreaseElementIndex(1);
+            //Show element
             slidedElements[currentElementIndex].DOMove(localPoints.EndPoint.position, 0);
             slidedElements[currentElementIndex].DOMove(localPoints.MiddlePoint.position, movementTime);
         }
         
         public void MoveLeft()
         {
+            //Hide element
             slidedElements[currentElementIndex].DOMove(localPoints.EndPoint.position, movementTime);
             DecreaseElementIndex(1);
+            //Show element
             slidedElements[currentElementIndex].DOMove(localPoints.StartPoint.position, 0);
             slidedElements[currentElementIndex].DOMove(localPoints.MiddlePoint.position, movementTime);
         }
 
+        private void ListenToInput()
+        {
+            
+        }
+        
         private void IncreaseElementIndex(int step)
         {
             currentElementIndex += step;
