@@ -18,7 +18,7 @@ namespace Cutscene
 
         [Required]
         [SerializeField]
-        private DialogueBubble.Trigger trigger;
+        private GameObject hint;
 
         [Required]
         [SerializeField]
@@ -40,7 +40,7 @@ namespace Cutscene
             if (!canCatInteract)
             {
                 startHuman.StartCutscene();
-                if (trigger != null)
+                if (hint != null)
                 {
                     ChangeShortcutIcon();
                 }
@@ -51,7 +51,7 @@ namespace Cutscene
 
         private void ChangeShortcutIcon()
         {
-            trigger.SetNewIcon(newIcon);
+            hint.GetComponent<SpriteRenderer>().sprite = newIcon;
         }
     }
 }
