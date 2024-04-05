@@ -9,11 +9,7 @@ namespace DialogueBubble
     public class Trigger : MonoBehaviour
     {
         [SerializeField]
-        private Type isEmote = Type.Thought;
-
-        //Script can be changed for different situation, so different icons cab be used from one trigger
-        [SerializeField]
-        private List<Sprite> kbIcons = new();
+        private Type emoteType = Type.Thought;
 
         [SerializeField]
         private List<Sprite> emoteIcons = new();
@@ -28,8 +24,7 @@ namespace DialogueBubble
                         new BubbleSettings
                         {
                             CanShow = true,
-                            BubbleType = isEmote,
-                            KBicons = kbIcons,
+                            BubbleType = emoteType,
                             EmoteIcons = emoteIcons
                         }
                     );
@@ -47,19 +42,12 @@ namespace DialogueBubble
                         new BubbleSettings
                         {
                             CanShow = false,
-                            BubbleType = isEmote,
-                            KBicons = kbIcons,
+                            BubbleType = emoteType,
                             EmoteIcons = emoteIcons
                         }
                     );
                 }
             }
-        }
-
-        public void SetNewIcon(Sprite newIcon)
-        {
-            kbIcons.Clear();
-            kbIcons.Add(newIcon);
         }
     }
 }

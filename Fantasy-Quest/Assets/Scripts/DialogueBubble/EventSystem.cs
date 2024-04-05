@@ -9,7 +9,6 @@ namespace DialogueBubble
     {
         public bool CanShow;
         public Type BubbleType;
-        public List<Sprite> KBicons;
         public List<Sprite> EmoteIcons;
     }
 
