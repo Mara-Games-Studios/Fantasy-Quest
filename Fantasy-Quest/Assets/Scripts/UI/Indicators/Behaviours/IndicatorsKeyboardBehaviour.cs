@@ -8,20 +8,20 @@ namespace UI.Pages.Behaviours
        
         public override void Enable()
         {
-            LayoutModel.MainMenuInput.UI.IndicateDown.performed += ctx => GoDown();
-            LayoutModel.MainMenuInput.UI.IndicateUp.performed += ctx => GoUp();
-            LayoutModel.MainMenuInput.UI.IndicateLeft.performed += ctx => GoLeft();
-            LayoutModel.MainMenuInput.UI.IndicateRight.performed += ctx => GoRight();
-            LayoutModel.MainMenuInput.UI.MenuClick.performed += ctx => Click();
+            LayoutModel.MainMenuInput.UI.Down.performed += ctx => GoDown();
+            LayoutModel.MainMenuInput.UI.Up.performed += ctx => GoUp();
+            LayoutModel.MainMenuInput.UI.Left.performed += ctx => GoLeft();
+            LayoutModel.MainMenuInput.UI.Right.performed += ctx => GoRight();
+            LayoutModel.MainMenuInput.UI.EnterClick.performed += ctx => Click();
         }
 
         public override void Disable()
         {
-            LayoutModel.MainMenuInput.UI.IndicateDown.performed -= ctx => GoDown();
-            LayoutModel.MainMenuInput.UI.IndicateUp.performed -= ctx => GoUp();
-            LayoutModel.MainMenuInput.UI.IndicateLeft.performed -= ctx => GoLeft();
-            LayoutModel.MainMenuInput.UI.IndicateRight.performed -= ctx => GoRight();
-            LayoutModel.MainMenuInput.UI.MenuClick.performed -= ctx => Click();
+            LayoutModel.MainMenuInput.UI.Down.performed -= ctx => GoDown();
+            LayoutModel.MainMenuInput.UI.Up.performed -= ctx => GoUp();
+            LayoutModel.MainMenuInput.UI.Left.performed -= ctx => GoLeft();
+            LayoutModel.MainMenuInput.UI.Right.performed -= ctx => GoRight();
+            LayoutModel.MainMenuInput.UI.EnterClick.performed -= ctx => Click();
         }
         
         private void GoDown()

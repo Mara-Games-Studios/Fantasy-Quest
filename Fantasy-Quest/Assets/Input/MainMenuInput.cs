@@ -46,25 +46,7 @@ public partial class @MainMenuInput: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""IndicateUp"",
-                    ""type"": ""Button"",
-                    ""id"": ""10ec9584-d611-4fed-8bea-115d5d9c2998"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""IndicateDown"",
-                    ""type"": ""Button"",
-                    ""id"": ""270f817b-0f19-41e3-8bff-030ab6a5b124"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""MenuClick"",
+                    ""name"": ""EnterClick"",
                     ""type"": ""Button"",
                     ""id"": ""01b28373-6345-4402-914e-3565a9a828c9"",
                     ""expectedControlType"": ""Button"",
@@ -82,7 +64,7 @@ public partial class @MainMenuInput: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""IndicateLeft"",
+                    ""name"": ""Left"",
                     ""type"": ""Button"",
                     ""id"": ""ecb0adfd-bbab-4656-a9ca-1fec687fb0f4"",
                     ""expectedControlType"": ""Button"",
@@ -91,9 +73,63 @@ public partial class @MainMenuInput: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""IndicateRight"",
+                    ""name"": ""Right"",
                     ""type"": ""Button"",
                     ""id"": ""dd79b9ea-b886-456f-a77d-24ef19d0074b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Up"",
+                    ""type"": ""Button"",
+                    ""id"": ""10ec9584-d611-4fed-8bea-115d5d9c2998"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Down"",
+                    ""type"": ""Button"",
+                    ""id"": ""270f817b-0f19-41e3-8bff-030ab6a5b124"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""CatInteraction"",
+                    ""type"": ""Button"",
+                    ""id"": ""24145943-f2cd-46f9-b758-7bdd05b983a4"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""HumanInteraction"",
+                    ""type"": ""Button"",
+                    ""id"": ""d1c1f5fc-394f-4b5d-a685-e0afaf1eb61f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Meow"",
+                    ""type"": ""Button"",
+                    ""id"": ""404a6e54-81b3-4899-b753-3ad33065414e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Mure"",
+                    ""type"": ""Button"",
+                    ""id"": ""f0084139-a9ea-4cfc-bd9f-501bc7dcea48"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -125,34 +161,12 @@ public partial class @MainMenuInput: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""04885fb0-8640-4e5a-9ea5-41652c3b836e"",
-                    ""path"": ""<Keyboard>/s"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""IndicateDown"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""88500960-aea2-4814-9731-1b989d5f5c03"",
-                    ""path"": ""<Keyboard>/w"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""IndicateUp"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""5d307298-04fb-4f92-8af5-d9a84c09a600"",
                     ""path"": ""<Keyboard>/enter"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""MenuClick"",
+                    ""action"": ""EnterClick"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -174,7 +188,7 @@ public partial class @MainMenuInput: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""IndicateLeft"",
+                    ""action"": ""Left"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -185,7 +199,73 @@ public partial class @MainMenuInput: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""IndicateRight"",
+                    ""action"": ""Right"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""88500960-aea2-4814-9731-1b989d5f5c03"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Up"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""04885fb0-8640-4e5a-9ea5-41652c3b836e"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Down"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""39407d48-f8eb-4ea0-aa08-faef9135c2a1"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CatInteraction"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d0918b37-8c2b-49d7-88a3-29e08c168559"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""HumanInteraction"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""409d78fb-dfb4-46be-ae3b-e023d1084979"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Meow"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4c068452-5283-4d21-863e-8afb3ceaa109"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Mure"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -198,12 +278,16 @@ public partial class @MainMenuInput: IInputActionCollection2, IDisposable
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Point = m_UI.FindAction("Point", throwIfNotFound: true);
         m_UI_Click = m_UI.FindAction("Click", throwIfNotFound: true);
-        m_UI_IndicateUp = m_UI.FindAction("IndicateUp", throwIfNotFound: true);
-        m_UI_IndicateDown = m_UI.FindAction("IndicateDown", throwIfNotFound: true);
-        m_UI_MenuClick = m_UI.FindAction("MenuClick", throwIfNotFound: true);
+        m_UI_EnterClick = m_UI.FindAction("EnterClick", throwIfNotFound: true);
         m_UI_Exit = m_UI.FindAction("Exit", throwIfNotFound: true);
-        m_UI_IndicateLeft = m_UI.FindAction("IndicateLeft", throwIfNotFound: true);
-        m_UI_IndicateRight = m_UI.FindAction("IndicateRight", throwIfNotFound: true);
+        m_UI_Left = m_UI.FindAction("Left", throwIfNotFound: true);
+        m_UI_Right = m_UI.FindAction("Right", throwIfNotFound: true);
+        m_UI_Up = m_UI.FindAction("Up", throwIfNotFound: true);
+        m_UI_Down = m_UI.FindAction("Down", throwIfNotFound: true);
+        m_UI_CatInteraction = m_UI.FindAction("CatInteraction", throwIfNotFound: true);
+        m_UI_HumanInteraction = m_UI.FindAction("HumanInteraction", throwIfNotFound: true);
+        m_UI_Meow = m_UI.FindAction("Meow", throwIfNotFound: true);
+        m_UI_Mure = m_UI.FindAction("Mure", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -267,24 +351,32 @@ public partial class @MainMenuInput: IInputActionCollection2, IDisposable
     private List<IUIActions> m_UIActionsCallbackInterfaces = new List<IUIActions>();
     private readonly InputAction m_UI_Point;
     private readonly InputAction m_UI_Click;
-    private readonly InputAction m_UI_IndicateUp;
-    private readonly InputAction m_UI_IndicateDown;
-    private readonly InputAction m_UI_MenuClick;
+    private readonly InputAction m_UI_EnterClick;
     private readonly InputAction m_UI_Exit;
-    private readonly InputAction m_UI_IndicateLeft;
-    private readonly InputAction m_UI_IndicateRight;
+    private readonly InputAction m_UI_Left;
+    private readonly InputAction m_UI_Right;
+    private readonly InputAction m_UI_Up;
+    private readonly InputAction m_UI_Down;
+    private readonly InputAction m_UI_CatInteraction;
+    private readonly InputAction m_UI_HumanInteraction;
+    private readonly InputAction m_UI_Meow;
+    private readonly InputAction m_UI_Mure;
     public struct UIActions
     {
         private @MainMenuInput m_Wrapper;
         public UIActions(@MainMenuInput wrapper) { m_Wrapper = wrapper; }
         public InputAction @Point => m_Wrapper.m_UI_Point;
         public InputAction @Click => m_Wrapper.m_UI_Click;
-        public InputAction @IndicateUp => m_Wrapper.m_UI_IndicateUp;
-        public InputAction @IndicateDown => m_Wrapper.m_UI_IndicateDown;
-        public InputAction @MenuClick => m_Wrapper.m_UI_MenuClick;
+        public InputAction @EnterClick => m_Wrapper.m_UI_EnterClick;
         public InputAction @Exit => m_Wrapper.m_UI_Exit;
-        public InputAction @IndicateLeft => m_Wrapper.m_UI_IndicateLeft;
-        public InputAction @IndicateRight => m_Wrapper.m_UI_IndicateRight;
+        public InputAction @Left => m_Wrapper.m_UI_Left;
+        public InputAction @Right => m_Wrapper.m_UI_Right;
+        public InputAction @Up => m_Wrapper.m_UI_Up;
+        public InputAction @Down => m_Wrapper.m_UI_Down;
+        public InputAction @CatInteraction => m_Wrapper.m_UI_CatInteraction;
+        public InputAction @HumanInteraction => m_Wrapper.m_UI_HumanInteraction;
+        public InputAction @Meow => m_Wrapper.m_UI_Meow;
+        public InputAction @Mure => m_Wrapper.m_UI_Mure;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -300,24 +392,36 @@ public partial class @MainMenuInput: IInputActionCollection2, IDisposable
             @Click.started += instance.OnClick;
             @Click.performed += instance.OnClick;
             @Click.canceled += instance.OnClick;
-            @IndicateUp.started += instance.OnIndicateUp;
-            @IndicateUp.performed += instance.OnIndicateUp;
-            @IndicateUp.canceled += instance.OnIndicateUp;
-            @IndicateDown.started += instance.OnIndicateDown;
-            @IndicateDown.performed += instance.OnIndicateDown;
-            @IndicateDown.canceled += instance.OnIndicateDown;
-            @MenuClick.started += instance.OnMenuClick;
-            @MenuClick.performed += instance.OnMenuClick;
-            @MenuClick.canceled += instance.OnMenuClick;
+            @EnterClick.started += instance.OnEnterClick;
+            @EnterClick.performed += instance.OnEnterClick;
+            @EnterClick.canceled += instance.OnEnterClick;
             @Exit.started += instance.OnExit;
             @Exit.performed += instance.OnExit;
             @Exit.canceled += instance.OnExit;
-            @IndicateLeft.started += instance.OnIndicateLeft;
-            @IndicateLeft.performed += instance.OnIndicateLeft;
-            @IndicateLeft.canceled += instance.OnIndicateLeft;
-            @IndicateRight.started += instance.OnIndicateRight;
-            @IndicateRight.performed += instance.OnIndicateRight;
-            @IndicateRight.canceled += instance.OnIndicateRight;
+            @Left.started += instance.OnLeft;
+            @Left.performed += instance.OnLeft;
+            @Left.canceled += instance.OnLeft;
+            @Right.started += instance.OnRight;
+            @Right.performed += instance.OnRight;
+            @Right.canceled += instance.OnRight;
+            @Up.started += instance.OnUp;
+            @Up.performed += instance.OnUp;
+            @Up.canceled += instance.OnUp;
+            @Down.started += instance.OnDown;
+            @Down.performed += instance.OnDown;
+            @Down.canceled += instance.OnDown;
+            @CatInteraction.started += instance.OnCatInteraction;
+            @CatInteraction.performed += instance.OnCatInteraction;
+            @CatInteraction.canceled += instance.OnCatInteraction;
+            @HumanInteraction.started += instance.OnHumanInteraction;
+            @HumanInteraction.performed += instance.OnHumanInteraction;
+            @HumanInteraction.canceled += instance.OnHumanInteraction;
+            @Meow.started += instance.OnMeow;
+            @Meow.performed += instance.OnMeow;
+            @Meow.canceled += instance.OnMeow;
+            @Mure.started += instance.OnMure;
+            @Mure.performed += instance.OnMure;
+            @Mure.canceled += instance.OnMure;
         }
 
         private void UnregisterCallbacks(IUIActions instance)
@@ -328,24 +432,36 @@ public partial class @MainMenuInput: IInputActionCollection2, IDisposable
             @Click.started -= instance.OnClick;
             @Click.performed -= instance.OnClick;
             @Click.canceled -= instance.OnClick;
-            @IndicateUp.started -= instance.OnIndicateUp;
-            @IndicateUp.performed -= instance.OnIndicateUp;
-            @IndicateUp.canceled -= instance.OnIndicateUp;
-            @IndicateDown.started -= instance.OnIndicateDown;
-            @IndicateDown.performed -= instance.OnIndicateDown;
-            @IndicateDown.canceled -= instance.OnIndicateDown;
-            @MenuClick.started -= instance.OnMenuClick;
-            @MenuClick.performed -= instance.OnMenuClick;
-            @MenuClick.canceled -= instance.OnMenuClick;
+            @EnterClick.started -= instance.OnEnterClick;
+            @EnterClick.performed -= instance.OnEnterClick;
+            @EnterClick.canceled -= instance.OnEnterClick;
             @Exit.started -= instance.OnExit;
             @Exit.performed -= instance.OnExit;
             @Exit.canceled -= instance.OnExit;
-            @IndicateLeft.started -= instance.OnIndicateLeft;
-            @IndicateLeft.performed -= instance.OnIndicateLeft;
-            @IndicateLeft.canceled -= instance.OnIndicateLeft;
-            @IndicateRight.started -= instance.OnIndicateRight;
-            @IndicateRight.performed -= instance.OnIndicateRight;
-            @IndicateRight.canceled -= instance.OnIndicateRight;
+            @Left.started -= instance.OnLeft;
+            @Left.performed -= instance.OnLeft;
+            @Left.canceled -= instance.OnLeft;
+            @Right.started -= instance.OnRight;
+            @Right.performed -= instance.OnRight;
+            @Right.canceled -= instance.OnRight;
+            @Up.started -= instance.OnUp;
+            @Up.performed -= instance.OnUp;
+            @Up.canceled -= instance.OnUp;
+            @Down.started -= instance.OnDown;
+            @Down.performed -= instance.OnDown;
+            @Down.canceled -= instance.OnDown;
+            @CatInteraction.started -= instance.OnCatInteraction;
+            @CatInteraction.performed -= instance.OnCatInteraction;
+            @CatInteraction.canceled -= instance.OnCatInteraction;
+            @HumanInteraction.started -= instance.OnHumanInteraction;
+            @HumanInteraction.performed -= instance.OnHumanInteraction;
+            @HumanInteraction.canceled -= instance.OnHumanInteraction;
+            @Meow.started -= instance.OnMeow;
+            @Meow.performed -= instance.OnMeow;
+            @Meow.canceled -= instance.OnMeow;
+            @Mure.started -= instance.OnMure;
+            @Mure.performed -= instance.OnMure;
+            @Mure.canceled -= instance.OnMure;
         }
 
         public void RemoveCallbacks(IUIActions instance)
@@ -367,11 +483,15 @@ public partial class @MainMenuInput: IInputActionCollection2, IDisposable
     {
         void OnPoint(InputAction.CallbackContext context);
         void OnClick(InputAction.CallbackContext context);
-        void OnIndicateUp(InputAction.CallbackContext context);
-        void OnIndicateDown(InputAction.CallbackContext context);
-        void OnMenuClick(InputAction.CallbackContext context);
+        void OnEnterClick(InputAction.CallbackContext context);
         void OnExit(InputAction.CallbackContext context);
-        void OnIndicateLeft(InputAction.CallbackContext context);
-        void OnIndicateRight(InputAction.CallbackContext context);
+        void OnLeft(InputAction.CallbackContext context);
+        void OnRight(InputAction.CallbackContext context);
+        void OnUp(InputAction.CallbackContext context);
+        void OnDown(InputAction.CallbackContext context);
+        void OnCatInteraction(InputAction.CallbackContext context);
+        void OnHumanInteraction(InputAction.CallbackContext context);
+        void OnMeow(InputAction.CallbackContext context);
+        void OnMure(InputAction.CallbackContext context);
     }
 }

@@ -1,6 +1,5 @@
 ﻿using System;
 using DG.Tweening;
-using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace UI.Pages
@@ -38,14 +37,12 @@ namespace UI.Pages
             pageInfo.CanvasGroup.gameObject.SetActive(false);
         }
 
-        [Button]
         public void ShowFromStart()
         {
             MoveToPoint(pivotPoints.StartPoint);
             Show();
         }
         
-        [Button]
         public void ShowFromEnd()
         {
             MoveToPoint(pivotPoints.EndPoint);
@@ -66,7 +63,6 @@ namespace UI.Pages
             );
         }
 
-        [Button]
         public void HideToEnd()
         {
             StopTweens();
@@ -80,7 +76,6 @@ namespace UI.Pages
             moveTween.onComplete += () => MoveToPoint(pivotPoints.StartPoint);
         }
 
-        [Button]
         public void HideToStart()
         {
             StopTweens();
@@ -93,6 +88,7 @@ namespace UI.Pages
 
             moveTween.onComplete += () => MoveToPoint(pivotPoints.StartPoint);
         }
+        
         private void MoveToPoint(RectTransform point)
         {
             pageInfo.RectTransform.DOMove(point.position, 0);

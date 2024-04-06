@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using DG.Tweening;
 using UnityEngine;
 
@@ -17,62 +18,69 @@ namespace UI.Pages
         private PivotPoints localPoints;
 
         [SerializeField] 
-        private List<RectTransform> slidedElements;
+        private List<CanvasGroup> elementsCanvasGroup;
 
         [SerializeField]
         private int currentElementIndex;
 
         [SerializeField] 
-        private float movementTime = 1.3f;
+        private float duration = 1.3f;
+
+        [SerializeField] 
+        private float minFade = 0.1f;
+        
+        [SerializeField] 
+        private float maxFade = 1f;
+
+        private List<RectTransform> elementsTransform;
 
         private void OnEnable()
         {
-            if (currentElementIndex < 0 || currentElementIndex >= slidedElements.Count)
+            elementsTransform = new List<RectTransform>(from element in elementsCanvasGroup select element.GetComponent<RectTransform>());
+            if (currentElementIndex < 0 || currentElementIndex >= elementsCanvasGroup.Count)
             {
                 currentElementIndex = 0;
             }
 
-            foreach (var element in slidedElements)
+            foreach (var element in elementsTransform)
             {
                 element.localPosition = localPoints.StartPoint.localPosition;
             }
-            slidedElements[currentElementIndex].localPosition = localPoints.MiddlePoint.localPosition;
-        }
-
-        private void OnDisable()
-        {
-            
+            elementsTransform[currentElementIndex].localPosition = localPoints.MiddlePoint.localPosition;
+            elementsCanvasGroup[currentElementIndex].alpha = maxFade;
         }
 
         public void MoveRight()
         {
             //Hide element
-            slidedElements[currentElementIndex].DOMove(localPoints.StartPoint.position, movementTime);
+            elementsTransform[currentElementIndex].DOMove(localPoints.StartPoint.position, duration);
+            elementsCanvasGroup[currentElementIndex].DOFade(minFade, duration);
+            
             IncreaseElementIndex(1);
             //Show element
-            slidedElements[currentElementIndex].DOMove(localPoints.EndPoint.position, 0);
-            slidedElements[currentElementIndex].DOMove(localPoints.MiddlePoint.position, movementTime);
+            elementsTransform[currentElementIndex].DOMove(localPoints.EndPoint.position, 0);
+            elementsTransform[currentElementIndex].DOMove(localPoints.MiddlePoint.position, duration);
+            elementsCanvasGroup[currentElementIndex].DOFade(maxFade, duration);
         }
         
         public void MoveLeft()
         {
             //Hide element
-            slidedElements[currentElementIndex].DOMove(localPoints.EndPoint.position, movementTime);
-            DecreaseElementIndex(1);
-            //Show element
-            slidedElements[currentElementIndex].DOMove(localPoints.StartPoint.position, 0);
-            slidedElements[currentElementIndex].DOMove(localPoints.MiddlePoint.position, movementTime);
-        }
-
-        private void ListenToInput()
-        {
+            elementsTransform[currentElementIndex].DOMove(localPoints.EndPoint.position, duration);
+            elementsCanvasGroup[currentElementIndex].DOFade(minFade, duration);
             
+            DecreaseElementIndex(1);
+            
+            //Show element
+            elementsTransform[currentElementIndex].DOMove(localPoints.StartPoint.position, 0);
+            elementsTransform[currentElementIndex].DOMove(localPoints.MiddlePoint.position, duration);
+            elementsCanvasGroup[currentElementIndex].DOFade(maxFade, duration);
         }
         
         private void IncreaseElementIndex(int step)
         {
             currentElementIndex += step;
-            if (currentElementIndex >= slidedElements.Count)
+            if (currentElementIndex >= elementsCanvasGroup.Count)
             {
                 currentElementIndex = 0;
             }
@@ -83,7 +91,7 @@ namespace UI.Pages
             currentElementIndex -= step;
             if (currentElementIndex < 0)
             {
-                currentElementIndex = slidedElements.Count - 1;
+                currentElementIndex = elementsCanvasGroup.Count - 1;
             }
         }
     }

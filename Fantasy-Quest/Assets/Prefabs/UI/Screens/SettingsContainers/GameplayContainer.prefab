@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 831201708586878645}
   - component: {fileID: 6189629574438286763}
   - component: {fileID: 595508925810729701}
+  - component: {fileID: 6109184681450430618}
   m_Layer: 5
   m_Name: English
   m_TagString: Untagged
@@ -136,6 +137,18 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!225 &6109184681450430618
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 644457415773673984}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &774483884821762713
 GameObject:
   m_ObjectHideFlags: 0
@@ -147,6 +160,7 @@ GameObject:
   - component: {fileID: 4217609971509498164}
   - component: {fileID: 3321104261344097787}
   - component: {fileID: 5394979668949932210}
+  - component: {fileID: 9083974044416465424}
   m_Layer: 5
   m_Name: No
   m_TagString: Untagged
@@ -270,6 +284,18 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!225 &9083974044416465424
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 774483884821762713}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &1541739734648467096
 GameObject:
   m_ObjectHideFlags: 0
@@ -321,7 +347,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8857185021661461071
 RectTransform:
   m_ObjectHideFlags: 0
@@ -528,10 +554,10 @@ RectTransform:
   - {fileID: 1164790430505941264}
   m_Father: {fileID: 4135136254409331871}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 100}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 350, y: -115}
+  m_SizeDelta: {x: 700, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &6506240503758078355
 MonoBehaviour:
@@ -801,10 +827,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 397655631943632585}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 365, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 172.5, y: -50}
+  m_SizeDelta: {x: 365, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7580090358379501546
 CanvasRenderer:
@@ -941,10 +967,10 @@ RectTransform:
   - {fileID: 831201708586878645}
   m_Father: {fileID: 397655631943632585}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 240, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 545, y: -50}
+  m_SizeDelta: {x: 240, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2320650226923930251
 MonoBehaviour:
@@ -1006,12 +1032,14 @@ MonoBehaviour:
     StartPoint: {fileID: 3262757547975264283}
     MiddlePoint: {fileID: 5990324538431404162}
     EndPoint: {fileID: 5151958152321714337}
-  slidedElements:
-  - {fileID: 3681409444100840913}
-  - {fileID: 7134880277243137562}
-  - {fileID: 831201708586878645}
+  elementsCanvasGroup:
+  - {fileID: 4320169629253566538}
+  - {fileID: 102975800029876886}
+  - {fileID: 6109184681450430618}
   currentElementIndex: 0
-  movementTime: 1
+  duration: 1.3
+  minFade: 0.1
+  maxFade: 1
 --- !u!114 &6979148847908623801
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1131,10 +1159,10 @@ RectTransform:
   - {fileID: 7982486635373262940}
   m_Father: {fileID: 4135136254409331871}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 100}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 350, y: -285}
+  m_SizeDelta: {x: 700, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &724857273448697654
 MonoBehaviour:
@@ -1208,6 +1236,7 @@ GameObject:
   - component: {fileID: 3681409444100840913}
   - component: {fileID: 5890213942931458279}
   - component: {fileID: 1412601432733818547}
+  - component: {fileID: 4320169629253566538}
   m_Layer: 5
   m_Name: Russian
   m_TagString: Untagged
@@ -1331,6 +1360,18 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!225 &4320169629253566538
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5007724925813665696}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &5023851559012896545
 GameObject:
   m_ObjectHideFlags: 0
@@ -1403,9 +1444,9 @@ RectTransform:
   - {fileID: 4217609971509498164}
   m_Father: {fileID: 2007807325243422814}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 547.44, y: -50}
   m_SizeDelta: {x: 90, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &3818399467802837149
@@ -1468,11 +1509,13 @@ MonoBehaviour:
     StartPoint: {fileID: 8472952907641864763}
     MiddlePoint: {fileID: 7246417757282135741}
     EndPoint: {fileID: 4575998854659907709}
-  slidedElements:
-  - {fileID: 6562606409606026517}
-  - {fileID: 4217609971509498164}
+  elementsCanvasGroup:
+  - {fileID: 9083974044416465424}
+  - {fileID: 8763465663823799714}
   currentElementIndex: 0
-  movementTime: 1
+  duration: 1.3
+  minFade: 0.1
+  maxFade: 1
 --- !u!114 &5529039528702702742
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1535,6 +1578,7 @@ GameObject:
   - component: {fileID: 6562606409606026517}
   - component: {fileID: 1060187825010095414}
   - component: {fileID: 8342304742225632998}
+  - component: {fileID: 8763465663823799714}
   m_Layer: 5
   m_Name: Yes
   m_TagString: Untagged
@@ -1658,6 +1702,18 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!225 &8763465663823799714
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5874756335950070937}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &6969075707034748611
 GameObject:
   m_ObjectHideFlags: 0
@@ -1729,9 +1785,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 2007807325243422814}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 176, y: -50}
   m_SizeDelta: {x: 250, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7471695792429218059
@@ -1912,6 +1968,7 @@ GameObject:
   - component: {fileID: 7134880277243137562}
   - component: {fileID: 2861998859885306454}
   - component: {fileID: 7904197979219262941}
+  - component: {fileID: 102975800029876886}
   m_Layer: 5
   m_Name: Belorussian
   m_TagString: Untagged
@@ -2035,6 +2092,18 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!225 &102975800029876886
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8007978221345021040}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1001 &3428929705142384181
 PrefabInstance:
   m_ObjectHideFlags: 0

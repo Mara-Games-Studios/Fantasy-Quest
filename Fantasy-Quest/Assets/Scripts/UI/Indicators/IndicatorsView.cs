@@ -58,7 +58,7 @@ public class IndicatorsView : MonoBehaviour
     
     private void ShowIndicates(View view)
     {
-        if (view.VerticalButtons == null)
+        if (view.VerticalButtons == null || view.VerticalButtons.Count == 0)
             return;
         
         effectModel.Indicators.gameObject.SetActive(true);
