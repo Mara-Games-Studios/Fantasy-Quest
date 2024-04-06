@@ -37,6 +37,12 @@ namespace UI.Pages.Behaviours
                 LayoutModel.CurrentButtonIndex = LayoutModel.VerticalButtons.Count - 1;
             }
 
+            if (!LayoutModel.VerticalButtons[LayoutModel.CurrentButtonIndex].gameObject.activeSelf)
+            {
+                GoDown();
+                return;
+            }
+            
             ShowOn(LayoutModel.VerticalButtons[LayoutModel.CurrentButtonIndex], EffectModel);
         }
 
@@ -50,6 +56,12 @@ namespace UI.Pages.Behaviours
             if (LayoutModel.CurrentButtonIndex >= LayoutModel.VerticalButtons.Count)
             {
                 LayoutModel.CurrentButtonIndex = 0;
+            }
+            
+            if (!LayoutModel.VerticalButtons[LayoutModel.CurrentButtonIndex].gameObject.activeSelf)
+            {
+                GoUp();
+                return;
             }
 
             ShowOn(LayoutModel.VerticalButtons[LayoutModel.CurrentButtonIndex], EffectModel);

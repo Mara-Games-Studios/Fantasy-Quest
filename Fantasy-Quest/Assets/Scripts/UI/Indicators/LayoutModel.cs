@@ -8,7 +8,7 @@ namespace UI.Indicators
         public List<IndicatedButton> VerticalButtons;
         public MainMenuInput MainMenuInput;
         public int CurrentButtonIndex;
-
+        
         public LayoutModel()
         {
             MainMenuInput = new MainMenuInput();

@@ -8,7 +8,8 @@ using UnityEngine;
 [AddComponentMenu("Scripts/UI/UI.IndicatorShower")]
 public class IndicatorsView : MonoBehaviour
 {
-    [SerializeField] private EffectModel effectModel;
+    [SerializeField] 
+    private EffectModel effectModel;
     
     private LayoutModel layoutModel ;
     private List<IndicatorsBehaviour> indicatorsBehaviours;

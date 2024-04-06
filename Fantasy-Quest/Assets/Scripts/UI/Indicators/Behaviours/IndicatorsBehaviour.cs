@@ -9,6 +9,7 @@ namespace UI.Pages.Behaviours
     {
         protected LayoutModel LayoutModel;
         protected EffectModel EffectModel;
+        protected static event Action<Button> OnButtonShowed;
 
         public IndicatorsBehaviour(LayoutModel layoutModel, EffectModel effectModel)
         {
@@ -17,8 +18,9 @@ namespace UI.Pages.Behaviours
         }
 
         public abstract void Enable();
+        
         public abstract void Disable();
-    
+        
         public static void ShowOn(Button button, EffectModel effectModel)
         {
             var rectTransform = button.GetComponent<RectTransform>();
@@ -26,6 +28,7 @@ namespace UI.Pages.Behaviours
             effectModel.Indicators.spacing = spacing;
             effectModel.Indicators.padding.left = (-spacing / 2) - effectModel.DefaultLeftOffset;
             effectModel.RectTransform.position = rectTransform.position;
+            OnButtonShowed?.Invoke(button);
         }
     }
 }

@@ -11,6 +11,8 @@ namespace UI.Indicators
     {
         [Required] 
         public HorizontalLayoutGroup Indicators;
+        [Required]
+        public IndicatorsButtons IndicatorsButtons;
         [Required] 
         public CanvasGroup IndicatorsAlpha;
         [HideInInspector] 
