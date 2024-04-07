@@ -11,13 +11,15 @@ namespace Hints
     {
         [Header("Show Settings")]
         [SerializeField]
-        private float fadeInDuration = 1f;
+        private float fadeInDuration = 0.6f;
 
         [SerializeField]
         private float fadeOutDuration = 0.3f;
 
         [SerializeField]
         private List<SpriteRenderer> keyboardSpriteRenderer;
+
+        private Tween fadeTween;
 
         private void Awake()
         {
@@ -53,11 +55,13 @@ namespace Hints
 
         private void FadeIn(float duration)
         {
+            fadeTween?.Kill();
             Fade(1f, duration, () => { });
         }
 
         private void FadeOut(float duration)
         {
+            fadeTween?.Kill();
             Fade(0f, duration, () => { });
         }
 
@@ -65,7 +69,6 @@ namespace Hints
         {
             foreach (SpriteRenderer kbRenderer in keyboardSpriteRenderer)
             {
-                Tween fadeTween;
                 fadeTween = kbRenderer.DOFade(endValue, duration);
                 fadeTween.onComplete += onEnd;
             }
