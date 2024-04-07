@@ -1606,7 +1606,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5820456632444917105, guid: 36a8a007deec36c4b98d6cefe59aa177, type: 3}
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 1988344640291765770, guid: 36a8a007deec36c4b98d6cefe59aa177, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 1041365443762272578, guid: 36a8a007deec36c4b98d6cefe59aa177, type: 3}
       insertIndex: 0
@@ -1646,6 +1647,7 @@ MonoBehaviour:
     m_Signals:
     - {fileID: 11400000, guid: e28396f18fab1e442abf77d468479a1a, type: 2}
     - {fileID: 11400000, guid: 657523eb1901cde4ab5b413477a4ffdf, type: 2}
+    - {fileID: 11400000, guid: 719a0351e75ac8f4da925bea4bdb31ad, type: 2}
     m_Events:
     - m_PersistentCalls:
         m_Calls:
@@ -1666,6 +1668,20 @@ MonoBehaviour:
         - m_Target: {fileID: 11400000, guid: 4c552f663c8ac264d9f53fc8accc92d3, type: 2}
           m_TargetAssemblyTypeName: Configs.LockerSettings, Assembly-CSharp
           m_MethodName: UnlockAll
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 11400000, guid: 4c552f663c8ac264d9f53fc8accc92d3, type: 2}
+          m_TargetAssemblyTypeName: Configs.LockerSettings, Assembly-CSharp
+          m_MethodName: LockInteraction
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -2136,8 +2152,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 1
   m_ShadowVolumeIntensity: 0.869
   m_LocalBounds:
-    m_Center: {x: -1.7871499, y: -5.6008997, z: 0}
-    m_Extent: {x: 1.95525, y: 1.8527, z: 0}
+    m_Center: {x: -1.7893499, y: -5.5961, z: 0}
+    m_Extent: {x: 1.95075, y: 1.8636999, z: 0}
   m_PointLightInnerAngle: 359.6
   m_PointLightOuterAngle: 359.6
   m_PointLightInnerRadius: 2
@@ -2369,11 +2385,9 @@ GameObject:
   - component: {fileID: 350709315}
   - component: {fileID: 350709314}
   - component: {fileID: 350709318}
-  - component: {fileID: 350709321}
   - component: {fileID: 350709313}
   - component: {fileID: 350709317}
   - component: {fileID: 350709319}
-  - component: {fileID: 350709320}
   m_Layer: 3
   m_Name: Knot
   m_TagString: Untagged
@@ -2566,7 +2580,7 @@ MonoBehaviour:
   canCatInteract: 1
   animator: {fileID: 350709314}
   state: 0
-  hintToDisable: {fileID: 0}
+  hintToDisable: {fileID: 854482669}
 --- !u!114 &350709319
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2581,34 +2595,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boxCollider: {fileID: 350709317}
   color: {r: 1, g: 1, b: 1, a: 1}
---- !u!114 &350709320
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 350709311}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2a7df89ef3e01b14ab822c019ac480aa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  emoteType: 0
-  emoteIcons:
-  - {fileID: 21300000, guid: 617b9e4a28106614fa95f8b8502bfd49, type: 3}
---- !u!114 &350709321
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 350709311}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 68407cf4eee89a540a5055561d395067, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hintToDisable: {fileID: 854482669}
 --- !u!1001 &356808517
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2667,7 +2653,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8983533328905800291, guid: 5d3b0168371d4d74bb8508d8b8cf29aa, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -23.1
+      value: -23.53
       objectReference: {fileID: 0}
     - target: {fileID: 8983533328905800291, guid: 5d3b0168371d4d74bb8508d8b8cf29aa, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2788,8 +2774,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 1
   m_ShadowVolumeIntensity: 0.869
   m_LocalBounds:
-    m_Center: {x: -1.3452, y: -5.57775, z: 0}
-    m_Extent: {x: 1.7538, y: 1.92155, z: 0}
+    m_Center: {x: -1.3436999, y: -5.5715504, z: 0}
+    m_Extent: {x: 1.7628, y: 1.9254501, z: 0}
   m_PointLightInnerAngle: 359.6
   m_PointLightOuterAngle: 359.6
   m_PointLightInnerRadius: 2
@@ -3756,6 +3742,8 @@ PlayableDirector:
     value: {fileID: 1054450560}
   - key: {fileID: 911205587709579374, guid: 6e2f3bbdb82d7f14e9550f026d925f01, type: 2}
     value: {fileID: 1479972681942824263}
+  - key: {fileID: -6411191211941495194, guid: 6e2f3bbdb82d7f14e9550f026d925f01, type: 2}
+    value: {fileID: 7703565356622517976}
   m_ExposedReferences:
     m_References:
     - 58fd55e20482bd44c9d7d5e822af5fe1: {fileID: 6732909966977288568}
@@ -5318,8 +5306,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 1
   m_ShadowVolumeIntensity: 0.869
   m_LocalBounds:
-    m_Center: {x: 0.45880002, y: -5.5925503, z: 0}
-    m_Extent: {x: 1.4602001, y: 1.9588501, z: 0}
+    m_Center: {x: 0.45975, y: -5.5808, z: 0}
+    m_Extent: {x: 1.4598501, y: 1.9596, z: 0}
   m_PointLightInnerAngle: 359.6
   m_PointLightOuterAngle: 359.6
   m_PointLightInnerRadius: 2
@@ -6892,7 +6880,7 @@ PlayableDirector:
   - key: {fileID: -753891978912502061, guid: 786ca155ecfb04c4c93ebad3395f0152, type: 2}
     value: {fileID: 63751185}
   - key: {fileID: -2492968258865876165, guid: 786ca155ecfb04c4c93ebad3395f0152, type: 2}
-    value: {fileID: 0}
+    value: {fileID: 498059925}
   - key: {fileID: -804512760886757792, guid: 786ca155ecfb04c4c93ebad3395f0152, type: 2}
     value: {fileID: 1474902135}
   - key: {fileID: 8891000346775836935, guid: 786ca155ecfb04c4c93ebad3395f0152, type: 2}
@@ -10027,8 +10015,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 1
   m_ShadowVolumeIntensity: 0.869
   m_LocalBounds:
-    m_Center: {x: -2.8887498, y: -7.5179996, z: 0}
-    m_Extent: {x: 1.9913499, y: 1.2709997, z: 0}
+    m_Center: {x: -2.88675, y: -7.52355, z: 0}
+    m_Extent: {x: 1.98415, y: 1.2673502, z: 0}
   m_PointLightInnerAngle: 359.6
   m_PointLightOuterAngle: 359.6
   m_PointLightInnerRadius: 2
@@ -10895,8 +10883,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 1
   m_ShadowVolumeIntensity: 0.869
   m_LocalBounds:
-    m_Center: {x: -0.66195005, y: -7.4307, z: 0}
-    m_Extent: {x: 2.60865, y: 1.3297, z: 0}
+    m_Center: {x: -0.66355, y: -7.4321995, z: 0}
+    m_Extent: {x: 2.5977502, y: 1.3309, z: 0}
   m_PointLightInnerAngle: 359.6
   m_PointLightOuterAngle: 359.6
   m_PointLightInnerRadius: 2
@@ -12269,6 +12257,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4994989475704801607, guid: b226e54f4be684b4f82c70458cacaaab, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7703565356622517975}
+    - targetCorrespondingSourceObject: {fileID: 4994989475704801607, guid: b226e54f4be684b4f82c70458cacaaab, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7703565356622517976}
     - targetCorrespondingSourceObject: {fileID: 905931653165027739, guid: b226e54f4be684b4f82c70458cacaaab, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1054450555}
@@ -12322,6 +12313,36 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &7703565356622517976
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7703565356622517966}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Events:
+    m_Signals:
+    - {fileID: 11400000, guid: 657523eb1901cde4ab5b413477a4ffdf, type: 2}
+    m_Events:
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 7703565356622517968}
+          m_TargetAssemblyTypeName: Cat.Movement, Assembly-CSharp
+          m_MethodName: ReTriggerVector
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1001 &8855840689283057129
 PrefabInstance:
   m_ObjectHideFlags: 0
