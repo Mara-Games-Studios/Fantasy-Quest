@@ -7,6 +7,7 @@ namespace DialogueBubble
     [AddComponentMenu("Scripts/DialogueBubble/DialogueBubble.EmoteBubbleRotate")]
     internal class EmoteBubbleRotate : MonoBehaviour
     {
+        [Required]
         [SerializeField]
         private Movement catMovement;
 
