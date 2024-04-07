@@ -5,7 +5,7 @@ using UI.Pages;
 using UI.Pages.Behaviours;
 using UnityEngine;
 
-[AddComponentMenu("Scripts/UI/UI.IndicatorShower")]
+[AddComponentMenu("Scripts/UI/UI.IndicatorsView")]
 public class IndicatorsView : MonoBehaviour
 {
     [SerializeField] 

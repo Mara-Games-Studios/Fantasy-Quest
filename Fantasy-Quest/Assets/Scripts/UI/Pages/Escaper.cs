@@ -2,7 +2,7 @@
 
 namespace UI
 {
-    [AddComponentMenu("Scripts/UI/Pages/Pages.Escaper")]
+    [AddComponentMenu("Scripts/UI/Pages/UI.Pages.Escaper")]
     public class Escaper : MonoBehaviour
     {
         private Pages.View currentPage;
@@ -27,7 +27,7 @@ namespace UI
             mainMenuInput.UI.Exit.performed -= ctx => Exit();
         }
         
-        private void Exit()
+        public void Exit()
         {
             if (currentPage == null)
                 return;

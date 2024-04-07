@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using DG.Tweening;
 using UnityEngine;
@@ -12,6 +11,7 @@ namespace UI.Pages
         public void MoveRight();
     }
     
+    [AddComponentMenu("Scripts/UI/Pages/Buttons/UI.Pages.Buttons.HorizontalSlider")]
     public class HorizontalSlider : MonoBehaviour, IHorizontalSlider
     {
         [SerializeField] 

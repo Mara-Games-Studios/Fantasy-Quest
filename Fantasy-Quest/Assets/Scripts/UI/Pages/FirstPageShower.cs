@@ -2,9 +2,11 @@
 
 namespace UI
 {
+    [AddComponentMenu("Scripts/UI/Pages/UI.Pages.FirstPageShower")]
     public class FirstPageShower : MonoBehaviour
     {
-        [SerializeField] private Pages.View page;
+        [SerializeField] 
+        private Pages.View page;
 
         private void Start()
         {

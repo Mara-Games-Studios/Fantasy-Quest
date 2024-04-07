@@ -4,8 +4,8 @@ using UnityEngine;
 
 namespace UI.Pages
 {
-    [AddComponentMenu("Scripts/UI/Pages/UI.Pages.PageEffectsShower")]
-    public class PageEffectsShower: MonoBehaviour
+    [AddComponentMenu("Scripts/UI/Pages/UI.Pages.EffectsShower")]
+    public class EffectsShower: MonoBehaviour
     {
         [SerializeField]
         private PageInfo pageInfo;

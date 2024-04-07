@@ -4,10 +4,10 @@ using UnityEngine;
 namespace UI.Pages
 {
     [AddComponentMenu("Scripts/UI/Pages/UI.Pages.View")]
-    [RequireComponent(typeof(PageEffectsShower))]
+    [RequireComponent(typeof(EffectsShower))]
     public class View : MonoBehaviour
     { 
-        private PageEffectsShower pagePageEffectShower;
+        private EffectsShower effectShower;
         private int effectsShowedAmount;
 
         public View PreviousPage;
@@ -19,42 +19,42 @@ namespace UI.Pages
 
         private void Awake()
         {
-            pagePageEffectShower = GetComponent<PageEffectsShower>();
-            pagePageEffectShower.Initialize();
+            effectShower = GetComponent<EffectsShower>();
+            effectShower.Initialize();
         }
 
         private void OnEnable()
         {
-            pagePageEffectShower.OnEffectShowed += () => OnPageShowed?.Invoke(this);
+            effectShower.OnEffectShowed += () => OnPageShowed?.Invoke(this);
         }
         
         private void OnDisable()
         {
-            pagePageEffectShower.OnEffectShowed -= () => OnPageShowed.Invoke(this);
+            effectShower.OnEffectShowed -= () => OnPageShowed.Invoke(this);
         }
 
         public void ShowFromStart()
         {
-            pagePageEffectShower.ShowFromStart();
+            effectShower.ShowFromStart();
             OnPageShowing?.Invoke(this);
         }
 
         public void ShowFromEnd()
         {
-            pagePageEffectShower.ShowFromEnd();
+            effectShower.ShowFromEnd();
             OnPageShowing?.Invoke(this);
         }
         
         public void HideToStart()
         {
             OnPageHiding?.Invoke();
-            pagePageEffectShower.HideToStart();
+            effectShower.HideToStart();
         }
         
         public void HideToEnd()
         {
             OnPageHiding?.Invoke();
-            pagePageEffectShower.HideToEnd();
+            effectShower.HideToEnd();
         }
     }
 }
