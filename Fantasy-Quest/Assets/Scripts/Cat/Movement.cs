@@ -107,6 +107,11 @@ namespace Cat
             }
         }
 
+        public void ReTriggerVector()
+        {
+            OnStateChanged?.Invoke(State);
+        }
+
         public void ChangeVector(Vector newVector)
         {
             Vector = newVector;
