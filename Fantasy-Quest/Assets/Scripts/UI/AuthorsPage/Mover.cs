@@ -1,6 +1,7 @@
 ﻿using DG.Tweening;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace UI.AuthorsPage
 {
@@ -32,17 +33,30 @@ namespace UI.AuthorsPage
         private Pages.View pageParent;
 
         private Tween movementTween;
+
+        public UnityEvent OnMovementStarting;
+        public UnityEvent OnMovementEnded; 
         
         private void OnEnable()
         {
             Pages.View.OnPageShowed += TryMove;
+            Pages.View.OnPageHiding += TryHide;
         }
 
         private void TryMove(Pages.View view)
         {
             if (view.Equals(pageParent))
             {
+                OnMovementStarting?.Invoke();
                 Move();
+            }
+        }
+
+        private void TryHide(Pages.View view)
+        {
+            if (view.Equals(pageParent))
+            {
+                OnMovementEnded?.Invoke();
             }
         }
         

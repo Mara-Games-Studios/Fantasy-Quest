@@ -68,7 +68,7 @@ public class IndicatorsView : MonoBehaviour
         _ = effectModel.IndicatorsAlpha.DOFade(effectModel.MaxAlpha, effectModel.FadeDuration);
     }
     
-    private void HideIndicates()
+    private void HideIndicates(View view)
     {
         effectModel.VanishingTween?.Kill();
         effectModel.VanishingTween = effectModel.IndicatorsAlpha.DOFade(effectModel.MinAlpha, 0);

@@ -15,7 +15,7 @@ namespace UI.Pages
         
         public static event System.Action<View> OnPageShowing;
         public static event System.Action<View> OnPageShowed;
-        public static event System.Action OnPageHiding;
+        public static event System.Action<View> OnPageHiding;
 
         private void Awake()
         {
@@ -47,13 +47,13 @@ namespace UI.Pages
         
         public void HideToStart()
         {
-            OnPageHiding?.Invoke();
+            OnPageHiding?.Invoke(this);
             effectShower.HideToStart();
         }
         
         public void HideToEnd()
         {
-            OnPageHiding?.Invoke();
+            OnPageHiding?.Invoke(this);
             effectShower.HideToEnd();
         }
     }
