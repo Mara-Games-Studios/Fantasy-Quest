@@ -19,7 +19,7 @@ namespace LevelSpecific.ForestEdge
         [Header("Bounds")]
         [Required]
         [SerializeField]
-        private Collider2D boundsCollider;
+        private BoxCollider2D bounds;
 
         [ReadOnly]
         [SerializeField]
@@ -35,27 +35,17 @@ namespace LevelSpecific.ForestEdge
 
         [Header("Walk Time")]
         [SerializeField]
-        private float minWalkTime;
+        private float minMoveTime;
 
         [SerializeField]
-        private float maxWalkTime;
+        private float maxMoveTime;
 
-        [Header("Run Time")]
-        [SerializeField]
-        private float minRunTime;
-
-        [SerializeField]
-        private float maxRunTime;
-
-        private Bounds bounds;
-        private Vector2 randomPoint;
-
-        public UnityAction StateChanged;
+        public Vector2 RandomPoint;
+        public UnityAction<ChickenState> StateChanged;
 
         private void Start()
         {
-            bounds = boundsCollider.bounds;
-            randomPoint = RandomPointInBounds(bounds);
+            RandomPoint = RandomPointInBounds(bounds);
             ChooseState(ChickenState.idle);
         }
 
@@ -64,14 +54,14 @@ namespace LevelSpecific.ForestEdge
             StateChanged += ChangeChickenState;
         }
 
-        private void ChangeChickenState()
+        private void ChangeChickenState(ChickenState state)
         {
-            _ = StartCoroutine(SwitchChickenState());
+            _ = StartCoroutine(SwitchChickenState(state));
         }
 
-        private IEnumerator SwitchChickenState()
+        private IEnumerator SwitchChickenState(ChickenState state)
         {
-            switch (chickenState)
+            switch (state)
             {
                 case ChickenState.idle:
                     float idleTime = UnityEngine.Random.Range(minIdleTime, maxIdleTime);
@@ -79,36 +69,24 @@ namespace LevelSpecific.ForestEdge
                     ChooseRandomState();
                     break;
                 case ChickenState.walk:
-                    float walkTime = UnityEngine.Random.Range(maxWalkTime, minWalkTime);
-                    yield return WalkToPosition(walkTime);
-                    ChooseRandomState();
-                    break;
                 case ChickenState.run:
-                    float runTime = UnityEngine.Random.Range(minRunTime, maxRunTime);
-                    yield return RunToPosition(runTime);
+                    RandomPoint = RandomPointInBounds(bounds);
+                    float runTime = UnityEngine.Random.Range(minMoveTime, maxMoveTime);
+                    yield return MoveToPosition(runTime);
                     ChooseRandomState();
                     break;
             }
         }
 
-        private IEnumerator WalkToPosition(float duration)
+        private IEnumerator MoveToPosition(float duration)
         {
             float time = 0;
+            Vector2 startPos = transform.position;
             while (time < duration)
             {
                 time += Time.deltaTime;
-                transform.position = Vector2.Lerp(transform.position, randomPoint, time / duration);
-                yield return null;
-            }
-        }
 
-        private IEnumerator RunToPosition(float duration)
-        {
-            float time = 0;
-            while (time < duration)
-            {
-                time += Time.deltaTime;
-                transform.position = Vector2.Lerp(transform.position, randomPoint, time / duration);
+                transform.position = Vector2.Lerp(startPos, RandomPoint, time / duration);
                 yield return null;
             }
         }
@@ -118,25 +96,29 @@ namespace LevelSpecific.ForestEdge
             yield return new WaitForSeconds(duration);
         }
 
-        public Vector2 RandomPointInBounds(Bounds bounds)
+        public Vector2 RandomPointInBounds(BoxCollider2D boxCollider)
         {
-            return new Vector2(
-                UnityEngine.Random.Range(bounds.min.x, bounds.max.x),
-                UnityEngine.Random.Range(bounds.min.y, bounds.max.y)
-            );
+            Vector3 extents = boxCollider.size / 2;
+            Vector3 point =
+                new(
+                    UnityEngine.Random.Range(-extents.x, extents.x),
+                    UnityEngine.Random.Range(-extents.y, extents.y)
+                );
+
+            return boxCollider.transform.TransformPoint(point);
         }
 
         private void ChooseRandomState()
         {
             chickenState = (ChickenState)
                 UnityEngine.Random.Range(0, Enum.GetValues(typeof(ChickenState)).Length);
-            StateChanged?.Invoke();
+            StateChanged?.Invoke(chickenState);
         }
 
         private void ChooseState(ChickenState state)
         {
             chickenState = state;
-            StateChanged?.Invoke();
+            StateChanged?.Invoke(chickenState);
         }
 
         private void OnDisable()
