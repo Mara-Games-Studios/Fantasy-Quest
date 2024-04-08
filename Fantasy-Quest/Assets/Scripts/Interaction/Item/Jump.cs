@@ -34,7 +34,7 @@ namespace Interaction.Item
 
         [Header("Movement return correction")]
         [SerializeField]
-        private float waitOffset = -0.2f;
+        private float waitOffset = 0.3f;
 
         private void StartJump()
         {

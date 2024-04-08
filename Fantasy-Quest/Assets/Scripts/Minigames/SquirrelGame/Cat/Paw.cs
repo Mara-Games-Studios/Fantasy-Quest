@@ -7,11 +7,11 @@ namespace Minigames.SquirrelGame
     [AddComponentMenu("Scripts/Minigames/SquirrelGame/Cat/Minigames.SquirrelGame.Cat.Paw")]
     internal class Paw : MonoBehaviour, ISquirrelTouchable
     {
-        [Required]
+        [RequiredIn(PrefabKind.PrefabInstanceAndNonPrefabInstance)]
         [SerializeField]
         private Manager manager;
 
-        [Required]
+        [RequiredIn(PrefabKind.PrefabInstanceAndNonPrefabInstance)]
         [SerializeField]
         private Rigidbody2D rigidBody;
 
@@ -25,8 +25,7 @@ namespace Minigames.SquirrelGame
         [SerializeField]
         private bool inputEnabled = false;
 
-        [Required]
-        [SerializeField]
+        [RequiredIn(PrefabKind.PrefabInstanceAndNonPrefabInstance)]
         private Transform bindPrizeTransform;
         public Transform BindPrizeTransform => bindPrizeTransform;
 
@@ -49,7 +48,7 @@ namespace Minigames.SquirrelGame
             get => inputEnabled;
         }
 
-        [Required]
+        [RequiredIn(PrefabKind.PrefabInstanceAndNonPrefabInstance)]
         [SerializeField]
         private Transform startPosition;
 

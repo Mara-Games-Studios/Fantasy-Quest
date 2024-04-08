@@ -9,7 +9,7 @@ namespace DialogueBubble
     {
         public bool CanShow;
         public Type BubbleType;
-        public List<Sprite> Icons;
+        public List<Sprite> EmoteIcons;
     }
 
     [AddComponentMenu("Scripts/DialogueBubble/DialogueBubble.EventSystem")]
