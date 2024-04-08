@@ -5,7 +5,7 @@ using UnityEngine;
 namespace UI.Pages
 {
     [AddComponentMenu("Scripts/UI/Pages/UI.Pages.EffectsShower")]
-    public class EffectsShower: MonoBehaviour
+    public class EffectsShower : MonoBehaviour
     {
         [SerializeField]
         private PageInfo pageInfo;
@@ -21,7 +21,7 @@ namespace UI.Pages
 
         [SerializeField]
         private float moveDuration = 1.5f;
-        
+
         [SerializeField]
         private float fadeDuration = 1.5f;
 
@@ -29,7 +29,7 @@ namespace UI.Pages
         private Tween fadeTween;
 
         public event Action OnEffectShowed;
-        
+
         public void Initialize()
         {
             pageInfo.CanvasGroup.alpha = minAlpha;
@@ -42,7 +42,7 @@ namespace UI.Pages
             MoveToPoint(pivotPoints.StartPoint);
             Show();
         }
-        
+
         public void ShowFromEnd()
         {
             MoveToPoint(pivotPoints.EndPoint);
@@ -53,10 +53,10 @@ namespace UI.Pages
         {
             pageInfo.CanvasGroup.gameObject.SetActive(true);
             StopTweens();
-            
+
             fadeTween = pageInfo.CanvasGroup.DOFade(maxAlpha, fadeDuration);
             fadeTween.onComplete += () => OnEffectShowed?.Invoke();
-            
+
             moveTween = pageInfo.RectTransform.DOMove(
                 pivotPoints.MiddlePoint.position,
                 moveDuration
@@ -67,11 +67,8 @@ namespace UI.Pages
         {
             StopTweens();
             fadeTween = pageInfo.CanvasGroup.DOFade(minAlpha, fadeDuration);
-            
-            moveTween = pageInfo.RectTransform.DOMove(
-                pivotPoints.EndPoint.position,
-                moveDuration
-            );
+
+            moveTween = pageInfo.RectTransform.DOMove(pivotPoints.EndPoint.position, moveDuration);
 
             moveTween.onComplete += () => MoveToPoint(pivotPoints.StartPoint);
         }
@@ -80,7 +77,7 @@ namespace UI.Pages
         {
             StopTweens();
             fadeTween = pageInfo.CanvasGroup.DOFade(minAlpha, fadeDuration);
-            
+
             moveTween = pageInfo.RectTransform.DOMove(
                 pivotPoints.StartPoint.position,
                 moveDuration
@@ -88,14 +85,14 @@ namespace UI.Pages
 
             moveTween.onComplete += () => MoveToPoint(pivotPoints.StartPoint);
         }
-        
+
         private void MoveToPoint(RectTransform point)
         {
-            pageInfo.RectTransform.DOMove(point.position, 0);
-            pageInfo.CanvasGroup.DOFade(minAlpha, 0);
+            _ = pageInfo.RectTransform.DOMove(point.position, 0);
+            _ = pageInfo.CanvasGroup.DOFade(minAlpha, 0);
             pageInfo.CanvasGroup.gameObject.SetActive(false);
         }
-        
+
         private void StopTweens()
         {
             moveTween?.Kill();

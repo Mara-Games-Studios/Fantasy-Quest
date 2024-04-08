@@ -18,13 +18,15 @@ namespace UI.Pages.Behaviours
         }
 
         public abstract void Enable();
-        
+
         public abstract void Disable();
-        
+
         public static void ShowOn(Button button, EffectModel effectModel)
         {
-            var rectTransform = button.GetComponent<RectTransform>();
-            int spacing = Convert.ToInt32(Mathf.Round(rectTransform.rect.width)) + effectModel.AdditiveSpacing;
+            RectTransform rectTransform = button.GetComponent<RectTransform>();
+            int spacing =
+                Convert.ToInt32(Mathf.Round(rectTransform.rect.width))
+                + effectModel.AdditiveSpacing;
             effectModel.Indicators.spacing = spacing;
             effectModel.Indicators.padding.left = (-spacing / 2) - effectModel.DefaultLeftOffset;
             effectModel.RectTransform.position = rectTransform.position;

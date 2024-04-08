@@ -5,14 +5,14 @@ namespace UI
     [AddComponentMenu("Scripts/UI/Pages/UI.Pages.FirstPageShower")]
     public class FirstPageShower : MonoBehaviour
     {
-        [SerializeField] 
+        [SerializeField]
         private Pages.View page;
 
         private void Start()
         {
             page.ShowFromStart();
         }
-        
-        //in future -- cutscene starter then first page shower 
+
+        //in future -- cutscene starter then first page shower
     }
 }

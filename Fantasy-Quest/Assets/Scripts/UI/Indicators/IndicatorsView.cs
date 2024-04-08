@@ -8,20 +8,20 @@ using UnityEngine;
 [AddComponentMenu("Scripts/UI/UI.IndicatorsView")]
 public class IndicatorsView : MonoBehaviour
 {
-    [SerializeField] 
+    [SerializeField]
     private EffectModel effectModel;
-    
-    private LayoutModel layoutModel ;
+
+    private LayoutModel layoutModel;
     private List<IndicatorsBehaviour> indicatorsBehaviours;
 
     private void Awake()
     {
         layoutModel = new LayoutModel();
         effectModel.Initialize();
-        
+
         indicatorsBehaviours = new List<IndicatorsBehaviour>()
         {
-            new IndicatorsKeyboardBehaviour(layoutModel, effectModel), 
+            new IndicatorsKeyboardBehaviour(layoutModel, effectModel),
             new IndicatorsMouseBehaviour(layoutModel, effectModel)
         };
     }
@@ -31,8 +31,8 @@ public class IndicatorsView : MonoBehaviour
         View.OnPageShowed += UpdateLayoutModel;
         View.OnPageShowed += ShowIndicates;
         View.OnPageHiding += HideIndicates;
-        
-        foreach (var behaviour in indicatorsBehaviours)
+
+        foreach (IndicatorsBehaviour behaviour in indicatorsBehaviours)
         {
             behaviour.Enable();
         }
@@ -44,7 +44,7 @@ public class IndicatorsView : MonoBehaviour
         View.OnPageShowed -= ShowIndicates;
         View.OnPageHiding -= HideIndicates;
 
-        foreach (var behaviour in indicatorsBehaviours)
+        foreach (IndicatorsBehaviour behaviour in indicatorsBehaviours)
         {
             behaviour.Disable();
         }
@@ -55,19 +55,21 @@ public class IndicatorsView : MonoBehaviour
         layoutModel.VerticalButtons = view.VerticalButtons;
         layoutModel.CurrentButtonIndex = 0;
     }
-    
+
     private void ShowIndicates(View view)
     {
         if (view.VerticalButtons == null || view.VerticalButtons.Count == 0)
+        {
             return;
-        
+        }
+
         effectModel.Indicators.gameObject.SetActive(true);
         layoutModel.CurrentButtonIndex = layoutModel.VerticalButtons.Count - 1;
         IndicatorsBehaviour.ShowOn(layoutModel.VerticalButtons[^1], effectModel);
         effectModel.VanishingTween?.Kill();
         _ = effectModel.IndicatorsAlpha.DOFade(effectModel.MaxAlpha, effectModel.FadeDuration);
     }
-    
+
     private void HideIndicates(View view)
     {
         effectModel.VanishingTween?.Kill();

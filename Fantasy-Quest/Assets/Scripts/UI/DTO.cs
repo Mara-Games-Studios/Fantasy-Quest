@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 namespace UI
 {
-    
     [Serializable]
     public struct PageInfo
     {

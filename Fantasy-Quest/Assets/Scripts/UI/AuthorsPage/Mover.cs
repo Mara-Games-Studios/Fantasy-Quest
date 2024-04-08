@@ -9,34 +9,34 @@ namespace UI.AuthorsPage
     public class Mover : MonoBehaviour
     {
         [Required]
-        [SerializeField] 
+        [SerializeField]
         private RectTransform movedElement;
-        
+
         [Required]
-        [SerializeField] 
+        [SerializeField]
         private RectTransform startPoint;
 
-        [Required]        
-        [SerializeField] 
+        [Required]
+        [SerializeField]
         private RectTransform endPoint;
 
-        [SerializeField] 
+        [SerializeField]
         private float movementTime = 15f;
 
-        [SerializeField] 
+        [SerializeField]
         private Ease movementEase = Ease.Linear;
 
-        [SerializeField] 
+        [SerializeField]
         private Escaper escaper;
 
-        [SerializeField] 
+        [SerializeField]
         private Pages.View pageParent;
 
         private Tween movementTween;
 
         public UnityEvent OnMovementStarting;
-        public UnityEvent OnMovementEnded; 
-        
+        public UnityEvent OnMovementEnded;
+
         private void OnEnable()
         {
             Pages.View.OnPageShowed += TryMove;
@@ -59,14 +59,16 @@ namespace UI.AuthorsPage
                 OnMovementEnded?.Invoke();
             }
         }
-        
+
         private void Move()
         {
             Reset();
-            movementTween = movedElement.DOMove(endPoint.position, movementTime).SetEase(movementEase);
+            movementTween = movedElement
+                .DOMove(endPoint.position, movementTime)
+                .SetEase(movementEase);
             movementTween.onComplete += () =>
             {
-                Reset(); 
+                Reset();
                 escaper.Exit();
             };
         }
@@ -74,10 +76,9 @@ namespace UI.AuthorsPage
         private void Reset()
         {
             movementTween?.Kill();
-            movedElement.DOMove(startPoint.position, 0);
+            _ = movedElement.DOMove(startPoint.position, 0);
         }
-        
-        
+
         private void OnDisable()
         {
             Pages.View.OnPageShowed -= TryMove;

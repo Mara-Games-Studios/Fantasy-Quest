@@ -9,13 +9,16 @@ namespace UI.Indicators
     [Serializable]
     public class EffectModel
     {
-        [Required] 
+        [Required]
         public HorizontalLayoutGroup Indicators;
+
         [Required]
         public IndicatorsButtons IndicatorsButtons;
-        [Required] 
+
+        [Required]
         public CanvasGroup IndicatorsAlpha;
-        [HideInInspector] 
+
+        [HideInInspector]
         public RectTransform RectTransform;
         public Tween VanishingTween;
         public float FadeDuration = 1f;

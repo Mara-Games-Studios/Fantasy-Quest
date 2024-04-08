@@ -9,16 +9,16 @@ namespace UI.ControlPage
     [AddComponentMenu("Scripts/UI/ControlPage/UI.ControlPage.ControlButtonsPresser")]
     public class ControlButtonsPresser : MonoBehaviour
     {
-        [SerializeField] 
+        [SerializeField]
         private ControlButtonsBackgrounds controlButtonsBackgrounds;
 
-        [SerializeField] 
+        [SerializeField]
         private Color pressedColor;
 
-        [SerializeField] 
+        [SerializeField]
         private float duration = 1f;
 
-        [SerializeField] 
+        [SerializeField]
         private float maxFade = 0.8f;
 
         private List<Button> buttons;
@@ -30,7 +30,7 @@ namespace UI.ControlPage
             mainMenuInput.Enable();
             controlButtonsBackgrounds.Initialize();
 
-            foreach (var background in controlButtonsBackgrounds.AllBackgrounds)
+            foreach (Image background in controlButtonsBackgrounds.AllBackgrounds)
             {
                 background.gameObject.SetActive(true);
                 background.color = new Color(pressedColor.r, pressedColor.g, pressedColor.b, 0f);
@@ -39,66 +39,74 @@ namespace UI.ControlPage
 
         private void OnEnable()
         {
-            mainMenuInput.UI.Up.started += ctx => { Press(controlButtonsBackgrounds.Up); };
-            mainMenuInput.UI.Up.canceled += ctx => { UnPress(controlButtonsBackgrounds.Up); };
-            
-            mainMenuInput.UI.Left.started += ctx => { Press(controlButtonsBackgrounds.Left); };
-            mainMenuInput.UI.Left.canceled += ctx => { UnPress(controlButtonsBackgrounds.Left); };
-            
-            mainMenuInput.UI.Down.started += ctx => { Press(controlButtonsBackgrounds.Down); };
-            mainMenuInput.UI.Down.canceled += ctx => { UnPress(controlButtonsBackgrounds.Down); };
+            mainMenuInput.UI.Up.started += ctx => Press(controlButtonsBackgrounds.Up);
+            mainMenuInput.UI.Up.canceled += ctx => UnPress(controlButtonsBackgrounds.Up);
 
-            mainMenuInput.UI.Right.started += ctx => { Press(controlButtonsBackgrounds.Right); };
-            mainMenuInput.UI.Right.canceled += ctx => { UnPress(controlButtonsBackgrounds.Right); };
+            mainMenuInput.UI.Left.started += ctx => Press(controlButtonsBackgrounds.Left);
+            mainMenuInput.UI.Left.canceled += ctx => UnPress(controlButtonsBackgrounds.Left);
 
-            mainMenuInput.UI.CatInteraction.started += ctx => { Press(controlButtonsBackgrounds.CatInteraction); };
-            mainMenuInput.UI.CatInteraction.canceled += ctx => { UnPress(controlButtonsBackgrounds.CatInteraction); };
+            mainMenuInput.UI.Down.started += ctx => Press(controlButtonsBackgrounds.Down);
+            mainMenuInput.UI.Down.canceled += ctx => UnPress(controlButtonsBackgrounds.Down);
 
-            mainMenuInput.UI.HumanInteraction.started += ctx => { Press(controlButtonsBackgrounds.HumanInteraction); };
-            mainMenuInput.UI.HumanInteraction.canceled += ctx => { UnPress(controlButtonsBackgrounds.HumanInteraction); };
+            mainMenuInput.UI.Right.started += ctx => Press(controlButtonsBackgrounds.Right);
+            mainMenuInput.UI.Right.canceled += ctx => UnPress(controlButtonsBackgrounds.Right);
 
-            mainMenuInput.UI.Meow.started += ctx => { Press(controlButtonsBackgrounds.Meow); };
-            mainMenuInput.UI.Meow.canceled += ctx => { UnPress(controlButtonsBackgrounds.Meow); };
+            mainMenuInput.UI.CatInteraction.started += ctx =>
+                Press(controlButtonsBackgrounds.CatInteraction);
+            mainMenuInput.UI.CatInteraction.canceled += ctx =>
+                UnPress(controlButtonsBackgrounds.CatInteraction);
 
-            mainMenuInput.UI.Mure.started += ctx => { Press(controlButtonsBackgrounds.Mure); };
-            mainMenuInput.UI.Mure.canceled += ctx => { UnPress(controlButtonsBackgrounds.Mure); };
+            mainMenuInput.UI.HumanInteraction.started += ctx =>
+                Press(controlButtonsBackgrounds.HumanInteraction);
+            mainMenuInput.UI.HumanInteraction.canceled += ctx =>
+                UnPress(controlButtonsBackgrounds.HumanInteraction);
+
+            mainMenuInput.UI.Meow.started += ctx => Press(controlButtonsBackgrounds.Meow);
+            mainMenuInput.UI.Meow.canceled += ctx => UnPress(controlButtonsBackgrounds.Meow);
+
+            mainMenuInput.UI.Mure.started += ctx => Press(controlButtonsBackgrounds.Mure);
+            mainMenuInput.UI.Mure.canceled += ctx => UnPress(controlButtonsBackgrounds.Mure);
         }
 
         private void OnDisable()
         {
-            mainMenuInput.UI.Up.started -= ctx => { Press(controlButtonsBackgrounds.Up); };
-            mainMenuInput.UI.Up.canceled -= ctx => { UnPress(controlButtonsBackgrounds.Up); };
-            
-            mainMenuInput.UI.Left.started -= ctx => { Press(controlButtonsBackgrounds.Left); };
-            mainMenuInput.UI.Left.canceled -= ctx => { UnPress(controlButtonsBackgrounds.Left); };
-            
-            mainMenuInput.UI.Down.started -= ctx => { Press(controlButtonsBackgrounds.Down); };
-            mainMenuInput.UI.Down.canceled -= ctx => { UnPress(controlButtonsBackgrounds.Down); };
+            mainMenuInput.UI.Up.started -= ctx => Press(controlButtonsBackgrounds.Up);
+            mainMenuInput.UI.Up.canceled -= ctx => UnPress(controlButtonsBackgrounds.Up);
 
-            mainMenuInput.UI.Right.started -= ctx => { Press(controlButtonsBackgrounds.Right); };
-            mainMenuInput.UI.Right.canceled -= ctx => { UnPress(controlButtonsBackgrounds.Right); };
+            mainMenuInput.UI.Left.started -= ctx => Press(controlButtonsBackgrounds.Left);
+            mainMenuInput.UI.Left.canceled -= ctx => UnPress(controlButtonsBackgrounds.Left);
 
-            mainMenuInput.UI.CatInteraction.started -= ctx => { Press(controlButtonsBackgrounds.CatInteraction); };
-            mainMenuInput.UI.CatInteraction.canceled -= ctx => { UnPress(controlButtonsBackgrounds.CatInteraction); };
+            mainMenuInput.UI.Down.started -= ctx => Press(controlButtonsBackgrounds.Down);
+            mainMenuInput.UI.Down.canceled -= ctx => UnPress(controlButtonsBackgrounds.Down);
 
-            mainMenuInput.UI.HumanInteraction.started -= ctx => { Press(controlButtonsBackgrounds.HumanInteraction); };
-            mainMenuInput.UI.HumanInteraction.canceled -= ctx => { UnPress(controlButtonsBackgrounds.HumanInteraction); };
+            mainMenuInput.UI.Right.started -= ctx => Press(controlButtonsBackgrounds.Right);
+            mainMenuInput.UI.Right.canceled -= ctx => UnPress(controlButtonsBackgrounds.Right);
 
-            mainMenuInput.UI.Meow.started -= ctx => { Press(controlButtonsBackgrounds.Meow); };
-            mainMenuInput.UI.Meow.canceled -= ctx => { UnPress(controlButtonsBackgrounds.Meow); };
+            mainMenuInput.UI.CatInteraction.started -= ctx =>
+                Press(controlButtonsBackgrounds.CatInteraction);
+            mainMenuInput.UI.CatInteraction.canceled -= ctx =>
+                UnPress(controlButtonsBackgrounds.CatInteraction);
 
-            mainMenuInput.UI.Mure.started -= ctx => { Press(controlButtonsBackgrounds.Mure); };
-            mainMenuInput.UI.Mure.canceled -= ctx => { UnPress(controlButtonsBackgrounds.Mure); };
+            mainMenuInput.UI.HumanInteraction.started -= ctx =>
+                Press(controlButtonsBackgrounds.HumanInteraction);
+            mainMenuInput.UI.HumanInteraction.canceled -= ctx =>
+                UnPress(controlButtonsBackgrounds.HumanInteraction);
+
+            mainMenuInput.UI.Meow.started -= ctx => Press(controlButtonsBackgrounds.Meow);
+            mainMenuInput.UI.Meow.canceled -= ctx => UnPress(controlButtonsBackgrounds.Meow);
+
+            mainMenuInput.UI.Mure.started -= ctx => Press(controlButtonsBackgrounds.Mure);
+            mainMenuInput.UI.Mure.canceled -= ctx => UnPress(controlButtonsBackgrounds.Mure);
         }
 
         private void Press(Image background)
         {
-            background.DOFade(maxFade, duration);
+            _ = background.DOFade(maxFade, duration);
         }
 
         private void UnPress(Image background)
         {
-            background.DOFade(0, duration);
+            _ = background.DOFade(0, duration);
         }
     }
 
@@ -113,6 +121,7 @@ namespace UI.ControlPage
         public Image HumanInteraction;
         public Image Meow;
         public Image Mure;
+
         [HideInInspector]
         public List<Image> AllBackgrounds;
 
