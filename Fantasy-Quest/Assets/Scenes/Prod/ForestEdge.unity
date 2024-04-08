@@ -1915,7 +1915,7 @@ Transform:
   m_GameObject: {fileID: 249190931}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.99, y: -3.12, z: 0}
+  m_LocalPosition: {x: -1.13, y: -2.8, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1934,14 +1934,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61bac1bea4a570f4fa3709c2c162531a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boundsCollider: {fileID: 724434136}
+  bounds: {fileID: 724434136}
   chickenState: 0
-  minIdleTime: 5
-  maxIdleTime: 6
-  minWalkTime: 3
-  maxWalkTime: 5
-  minRunTime: 1
-  maxRunTime: 4
+  minIdleTime: 1
+  maxIdleTime: 2
+  minMoveTime: 0
+  maxMoveTime: 0
+  RandomPoint: {x: 0, y: 0}
 --- !u!1 &316372869
 GameObject:
   m_ObjectHideFlags: 0
@@ -2167,7 +2166,7 @@ Transform:
   m_GameObject: {fileID: 362684252}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.77, y: 0.23, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -2185,6 +2184,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94854fa122909494e9058a1a0f2b012f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  skeletonAnimation: {fileID: 362684255}
+  chickenBehaviour: {fileID: 249190933}
+  idleAnimation: {fileID: 11400000, guid: 81093d4e5eb5bd04eadf8714ae0c366e, type: 2}
+  walkAnimation: {fileID: 11400000, guid: 94f0dc2da3930ed408481c5abcbe4374, type: 2}
+  runAnimation: {fileID: 11400000, guid: ee2a28b1bad91184881124254b0e400a, type: 2}
 --- !u!114 &362684255
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4388,7 +4392,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 6, y: 1}
   m_EdgeRadius: 0
 --- !u!114 &724434137
 MonoBehaviour:
@@ -4412,9 +4416,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 724434135}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.18, y: -3.01, z: 0}
-  m_LocalScale: {x: 10, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.78999996, y: -2.63, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1600481634}
@@ -13474,7 +13478,7 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1092401434}
     - targetCorrespondingSourceObject: {fileID: 2260379170046565650, guid: 78951c99008d395408102ffd3bb94551, type: 3}
-      insertIndex: -1
+      insertIndex: 0
       addedObject: {fileID: 724434138}
     - targetCorrespondingSourceObject: {fileID: 4255530588582072246, guid: 78951c99008d395408102ffd3bb94551, type: 3}
       insertIndex: -1
