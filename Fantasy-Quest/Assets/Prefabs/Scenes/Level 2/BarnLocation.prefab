@@ -220,9 +220,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a7df89ef3e01b14ab822c019ac480aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEmote: 2
-  icons:
-  - {fileID: 21300000, guid: 82c55483448af594aa2460b6e9783b67, type: 3}
+  emoteType: 0
+  emoteIcons: []
 --- !u!114 &4666438245707540751
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -805,9 +804,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a7df89ef3e01b14ab822c019ac480aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEmote: 2
-  icons:
-  - {fileID: 21300000, guid: 82c55483448af594aa2460b6e9783b67, type: 3}
+  emoteType: 0
+  emoteIcons: []
 --- !u!114 &228571172830512268
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2510,6 +2508,22 @@ PrefabInstance:
       propertyPath: finalPosition
       value: 
       objectReference: {fileID: 581031966548835301}
+    - target: {fileID: 4433497924808237498, guid: 36a8a007deec36c4b98d6cefe59aa177, type: 3}
+      propertyPath: MoveStarted.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4433497924808237498, guid: 36a8a007deec36c4b98d6cefe59aa177, type: 3}
+      propertyPath: MoveStarted.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: LockAllExceptBubble
+      objectReference: {fileID: 0}
+    - target: {fileID: 4433497924808237498, guid: 36a8a007deec36c4b98d6cefe59aa177, type: 3}
+      propertyPath: MoveStarted.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: ChangeVector
+      objectReference: {fileID: 0}
+    - target: {fileID: 4433497924808237498, guid: 36a8a007deec36c4b98d6cefe59aa177, type: 3}
+      propertyPath: MoveStarted.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: Cat.Movement, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 5231382463887583508, guid: 36a8a007deec36c4b98d6cefe59aa177, type: 3}
       propertyPath: m_Name
       value: JumpToBoxLeft
