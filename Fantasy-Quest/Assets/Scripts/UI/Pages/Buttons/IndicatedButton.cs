@@ -7,7 +7,7 @@ namespace UI.Pages
 {
     [RequireComponent(typeof(Button))]
     [AddComponentMenu("Scripts/UI/Pages/Buttons/UI.Pages.Buttons.IndicatedButton")]
-    public class IndicatedButton: Button
+    public class IndicatedButton : Button
     {
         public static Action<IndicatedButton> OnPointerEntered;
         public static Action<IndicatedButton> OnPointerExited;
