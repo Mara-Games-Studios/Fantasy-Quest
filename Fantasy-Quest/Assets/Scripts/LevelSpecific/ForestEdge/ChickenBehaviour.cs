@@ -40,6 +40,12 @@ namespace LevelSpecific.ForestEdge
         [SerializeField]
         private float maxMoveTime;
 
+        //If move time is above that value the WalkState will be chosen, otherwise RunState
+        [SerializeField]
+        private float runTimeBorder = 3f;
+
+        private float moveTime = 0f;
+
         public Vector2 RandomPoint;
         public UnityAction<ChickenState> StateChanged;
 
@@ -71,9 +77,8 @@ namespace LevelSpecific.ForestEdge
                 case ChickenState.walk:
                 case ChickenState.run:
                     RandomPoint = RandomPointInBounds(bounds);
-                    float runTime = UnityEngine.Random.Range(minMoveTime, maxMoveTime);
-                    yield return MoveToPosition(runTime);
-                    ChooseRandomState();
+                    yield return MoveToPosition(moveTime);
+                    ChooseState(ChickenState.idle);
                     break;
             }
         }
@@ -112,6 +117,20 @@ namespace LevelSpecific.ForestEdge
         {
             chickenState = (ChickenState)
                 UnityEngine.Random.Range(0, Enum.GetValues(typeof(ChickenState)).Length);
+
+            if (chickenState != ChickenState.idle)
+            {
+                moveTime = UnityEngine.Random.Range(minMoveTime, maxMoveTime);
+                if (moveTime < runTimeBorder)
+                {
+                    chickenState = ChickenState.run;
+                }
+                else
+                {
+                    chickenState = ChickenState.walk;
+                }
+            }
+
             StateChanged?.Invoke(chickenState);
         }
 
