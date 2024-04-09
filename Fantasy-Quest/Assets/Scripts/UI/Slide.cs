@@ -1,0 +1,60 @@
+using DG.Tweening;
+using Sirenix.OdinInspector;
+using UnityEngine;
+using UnityEngine.UI;
+
+namespace UI
+{
+    [AddComponentMenu("Scripts/UI/UI.Slideshow")]
+    internal class Slide : MonoBehaviour
+    {
+        [Header("Component")]
+        [Required]
+        [SerializeField]
+        private Image slide;
+
+        [Header("Timing")]
+        [SerializeField]
+        public float WaitBefore = 0.0f;
+
+        [SerializeField]
+        public float HoldTime = 1.0f;
+
+        [SerializeField]
+        public float WaitAfter = 0.0f;
+
+        [SerializeField]
+        public float FadeTime = 0.5f;
+
+        private Tween fadeTween;
+
+        private void OnEnable()
+        {
+            slide = GetComponent<Image>();
+        }
+
+        public void FadeIn()
+        {
+            Fade(1f, FadeTime, () => { });
+        }
+
+        public void FadeOut()
+        {
+            Fade(0f, FadeTime, () => gameObject.SetActive(false));
+        }
+
+        private void Fade(float endValue, float duration, TweenCallback onEnd)
+        {
+            fadeTween.Kill(false);
+
+            fadeTween = slide.DOFade(endValue, duration);
+            fadeTween.onComplete += onEnd;
+        }
+
+        [Button]
+        public void GetComponentImage()
+        {
+            slide = GetComponent<Image>();
+        }
+    }
+}
