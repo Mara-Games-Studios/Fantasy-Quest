@@ -24,23 +24,11 @@ namespace UI
         private Image image;
         private Tween fadeTween;
 
-        private void Awake()
-        {
-            if (childrenComponentsMode)
-            {
-                FillChildren();
-            }
-            else
-            {
-                image = gameObject.AddComponent<Image>();
-                image.color = new Color(255, 255, 255, 0);
-            }
-        }
-
         private IEnumerator ShowSlides()
         {
             if (childrenComponentsMode)
             {
+                FillChildren();
                 foreach (Slide slide in slides)
                 {
                     yield return ShowSlide(slide);
@@ -48,6 +36,12 @@ namespace UI
             }
             else
             {
+                if (image == null)
+                {
+                    image = gameObject.AddComponent<Image>();
+                }
+
+                image.color = new Color(255, 255, 255, 0);
                 foreach (SlideStruct slide in slideStructs)
                 {
                     yield return ShowSlide(slide);
