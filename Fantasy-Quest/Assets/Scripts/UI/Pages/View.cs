@@ -8,7 +8,6 @@ namespace UI.Pages
     public class View : MonoBehaviour
     {
         private EffectsShower effectShower;
-        private int effectsShowedAmount;
 
         public View PreviousPage;
         public List<IndicatedButton> VerticalButtons = new();

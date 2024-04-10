@@ -21,7 +21,6 @@ namespace UI.ControlPage
         [SerializeField]
         private float maxFade = 0.8f;
 
-        private List<Button> buttons;
         private MainMenuInput mainMenuInput;
 
         private void Awake()

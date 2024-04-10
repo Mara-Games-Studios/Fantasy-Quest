@@ -28,7 +28,7 @@ namespace Dialogue
             }
         }
 
-        private float CalculateDuration()
+        private readonly float CalculateDuration()
         {
             if (Audio == null)
             {
