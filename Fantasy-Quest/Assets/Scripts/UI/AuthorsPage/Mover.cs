@@ -30,7 +30,7 @@ namespace UI.AuthorsPage
         private Escaper escaper;
 
         [SerializeField]
-        private Pages.View pageParent;
+        private Pages.View currentPage;
 
         private Tween movementTween;
 
@@ -45,7 +45,7 @@ namespace UI.AuthorsPage
 
         private void TryMove(Pages.View view)
         {
-            if (view.Equals(pageParent))
+            if (view.Equals(currentPage))
             {
                 OnMovementStarting?.Invoke();
                 Move();
@@ -54,7 +54,7 @@ namespace UI.AuthorsPage
 
         private void TryHide(Pages.View view)
         {
-            if (view.Equals(pageParent))
+            if (view.Equals(currentPage))
             {
                 OnMovementEnded?.Invoke();
             }
