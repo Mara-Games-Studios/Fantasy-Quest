@@ -47,7 +47,7 @@ namespace Transition.End
             while (timer <= minDuration || loading.progress != MAX_LOADING_PROGRESS)
             {
                 yield return null;
-                timer += Time.deltaTime;
+                timer += Time.unscaledDeltaTime;
                 float percentage = timer / minDuration;
                 float loadingPercentage = loading.progress / MAX_LOADING_PROGRESS;
                 progressBar.SetProgress(

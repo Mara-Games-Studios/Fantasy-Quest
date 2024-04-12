@@ -22,6 +22,15 @@ namespace Configs.Progression
         [SerializeField]
         private DefaultConfig defaultConfig;
 
+        [SerializeField]
+        private bool isGamePassed = false;
+        public bool IsGamePassed => isGamePassed;
+
+        public void SetGamePassed()
+        {
+            isGamePassed = true;
+        }
+
         [Scene]
         [SerializeField]
         private string sceneToLoad;
@@ -44,6 +53,7 @@ namespace Configs.Progression
         [Button]
         public void ResetToDefault()
         {
+            isGamePassed = false;
             sceneToLoad = defaultConfig.SceneToLoad;
             forestEdgeLevel = new();
         }
