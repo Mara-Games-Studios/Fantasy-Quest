@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace UI.Pages
@@ -32,12 +33,14 @@ namespace UI.Pages
             effectShower.OnEffectShowed -= () => OnPageShowed.Invoke(this);
         }
 
+        [Button]
         public void ShowFromStart()
         {
             effectShower.ShowFromStart();
             OnPageShowing?.Invoke(this);
         }
 
+        [Button]
         public void ShowFromEnd()
         {
             effectShower.ShowFromEnd();

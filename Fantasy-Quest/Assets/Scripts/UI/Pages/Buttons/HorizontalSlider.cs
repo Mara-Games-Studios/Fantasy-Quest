@@ -58,40 +58,40 @@ namespace UI.Pages
         public void MoveRight()
         {
             //Hide element
-            _ = elementsTransform[currentElementIndex].DOMove(
-                localPoints.StartPoint.position,
-                duration
-            );
-            _ = elementsCanvasGroup[currentElementIndex].DOFade(minFade, duration);
+            _ = elementsTransform[currentElementIndex]
+                .DOMove(localPoints.StartPoint.position, duration)
+                .SetUpdate(true);
+            _ = elementsCanvasGroup[currentElementIndex].DOFade(minFade, duration).SetUpdate(true);
 
             IncreaseElementIndex(1);
             //Show element
-            _ = elementsTransform[currentElementIndex].DOMove(localPoints.EndPoint.position, 0);
-            _ = elementsTransform[currentElementIndex].DOMove(
-                localPoints.MiddlePoint.position,
-                duration
-            );
-            _ = elementsCanvasGroup[currentElementIndex].DOFade(maxFade, duration);
+            _ = elementsTransform[currentElementIndex]
+                .DOMove(localPoints.EndPoint.position, 0)
+                .SetUpdate(true);
+            _ = elementsTransform[currentElementIndex]
+                .DOMove(localPoints.MiddlePoint.position, duration)
+                .SetUpdate(true);
+            _ = elementsCanvasGroup[currentElementIndex].DOFade(maxFade, duration).SetUpdate(true);
         }
 
         public void MoveLeft()
         {
             //Hide element
-            _ = elementsTransform[currentElementIndex].DOMove(
-                localPoints.EndPoint.position,
-                duration
-            );
-            _ = elementsCanvasGroup[currentElementIndex].DOFade(minFade, duration);
+            _ = elementsTransform[currentElementIndex]
+                .DOMove(localPoints.EndPoint.position, duration)
+                .SetUpdate(true);
+            _ = elementsCanvasGroup[currentElementIndex].DOFade(minFade, duration).SetUpdate(true);
 
             DecreaseElementIndex(1);
 
             //Show element
-            _ = elementsTransform[currentElementIndex].DOMove(localPoints.StartPoint.position, 0);
-            _ = elementsTransform[currentElementIndex].DOMove(
-                localPoints.MiddlePoint.position,
-                duration
-            );
-            _ = elementsCanvasGroup[currentElementIndex].DOFade(maxFade, duration);
+            _ = elementsTransform[currentElementIndex]
+                .DOMove(localPoints.StartPoint.position, 0)
+                .SetUpdate(true);
+            _ = elementsTransform[currentElementIndex]
+                .DOMove(localPoints.MiddlePoint.position, duration)
+                .SetUpdate(true);
+            _ = elementsCanvasGroup[currentElementIndex].DOFade(maxFade, duration).SetUpdate(true);
         }
 
         private void IncreaseElementIndex(int step)

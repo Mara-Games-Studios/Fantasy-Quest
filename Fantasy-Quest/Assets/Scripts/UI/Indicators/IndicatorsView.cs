@@ -67,13 +67,17 @@ public class IndicatorsView : MonoBehaviour
         layoutModel.CurrentButtonIndex = layoutModel.VerticalButtons.Count - 1;
         IndicatorsBehaviour.ShowOn(layoutModel.VerticalButtons[^1], effectModel);
         effectModel.VanishingTween?.Kill();
-        _ = effectModel.IndicatorsAlpha.DOFade(effectModel.MaxAlpha, effectModel.FadeDuration);
+        _ = effectModel
+            .IndicatorsAlpha.DOFade(effectModel.MaxAlpha, effectModel.FadeDuration)
+            .SetUpdate(true);
     }
 
     private void HideIndicates(View view)
     {
         effectModel.VanishingTween?.Kill();
-        effectModel.VanishingTween = effectModel.IndicatorsAlpha.DOFade(effectModel.MinAlpha, 0);
+        effectModel.VanishingTween = effectModel
+            .IndicatorsAlpha.DOFade(effectModel.MinAlpha, 0)
+            .SetUpdate(true);
         effectModel.IndicatorsAlpha.gameObject.SetActive(false);
     }
 }

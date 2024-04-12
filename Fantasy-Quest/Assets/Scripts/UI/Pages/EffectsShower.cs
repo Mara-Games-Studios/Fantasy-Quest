@@ -54,21 +54,22 @@ namespace UI.Pages
             pageInfo.CanvasGroup.gameObject.SetActive(true);
             StopTweens();
 
-            fadeTween = pageInfo.CanvasGroup.DOFade(maxAlpha, fadeDuration);
+            fadeTween = pageInfo.CanvasGroup.DOFade(maxAlpha, fadeDuration).SetUpdate(true);
             fadeTween.onComplete += () => OnEffectShowed?.Invoke();
 
-            moveTween = pageInfo.RectTransform.DOMove(
-                pivotPoints.MiddlePoint.position,
-                moveDuration
-            );
+            moveTween = pageInfo
+                .RectTransform.DOMove(pivotPoints.MiddlePoint.position, moveDuration)
+                .SetUpdate(true);
         }
 
         public void HideToEnd()
         {
             StopTweens();
-            fadeTween = pageInfo.CanvasGroup.DOFade(minAlpha, fadeDuration);
+            fadeTween = pageInfo.CanvasGroup.DOFade(minAlpha, fadeDuration).SetUpdate(true);
 
-            moveTween = pageInfo.RectTransform.DOMove(pivotPoints.EndPoint.position, moveDuration);
+            moveTween = pageInfo
+                .RectTransform.DOMove(pivotPoints.EndPoint.position, moveDuration)
+                .SetUpdate(true);
 
             moveTween.onComplete += () => MoveToPoint(pivotPoints.StartPoint);
         }
@@ -76,20 +77,19 @@ namespace UI.Pages
         public void HideToStart()
         {
             StopTweens();
-            fadeTween = pageInfo.CanvasGroup.DOFade(minAlpha, fadeDuration);
+            fadeTween = pageInfo.CanvasGroup.DOFade(minAlpha, fadeDuration).SetUpdate(true);
 
-            moveTween = pageInfo.RectTransform.DOMove(
-                pivotPoints.StartPoint.position,
-                moveDuration
-            );
+            moveTween = pageInfo
+                .RectTransform.DOMove(pivotPoints.StartPoint.position, moveDuration)
+                .SetUpdate(true);
 
             moveTween.onComplete += () => MoveToPoint(pivotPoints.StartPoint);
         }
 
         private void MoveToPoint(RectTransform point)
         {
-            _ = pageInfo.RectTransform.DOMove(point.position, 0);
-            _ = pageInfo.CanvasGroup.DOFade(minAlpha, 0);
+            _ = pageInfo.RectTransform.DOMove(point.position, 0).SetUpdate(true);
+            _ = pageInfo.CanvasGroup.DOFade(minAlpha, 0).SetUpdate(true);
             pageInfo.CanvasGroup.gameObject.SetActive(false);
         }
 

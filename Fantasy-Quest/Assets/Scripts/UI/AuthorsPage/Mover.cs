@@ -65,7 +65,8 @@ namespace UI.AuthorsPage
             Reset();
             movementTween = movedElement
                 .DOMove(endPoint.position, movementTime)
-                .SetEase(movementEase);
+                .SetEase(movementEase)
+                .SetUpdate(true);
             movementTween.onComplete += () =>
             {
                 Reset();
@@ -76,7 +77,7 @@ namespace UI.AuthorsPage
         private void Reset()
         {
             movementTween?.Kill();
-            _ = movedElement.DOMove(startPoint.position, 0);
+            _ = movedElement.DOMove(startPoint.position, 0).SetUpdate(true);
         }
 
         private void OnDisable()

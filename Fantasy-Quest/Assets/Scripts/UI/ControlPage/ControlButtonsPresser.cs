@@ -100,12 +100,12 @@ namespace UI.ControlPage
 
         private void Press(Image background)
         {
-            _ = background.DOFade(maxFade, duration);
+            _ = background.DOFade(maxFade, duration).SetUpdate(true);
         }
 
         private void UnPress(Image background)
         {
-            _ = background.DOFade(0, duration);
+            _ = background.DOFade(0, duration).SetUpdate(true);
         }
     }
 

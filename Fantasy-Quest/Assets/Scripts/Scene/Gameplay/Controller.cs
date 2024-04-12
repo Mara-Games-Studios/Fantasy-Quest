@@ -18,7 +18,7 @@ namespace Scene.Gameplay
         private Dialogue.Manager dialogueManager;
 
         [SerializeField]
-        private Panel.Settings.Controller settingsController;
+        private UI.Pages.View settingsPage;
 
         // Called by Input Manager or UI buttons
         public void OpenSettings()
@@ -28,7 +28,7 @@ namespace Scene.Gameplay
             gameplayInput.enabled = false;
             cutsceneManager.Pause();
             dialogueManager.Pause();
-            settingsController.ShowSettings();
+            settingsPage.ShowFromStart();
             LockerSettings.Instance.LockAll();
         }
 
