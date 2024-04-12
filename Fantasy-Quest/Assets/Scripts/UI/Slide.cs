@@ -14,23 +14,18 @@ namespace UI
         private Image slide;
 
         [Header("Timing")]
-        [SerializeField]
         public float WaitBefore = 0.0f;
 
-        [SerializeField]
         public float HoldTime = 1.0f;
 
-        [SerializeField]
         public float WaitAfter = 0.0f;
 
-        [SerializeField]
         public float FadeTime = 0.5f;
 
         private Tween fadeTween;
 
         private void Start()
         {
-
             gameObject.SetActive(false);
         }
 

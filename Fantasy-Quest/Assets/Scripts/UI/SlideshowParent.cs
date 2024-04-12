@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
@@ -11,14 +12,24 @@ namespace UI
     [AddComponentMenu("Scripts/UI/UI.Slideparent")]
     internal class SlideshowParent : MonoBehaviour
     {
+        [Serializable]
+        private struct SlideStruct
+        {
+            public Sprite Slide;
+            public float WaitBefore;
+            public float HoldTime;
+            public float WaitAfter;
+            public float FadeTime;
+        }
+
         [SerializeField]
         private bool childrenComponentsMode = true;
 
-        [ShowIf("childrenComponentsMode")]
+        [ShowIf(nameof(childrenComponentsMode))]
         [SerializeField]
         private List<Slide> slides = new();
 
-        [ShowIf("@!childrenComponentsMode")]
+        [ShowIf("@!" + nameof(childrenComponentsMode))]
         [SerializeField]
         private List<SlideStruct> slideStructs = new();
 
@@ -36,7 +47,6 @@ namespace UI
                 {
                     yield return ShowSlide(slide);
                 }
-                Debug.Log("Slideshow ended");
                 SlideshowEnded?.Invoke();
             }
             else
@@ -46,12 +56,11 @@ namespace UI
                     image = gameObject.AddComponent<Image>();
                 }
 
-                image.color = new Color(255, 255, 255, 0);
+                image.color = new UnityEngine.Color(image.color.r, image.color.g, image.color.b, 0);
                 foreach (SlideStruct slide in slideStructs)
                 {
                     yield return ShowSlide(slide);
                 }
-                Debug.Log("Slideshow ended");
                 SlideshowEnded?.Invoke();
             }
         }
@@ -92,9 +101,7 @@ namespace UI
             {
                 foreach (Transform child in transform)
                 {
-
                     slides.Add(child.GetComponent<Slide>());
-
                 }
             }
         }
