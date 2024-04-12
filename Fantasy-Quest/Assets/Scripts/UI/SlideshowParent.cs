@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using DG.Tweening;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 namespace UI
@@ -21,6 +22,8 @@ namespace UI
         [SerializeField]
         private List<SlideStruct> slideStructs = new();
 
+        public UnityEvent SlideshowEnded;
+
         private Image image;
         private Tween fadeTween;
 
@@ -33,6 +36,8 @@ namespace UI
                 {
                     yield return ShowSlide(slide);
                 }
+                Debug.Log("Slideshow ended");
+                SlideshowEnded?.Invoke();
             }
             else
             {
@@ -46,6 +51,8 @@ namespace UI
                 {
                     yield return ShowSlide(slide);
                 }
+                Debug.Log("Slideshow ended");
+                SlideshowEnded?.Invoke();
             }
         }
 
@@ -81,9 +88,14 @@ namespace UI
         [Button]
         public void FillChildren()
         {
-            foreach (Transform child in transform)
+            if (slides.Count == 0)
             {
-                slides.Add(child.GetComponent<Slide>());
+                foreach (Transform child in transform)
+                {
+
+                    slides.Add(child.GetComponent<Slide>());
+
+                }
             }
         }
 

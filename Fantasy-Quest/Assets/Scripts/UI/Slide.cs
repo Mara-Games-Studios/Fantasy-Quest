@@ -28,8 +28,15 @@ namespace UI
 
         private Tween fadeTween;
 
+        private void Start()
+        {
+
+            gameObject.SetActive(false);
+        }
+
         private void OnEnable()
         {
+            slide.color = new Color(slide.color.r, slide.color.g, slide.color.b, 0);
             slide = GetComponent<Image>();
         }
 
