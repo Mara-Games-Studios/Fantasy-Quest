@@ -11,9 +11,9 @@ namespace LevelSpecific.ForestEdge
     {
         public enum ChickenState
         {
-            idle,
-            walk,
-            run
+            Idle,
+            Walk,
+            Run
         }
 
         [Header("Bounds")]
@@ -23,7 +23,7 @@ namespace LevelSpecific.ForestEdge
 
         [ReadOnly]
         [SerializeField]
-        private ChickenState chickenState = ChickenState.idle;
+        private ChickenState chickenState = ChickenState.Idle;
 
         [Header("Randomization")]
         [Header("Idle Time")]
@@ -53,7 +53,7 @@ namespace LevelSpecific.ForestEdge
         private void Start()
         {
             RandomPoint = RandomPointInBounds(bounds);
-            ChooseState(ChickenState.idle);
+            ChooseState(ChickenState.Idle);
         }
 
         private void OnEnable()
@@ -70,16 +70,16 @@ namespace LevelSpecific.ForestEdge
         {
             switch (state)
             {
-                case ChickenState.idle:
+                case ChickenState.Idle:
                     float idleTime = UnityEngine.Random.Range(minIdleTime, maxIdleTime);
                     yield return StayOnPosition(idleTime);
                     ChooseRandomState();
                     break;
-                case ChickenState.walk:
-                case ChickenState.run:
+                case ChickenState.Walk:
+                case ChickenState.Run:
                     RandomPoint = RandomPointInBounds(bounds);
                     yield return MoveToPosition(moveTime);
-                    ChooseState(ChickenState.idle);
+                    ChooseState(ChickenState.Idle);
                     break;
             }
         }
@@ -119,16 +119,16 @@ namespace LevelSpecific.ForestEdge
             chickenState = (ChickenState)
                 UnityEngine.Random.Range(0, Enum.GetValues(typeof(ChickenState)).Length);
 
-            if (chickenState != ChickenState.idle)
+            if (chickenState != ChickenState.Idle)
             {
                 moveTime = UnityEngine.Random.Range(minMoveTime, maxMoveTime);
                 if (moveTime < runTimeBorder)
                 {
-                    chickenState = ChickenState.run;
+                    chickenState = ChickenState.Run;
                 }
                 else
                 {
-                    chickenState = ChickenState.walk;
+                    chickenState = ChickenState.Walk;
                 }
             }
 

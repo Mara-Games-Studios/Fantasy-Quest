@@ -35,14 +35,14 @@ namespace LevelSpecific.ForestEdge
         {
             switch (state)
             {
-                case ChickenBehaviour.ChickenState.idle:
+                case ChickenBehaviour.ChickenState.Idle:
                     _ = skeletonAnimation.AnimationState.SetAnimation(0, idleAnimation, true);
                     break;
-                case ChickenBehaviour.ChickenState.walk:
+                case ChickenBehaviour.ChickenState.Walk:
                     ChangeWatchDir();
                     _ = skeletonAnimation.AnimationState.SetAnimation(0, walkAnimation, true);
                     break;
-                case ChickenBehaviour.ChickenState.run:
+                case ChickenBehaviour.ChickenState.Run:
                     ChangeWatchDir();
                     _ = skeletonAnimation.AnimationState.SetAnimation(0, runAnimation, true);
                     break;
