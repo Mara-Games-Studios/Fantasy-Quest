@@ -46,6 +46,7 @@ namespace LevelSpecific.ForestEdge
 
         private float moveTime = 0f;
 
+        [HideInInspector]
         public Vector2 RandomPoint;
         public UnityAction<ChickenState> StateChanged;
 
