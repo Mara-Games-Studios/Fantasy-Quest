@@ -30,6 +30,7 @@ namespace Minigames.AltarGame
         public void PlaceItem(Item item)
         {
             placedItem = item;
+            placedItem.SetNewLayerOrder(newLayerOrder);
             item.transform.parent = transform;
         }
 
