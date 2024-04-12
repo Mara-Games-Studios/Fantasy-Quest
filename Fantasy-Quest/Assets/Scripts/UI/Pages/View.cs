@@ -47,12 +47,14 @@ namespace UI.Pages
             OnPageShowing?.Invoke(this);
         }
 
+        [Button]
         public void HideToStart()
         {
             OnPageHiding?.Invoke(this);
             effectShower.HideToStart();
         }
 
+        [Button]
         public void HideToEnd()
         {
             OnPageHiding?.Invoke(this);

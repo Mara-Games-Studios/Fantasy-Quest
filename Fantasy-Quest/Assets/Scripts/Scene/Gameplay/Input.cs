@@ -29,7 +29,7 @@ namespace Scene.Gameplay
         {
             if (gameplayInputActions.UI.Pause.WasPressedThisFrame())
             {
-                gameplayController.OpenSettings();
+                gameplayController.SwitchSettings();
             }
         }
 
