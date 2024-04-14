@@ -2491,13 +2491,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 404905208}
-  - component: {fileID: 404905219}
   - component: {fileID: 404905225}
   - component: {fileID: 404905214}
   - component: {fileID: 404905217}
   - component: {fileID: 404905220}
   - component: {fileID: 404905221}
-  - component: {fileID: 404905222}
+  - component: {fileID: 404905226}
   - component: {fileID: 404905223}
   - component: {fileID: 404905224}
   m_Layer: 3
@@ -2644,41 +2643,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!70 &404905219
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 404905207}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.06794548, y: 4.197494}
-  m_Size: {x: 1.5679684, y: 8.482923}
-  m_Direction: 0
 --- !u!114 &404905220
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2726,20 +2690,6 @@ MonoBehaviour:
   explanationCutscene: {fileID: 625399172}
   hintCutscene: {fileID: 1602268234}
   tryToAltar: {fileID: 116643857}
---- !u!114 &404905222
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 404905207}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f8b77bf33bd1ec94c83e109b2749f9ce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  capsuleCollider: {fileID: 404905219}
-  color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &404905223
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2830,6 +2780,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 6, y: 0.79}
   m_EdgeRadius: 0
+--- !u!114 &404905226
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 404905207}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 043dee6d8a41d93429e317a78e313390, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boxCollider: {fileID: 404905225}
+  color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &427400227
 GameObject:
   m_ObjectHideFlags: 0
@@ -13307,18 +13271,6 @@ PrefabInstance:
     - target: {fileID: 5878860240890201876, guid: 79ebc9a83d0721c48a620c4536eef5a9, type: 3}
       propertyPath: m_Name
       value: SubtitlesView
-      objectReference: {fileID: 0}
-    - target: {fileID: 6081013242897913269, guid: 79ebc9a83d0721c48a620c4536eef5a9, type: 3}
-      propertyPath: m_fontAsset
-      value: 
-      objectReference: {fileID: 11400000, guid: 0920266825bcd574b994fba69f1cdba1, type: 2}
-    - target: {fileID: 6081013242897913269, guid: 79ebc9a83d0721c48a620c4536eef5a9, type: 3}
-      propertyPath: m_sharedMaterial
-      value: 
-      objectReference: {fileID: -7961658864936697506, guid: 0920266825bcd574b994fba69f1cdba1, type: 2}
-    - target: {fileID: 6081013242897913269, guid: 79ebc9a83d0721c48a620c4536eef5a9, type: 3}
-      propertyPath: m_hasFontAssetChanged
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6491097914779931501, guid: 79ebc9a83d0721c48a620c4536eef5a9, type: 3}
       propertyPath: m_Pivot.x
