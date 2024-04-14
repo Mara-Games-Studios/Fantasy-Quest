@@ -12,7 +12,10 @@ namespace DrawingLayer
         [SerializeField]
         private GameObject symon;
 
+        [ShowInInspector]
         private Renderer catSkeleton;
+
+        [ShowInInspector]
         private Renderer symonSkeleton;
 
         private void OnEnable()
