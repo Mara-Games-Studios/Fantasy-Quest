@@ -1,3 +1,4 @@
+using System.Collections;
 using Sirenix.OdinInspector;
 using Spine.Unity;
 using UnityEngine;
@@ -33,20 +34,7 @@ namespace LevelSpecific.ForestEdge
 
         private void SwitchAnimation(ChickenBehaviour.ChickenState state)
         {
-            switch (state)
-            {
-                case ChickenBehaviour.ChickenState.Idle:
-                    _ = skeletonAnimation.AnimationState.SetAnimation(0, idleAnimation, true);
-                    break;
-                case ChickenBehaviour.ChickenState.Walk:
-                    ChangeWatchDir();
-                    _ = skeletonAnimation.AnimationState.SetAnimation(0, walkAnimation, true);
-                    break;
-                case ChickenBehaviour.ChickenState.Run:
-                    ChangeWatchDir();
-                    _ = skeletonAnimation.AnimationState.SetAnimation(0, runAnimation, true);
-                    break;
-            }
+            _ = StartCoroutine(WaitOffset(state));
         }
 
         private void ChangeWatchDir()
@@ -65,6 +53,25 @@ namespace LevelSpecific.ForestEdge
         private void OnDisable()
         {
             chickenBehaviour.StateChanged -= SwitchAnimation;
+        }
+
+        private IEnumerator WaitOffset(ChickenBehaviour.ChickenState state)
+        {
+            yield return new WaitForSeconds(0.1f);
+            switch (state)
+            {
+                case ChickenBehaviour.ChickenState.Idle:
+                    _ = skeletonAnimation.AnimationState.SetAnimation(0, idleAnimation, true);
+                    break;
+                case ChickenBehaviour.ChickenState.Walk:
+                    ChangeWatchDir();
+                    _ = skeletonAnimation.AnimationState.SetAnimation(0, walkAnimation, true);
+                    break;
+                case ChickenBehaviour.ChickenState.Run:
+                    ChangeWatchDir();
+                    _ = skeletonAnimation.AnimationState.SetAnimation(0, runAnimation, true);
+                    break;
+            }
         }
     }
 }
