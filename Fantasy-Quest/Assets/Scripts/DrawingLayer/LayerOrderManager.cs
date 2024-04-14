@@ -15,11 +15,6 @@ namespace DrawingLayer
         private Renderer catSkeleton;
         private Renderer symonSkeleton;
 
-        private void Start()
-        {
-            DontDestroyOnLoad(this);
-        }
-
         private void OnEnable()
         {
             catSkeleton = cat.GetComponentInChildren<Renderer>();
