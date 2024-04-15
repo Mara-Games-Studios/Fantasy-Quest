@@ -1,4 +1,7 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using TNRD;
+using UI;
+using UnityEngine;
 
 namespace Configs
 {
@@ -10,7 +13,24 @@ namespace Configs
     {
         [Min(0)]
         [SerializeField]
-        private float minLoadingDuration;
-        public float MinLoadingDuration => minLoadingDuration;
+        private float loadingDuration;
+        public float LoadingDuration => loadingDuration;
+
+        [Min(0)]
+        [SerializeField]
+        private float fadingDuration;
+        public float FadingDuration => fadingDuration;
+
+        [SerializeField]
+        private int currentFilling = 0;
+        public int CurrentFilling
+        {
+            get => currentFilling;
+            set => currentFilling = value;
+        }
+
+        [SerializeField]
+        private List<SerializableInterface<IFadingUI>> uiToShow = new();
+        public List<SerializableInterface<IFadingUI>> UiToShow => uiToShow;
     }
 }

@@ -1,6 +1,9 @@
 using System.Collections;
+using System.Collections.Generic;
 using Configs;
 using Sirenix.OdinInspector;
+using TNRD;
+using UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -9,14 +12,21 @@ namespace Transition.End
     [AddComponentMenu("Scripts/Transition/End/Transition.End.Controller")]
     internal class Controller : MonoBehaviour
     {
+        [Required]
         [SerializeField]
         private GameObject view;
 
+        [Required]
         [SerializeField]
         private Animator animator;
 
+        [Required]
         [SerializeField]
-        private ProgressBar progressBar;
+        private RectTransform uiParent;
+
+        [Required]
+        [SerializeField]
+        private SerializableInterface<IFadingUI> loadingUI;
 
         [ReadOnly]
         [SerializeField]
@@ -49,25 +59,27 @@ namespace Transition.End
             AsyncOperation loading = SceneManager.LoadSceneAsync(nextScene);
             loading.allowSceneActivation = false;
             _ = StartCoroutine(
-                LoadSceneRoutine(TransitionSettings.Instance.MinLoadingDuration, loading)
+                LoadSceneRoutine(TransitionSettings.Instance.LoadingDuration, loading)
             );
         }
 
-        private const float MAX_LOADING_PROGRESS = 0.9f;
-
-        private IEnumerator LoadSceneRoutine(float minDuration, AsyncOperation loading)
+        private IEnumerator LoadSceneRoutine(float duration, AsyncOperation loading)
         {
-            float timer = 0f;
-            while (timer <= minDuration || loading.progress != MAX_LOADING_PROGRESS)
-            {
-                yield return null;
-                timer += Time.unscaledDeltaTime;
-                float percentage = timer / minDuration;
-                float loadingPercentage = loading.progress / MAX_LOADING_PROGRESS;
-                progressBar.SetProgress(
-                    percentage > loadingPercentage ? loadingPercentage : percentage
-                );
-            }
+            int currentFilling = TransitionSettings.Instance.CurrentFilling;
+            float fadeDuration = TransitionSettings.Instance.FadingDuration;
+            List<SerializableInterface<IFadingUI>> uisToShow = TransitionSettings.Instance.UiToShow;
+
+            SerializableInterface<IFadingUI> uiToShow = uisToShow[currentFilling];
+            TransitionSettings.Instance.CurrentFilling = (currentFilling + 1) % uisToShow.Count;
+            IFadingUI ui = uiToShow.Instantiate(uiParent);
+            ui.FadeIn(fadeDuration);
+            loadingUI.Value.FadeIn(fadeDuration);
+            yield return new WaitForSecondsRealtime(duration - fadeDuration);
+
+            ui.FadeOut(fadeDuration);
+            loadingUI.Value.FadeOut(fadeDuration);
+            yield return new WaitForSecondsRealtime(fadeDuration);
+
             Time.timeScale = 1;
             loading.allowSceneActivation = true;
         }
