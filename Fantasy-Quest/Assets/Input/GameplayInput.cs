@@ -53,6 +53,96 @@ public partial class @GameplayInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""EnterClick"",
+                    ""type"": ""Button"",
+                    ""id"": ""cc18aba4-0d27-4b0a-8590-913b24771393"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Exit"",
+                    ""type"": ""Button"",
+                    ""id"": ""402f7684-09c4-440b-a5f9-3637247c28bd"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Left"",
+                    ""type"": ""Button"",
+                    ""id"": ""b4b2a314-e66c-4731-a61c-1a9e511fc6d9"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Right"",
+                    ""type"": ""Button"",
+                    ""id"": ""4d1b9f47-aa29-4895-a8c9-3e0029237a0a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Up"",
+                    ""type"": ""Button"",
+                    ""id"": ""aa1df74e-938b-4782-8133-142221f0ca90"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Down"",
+                    ""type"": ""Button"",
+                    ""id"": ""b6303bc6-9cbd-4aea-b597-7bbc968d977c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""CatInteraction"",
+                    ""type"": ""Button"",
+                    ""id"": ""3e999c02-fc1f-4b04-8654-d8b1c8d950da"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""HumanInteraction"",
+                    ""type"": ""Button"",
+                    ""id"": ""693fbd21-9ed5-4263-872b-d92e43b326bb"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Meow"",
+                    ""type"": ""Button"",
+                    ""id"": ""ffff8857-e1ee-4f35-8cd3-753d9b932760"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Mure"",
+                    ""type"": ""Button"",
+                    ""id"": ""02cb8894-978c-4c4d-95e1-db7437304acf"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -86,6 +176,116 @@ public partial class @GameplayInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Click"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""333cb11f-a506-4d18-8b79-650fda0736ad"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""EnterClick"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""32c15198-f435-4512-b725-ce94ce0792df"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Left"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d79b84a4-052b-42c3-8b1e-7c773166dab2"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Right"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8e541b60-4f9e-4798-b13c-4f48302ce8ff"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Up"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""105eddf1-2553-4911-9015-ae95229f5ab9"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Down"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5eee92f6-d4b7-4d3e-90fc-a0697f089928"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CatInteraction"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a3b598e9-8858-4686-9014-357db62b47cd"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""HumanInteraction"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""018b50e4-3311-40c9-87aa-0b1e5d49eb88"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Meow"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3b78ee13-2d94-4eaf-9cfa-f27a72fef7cb"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Mure"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""323c9833-1016-4b10-8dda-4af9d39052eb"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Exit"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -249,6 +449,16 @@ public partial class @GameplayInput: IInputActionCollection2, IDisposable
         m_UI_Pause = m_UI.FindAction("Pause", throwIfNotFound: true);
         m_UI_Point = m_UI.FindAction("Point", throwIfNotFound: true);
         m_UI_Click = m_UI.FindAction("Click", throwIfNotFound: true);
+        m_UI_EnterClick = m_UI.FindAction("EnterClick", throwIfNotFound: true);
+        m_UI_Exit = m_UI.FindAction("Exit", throwIfNotFound: true);
+        m_UI_Left = m_UI.FindAction("Left", throwIfNotFound: true);
+        m_UI_Right = m_UI.FindAction("Right", throwIfNotFound: true);
+        m_UI_Up = m_UI.FindAction("Up", throwIfNotFound: true);
+        m_UI_Down = m_UI.FindAction("Down", throwIfNotFound: true);
+        m_UI_CatInteraction = m_UI.FindAction("CatInteraction", throwIfNotFound: true);
+        m_UI_HumanInteraction = m_UI.FindAction("HumanInteraction", throwIfNotFound: true);
+        m_UI_Meow = m_UI.FindAction("Meow", throwIfNotFound: true);
+        m_UI_Mure = m_UI.FindAction("Mure", throwIfNotFound: true);
         // Player
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_CallHumanInteraction = m_Player.FindAction("CallHumanInteraction", throwIfNotFound: true);
@@ -321,6 +531,16 @@ public partial class @GameplayInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_UI_Pause;
     private readonly InputAction m_UI_Point;
     private readonly InputAction m_UI_Click;
+    private readonly InputAction m_UI_EnterClick;
+    private readonly InputAction m_UI_Exit;
+    private readonly InputAction m_UI_Left;
+    private readonly InputAction m_UI_Right;
+    private readonly InputAction m_UI_Up;
+    private readonly InputAction m_UI_Down;
+    private readonly InputAction m_UI_CatInteraction;
+    private readonly InputAction m_UI_HumanInteraction;
+    private readonly InputAction m_UI_Meow;
+    private readonly InputAction m_UI_Mure;
     public struct UIActions
     {
         private @GameplayInput m_Wrapper;
@@ -328,6 +548,16 @@ public partial class @GameplayInput: IInputActionCollection2, IDisposable
         public InputAction @Pause => m_Wrapper.m_UI_Pause;
         public InputAction @Point => m_Wrapper.m_UI_Point;
         public InputAction @Click => m_Wrapper.m_UI_Click;
+        public InputAction @EnterClick => m_Wrapper.m_UI_EnterClick;
+        public InputAction @Exit => m_Wrapper.m_UI_Exit;
+        public InputAction @Left => m_Wrapper.m_UI_Left;
+        public InputAction @Right => m_Wrapper.m_UI_Right;
+        public InputAction @Up => m_Wrapper.m_UI_Up;
+        public InputAction @Down => m_Wrapper.m_UI_Down;
+        public InputAction @CatInteraction => m_Wrapper.m_UI_CatInteraction;
+        public InputAction @HumanInteraction => m_Wrapper.m_UI_HumanInteraction;
+        public InputAction @Meow => m_Wrapper.m_UI_Meow;
+        public InputAction @Mure => m_Wrapper.m_UI_Mure;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -346,6 +576,36 @@ public partial class @GameplayInput: IInputActionCollection2, IDisposable
             @Click.started += instance.OnClick;
             @Click.performed += instance.OnClick;
             @Click.canceled += instance.OnClick;
+            @EnterClick.started += instance.OnEnterClick;
+            @EnterClick.performed += instance.OnEnterClick;
+            @EnterClick.canceled += instance.OnEnterClick;
+            @Exit.started += instance.OnExit;
+            @Exit.performed += instance.OnExit;
+            @Exit.canceled += instance.OnExit;
+            @Left.started += instance.OnLeft;
+            @Left.performed += instance.OnLeft;
+            @Left.canceled += instance.OnLeft;
+            @Right.started += instance.OnRight;
+            @Right.performed += instance.OnRight;
+            @Right.canceled += instance.OnRight;
+            @Up.started += instance.OnUp;
+            @Up.performed += instance.OnUp;
+            @Up.canceled += instance.OnUp;
+            @Down.started += instance.OnDown;
+            @Down.performed += instance.OnDown;
+            @Down.canceled += instance.OnDown;
+            @CatInteraction.started += instance.OnCatInteraction;
+            @CatInteraction.performed += instance.OnCatInteraction;
+            @CatInteraction.canceled += instance.OnCatInteraction;
+            @HumanInteraction.started += instance.OnHumanInteraction;
+            @HumanInteraction.performed += instance.OnHumanInteraction;
+            @HumanInteraction.canceled += instance.OnHumanInteraction;
+            @Meow.started += instance.OnMeow;
+            @Meow.performed += instance.OnMeow;
+            @Meow.canceled += instance.OnMeow;
+            @Mure.started += instance.OnMure;
+            @Mure.performed += instance.OnMure;
+            @Mure.canceled += instance.OnMure;
         }
 
         private void UnregisterCallbacks(IUIActions instance)
@@ -359,6 +619,36 @@ public partial class @GameplayInput: IInputActionCollection2, IDisposable
             @Click.started -= instance.OnClick;
             @Click.performed -= instance.OnClick;
             @Click.canceled -= instance.OnClick;
+            @EnterClick.started -= instance.OnEnterClick;
+            @EnterClick.performed -= instance.OnEnterClick;
+            @EnterClick.canceled -= instance.OnEnterClick;
+            @Exit.started -= instance.OnExit;
+            @Exit.performed -= instance.OnExit;
+            @Exit.canceled -= instance.OnExit;
+            @Left.started -= instance.OnLeft;
+            @Left.performed -= instance.OnLeft;
+            @Left.canceled -= instance.OnLeft;
+            @Right.started -= instance.OnRight;
+            @Right.performed -= instance.OnRight;
+            @Right.canceled -= instance.OnRight;
+            @Up.started -= instance.OnUp;
+            @Up.performed -= instance.OnUp;
+            @Up.canceled -= instance.OnUp;
+            @Down.started -= instance.OnDown;
+            @Down.performed -= instance.OnDown;
+            @Down.canceled -= instance.OnDown;
+            @CatInteraction.started -= instance.OnCatInteraction;
+            @CatInteraction.performed -= instance.OnCatInteraction;
+            @CatInteraction.canceled -= instance.OnCatInteraction;
+            @HumanInteraction.started -= instance.OnHumanInteraction;
+            @HumanInteraction.performed -= instance.OnHumanInteraction;
+            @HumanInteraction.canceled -= instance.OnHumanInteraction;
+            @Meow.started -= instance.OnMeow;
+            @Meow.performed -= instance.OnMeow;
+            @Meow.canceled -= instance.OnMeow;
+            @Mure.started -= instance.OnMure;
+            @Mure.performed -= instance.OnMure;
+            @Mure.canceled -= instance.OnMure;
         }
 
         public void RemoveCallbacks(IUIActions instance)
@@ -467,6 +757,16 @@ public partial class @GameplayInput: IInputActionCollection2, IDisposable
         void OnPause(InputAction.CallbackContext context);
         void OnPoint(InputAction.CallbackContext context);
         void OnClick(InputAction.CallbackContext context);
+        void OnEnterClick(InputAction.CallbackContext context);
+        void OnExit(InputAction.CallbackContext context);
+        void OnLeft(InputAction.CallbackContext context);
+        void OnRight(InputAction.CallbackContext context);
+        void OnUp(InputAction.CallbackContext context);
+        void OnDown(InputAction.CallbackContext context);
+        void OnCatInteraction(InputAction.CallbackContext context);
+        void OnHumanInteraction(InputAction.CallbackContext context);
+        void OnMeow(InputAction.CallbackContext context);
+        void OnMure(InputAction.CallbackContext context);
     }
     public interface IPlayerActions
     {

@@ -22,7 +22,7 @@ namespace Panel.Settings
         private Animator animator;
 
         [SerializeField]
-        [ValueDropdown("@" + nameof(AnimatorBools))]
+        [ValueDropdown("@AnimatorBools")]
         private string isShownBoolAnimatorFlagName;
 
         public UnityEvent OnSettingsClosed;

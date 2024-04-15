@@ -7,7 +7,7 @@ namespace UI
     {
         private Pages.View currentPage;
         private Pages.View lastPage;
-        private MainMenuInput mainMenuInput;
+        private GameplayInput mainMenuInput;
 
         private void Awake()
         {

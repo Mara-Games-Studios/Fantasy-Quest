@@ -10,7 +10,7 @@ namespace Minigames.MouseInHay
     {
         [RequiredIn(PrefabKind.PrefabInstanceAndNonPrefabInstance)]
         [SerializeField]
-        private new CinemachineVirtualCamera camera;
+        private CinemachineVirtualCamera virtualCamera;
 
         [SerializeField]
         private bool slowDrop = false;
@@ -28,7 +28,8 @@ namespace Minigames.MouseInHay
 
         private void Awake()
         {
-            shakeComponent = camera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+            shakeComponent =
+                virtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
         }
 
         [Button]

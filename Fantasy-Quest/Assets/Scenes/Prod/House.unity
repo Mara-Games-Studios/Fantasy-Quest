@@ -2007,6 +2007,34 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1885351567}
     m_Modifications:
+    - target: {fileID: 706589963599466949, guid: e1ca28463a1c6ac4f94ccc34fd47e872, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 706589963599466949, guid: e1ca28463a1c6ac4f94ccc34fd47e872, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 706589963599466949, guid: e1ca28463a1c6ac4f94ccc34fd47e872, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 431767116}
+    - target: {fileID: 706589963599466949, guid: e1ca28463a1c6ac4f94ccc34fd47e872, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 706589963599466949, guid: e1ca28463a1c6ac4f94ccc34fd47e872, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: QuitGame
+      objectReference: {fileID: 0}
+    - target: {fileID: 706589963599466949, guid: e1ca28463a1c6ac4f94ccc34fd47e872, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Transition.End.Controller, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 706589963599466949, guid: e1ca28463a1c6ac4f94ccc34fd47e872, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 3786762580789438500, guid: e1ca28463a1c6ac4f94ccc34fd47e872, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -2336,8 +2364,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 1
   m_ShadowVolumeIntensity: 0.869
   m_LocalBounds:
-    m_Center: {x: -1.7969999, y: -5.5903997, z: 0}
-    m_Extent: {x: 1.9598, y: 1.8573, z: 0}
+    m_Center: {x: -1.78355, y: -5.6, z: 0}
+    m_Extent: {x: 1.95525, y: 1.8562999, z: 0}
   m_PointLightInnerAngle: 359.6
   m_PointLightOuterAngle: 359.6
   m_PointLightInnerRadius: 2
@@ -2388,7 +2416,6 @@ Transform:
   - {fileID: 698130714}
   - {fileID: 2084913400}
   - {fileID: 1143326349}
-  - {fileID: 1962040504}
   m_Father: {fileID: 106903181}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &324369289
@@ -2976,8 +3003,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 1
   m_ShadowVolumeIntensity: 0.869
   m_LocalBounds:
-    m_Center: {x: -1.3407999, y: -5.5649, z: 0}
-    m_Extent: {x: 1.7627, y: 1.9182, z: 0}
+    m_Center: {x: -1.35145, y: -5.5696, z: 0}
+    m_Extent: {x: 1.75895, y: 1.9253999, z: 0}
   m_PointLightInnerAngle: 359.6
   m_PointLightOuterAngle: 359.6
   m_PointLightInnerRadius: 2
@@ -5615,8 +5642,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 1
   m_ShadowVolumeIntensity: 0.869
   m_LocalBounds:
-    m_Center: {x: 0.46240002, y: -5.5864, z: 0}
-    m_Extent: {x: 1.4602001, y: 1.9555999, z: 0}
+    m_Center: {x: 0.4626, y: -5.5875998, z: 0}
+    m_Extent: {x: 1.4681, y: 1.9566, z: 0}
   m_PointLightInnerAngle: 359.6
   m_PointLightOuterAngle: 359.6
   m_PointLightInnerRadius: 2
@@ -9797,11 +9824,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 553665277}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1859265191 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 704878744469824940, guid: e1ca28463a1c6ac4f94ccc34fd47e872, type: 3}
-  m_PrefabInstance: {fileID: 255215262}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1885351566
 GameObject:
   m_ObjectHideFlags: 0
@@ -10136,8 +10158,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 1
   m_ShadowVolumeIntensity: 0.869
   m_LocalBounds:
-    m_Center: {x: -2.8879502, y: -7.5211, z: 0}
-    m_Extent: {x: 1.9794501, y: 1.2678001, z: 0}
+    m_Center: {x: -2.8942, y: -7.5257497, z: 0}
+    m_Extent: {x: 1.9819, y: 1.2702498, z: 0}
   m_PointLightInnerAngle: 359.6
   m_PointLightOuterAngle: 359.6
   m_PointLightInnerRadius: 2
@@ -10236,81 +10258,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &1962040501
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1962040504}
-  - component: {fileID: 1962040503}
-  - component: {fileID: 1962040502}
-  m_Layer: 0
-  m_Name: Shutdowner
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1962040502
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1962040501}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Events:
-    m_Signals:
-    - {fileID: 11400000, guid: 657523eb1901cde4ab5b413477a4ffdf, type: 2}
-    m_Events:
-    - m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1962040503}
-          m_TargetAssemblyTypeName: Utils.Shutdown, Assembly-CSharp
-          m_MethodName: Close
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
---- !u!114 &1962040503
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1962040501}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a02a0ad527d41a54994ddf75723d1b0e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &1962040504
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1962040501}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -28.03, y: -1.55, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 324369288}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1975631009 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7682184645439324077, guid: b226e54f4be684b4f82c70458cacaaab, type: 3}
@@ -11004,8 +10951,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 1
   m_ShadowVolumeIntensity: 0.869
   m_LocalBounds:
-    m_Center: {x: -0.6635001, y: -7.4392996, z: 0}
-    m_Extent: {x: 2.5994, y: 1.3222997, z: 0}
+    m_Center: {x: -0.66305, y: -7.4332, z: 0}
+    m_Extent: {x: 2.60715, y: 1.3290002, z: 0}
   m_PointLightInnerAngle: 359.6
   m_PointLightOuterAngle: 359.6
   m_PointLightInnerRadius: 2
@@ -12284,7 +12231,7 @@ PrefabInstance:
     - target: {fileID: 6659766520282865983, guid: 3b3be3009afd91946b8459d397c1b621, type: 3}
       propertyPath: pausePanel
       value: 
-      objectReference: {fileID: 1859265191}
+      objectReference: {fileID: 391261295}
     - target: {fileID: 6659766520282865983, guid: 3b3be3009afd91946b8459d397c1b621, type: 3}
       propertyPath: settingsPage
       value: 

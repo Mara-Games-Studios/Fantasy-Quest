@@ -21,7 +21,9 @@ namespace Transition.End
         [ReadOnly]
         [SerializeField]
         private string nextScene = "NULL";
+        private bool exitingGame = false;
 
+        [Button]
         public void LoadScene(string nextScene)
         {
             view.SetActive(true);
@@ -29,9 +31,21 @@ namespace Transition.End
             this.nextScene = nextScene;
         }
 
+        [Button]
+        public void QuitGame()
+        {
+            view.SetActive(true);
+            animator.enabled = true;
+            exitingGame = true;
+        }
+
         // Must me called by view callback
         public void StartLoading()
         {
+            if (exitingGame)
+            {
+                Application.Quit();
+            }
             AsyncOperation loading = SceneManager.LoadSceneAsync(nextScene);
             loading.allowSceneActivation = false;
             _ = StartCoroutine(
@@ -54,6 +68,7 @@ namespace Transition.End
                     percentage > loadingPercentage ? loadingPercentage : percentage
                 );
             }
+            Time.timeScale = 1;
             loading.allowSceneActivation = true;
         }
     }
