@@ -1734,10 +1734,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: To Barn Effect IN
       objectReference: {fileID: 0}
-    - target: {fileID: 174728341159040087, guid: f75b8445c7d836f42a89a16a0c679861, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3242326672874925093, guid: f75b8445c7d836f42a89a16a0c679861, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1818,66 +1814,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4908958924992194080, guid: f75b8445c7d836f42a89a16a0c679861, type: 3}
-      propertyPath: m_Color.b
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4908958924992194080, guid: f75b8445c7d836f42a89a16a0c679861, type: 3}
-      propertyPath: m_Color.g
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4908958924992194080, guid: f75b8445c7d836f42a89a16a0c679861, type: 3}
-      propertyPath: m_Color.r
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5143924668598770677, guid: f75b8445c7d836f42a89a16a0c679861, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -0
-      objectReference: {fileID: 0}
     - target: {fileID: 6670752086790481901, guid: f75b8445c7d836f42a89a16a0c679861, type: 3}
       propertyPath: duration
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6670752086790481901, guid: f75b8445c7d836f42a89a16a0c679861, type: 3}
-      propertyPath: disableOnStart
-      value: 1
+      propertyPath: startProperties.Size.x
+      value: 2500
       objectReference: {fileID: 0}
     - target: {fileID: 6670752086790481901, guid: f75b8445c7d836f42a89a16a0c679861, type: 3}
-      propertyPath: curve.m_Curve.Array.size
-      value: 2
+      propertyPath: startProperties.Size.y
+      value: 2500
       objectReference: {fileID: 0}
-    - target: {fileID: 6670752086790481901, guid: f75b8445c7d836f42a89a16a0c679861, type: 3}
-      propertyPath: curve.m_Curve.Array.data[1].time
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6670752086790481901, guid: f75b8445c7d836f42a89a16a0c679861, type: 3}
-      propertyPath: curve.m_Curve.Array.data[1].value
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6670752086790481901, guid: f75b8445c7d836f42a89a16a0c679861, type: 3}
-      propertyPath: curve.m_Curve.Array.data[1].inSlope
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6670752086790481901, guid: f75b8445c7d836f42a89a16a0c679861, type: 3}
-      propertyPath: curve.m_Curve.Array.data[1].inWeight
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6670752086790481901, guid: f75b8445c7d836f42a89a16a0c679861, type: 3}
-      propertyPath: curve.m_Curve.Array.data[1].outSlope
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6670752086790481901, guid: f75b8445c7d836f42a89a16a0c679861, type: 3}
-      propertyPath: curve.m_Curve.Array.data[1].outWeight
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7931700506185485493, guid: f75b8445c7d836f42a89a16a0c679861, type: 3}
-      propertyPath: m_Type
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7931700506185485493, guid: f75b8445c7d836f42a89a16a0c679861, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2772,7 +2720,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rails: {fileID: 1055194837}
-  speed: 10
+  speed: 5
+  skeletonAnimation: {fileID: 84311742}
+  idle: {fileID: 11400000, guid: 80805fe0bb3bf0442b21bf15cc4a584b, type: 2}
+  walk: {fileID: 11400000, guid: 1c8482735a629264489305a3ada47731, type: 2}
   startPoint: {fileID: 1949871722}
 --- !u!114 &404905224
 MonoBehaviour:
@@ -4375,33 +4326,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4908958924992194080, guid: f75b8445c7d836f42a89a16a0c679861, type: 3}
-      propertyPath: m_Color.b
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4908958924992194080, guid: f75b8445c7d836f42a89a16a0c679861, type: 3}
-      propertyPath: m_Color.g
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4908958924992194080, guid: f75b8445c7d836f42a89a16a0c679861, type: 3}
-      propertyPath: m_Color.r
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5143924668598770677, guid: f75b8445c7d836f42a89a16a0c679861, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5143924668598770677, guid: f75b8445c7d836f42a89a16a0c679861, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -0
-      objectReference: {fileID: 0}
     - target: {fileID: 6670752086790481901, guid: f75b8445c7d836f42a89a16a0c679861, type: 3}
       propertyPath: duration
       value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6670752086790481901, guid: f75b8445c7d836f42a89a16a0c679861, type: 3}
-      propertyPath: disableOnStart
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6670752086790481901, guid: f75b8445c7d836f42a89a16a0c679861, type: 3}
       propertyPath: endProperties.Size.x
@@ -4447,10 +4374,6 @@ PrefabInstance:
       propertyPath: curve.m_Curve.Array.data[1].outWeight
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7931700506185485493, guid: f75b8445c7d836f42a89a16a0c679861, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -8188,6 +8111,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rails: {fileID: 187231270}
   speed: 0
+  skeletonAnimation: {fileID: 0}
+  idle: {fileID: 0}
+  walk: {fileID: 0}
   startPoint: {fileID: 366882178}
 --- !u!1001 &1453695213
 PrefabInstance:
@@ -12262,6 +12188,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rails: {fileID: 1055194837}
   speed: 0
+  skeletonAnimation: {fileID: 0}
+  idle: {fileID: 0}
+  walk: {fileID: 0}
   startPoint: {fileID: 1179298555}
 --- !u!1 &2090560856 stripped
 GameObject:
@@ -15459,7 +15388,7 @@ PrefabInstance:
       objectReference: {fileID: 2024490713}
     - target: {fileID: 5384320320187699602, guid: b226e54f4be684b4f82c70458cacaaab, type: 3}
       propertyPath: speed
-      value: 15
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
