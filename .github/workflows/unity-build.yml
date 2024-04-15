@@ -1,31 +1,31 @@
-name: Build unity project
+name: Build Test
 
 on:
-  workflow_dispatch:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
 
 jobs:
-  buildForAllSupportedPlatforms:
-    name: Build for ${{ matrix.targetPlatform }}
+  buildForStandaloneWindows64:
     runs-on: self-hosted
-    strategy:
-      fail-fast: false
-      matrix:
-        targetPlatform:
-          - StandaloneWindows
-          - StandaloneWindows64
     steps:
       - name: Chown files to koala
-        run: sudo chown -R 'koala:' ~/quest-runner/_work --recursive
+        if: ${{ always() }}
+        run: sudo chown -R 'koala:' ~/office-runner/_work --recursive
 
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
           lfs: true
-      - uses: actions/cache@v3
+      
+      - uses: actions/cache@v4
         with:
           path: Fantasy-Quest/Library
-          key: Library-${{ matrix.targetPlatform }}
-          restore-keys: Library-
+          key: Library-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
+          restore-keys: |
+            Library-
+      
       - uses: game-ci/unity-builder@v4
         env:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
@@ -33,13 +33,48 @@ jobs:
           UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
         with:
           projectPath: Fantasy-Quest
-          targetPlatform: ${{ matrix.targetPlatform }}
-      
-      - uses: actions/upload-artifact@v3
-        with:
-          name: Build-${{ matrix.targetPlatform }}
-          path: build/${{ matrix.targetPlatform }}
+          targetPlatform: StandaloneWindows64
+          runAsHostUser: true
+          chownFilesTo: koala
       
       - name: Chown files to koala
-        if: success() || failure()
+        if: ${{ always() }}
         run: sudo chown -R 'koala:' ~/quest-runner/_work --recursive
+  
+  buildForStandaloneWindows:
+    runs-on: self-hosted
+    steps:
+      - name: Chown files to koala
+        if: ${{ always() }}
+        run: sudo chown -R 'koala:' ~/office-runner/_work --recursive
+
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          lfs: true
+      
+      - uses: actions/cache@v4
+        with:
+          path: Fantasy-Quest/Library
+          key: Library-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
+          restore-keys: |
+            Library-
+      
+      - uses: game-ci/unity-builder@v4
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+        with:
+          projectPath: Fantasy-Quest
+          targetPlatform: StandaloneWindows
+          runAsHostUser: true
+          chownFilesTo: koala
+      
+      - name: Chown files to koala
+        if: ${{ always() }}
+        run: sudo chown -R 'koala:' ~/quest-runner/_work --recursive
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref == 'refs/heads/main' && github.run_id || github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
