@@ -12,7 +12,7 @@ jobs:
     steps:
       - name: Chown files to koala
         if: ${{ always() }}
-        run: sudo chown -R 'koala:' ~/office-runner/_work --recursive
+        run: sudo chown -R 'koala:' ~/quest-runner/_work --recursive
 
       - uses: actions/checkout@v4
         with:
@@ -46,7 +46,7 @@ jobs:
     steps:
       - name: Chown files to koala
         if: ${{ always() }}
-        run: sudo chown -R 'koala:' ~/office-runner/_work --recursive
+        run: sudo chown -R 'koala:' ~/quest-runner/_work --recursive
 
       - uses: actions/checkout@v4
         with:
