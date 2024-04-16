@@ -1,4 +1,5 @@
 ﻿using UI.Indicators;
+using UnityEngine.InputSystem;
 
 namespace UI.Pages.Behaviours
 {
@@ -9,20 +10,45 @@ namespace UI.Pages.Behaviours
 
         public override void Enable()
         {
-            LayoutModel.MainMenuInput.UI.Down.performed += ctx => GoDown();
-            LayoutModel.MainMenuInput.UI.Up.performed += ctx => GoUp();
-            LayoutModel.MainMenuInput.UI.Left.performed += ctx => GoLeft();
-            LayoutModel.MainMenuInput.UI.Right.performed += ctx => GoRight();
-            LayoutModel.MainMenuInput.UI.EnterClick.performed += ctx => Click();
+            LayoutModel.MainMenuInput.UI.Down.performed += Down_performed;
+            LayoutModel.MainMenuInput.UI.Up.performed += Up_performed;
+            LayoutModel.MainMenuInput.UI.Left.performed += Left_performed;
+            LayoutModel.MainMenuInput.UI.Right.performed += Right_performed;
+            LayoutModel.MainMenuInput.UI.EnterClick.performed += EnterClick_performed;
+        }
+
+        private void EnterClick_performed(InputAction.CallbackContext obj)
+        {
+            Click();
+        }
+
+        private void Right_performed(InputAction.CallbackContext obj)
+        {
+            GoRight();
+        }
+
+        private void Left_performed(InputAction.CallbackContext obj)
+        {
+            GoLeft();
+        }
+
+        private void Up_performed(InputAction.CallbackContext obj)
+        {
+            GoUp();
+        }
+
+        private void Down_performed(InputAction.CallbackContext obj)
+        {
+            GoDown();
         }
 
         public override void Disable()
         {
-            LayoutModel.MainMenuInput.UI.Down.performed -= ctx => GoDown();
-            LayoutModel.MainMenuInput.UI.Up.performed -= ctx => GoUp();
-            LayoutModel.MainMenuInput.UI.Left.performed -= ctx => GoLeft();
-            LayoutModel.MainMenuInput.UI.Right.performed -= ctx => GoRight();
-            LayoutModel.MainMenuInput.UI.EnterClick.performed -= ctx => Click();
+            LayoutModel.MainMenuInput.UI.Down.performed -= Down_performed;
+            LayoutModel.MainMenuInput.UI.Up.performed -= Up_performed;
+            LayoutModel.MainMenuInput.UI.Left.performed -= Left_performed;
+            LayoutModel.MainMenuInput.UI.Right.performed -= Right_performed;
+            LayoutModel.MainMenuInput.UI.EnterClick.performed -= EnterClick_performed;
         }
 
         private void GoDown()

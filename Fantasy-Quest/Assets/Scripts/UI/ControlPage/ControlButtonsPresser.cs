@@ -21,11 +21,11 @@ namespace UI.ControlPage
         [SerializeField]
         private float maxFade = 0.8f;
 
-        private MainMenuInput mainMenuInput;
+        private GameplayInput mainMenuInput;
 
         private void Awake()
         {
-            mainMenuInput = new MainMenuInput();
+            mainMenuInput = new();
             mainMenuInput.Enable();
             controlButtonsBackgrounds.Initialize();
 

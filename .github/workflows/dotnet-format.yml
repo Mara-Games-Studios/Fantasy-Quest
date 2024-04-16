@@ -40,4 +40,6 @@ jobs:
       - name: Run csharpier format
         run: cd Fantasy-Quest/Assets/Scripts && dotnet tool run dotnet-csharpier --config-path ".csharpierrc.json" . --check
       
-  
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref == 'refs/heads/main' && github.run_id || github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true

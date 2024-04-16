@@ -25,12 +25,17 @@ namespace UI.Pages
 
         private void OnEnable()
         {
-            effectShower.OnEffectShowed += () => OnPageShowed?.Invoke(this);
+            effectShower.OnEffectShowed += InvokeOnPageShowed;
         }
 
         private void OnDisable()
         {
-            effectShower.OnEffectShowed -= () => OnPageShowed.Invoke(this);
+            effectShower.OnEffectShowed -= InvokeOnPageShowed;
+        }
+
+        private void InvokeOnPageShowed()
+        {
+            OnPageShowed?.Invoke(this);
         }
 
         [Button]

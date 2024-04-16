@@ -16,12 +16,13 @@ namespace LevelSpecific.ForestEdge
             if (
                 collision.TryGetComponent(out Cat.Movement _)
                 && !ProgressionConfig.Instance.ForestEdgeLevel.MonsterCutsceneTriggered
+                && ProgressionConfig.Instance.ForestEdgeLevel.ExplanationListened
             )
             {
-                // TODO: create cutscene
-                //cutsceneStarter.StartCutscene();
+                cutsceneStarter.StartCutscene();
                 Debug.Log("Squirrel game unlocked");
                 ProgressionConfig.Instance.ForestEdgeLevel.MonsterCutsceneTriggered = true;
+                gameObject.SetActive(false);
             }
         }
     }

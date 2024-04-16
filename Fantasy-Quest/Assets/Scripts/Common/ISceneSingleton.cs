@@ -38,7 +38,7 @@ namespace Common
             if (ISceneSingleton<T>.Instance != null)
             {
                 self.MigrateSingleton(ISceneSingleton<T>.Instance);
-                Object.Destroy(ISceneSingleton<T>.Instance);
+                Object.Destroy(ISceneSingleton<T>.Instance.gameObject);
             }
 
             ISceneSingleton<T>.SetInstance(self as T);
