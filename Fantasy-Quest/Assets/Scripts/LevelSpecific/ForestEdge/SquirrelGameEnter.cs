@@ -14,6 +14,10 @@ namespace LevelSpecific.ForestEdge
         [SerializeField]
         private Manager miniGameManager;
 
+        [Required]
+        [SerializeField]
+        private GameObject acorn;
+
         public void StartMiniGame()
         {
             if (
@@ -21,6 +25,7 @@ namespace LevelSpecific.ForestEdge
                 && !ProgressionConfig.Instance.ForestEdgeLevel.SquirrelGamePassed
             )
             {
+                acorn.SetActive(true);
                 miniGameManager.EnableAllMinigameInput();
                 miniGameManager.RefreshGame();
             }
