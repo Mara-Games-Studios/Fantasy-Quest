@@ -1,4 +1,5 @@
 ﻿using Configs.Progression;
+using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -9,7 +10,12 @@ namespace LevelSpecific.ForestEdge
     )]
     internal class MouseInHayMinigameExit : MonoBehaviour
     {
+        [SerializeField]
+        [ReadOnly]
+        private bool cutsceneTriggered = false;
+
         public UnityEvent PassedFirstTime;
+        public UnityEvent PassedFirstTimeAfter;
 
         public void SetMiniGamePassed()
         {
@@ -17,6 +23,18 @@ namespace LevelSpecific.ForestEdge
             {
                 ProgressionConfig.Instance.ForestEdgeLevel.MouseInHayGamePassed = true;
                 PassedFirstTime?.Invoke();
+            }
+        }
+
+        public void CallMinigamePassed()
+        {
+            if (
+                ProgressionConfig.Instance.ForestEdgeLevel.MouseInHayGamePassed
+                && !cutsceneTriggered
+            )
+            {
+                PassedFirstTimeAfter?.Invoke();
+                cutsceneTriggered = true;
             }
         }
     }

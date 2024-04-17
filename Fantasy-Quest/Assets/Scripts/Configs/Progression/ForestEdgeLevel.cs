@@ -13,6 +13,7 @@ namespace Configs.Progression
         public bool SquirrelGamePassed = false;
         public bool EggTakenByCymon = false;
         public bool AcornTakenByCymon = false;
+        public bool AltarGamePassed = false;
         public bool AltarGamePassedCorrectly = false;
         public bool AllItemTaken => EggTakenByCymon && AcornTakenByCymon;
     }

@@ -28,11 +28,9 @@ namespace LevelSpecific.ForestEdge
             {
                 miniGameManager.EnableAllMinigameInput();
                 miniGameManager.RefreshMiniGame();
+                miniGameManager.StartMiniGame();
             }
-            else
-            {
-                quitInput.enabled = true;
-            }
+            quitInput.enabled = true;
         }
     }
 }

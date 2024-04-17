@@ -1,4 +1,5 @@
 ﻿using Configs.Progression;
+using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -9,14 +10,34 @@ namespace LevelSpecific.ForestEdge
     )]
     internal class AltarMiniGameExit : MonoBehaviour
     {
-        public UnityEvent PassedFirstTime;
+        [SerializeField]
+        [ReadOnly]
+        private bool passedLoseWin = false;
 
-        public void SetMiniGamePassed()
+        public UnityEvent PassedFirstTime;
+        public UnityEvent PassedFirstTimeAfter;
+
+        public void SetPassedLoseWin()
+        {
+            passedLoseWin = true;
+        }
+
+        public void SetMiniGamePassedCorrectly()
         {
             if (!ProgressionConfig.Instance.ForestEdgeLevel.AltarGamePassedCorrectly)
             {
                 ProgressionConfig.Instance.ForestEdgeLevel.AltarGamePassedCorrectly = true;
                 PassedFirstTime?.Invoke();
+            }
+        }
+
+        public void CallMinigamePassed()
+        {
+            ProgressionConfig.Instance.ForestEdgeLevel.AltarGamePassed = true;
+            if (passedLoseWin)
+            {
+                PassedFirstTimeAfter?.Invoke();
+                passedLoseWin = false;
             }
         }
     }
