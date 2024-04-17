@@ -4660,6 +4660,7 @@ MonoBehaviour:
   catSkeleton: {fileID: 805997864}
   catIdleAniamtion: {fileID: 11400000, guid: 96c0836d96fe5a14dba213e8daceccd0, type: 2}
   playerCam: {fileID: 810026366}
+  nowhereCam: {fileID: 281684982}
   altarTrigger: {fileID: 1770866686}
 --- !u!1 &614583055
 GameObject:
@@ -6898,6 +6899,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1470115253}
+        m_TargetAssemblyTypeName: LevelSpecific.ForestEdge.WithItemUnlocker, Assembly-CSharp
+        m_MethodName: LockIfHasItem
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   references:
     version: 2
     RefIds:
@@ -7012,6 +7025,18 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: MainMenu
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1826997858}
+        m_TargetAssemblyTypeName: Configs.Progression.ProgressionRestarter, Assembly-CSharp
+        m_MethodName: Starter
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!224 &912150851
@@ -7200,7 +7225,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0bccede3b90bba4fb9400863636eaa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playSecondEffect: 0
+  playSecondEffect: 1
   transitionTime: 1
   inEffect:
     mode: 0
@@ -7230,6 +7255,18 @@ MonoBehaviour:
   InEffectEnded:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 810026366}
+        m_TargetAssemblyTypeName: Cinemachine.CinemachineVirtualCameraBase, Cinemachine
+        m_MethodName: set_Priority
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: -10
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 281684982}
         m_TargetAssemblyTypeName: Cinemachine.CinemachineVirtualCameraBase, Cinemachine
         m_MethodName: set_Priority
@@ -7250,18 +7287,6 @@ MonoBehaviour:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 810026366}
-        m_TargetAssemblyTypeName: Cinemachine.CinemachineVirtualCameraBase, Cinemachine
-        m_MethodName: set_Priority
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: -10
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -8171,11 +8196,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1055194836}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &1182607664 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4255530588582072246, guid: 78951c99008d395408102ffd3bb94551, type: 3}
-  m_PrefabInstance: {fileID: 3941851768610491984}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1186987239
 GameObject:
   m_ObjectHideFlags: 0
@@ -8712,6 +8732,18 @@ MonoBehaviour:
       - m_Target: {fileID: 11400000, guid: 4c552f663c8ac264d9f53fc8accc92d3, type: 2}
         m_TargetAssemblyTypeName: Configs.LockerSettings, Assembly-CSharp
         m_MethodName: UnlockAll
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1470115253}
+        m_TargetAssemblyTypeName: LevelSpecific.ForestEdge.WithItemUnlocker, Assembly-CSharp
+        m_MethodName: LockIfHasItem
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -10370,6 +10402,51 @@ MonoBehaviour:
   color: {r: 0, g: 0, b: 0, a: 1}
   showPoint: 1
   radius: 0.2
+--- !u!1 &1470115251
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1470115252}
+  - component: {fileID: 1470115253}
+  m_Layer: 0
+  m_Name: CatWithItemUnlocker
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1470115252
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1470115251}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1470115253
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1470115251}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf15e884399b5104da0137abe1688996, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemTaker: {fileID: 7703565356622517977}
 --- !u!1 &1526481077 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4415634093081500924, guid: b5c81db2869cb3e41b4d7e6fc2a5ac7e, type: 3}
@@ -13113,7 +13190,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1826997856}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bba6fe04786cd6f4591fbc16e2d0458e, type: 3}
   m_Name: 
@@ -14498,131 +14575,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45e653bab7fb20e499bda25e1b646fea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1001 &2027681725
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 1182607664}
-    m_Modifications:
-    - target: {fileID: 30567750485575376, guid: 5d3b0168371d4d74bb8508d8b8cf29aa, type: 3}
-      propertyPath: keyboardSpriteRenderer.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 30567750485575376, guid: 5d3b0168371d4d74bb8508d8b8cf29aa, type: 3}
-      propertyPath: keyboardSpriteRenderer.Array.data[1]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 30567750485575376, guid: 5d3b0168371d4d74bb8508d8b8cf29aa, type: 3}
-      propertyPath: keyboardSpriteRenderer.Array.data[2]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 30567750485575376, guid: 5d3b0168371d4d74bb8508d8b8cf29aa, type: 3}
-      propertyPath: keyboardSpriteRenderer.Array.data[3]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 832558757449281322, guid: 5d3b0168371d4d74bb8508d8b8cf29aa, type: 3}
-      propertyPath: m_Size.x
-      value: 0.9133625
-      objectReference: {fileID: 0}
-    - target: {fileID: 832558757449281322, guid: 5d3b0168371d4d74bb8508d8b8cf29aa, type: 3}
-      propertyPath: m_Size.y
-      value: 0.44167423
-      objectReference: {fileID: 0}
-    - target: {fileID: 832558757449281322, guid: 5d3b0168371d4d74bb8508d8b8cf29aa, type: 3}
-      propertyPath: m_Offset.x
-      value: 0.2500372
-      objectReference: {fileID: 0}
-    - target: {fileID: 832558757449281322, guid: 5d3b0168371d4d74bb8508d8b8cf29aa, type: 3}
-      propertyPath: m_Offset.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3008105305202731995, guid: 5d3b0168371d4d74bb8508d8b8cf29aa, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.88
-      objectReference: {fileID: 0}
-    - target: {fileID: 3008105305202731995, guid: 5d3b0168371d4d74bb8508d8b8cf29aa, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.88
-      objectReference: {fileID: 0}
-    - target: {fileID: 3008105305202731995, guid: 5d3b0168371d4d74bb8508d8b8cf29aa, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.88
-      objectReference: {fileID: 0}
-    - target: {fileID: 3008105305202731995, guid: 5d3b0168371d4d74bb8508d8b8cf29aa, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 3008105305202731995, guid: 5d3b0168371d4d74bb8508d8b8cf29aa, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.98
-      objectReference: {fileID: 0}
-    - target: {fileID: 3008105305202731995, guid: 5d3b0168371d4d74bb8508d8b8cf29aa, type: 3}
-      propertyPath: m_ConstrainProportionsScale
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3723635921972213601, guid: 5d3b0168371d4d74bb8508d8b8cf29aa, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 82c55483448af594aa2460b6e9783b67, type: 3}
-    - target: {fileID: 5467454157163471465, guid: 5d3b0168371d4d74bb8508d8b8cf29aa, type: 3}
-      propertyPath: m_Name
-      value: HintPrefab
-      objectReference: {fileID: 0}
-    - target: {fileID: 8983533328905800291, guid: 5d3b0168371d4d74bb8508d8b8cf29aa, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8983533328905800291, guid: 5d3b0168371d4d74bb8508d8b8cf29aa, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8983533328905800291, guid: 5d3b0168371d4d74bb8508d8b8cf29aa, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8983533328905800291, guid: 5d3b0168371d4d74bb8508d8b8cf29aa, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8983533328905800291, guid: 5d3b0168371d4d74bb8508d8b8cf29aa, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8983533328905800291, guid: 5d3b0168371d4d74bb8508d8b8cf29aa, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8983533328905800291, guid: 5d3b0168371d4d74bb8508d8b8cf29aa, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8983533328905800291, guid: 5d3b0168371d4d74bb8508d8b8cf29aa, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8983533328905800291, guid: 5d3b0168371d4d74bb8508d8b8cf29aa, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8983533328905800291, guid: 5d3b0168371d4d74bb8508d8b8cf29aa, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects:
-    - {fileID: 6599513587488474108, guid: 5d3b0168371d4d74bb8508d8b8cf29aa, type: 3}
-    - {fileID: 311690352999418800, guid: 5d3b0168371d4d74bb8508d8b8cf29aa, type: 3}
-    - {fileID: 3213079369977470355, guid: 5d3b0168371d4d74bb8508d8b8cf29aa, type: 3}
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 5d3b0168371d4d74bb8508d8b8cf29aa, type: 3}
---- !u!4 &2027681726 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8983533328905800291, guid: 5d3b0168371d4d74bb8508d8b8cf29aa, type: 3}
-  m_PrefabInstance: {fileID: 2027681725}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2038480177
 GameObject:
   m_ObjectHideFlags: 0
@@ -16726,6 +16678,34 @@ PrefabInstance:
       propertyPath: outEffect.unityReference
       value: 
       objectReference: {fileID: 1212526282}
+    - target: {fileID: 4983540046088796031, guid: 78951c99008d395408102ffd3bb94551, type: 3}
+      propertyPath: OutEffectEnded.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4983540046088796031, guid: 78951c99008d395408102ffd3bb94551, type: 3}
+      propertyPath: OutEffectEnded.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4983540046088796031, guid: 78951c99008d395408102ffd3bb94551, type: 3}
+      propertyPath: OutEffectEnded.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1470115253}
+    - target: {fileID: 4983540046088796031, guid: 78951c99008d395408102ffd3bb94551, type: 3}
+      propertyPath: OutEffectEnded.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4983540046088796031, guid: 78951c99008d395408102ffd3bb94551, type: 3}
+      propertyPath: OutEffectEnded.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: LockIfHasItem
+      objectReference: {fileID: 0}
+    - target: {fileID: 4983540046088796031, guid: 78951c99008d395408102ffd3bb94551, type: 3}
+      propertyPath: OutEffectEnded.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: LevelSpecific.ForestEdge.WithItemUnlocker, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4983540046088796031, guid: 78951c99008d395408102ffd3bb94551, type: 3}
+      propertyPath: OutEffectEnded.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 4996945122861738934, guid: 78951c99008d395408102ffd3bb94551, type: 3}
       propertyPath: m_LocalPosition.x
       value: 6.630714
@@ -17010,9 +16990,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5818159093747898448, guid: 78951c99008d395408102ffd3bb94551, type: 3}
       insertIndex: -1
       addedObject: {fileID: 153706121}
-    - targetCorrespondingSourceObject: {fileID: 4255530588582072246, guid: 78951c99008d395408102ffd3bb94551, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2027681726}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 3077496008416618146, guid: 78951c99008d395408102ffd3bb94551, type: 3}
       insertIndex: -1
@@ -17878,6 +17855,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 11400000, guid: 4c552f663c8ac264d9f53fc8accc92d3, type: 2}
+        m_TargetAssemblyTypeName: Configs.LockerSettings, Assembly-CSharp
+        m_MethodName: LockAll
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   references:
     version: 2
     RefIds:
@@ -17934,17 +17923,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 11400000, guid: 4c552f663c8ac264d9f53fc8accc92d3, type: 2}
-        m_TargetAssemblyTypeName: Configs.LockerSettings, Assembly-CSharp
-        m_MethodName: LockForCarryingItem
-        m_Mode: 1
+      - m_Target: {fileID: 1254540537}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 1
+          m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &4294706770205216672 stripped
 MonoBehaviour:
@@ -18981,3 +18970,4 @@ SceneRoots:
   - {fileID: 274379170}
   - {fileID: 922888245}
   - {fileID: 1826997857}
+  - {fileID: 1470115252}

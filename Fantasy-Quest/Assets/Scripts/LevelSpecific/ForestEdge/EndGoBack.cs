@@ -34,6 +34,9 @@ namespace LevelSpecific.ForestEdge
         [SerializeField]
         private CinemachineVirtualCamera playerCam;
 
+        [SerializeField]
+        private CinemachineVirtualCamera nowhereCam;
+
         [Header("Trigger")]
         [SerializeField]
         private GameObject altarTrigger;
@@ -51,6 +54,7 @@ namespace LevelSpecific.ForestEdge
             altarTrigger.SetActive(true);
 
             playerCam.Priority = 1000;
+            nowhereCam.Priority = -10;
 
             LockerSettings.Instance.UnlockAll();
         }
