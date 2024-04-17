@@ -34,6 +34,7 @@ namespace Inventory
 
         private void Update()
         {
+            Debug.Log(takenItem);
             if (takenItem != null)
             {
                 takenItem.transform.position = holdItemPosition.position;
