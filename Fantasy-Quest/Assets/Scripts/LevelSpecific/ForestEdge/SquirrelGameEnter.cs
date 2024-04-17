@@ -25,9 +25,19 @@ namespace LevelSpecific.ForestEdge
                 && !ProgressionConfig.Instance.ForestEdgeLevel.SquirrelGamePassed
             )
             {
-                acorn.SetActive(true);
                 miniGameManager.EnableAllMinigameInput();
                 miniGameManager.RefreshGame();
+            }
+        }
+
+        public void EnableAcorn()
+        {
+            if (
+                ProgressionConfig.Instance.ForestEdgeLevel.MonsterCutsceneTriggered
+                && !ProgressionConfig.Instance.ForestEdgeLevel.SquirrelGamePassed
+            )
+            {
+                acorn.SetActive(true);
             }
         }
     }

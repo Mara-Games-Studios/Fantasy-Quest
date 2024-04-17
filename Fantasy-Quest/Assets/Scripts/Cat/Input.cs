@@ -2,6 +2,7 @@
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.InputSystem;
 
 namespace Cat
 {
@@ -18,7 +19,12 @@ namespace Cat
         private void Awake()
         {
             input = new GameplayInput();
-            input.Player.CatInteraction.performed += (c) => OnCatInteraction?.Invoke();
+            input.Player.CatInteraction.performed += CatInteractionPerformed;
+        }
+
+        private void CatInteractionPerformed(InputAction.CallbackContext obj)
+        {
+            OnCatInteraction.Invoke();
         }
 
         private void Update()

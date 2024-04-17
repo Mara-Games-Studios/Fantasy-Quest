@@ -26,6 +26,7 @@ namespace Minigames.SquirrelGame
         private bool inputEnabled = false;
 
         [RequiredIn(PrefabKind.PrefabInstanceAndNonPrefabInstance)]
+        [SerializeField]
         private Transform bindPrizeTransform;
         public Transform BindPrizeTransform => bindPrizeTransform;
 
