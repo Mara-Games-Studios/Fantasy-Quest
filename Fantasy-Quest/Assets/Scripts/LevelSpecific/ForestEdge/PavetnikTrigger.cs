@@ -2,6 +2,7 @@ using Configs.Progression;
 using Cutscene;
 using Interaction;
 using UnityEngine;
+using Utils;
 
 namespace LevelSpecific.ForestEdge
 {
@@ -10,7 +11,7 @@ namespace LevelSpecific.ForestEdge
     internal class PavetnikTrigger : MonoBehaviour
     {
         [SerializeField]
-        private Start firstEncounter;
+        private TransformMover beforeEncounter;
 
         [SerializeField]
         private Start winEncounter;
@@ -23,7 +24,7 @@ namespace LevelSpecific.ForestEdge
             {
                 if (!isEncountred)
                 {
-                    firstEncounter.StartCutscene();
+                    beforeEncounter.Move();
                     isEncountred = true;
                 }
                 else if (
@@ -31,7 +32,7 @@ namespace LevelSpecific.ForestEdge
                 )
                 {
                     winEncounter.StartCutscene();
-                    Destroy(gameObject);
+                    gameObject.SetActive(false);
                 }
             }
         }
