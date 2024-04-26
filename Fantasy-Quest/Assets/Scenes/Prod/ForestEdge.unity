@@ -429,12 +429,24 @@ PrefabInstance:
     m_TransformParent: {fileID: 1446360651}
     m_Modifications:
     - target: {fileID: 1500414472098334779, guid: 38c49c923fe7bb94b915b7552d456c8d, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.31
+      objectReference: {fileID: 0}
+    - target: {fileID: 1500414472098334779, guid: 38c49c923fe7bb94b915b7552d456c8d, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.31
+      objectReference: {fileID: 0}
+    - target: {fileID: 1500414472098334779, guid: 38c49c923fe7bb94b915b7552d456c8d, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.31
+      objectReference: {fileID: 0}
+    - target: {fileID: 1500414472098334779, guid: 38c49c923fe7bb94b915b7552d456c8d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 62.550003
+      value: 61.76
       objectReference: {fileID: 0}
     - target: {fileID: 1500414472098334779, guid: 38c49c923fe7bb94b915b7552d456c8d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.5400009
+      value: -2.38
       objectReference: {fileID: 0}
     - target: {fileID: 1500414472098334779, guid: 38c49c923fe7bb94b915b7552d456c8d, type: 3}
       propertyPath: m_LocalPosition.z
@@ -468,13 +480,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1500414472098334779, guid: 38c49c923fe7bb94b915b7552d456c8d, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2804749319652510584, guid: 38c49c923fe7bb94b915b7552d456c8d, type: 3}
       propertyPath: m_Name
       value: Acorn
       objectReference: {fileID: 0}
     - target: {fileID: 2804749319652510584, guid: 38c49c923fe7bb94b915b7552d456c8d, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7388663870463431078, guid: 38c49c923fe7bb94b915b7552d456c8d, type: 3}
       propertyPath: OnCarryByCat.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -1443,7 +1459,7 @@ Transform:
   m_GameObject: {fileID: 166172214}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 42.46, y: -2.07, z: 0}
+  m_LocalPosition: {x: 42.06, y: -0.97, z: 0}
   m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -5741,7 +5757,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &726893055
 Transform:
   m_ObjectHideFlags: 0
@@ -5751,7 +5767,7 @@ Transform:
   m_GameObject: {fileID: 726893054}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 60.8, y: 4.89, z: 0}
+  m_LocalPosition: {x: 61.86, y: 4.89, z: 0}
   m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -9045,7 +9061,7 @@ MonoBehaviour:
     materialsInsideMask: []
     materialsOutsideMask: []
   disableRenderingOnOverride: 1
-  _animationName: idle and  acorn
+  _animationName: throwing2
   loop: 1
   timeScale: 1
 --- !u!23 &1241211504
@@ -16366,7 +16382,7 @@ Transform:
   m_GameObject: {fileID: 2140608292}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.95, y: -4.38, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -16593,8 +16609,6 @@ PlayableDirector:
     value: {fileID: 55992574}
   - key: {fileID: 6742890502160539928, guid: 6a6a6beff7645114ba5d1cd3d57e5ce4, type: 2}
     value: {fileID: 0}
-  - key: {fileID: -1037078637452448557, guid: 6a6a6beff7645114ba5d1cd3d57e5ce4, type: 2}
-    value: {fileID: 55992580}
   - key: {fileID: -8210941682834018238, guid: 6a6a6beff7645114ba5d1cd3d57e5ce4, type: 2}
     value: {fileID: 805997864}
   - key: {fileID: 8396310935169780336, guid: 6a6a6beff7645114ba5d1cd3d57e5ce4, type: 2}
@@ -16607,6 +16621,8 @@ PlayableDirector:
     value: {fileID: 166172214}
   - key: {fileID: -6788172606011163593, guid: 6a6a6beff7645114ba5d1cd3d57e5ce4, type: 2}
     value: {fileID: 7703565356622517985}
+  - key: {fileID: 7767991440076426491, guid: 6a6a6beff7645114ba5d1cd3d57e5ce4, type: 2}
+    value: {fileID: 55992580}
   m_ExposedReferences:
     m_References:
     - 71293e76b8659a640bf6c20f437b19e1: {fileID: 810026366}
