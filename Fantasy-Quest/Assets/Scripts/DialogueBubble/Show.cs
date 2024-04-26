@@ -10,7 +10,10 @@ namespace DialogueBubble
     {
         [Header("Show Settings")]
         [SerializeField]
-        private float fadeInDuration = 1f;
+        private bool needToBeHidden = true;
+
+        [SerializeField]
+        private float fadeInDuration = 0.6f;
 
         [SerializeField]
         private float fadeOutDuration = 0.3f;
@@ -29,14 +32,17 @@ namespace DialogueBubble
 
         private void Awake()
         {
-            Color bubbleColor = bubbleSpriteRenderer.GetComponent<SpriteRenderer>().color;
-            Color iconColor = iconSpriteRenderer.GetComponent<SpriteRenderer>().color;
+            if (needToBeHidden)
+            {
+                Color bubbleColor = bubbleSpriteRenderer.GetComponent<SpriteRenderer>().color;
+                Color iconColor = iconSpriteRenderer.GetComponent<SpriteRenderer>().color;
 
-            bubbleColor.a = 0f;
-            iconColor.a = 0f;
+                bubbleColor.a = 0f;
+                iconColor.a = 0f;
 
-            bubbleSpriteRenderer.color = bubbleColor;
-            iconSpriteRenderer.color = iconColor;
+                bubbleSpriteRenderer.color = bubbleColor;
+                iconSpriteRenderer.color = iconColor;
+            }
         }
 
         public void SwitchShow(BubbleSettings settings)
@@ -62,12 +68,12 @@ namespace DialogueBubble
             }
         }
 
-        private void FadeIn(float duration)
+        public void FadeIn(float duration)
         {
             Fade(1f, duration, () => { });
         }
 
-        private void FadeOut(float duration)
+        public void FadeOut(float duration)
         {
             Fade(0f, duration, () => gameObject.SetActive(false));
         }
