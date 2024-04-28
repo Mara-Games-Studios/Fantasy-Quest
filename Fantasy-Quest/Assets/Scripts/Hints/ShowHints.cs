@@ -53,13 +53,13 @@ namespace Hints
             }
         }
 
-        private void FadeIn(float duration)
+        public void FadeIn(float duration)
         {
             fadeTween?.Kill();
             Fade(1f, duration, () => { });
         }
 
-        private void FadeOut(float duration)
+        public void FadeOut(float duration)
         {
             fadeTween?.Kill();
             Fade(0f, duration, () => { });
