@@ -1,4 +1,5 @@
 using DG.Tweening;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Camera
@@ -38,6 +39,12 @@ namespace Camera
         {
             isRight = !isRight;
             return isRight ? 180.0f : 0f;
+        }
+
+        [Button]
+        public void SetPos()
+        {
+            transform.position = playerTransform.position + shift;
         }
     }
 }

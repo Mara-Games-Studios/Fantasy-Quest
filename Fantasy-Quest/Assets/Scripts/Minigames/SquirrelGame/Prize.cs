@@ -21,7 +21,13 @@ namespace Minigames.SquirrelGame
         private Paw paw = null;
         private Transform target = null;
 
-        private void Awake()
+        private void OnEnable()
+        {
+            grabAction.performed += GrabPerformed;
+            grabAction.Enable();
+        }
+
+        private void OnDisable()
         {
             grabAction.performed += GrabPerformed;
             grabAction.Enable();

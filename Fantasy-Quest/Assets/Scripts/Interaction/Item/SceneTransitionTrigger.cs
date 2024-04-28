@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Configs;
+using UnityEngine;
 using UnityEngine.Events;
 
 namespace Interaction.Item
@@ -6,11 +7,21 @@ namespace Interaction.Item
     [AddComponentMenu("Scripts/Interaction/Item/Interaction.Item.SceneTransitionTrigger")]
     internal class SceneTransitionTrigger : MonoBehaviour, ISceneTransition
     {
+        [SerializeField]
+        private bool ignoreLock = false;
+
         public UnityEvent Triggered;
 
         public void ToNewScene()
         {
-            Triggered?.Invoke();
+            if (ignoreLock)
+            {
+                Triggered?.Invoke();
+            }
+            else if (!LockerSettings.Instance.IsCatInteractionLocked)
+            {
+                Triggered?.Invoke();
+            }
         }
     }
 }

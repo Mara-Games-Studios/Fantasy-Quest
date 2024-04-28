@@ -10,6 +10,9 @@ namespace Transition
     [AddComponentMenu("Scripts/Transition/Transition.Location")]
     internal class Location : MonoBehaviour
     {
+        [SerializeField]
+        private bool playSecondEffect = true;
+
         [MinValue(0)]
         [SerializeField]
         private float transitionTime = 1f;
@@ -46,7 +49,10 @@ namespace Transition
         {
             yield return new WaitForSeconds(time);
             InEffect.RefreshEffect();
-            OutEffect.DoEffect();
+            if (playSecondEffect)
+            {
+                OutEffect.DoEffect();
+            }
         }
 
         private void OnOutEffectEnded()

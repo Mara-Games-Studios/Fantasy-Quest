@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Sirenix.OdinInspector;
+using UnityEngine;
 
 namespace Configs.Progression
 {
@@ -6,6 +7,12 @@ namespace Configs.Progression
     internal class ProgressionRestarter : MonoBehaviour
     {
         private void Start()
+        {
+            Starter();
+        }
+
+        [Button]
+        public void Starter()
         {
             ProgressionConfig.Instance.ResetToDefault();
         }

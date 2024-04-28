@@ -54,7 +54,7 @@ namespace Interaction
 
         public void TransitionUp(InputAction.CallbackContext context)
         {
-            CastInterfaces<ISceneTransition>().ForEach(x => x.ToNewScene());
+            CastInterfaces<ISceneTransition>(true).ForEach(x => x.ToNewScene());
             CastInterfaces<IJumpTransition>().ForEach(x => x.JumpUp());
         }
 
@@ -63,10 +63,9 @@ namespace Interaction
             CastInterfaces<IJumpTransition>().ForEach(x => x.JumpDown());
         }
 
-        private List<T> CastInterfaces<T>()
+        private List<T> CastInterfaces<T>(bool ignore = false)
         {
-            // TODO: make correct interaction blocking
-            if (LockerSettings.Instance.IsCatInteractionLocked)
+            if (LockerSettings.Instance.IsCatInteractionLocked && !ignore)
             {
                 return new List<T>();
             }

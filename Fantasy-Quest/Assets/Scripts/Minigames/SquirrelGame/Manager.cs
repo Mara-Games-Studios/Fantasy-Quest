@@ -71,7 +71,7 @@ namespace Minigames.SquirrelGame
         [Button]
         public void RefreshGame()
         {
-            prize.gameObject.SetActive(true);
+            //prize.gameObject.SetActive(true);
             prize.RestorePosition();
             paw.Refresh();
             statusPanel.HidePanel();

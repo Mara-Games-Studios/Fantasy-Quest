@@ -22,9 +22,6 @@ namespace LevelSpecific.House
         [SerializeField]
         private State state = State.Left;
 
-        [SerializeField]
-        private GameObject hintToDisable;
-
         public void InteractByCat()
         {
             if (canCatInteract)
@@ -33,14 +30,12 @@ namespace LevelSpecific.House
                 {
                     case State.Left:
                         Debug.Log("Move To Right");
-                        hintToDisable.SetActive(false);
                         canCatInteract = false;
                         animator.SetTrigger("MoveToRight");
                         state = State.Right;
                         break;
                     case State.Right:
                         Debug.Log("Move To Left");
-                        hintToDisable.SetActive(false);
                         canCatInteract = false;
                         animator.SetTrigger("MoveToLeft");
                         state = State.Left;

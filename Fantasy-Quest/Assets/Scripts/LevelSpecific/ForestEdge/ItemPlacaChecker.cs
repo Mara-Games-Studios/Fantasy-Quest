@@ -1,10 +1,8 @@
-﻿using System.Collections;
-using Configs;
-using Configs.Progression;
-using Dialogue;
+﻿using Configs.Progression;
 using Inventory;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace LevelSpecific.ForestEdge
 {
@@ -25,46 +23,38 @@ namespace LevelSpecific.ForestEdge
 
         [Required]
         [SerializeField]
-        private ChainSpeaker eggTakenSpeech;
+        private ItemTaker itemTaker;
 
-        [Required]
-        [SerializeField]
-        private ChainSpeaker acornTakenSpeech;
+        public UnityEvent EggTaken;
+        public UnityEvent AcornTaken;
 
-        public void ItemPlaceCheck(Item item)
+        [Button]
+        public void SpecificPlaceItem()
         {
-            if (rightPlaceZone.OverlapPoint(item.transform.position))
+            if (itemTaker.TakenItem == null)
             {
-                if (item.UidEquals(egg))
+                return;
+            }
+
+            if (rightPlaceZone.OverlapPoint(itemTaker.TakenItem.transform.position))
+            {
+                if (itemTaker.TakenItem.UidEquals(egg))
                 {
-                    // TODO: Trigger mini cutscene
                     ProgressionConfig.Instance.ForestEdgeLevel.EggTakenByCymon = true;
-                    Destroy(item.gameObject);
-                    _ = StartCoroutine(EggTaken());
+                    EggTaken.Invoke();
                 }
 
-                if (item.UidEquals(acorn))
+                if (itemTaker.TakenItem.UidEquals(acorn))
                 {
-                    // TODO: Trigger mini cutscene
                     ProgressionConfig.Instance.ForestEdgeLevel.AcornTakenByCymon = true;
-                    Destroy(item.gameObject);
-                    _ = StartCoroutine(AcornTaken());
+                    AcornTaken.Invoke();
                 }
             }
-        }
-
-        private IEnumerator EggTaken()
-        {
-            LockerSettings.Instance.LockAll();
-            yield return eggTakenSpeech.Tell();
-            LockerSettings.Instance.UnlockAll();
-        }
-
-        private IEnumerator AcornTaken()
-        {
-            LockerSettings.Instance.LockAll();
-            yield return acornTakenSpeech.Tell();
-            LockerSettings.Instance.UnlockAll();
+            else
+            {
+                // TODO: make cutscene
+                itemTaker.PlaceItem();
+            }
         }
     }
 }

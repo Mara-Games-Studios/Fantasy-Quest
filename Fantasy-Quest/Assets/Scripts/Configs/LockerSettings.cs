@@ -50,5 +50,12 @@ namespace Configs
             isCatMovementLocked = false;
             isCatInteractionLocked = false;
         }
+
+        [Button]
+        public void LockForCarryingItem()
+        {
+            isDialogueBubbleLocked = true;
+            isCatInteractionLocked = true;
+        }
     }
 }

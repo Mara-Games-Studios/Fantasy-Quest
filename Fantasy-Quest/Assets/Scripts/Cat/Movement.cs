@@ -40,10 +40,7 @@ namespace Cat
             get => state;
             private set
             {
-                if (state != value)
-                {
-                    OnStateChanged?.Invoke(value);
-                }
+                OnStateChanged?.Invoke(value);
                 state = value;
             }
         }

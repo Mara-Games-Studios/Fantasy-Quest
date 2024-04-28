@@ -1,6 +1,6 @@
-﻿using Sirenix.OdinInspector;
+﻿using Configs;
+using Sirenix.OdinInspector;
 using UnityEngine;
-using UnityEngine.Events;
 
 namespace Inventory
 {
@@ -18,9 +18,9 @@ namespace Inventory
         [ReadOnly]
         [SerializeField]
         private Item takenItem;
+        public Item TakenItem => takenItem;
 
-        public UnityEvent<Item> ItemPlaced;
-
+        [Button]
         public void TakeItem(Item item)
         {
             if (takenItem != null)
@@ -34,12 +34,20 @@ namespace Inventory
 
         private void Update()
         {
+            Debug.Log(takenItem);
             if (takenItem != null)
             {
                 takenItem.transform.position = holdItemPosition.position;
             }
         }
 
+        [Button]
+        public void RemoveItem()
+        {
+            takenItem = null;
+        }
+
+        [Button]
         public void PlaceItem()
         {
             if (takenItem == null)
@@ -49,8 +57,8 @@ namespace Inventory
             }
 
             takenItem.transform.position = placeItemPosition.position;
-            ItemPlaced?.Invoke(takenItem);
             takenItem = null;
+            LockerSettings.Instance.UnlockAll();
         }
     }
 }

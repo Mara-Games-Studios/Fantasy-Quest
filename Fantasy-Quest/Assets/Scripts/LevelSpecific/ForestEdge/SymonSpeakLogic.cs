@@ -29,6 +29,10 @@ namespace LevelSpecific.ForestEdge
         [SerializeField]
         private Start tryToAltar;
 
+        [Required]
+        [SerializeField]
+        private Start finilizationCutscene;
+
         public void Speak()
         {
             if (!ProgressionConfig.Instance.ForestEdgeLevel.FirstDialoguePassed)
@@ -46,14 +50,25 @@ namespace LevelSpecific.ForestEdge
                 ProgressionConfig.Instance.ForestEdgeLevel.ExplanationListened = true;
                 return;
             }
-            else if (!ProgressionConfig.Instance.ForestEdgeLevel.AllItemTaken)
+            else if (
+                !ProgressionConfig.Instance.ForestEdgeLevel.AllItemTaken
+                && ProgressionConfig.Instance.ForestEdgeLevel.BagTaken
+            )
             {
                 hintCutscene.StartCutscene();
                 return;
             }
-            else if (ProgressionConfig.Instance.ForestEdgeLevel.AllItemTaken)
+            else if (
+                ProgressionConfig.Instance.ForestEdgeLevel.AllItemTaken
+                && !ProgressionConfig.Instance.ForestEdgeLevel.AltarGamePassed
+            )
             {
                 tryToAltar.StartCutscene();
+                return;
+            }
+            else if (ProgressionConfig.Instance.ForestEdgeLevel.AltarGamePassed)
+            {
+                finilizationCutscene.StartCutscene();
                 return;
             }
         }

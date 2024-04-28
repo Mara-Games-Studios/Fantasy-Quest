@@ -15,7 +15,7 @@ namespace Cutscene
             if (collision.TryGetComponent<InteractionImpl>(out _))
             {
                 starter.StartCutscene();
-                Destroy(gameObject);
+                gameObject.SetActive(false);
             }
         }
     }
