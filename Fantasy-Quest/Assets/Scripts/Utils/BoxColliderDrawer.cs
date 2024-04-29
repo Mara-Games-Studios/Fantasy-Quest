@@ -1,5 +1,4 @@
-﻿#if UNITY_EDITOR
-using UnityEditor;
+﻿using UnityEditor;
 using UnityEngine;
 
 namespace Utils
@@ -13,6 +12,7 @@ namespace Utils
 
         [SerializeField]
         private Color color = Color.white;
+#if UNITY_EDITOR
 
         private void OnValidate()
         {
@@ -30,6 +30,6 @@ namespace Utils
             );
             Handles.color = tempColor;
         }
+#endif
     }
 }
-#endif

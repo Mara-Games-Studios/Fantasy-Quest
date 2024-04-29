@@ -570,7 +570,11 @@ PrefabInstance:
     - target: {fileID: 7388663870463431078, guid: 38c49c923fe7bb94b915b7552d456c8d, type: 3}
       propertyPath: OnCarryByCat.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 7703565356622517977}
+      objectReference: {fileID: 7703565356622517999}
+    - target: {fileID: 7388663870463431078, guid: 38c49c923fe7bb94b915b7552d456c8d, type: 3}
+      propertyPath: OnCarryByCat.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: TakeItem
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -11759,7 +11763,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf15e884399b5104da0137abe1688996, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemTaker: {fileID: 7703565356622517977}
+  itemTaker: {fileID: 7703565356622517999}
 --- !u!1 &1526481077 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4415634093081500924, guid: b5c81db2869cb3e41b4d7e6fc2a5ac7e, type: 3}
@@ -17307,7 +17311,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1947430392642056277, guid: 28d9e3495a29edc46b1365288dc22921, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -14.264026
+      value: -14.2640295
       objectReference: {fileID: 0}
     - target: {fileID: 1947430392642056277, guid: 28d9e3495a29edc46b1365288dc22921, type: 3}
       propertyPath: m_LocalPosition.y
@@ -18130,7 +18134,7 @@ PrefabInstance:
     - target: {fileID: 2846895236212719382, guid: 78951c99008d395408102ffd3bb94551, type: 3}
       propertyPath: OnCarryByCat.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 7703565356622517977}
+      objectReference: {fileID: 7703565356622517999}
     - target: {fileID: 2846895236212719382, guid: 78951c99008d395408102ffd3bb94551, type: 3}
       propertyPath: OnCarryByCat.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: TakeItem
@@ -20007,7 +20011,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 7703565356622517977}
+      - m_Target: {fileID: 7703565356622517999}
         m_TargetAssemblyTypeName: Inventory.ItemTaker, Assembly-CSharp
         m_MethodName: TakeItem
         m_Mode: 2
@@ -20848,7 +20852,7 @@ PrefabInstance:
       objectReference: {fileID: 2024490713}
     - target: {fileID: 5384320320187699602, guid: b226e54f4be684b4f82c70458cacaaab, type: 3}
       propertyPath: speed
-      value: 6
+      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -20862,9 +20866,6 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 4994989475704801607, guid: b226e54f4be684b4f82c70458cacaaab, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 7703565356622517977}
-    - targetCorrespondingSourceObject: {fileID: 4994989475704801607, guid: b226e54f4be684b4f82c70458cacaaab, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 7703565356622517978}
     - targetCorrespondingSourceObject: {fileID: 4994989475704801607, guid: b226e54f4be684b4f82c70458cacaaab, type: 3}
       insertIndex: -1
@@ -20872,6 +20873,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4994989475704801607, guid: b226e54f4be684b4f82c70458cacaaab, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7703565356622517992}
+    - targetCorrespondingSourceObject: {fileID: 4994989475704801607, guid: b226e54f4be684b4f82c70458cacaaab, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7703565356622517999}
     - targetCorrespondingSourceObject: {fileID: 905931653165027739, guid: b226e54f4be684b4f82c70458cacaaab, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1418968070}
@@ -20892,21 +20896,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b882156beff2d0498c4eb6992a73479, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &7703565356622517977
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7703565356622517966}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e227a2379b3becf4ebbe193e33630ef4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  holdItemPosition: {fileID: 52864329}
-  placeItemPosition: {fileID: 981964405}
-  takenItem: {fileID: 0}
 --- !u!114 &7703565356622517978
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20922,7 +20911,7 @@ MonoBehaviour:
   rightPlaceZone: {fileID: 1756201499}
   egg: {fileID: 4247537921456334925, guid: b759a46196956e9458657dc0cc973cbf, type: 3}
   acorn: {fileID: 912745175384117696, guid: 38c49c923fe7bb94b915b7552d456c8d, type: 3}
-  itemTaker: {fileID: 7703565356622517977}
+  itemTaker: {fileID: 7703565356622517999}
   EggTaken:
     m_PersistentCalls:
       m_Calls:
@@ -21014,6 +21003,22 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &7703565356622517999
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7703565356622517966}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e227a2379b3becf4ebbe193e33630ef4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  holdItemPosition: {fileID: 52864329}
+  placeItemPosition: {fileID: 981964405}
+  takenItem: {fileID: 0}
+  takeAndPlaceDelay: 0
 --- !u!224 &8624737654730669847 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6491097914779931501, guid: 79ebc9a83d0721c48a620c4536eef5a9, type: 3}

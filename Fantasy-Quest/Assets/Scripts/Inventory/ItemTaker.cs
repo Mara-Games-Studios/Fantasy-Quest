@@ -20,6 +20,11 @@ namespace Inventory
         private Item takenItem;
         public Item TakenItem => takenItem;
 
+        [SerializeField]
+        private float takeAndPlaceDelay = 0.2f;
+
+        private float timer = 0f;
+
         [Button]
         public void TakeItem(Item item)
         {
@@ -28,16 +33,20 @@ namespace Inventory
                 Debug.Log("Item already taken.");
                 return;
             }
-
+            timer = takeAndPlaceDelay;
             takenItem = item;
         }
 
         private void Update()
         {
-            Debug.Log(takenItem);
             if (takenItem != null)
             {
                 takenItem.transform.position = holdItemPosition.position;
+            }
+
+            if (timer >= 0)
+            {
+                timer -= Time.deltaTime;
             }
         }
 
@@ -50,6 +59,11 @@ namespace Inventory
         [Button]
         public void PlaceItem()
         {
+            if (timer >= 0)
+            {
+                return;
+            }
+
             if (takenItem == null)
             {
                 Debug.Log("No Item to place");
