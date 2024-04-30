@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using Effects;
+using Effects.Screen;
 using Sirenix.OdinInspector;
 using TNRD;
 using UnityEngine;
@@ -22,10 +23,16 @@ namespace Transition
         private SerializableInterface<IEffect> inEffect;
         private IEffect InEffect => inEffect.Value;
 
+        [SerializeField]
+        private Transform inPoint;
+
         [RequiredIn(PrefabKind.PrefabInstanceAndNonPrefabInstance)]
         [SerializeField]
         private SerializableInterface<IEffect> outEffect;
         private IEffect OutEffect => outEffect.Value;
+
+        [SerializeField]
+        private Transform outPoint;
 
         public UnityEvent InEffectStarted;
         public UnityEvent InEffectEnded;
@@ -36,6 +43,10 @@ namespace Transition
             InEffectStarted?.Invoke();
             InEffect.OnEffectEnded += OnInEffectEnded;
             OutEffect.OnEffectEnded += OnOutEffectEnded;
+            if (inPoint != null && InEffect is CutoutMask cutout)
+            {
+                cutout.SetDestinationPoint(inPoint);
+            }
             InEffect.DoEffect();
         }
 
@@ -51,6 +62,10 @@ namespace Transition
             InEffect.RefreshEffect();
             if (playSecondEffect)
             {
+                if (outPoint != null && OutEffect is CutoutMask cutout)
+                {
+                    cutout.SetDestinationPoint(outPoint);
+                }
                 OutEffect.DoEffect();
             }
         }
