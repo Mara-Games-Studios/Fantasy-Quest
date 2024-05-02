@@ -54,6 +54,7 @@ namespace UI
             if (childrenComponentsMode)
             {
                 FillChildren();
+                yield return new WaitForSeconds(0.5f);
                 foreach (Slide slide in slides)
                 {
                     yield return ShowSlide(slide);
