@@ -1,6 +1,7 @@
 using DG.Tweening;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 namespace UI
@@ -24,6 +25,10 @@ namespace UI
 
         private Tween fadeTween;
 
+        public UnityEvent BeforeFadeIn;
+        public UnityEvent AfterFadeIn;
+        public UnityEvent AfterFadeOut;
+
         private void Start()
         {
             gameObject.SetActive(false);
@@ -37,12 +42,17 @@ namespace UI
 
         public void FadeIn()
         {
-            Fade(1f, FadeTime, () => { });
+            BeforeFadeIn?.Invoke();
+            Fade(1f, FadeTime, () => AfterFadeIn?.Invoke());
         }
 
         public void FadeOut()
         {
-            Fade(0f, FadeTime, () => gameObject.SetActive(false));
+            Fade(0f, FadeTime, () =>
+            {
+                gameObject.SetActive(false);
+                AfterFadeOut?.Invoke();
+            });
         }
 
         private void Fade(float endValue, float duration, TweenCallback onEnd)

@@ -23,6 +23,9 @@ namespace UI
         }
 
         [SerializeField]
+        private bool playOnAwake = false;
+
+        [SerializeField]
         private bool childrenComponentsMode = true;
 
         [ShowIf(nameof(childrenComponentsMode))]
@@ -37,6 +40,14 @@ namespace UI
 
         private Image image;
         private Tween fadeTween;
+
+        private void Start()
+        {
+            if (playOnAwake)
+            {
+                StartSlideshow();
+            }
+        }
 
         private IEnumerator ShowSlides()
         {
