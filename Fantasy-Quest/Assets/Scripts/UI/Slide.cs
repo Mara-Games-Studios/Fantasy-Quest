@@ -48,11 +48,15 @@ namespace UI
 
         public void FadeOut()
         {
-            Fade(0f, FadeTime, () =>
-            {
-                gameObject.SetActive(false);
-                AfterFadeOut?.Invoke();
-            });
+            Fade(
+                0f,
+                FadeTime,
+                () =>
+                {
+                    gameObject.SetActive(false);
+                    AfterFadeOut?.Invoke();
+                }
+            );
         }
 
         private void Fade(float endValue, float duration, TweenCallback onEnd)
