@@ -6,7 +6,7 @@ namespace Utils
     [AddComponentMenu("Scripts/Utils/Utils.TurnTransform")]
     internal class TurnTransform : MonoBehaviour
     {
-        internal enum Direction
+        public enum Direction
         {
             right,
             left
