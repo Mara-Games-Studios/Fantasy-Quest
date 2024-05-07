@@ -3,7 +3,6 @@
 using UnityEditor;
 #endif
 
-
 namespace Utils
 {
     [RequireComponent(typeof(CapsuleCollider2D))]

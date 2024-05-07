@@ -34,14 +34,14 @@ namespace Effects.Screen
         private AnimationCurve curve = AnimationCurve.Linear(0, 0, 1, 1);
 
         private RectTransform rectTransform;
-        private new UnityEngine.Camera camera;
+        private UnityEngine.Camera foundedCamera;
 
         public event Action OnEffectEnded;
 
         private void Awake()
         {
             rectTransform = GetComponent<RectTransform>();
-            camera = FindAnyObjectByType<UnityEngine.Camera>();
+            foundedCamera = FindAnyObjectByType<UnityEngine.Camera>();
         }
 
         private void Start()
@@ -80,7 +80,7 @@ namespace Effects.Screen
 
         public void SetDestinationPoint(Transform transform)
         {
-            startProperties.Position = camera.WorldToScreenPoint(transform.position);
+            startProperties.Position = foundedCamera.WorldToScreenPoint(transform.position);
             //Debug.Log(startProperties.Position);
             endProperties.Position = startProperties.Position;
         }
