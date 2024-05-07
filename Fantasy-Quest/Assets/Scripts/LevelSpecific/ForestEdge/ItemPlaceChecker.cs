@@ -25,8 +25,11 @@ namespace LevelSpecific.ForestEdge
         [SerializeField]
         private ItemTaker itemTaker;
 
+        private bool firstItemPlaced = false;
         public UnityEvent EggTaken;
         public UnityEvent AcornTaken;
+        public UnityEvent FirstTimePlaced;
+        public UnityEvent SecondTimePlaced;
 
         [Button]
         public void SpecificPlaceItem()
@@ -42,18 +45,39 @@ namespace LevelSpecific.ForestEdge
                 {
                     ProgressionConfig.Instance.ForestEdgeLevel.EggTakenByCymon = true;
                     EggTaken.Invoke();
+                    if (!firstItemPlaced)
+                    {
+                        firstItemPlaced = true;
+                        FirstTimePlaced?.Invoke();
+                    }
+                    else
+                    {
+                        SecondTimePlaced?.Invoke();
+                    }
                 }
-
-                if (itemTaker.TakenItem.UidEquals(acorn))
+                else if (itemTaker.TakenItem.UidEquals(acorn))
                 {
                     ProgressionConfig.Instance.ForestEdgeLevel.AcornTakenByCymon = true;
                     AcornTaken.Invoke();
+                    if (!firstItemPlaced)
+                    {
+                        firstItemPlaced = true;
+                        FirstTimePlaced?.Invoke();
+                    }
+                    else
+                    {
+                        SecondTimePlaced?.Invoke();
+                    }
+                }
+                else
+                {
+                    Debug.LogError("Unknown Item");
+                    return;
                 }
             }
             else
             {
-                // TODO: make cutscene
-                itemTaker.PlaceItem();
+                Debug.Log("Cannot place on ground");
             }
         }
     }

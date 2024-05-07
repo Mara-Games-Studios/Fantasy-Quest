@@ -1,5 +1,4 @@
-﻿#if UNITY_EDITOR
-using Cinemachine;
+﻿using Cinemachine;
 using Cinemachine.PostFX;
 using UnityEditor;
 using UnityEngine;
@@ -53,4 +52,3 @@ namespace Utils
         }
     }
 }
-#endif

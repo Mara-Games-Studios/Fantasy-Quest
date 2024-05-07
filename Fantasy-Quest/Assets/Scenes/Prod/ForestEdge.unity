@@ -565,7 +565,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2804749319652510584, guid: 38c49c923fe7bb94b915b7552d456c8d, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7388663870463431078, guid: 38c49c923fe7bb94b915b7552d456c8d, type: 3}
       propertyPath: OnCarryByCat.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -8795,7 +8795,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boxCollider: {fileID: 845792164}
-  color: {r: 0.16470589, g: 0.16470589, b: 0.16470589, a: 1}
+  color: {r: 0.8113208, g: 0.6621495, b: 0.15052803, a: 1}
 --- !u!114 &845792166
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8940,7 +8940,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   radius: 1
-  color: {r: 1, g: 1, b: 1, a: 1}
+  color:
+    r: 1
+    g: 1
+    b: 1
+    a: 1
 --- !u!1 &862041548
 GameObject:
   m_ObjectHideFlags: 0
@@ -16907,6 +16911,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1756201498}
   - component: {fileID: 1756201499}
+  - component: {fileID: 1756201500}
   m_Layer: 3
   m_Name: ItemPlaceZone
   m_TagString: Untagged
@@ -16961,7 +16966,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.048501015, y: 1.9885819}
+  m_Offset: {x: -0.07462621, y: 1.9885819}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -16972,8 +16977,22 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 5.4427795, y: 4.2787356}
+  m_Size: {x: 2.8301988, y: 4.2787356}
   m_EdgeRadius: 0
+--- !u!114 &1756201500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1756201497}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 043dee6d8a41d93429e317a78e313390, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boxCollider: {fileID: 1756201499}
+  color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1763714446
 GameObject:
   m_ObjectHideFlags: 0
@@ -20580,7 +20599,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   radius: 1
-  color: {r: 1, g: 1, b: 1, a: 1}
+  color:
+    r: 1
+    g: 1
+    b: 1
+    a: 1
 --- !u!1 &2045980859
 GameObject:
   m_ObjectHideFlags: 0
@@ -20930,6 +20953,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2078310047}
   - component: {fileID: 2078310048}
+  - component: {fileID: 2078310049}
   m_Layer: 3
   m_Name: CorrectCallZone
   m_TagString: Untagged
@@ -20997,6 +21021,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 8.34, y: 9.38328}
   m_EdgeRadius: 0
+--- !u!114 &2078310049
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2078310046}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 043dee6d8a41d93429e317a78e313390, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boxCollider: {fileID: 2078310048}
+  color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &2083480409
 GameObject:
   m_ObjectHideFlags: 0
@@ -21851,7 +21889,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1947430392642056277, guid: 28d9e3495a29edc46b1365288dc22921, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -14.264033
+      value: -14.264026
       objectReference: {fileID: 0}
     - target: {fileID: 1947430392642056277, guid: 28d9e3495a29edc46b1365288dc22921, type: 3}
       propertyPath: m_LocalPosition.y
@@ -25459,6 +25497,9 @@ PrefabInstance:
       addedObject: {fileID: 981964405}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 4994989475704801607, guid: b226e54f4be684b4f82c70458cacaaab, type: 3}
+      insertIndex: 7
+      addedObject: {fileID: 7703565356622518000}
+    - targetCorrespondingSourceObject: {fileID: 4994989475704801607, guid: b226e54f4be684b4f82c70458cacaaab, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7703565356622517978}
     - targetCorrespondingSourceObject: {fileID: 4994989475704801607, guid: b226e54f4be684b4f82c70458cacaaab, type: 3}
@@ -25470,6 +25511,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4994989475704801607, guid: b226e54f4be684b4f82c70458cacaaab, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7703565356622517999}
+    - targetCorrespondingSourceObject: {fileID: 4994989475704801607, guid: b226e54f4be684b4f82c70458cacaaab, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7703565356622518001}
     - targetCorrespondingSourceObject: {fileID: 905931653165027739, guid: b226e54f4be684b4f82c70458cacaaab, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1418968070}
@@ -25477,6 +25521,11 @@ PrefabInstance:
 --- !u!1 &7703565356622517966 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4994989475704801607, guid: b226e54f4be684b4f82c70458cacaaab, type: 3}
+  m_PrefabInstance: {fileID: 7703565356622517965}
+  m_PrefabAsset: {fileID: 0}
+--- !u!70 &7703565356622517967 stripped
+CapsuleCollider2D:
+  m_CorrespondingSourceObject: {fileID: 1560389952819519362, guid: b226e54f4be684b4f82c70458cacaaab, type: 3}
   m_PrefabInstance: {fileID: 7703565356622517965}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &7703565356622517976 stripped
@@ -25509,11 +25558,22 @@ MonoBehaviour:
   EggTaken:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7703565356622517992}
-        m_TargetAssemblyTypeName: LevelSpecific.ForestEdge.ItemCollectorChecker,
-          Assembly-CSharp
-        m_MethodName: TakeEgg
+      - m_Target: {fileID: 7703565356622517999}
+        m_TargetAssemblyTypeName: Inventory.ItemTaker, Assembly-CSharp
+        m_MethodName: RemoveItem
         m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1253773136}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -25525,10 +25585,9 @@ MonoBehaviour:
   AcornTaken:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7703565356622517992}
-        m_TargetAssemblyTypeName: LevelSpecific.ForestEdge.ItemCollectorChecker,
-          Assembly-CSharp
-        m_MethodName: TakeAcorn
+      - m_Target: {fileID: 7703565356622517999}
+        m_TargetAssemblyTypeName: Inventory.ItemTaker, Assembly-CSharp
+        m_MethodName: RemoveItem
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -25538,6 +25597,24 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 55992574}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  FirstTimePlaced:
+    m_PersistentCalls:
+      m_Calls: []
+  SecondTimePlaced:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &7703565356622517985
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25613,6 +25690,47 @@ MonoBehaviour:
   placeItemPosition: {fileID: 981964405}
   takenItem: {fileID: 0}
   takeAndPlaceDelay: 0
+--- !u!114 &7703565356622518000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7703565356622517966}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5945b1464aae77448912c6d751526ba5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnSymonTouched:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7703565356622517978}
+        m_TargetAssemblyTypeName: LevelSpecific.ForestEdge.ItemPlaceChecker, Assembly-CSharp
+        m_MethodName: SpecificPlaceItem
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &7703565356622518001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7703565356622517966}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8b77bf33bd1ec94c83e109b2749f9ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  capsuleCollider: {fileID: 7703565356622517967}
+  color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!224 &8624737654730669847 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6491097914779931501, guid: 79ebc9a83d0721c48a620c4536eef5a9, type: 3}
