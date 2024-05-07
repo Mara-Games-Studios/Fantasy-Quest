@@ -52,10 +52,7 @@ namespace Cat
             get => vector;
             private set
             {
-                if (vector != value)
-                {
-                    OnVectorChanged?.Invoke(value);
-                }
+                OnVectorChanged?.Invoke(value);
                 vector = value;
             }
         }

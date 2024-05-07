@@ -81,7 +81,7 @@ namespace Effects.Screen
         public void SetDestinationPoint(Transform transform)
         {
             startProperties.Position = camera.WorldToScreenPoint(transform.position);
-            Debug.Log(startProperties.Position);
+            //Debug.Log(startProperties.Position);
             endProperties.Position = startProperties.Position;
         }
 
