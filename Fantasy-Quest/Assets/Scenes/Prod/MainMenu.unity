@@ -390,7 +390,7 @@ Transform:
   m_GameObject: {fileID: 609935398}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.6108902, y: 2.4802556, z: -0.06382885}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -409,6 +409,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   endController: {fileID: 2119104305}
+  menuView: {fileID: 2083607733}
+  authorsView: {fileID: 1604606567}
 --- !u!224 &639135186 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4496372613171203798, guid: ddffadec159ec024ab99495716b343cb, type: 3}
@@ -712,18 +714,18 @@ PrefabInstance:
     - target: {fileID: 8876744281030024061, guid: 37feff697b740ba46960eba0560fdd1a, type: 3}
       propertyPath: StartTransitionEnd.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 2083607733}
+      objectReference: {fileID: 609935400}
     - target: {fileID: 8876744281030024061, guid: 37feff697b740ba46960eba0560fdd1a, type: 3}
       propertyPath: StartTransitionEnd.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8876744281030024061, guid: 37feff697b740ba46960eba0560fdd1a, type: 3}
       propertyPath: StartTransitionEnd.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ShowFromStart
+      value: InitMainMenu
       objectReference: {fileID: 0}
     - target: {fileID: 8876744281030024061, guid: 37feff697b740ba46960eba0560fdd1a, type: 3}
       propertyPath: StartTransitionEnd.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: UI.Pages.View, Assembly-CSharp
+      value: LevelSpecific.MainMenu.GameStarter, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 8876744281030024061, guid: 37feff697b740ba46960eba0560fdd1a, type: 3}
       propertyPath: StartTransitionEnd.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
