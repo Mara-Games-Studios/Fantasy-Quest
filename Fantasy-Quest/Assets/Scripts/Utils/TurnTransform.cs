@@ -13,15 +13,33 @@ namespace Utils
         }
 
         [SerializeField]
+        private bool toTarget = false;
+
+        [Required]
+        [SerializeField]
         private Transform target;
 
+        [ShowIf("toTarget")]
+        [SerializeField]
+        private Transform to;
+
+        [HideIf("toTarget")]
         [SerializeField]
         private Direction direction;
 
         [Button]
         public void Turner()
         {
-            Turn(direction);
+            if (!toTarget)
+            {
+                Turn(direction);
+            }
+            else
+            {
+                float x = target.position.x - to.position.x;
+                direction = x > 0 ? Direction.left : Direction.right;
+                Turn(direction);
+            }
         }
 
         private void Turn(Direction direction)
