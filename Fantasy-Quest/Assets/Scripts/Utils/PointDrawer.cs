@@ -15,6 +15,7 @@ namespace Utils
         private Color color = Color.white;
 
 #if UNITY_EDITOR
+
         private void OnDrawGizmos()
         {
             Color tempColor = Handles.color;

@@ -1,6 +1,7 @@
 ﻿using Configs;
 using DG.Tweening;
 using Dialogue;
+using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;
 
@@ -9,6 +10,7 @@ namespace Subtitles
     [AddComponentMenu("Scripts/Subtitles/Subtitles.View")]
     public class View : MonoBehaviour, ISubtitlesView
     {
+        [Required]
         [SerializeField]
         private TMP_Text outputTmpText;
 

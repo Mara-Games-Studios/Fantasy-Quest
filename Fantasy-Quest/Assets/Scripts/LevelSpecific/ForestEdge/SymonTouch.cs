@@ -12,6 +12,7 @@ namespace LevelSpecific.ForestEdge
         {
             if (collision.GetComponentInParent<Symon.Movement>())
             {
+                Debug.Log("Touched Symon");
                 OnSymonTouched?.Invoke();
             }
         }

@@ -348,6 +348,15 @@ public partial class @GameplayInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""CallHumanMove"",
+                    ""type"": ""Button"",
+                    ""id"": ""1610fa07-cd30-4413-99e4-066823051381"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -438,6 +447,17 @@ public partial class @GameplayInput: IInputActionCollection2, IDisposable
                     ""action"": ""Skip"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1d03e56d-65dc-465d-99bf-13f0a2e0511f"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CallHumanMove"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -467,6 +487,7 @@ public partial class @GameplayInput: IInputActionCollection2, IDisposable
         m_Player_UpJump = m_Player.FindAction("UpJump", throwIfNotFound: true);
         m_Player_DownJump = m_Player.FindAction("DownJump", throwIfNotFound: true);
         m_Player_Skip = m_Player.FindAction("Skip", throwIfNotFound: true);
+        m_Player_CallHumanMove = m_Player.FindAction("CallHumanMove", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -676,6 +697,7 @@ public partial class @GameplayInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_UpJump;
     private readonly InputAction m_Player_DownJump;
     private readonly InputAction m_Player_Skip;
+    private readonly InputAction m_Player_CallHumanMove;
     public struct PlayerActions
     {
         private @GameplayInput m_Wrapper;
@@ -686,6 +708,7 @@ public partial class @GameplayInput: IInputActionCollection2, IDisposable
         public InputAction @UpJump => m_Wrapper.m_Player_UpJump;
         public InputAction @DownJump => m_Wrapper.m_Player_DownJump;
         public InputAction @Skip => m_Wrapper.m_Player_Skip;
+        public InputAction @CallHumanMove => m_Wrapper.m_Player_CallHumanMove;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -713,6 +736,9 @@ public partial class @GameplayInput: IInputActionCollection2, IDisposable
             @Skip.started += instance.OnSkip;
             @Skip.performed += instance.OnSkip;
             @Skip.canceled += instance.OnSkip;
+            @CallHumanMove.started += instance.OnCallHumanMove;
+            @CallHumanMove.performed += instance.OnCallHumanMove;
+            @CallHumanMove.canceled += instance.OnCallHumanMove;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -735,6 +761,9 @@ public partial class @GameplayInput: IInputActionCollection2, IDisposable
             @Skip.started -= instance.OnSkip;
             @Skip.performed -= instance.OnSkip;
             @Skip.canceled -= instance.OnSkip;
+            @CallHumanMove.started -= instance.OnCallHumanMove;
+            @CallHumanMove.performed -= instance.OnCallHumanMove;
+            @CallHumanMove.canceled -= instance.OnCallHumanMove;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -776,5 +805,6 @@ public partial class @GameplayInput: IInputActionCollection2, IDisposable
         void OnUpJump(InputAction.CallbackContext context);
         void OnDownJump(InputAction.CallbackContext context);
         void OnSkip(InputAction.CallbackContext context);
+        void OnCallHumanMove(InputAction.CallbackContext context);
     }
 }

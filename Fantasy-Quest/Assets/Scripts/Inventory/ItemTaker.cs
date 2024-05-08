@@ -1,5 +1,5 @@
-﻿using Configs;
-using Sirenix.OdinInspector;
+﻿using Sirenix.OdinInspector;
+using Spine.Unity;
 using UnityEngine;
 
 namespace Inventory
@@ -7,23 +7,10 @@ namespace Inventory
     [AddComponentMenu("Scripts/Inventory/Inventory.ItemTaker")]
     internal class ItemTaker : MonoBehaviour
     {
-        [Required]
-        [SerializeField]
-        private Transform holdItemPosition;
-
-        [Required]
-        [SerializeField]
-        private Transform placeItemPosition;
-
         [ReadOnly]
         [SerializeField]
         private Item takenItem;
         public Item TakenItem => takenItem;
-
-        [SerializeField]
-        private float takeAndPlaceDelay = 0.2f;
-
-        private float timer = 0f;
 
         [Button]
         public void TakeItem(Item item)
@@ -33,46 +20,15 @@ namespace Inventory
                 Debug.Log("Item already taken.");
                 return;
             }
-            timer = takeAndPlaceDelay;
             takenItem = item;
-        }
-
-        private void Update()
-        {
-            if (takenItem != null)
-            {
-                takenItem.transform.position = holdItemPosition.position;
-            }
-
-            if (timer >= 0)
-            {
-                timer -= Time.deltaTime;
-            }
+            takenItem.GetComponent<BoneFollower>().enabled = true;
         }
 
         [Button]
         public void RemoveItem()
         {
+            takenItem.GetComponent<BoneFollower>().enabled = false;
             takenItem = null;
-        }
-
-        [Button]
-        public void PlaceItem()
-        {
-            if (timer >= 0)
-            {
-                return;
-            }
-
-            if (takenItem == null)
-            {
-                Debug.Log("No Item to place");
-                return;
-            }
-
-            takenItem.transform.position = placeItemPosition.position;
-            takenItem = null;
-            LockerSettings.Instance.UnlockAll();
         }
     }
 }
