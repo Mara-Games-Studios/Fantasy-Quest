@@ -11,6 +11,15 @@ namespace LevelSpecific.MainMenu
         [SerializeField]
         private Transition.End.Controller endController;
 
+        [Required]
+        [SerializeField]
+        private UI.Pages.View menuView;
+
+        [Required]
+        [SerializeField]
+        private UI.Pages.View authorsView;
+
+        [Button]
         public void StartGame()
         {
             if (ProgressionConfig.Instance.IsGamePassed)
@@ -18,6 +27,19 @@ namespace LevelSpecific.MainMenu
                 ProgressionConfig.Instance.ResetToDefault();
             }
             endController.LoadScene(ProgressionConfig.Instance.SceneToLoad);
+        }
+
+        [Button]
+        public void InitMainMenu()
+        {
+            if (ProgressionConfig.Instance.IsGamePassed)
+            {
+                authorsView.ShowFromStart();
+            }
+            else
+            {
+                menuView.ShowFromStart();
+            }
         }
     }
 }

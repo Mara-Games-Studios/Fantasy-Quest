@@ -1,4 +1,5 @@
-﻿using Spine.Unity;
+﻿using Sirenix.OdinInspector;
+using Spine.Unity;
 using UnityEngine;
 
 namespace Cat
@@ -20,6 +21,42 @@ namespace Cat
         [SpineAnimation]
         private string walkAnimation;
 
+        [SerializeField]
+        [SpineAnimation]
+        private string idleEggAnimation;
+
+        [SerializeField]
+        [SpineAnimation]
+        private string walkEggAnimation;
+
+        [SerializeField]
+        [SpineAnimation]
+        private string idleAcornAnimation;
+
+        [SerializeField]
+        [SpineAnimation]
+        private string walkAcornAnimation;
+
+        [ReadOnly]
+        [SerializeField]
+        private bool withEgg = false;
+
+        [ReadOnly]
+        [SerializeField]
+        private bool withAcorn = false;
+
+        [Button]
+        public void SetEggTaken(bool withEgg)
+        {
+            this.withEgg = withEgg;
+        }
+
+        [Button]
+        public void SetAcornTaken(bool withAcorn)
+        {
+            this.withAcorn = withAcorn;
+        }
+
         private void OnEnable()
         {
             catMovement.OnStateChanged += StateChanged;
@@ -34,8 +71,18 @@ namespace Cat
         {
             string animationName = state switch
             {
-                State.Moving => walkAnimation,
-                State.Staying => idleAnimation,
+                State.Moving
+                    => withAcorn
+                        ? walkAcornAnimation
+                        : withEgg
+                            ? walkEggAnimation
+                            : walkAnimation,
+                State.Staying
+                    => withAcorn
+                        ? idleAcornAnimation
+                        : withEgg
+                            ? idleEggAnimation
+                            : idleAnimation,
                 _ => throw new System.ArgumentException()
             };
             SetAnimation(animationName);

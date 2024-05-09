@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using DG.Tweening;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -9,7 +10,7 @@ using UnityEngine.UI;
 
 namespace UI
 {
-    [AddComponentMenu("Scripts/UI/UI.Slideparent")]
+    [AddComponentMenu("Scripts/UI/UI.SlideshowParent")]
     internal class SlideshowParent : MonoBehaviour
     {
         [Serializable]
@@ -22,6 +23,7 @@ namespace UI
             public float FadeTime;
         }
 
+        [InfoBox("@" + nameof(Info))]
         [SerializeField]
         private bool playOnAwake = false;
 
@@ -41,6 +43,9 @@ namespace UI
         private Image image;
         private Tween fadeTween;
 
+        private string Info =>
+            $"Total time on playlist +-{slides.Sum(x => x.WaitBefore + x.HoldTime)} sec";
+
         private void Start()
         {
             if (playOnAwake)
@@ -54,6 +59,7 @@ namespace UI
             if (childrenComponentsMode)
             {
                 FillChildren();
+                yield return new WaitForSeconds(0.5f);
                 foreach (Slide slide in slides)
                 {
                     yield return ShowSlide(slide);
@@ -83,8 +89,8 @@ namespace UI
             slide.FadeIn();
             yield return new WaitForSeconds(slide.HoldTime);
             slide.FadeOut();
-            yield return new WaitForSeconds(slide.FadeTime);
-            yield return new WaitForSeconds(slide.WaitAfter);
+            //yield return new WaitForSeconds(slide.FadeTime);
+            //yield return new WaitForSeconds(slide.WaitAfter);
         }
 
         private IEnumerator ShowSlide(SlideStruct slide)
@@ -95,8 +101,8 @@ namespace UI
             FadeIn(slide.FadeTime);
             yield return new WaitForSeconds(slide.HoldTime);
             FadeOut(slide.FadeTime);
-            yield return new WaitForSeconds(slide.FadeTime);
-            yield return new WaitForSeconds(slide.WaitAfter);
+            //yield return new WaitForSeconds(slide.FadeTime);
+            //yield return new WaitForSeconds(slide.WaitAfter);
         }
 
         [Button]

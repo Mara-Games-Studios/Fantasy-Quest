@@ -1,18 +1,25 @@
 ﻿using Configs;
 using DG.Tweening;
 using Dialogue;
+using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Subtitles
 {
     [AddComponentMenu("Scripts/Subtitles/Subtitles.View")]
     public class View : MonoBehaviour, ISubtitlesView
     {
+        [Required]
         [SerializeField]
         private TMP_Text outputTmpText;
 
+        [SerializeField]
+        private Image additionalImageToFade;
+
         private Tween fadeTween;
+        private Tween imageFadeTween;
 
         private void OnEnable()
         {
@@ -27,7 +34,13 @@ namespace Subtitles
         private void OnSubtitlesShowChanged(bool value)
         {
             fadeTween?.Kill(true);
-            outputTmpText.alpha = value ? 1 : 0;
+            imageFadeTween?.Kill(true);
+
+            int alpha = value ? 1 : 0;
+            outputTmpText.alpha = alpha;
+
+            Color color = additionalImageToFade.color;
+            additionalImageToFade.color = new Color(color.r, color.g, color.b, alpha);
         }
 
         public void Show(Replica replica)
@@ -36,6 +49,7 @@ namespace Subtitles
             fadeTween.onComplete += () =>
             {
                 fadeTween?.Kill();
+                imageFadeTween?.Kill();
                 outputTmpText.SetText(replica.Text);
                 DoFade(1);
             };
@@ -44,6 +58,7 @@ namespace Subtitles
         public void Hide()
         {
             fadeTween?.Kill(true);
+            imageFadeTween?.Kill();
             DoFade(0);
             fadeTween.onComplete += () => outputTmpText.SetText("");
         }
@@ -56,6 +71,10 @@ namespace Subtitles
             }
 
             fadeTween = outputTmpText.DOFade(endAlpha, SubtitlesSettings.Instance.TextFadeDuration);
+            imageFadeTween = additionalImageToFade.DOFade(
+                endAlpha,
+                SubtitlesSettings.Instance.TextFadeDuration
+            );
         }
     }
 }

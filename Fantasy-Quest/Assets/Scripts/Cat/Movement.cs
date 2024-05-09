@@ -29,6 +29,8 @@ namespace Cat
         private Point point;
 
         private RailsImpl rails;
+        public bool IsOnLeftEdge => rails.CurrentPosition < 0.01;
+        public bool IsOnRightEdge => rails.CurrentPosition > 0.99;
 
         [SerializeField]
         private float speed;
@@ -52,10 +54,7 @@ namespace Cat
             get => vector;
             private set
             {
-                if (vector != value)
-                {
-                    OnVectorChanged?.Invoke(value);
-                }
+                OnVectorChanged?.Invoke(value);
                 vector = value;
             }
         }
@@ -83,7 +82,11 @@ namespace Cat
 
         public void Move(float amount)
         {
-            if (amount != 0)
+            if (
+                amount != 0
+                && (amount > 0 && IsOnRightEdge) == false
+                && (amount < 0 && IsOnLeftEdge) == false
+            )
             {
                 thresholdTimer = movingThreshold;
                 State = State.Moving;

@@ -36,6 +36,12 @@ namespace Interaction
             playerInput.Player.CatInteraction.performed += InteractCat;
             playerInput.Player.UpJump.performed += TransitionUp;
             playerInput.Player.DownJump.performed += TransitionDown;
+            playerInput.Player.CallHumanMove.performed += CallHumanMove;
+        }
+
+        private void CallHumanMove(InputAction.CallbackContext context)
+        {
+            CastInterfaces<ICallHumanMove>().ForEach(x => x.CallHumanMove());
         }
 
         public void InteractHuman(InputAction.CallbackContext context)
@@ -92,6 +98,7 @@ namespace Interaction
             playerInput.Player.CatInteraction.performed -= InteractCat;
             playerInput.Player.UpJump.performed -= TransitionUp;
             playerInput.Player.DownJump.performed -= TransitionDown;
+            playerInput.Player.CallHumanMove.performed -= CallHumanMove;
             playerInput.Disable();
         }
     }

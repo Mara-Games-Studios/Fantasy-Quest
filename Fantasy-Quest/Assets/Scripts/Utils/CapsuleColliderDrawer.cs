@@ -1,6 +1,7 @@
-﻿#if UNITY_EDITOR
+﻿using UnityEngine;
+#if UNITY_EDITOR
 using UnityEditor;
-using UnityEngine;
+#endif
 
 namespace Utils
 {
@@ -14,6 +15,7 @@ namespace Utils
         [SerializeField]
         private Color color = Color.white;
 
+#if UNITY_EDITOR
         private void OnValidate()
         {
             capsuleCollider = GetComponent<CapsuleCollider2D>();
@@ -24,11 +26,12 @@ namespace Utils
             Color tempColor = Handles.color;
             Handles.color = color;
             Handles.DrawWireCube(
-                transform.position + (Vector3)capsuleCollider.offset,
-                capsuleCollider.size
+                transform.position
+                    + Vector3.Scale((Vector3)capsuleCollider.offset, transform.lossyScale),
+                Vector3.Scale(capsuleCollider.size, transform.lossyScale)
             );
             Handles.color = tempColor;
         }
+#endif
     }
 }
-#endif

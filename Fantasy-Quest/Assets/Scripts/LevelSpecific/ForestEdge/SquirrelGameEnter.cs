@@ -28,6 +28,10 @@ namespace LevelSpecific.ForestEdge
                 miniGameManager.EnableAllMinigameInput();
                 miniGameManager.RefreshGame();
             }
+            else
+            {
+                miniGameManager.EnableAllMinigameInput();
+            }
         }
 
         public void EnableAcorn()

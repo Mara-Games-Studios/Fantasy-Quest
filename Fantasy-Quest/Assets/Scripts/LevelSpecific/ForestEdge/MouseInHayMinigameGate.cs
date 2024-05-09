@@ -2,6 +2,7 @@
 using Minigames.MouseInHay;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace LevelSpecific.ForestEdge
 {
@@ -14,6 +15,8 @@ namespace LevelSpecific.ForestEdge
         [SerializeField]
         private Manager miniGameManager;
 
+        public UnityEvent EnterWithStartGame;
+
         public void ActivateMiniGame()
         {
             if (
@@ -24,9 +27,11 @@ namespace LevelSpecific.ForestEdge
                 miniGameManager.EnableAllMinigameInput();
                 miniGameManager.RefreshGame();
                 miniGameManager.StartGame();
+                EnterWithStartGame?.Invoke();
             }
             else
             {
+                miniGameManager.EnableAllMinigameInput();
                 miniGameManager.RefreshGame();
                 miniGameManager.StopGame();
             }

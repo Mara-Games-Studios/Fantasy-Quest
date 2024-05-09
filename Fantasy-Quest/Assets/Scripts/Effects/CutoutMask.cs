@@ -34,12 +34,14 @@ namespace Effects.Screen
         private AnimationCurve curve = AnimationCurve.Linear(0, 0, 1, 1);
 
         private RectTransform rectTransform;
+        private UnityEngine.Camera foundedCamera;
 
         public event Action OnEffectEnded;
 
         private void Awake()
         {
             rectTransform = GetComponent<RectTransform>();
+            foundedCamera = FindAnyObjectByType<UnityEngine.Camera>();
         }
 
         private void Start()
@@ -61,7 +63,7 @@ namespace Effects.Screen
             while (timer <= duration)
             {
                 timer += Time.deltaTime;
-                rectTransform.localPosition = Vector2.Lerp(
+                rectTransform.position = Vector2.Lerp(
                     startProperties.Position,
                     endProperties.Position,
                     curve.Evaluate(timer / duration)
@@ -74,6 +76,13 @@ namespace Effects.Screen
                 yield return null;
             }
             OnEffectEnded?.Invoke();
+        }
+
+        public void SetDestinationPoint(Transform transform)
+        {
+            startProperties.Position = foundedCamera.WorldToScreenPoint(transform.position);
+            //Debug.Log(startProperties.Position);
+            endProperties.Position = startProperties.Position;
         }
 
         [Button]

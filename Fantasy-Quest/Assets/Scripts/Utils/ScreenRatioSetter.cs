@@ -7,6 +7,7 @@ namespace Utils
     {
         private void Start()
         {
+            QualitySettings.vSyncCount = 1;
             SetRatio(16, 9);
         }
 

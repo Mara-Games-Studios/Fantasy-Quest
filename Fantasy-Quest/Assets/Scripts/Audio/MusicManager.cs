@@ -19,9 +19,12 @@ namespace Audio
         [SerializeField]
         private List<AudioClip> currentClips;
 
-        [ReadOnly]
         [SerializeField]
         private bool isOnPause = false;
+        public bool IsOnPause => isOnPause;
+
+        [SerializeField]
+        private bool playOnStart = true;
 
         private AudioSource musicSource;
 
@@ -35,7 +38,8 @@ namespace Audio
         private void Start()
         {
             Configs.AudioSettings.Instance.RefreshAudio();
-            SwitchPlaylist(startPlaylist, true);
+
+            SwitchPlaylist(startPlaylist, playOnStart);
         }
 
         private void Update()
@@ -80,6 +84,7 @@ namespace Audio
         public void MigrateSingleton(MusicManager instance)
         {
             instance.PauseMusic();
+            isOnPause = instance.IsOnPause;
         }
 
         public void PauseMusic()

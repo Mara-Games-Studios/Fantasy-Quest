@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using DG.Tweening;
-using DG.Tweening.Core;
-using DG.Tweening.Plugins.Options;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -22,8 +19,8 @@ namespace Cat
         [SerializeField]
         private Movement catMovement;
 
-        [SerializeField]
-        private float flipTime = 0.5f;
+        //[SerializeField]
+        //private float flipTime = 0.5f;
 
         [ReadOnly]
         [SerializeField]
@@ -40,35 +37,12 @@ namespace Cat
 
         private void VectorChanged(Vector vector)
         {
-            if (toFlip != vector && !isFlipping)
-            {
-                StartFlipping(vector);
-            }
-            toFlip = vector;
-        }
-
-        private void StartFlipping(Vector vector)
-        {
-            isFlipping = true;
-            TweenerCore<Quaternion, Vector3, QuaternionOptions> rotation = transform.DORotate(
-                RotationByVectors[vector],
-                flipTime
-            );
-            rotation.onComplete += () => EndFlipping(vector);
-        }
-
-        private void EndFlipping(Vector flippedTo)
-        {
-            isFlipping = false;
-            if (toFlip != flippedTo)
-            {
-                StartFlipping(toFlip);
-            }
+            transform.rotation = Quaternion.Euler(RotationByVectors[vector]);
         }
 
         public float GetFlipTime()
         {
-            return flipTime;
+            return 0;
         }
 
         private void OnEnable()

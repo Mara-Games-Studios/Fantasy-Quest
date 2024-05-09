@@ -1,5 +1,4 @@
-﻿using Configs;
-using Sirenix.OdinInspector;
+﻿using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Inventory
@@ -7,18 +6,22 @@ namespace Inventory
     [AddComponentMenu("Scripts/Inventory/Inventory.ItemTaker")]
     internal class ItemTaker : MonoBehaviour
     {
-        [Required]
-        [SerializeField]
-        private Transform holdItemPosition;
-
-        [Required]
-        [SerializeField]
-        private Transform placeItemPosition;
-
         [ReadOnly]
         [SerializeField]
         private Item takenItem;
         public Item TakenItem => takenItem;
+
+        [Required]
+        [SerializeField]
+        private Cat.View catView;
+
+        [Required]
+        [SerializeField]
+        private Item egg;
+
+        [Required]
+        [SerializeField]
+        private Item acorn;
 
         [Button]
         public void TakeItem(Item item)
@@ -28,37 +31,23 @@ namespace Inventory
                 Debug.Log("Item already taken.");
                 return;
             }
-
             takenItem = item;
-        }
-
-        private void Update()
-        {
-            Debug.Log(takenItem);
-            if (takenItem != null)
+            if (takenItem.UidEquals(egg))
             {
-                takenItem.transform.position = holdItemPosition.position;
+                catView.SetEggTaken(true);
+            }
+            if (takenItem.UidEquals(acorn))
+            {
+                catView.SetAcornTaken(true);
             }
         }
 
         [Button]
         public void RemoveItem()
         {
+            catView.SetEggTaken(false);
+            catView.SetAcornTaken(false);
             takenItem = null;
-        }
-
-        [Button]
-        public void PlaceItem()
-        {
-            if (takenItem == null)
-            {
-                Debug.Log("No Item to place");
-                return;
-            }
-
-            takenItem.transform.position = placeItemPosition.position;
-            takenItem = null;
-            LockerSettings.Instance.UnlockAll();
         }
     }
 }

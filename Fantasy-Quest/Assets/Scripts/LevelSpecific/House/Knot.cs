@@ -29,13 +29,11 @@ namespace LevelSpecific.House
                 switch (state)
                 {
                     case State.Left:
-                        Debug.Log("Move To Right");
                         canCatInteract = false;
                         animator.SetTrigger("MoveToRight");
                         state = State.Right;
                         break;
                     case State.Right:
-                        Debug.Log("Move To Left");
                         canCatInteract = false;
                         animator.SetTrigger("MoveToLeft");
                         state = State.Left;

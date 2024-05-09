@@ -20,10 +20,6 @@ namespace Minigames.SquirrelGame
 
         [Required]
         [SerializeField]
-        private StatusPanel statusPanel;
-
-        [Required]
-        [SerializeField]
         private Paw paw;
 
         [Required]
@@ -49,7 +45,7 @@ namespace Minigames.SquirrelGame
         {
             quitInput.enabled = false;
             DisableAllMinigameInput();
-            statusPanel.ShowPanel(exitState, () => TriggerEvent(exitState));
+            TriggerEvent(exitState);
         }
 
         private void TriggerEvent(ExitGameState exitState)
@@ -74,7 +70,6 @@ namespace Minigames.SquirrelGame
             //prize.gameObject.SetActive(true);
             prize.RestorePosition();
             paw.Refresh();
-            statusPanel.HidePanel();
         }
 
         [Button]

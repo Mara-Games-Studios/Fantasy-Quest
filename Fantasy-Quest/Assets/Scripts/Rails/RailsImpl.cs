@@ -22,7 +22,12 @@ namespace Rails
         [ReadOnly]
         [SerializeField]
         private float currentPosition;
-        public float CurrentPosition => currentPosition;
+
+        public float CurrentPosition
+        {
+            get => currentPosition;
+            set => currentPosition = Mathf.Clamp(value, 0.01f, 0.99f);
+        }
 
         private Coroutine rideCoroutine;
 
@@ -37,7 +42,7 @@ namespace Rails
             {
                 body.position = Vector3.Lerp(
                     body.position,
-                    Path.GetPointAtTime(currentPosition),
+                    Path.GetPointAtTime(CurrentPosition),
                     Configs.RailsSettings.Instance.MagnetSpeed * Time.deltaTime
                 );
             }
@@ -49,7 +54,7 @@ namespace Rails
             {
                 return;
             }
-            Gizmos.DrawLine(Path.GetPointAtTime(currentPosition), body.position);
+            Gizmos.DrawLine(Path.GetPointAtTime(CurrentPosition), body.position);
         }
 
         [Title("Debug buttons for testing")]
@@ -91,7 +96,8 @@ namespace Rails
             float timer = 0;
             while (timer <= time)
             {
-                currentPosition = Mathf.Lerp(start, end, curve.Evaluate(timer / time));
+                CurrentPosition = Mathf.Lerp(start, end, curve.Evaluate(timer / time));
+
                 timer += Time.deltaTime;
                 yield return null;
             }
@@ -100,8 +106,8 @@ namespace Rails
         [Button(Style = ButtonStyle.Box)]
         public void MoveBody(float length)
         {
-            currentPosition = MathfTools.Clamp01UpperExclusive(
-                currentPosition + (length / Path.length)
+            CurrentPosition = MathfTools.Clamp01UpperExclusive(
+                CurrentPosition + (length / Path.length)
             );
         }
 
@@ -109,7 +115,7 @@ namespace Rails
         public void BindBody(Transform transform, float point)
         {
             body = transform;
-            currentPosition = point;
+            CurrentPosition = point;
         }
 
         public void BindBody(Transform transform, Point point)
