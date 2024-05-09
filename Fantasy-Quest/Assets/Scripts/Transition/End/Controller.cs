@@ -5,6 +5,7 @@ using Sirenix.OdinInspector;
 using TNRD;
 using UI;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
 namespace Transition.End
@@ -33,6 +34,8 @@ namespace Transition.End
         private string nextScene = "NULL";
         private bool exitingGame = false;
 
+        public UnityEvent OnQuitGame;
+
         [Button]
         public void LoadScene(string nextScene)
         {
@@ -47,6 +50,7 @@ namespace Transition.End
             view.SetActive(true);
             animator.enabled = true;
             exitingGame = true;
+            OnQuitGame?.Invoke();
         }
 
         // Must me called by view callback

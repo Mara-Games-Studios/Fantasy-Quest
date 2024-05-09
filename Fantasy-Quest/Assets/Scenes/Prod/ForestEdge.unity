@@ -652,15 +652,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1500414472098334779, guid: 38c49c923fe7bb94b915b7552d456c8d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -20.316212
+      value: 15.86
       objectReference: {fileID: 0}
     - target: {fileID: 1500414472098334779, guid: 38c49c923fe7bb94b915b7552d456c8d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.139845
+      value: -7.18
       objectReference: {fileID: 0}
     - target: {fileID: 1500414472098334779, guid: 38c49c923fe7bb94b915b7552d456c8d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 1500414472098334779, guid: 38c49c923fe7bb94b915b7552d456c8d, type: 3}
       propertyPath: m_LocalRotation.w
@@ -24448,9 +24448,9 @@ MonoBehaviour:
   Triggered:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Utils.TransformMover, Assembly-CSharp
-        m_MethodName: Move
+      - m_Target: {fileID: 1820413191}
+        m_TargetAssemblyTypeName: Transition.Location, Assembly-CSharp
+        m_MethodName: TriggerTransition
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -31414,11 +31414,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8516057150035671861, guid: 78951c99008d395408102ffd3bb94551, type: 3}
       propertyPath: OutEffectEnded.m_PersistentCalls.m_Calls.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8516057150035671861, guid: 78951c99008d395408102ffd3bb94551, type: 3}
       propertyPath: OutEffectEnded.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8516057150035671861, guid: 78951c99008d395408102ffd3bb94551, type: 3}
+      propertyPath: OutEffectEnded.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8516057150035671861, guid: 78951c99008d395408102ffd3bb94551, type: 3}
       propertyPath: InEffectEnded.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -31437,7 +31441,15 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1028055541}
     - target: {fileID: 8516057150035671861, guid: 78951c99008d395408102ffd3bb94551, type: 3}
+      propertyPath: OutEffectEnded.m_PersistentCalls.m_Calls.Array.data[2].m_Target
+      value: 
+      objectReference: {fileID: 6792728119773763105}
+    - target: {fileID: 8516057150035671861, guid: 78951c99008d395408102ffd3bb94551, type: 3}
       propertyPath: OutEffectEnded.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8516057150035671861, guid: 78951c99008d395408102ffd3bb94551, type: 3}
+      propertyPath: OutEffectEnded.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8516057150035671861, guid: 78951c99008d395408102ffd3bb94551, type: 3}
@@ -31445,15 +31457,31 @@ PrefabInstance:
       value: set_enabled
       objectReference: {fileID: 0}
     - target: {fileID: 8516057150035671861, guid: 78951c99008d395408102ffd3bb94551, type: 3}
+      propertyPath: OutEffectEnded.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      value: PauseMusic
+      objectReference: {fileID: 0}
+    - target: {fileID: 8516057150035671861, guid: 78951c99008d395408102ffd3bb94551, type: 3}
       propertyPath: OutEffectEnded.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
       value: UnityEngine.Behaviour, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 8516057150035671861, guid: 78951c99008d395408102ffd3bb94551, type: 3}
+      propertyPath: OutEffectEnded.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
+      value: Audio.MusicManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 8516057150035671861, guid: 78951c99008d395408102ffd3bb94551, type: 3}
       propertyPath: OutEffectEnded.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_BoolArgument
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8516057150035671861, guid: 78951c99008d395408102ffd3bb94551, type: 3}
+      propertyPath: OutEffectEnded.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_BoolArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8516057150035671861, guid: 78951c99008d395408102ffd3bb94551, type: 3}
       propertyPath: OutEffectEnded.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 8516057150035671861, guid: 78951c99008d395408102ffd3bb94551, type: 3}
+      propertyPath: OutEffectEnded.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 8662851964617049145, guid: 78951c99008d395408102ffd3bb94551, type: 3}
@@ -33026,11 +33054,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: MusicManager
       objectReference: {fileID: 0}
+    - target: {fileID: 5236004957337602084, guid: 8ff9b1ea9c75a14429011221a11ec0d8, type: 3}
+      propertyPath: startPlaylist
+      value: 
+      objectReference: {fileID: 11400000, guid: cb25c076c14f0ae47baf0877acfa6f17, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8ff9b1ea9c75a14429011221a11ec0d8, type: 3}
+--- !u!114 &6792728119773763105 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5236004957337602084, guid: 8ff9b1ea9c75a14429011221a11ec0d8, type: 3}
+  m_PrefabInstance: {fileID: 6792728119773763104}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69882ec8c6d0c334bbce8d3cacd73901, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &6943755223806689837
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -33390,6 +33433,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 6792728119773763105}
+        m_TargetAssemblyTypeName: Audio.MusicManager, Assembly-CSharp
+        m_MethodName: ResumeMusic
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   references:
     version: 2
     RefIds:
@@ -33668,7 +33723,7 @@ PrefabInstance:
       objectReference: {fileID: 2024490713}
     - target: {fileID: 5384320320187699602, guid: b226e54f4be684b4f82c70458cacaaab, type: 3}
       propertyPath: speed
-      value: 8
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7209340483256552939, guid: b226e54f4be684b4f82c70458cacaaab, type: 3}
       propertyPath: m_LocalRotation.w

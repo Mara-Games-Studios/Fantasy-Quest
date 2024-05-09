@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using DG.Tweening;
 using UnityEngine;
@@ -19,6 +20,7 @@ namespace UI.Pages
 
         [SerializeField]
         private List<CanvasGroup> elementsCanvasGroup;
+        public List<CanvasGroup> ElementsCanvasGroup => elementsCanvasGroup;
 
         [SerializeField]
         private int currentElementIndex;
@@ -34,81 +36,103 @@ namespace UI.Pages
 
         private List<RectTransform> elementsTransform;
 
+        public event Action<int> OnElementIndexChanged;
+        public CanvasGroup Current => elementsCanvasGroup[currentElementIndex];
+
+        public int CurrentElementIndex
+        {
+            get => currentElementIndex;
+            set
+            {
+                if (currentElementIndex != value)
+                {
+                    OnElementIndexChanged?.Invoke(value);
+                }
+                currentElementIndex = value;
+            }
+        }
+
         private void OnEnable()
         {
             elementsTransform = new List<RectTransform>(
                 from element in elementsCanvasGroup
                 select element.GetComponent<RectTransform>()
             );
-            if (currentElementIndex < 0 || currentElementIndex >= elementsCanvasGroup.Count)
+            if (CurrentElementIndex < 0 || CurrentElementIndex >= elementsCanvasGroup.Count)
             {
-                currentElementIndex = 0;
+                CurrentElementIndex = 0;
             }
 
             foreach (RectTransform element in elementsTransform)
             {
                 element.localPosition = localPoints.StartPoint.localPosition;
             }
-            elementsTransform[currentElementIndex].localPosition = localPoints
+            elementsTransform[CurrentElementIndex].localPosition = localPoints
                 .MiddlePoint
                 .localPosition;
-            elementsCanvasGroup[currentElementIndex].alpha = maxFade;
+            elementsCanvasGroup[CurrentElementIndex].alpha = maxFade;
         }
 
         public void MoveRight()
         {
             //Hide element
-            _ = elementsTransform[currentElementIndex]
+            _ = elementsTransform[CurrentElementIndex]
                 .DOMove(localPoints.StartPoint.position, duration)
                 .SetUpdate(true);
-            _ = elementsCanvasGroup[currentElementIndex].DOFade(minFade, duration).SetUpdate(true);
+            _ = elementsCanvasGroup[CurrentElementIndex].DOFade(minFade, duration).SetUpdate(true);
 
             IncreaseElementIndex(1);
             //Show element
-            _ = elementsTransform[currentElementIndex]
+            _ = elementsTransform[CurrentElementIndex]
                 .DOMove(localPoints.EndPoint.position, 0)
                 .SetUpdate(true);
-            _ = elementsTransform[currentElementIndex]
+            _ = elementsTransform[CurrentElementIndex]
                 .DOMove(localPoints.MiddlePoint.position, duration)
                 .SetUpdate(true);
-            _ = elementsCanvasGroup[currentElementIndex].DOFade(maxFade, duration).SetUpdate(true);
+            _ = elementsCanvasGroup[CurrentElementIndex].DOFade(maxFade, duration).SetUpdate(true);
         }
 
         public void MoveLeft()
         {
             //Hide element
-            _ = elementsTransform[currentElementIndex]
+            _ = elementsTransform[CurrentElementIndex]
                 .DOMove(localPoints.EndPoint.position, duration)
                 .SetUpdate(true);
-            _ = elementsCanvasGroup[currentElementIndex].DOFade(minFade, duration).SetUpdate(true);
+            _ = elementsCanvasGroup[CurrentElementIndex].DOFade(minFade, duration).SetUpdate(true);
 
             DecreaseElementIndex(1);
 
             //Show element
-            _ = elementsTransform[currentElementIndex]
+            _ = elementsTransform[CurrentElementIndex]
                 .DOMove(localPoints.StartPoint.position, 0)
                 .SetUpdate(true);
-            _ = elementsTransform[currentElementIndex]
+            _ = elementsTransform[CurrentElementIndex]
                 .DOMove(localPoints.MiddlePoint.position, duration)
                 .SetUpdate(true);
-            _ = elementsCanvasGroup[currentElementIndex].DOFade(maxFade, duration).SetUpdate(true);
+            _ = elementsCanvasGroup[CurrentElementIndex].DOFade(maxFade, duration).SetUpdate(true);
         }
 
         private void IncreaseElementIndex(int step)
         {
-            currentElementIndex += step;
-            if (currentElementIndex >= elementsCanvasGroup.Count)
+            if (CurrentElementIndex + step >= elementsCanvasGroup.Count)
             {
-                currentElementIndex = 0;
+                CurrentElementIndex = 0;
+            }
+            else
+            {
+                CurrentElementIndex += step;
             }
         }
 
         private void DecreaseElementIndex(int step)
         {
-            currentElementIndex -= step;
-            if (currentElementIndex < 0)
+            if (CurrentElementIndex - step < 0)
             {
-                currentElementIndex = elementsCanvasGroup.Count - 1;
+                CurrentElementIndex = elementsCanvasGroup.Count - 1;
+            }
+            else
+            {
+                CurrentElementIndex -= step;
             }
         }
     }

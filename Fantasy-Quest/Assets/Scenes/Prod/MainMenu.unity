@@ -1284,6 +1284,18 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3835006975905078997, guid: 37feff697b740ba46960eba0560fdd1a, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3835006975905078997, guid: 37feff697b740ba46960eba0560fdd1a, type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3835006975905078997, guid: 37feff697b740ba46960eba0560fdd1a, type: 3}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5228369097007093281, guid: 37feff697b740ba46960eba0560fdd1a, type: 3}
       propertyPath: m_Name
       value: Start Transition
@@ -1565,6 +1577,17 @@ MonoBehaviour:
   blendDistance: 0
   weight: 1
   sharedProfile: {fileID: 11400000, guid: d2c8cc8ed5cfca4429b2467db70ee9a8, type: 2}
+--- !u!114 &1353543063 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4983790626478115168, guid: 6f3087340be1e2145900bfc03279b01c, type: 3}
+  m_PrefabInstance: {fileID: 5395350756567152792}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69882ec8c6d0c334bbce8d3cacd73901, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1379712048 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5873313840042330355, guid: 3fccebed1f89742439404a8239325291, type: 3}
@@ -1941,6 +1964,34 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2018729621}
     m_Modifications:
+    - target: {fileID: 1687983608161902249, guid: 45958e2a5385f4b44a537bfc8ab85f29, type: 3}
+      propertyPath: OnQuitGame.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1687983608161902249, guid: 45958e2a5385f4b44a537bfc8ab85f29, type: 3}
+      propertyPath: OnQuitGame.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1687983608161902249, guid: 45958e2a5385f4b44a537bfc8ab85f29, type: 3}
+      propertyPath: OnQuitGame.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1353543063}
+    - target: {fileID: 1687983608161902249, guid: 45958e2a5385f4b44a537bfc8ab85f29, type: 3}
+      propertyPath: OnQuitGame.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1687983608161902249, guid: 45958e2a5385f4b44a537bfc8ab85f29, type: 3}
+      propertyPath: OnQuitGame.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PauseMusic
+      objectReference: {fileID: 0}
+    - target: {fileID: 1687983608161902249, guid: 45958e2a5385f4b44a537bfc8ab85f29, type: 3}
+      propertyPath: OnQuitGame.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Audio.MusicManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1687983608161902249, guid: 45958e2a5385f4b44a537bfc8ab85f29, type: 3}
+      propertyPath: OnQuitGame.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 1747170997711179836, guid: 45958e2a5385f4b44a537bfc8ab85f29, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -6292,14 +6343,6 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7904197979219262941, guid: 996d01b2bd11359408bdd956eddc3e65, type: 3}
-      propertyPath: m_text
-      value: "\u0411\u0435\u043B\u0430\u0440\u0443\u0441\u043Ai\u0439"
-      objectReference: {fileID: 0}
-    - target: {fileID: 7904197979219262941, guid: 996d01b2bd11359408bdd956eddc3e65, type: 3}
-      propertyPath: m_fontSize
-      value: 78.8
-      objectReference: {fileID: 0}
     - target: {fileID: 7982486635373262940, guid: 996d01b2bd11359408bdd956eddc3e65, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -9463,7 +9506,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: c626198aed1221b40a984e24f453d35f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: da4d9101e2ba72b44897b78a074b1857, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

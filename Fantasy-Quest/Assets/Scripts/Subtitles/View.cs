@@ -35,7 +35,12 @@ namespace Subtitles
         {
             fadeTween?.Kill(true);
             imageFadeTween?.Kill(true);
-            outputTmpText.alpha = value ? 1 : 0;
+
+            int alpha = value ? 1 : 0;
+            outputTmpText.alpha = alpha;
+
+            Color color = additionalImageToFade.color;
+            additionalImageToFade.color = new Color(color.r, color.g, color.b, alpha);
         }
 
         public void Show(Replica replica)
