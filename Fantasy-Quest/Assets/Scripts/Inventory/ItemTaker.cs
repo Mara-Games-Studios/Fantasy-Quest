@@ -1,5 +1,4 @@
 ﻿using Sirenix.OdinInspector;
-using Spine.Unity;
 using UnityEngine;
 
 namespace Inventory
@@ -12,6 +11,18 @@ namespace Inventory
         private Item takenItem;
         public Item TakenItem => takenItem;
 
+        [Required]
+        [SerializeField]
+        private Cat.View catView;
+
+        [Required]
+        [SerializeField]
+        private Item egg;
+
+        [Required]
+        [SerializeField]
+        private Item acorn;
+
         [Button]
         public void TakeItem(Item item)
         {
@@ -21,13 +32,21 @@ namespace Inventory
                 return;
             }
             takenItem = item;
-            takenItem.GetComponent<BoneFollower>().enabled = true;
+            if (takenItem.UidEquals(egg))
+            {
+                catView.SetEggTaken(true);
+            }
+            if (takenItem.UidEquals(acorn))
+            {
+                catView.SetAcornTaken(true);
+            }
         }
 
         [Button]
         public void RemoveItem()
         {
-            takenItem.GetComponent<BoneFollower>().enabled = false;
+            catView.SetEggTaken(false);
+            catView.SetAcornTaken(false);
             takenItem = null;
         }
     }

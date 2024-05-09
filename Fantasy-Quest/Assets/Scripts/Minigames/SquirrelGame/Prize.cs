@@ -18,6 +18,10 @@ namespace Minigames.SquirrelGame
         [SerializeField]
         private float magnetSpeed = 0.7f;
 
+        [Required]
+        [SerializeField]
+        private Effects.Fade fade;
+
         private Paw paw = null;
         private Transform target = null;
 
@@ -36,11 +40,13 @@ namespace Minigames.SquirrelGame
         private void Start()
         {
             RestorePosition();
+            fade.Disappear();
         }
 
         public void RestorePosition()
         {
             target = startBindTransform;
+            fade.Disappear();
         }
 
         private void GrabPerformed(InputAction.CallbackContext context)
@@ -49,6 +55,7 @@ namespace Minigames.SquirrelGame
             {
                 paw.IsPrizeGrabbed = true;
                 target = paw.BindPrizeTransform;
+                fade.Disappear();
             }
         }
 
@@ -69,6 +76,7 @@ namespace Minigames.SquirrelGame
             if (collision.TryGetComponent(out Paw paw))
             {
                 this.paw = paw;
+                fade.Appear();
             }
         }
 
@@ -77,6 +85,7 @@ namespace Minigames.SquirrelGame
             if (collision.TryGetComponent(out Paw _))
             {
                 paw = null;
+                fade.Disappear();
             }
         }
     }

@@ -4,6 +4,7 @@ using Dialogue;
 using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Subtitles
 {
@@ -14,7 +15,12 @@ namespace Subtitles
         [SerializeField]
         private TMP_Text outputTmpText;
 
+        [Required]
+        [SerializeField]
+        private Image additionalImageToFade;
+
         private Tween fadeTween;
+        private Tween imageFadeTween;
 
         private void OnEnable()
         {
@@ -29,6 +35,7 @@ namespace Subtitles
         private void OnSubtitlesShowChanged(bool value)
         {
             fadeTween?.Kill(true);
+            imageFadeTween?.Kill(true);
             outputTmpText.alpha = value ? 1 : 0;
         }
 
@@ -38,6 +45,7 @@ namespace Subtitles
             fadeTween.onComplete += () =>
             {
                 fadeTween?.Kill();
+                imageFadeTween?.Kill();
                 outputTmpText.SetText(replica.Text);
                 DoFade(1);
             };
@@ -46,6 +54,7 @@ namespace Subtitles
         public void Hide()
         {
             fadeTween?.Kill(true);
+            imageFadeTween?.Kill();
             DoFade(0);
             fadeTween.onComplete += () => outputTmpText.SetText("");
         }
@@ -58,6 +67,10 @@ namespace Subtitles
             }
 
             fadeTween = outputTmpText.DOFade(endAlpha, SubtitlesSettings.Instance.TextFadeDuration);
+            imageFadeTween = additionalImageToFade.DOFade(
+                endAlpha,
+                SubtitlesSettings.Instance.TextFadeDuration
+            );
         }
     }
 }
