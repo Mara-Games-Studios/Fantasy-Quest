@@ -15,7 +15,6 @@ namespace Subtitles
         [SerializeField]
         private TMP_Text outputTmpText;
 
-        [Required]
         [SerializeField]
         private Image additionalImageToFade;
 
