@@ -1,4 +1,5 @@
 ﻿using System;
+using Audio;
 using UnityEngine;
 
 namespace Dialogue
@@ -8,9 +9,9 @@ namespace Dialogue
     {
         private AudioSource audioSource;
 
-        public Voice(AudioSource audioSource)
+        public Voice(SoundsManager soundsManager)
         {
-            this.audioSource = audioSource;
+            audioSource = soundsManager.CreateSource();
         }
 
         public void Say(AudioClip audioClip)

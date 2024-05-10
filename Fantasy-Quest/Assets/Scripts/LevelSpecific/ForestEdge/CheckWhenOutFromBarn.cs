@@ -1,6 +1,7 @@
+using Cat;
 using Configs.Progression;
 using UnityEngine;
-using Utils;
+using UnityEngine.Events;
 
 namespace LevelSpecific.ForestEdge
 {
@@ -13,14 +14,24 @@ namespace LevelSpecific.ForestEdge
         private bool triggered = false;
 
         [SerializeField]
-        private TransformMover moveCat;
+        private MovementInvoke pavetnikPoint;
+
+        [SerializeField]
+        private MovementInvoke standartPoint;
+
+        public UnityEvent AfterRails;
 
         public void Check()
         {
             if (ProgressionConfig.Instance.ForestEdgeLevel.MouseInHayGamePassed && !triggered)
             {
                 triggered = true;
-                moveCat.Move();
+                pavetnikPoint.InvokeSetOnRails();
+                AfterRails?.Invoke();
+            }
+            else
+            {
+                standartPoint.InvokeSetOnRails();
             }
         }
     }

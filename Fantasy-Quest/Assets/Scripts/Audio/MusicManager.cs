@@ -1,15 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Common;
 using Configs.Music;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Audio
 {
-    [RequireComponent(typeof(AudioSource))]
     [AddComponentMenu("Scripts/Audio/Audio.MusicManager")]
-    internal class MusicManager : MonoBehaviour, ISceneSingleton<MusicManager>
+    internal class MusicManager : MonoBehaviour
     {
         [AssetList]
         [SerializeField]
@@ -19,35 +17,31 @@ namespace Audio
         [SerializeField]
         private List<AudioClip> currentClips;
 
+        [ReadOnly]
         [SerializeField]
-        private bool isOnPause = false;
-        public bool IsOnPause => isOnPause;
+        private List<AudioSource> audioSources = new();
 
         [SerializeField]
         private bool playOnStart = true;
 
-        private AudioSource musicSource;
+        private int maxAudioSources = 2;
+
+        [Required]
+        [SerializeField]
+        private AudioSource audioSourcePrefab;
 
         private void Awake()
         {
-            this.InitSingleton();
-            musicSource = GetComponent<AudioSource>();
-            Debug.Assert(musicSource != null, "Music Source is NULL", musicSource);
+            for (int i = 0; i < maxAudioSources; i++)
+            {
+                audioSources.Add(Instantiate(audioSourcePrefab, transform));
+            }
         }
 
         private void Start()
         {
             Configs.AudioSettings.Instance.RefreshAudio();
-
             SwitchPlaylist(startPlaylist, playOnStart);
-        }
-
-        private void Update()
-        {
-            if (!musicSource.isPlaying && !isOnPause)
-            {
-                ChooseFromPlaylist();
-            }
         }
 
         [Button]
@@ -61,42 +55,30 @@ namespace Audio
             }
             if (playImmediately)
             {
-                ChooseFromPlaylist();
+                PlayPlaylist();
             }
-            musicSource.loop = false;
         }
 
         [Button]
-        public void PlayConcreteClip(AudioClip clip, bool loop)
+        private void PlayPlaylist()
         {
-            musicSource.clip = clip;
-            musicSource.loop = loop;
-            musicSource.Play();
+            for (int i = 0; i < currentClips.Count; i++)
+            {
+                audioSources[i].clip = currentClips[i];
+                audioSources[i].Play();
+            }
         }
 
         [Button]
-        private void ChooseFromPlaylist()
-        {
-            musicSource.clip = currentClips[Random.Range(0, currentClips.Count)];
-            musicSource.Play();
-        }
-
-        public void MigrateSingleton(MusicManager instance)
-        {
-            instance.PauseMusic();
-            isOnPause = instance.IsOnPause;
-        }
-
         public void PauseMusic()
         {
-            musicSource.Pause();
-            isOnPause = true;
+            audioSources.ForEach(s => s.Pause());
         }
 
+        [Button]
         public void ResumeMusic()
         {
-            musicSource.UnPause();
-            isOnPause = false;
+            audioSources.ForEach(s => s.UnPause());
         }
     }
 }

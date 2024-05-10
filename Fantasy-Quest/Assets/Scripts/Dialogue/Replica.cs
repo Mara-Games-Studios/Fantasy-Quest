@@ -8,10 +8,14 @@ namespace Dialogue
     [Serializable]
     public struct Replica
     {
+        [InfoBox("@" + nameof(InfoDuration))]
+        [TextArea]
         public string Text;
         public AudioClip Audio;
         public float DelayBeforeSaid;
         public float DelayAfterSaid;
+
+        private string InfoDuration => $"Voice duration: {Duration}";
 
         [ReadOnly]
         [SerializeField]

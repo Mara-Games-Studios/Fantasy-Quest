@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Audio;
 using Sirenix.OdinInspector;
 using Subtitles;
 using TNRD;
@@ -15,10 +16,6 @@ namespace Dialogue
         [SerializeField]
         private List<Replica> replicas;
 
-        [Required]
-        [SerializeField]
-        private AudioSource audioSource;
-
         [SerializeField]
         private SerializableInterface<ISubtitlesView> subtitles;
         private ISubtitlesView Subtitles => subtitles.Value;
@@ -27,7 +24,8 @@ namespace Dialogue
 
         private void Awake()
         {
-            voice = new(audioSource);
+            SoundsManager soundsManager = GameObject.FindAnyObjectByType<SoundsManager>();
+            voice = new(soundsManager);
         }
 
         public void JustTell()

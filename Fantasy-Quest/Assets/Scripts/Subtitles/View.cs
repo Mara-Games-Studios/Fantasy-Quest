@@ -46,6 +46,12 @@ namespace Subtitles
         public void Show(Replica replica)
         {
             DoFade(0);
+
+            if (!SubtitlesSettings.Instance.IsSubtitlesShowing)
+            {
+                return;
+            }
+
             fadeTween.onComplete += () =>
             {
                 fadeTween?.Kill();
@@ -57,6 +63,11 @@ namespace Subtitles
 
         public void Hide()
         {
+            if (!SubtitlesSettings.Instance.IsSubtitlesShowing)
+            {
+                return;
+            }
+
             fadeTween?.Kill(true);
             imageFadeTween?.Kill();
             DoFade(0);

@@ -215,7 +215,7 @@ MonoBehaviour:
     m_Start: 7.200000047683716
     m_ClipIn: 0
     m_Asset: {fileID: -7597515623810105460}
-    m_Duration: 2.799999952316284
+    m_Duration: 5.016700029372739
     m_TimeScale: 1
     m_ParentTrack: {fileID: -2239750258638461396}
     m_EaseInDuration: 0
@@ -349,6 +349,29 @@ MonoBehaviour:
   m_Markers:
     m_Objects: []
   trackIndex: 0
+--- !u!114 &-1177684081872296516
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 585e20c924ba86a44926c850aa8e1d84, type: 3}
+  m_Name: SpineAnimationStateClip
+  m_EditorClassIdentifier: 
+  template:
+    animationReference: {fileID: 11400000, guid: 735836378f8bd2e48b5fa656bd6f10d7, type: 2}
+    loop: 0
+    customDuration: 0
+    useBlendDuration: 1
+    isInitialized: 1
+    mixDuration: 0.1
+    holdPrevious: 0
+    attachmentThreshold: 0.5
+    eventThreshold: 0.5
+    drawOrderThreshold: 0.5
 --- !u!114 &-546587170883370023
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -361,7 +384,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15c38f6fa1940124db1ab7f6fe7268d1, type: 3}
   m_Name: Signal Emitter(Clone)(Clone)
   m_EditorClassIdentifier: 
-  m_Time: 8.166666666666666
+  m_Time: 12.216700077056455
   m_Retroactive: 0
   m_EmitOnce: 0
   m_Asset: {fileID: 11400000, guid: 657523eb1901cde4ab5b413477a4ffdf, type: 2}
@@ -570,29 +593,6 @@ MonoBehaviour:
   m_Markers:
     m_Objects:
     - {fileID: 7134721812975473625}
---- !u!114 &6979613957659615024
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 585e20c924ba86a44926c850aa8e1d84, type: 3}
-  m_Name: SpineAnimationStateClip(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
-  m_EditorClassIdentifier: 
-  template:
-    animationReference: {fileID: 11400000, guid: 98bfb689cf02f014e9cc38dd29fadf29, type: 2}
-    loop: 1
-    customDuration: 0
-    useBlendDuration: 1
-    isInitialized: 1
-    mixDuration: 0.1
-    holdPrevious: 0
-    attachmentThreshold: 0.5
-    eventThreshold: 0.5
-    drawOrderThreshold: 0.5
 --- !u!114 &7134721812975473625
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -773,10 +773,10 @@ MonoBehaviour:
     m_PreExtrapolationTime: 0
     m_DisplayName: idle with backpack
   - m_Version: 1
-    m_Start: 8.150000095367
+    m_Start: 5.950000047683285
     m_ClipIn: 0
-    m_Asset: {fileID: 6979613957659615024}
-    m_Duration: 1.849999904633
+    m_Asset: {fileID: 5395981025359325809}
+    m_Duration: 2.200000047683716
     m_TimeScale: 1
     m_ParentTrack: {fileID: 8488211128899971489}
     m_EaseInDuration: 0
@@ -786,6 +786,57 @@ MonoBehaviour:
     m_MixInCurve:
       serializedVersion: 2
       m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    m_MixOutCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    m_BlendInCurveMode: 0
+    m_BlendOutCurveMode: 0
+    m_ExposedParameterNames: []
+    m_AnimationCurves: {fileID: 0}
+    m_Recordable: 0
+    m_PostExtrapolationMode: 0
+    m_PreExtrapolationMode: 0
+    m_PostExtrapolationTime: 0
+    m_PreExtrapolationTime: 0
+    m_DisplayName: take acorn
+  - m_Version: 1
+    m_Start: 8.150000095367002
+    m_ClipIn: 0
+    m_Asset: {fileID: -1177684081872296516}
+    m_Duration: 4.066699981689453
+    m_TimeScale: 1
+    m_ParentTrack: {fileID: 8488211128899971489}
+    m_EaseInDuration: 0
+    m_EaseOutDuration: 0
+    m_BlendInDuration: -1
+    m_BlendOutDuration: -1
+    m_MixInCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -822,40 +873,7 @@ MonoBehaviour:
     m_PreExtrapolationMode: 0
     m_PostExtrapolationTime: 0
     m_PreExtrapolationTime: 0
-    m_DisplayName: idle with backpack
-  - m_Version: 1
-    m_Start: 5.950000047683285
-    m_ClipIn: 0
-    m_Asset: {fileID: 5395981025359325809}
-    m_Duration: 2.200000047683716
-    m_TimeScale: 1
-    m_ParentTrack: {fileID: 8488211128899971489}
-    m_EaseInDuration: 0
-    m_EaseOutDuration: 0
-    m_BlendInDuration: 0
-    m_BlendOutDuration: 0
-    m_MixInCurve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    m_MixOutCurve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    m_BlendInCurveMode: 0
-    m_BlendOutCurveMode: 0
-    m_ExposedParameterNames: []
-    m_AnimationCurves: {fileID: 0}
-    m_Recordable: 0
-    m_PostExtrapolationMode: 0
-    m_PreExtrapolationMode: 0
-    m_PostExtrapolationTime: 0
-    m_PreExtrapolationTime: 0
-    m_DisplayName: take acorn
+    m_DisplayName: acorn and backpack
   m_Markers:
     m_Objects: []
   trackIndex: 0

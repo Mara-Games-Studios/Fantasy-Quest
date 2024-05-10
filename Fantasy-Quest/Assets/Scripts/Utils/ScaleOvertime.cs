@@ -7,7 +7,6 @@ namespace Utils
     [AddComponentMenu("Scripts/Utils/Utils.ScaleOvertime")]
     internal class ScaleOvertime : MonoBehaviour
     {
-
         [SerializeField]
         private bool fromToMode = false;
 
