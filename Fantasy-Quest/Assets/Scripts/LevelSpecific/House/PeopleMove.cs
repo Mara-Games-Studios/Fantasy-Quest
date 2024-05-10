@@ -8,7 +8,6 @@ namespace LevelSpecific.House
     [AddComponentMenu("Scripts/LevelSpecific/House/LevelSpecific.House.PeopleMove")]
     internal class PeopleMove : MonoBehaviour
     {
-
         [SerializeField]
         private float distanceX = 3f;
 
@@ -22,11 +21,13 @@ namespace LevelSpecific.House
         [SerializeField]
         [ReadOnly]
         private Vector3 endPos;
+
         private void Start()
         {
             startPos = transform.localPosition;
             StartMove();
         }
+
         private void StartMove()
         {
             _ = StartCoroutine(Reseter());
@@ -37,7 +38,11 @@ namespace LevelSpecific.House
             Debug.Log("Start movement");
             yield return Move();
             Debug.Log("Move ended");
-            transform.position = new Vector3(transform.position.x - distanceX, transform.position.y, transform.position.z);
+            transform.position = new Vector3(
+                transform.position.x - distanceX,
+                transform.position.y,
+                transform.position.z
+            );
             StartMove();
         }
 
@@ -52,7 +57,6 @@ namespace LevelSpecific.House
 
                 transform.localPosition = Vector3.Lerp(startPos, endPos, timer / duration);
                 yield return null;
-
             }
         }
     }

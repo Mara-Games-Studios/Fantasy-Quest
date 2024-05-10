@@ -15,7 +15,6 @@ namespace LevelSpecific.ForestEdge
         {
             if (collision.TryGetComponent<InteractionImpl>(out _))
             {
-
                 beforeEncounter.Move();
             }
         }

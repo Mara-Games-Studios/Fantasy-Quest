@@ -13,13 +13,15 @@ namespace UI.Pages
         [Range(0, 1)]
         [SerializeField]
         private float step = 0.1f;
-        
+
         public void MoveLeft()
         {
-            if(audioSlider.value <= 0)
+            if (audioSlider.value <= 0)
+            {
                 return;
-            
-            var audioValue = audioSlider.value;
+            }
+
+            float audioValue = audioSlider.value;
             audioValue -= step;
 
             if (audioValue < 0)
@@ -33,10 +35,12 @@ namespace UI.Pages
 
         public void MoveRight()
         {
-            if(audioSlider.value >= 1)
+            if (audioSlider.value >= 1)
+            {
                 return;
-            
-            var audioValue = audioSlider.value;
+            }
+
+            float audioValue = audioSlider.value;
             audioValue += step;
 
             if (audioValue > 1)
