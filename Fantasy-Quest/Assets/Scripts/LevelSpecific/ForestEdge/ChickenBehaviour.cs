@@ -43,6 +43,8 @@ namespace LevelSpecific.ForestEdge
         //If move time is above that value the WalkState will be chosen, otherwise RunState
         [SerializeField]
         private float runTimeBorder = 3f;
+        [SerializeField]
+        private float minDistance = 3f;
 
         private float moveTime = 0f;
 
@@ -104,14 +106,22 @@ namespace LevelSpecific.ForestEdge
 
         public Vector2 RandomPointInBounds(BoxCollider2D boxCollider)
         {
-            Vector3 extents = boxCollider.size / 2;
-            Vector3 point =
-                new(
-                    UnityEngine.Random.Range(-extents.x, extents.x),
-                    UnityEngine.Random.Range(-extents.y, extents.y)
-                );
+            while (true)
+            {
+                Vector3 extents = boxCollider.size / 2;
+                Vector3 point =
+                    new(
+                        UnityEngine.Random.Range(-extents.x, extents.x),
+                        UnityEngine.Random.Range(-extents.y, extents.y)
+                    );
 
-            return boxCollider.transform.TransformPoint(point);
+                float distance = (boxCollider.transform.TransformPoint(point) - transform.position).magnitude;
+
+                if (distance >= minDistance)
+                {
+                    return boxCollider.transform.TransformPoint(point);
+                }
+            }
         }
 
         private void ChooseRandomState()
