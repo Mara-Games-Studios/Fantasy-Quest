@@ -42,6 +42,13 @@ namespace Audio
             return newAudioSource;
         }
 
+        public AudioSource CreateSourceAtPosition(Vector3 position)
+        {
+            AudioSource newAudioSource = CreateSource();
+            newAudioSource.transform.position = position;
+            return newAudioSource;
+        }
+
         [Button]
         public void PauseSound()
         {
