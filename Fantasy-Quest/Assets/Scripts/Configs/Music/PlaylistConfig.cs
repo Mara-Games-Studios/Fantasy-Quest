@@ -8,6 +8,6 @@ namespace Configs.Music
     {
         [SerializeField]
         private List<AudioClip> audioClips;
-        public IEnumerable<AudioClip> AudioClips => audioClips;
+        public List<AudioClip> AudioClips => audioClips;
     }
 }

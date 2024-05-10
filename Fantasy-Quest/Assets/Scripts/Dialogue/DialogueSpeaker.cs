@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Audio;
 using Subtitles;
 using TNRD;
 using UnityEngine;
@@ -7,7 +8,6 @@ using UnityEngine;
 namespace Dialogue
 {
     [RequireComponent(typeof(Collider2D))]
-    [RequireComponent(typeof(AudioSource))]
     [AddComponentMenu("Scripts/Dialogue/Dialogue.DialogueSpeaker")]
     public class DialogueSpeaker : MonoBehaviour, ISpeakable
     {
@@ -29,7 +29,8 @@ namespace Dialogue
 
         protected virtual void Awake()
         {
-            Voice = new Voice(GetComponent<AudioSource>());
+            SoundsManager soundsManager = GameObject.FindAnyObjectByType<SoundsManager>();
+            Voice = new Voice(soundsManager);
         }
 
         public void Speak()

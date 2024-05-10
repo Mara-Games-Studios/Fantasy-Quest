@@ -1,5 +1,4 @@
 ﻿using Audio;
-using Common;
 using Configs;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -29,6 +28,10 @@ namespace Scene.Gameplay
         [SerializeField]
         private bool pauseShowed = false;
 
+        [RequiredIn(PrefabKind.PrefabInstanceAndNonPrefabInstance)]
+        [SerializeField]
+        private SoundsManager soundsManager;
+
         public void SwitchSettings()
         {
             if (!pauseShowed)
@@ -46,9 +49,9 @@ namespace Scene.Gameplay
         public void OpenSettings()
         {
             Time.timeScale = 0.0f;
-            ISceneSingleton<MusicManager>.Instance.PauseMusic();
             pauseShowed = true;
             cutsceneManager.Pause();
+            soundsManager.PauseSound();
             dialogueManager.Pause();
             settingsPage.ShowFromStart();
             LockerSettings.Instance.LockAll();
@@ -60,12 +63,12 @@ namespace Scene.Gameplay
         {
             pauseShowed = false;
             settingsPage.HideToEnd();
-            ISceneSingleton<MusicManager>.Instance.ResumeMusic();
             LockerSettings.Instance.UnlockAll();
             Time.timeScale = 1.0f;
             cutsceneManager.LockFromSettings();
             cutsceneManager.Resume();
             dialogueManager.Resume();
+            soundsManager.ResumeSound();
         }
     }
 }
