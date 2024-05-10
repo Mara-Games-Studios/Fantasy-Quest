@@ -20,7 +20,7 @@ namespace LevelSpecific.ForestEdge
         public void ActivateMiniGame()
         {
             if (
-                ProgressionConfig.Instance.ForestEdgeLevel.BagTaken
+                ProgressionConfig.Instance.ForestEdgeLevel.ExplanationListened
                 && !ProgressionConfig.Instance.ForestEdgeLevel.MouseInHayGamePassed
             )
             {

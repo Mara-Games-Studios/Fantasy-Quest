@@ -55,7 +55,8 @@ namespace Dialogue
                 SayCoroutine = null;
             }
 
-            Voice.Silence();
+            // BUGBUGBUBGUGBUGBUBGUBGUBGUBGUBGU
+            Voice?.Silence();
             SubtitlesView.Value.Hide();
         }
 
