@@ -43,6 +43,7 @@ namespace LevelSpecific.ForestEdge
         //If move time is above that value the WalkState will be chosen, otherwise RunState
         [SerializeField]
         private float runTimeBorder = 3f;
+
         [SerializeField]
         private float minDistance = 3f;
 
@@ -115,7 +116,9 @@ namespace LevelSpecific.ForestEdge
                         UnityEngine.Random.Range(-extents.y, extents.y)
                     );
 
-                float distance = (boxCollider.transform.TransformPoint(point) - transform.position).magnitude;
+                float distance = (
+                    boxCollider.transform.TransformPoint(point) - transform.position
+                ).magnitude;
 
                 if (distance >= minDistance)
                 {

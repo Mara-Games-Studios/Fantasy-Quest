@@ -2,6 +2,7 @@
 using Configs;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using Utils;
 
 namespace Scene.Gameplay
 {
@@ -55,6 +56,8 @@ namespace Scene.Gameplay
             dialogueManager.Pause();
             settingsPage.ShowFromStart();
             LockerSettings.Instance.LockAll();
+
+            CursorLockUnlock.UnLockCursor();
         }
 
         // Called by Settings controller callback
@@ -69,6 +72,8 @@ namespace Scene.Gameplay
             cutsceneManager.Resume();
             dialogueManager.Resume();
             soundsManager.ResumeSound();
+
+            CursorLockUnlock.LockCursor();
         }
     }
 }
