@@ -5,6 +5,7 @@ using Cutscene;
 using Dialogue;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace LevelSpecific.ForestEdge
 {
@@ -34,6 +35,8 @@ namespace LevelSpecific.ForestEdge
         [Required]
         [SerializeField]
         private Start cutsceneStarter;
+
+        public UnityEvent ComingToBack;
 
         [Button]
         public void CallSymon()
@@ -73,6 +76,7 @@ namespace LevelSpecific.ForestEdge
         private IEnumerator GoToCutscene()
         {
             LockerSettings.Instance.LockAll();
+            ComingToBack?.Invoke();
             yield return explanationSpeak.Tell();
             yield return symonMovement.MoveToPoint(callPoint.position);
             cutsceneStarter.StartCutscene();

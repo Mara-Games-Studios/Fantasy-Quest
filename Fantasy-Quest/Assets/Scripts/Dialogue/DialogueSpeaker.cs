@@ -85,11 +85,13 @@ namespace Dialogue
 
         public void Pause()
         {
+            //BUGBUGBUGBUGBUGBUGBUGBUGBUGBUGBUGBUG
             Voice.Pause();
         }
 
         public void Resume()
         {
+            //BUGBUGBUGBUGBUGBUGBUGBUGBUG
             Voice.Resume();
         }
 
