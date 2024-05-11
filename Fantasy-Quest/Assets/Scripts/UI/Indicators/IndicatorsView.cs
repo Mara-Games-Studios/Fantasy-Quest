@@ -4,6 +4,10 @@ using UI.Indicators;
 using UI.Pages;
 using UI.Pages.Behaviours;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
+using Utils;
+using EventSystem = UnityEngine.EventSystems.EventSystem;
 
 [AddComponentMenu("Scripts/UI/UI.IndicatorsView")]
 public class IndicatorsView : MonoBehaviour
@@ -63,9 +67,31 @@ public class IndicatorsView : MonoBehaviour
             return;
         }
 
+        bool isPointingOnButton = false;
+        var results = PointerOverUI.GetEventSystemRaycastResults();
+        if (PointerOverUI.IsPointerOverUIElement(results))
+        {
+            foreach (var raycastResult in results)
+            {
+                if (raycastResult.gameObject.TryGetComponent(out IndicatedButton button))
+                {
+                    ShowOn(button);
+                    isPointingOnButton = true;
+                }
+            }
+        }
+
+        if (!isPointingOnButton)
+        {
+            ShowOn(layoutModel.VerticalButtons[^1]);
+        }
+    }
+
+    private void ShowOn(IndicatedButton button)
+    {
         effectModel.Indicators.gameObject.SetActive(true);
-        layoutModel.CurrentButtonIndex = layoutModel.VerticalButtons.Count - 1;
-        IndicatorsBehaviour.ShowOn(layoutModel.VerticalButtons[^1], effectModel);
+        layoutModel.CurrentButtonIndex = layoutModel.VerticalButtons.IndexOf(button);
+        IndicatorsBehaviour.ShowOn(button, effectModel);
         effectModel.VanishingTween?.Kill();
         _ = effectModel
             .IndicatorsAlpha.DOFade(effectModel.MaxAlpha, effectModel.FadeDuration)
@@ -80,4 +106,7 @@ public class IndicatorsView : MonoBehaviour
             .SetUpdate(true);
         effectModel.IndicatorsAlpha.gameObject.SetActive(false);
     }
+    
+    
+        
 }

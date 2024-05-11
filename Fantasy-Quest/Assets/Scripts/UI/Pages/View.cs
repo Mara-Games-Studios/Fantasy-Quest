@@ -16,7 +16,7 @@ namespace UI.Pages
         public static event System.Action<View> OnPageShowing;
         public static event System.Action<View> OnPageShowed;
         public static event System.Action<View> OnPageHiding;
-
+        
         private void Awake()
         {
             effectShower = GetComponent<EffectsShower>();
@@ -38,6 +38,11 @@ namespace UI.Pages
             OnPageShowed?.Invoke(this);
         }
 
+        private void InvokeOnPageHiding()
+        {
+            OnPageHiding?.Invoke(this);
+        }
+        
         [Button]
         public void ShowFromStart()
         {
@@ -55,15 +60,17 @@ namespace UI.Pages
         [Button]
         public void HideToStart()
         {
-            OnPageHiding?.Invoke(this);
+            InvokeOnPageHiding();
             effectShower.HideToStart();
         }
 
         [Button]
         public void HideToEnd()
         {
-            OnPageHiding?.Invoke(this);
+            InvokeOnPageHiding();
             effectShower.HideToEnd();
         }
+        
+        
     }
 }

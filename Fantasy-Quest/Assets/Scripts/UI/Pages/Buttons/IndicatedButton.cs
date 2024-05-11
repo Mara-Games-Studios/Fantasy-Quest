@@ -11,7 +11,7 @@ namespace UI.Pages
     {
         public static Action<IndicatedButton> OnPointerEntered;
         public static Action<IndicatedButton> OnPointerExited;
-
+        
         public override void OnPointerEnter(PointerEventData eventData)
         {
             base.OnPointerEnter(eventData);
@@ -22,6 +22,11 @@ namespace UI.Pages
         {
             base.OnPointerExit(eventData);
             OnPointerExited?.Invoke(this);
+        }
+
+        public void Do()
+        {
+            
         }
     }
 }
