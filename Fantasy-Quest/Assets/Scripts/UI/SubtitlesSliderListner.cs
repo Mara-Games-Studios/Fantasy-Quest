@@ -23,11 +23,16 @@ namespace UI
         private SubtitlesSettings SubtitlesSettings =>
             SingletonScriptableObject<SubtitlesSettings>.Instance;
 
-        private void Awake()
+        private void OnEnable()
         {
             horizontalSlider.OnElementIndexChanged += HorizontalSliderElementIndexChanged;
         }
 
+        private void OnDisable()
+        {
+            horizontalSlider.OnElementIndexChanged -= HorizontalSliderElementIndexChanged;
+        }
+        
         private void Start()
         {
             int i = 0;
