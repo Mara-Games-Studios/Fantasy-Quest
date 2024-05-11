@@ -1,6 +1,7 @@
 ﻿using Audio;
 using Configs;
 using Sirenix.OdinInspector;
+using UI.Pause;
 using UnityEngine;
 using Utils;
 
@@ -33,6 +34,10 @@ namespace Scene.Gameplay
         [SerializeField]
         private SoundsManager soundsManager;
 
+        [Required]
+        [SerializeField]
+        private DarkBackground background;
+
         public void SwitchSettings()
         {
             if (!pauseShowed)
@@ -58,6 +63,8 @@ namespace Scene.Gameplay
             LockerSettings.Instance.LockAll();
 
             CursorLockUnlock.UnLockCursor();
+
+            background.Show();
         }
 
         // Called by Settings controller callback
@@ -74,6 +81,8 @@ namespace Scene.Gameplay
             soundsManager.ResumeSound();
 
             CursorLockUnlock.LockCursor();
+
+            background.Hide();
         }
     }
 }

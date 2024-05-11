@@ -52,7 +52,7 @@ namespace UI.Pages
             }
         }
 
-        private void OnEnable()
+        private void Awake()
         {
             elementsTransform = new List<RectTransform>(
                 from element in elementsCanvasGroup
@@ -65,8 +65,9 @@ namespace UI.Pages
 
             foreach (RectTransform element in elementsTransform)
             {
-                element.localPosition = localPoints.StartPoint.localPosition;
+                    element.localPosition = localPoints.StartPoint.localPosition;
             }
+            
             elementsTransform[CurrentElementIndex].localPosition = localPoints
                 .MiddlePoint
                 .localPosition;
