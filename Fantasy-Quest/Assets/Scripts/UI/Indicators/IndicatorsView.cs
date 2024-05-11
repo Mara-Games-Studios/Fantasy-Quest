@@ -4,10 +4,7 @@ using UI.Indicators;
 using UI.Pages;
 using UI.Pages.Behaviours;
 using UnityEngine;
-using UnityEngine.EventSystems;
-using UnityEngine.InputSystem;
 using Utils;
-using EventSystem = UnityEngine.EventSystems.EventSystem;
 
 [AddComponentMenu("Scripts/UI/UI.IndicatorsView")]
 public class IndicatorsView : MonoBehaviour
