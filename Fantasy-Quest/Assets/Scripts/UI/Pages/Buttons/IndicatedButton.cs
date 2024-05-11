@@ -23,10 +23,5 @@ namespace UI.Pages
             base.OnPointerExit(eventData);
             OnPointerExited?.Invoke(this);
         }
-
-        public void Do()
-        {
-            
-        }
     }
 }

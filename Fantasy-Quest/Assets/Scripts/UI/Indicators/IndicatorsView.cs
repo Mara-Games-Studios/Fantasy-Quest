@@ -105,8 +105,5 @@ public class IndicatorsView : MonoBehaviour
             .IndicatorsAlpha.DOFade(effectModel.MinAlpha, 0)
             .SetUpdate(true);
         effectModel.IndicatorsAlpha.gameObject.SetActive(false);
-    }
-    
-    
-        
+    } 
 }
