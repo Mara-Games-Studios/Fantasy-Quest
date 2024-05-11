@@ -34,7 +34,7 @@ namespace Scene.Gameplay
         [SerializeField]
         private SoundsManager soundsManager;
 
-        [Required]
+        [Required((InfoMessageType)PrefabKind.PrefabInstanceAndNonPrefabInstance)]
         [SerializeField]
         private DarkBackground background;
 
