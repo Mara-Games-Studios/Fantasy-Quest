@@ -55,7 +55,8 @@ namespace Dialogue
                 SayCoroutine = null;
             }
 
-            Voice.Silence();
+            // BUGBUGBUBGUGBUGBUBGUBGUBGUBGUBGU
+            Voice?.Silence();
             SubtitlesView.Value.Hide();
         }
 
@@ -84,11 +85,13 @@ namespace Dialogue
 
         public void Pause()
         {
+            //BUGBUGBUGBUGBUGBUGBUGBUGBUGBUGBUGBUG
             Voice.Pause();
         }
 
         public void Resume()
         {
+            //BUGBUGBUGBUGBUGBUGBUGBUGBUG
             Voice.Resume();
         }
 
