@@ -65,9 +65,9 @@ namespace UI.Pages
 
             foreach (RectTransform element in elementsTransform)
             {
-                    element.localPosition = localPoints.StartPoint.localPosition;
+                element.localPosition = localPoints.StartPoint.localPosition;
             }
-            
+
             elementsTransform[CurrentElementIndex].localPosition = localPoints
                 .MiddlePoint
                 .localPosition;
