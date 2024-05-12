@@ -45,7 +45,16 @@ namespace Minigames.SquirrelGame
         {
             quitInput.enabled = false;
             DisableAllMinigameInput();
-            TriggerEvent(exitState);
+
+            if (exitState == ExitGameState.Lose)
+            {
+                //TODO: SHOW SQUIRREL
+                TriggerEvent(ExitGameState.Lose);
+            }
+            else
+            {
+                TriggerEvent(exitState);
+            }
         }
 
         private void TriggerEvent(ExitGameState exitState)
