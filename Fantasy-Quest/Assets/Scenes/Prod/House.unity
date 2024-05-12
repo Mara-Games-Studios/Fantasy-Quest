@@ -2581,8 +2581,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 1
   m_ShadowVolumeIntensity: 0.869
   m_LocalBounds:
-    m_Center: {x: -1.6412, y: -5.6201, z: 0}
-    m_Extent: {x: 2.0993, y: 1.8237, z: 0}
+    m_Center: {x: -1.6374999, y: -5.61855, z: 0}
+    m_Extent: {x: 2.0995998, y: 1.83785, z: 0}
   m_PointLightInnerAngle: 359.6
   m_PointLightOuterAngle: 359.6
   m_PointLightInnerRadius: 2
@@ -2781,13 +2781,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 338108918}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.5, y: -0.227, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0.118663915, w: 0.99293447}
+  m_LocalPosition: {x: 0.785, y: -0.022, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1887340401}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 13.63}
 --- !u!114 &338108920
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3296,7 +3296,7 @@ GameObject:
   - component: {fileID: 357603338}
   - component: {fileID: 357603337}
   - component: {fileID: 357603336}
-  - component: {fileID: 357603335}
+  - component: {fileID: 357603339}
   m_Layer: 0
   m_Name: Path
   m_TagString: Untagged
@@ -3313,26 +3313,12 @@ Transform:
   m_GameObject: {fileID: 357603333}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.393, y: 0.09, z: -0.61029667}
+  m_LocalPosition: {x: -0.393, y: 0.075, z: -0.61029667}
   m_LocalScale: {x: 0.61029667, y: 0.61029667, z: 0.61029667}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1887340401}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &357603335
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 357603333}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 98ebfcebb935edf44a5a4f790cde8923, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  skeletonAnimation: {fileID: 338108920}
-  rotation: {x: 0, y: 0, z: 0}
 --- !u!114 &357603336
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3361,16 +3347,55 @@ MonoBehaviour:
   pathCreator: {fileID: 357603338}
   currentPosition: 0.1
   body: {fileID: 338108919}
-  travelTime: 4
+  travelTime: 20
   OnReachedStart:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 357603336}
+        m_TargetAssemblyTypeName: Utils.SkeletonFlipper, Assembly-CSharp
+        m_MethodName: Flip
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnReachedEnd:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 357603336}
+        m_TargetAssemblyTypeName: Utils.SkeletonFlipper, Assembly-CSharp
+        m_MethodName: Flip
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnPositionChanged:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 357603339}
+        m_TargetAssemblyTypeName: Utils.SkeletonRotationLerp, Assembly-CSharp
+        m_MethodName: SetRotation
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   from: 1
   to: 0
-  startPosition: 0
+  startPosition: 1
 --- !u!114 &357603338
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3386,10 +3411,16 @@ MonoBehaviour:
   editorData:
     _bezierPath:
       points:
-      - {x: -0.9994078, y: -0.2727442, z: -0.00000005960465}
-      - {x: -0.25707054, y: -0.092644215, z: -0.00000005960465}
-      - {x: 1.9092952, y: -0.088549145, z: -0.00000005960465}
-      - {x: 2.8362286, y: -0.017210485, z: -0.00000005960465}
+      - {x: -1.3577229, y: -0.5164929, z: -0.00000005960465}
+      - {x: -1.0099043, y: -0.38567534, z: -0.00000005960465}
+      - {x: -0.2921367, y: -0.27118877, z: -0.00000005960465}
+      - {x: 0.15160371, y: -0.29446748, z: -0.00000005960465}
+      - {x: 0.43233925, y: -0.30919492, z: -0.00000005960465}
+      - {x: 1.0766873, y: -0.3367366, z: -0.00000005960465}
+      - {x: 1.5240885, y: -0.21673013, z: -0.00000005960465}
+      - {x: 1.9592897, y: -0.0999961, z: -0.00000005960465}
+      - {x: 2.8065083, y: -0.03356934, z: -0.00000005960465}
+      - {x: 3.0171597, y: -0.04698086, z: -0.00000005960465}
       isClosed: 0
       space: 0
       controlMode: 0
@@ -3401,9 +3432,11 @@ MonoBehaviour:
       perAnchorNormalsAngle:
       - 0
       - 0
+      - 0
+      - 0
       globalNormalsAngle: 0
       flipNormals: 0
-    vertexPathUpToDate: 1
+    vertexPathUpToDate: 0
     vertexPathMaxAngleError: 0.3
     vertexPathMinVertexSpacing: 0.01
     showTransformTool: 1
@@ -3424,6 +3457,30 @@ MonoBehaviour:
     showNormalsHelpInfo: 0
     tabIndex: 0
   initialized: 1
+--- !u!114 &357603339
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 357603333}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77e0a8b97ef4a2540a5060693e8ba098, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetTransform: {fileID: 338108919}
+  pointRotations:
+  - Rotation: {x: 0, y: 0, z: 16}
+    Point: 0
+  - Rotation: {x: 0, y: 0, z: 1.5}
+    Point: 0.25
+  - Rotation: {x: 0, y: 0, z: 3}
+    Point: 0.5
+  - Rotation: {x: 0, y: 0, z: 14}
+    Point: 0.75
+  - Rotation: {x: 0, y: 0, z: 0}
+    Point: 1
 --- !u!1 &359583695
 GameObject:
   m_ObjectHideFlags: 0
@@ -3490,8 +3547,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 1
   m_ShadowVolumeIntensity: 0.869
   m_LocalBounds:
-    m_Center: {x: -1.34475, y: -5.56845, z: 0}
-    m_Extent: {x: 1.7629501, y: 1.91525, z: 0}
+    m_Center: {x: -1.3438, y: -5.5748997, z: 0}
+    m_Extent: {x: 1.7592, y: 1.9222, z: 0}
   m_PointLightInnerAngle: 359.6
   m_PointLightOuterAngle: 359.6
   m_PointLightInnerRadius: 2
@@ -7786,8 +7843,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 1
   m_ShadowVolumeIntensity: 0.869
   m_LocalBounds:
-    m_Center: {x: 0.46135002, y: -5.5888, z: 0}
-    m_Extent: {x: 1.4619501, y: 1.9668001, z: 0}
+    m_Center: {x: 0.46139997, y: -5.58245, z: 0}
+    m_Extent: {x: 1.4621999, y: 1.9643501, z: 0}
   m_PointLightInnerAngle: 359.6
   m_PointLightOuterAngle: 359.6
   m_PointLightInnerRadius: 2
@@ -13356,8 +13413,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 1
   m_ShadowVolumeIntensity: 0.869
   m_LocalBounds:
-    m_Center: {x: -2.8954, y: -7.5286503, z: 0}
-    m_Extent: {x: 1.9856, y: 1.2685502, z: 0}
+    m_Center: {x: -2.8950999, y: -7.52695, z: 0}
+    m_Extent: {x: 1.9847, y: 1.2717502, z: 0}
   m_PointLightInnerAngle: 359.6
   m_PointLightOuterAngle: 359.6
   m_PointLightInnerRadius: 2
@@ -14491,8 +14548,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 1
   m_ShadowVolumeIntensity: 0.869
   m_LocalBounds:
-    m_Center: {x: -0.6613, y: -7.44355, z: 0}
-    m_Extent: {x: 2.6115, y: 1.32335, z: 0}
+    m_Center: {x: -0.66725, y: -7.4284, z: 0}
+    m_Extent: {x: 2.60415, y: 1.3260002, z: 0}
   m_PointLightInnerAngle: 359.6
   m_PointLightOuterAngle: 359.6
   m_PointLightInnerRadius: 2
