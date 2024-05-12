@@ -1,5 +1,4 @@
 ﻿using UI.Indicators;
-using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace UI.Pages.Behaviours
@@ -101,7 +100,7 @@ namespace UI.Pages.Behaviours
             {
                 return;
             }
-            
+
             if (
                 LayoutModel
                     .VerticalButtons[LayoutModel.CurrentButtonIndex]
