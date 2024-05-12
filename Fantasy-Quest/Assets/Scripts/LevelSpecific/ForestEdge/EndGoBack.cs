@@ -1,5 +1,6 @@
 using Cinemachine;
 using Configs;
+using Cutscene;
 using Sirenix.OdinInspector;
 using Spine.Unity;
 using UnityEngine;
@@ -20,7 +21,7 @@ namespace LevelSpecific.ForestEdge
         private SkeletonAnimation symonSkeleton;
 
         [SerializeField]
-        private AnimationReferenceAsset symonSeatAniamtion;
+        private AnimationReferenceAsset symonIdleAniamtion;
 
         [SerializeField]
         private Cat.MovementInvoke catMovement;
@@ -31,6 +32,7 @@ namespace LevelSpecific.ForestEdge
         [SerializeField]
         private AnimationReferenceAsset catIdleAniamtion;
 
+        [Header("Cams")]
         [SerializeField]
         private CinemachineVirtualCamera playerCam;
 
@@ -41,6 +43,10 @@ namespace LevelSpecific.ForestEdge
         [SerializeField]
         private GameObject altarTrigger;
 
+        [Header("FailCutscene")]
+        [SerializeField]
+        private Start failedCutscene;
+
         [Button]
         public void GoBack()
         {
@@ -48,13 +54,15 @@ namespace LevelSpecific.ForestEdge
             symonSkeleton.skeleton.ScaleX = -1f;
             catMovement.InvokeSetOnRails();
 
-            _ = symonSkeleton.AnimationState.SetAnimation(0, symonSeatAniamtion, false);
+            _ = symonSkeleton.AnimationState.SetAnimation(0, symonIdleAniamtion, false);
             _ = catSkeleton.AnimationState.SetAnimation(0, catIdleAniamtion, false);
 
             altarTrigger.SetActive(true);
 
             playerCam.Priority = 1000;
             nowhereCam.Priority = -10;
+
+            failedCutscene.StartCutscene();
 
             LockerSettings.Instance.UnlockAll();
         }
