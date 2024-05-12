@@ -38,6 +38,7 @@ namespace UI
         [SerializeField]
         private List<SlideStruct> slideStructs = new();
 
+        public UnityEvent SlideshowStarted;
         public UnityEvent SlideshowEnded;
 
         private Image image;
@@ -51,6 +52,7 @@ namespace UI
             if (playOnAwake)
             {
                 StartSlideshow();
+                SlideshowStarted?.Invoke();
             }
         }
 

@@ -18,6 +18,9 @@ namespace Subtitles
         [SerializeField]
         private Image additionalImageToFade;
 
+        [SerializeField]
+        private bool useImage = false;
+
         private Tween fadeTween;
         private Tween imageFadeTween;
 
@@ -34,13 +37,19 @@ namespace Subtitles
         private void OnSubtitlesShowChanged(bool value)
         {
             fadeTween?.Kill(true);
-            imageFadeTween?.Kill(true);
+            if (useImage)
+            {
+                imageFadeTween?.Kill(true);
+            }
 
             int alpha = value ? 1 : 0;
             outputTmpText.alpha = alpha;
 
-            Color color = additionalImageToFade.color;
-            additionalImageToFade.color = new Color(color.r, color.g, color.b, alpha);
+            if (useImage)
+            {
+                Color color = additionalImageToFade.color;
+                additionalImageToFade.color = new Color(color.r, color.g, color.b, alpha);
+            }
         }
 
         public void Show(Replica replica)
@@ -55,7 +64,10 @@ namespace Subtitles
             fadeTween.onComplete += () =>
             {
                 fadeTween?.Kill();
-                imageFadeTween?.Kill();
+                if (useImage)
+                {
+                    imageFadeTween?.Kill();
+                }
                 outputTmpText.SetText(replica.Text);
                 DoFade(1);
             };
@@ -69,7 +81,10 @@ namespace Subtitles
             }
 
             fadeTween?.Kill(true);
-            imageFadeTween?.Kill();
+            if (useImage)
+            {
+                imageFadeTween?.Kill();
+            }
             DoFade(0);
             fadeTween.onComplete += () => outputTmpText.SetText("");
         }
@@ -82,10 +97,13 @@ namespace Subtitles
             }
 
             fadeTween = outputTmpText.DOFade(endAlpha, SubtitlesSettings.Instance.TextFadeDuration);
-            imageFadeTween = additionalImageToFade.DOFade(
-                endAlpha,
-                SubtitlesSettings.Instance.TextFadeDuration
-            );
+            if (useImage)
+            {
+                imageFadeTween = additionalImageToFade.DOFade(
+                    endAlpha,
+                    SubtitlesSettings.Instance.TextFadeDuration
+                );
+            }
         }
     }
 }
