@@ -28,9 +28,28 @@ namespace Dialogue
             voice = new(soundsManager);
         }
 
+        [Button]
         public void JustTell()
         {
             _ = StartCoroutine(JustTellRoutine());
+        }
+
+        [Button]
+        public void JustTellWithoutSubtitles()
+        {
+            _ = StartCoroutine(JustTellWithoutSubtitlesRoutine());
+        }
+
+        [Button]
+        public void ShowSubtitles()
+        {
+            Subtitles.Show(replicas.First());
+        }
+
+        [Button]
+        public void HideSubtitles()
+        {
+            Subtitles.Hide();
         }
 
         public void Tell(Action nextAction)
@@ -64,6 +83,15 @@ namespace Dialogue
                 yield return new WaitForSeconds(replica.Duration + replica.DelayAfterSaid);
             }
             Subtitles.Hide();
+        }
+
+        private IEnumerator JustTellWithoutSubtitlesRoutine(Action nextAction = null)
+        {
+            foreach (Replica replica in replicas)
+            {
+                voice.Say(replica.Audio);
+                yield return new WaitForSeconds(replica.Duration + replica.DelayAfterSaid);
+            }
         }
 
         [Button]

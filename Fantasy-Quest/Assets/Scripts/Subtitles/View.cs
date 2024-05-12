@@ -21,6 +21,9 @@ namespace Subtitles
         [SerializeField]
         private bool useImage = false;
 
+        [SerializeField]
+        private bool useSlideshowDelay = false;
+
         private Tween fadeTween;
         private Tween imageFadeTween;
 
@@ -96,13 +99,14 @@ namespace Subtitles
                 return;
             }
 
-            fadeTween = outputTmpText.DOFade(endAlpha, SubtitlesSettings.Instance.TextFadeDuration);
+            float duration = useSlideshowDelay
+                ? SubtitlesSettings.Instance.TextFadeInSlideshowDuration
+                : SubtitlesSettings.Instance.TextFadeDuration;
+
+            fadeTween = outputTmpText.DOFade(endAlpha, duration);
             if (useImage)
             {
-                imageFadeTween = additionalImageToFade.DOFade(
-                    endAlpha,
-                    SubtitlesSettings.Instance.TextFadeDuration
-                );
+                imageFadeTween = additionalImageToFade.DOFade(endAlpha, duration);
             }
         }
     }
