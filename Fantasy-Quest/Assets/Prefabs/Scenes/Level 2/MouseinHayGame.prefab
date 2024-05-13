@@ -1132,6 +1132,14 @@ MonoBehaviour:
         m_Groups: 
         m_Action: Input
         m_Flags: 0
+      - m_Name: 
+        m_Id: 221d5160-2c6b-4f06-bb4c-0ff966582ac7
+        m_Path: <Keyboard>/upArrow
+        m_Interactions: 
+        m_Processors: 
+        m_Groups: 
+        m_Action: Input
+        m_Flags: 0
       m_Flags: 0
   - Hole: {fileID: 6828667379493970947}
     InputAction:
@@ -1150,6 +1158,14 @@ MonoBehaviour:
         m_Groups: 
         m_Action: Input
         m_Flags: 0
+      - m_Name: 
+        m_Id: 7f39feb7-b57b-46a9-aa5e-bfa226ea66b2
+        m_Path: <Keyboard>/leftArrow
+        m_Interactions: 
+        m_Processors: 
+        m_Groups: 
+        m_Action: Input
+        m_Flags: 0
       m_Flags: 0
   - Hole: {fileID: 4060398628875244561}
     InputAction:
@@ -1163,6 +1179,14 @@ MonoBehaviour:
       - m_Name: 
         m_Id: fd4dacdc-2ff4-413c-be64-937379db756c
         m_Path: <Keyboard>/d
+        m_Interactions: 
+        m_Processors: 
+        m_Groups: 
+        m_Action: Input
+        m_Flags: 0
+      - m_Name: 
+        m_Id: 6562ea06-1521-4d81-b3e4-db72bea4280b
+        m_Path: <Keyboard>/rightArrow
         m_Interactions: 
         m_Processors: 
         m_Groups: 
@@ -1491,10 +1515,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   soundsManager: {fileID: 0}
   audioClip: {fileID: 8300000, guid: 2f3ab7a257a293c41926ffc3d1a02f1c, type: 3}
-  volume: 1
+  audioSourceConfig:
+    priorityLevel: 128
+    Mute: 0
+    Volume: 1
+    Pitch: 1
+    PanStereo: 0
+    ReverbZoneMix: 1
+    SpatialBlend: 1
+    RolloffMode: 0
+    MinDistance: 0.1
+    MaxDistance: 50
+    Spread: 0
+    DopplerLevel: 1
+    BypassEffects: 0
+    BypassListenerEffects: 0
+    BypassReverbZones: 0
+    IgnoreListenerVolume: 0
+    IgnoreListenerPause: 0
   loop: 1
   playOnStart: 0
   ignorePause: 0
+  createOnThisPosition: 0
 --- !u!1 &8729198704857297089
 GameObject:
   m_ObjectHideFlags: 0
