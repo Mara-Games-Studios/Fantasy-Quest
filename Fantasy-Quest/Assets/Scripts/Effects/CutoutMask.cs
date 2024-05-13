@@ -19,9 +19,6 @@ namespace Effects.Screen
         private bool disableOnStart = true;
 
         [SerializeField]
-        private RectTransform maskRectTransform;
-
-        [SerializeField]
         private PositionAndSize startProperties;
 
         [SerializeField]
@@ -34,14 +31,14 @@ namespace Effects.Screen
         private AnimationCurve curve = AnimationCurve.Linear(0, 0, 1, 1);
 
         private RectTransform rectTransform;
-        private UnityEngine.Camera foundedCamera;
+        private UnityEngine.Camera foundCamera;
 
         public event Action OnEffectEnded;
 
         private void Awake()
         {
             rectTransform = GetComponent<RectTransform>();
-            foundedCamera = FindAnyObjectByType<UnityEngine.Camera>();
+            foundCamera = FindAnyObjectByType<UnityEngine.Camera>();
         }
 
         private void Start()
@@ -50,11 +47,6 @@ namespace Effects.Screen
             {
                 gameObject.SetActive(false);
             }
-        }
-
-        private void Update()
-        {
-            maskRectTransform.anchoredPosition3D = -rectTransform.anchoredPosition3D;
         }
 
         private IEnumerator CutoutRoutine()
@@ -80,7 +72,10 @@ namespace Effects.Screen
 
         public void SetDestinationPoint(Transform transform)
         {
-            startProperties.Position = foundedCamera.WorldToScreenPoint(transform.position);
+            startProperties.Position = RectTransformUtility.WorldToScreenPoint(
+                foundCamera,
+                transform.position
+            );
             endProperties.Position = startProperties.Position;
         }
 

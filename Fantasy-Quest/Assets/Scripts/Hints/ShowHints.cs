@@ -28,6 +28,12 @@ namespace Hints
         [SerializeField]
         private List<SpriteRenderer> keyboardSpriteRenderer;
 
+        [SerializeField]
+        private bool useCustomWaitTime = false;
+
+        [SerializeField]
+        private float customWaitTime = 1f;
+
         private Coroutine waitRoutine;
         private Tween fadeTween;
 
@@ -59,7 +65,9 @@ namespace Hints
                 if (collision.TryGetComponent(out InteractionImpl _))
                 {
                     waitRoutine = StartCoroutine(
-                        WaitUntilShowRoutine(HintConfig.Instance.SecondUntilShow)
+                        WaitUntilShowRoutine(
+                            useCustomWaitTime ? customWaitTime : HintConfig.Instance.SecondUntilShow
+                        )
                     );
                 }
             }
