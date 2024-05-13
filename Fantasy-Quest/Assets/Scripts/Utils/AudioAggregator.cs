@@ -59,7 +59,6 @@ namespace Utils
         [Serializable]
         public class ReplicaPreview
         {
-            [SerializeReference]
             public Replica Replica;
             public AudioClip AudioClip;
             public AudioSourceConfig AudioSourceConfig;

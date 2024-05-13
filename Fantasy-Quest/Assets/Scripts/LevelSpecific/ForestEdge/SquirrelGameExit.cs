@@ -8,6 +8,8 @@ namespace LevelSpecific.ForestEdge
     internal class SquirrelGameExit : MonoBehaviour
     {
         public UnityEvent PassedFirstTime;
+        public UnityEvent PassedFirstTimeAfterFade;
+        private bool first = true;
 
         public void SetMiniGamePassed()
         {
@@ -15,6 +17,15 @@ namespace LevelSpecific.ForestEdge
             {
                 ProgressionConfig.Instance.ForestEdgeLevel.SquirrelGamePassed = true;
                 PassedFirstTime?.Invoke();
+            }
+        }
+
+        public void TriggerPassedFirstTimeAfterFade()
+        {
+            if (ProgressionConfig.Instance.ForestEdgeLevel.SquirrelGamePassed && first)
+            {
+                PassedFirstTimeAfterFade?.Invoke();
+                first = false;
             }
         }
     }

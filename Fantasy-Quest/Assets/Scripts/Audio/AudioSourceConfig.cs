@@ -34,7 +34,7 @@ namespace Audio
 
         [Header("Spatialisation")]
         [Range(0f, 1f)]
-        public float SpatialBlend = 1f;
+        public float SpatialBlend = 0f;
         public AudioRolloffMode RolloffMode = AudioRolloffMode.Logarithmic;
 
         [Range(0.01f, 5f)]
