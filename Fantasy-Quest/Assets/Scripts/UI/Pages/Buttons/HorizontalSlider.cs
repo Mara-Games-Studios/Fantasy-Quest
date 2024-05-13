@@ -52,7 +52,7 @@ namespace UI.Pages
             }
         }
 
-        private void Awake()
+        private void OnEnable()
         {
             elementsTransform = new List<RectTransform>(
                 from element in elementsCanvasGroup
