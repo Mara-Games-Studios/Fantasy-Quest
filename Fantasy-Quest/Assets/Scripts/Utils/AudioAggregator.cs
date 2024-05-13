@@ -89,9 +89,11 @@ namespace Utils
             }
         }
 
+        [HideInInspector]
         [SerializeField]
         private List<SoundPlayerPreview> soundPlayersPreviews;
 
+        [HideInInspector]
         [SerializeField]
         private List<ChainSpeakerPreview> chainSpeakerPreviews;
 
