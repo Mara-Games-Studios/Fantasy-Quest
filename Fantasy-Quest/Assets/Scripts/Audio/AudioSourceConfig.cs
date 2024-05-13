@@ -18,6 +18,8 @@ namespace Audio
         }
 
         [Header("Sound properties")]
+        public bool Mute = false;
+
         [Range(0f, 1f)]
         public float Volume = 1f;
 
@@ -32,7 +34,7 @@ namespace Audio
 
         [Header("Spatialisation")]
         [Range(0f, 1f)]
-        public float SpatialBlend = 1f;
+        public float SpatialBlend = 0f;
         public AudioRolloffMode RolloffMode = AudioRolloffMode.Logarithmic;
 
         [Range(0.01f, 5f)]
@@ -65,6 +67,7 @@ namespace Audio
 
         public void ApplyTo(AudioSource audioSource)
         {
+            audioSource.mute = Mute;
             audioSource.bypassEffects = BypassEffects;
             audioSource.bypassListenerEffects = BypassListenerEffects;
             audioSource.bypassReverbZones = BypassReverbZones;
@@ -81,29 +84,6 @@ namespace Audio
             audioSource.maxDistance = MaxDistance;
             audioSource.ignoreListenerVolume = IgnoreListenerVolume;
             audioSource.ignoreListenerPause = IgnoreListenerPause;
-        }
-
-        public AudioSourceConfig LoadFrom(AudioSource audioSource)
-        {
-            return new AudioSourceConfig()
-            {
-                priorityLevel = (PriorityLevel)audioSource.priority,
-                Volume = audioSource.volume,
-                Pitch = audioSource.pitch,
-                PanStereo = audioSource.panStereo,
-                ReverbZoneMix = audioSource.reverbZoneMix,
-                SpatialBlend = audioSource.spatialBlend,
-                RolloffMode = audioSource.rolloffMode,
-                MinDistance = audioSource.minDistance,
-                MaxDistance = audioSource.maxDistance,
-                Spread = (int)audioSource.spread,
-                DopplerLevel = audioSource.dopplerLevel,
-                BypassEffects = audioSource.bypassEffects,
-                BypassListenerEffects = audioSource.bypassListenerEffects,
-                BypassReverbZones = audioSource.bypassReverbZones,
-                IgnoreListenerVolume = audioSource.ignoreListenerVolume,
-                IgnoreListenerPause = audioSource.ignoreListenerPause,
-            };
         }
     }
 }

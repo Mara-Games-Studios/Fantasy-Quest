@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using Audio;
+using Sirenix.OdinInspector;
 using Subtitles;
 using TNRD;
 using UnityEngine;
@@ -11,12 +12,15 @@ namespace Dialogue
     [AddComponentMenu("Scripts/Dialogue/Dialogue.DialogueSpeaker")]
     public class DialogueSpeaker : MonoBehaviour, ISpeakable
     {
+        [InfoBox("CALLED BY 1")]
         [Header("Speech")]
         [SerializeField]
         protected List<Replica> FirstTrySpeech;
+        public List<Replica> FFirstTrySpeech => FirstTrySpeech;
 
         [SerializeField]
         protected List<Replica> AlternativeSpeech;
+        public List<Replica> AAlternativeSpeech => AlternativeSpeech;
 
         [Space]
         [Header("Components")]

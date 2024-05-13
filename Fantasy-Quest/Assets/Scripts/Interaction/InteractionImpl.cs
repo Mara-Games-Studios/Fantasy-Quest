@@ -32,29 +32,39 @@ namespace Interaction
         private void OnEnable()
         {
             playerInput.Enable();
+            // 1
             playerInput.Player.CallHumanInteraction.performed += InteractHuman;
+            // E
             playerInput.Player.CatInteraction.performed += InteractCat;
+            // W or ArrUP
             playerInput.Player.UpJump.performed += TransitionUp;
+            // S or ArrDown
             playerInput.Player.DownJump.performed += TransitionDown;
+            // 2
             playerInput.Player.CallHumanMove.performed += CallHumanMove;
         }
 
         private void CallHumanMove(InputAction.CallbackContext context)
         {
-            CastInterfaces<ICallHumanMove>().ForEach(x => x.CallHumanMove());
+            // 2
+            CastInterfaces<ICallHumanMove>()
+                .ForEach(x => x.CallHumanMove());
         }
 
         public void InteractHuman(InputAction.CallbackContext context)
         {
-            CastInterfaces<ISpeakable>().ForEach(x => x.Speak());
+            // 1
+            CastInterfaces<ISpeakable>()
+                .ForEach(x => x.Speak());
             CastInterfaces<ICarryable>().ForEach(x => x.CarryByHuman());
             CastInterfaces<IInteractable>().ForEach(x => x.InteractByHuman());
         }
 
         public void InteractCat(InputAction.CallbackContext context)
         {
-            CastInterfaces<ISpeakable>().ForEach(x => x.Speak());
-            CastInterfaces<ICarryable>().ForEach(x => x.CarryByCat());
+            // E
+            CastInterfaces<ICarryable>()
+                .ForEach(x => x.CarryByCat());
             CastInterfaces<IInteractable>().ForEach(x => x.InteractByCat());
         }
 

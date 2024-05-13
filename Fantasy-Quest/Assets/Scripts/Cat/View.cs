@@ -1,4 +1,5 @@
-﻿using Sirenix.OdinInspector;
+﻿using Audio;
+using Sirenix.OdinInspector;
 using Spine.Unity;
 using UnityEngine;
 
@@ -14,28 +15,28 @@ namespace Cat
         private SkeletonAnimation skeletonAnimation;
 
         [SerializeField]
-        [SpineAnimation]
-        private string idleAnimation;
+        [Required]
+        private AnimationReferenceAsset idleAnimation;
 
         [SerializeField]
-        [SpineAnimation]
-        private string walkAnimation;
+        [Required]
+        private AnimationReferenceAsset walkAnimation;
 
         [SerializeField]
-        [SpineAnimation]
-        private string idleEggAnimation;
+        [Required]
+        private AnimationReferenceAsset idleEggAnimation;
 
         [SerializeField]
-        [SpineAnimation]
-        private string walkEggAnimation;
+        [Required]
+        private AnimationReferenceAsset walkEggAnimation;
 
         [SerializeField]
-        [SpineAnimation]
-        private string idleAcornAnimation;
+        [Required]
+        private AnimationReferenceAsset idleAcornAnimation;
 
         [SerializeField]
-        [SpineAnimation]
-        private string walkAcornAnimation;
+        [Required]
+        private AnimationReferenceAsset walkAcornAnimation;
 
         [ReadOnly]
         [SerializeField]
@@ -44,6 +45,16 @@ namespace Cat
         [ReadOnly]
         [SerializeField]
         private bool withAcorn = false;
+
+        [Required]
+        [SerializeField]
+        private SoundPlayer walkSound;
+
+        private void Start()
+        {
+            walkSound.PlayClip();
+            walkSound.PauseClip();
+        }
 
         [Button]
         public void SetEggTaken(bool withEgg)
@@ -69,26 +80,52 @@ namespace Cat
 
         private void StateChanged(State state)
         {
-            string animationName = state switch
+            switch (state)
             {
-                State.Moving
-                    => withAcorn
-                        ? walkAcornAnimation
-                        : withEgg
-                            ? walkEggAnimation
-                            : walkAnimation,
-                State.Staying
-                    => withAcorn
-                        ? idleAcornAnimation
-                        : withEgg
-                            ? idleEggAnimation
-                            : idleAnimation,
-                _ => throw new System.ArgumentException()
-            };
-            SetAnimation(animationName);
+                case State.Staying:
+                    walkSound.AudioSource.mute = true;
+                    break;
+                case State.Moving:
+                    walkSound.AudioSource.mute = false;
+                    break;
+            }
+
+            switch (state)
+            {
+                case State.Moving:
+                    SetWalkAnimation();
+                    break;
+                case State.Staying:
+                    SetIdleAnimation();
+                    break;
+            }
+            ;
         }
 
-        private void SetAnimation(string animation)
+        [Button]
+        public void SetIdleAnimation()
+        {
+            string animation = withAcorn
+                ? idleAcornAnimation.Animation.Name
+                : withEgg
+                    ? idleEggAnimation.Animation.Name
+                    : idleAnimation.Animation.Name;
+            SetAnimation(animation);
+        }
+
+        [Button]
+        public void SetWalkAnimation()
+        {
+            string animation = withAcorn
+                ? walkAcornAnimation.Animation.Name
+                : withEgg
+                    ? walkEggAnimation.Animation.Name
+                    : walkAnimation.Animation.Name;
+            SetAnimation(animation);
+        }
+
+        [Button]
+        public void SetAnimation(string animation)
         {
             if (skeletonAnimation.AnimationName != animation)
             {

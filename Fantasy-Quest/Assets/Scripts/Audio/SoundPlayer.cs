@@ -24,12 +24,18 @@ namespace Audio
         private bool playOnStart = false;
 
         [SerializeField]
+        private bool pauseOnStart = false;
+
+        [SerializeField]
         private bool ignorePause = false;
 
         [SerializeField]
         private bool createOnThisPosition = false;
 
+        [ReadOnly]
+        [SerializeField]
         private AudioSource audioSource;
+        public AudioSource AudioSource => audioSource;
 
         public AudioClip AudioClip
         {
@@ -80,6 +86,10 @@ namespace Audio
             {
                 PlayClip();
             }
+            if (pauseOnStart)
+            {
+                PauseClip();
+            }
         }
 
         [Button]
@@ -89,9 +99,27 @@ namespace Audio
         }
 
         [Button]
+        public void PlayClipDelayed(ulong delay)
+        {
+            audioSource.Play(delay);
+        }
+
+        [Button]
         public void StopClip()
         {
-            audioSource.Play();
+            audioSource.Stop();
+        }
+
+        [Button]
+        public void PauseClip()
+        {
+            audioSource.Pause();
+        }
+
+        [Button]
+        public void ResumeClip()
+        {
+            audioSource.UnPause();
         }
     }
 }

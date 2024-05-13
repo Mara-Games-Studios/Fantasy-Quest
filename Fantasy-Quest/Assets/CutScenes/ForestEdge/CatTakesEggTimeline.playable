@@ -1,5 +1,21 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-9111379588608186469
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15c38f6fa1940124db1ab7f6fe7268d1, type: 3}
+  m_Name: Signal Emitter
+  m_EditorClassIdentifier: 
+  m_Time: 1
+  m_Retroactive: 0
+  m_EmitOnce: 0
+  m_Asset: {fileID: 11400000, guid: b9926992bd4b1ab4389f53b9887dbe7f, type: 2}
 --- !u!114 &-8815548920265184903
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -102,6 +118,30 @@ MonoBehaviour:
   m_Retroactive: 0
   m_EmitOnce: 0
   m_Asset: {fileID: 11400000, guid: 2dffc6cb77a58dd44bde9b192346f303, type: 2}
+--- !u!114 &-4757143636420283973
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b46e36075dd1c124a8422c228e75e1fb, type: 3}
+  m_Name: Signal Track (6)
+  m_EditorClassIdentifier: 
+  m_Version: 3
+  m_AnimClip: {fileID: 0}
+  m_Locked: 0
+  m_Muted: 0
+  m_CustomPlayableFullTypename: 
+  m_Curves: {fileID: 0}
+  m_Parent: {fileID: 11400000}
+  m_Children: []
+  m_Clips: []
+  m_Markers:
+    m_Objects:
+    - {fileID: -9111379588608186469}
 --- !u!114 &-4286842936855305163
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -236,6 +276,7 @@ MonoBehaviour:
   m_Version: 0
   m_Tracks:
   - {fileID: 5959605114496956436}
+  - {fileID: -4757143636420283973}
   - {fileID: -2228141840464045854}
   - {fileID: -3438366213870869077}
   - {fileID: 5048034392186737411}
@@ -303,10 +344,10 @@ MonoBehaviour:
   m_Children: []
   m_Clips:
   - m_Version: 1
-    m_Start: 1.9
+    m_Start: 0
     m_ClipIn: 0
     m_Asset: {fileID: 7619508966730639173}
-    m_Duration: 3.099999999999999
+    m_Duration: 1.9
     m_TimeScale: 1
     m_ParentTrack: {fileID: 2806846299914664406}
     m_EaseInDuration: 0

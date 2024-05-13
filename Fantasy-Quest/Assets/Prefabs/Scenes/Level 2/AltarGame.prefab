@@ -100,8 +100,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.009199977, y: 0.057249963, z: 0}
-    m_Extent: {x: 0.7852, y: 1.9509499, z: 0}
+    m_Center: {x: 0.002850026, y: 0.061950028, z: 0}
+    m_Extent: {x: 0.78824997, y: 1.9512501, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -337,8 +337,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 3.5217998, y: 1.9916499, z: 0}
-    m_Extent: {x: 3.8039, y: 4.6546497, z: 0}
+    m_Center: {x: 3.51435, y: 1.9934, z: 0}
+    m_Extent: {x: 3.80155, y: 4.6597, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -434,7 +434,24 @@ MonoBehaviour:
   - Text: "\u041E, \u0441\u0440\u0430\u0431\u043E\u0442\u0430\u043B\u043E! \u041F\u043E\u0440\u0430
       \u0434\u0432\u0438\u0433\u0430\u0442\u044C\u0441\u044F \u0434\u0430\u043B\u044C\u0448\u0435"
     Audio: {fileID: 0}
-    Volume: 1
+    AudioSourceConfig:
+      priorityLevel: 128
+      Mute: 0
+      Volume: 1
+      Pitch: 1
+      PanStereo: 0
+      ReverbZoneMix: 1
+      SpatialBlend: 0
+      RolloffMode: 0
+      MinDistance: 0.1
+      MaxDistance: 50
+      Spread: 0
+      DopplerLevel: 1
+      BypassEffects: 0
+      BypassListenerEffects: 0
+      BypassReverbZones: 0
+      IgnoreListenerVolume: 0
+      IgnoreListenerPause: 0
     DelayBeforeSaid: 0
     DelayAfterSaid: 0
     cachedDuration: 0
@@ -764,6 +781,75 @@ MonoBehaviour:
         m_Calls: []
   m_LegacyBlendHint: 0
   m_ComponentOwner: {fileID: 437791083019821278}
+--- !u!1 &3680428621096950138
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2500324721038797387}
+  - component: {fileID: 739589610460254725}
+  m_Layer: 0
+  m_Name: Meow
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2500324721038797387
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3680428621096950138}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 871919014472969391}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &739589610460254725
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3680428621096950138}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e25d7337314417479613a298ff03226, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundsManager: {fileID: 0}
+  audioClip: {fileID: 8300000, guid: 3fa1c28d8707fd945b938a43c28d38d3, type: 3}
+  audioSourceConfig:
+    priorityLevel: 128
+    Mute: 0
+    Volume: 1
+    Pitch: 1
+    PanStereo: 0
+    ReverbZoneMix: 1
+    SpatialBlend: 0
+    RolloffMode: 0
+    MinDistance: 0.1
+    MaxDistance: 50
+    Spread: 0
+    DopplerLevel: 1
+    BypassEffects: 0
+    BypassListenerEffects: 0
+    BypassReverbZones: 0
+    IgnoreListenerVolume: 0
+    IgnoreListenerPause: 0
+  loop: 0
+  playOnStart: 0
+  pauseOnStart: 0
+  ignorePause: 0
+  createOnThisPosition: 0
 --- !u!1 &3733746238666415041
 GameObject:
   m_ObjectHideFlags: 0
@@ -968,6 +1054,7 @@ Transform:
   - {fileID: 1272180088089907339}
   - {fileID: 5848622003059605727}
   - {fileID: 7445346199961568579}
+  - {fileID: 871919014472969391}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1277694714172413174
@@ -1331,6 +1418,36 @@ MonoBehaviour:
   holdingItem: {fileID: 0}
   chosenSlot: {fileID: 0}
   isFirstMove: 1
+  OnChooseDisagreeHappens:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2890360454984666751}
+        m_TargetAssemblyTypeName: Audio.SoundPlayer, Assembly-CSharp
+        m_MethodName: PlayClip
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnChooseAgreeHappens:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 739589610460254725}
+        m_TargetAssemblyTypeName: Audio.SoundPlayer, Assembly-CSharp
+        m_MethodName: PlayClip
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &8730182900276307933
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1481,8 +1598,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 3.2793999, y: 2.1167, z: 0}
-    m_Extent: {x: 4.0376, y: 4.5332003, z: 0}
+    m_Center: {x: 3.2783499, y: 2.1265, z: 0}
+    m_Extent: {x: 4.03585, y: 4.531, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -1579,7 +1696,24 @@ MonoBehaviour:
   - Text: "\u041D\u0430\u0432\u0435\u0440\u043D\u043E\u0435 \u0442\u0430\u043A. \u041F\u043E\u0440\u0430
       \u0434\u0432\u0438\u0433\u0430\u0442\u044C\u0441\u044F \u0434\u0430\u043B\u044C\u0448\u0435"
     Audio: {fileID: 0}
-    Volume: 1
+    AudioSourceConfig:
+      priorityLevel: 128
+      Mute: 0
+      Volume: 1
+      Pitch: 1
+      PanStereo: 0
+      ReverbZoneMix: 1
+      SpatialBlend: 0
+      RolloffMode: 0
+      MinDistance: 0.1
+      MaxDistance: 50
+      Spread: 0
+      DopplerLevel: 1
+      BypassEffects: 0
+      BypassListenerEffects: 0
+      BypassReverbZones: 0
+      IgnoreListenerVolume: 0
+      IgnoreListenerPause: 0
     DelayBeforeSaid: 0
     DelayAfterSaid: 0
     cachedDuration: 0
@@ -1725,7 +1859,24 @@ MonoBehaviour:
   - Text: "\u041D\u0430\u0432\u0435\u0440\u043D\u043E\u0435 \u044D\u0442\u043E \u0434\u043E\u043B\u0436\u043D\u043E
       \u043B\u0435\u0436\u0430\u0442\u044C \u0442\u0443\u0442"
     Audio: {fileID: 0}
-    Volume: 1
+    AudioSourceConfig:
+      priorityLevel: 128
+      Mute: 0
+      Volume: 1
+      Pitch: 1
+      PanStereo: 0
+      ReverbZoneMix: 1
+      SpatialBlend: 0
+      RolloffMode: 0
+      MinDistance: 0.1
+      MaxDistance: 50
+      Spread: 0
+      DopplerLevel: 1
+      BypassEffects: 0
+      BypassListenerEffects: 0
+      BypassReverbZones: 0
+      IgnoreListenerVolume: 0
+      IgnoreListenerPause: 0
     DelayBeforeSaid: 0
     DelayAfterSaid: 0
     cachedDuration: 0
@@ -1901,6 +2052,39 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &7995328738356670142
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 871919014472969391}
+  m_Layer: 0
+  m_Name: Sounds
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &871919014472969391
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7995328738356670142}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2500324721038797387}
+  - {fileID: 7134554983078204056}
+  m_Father: {fileID: 2391293915093059660}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8400501947060064283
 GameObject:
   m_ObjectHideFlags: 0
@@ -2004,8 +2188,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.09189999, y: -0.23400003, z: 0}
-    m_Extent: {x: 0.6074, y: 1.4968, z: 0}
+    m_Center: {x: -0.08225, y: -0.23664999, z: 0}
+    m_Extent: {x: 0.61015, y: 1.49235, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -2054,6 +2238,75 @@ Transform:
   - {fileID: 6352925118041919076}
   m_Father: {fileID: 6003560647891482231}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &9094552263136148059
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7134554983078204056}
+  - component: {fileID: 2890360454984666751}
+  m_Layer: 0
+  m_Name: Shhhhh
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7134554983078204056
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9094552263136148059}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 871919014472969391}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2890360454984666751
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9094552263136148059}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e25d7337314417479613a298ff03226, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundsManager: {fileID: 0}
+  audioClip: {fileID: 8300000, guid: 3315d8dc42f1a4048b8b9bb54bd73c66, type: 3}
+  audioSourceConfig:
+    priorityLevel: 128
+    Mute: 0
+    Volume: 1
+    Pitch: 1
+    PanStereo: 0
+    ReverbZoneMix: 1
+    SpatialBlend: 0
+    RolloffMode: 0
+    MinDistance: 0.1
+    MaxDistance: 50
+    Spread: 0
+    DopplerLevel: 1
+    BypassEffects: 0
+    BypassListenerEffects: 0
+    BypassReverbZones: 0
+    IgnoreListenerVolume: 0
+    IgnoreListenerPause: 0
+  loop: 0
+  playOnStart: 0
+  pauseOnStart: 0
+  ignorePause: 0
+  createOnThisPosition: 0
 --- !u!1 &9151747465464509444
 GameObject:
   m_ObjectHideFlags: 0

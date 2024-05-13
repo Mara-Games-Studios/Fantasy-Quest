@@ -1,7 +1,6 @@
 ﻿using Configs;
 using Sirenix.OdinInspector;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 namespace Cat
 {
@@ -13,17 +12,9 @@ namespace Cat
         private Movement railMovement;
         private GameplayInput input;
 
-        //public UnityEvent OnCatInteraction;
-
         private void Awake()
         {
             input = new GameplayInput();
-            input.Player.CatInteraction.performed += CatInteractionPerformed;
-        }
-
-        private void CatInteractionPerformed(InputAction.CallbackContext obj)
-        {
-            //OnCatInteraction.Invoke();
         }
 
         private void Update()
