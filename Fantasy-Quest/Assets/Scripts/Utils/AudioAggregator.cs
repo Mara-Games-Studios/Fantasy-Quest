@@ -87,7 +87,7 @@ namespace Utils
         }
 
         [SerializeField]
-        private List<SoundPlayerPreview> musicPlayersPreviews;
+        private List<SoundPlayerPreview> soundPlayersPreviews;
 
         [SerializeField]
         private List<ChainSpeakerPreview> chainSpeakerPreviews;
@@ -107,10 +107,10 @@ namespace Utils
                 )
                 .ToList();
 
-            musicPlayersPreviews.Clear();
+            soundPlayersPreviews.Clear();
             foreach (SoundPlayer soundPlayer in soundPlayers)
             {
-                musicPlayersPreviews.Add(
+                soundPlayersPreviews.Add(
                     new()
                     {
                         SoundPlayer = soundPlayer,
@@ -155,7 +155,7 @@ namespace Utils
         [Button]
         private void UpdateAudioParameters()
         {
-            foreach (SoundPlayerPreview soundPlayerPreview in musicPlayersPreviews)
+            foreach (SoundPlayerPreview soundPlayerPreview in soundPlayersPreviews)
             {
                 soundPlayerPreview.Assign();
             }

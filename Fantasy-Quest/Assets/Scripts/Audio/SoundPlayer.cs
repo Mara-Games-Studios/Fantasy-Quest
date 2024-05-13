@@ -89,9 +89,15 @@ namespace Audio
         }
 
         [Button]
-        public void StopClip()
+        public void PauseClip()
         {
-            audioSource.Play();
+            audioSource.Pause();
+        }
+
+        [Button]
+        public void ResumeClip()
+        {
+            audioSource.UnPause();
         }
     }
 }

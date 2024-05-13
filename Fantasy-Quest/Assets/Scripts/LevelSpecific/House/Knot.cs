@@ -1,6 +1,7 @@
 using Interaction.Item;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace LevelSpecific.House
 {
@@ -24,10 +25,13 @@ namespace LevelSpecific.House
         [SerializeField]
         private State state = State.Left;
 
+        public UnityEvent OnKnotHinted;
+
         public void InteractByCat()
         {
             if (canCatInteract)
             {
+                OnKnotHinted?.Invoke();
                 switch (state)
                 {
                     case State.Left:

@@ -1,4 +1,5 @@
-﻿using Sirenix.OdinInspector;
+﻿using Audio;
+using Sirenix.OdinInspector;
 using Spine.Unity;
 using UnityEngine;
 
@@ -45,6 +46,16 @@ namespace Cat
         [SerializeField]
         private bool withAcorn = false;
 
+        [Required]
+        [SerializeField]
+        private SoundPlayer walkSound;
+
+        private void Start()
+        {
+            walkSound.PlayClip();
+            walkSound.PauseClip();
+        }
+
         [Button]
         public void SetEggTaken(bool withEgg)
         {
@@ -67,8 +78,22 @@ namespace Cat
             catMovement.OnStateChanged -= StateChanged;
         }
 
+        private State previousState = State.Staying;
+
         private void StateChanged(State state)
         {
+            if (previousState != state)
+            {
+                switch (state)
+                {
+                    case State.Staying:
+                        walkSound.PauseClip();
+                        break;
+                    case State.Moving:
+                        walkSound.ResumeClip();
+                        break;
+                }
+            }
             string animationName = state switch
             {
                 State.Moving
@@ -86,6 +111,7 @@ namespace Cat
                 _ => throw new System.ArgumentException()
             };
             SetAnimation(animationName);
+            previousState = state;
         }
 
         private void SetAnimation(string animation)

@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 9066750085579251092}
   - component: {fileID: 7420271526200802404}
   - component: {fileID: 2749134816934214972}
+  - component: {fileID: 1662828592892698969}
   m_Layer: 0
   m_Name: CatSkeleton
   m_TagString: Untagged
@@ -180,6 +181,7 @@ MonoBehaviour:
   walkAcornAnimation: 
   withEgg: 0
   withAcorn: 0
+  walkSound: {fileID: 1662828592892698969}
 --- !u!114 &2749134816934214972
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -210,6 +212,42 @@ MonoBehaviour:
             m_StringArgument: idle
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &1662828592892698969
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 905931653165027739}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e25d7337314417479613a298ff03226, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundsManager: {fileID: 0}
+  audioClip: {fileID: 8300000, guid: 5612dce6077d56947a591e653b14393d, type: 3}
+  audioSourceConfig:
+    priorityLevel: 128
+    Mute: 0
+    Volume: 1
+    Pitch: 1
+    PanStereo: 0
+    ReverbZoneMix: 1
+    SpatialBlend: 1
+    RolloffMode: 0
+    MinDistance: 0.1
+    MaxDistance: 50
+    Spread: 0
+    DopplerLevel: 1
+    BypassEffects: 0
+    BypassListenerEffects: 0
+    BypassReverbZones: 0
+    IgnoreListenerVolume: 0
+    IgnoreListenerPause: 0
+  loop: 1
+  playOnStart: 0
+  ignorePause: 0
+  createOnThisPosition: 0
 --- !u!1 &4994989475704801607
 GameObject:
   m_ObjectHideFlags: 0

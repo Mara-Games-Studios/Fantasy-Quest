@@ -44,7 +44,7 @@ namespace Minigames.MouseInHay
         [Button]
         public void StopGame()
         {
-            music.StopClip();
+            music.PauseClip();
             hay.StopShowMouses();
         }
 
