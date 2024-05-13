@@ -20,12 +20,18 @@ namespace Dialogue
         private SerializableInterface<ISubtitlesView> subtitles;
         private ISubtitlesView Subtitles => subtitles.Value;
 
+        public List<Replica> Replicas
+        {
+            get => replicas;
+            set => replicas = value;
+        }
+
         private Voice voice;
 
         private void Awake()
         {
             SoundsManager soundsManager = GameObject.FindAnyObjectByType<SoundsManager>();
-            voice = new(soundsManager);
+            voice = new(soundsManager, gameObject.name);
         }
 
         [Button]
@@ -43,7 +49,7 @@ namespace Dialogue
         [Button]
         public void ShowSubtitles()
         {
-            Subtitles.Show(replicas.First());
+            Subtitles.Show(Replicas.First());
         }
 
         [Button]
@@ -64,9 +70,9 @@ namespace Dialogue
 
         private IEnumerator TellRoutine(Action nextAction)
         {
-            foreach (Replica replica in replicas)
+            foreach (Replica replica in Replicas)
             {
-                voice.Say(replica.Audio);
+                voice.Say(replica);
                 Subtitles.Show(replica);
                 yield return new WaitForSeconds(replica.Duration + replica.DelayAfterSaid);
             }
@@ -76,9 +82,9 @@ namespace Dialogue
 
         public IEnumerator JustTellRoutine()
         {
-            foreach (Replica replica in replicas)
+            foreach (Replica replica in Replicas)
             {
-                voice.Say(replica.Audio);
+                voice.Say(replica);
                 Subtitles.Show(replica);
                 yield return new WaitForSeconds(replica.Duration + replica.DelayAfterSaid);
             }
@@ -87,9 +93,9 @@ namespace Dialogue
 
         private IEnumerator JustTellWithoutSubtitlesRoutine(Action nextAction = null)
         {
-            foreach (Replica replica in replicas)
+            foreach (Replica replica in Replicas)
             {
-                voice.Say(replica.Audio);
+                voice.Say(replica);
                 yield return new WaitForSeconds(replica.Duration + replica.DelayAfterSaid);
             }
         }

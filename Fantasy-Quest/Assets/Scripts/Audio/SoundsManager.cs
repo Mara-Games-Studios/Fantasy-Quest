@@ -34,9 +34,10 @@ namespace Audio
         [SerializeField]
         private AudioSource audioSourcePrefab;
 
-        public AudioSource CreateSource(bool ignorePause = false)
+        public AudioSource CreateSource(string name, bool ignorePause = false)
         {
             AudioSource newAudioSource = Instantiate(audioSourcePrefab, transform);
+            newAudioSource.gameObject.name = "Sound Audio source - " + name;
             AudioSourcePoint sourcePoint =
                 new()
                 {

@@ -6,13 +6,16 @@ namespace Audio
     [AddComponentMenu("Scripts/Audio/Audio.SoundPlayer")]
     internal class SoundPlayer : MonoBehaviour
     {
-        [Required]
+        [RequiredIn(PrefabKind.PrefabInstanceAndNonPrefabInstance)]
         [SerializeField]
         private SoundsManager soundsManager;
 
-        [Required]
+        [RequiredIn(PrefabKind.PrefabInstanceAndNonPrefabInstance)]
         [SerializeField]
         private AudioClip audioClip;
+
+        [SerializeField]
+        private AudioSourceConfig audioSourceConfig;
 
         [SerializeField]
         private bool loop = false;
@@ -23,18 +26,57 @@ namespace Audio
         [SerializeField]
         private bool ignorePause = false;
 
+        [SerializeField]
+        private bool createOnThisPosition = false;
+
         private AudioSource audioSource;
+
+        public AudioClip AudioClip
+        {
+            get => audioClip;
+            set => audioClip = value;
+        }
+        public AudioSourceConfig AudioSourceConfig
+        {
+            get => audioSourceConfig;
+            set => audioSourceConfig = value;
+        }
+        public bool Loop
+        {
+            get => loop;
+            set => loop = value;
+        }
+        public bool PlayOnStart
+        {
+            get => playOnStart;
+            set => playOnStart = value;
+        }
+        public bool IgnorePause
+        {
+            get => ignorePause;
+            set => ignorePause = value;
+        }
+        public bool CreateOnThisPosition
+        {
+            get => createOnThisPosition;
+            set => createOnThisPosition = value;
+        }
 
         private void Awake()
         {
-            audioSource = soundsManager.CreateSource(ignorePause);
-            audioSource.loop = loop;
-            audioSource.clip = audioClip;
+            audioSource = soundsManager.CreateSource(AudioClip.name, IgnorePause);
+            audioSource.clip = AudioClip;
+            audioSource.loop = Loop;
+            AudioSourceConfig.ApplyTo(audioSource);
+            if (CreateOnThisPosition)
+            {
+                audioSource.transform.position = transform.position;
+            }
         }
 
         private void Start()
         {
-            if (playOnStart)
+            if (PlayOnStart)
             {
                 PlayClip();
             }
@@ -42,6 +84,12 @@ namespace Audio
 
         [Button]
         public void PlayClip()
+        {
+            audioSource.Play();
+        }
+
+        [Button]
+        public void StopClip()
         {
             audioSource.Play();
         }

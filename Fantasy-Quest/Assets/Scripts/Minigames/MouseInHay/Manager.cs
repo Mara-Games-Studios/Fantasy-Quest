@@ -1,4 +1,5 @@
-﻿using Sirenix.OdinInspector;
+﻿using Audio;
+using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -16,7 +17,7 @@ namespace Minigames.MouseInHay
     {
         [Required]
         [SerializeField]
-        private AudioSource music;
+        private SoundPlayer music;
 
         [Required]
         [SerializeField]
@@ -43,14 +44,14 @@ namespace Minigames.MouseInHay
         [Button]
         public void StopGame()
         {
-            music.Stop();
+            music.StopClip();
             hay.StopShowMouses();
         }
 
         [Button]
         public void StartGame()
         {
-            music.Play();
+            music.PlayClip();
             hay.StartShowMouses();
         }
 

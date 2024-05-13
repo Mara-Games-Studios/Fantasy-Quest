@@ -9,7 +9,7 @@ namespace UI.Pages.Behaviours
     {
         protected LayoutModel LayoutModel;
         protected EffectModel EffectModel;
-        protected static event Action<Button> OnButtonShowed;
+        public static event Action<Button> OnButtonShowed;
 
         public IndicatorsBehaviour(LayoutModel layoutModel, EffectModel effectModel)
         {

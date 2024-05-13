@@ -1,13 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using Audio;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Configs.Music
 {
     [Serializable]
-    public struct AudioClipConfig
+    public class AudioClipConfig
     {
+        [Required]
         public AudioClip AudioClip;
+
+        public AudioSourceConfig AudioSourceConfig;
     }
 
     [CreateAssetMenu(fileName = "Playlist Config", menuName = "Configs/Create Playlist Config")]
