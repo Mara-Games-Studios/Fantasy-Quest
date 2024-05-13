@@ -16,9 +16,11 @@ namespace Dialogue
         [Header("Speech")]
         [SerializeField]
         protected List<Replica> FirstTrySpeech;
+        public List<Replica> FFirstTrySpeech => FirstTrySpeech;
 
         [SerializeField]
         protected List<Replica> AlternativeSpeech;
+        public List<Replica> AAlternativeSpeech => AlternativeSpeech;
 
         [Space]
         [Header("Components")]

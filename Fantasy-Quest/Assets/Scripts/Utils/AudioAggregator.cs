@@ -19,6 +19,10 @@ namespace Utils
         [SerializeField]
         private List<ChainSpeaker> chainSpeakers;
 
+        [ReadOnly]
+        [SerializeField]
+        private List<DialogueSpeaker> dialogueSpeakers;
+
         [Serializable]
         public class SoundPlayerPreview
         {
@@ -106,6 +110,12 @@ namespace Utils
                 )
                 .ToList();
 
+            dialogueSpeakers = FindObjectsByType<DialogueSpeaker>(
+                    FindObjectsInactive.Include,
+                    FindObjectsSortMode.InstanceID
+                )
+                .ToList();
+
             soundPlayersPreviews.Clear();
             foreach (SoundPlayer soundPlayer in soundPlayers)
             {
@@ -163,6 +173,18 @@ namespace Utils
             {
                 chainSpeakerPreview.Assign();
             }
+        }
+
+        [Button]
+        private void SetSpatialToZero()
+        {
+            dialogueSpeakers.ForEach(
+                (x) =>
+                {
+                    x.FFirstTrySpeech.ForEach(x => x.AudioSourceConfig.SpatialBlend = 0);
+                    x.AAlternativeSpeech.ForEach(x => x.AudioSourceConfig.SpatialBlend = 0);
+                }
+            );
         }
     }
 }

@@ -99,7 +99,7 @@ namespace Minigames.AltarGame.Hand
             transform.position = startPosition.position;
             temporaryItemsToCreate.Clear();
             temporaryItemsToCreate.AddRange(itemsToCreate);
-            StopCoroutine(waitingForDecide);
+            //StopCoroutine(waitingForDecide);
             isChoosing = false;
             if (holdingItem != null)
             {
