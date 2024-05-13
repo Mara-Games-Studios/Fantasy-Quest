@@ -1,13 +1,14 @@
 ﻿using DG.Tweening;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace UI.Pause
 {
     public class DarkBackground : MonoBehaviour
     {
         [SerializeField]
-        private Material material;
+        private Image image;
 
         [SerializeField]
         private float minThreshold = 1f;
@@ -21,12 +22,14 @@ namespace UI.Pause
         [SerializeField]
         private Ease ease;
 
+        private Material material;
         private const string THRESHOLD_KEY = "_Threshold";
         private Tween tween;
         private float currentThreshold;
 
         private void Awake()
         {
+            material = image.material;
             currentThreshold = minThreshold;
             material.SetFloat(THRESHOLD_KEY, currentThreshold);
         }
@@ -34,6 +37,7 @@ namespace UI.Pause
         [Button]
         public void Show()
         {
+            image.gameObject.SetActive(true);
             tween?.Kill();
 
             tween = DOTween
@@ -68,7 +72,8 @@ namespace UI.Pause
                     duration
                 )
                 .SetEase(ease)
-                .SetUpdate(true);
+                .SetUpdate(true)
+                .OnComplete(() => image.gameObject.SetActive(false));
         }
     }
 }
