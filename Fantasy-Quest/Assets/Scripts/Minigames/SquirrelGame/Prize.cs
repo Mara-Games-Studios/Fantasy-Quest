@@ -75,8 +75,12 @@ namespace Minigames.SquirrelGame
         {
             if (collision.TryGetComponent(out Paw paw))
             {
+                if (this.paw == null)
+                {
+                    fade.Appear();
+                }
+
                 this.paw = paw;
-                fade.Appear();
             }
         }
 
@@ -84,8 +88,11 @@ namespace Minigames.SquirrelGame
         {
             if (collision.TryGetComponent(out Paw _))
             {
+                if (paw != null)
+                {
+                    fade.Disappear();
+                }
                 paw = null;
-                fade.Disappear();
             }
         }
     }

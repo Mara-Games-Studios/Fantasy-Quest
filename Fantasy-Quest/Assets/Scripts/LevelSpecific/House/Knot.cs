@@ -1,4 +1,5 @@
 using Interaction.Item;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace LevelSpecific.House
@@ -13,6 +14,7 @@ namespace LevelSpecific.House
             Right
         }
 
+        [InfoBox("CALLED BY E")]
         [SerializeField]
         private bool canCatInteract = true;
 

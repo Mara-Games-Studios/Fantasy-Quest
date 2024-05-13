@@ -8,6 +8,7 @@ namespace Cutscene
     [AddComponentMenu("Scripts/Cutscene/Cutscene.CutsceneInteractTransition")]
     internal class CutsceneInteractTransition : MonoBehaviour, IInteractable
     {
+        [InfoBox("CALLED BY E AND CALLED BY 1")]
         [Required]
         [SerializeField]
         private Start startCat;
