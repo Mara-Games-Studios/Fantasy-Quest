@@ -9,6 +9,9 @@ namespace DialogueBubble
     public class Trigger : MonoBehaviour
     {
         [SerializeField]
+        private bool oneTimer = false;
+
+        [SerializeField]
         private Type emoteType = Type.Thought;
 
         [SerializeField]
@@ -36,7 +39,7 @@ namespace DialogueBubble
         {
             if (!LockerSettings.Instance.IsDialogueBubbleLocked)
             {
-                if (other.TryGetComponent(out InteractionImpl interaction))
+                if (other.TryGetComponent(out InteractionImpl _) && !oneTimer)
                 {
                     EventSystem.OnTriggerBubble?.Invoke(
                         new BubbleSettings
@@ -46,6 +49,18 @@ namespace DialogueBubble
                             EmoteIcons = emoteIcons
                         }
                     );
+                }
+                else if (other.TryGetComponent(out InteractionImpl _) && oneTimer)
+                {
+                    EventSystem.OnTriggerBubble?.Invoke(
+                        new BubbleSettings
+                        {
+                            CanShow = false,
+                            BubbleType = emoteType,
+                            EmoteIcons = emoteIcons
+                        }
+                    );
+                    Destroy(this);
                 }
             }
         }

@@ -1,4 +1,5 @@
 using System;
+using Audio;
 using Configs;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -6,12 +7,16 @@ using UnityEngine;
 namespace Dialogue
 {
     [Serializable]
-    public struct Replica
+    public class Replica
     {
         [InfoBox("@" + nameof(InfoDuration))]
         [TextArea]
         public string Text;
+
+        [RequiredIn(PrefabKind.PrefabInstanceAndNonPrefabInstance)]
         public AudioClip Audio;
+
+        public AudioSourceConfig AudioSourceConfig;
         public float DelayBeforeSaid;
         public float DelayAfterSaid;
 
@@ -32,7 +37,7 @@ namespace Dialogue
             }
         }
 
-        private readonly float CalculateDuration()
+        private float CalculateDuration()
         {
             if (Audio == null)
             {

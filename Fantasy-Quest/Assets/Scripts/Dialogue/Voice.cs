@@ -9,16 +9,16 @@ namespace Dialogue
     {
         private AudioSource audioSource;
 
-        public Voice(SoundsManager soundsManager)
+        public Voice(SoundsManager soundsManager, string creatorName)
         {
-            audioSource = soundsManager.CreateSource();
+            audioSource = soundsManager.CreateSource(creatorName);
         }
 
-        public void Say(AudioClip audioClip)
+        public void Say(Replica audioClip)
         {
             Silence();
-            audioSource.clip = audioClip;
-            audioSource.volume = 1f;
+            audioSource.clip = audioClip.Audio;
+            audioClip.AudioSourceConfig.ApplyTo(audioSource);
             audioSource.Play();
         }
 

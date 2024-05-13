@@ -32,7 +32,7 @@ namespace UI
         {
             horizontalSlider.OnElementIndexChanged -= HorizontalSliderElementIndexChanged;
         }
-        
+
         private void Start()
         {
             int i = 0;

@@ -65,10 +65,11 @@ public class IndicatorsView : MonoBehaviour
         }
 
         bool isPointingOnButton = false;
-        var results = PointerOverUI.GetEventSystemRaycastResults();
+        List<UnityEngine.EventSystems.RaycastResult> results =
+            PointerOverUI.GetEventSystemRaycastResults();
         if (PointerOverUI.IsPointerOverUIElement(results))
         {
-            foreach (var raycastResult in results)
+            foreach (UnityEngine.EventSystems.RaycastResult raycastResult in results)
             {
                 if (raycastResult.gameObject.TryGetComponent(out IndicatedButton button))
                 {
@@ -102,5 +103,5 @@ public class IndicatorsView : MonoBehaviour
             .IndicatorsAlpha.DOFade(effectModel.MinAlpha, 0)
             .SetUpdate(true);
         effectModel.IndicatorsAlpha.gameObject.SetActive(false);
-    } 
+    }
 }

@@ -15,7 +15,7 @@ namespace Audio
 
         [ReadOnly]
         [SerializeField]
-        private List<AudioClip> currentClips;
+        private List<AudioClipConfig> currentClips;
 
         [ReadOnly]
         [SerializeField]
@@ -64,7 +64,8 @@ namespace Audio
         {
             for (int i = 0; i < currentClips.Count; i++)
             {
-                audioSources[i].clip = currentClips[i];
+                audioSources[i].clip = currentClips[i].AudioClip;
+                currentClips[i].AudioSourceConfig.ApplyTo(audioSources[i]);
                 audioSources[i].Play();
             }
         }

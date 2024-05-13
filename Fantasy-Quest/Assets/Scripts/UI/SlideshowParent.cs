@@ -38,6 +38,10 @@ namespace UI
         [SerializeField]
         private List<SlideStruct> slideStructs = new();
 
+        [SerializeField]
+        private bool playLast = false;
+
+        public UnityEvent SlideshowStarted;
         public UnityEvent SlideshowEnded;
 
         private Image image;
@@ -51,34 +55,43 @@ namespace UI
             if (playOnAwake)
             {
                 StartSlideshow();
+                SlideshowStarted?.Invoke();
             }
         }
 
         private IEnumerator ShowSlides()
         {
-            if (childrenComponentsMode)
+            if (playLast)
             {
-                FillChildren();
-                yield return new WaitForSeconds(0.5f);
-                foreach (Slide slide in slides)
-                {
-                    yield return ShowSlide(slide);
-                }
+                yield return ShowSlide(slides.Last());
                 SlideshowEnded?.Invoke();
             }
             else
             {
-                if (image == null)
+                if (childrenComponentsMode)
                 {
-                    image = gameObject.AddComponent<Image>();
+                    FillChildren();
+                    yield return new WaitForSeconds(0.5f);
+                    foreach (Slide slide in slides)
+                    {
+                        yield return ShowSlide(slide);
+                    }
+                    SlideshowEnded?.Invoke();
                 }
+                else
+                {
+                    if (image == null)
+                    {
+                        image = gameObject.AddComponent<Image>();
+                    }
 
-                image.color = new UnityEngine.Color(image.color.r, image.color.g, image.color.b, 0);
-                foreach (SlideStruct slide in slideStructs)
-                {
-                    yield return ShowSlide(slide);
+                    image.color = new Color(image.color.r, image.color.g, image.color.b, 0);
+                    foreach (SlideStruct slide in slideStructs)
+                    {
+                        yield return ShowSlide(slide);
+                    }
+                    SlideshowEnded?.Invoke();
                 }
-                SlideshowEnded?.Invoke();
             }
         }
 

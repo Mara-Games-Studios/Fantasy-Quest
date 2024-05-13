@@ -34,7 +34,10 @@ namespace Cutscene
             foreach (Line line in lines)
             {
                 line.Image.rectTransform.position = line.StartPoint.position;
-                _ = line.Image.rectTransform.DOMove(line.EndPoint.position, duration);
+                _ = line.Image.rectTransform.DOAnchorPos3DY(
+                    line.EndPoint.anchoredPosition3D.y,
+                    duration
+                );
                 _ = line.Image.DOFade(targetAlpha, duration);
             }
         }
@@ -46,7 +49,10 @@ namespace Cutscene
             foreach (Line line in lines)
             {
                 line.Image.rectTransform.position = line.EndPoint.position;
-                _ = line.Image.rectTransform.DOMove(line.StartPoint.position, duration);
+                _ = line.Image.rectTransform.DOAnchorPos3DY(
+                    line.StartPoint.anchoredPosition3D.y,
+                    duration
+                );
                 _ = line.Image.DOFade(0f, duration);
             }
         }

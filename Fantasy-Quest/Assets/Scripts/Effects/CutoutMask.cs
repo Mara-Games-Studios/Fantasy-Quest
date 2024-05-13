@@ -54,7 +54,7 @@ namespace Effects.Screen
 
         private void Update()
         {
-            maskRectTransform.localPosition = -transform.localPosition;
+            maskRectTransform.anchoredPosition3D = -rectTransform.anchoredPosition3D;
         }
 
         private IEnumerator CutoutRoutine()
@@ -63,7 +63,7 @@ namespace Effects.Screen
             while (timer <= duration)
             {
                 timer += Time.deltaTime;
-                rectTransform.position = Vector2.Lerp(
+                rectTransform.anchoredPosition3D = Vector2.Lerp(
                     startProperties.Position,
                     endProperties.Position,
                     curve.Evaluate(timer / duration)
@@ -81,7 +81,6 @@ namespace Effects.Screen
         public void SetDestinationPoint(Transform transform)
         {
             startProperties.Position = foundedCamera.WorldToScreenPoint(transform.position);
-            //Debug.Log(startProperties.Position);
             endProperties.Position = startProperties.Position;
         }
 

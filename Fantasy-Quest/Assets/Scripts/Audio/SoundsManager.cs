@@ -11,6 +11,7 @@ namespace Audio
         {
             public AudioSource AudioSource;
             public bool IsOnPause;
+            public bool IgnorePause;
 
             public void Pause()
             {
@@ -33,19 +34,18 @@ namespace Audio
         [SerializeField]
         private AudioSource audioSourcePrefab;
 
-        public AudioSource CreateSource()
+        public AudioSource CreateSource(string name, bool ignorePause = false)
         {
             AudioSource newAudioSource = Instantiate(audioSourcePrefab, transform);
+            newAudioSource.gameObject.name = "Sound Audio source - " + name;
             AudioSourcePoint sourcePoint =
-                new() { AudioSource = newAudioSource, IsOnPause = false };
+                new()
+                {
+                    AudioSource = newAudioSource,
+                    IsOnPause = false,
+                    IgnorePause = ignorePause
+                };
             audioSources.Add(sourcePoint);
-            return newAudioSource;
-        }
-
-        public AudioSource CreateSourceAtPosition(Vector3 position)
-        {
-            AudioSource newAudioSource = CreateSource();
-            newAudioSource.transform.position = position;
             return newAudioSource;
         }
 

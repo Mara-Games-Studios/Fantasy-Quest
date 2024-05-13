@@ -36,16 +36,19 @@ namespace UI.Pause
         {
             tween?.Kill();
 
-             tween = DOTween.To(
-                 () => currentThreshold, 
-                 x =>
-                 {
-                     currentThreshold = x;
-                     material.SetFloat(THRESHOLD_KEY, currentThreshold);
-                 },
-                 maxThreshold,
-                 duration
-             ).SetEase(ease).SetUpdate(true);
+            tween = DOTween
+                .To(
+                    () => currentThreshold,
+                    x =>
+                    {
+                        currentThreshold = x;
+                        material.SetFloat(THRESHOLD_KEY, currentThreshold);
+                    },
+                    maxThreshold,
+                    duration
+                )
+                .SetEase(ease)
+                .SetUpdate(true);
         }
 
         [Button]
@@ -53,16 +56,19 @@ namespace UI.Pause
         {
             tween?.Kill();
 
-            tween = DOTween.To(
-                () => currentThreshold, 
-                x =>
-                {
-                    currentThreshold = x;
-                    material.SetFloat(THRESHOLD_KEY, currentThreshold);
-                },
-                minThreshold,
-                duration
-            ).SetEase(ease).SetUpdate(true);
+            tween = DOTween
+                .To(
+                    () => currentThreshold,
+                    x =>
+                    {
+                        currentThreshold = x;
+                        material.SetFloat(THRESHOLD_KEY, currentThreshold);
+                    },
+                    minThreshold,
+                    duration
+                )
+                .SetEase(ease)
+                .SetUpdate(true);
         }
     }
 }

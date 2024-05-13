@@ -100,8 +100,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.002300024, y: 0.060199976, z: 0}
-    m_Extent: {x: 0.7859, y: 1.947, z: 0}
+    m_Center: {x: 0.009199977, y: 0.057249963, z: 0}
+    m_Extent: {x: 0.7852, y: 1.9509499, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -337,8 +337,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 3.52145, y: 1.9870999, z: 0}
-    m_Extent: {x: 3.80555, y: 4.6647997, z: 0}
+    m_Center: {x: 3.5217998, y: 1.9916499, z: 0}
+    m_Extent: {x: 3.8039, y: 4.6546497, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -434,10 +434,10 @@ MonoBehaviour:
   - Text: "\u041E, \u0441\u0440\u0430\u0431\u043E\u0442\u0430\u043B\u043E! \u041F\u043E\u0440\u0430
       \u0434\u0432\u0438\u0433\u0430\u0442\u044C\u0441\u044F \u0434\u0430\u043B\u044C\u0448\u0435"
     Audio: {fileID: 0}
+    Volume: 1
     DelayBeforeSaid: 0
     DelayAfterSaid: 0
     cachedDuration: 0
-  audioSource: {fileID: 5149592104026517385}
   subtitles:
     mode: 0
     unityReference: {fileID: 0}
@@ -1270,7 +1270,6 @@ GameObject:
   - component: {fileID: 4153514458104580612}
   - component: {fileID: 7946977860573502272}
   - component: {fileID: 8730182900276307933}
-  - component: {fileID: 5149592104026517385}
   - component: {fileID: 7309583695927611032}
   m_Layer: 0
   m_Name: Hand
@@ -1354,8 +1353,16 @@ MonoBehaviour:
     m_Interactions: 
     m_SingletonActionBindings:
     - m_Name: 
-      m_Id: f8f49240-e2c0-4c9e-bddb-00a32c931819
-      m_Path: <Keyboard>/w
+      m_Id: c3666ae3-00c4-4181-8ee7-77a7412c2e5b
+      m_Path: <Keyboard>/1
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Agree
+      m_Flags: 0
+    - m_Name: 
+      m_Id: f5293156-61f5-4cf6-a2c1-ccad4222252c
+      m_Path: <Keyboard>/numpad1
       m_Interactions: 
       m_Processors: 
       m_Groups: 
@@ -1371,110 +1378,22 @@ MonoBehaviour:
     m_Interactions: 
     m_SingletonActionBindings:
     - m_Name: 
-      m_Id: 8f57e934-5835-406f-884d-1d3361a9a768
-      m_Path: <Keyboard>/s
+      m_Id: a0bbce42-ed02-4258-8db4-afe5e279b0a1
+      m_Path: <Keyboard>/2
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Disagree
+      m_Flags: 0
+    - m_Name: 
+      m_Id: ddb4ef22-9b24-47b0-89a0-863eec03644c
+      m_Path: <Keyboard>/numpad2
       m_Interactions: 
       m_Processors: 
       m_Groups: 
       m_Action: Disagree
       m_Flags: 0
     m_Flags: 0
---- !u!82 &5149592104026517385
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5238333438139014845}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!95 &7309583695927611032
 Animator:
   serializedVersion: 5
@@ -1562,8 +1481,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 3.2804499, y: 2.1194, z: 0}
-    m_Extent: {x: 4.03445, y: 4.5312, z: 0}
+    m_Center: {x: 3.2793999, y: 2.1167, z: 0}
+    m_Extent: {x: 4.0376, y: 4.5332003, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -1660,10 +1579,10 @@ MonoBehaviour:
   - Text: "\u041D\u0430\u0432\u0435\u0440\u043D\u043E\u0435 \u0442\u0430\u043A. \u041F\u043E\u0440\u0430
       \u0434\u0432\u0438\u0433\u0430\u0442\u044C\u0441\u044F \u0434\u0430\u043B\u044C\u0448\u0435"
     Audio: {fileID: 0}
+    Volume: 1
     DelayBeforeSaid: 0
     DelayAfterSaid: 0
     cachedDuration: 0
-  audioSource: {fileID: 5149592104026517385}
   subtitles:
     mode: 0
     unityReference: {fileID: 0}
@@ -1806,10 +1725,10 @@ MonoBehaviour:
   - Text: "\u041D\u0430\u0432\u0435\u0440\u043D\u043E\u0435 \u044D\u0442\u043E \u0434\u043E\u043B\u0436\u043D\u043E
       \u043B\u0435\u0436\u0430\u0442\u044C \u0442\u0443\u0442"
     Audio: {fileID: 0}
+    Volume: 1
     DelayBeforeSaid: 0
     DelayAfterSaid: 0
     cachedDuration: 0
-  audioSource: {fileID: 5149592104026517385}
   subtitles:
     mode: 0
     unityReference: {fileID: 0}
@@ -2085,8 +2004,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.08274999, y: -0.24565, z: 0}
-    m_Extent: {x: 0.60905004, y: 1.5018499, z: 0}
+    m_Center: {x: -0.09189999, y: -0.23400003, z: 0}
+    m_Extent: {x: 0.6074, y: 1.4968, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0

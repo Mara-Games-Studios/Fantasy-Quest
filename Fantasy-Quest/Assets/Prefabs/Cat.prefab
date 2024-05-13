@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 2186453183771890113}
   - component: {fileID: 9066750085579251092}
   - component: {fileID: 7420271526200802404}
+  - component: {fileID: 2749134816934214972}
   m_Layer: 0
   m_Name: CatSkeleton
   m_TagString: Untagged
@@ -150,7 +151,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   catMovement: {fileID: 5384320320187699602}
-  flipTime: 0.5
   toFlip: 0
   isFlipping: 0
   rotationByVectorsRaw:
@@ -174,6 +174,42 @@ MonoBehaviour:
   skeletonAnimation: {fileID: 5374469698757798622}
   idleAnimation: idle
   walkAnimation: walk
+  idleEggAnimation: 
+  walkEggAnimation: 
+  idleAcornAnimation: 
+  walkAcornAnimation: 
+  withEgg: 0
+  withAcorn: 0
+--- !u!114 &2749134816934214972
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 905931653165027739}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Events:
+    m_Signals:
+    - {fileID: 11400000, guid: 657523eb1901cde4ab5b413477a4ffdf, type: 2}
+    m_Events:
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 5374469698757798622}
+          m_TargetAssemblyTypeName: Spine.Unity.SkeletonAnimation, spine-unity
+          m_MethodName: set_AnimationName
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: idle
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &4994989475704801607
 GameObject:
   m_ObjectHideFlags: 0
@@ -339,9 +375,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   railMovement: {fileID: 5384320320187699602}
-  OnCatInteraction:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!114 &5384320320187699602
 MonoBehaviour:
   m_ObjectHideFlags: 0

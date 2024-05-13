@@ -30,7 +30,7 @@ namespace Dialogue
         protected virtual void Awake()
         {
             SoundsManager soundsManager = GameObject.FindAnyObjectByType<SoundsManager>();
-            Voice = new Voice(soundsManager);
+            Voice = new Voice(soundsManager, gameObject.name);
         }
 
         public void Speak()
@@ -72,7 +72,7 @@ namespace Dialogue
             {
                 SubtitlesView.Value.Show(replica);
                 yield return new WaitForSeconds(replica.DelayBeforeSaid);
-                Voice.Say(replica.Audio);
+                Voice.Say(replica);
                 yield return new WaitForSeconds(replica.Duration + replica.DelayAfterSaid);
             }
             Stop();

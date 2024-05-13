@@ -1,4 +1,5 @@
 using DG.Tweening;
+using Dialogue;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Events;
@@ -27,11 +28,19 @@ namespace UI
 
         public UnityEvent BeforeFadeIn;
         public UnityEvent AfterFadeIn;
+        public UnityEvent BeforeFadeOut;
         public UnityEvent AfterFadeOut;
+
+        [SerializeField]
+        private bool bindChainSpeakerOnStart = false;
 
         private void Start()
         {
             gameObject.SetActive(false);
+            if (bindChainSpeakerOnStart)
+            {
+                BindChainSpeaker();
+            }
         }
 
         private void OnEnable()
@@ -48,6 +57,7 @@ namespace UI
 
         public void FadeOut()
         {
+            BeforeFadeOut?.Invoke();
             Fade(
                 0f,
                 FadeTime,
@@ -71,6 +81,15 @@ namespace UI
         public void GetComponentImage()
         {
             slide = GetComponent<Image>();
+        }
+
+        [Button]
+        private void BindChainSpeaker()
+        {
+            ChainSpeaker chainSpeaker = GetComponentInChildren<ChainSpeaker>();
+            BeforeFadeIn.AddListener(chainSpeaker.ShowSubtitles);
+            AfterFadeIn.AddListener(chainSpeaker.JustTellWithoutSubtitles);
+            BeforeFadeOut.AddListener(chainSpeaker.HideSubtitles);
         }
     }
 }

@@ -217,7 +217,7 @@ GameObject:
   m_Component:
   - component: {fileID: 21463113}
   - component: {fileID: 21463114}
-  m_Layer: 3
+  m_Layer: 5
   m_Name: Speaker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -256,12 +256,29 @@ MonoBehaviour:
       \u043A\u043E\u0442 \u0441\u043E \u0441\u0432\u0435\u0440\u043A\u0430\u044E\u0449\u0438\u043C\u0438
       \u0436\u0435\u043B\u0442\u044B\u043C\u0438 \u0433\u043B\u0430\u0437\u0430\u043C\u0438!\r"
     Audio: {fileID: 8300000, guid: 2ea8b6b8ecfbf4d4fb3bffa153aeafdf, type: 3}
+    AudioSourceConfig:
+      priorityLevel: 64
+      Volume: 1
+      Pitch: 1
+      PanStereo: 0
+      ReverbZoneMix: 1
+      SpatialBlend: 1
+      RolloffMode: 0
+      MinDistance: 0.1
+      MaxDistance: 50
+      Spread: 0
+      DopplerLevel: 1
+      BypassEffects: 0
+      BypassListenerEffects: 0
+      BypassReverbZones: 0
+      IgnoreListenerVolume: 0
+      IgnoreListenerPause: 0
     DelayBeforeSaid: 0
     DelayAfterSaid: 0
-    cachedDuration: 0
+    cachedDuration: 4.2594585
   subtitles:
     mode: 0
-    unityReference: {fileID: 1514410469}
+    unityReference: {fileID: 859534840}
     rawReference:
       rid: -2
   references:
@@ -385,6 +402,11 @@ MonoBehaviour:
 Transform:
   m_CorrespondingSourceObject: {fileID: 1041365443762272578, guid: 36a8a007deec36c4b98d6cefe59aa177, type: 3}
   m_PrefabInstance: {fileID: 179590416}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &40328973 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 3359395131988125061, guid: 0632c63fb65b1f340b1ae628fc7206cf, type: 3}
+  m_PrefabInstance: {fileID: 1184977934}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &63751182
 GameObject:
@@ -574,6 +596,7 @@ GameObject:
   - component: {fileID: 84311746}
   - component: {fileID: 84311745}
   - component: {fileID: 84311747}
+  - component: {fileID: 84311748}
   m_Layer: 0
   m_Name: Spine GameObject (girl)
   m_TagString: Untagged
@@ -732,6 +755,7 @@ MonoBehaviour:
   m_Events:
     m_Signals:
     - {fileID: 11400000, guid: 657523eb1901cde4ab5b413477a4ffdf, type: 2}
+    - {fileID: 11400000, guid: b3746ecb0a432f446bae634e878e95cb, type: 2}
     m_Events:
     - m_PersistentCalls:
         m_Calls:
@@ -747,6 +771,38 @@ MonoBehaviour:
             m_StringArgument: idle
             m_BoolArgument: 0
           m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 84311748}
+          m_TargetAssemblyTypeName: Effects.Fade, Assembly-CSharp
+          m_MethodName: Disappear
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!114 &84311748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 84311740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1399281b4fa73c4ab763e51bcb91bb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  renderers:
+  - {fileID: 84311743}
+  fadeDuration: 1
+  OnFadeCompleted:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &93917072
 GameObject:
   m_ObjectHideFlags: 0
@@ -829,8 +885,8 @@ Transform:
   - {fileID: 681937886}
   - {fileID: 513049885}
   - {fileID: 650290302}
-  - {fileID: 324369288}
   - {fileID: 1269624517}
+  - {fileID: 324369288}
   - {fileID: 1098430742}
   - {fileID: 137906640}
   m_Father: {fileID: 0}
@@ -1078,7 +1134,7 @@ GameObject:
   m_Component:
   - component: {fileID: 153981787}
   - component: {fileID: 153981788}
-  m_Layer: 3
+  m_Layer: 5
   m_Name: Speaker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1118,12 +1174,29 @@ MonoBehaviour:
       \u0442\u0435\u0445 \u043F\u043E\u0440 \u043A\u043E\u0442 \u0441\u0442\u0430\u043B
       \u0447\u0430\u0441\u0442\u044C\u044E \u043D\u0430\u0448\u0435\u0439 \u0441\u0435\u043C\u044C\u0438."
     Audio: {fileID: 8300000, guid: 04da3bb8ae03c7249a014a0de3f6727c, type: 3}
+    AudioSourceConfig:
+      priorityLevel: 128
+      Volume: 1
+      Pitch: 1
+      PanStereo: 0
+      ReverbZoneMix: 1
+      SpatialBlend: 1
+      RolloffMode: 0
+      MinDistance: 0.1
+      MaxDistance: 50
+      Spread: 0
+      DopplerLevel: 1
+      BypassEffects: 0
+      BypassListenerEffects: 0
+      BypassReverbZones: 0
+      IgnoreListenerVolume: 0
+      IgnoreListenerPause: 0
     DelayBeforeSaid: 0
     DelayAfterSaid: 0
-    cachedDuration: 0
+    cachedDuration: 4.969375
   subtitles:
     mode: 0
-    unityReference: {fileID: 1514410469}
+    unityReference: {fileID: 859534840}
     rawReference:
       rid: -2
   references:
@@ -1200,22 +1273,14 @@ MonoBehaviour:
       m_Calls: []
   AfterFadeIn:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2060054907}
-        m_TargetAssemblyTypeName: Dialogue.ChainSpeaker, Assembly-CSharp
-        m_MethodName: JustTell
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
+  BeforeFadeOut:
+    m_PersistentCalls:
+      m_Calls: []
   AfterFadeOut:
     m_PersistentCalls:
       m_Calls: []
+  bindChainSpeakerOnStart: 1
 --- !u!114 &156445515
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1416,22 +1481,14 @@ MonoBehaviour:
       m_Calls: []
   AfterFadeIn:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1519026810}
-        m_TargetAssemblyTypeName: Dialogue.ChainSpeaker, Assembly-CSharp
-        m_MethodName: JustTell
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
+  BeforeFadeOut:
+    m_PersistentCalls:
+      m_Calls: []
   AfterFadeOut:
     m_PersistentCalls:
       m_Calls: []
+  bindChainSpeakerOnStart: 1
 --- !u!114 &178267148
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1739,10 +1796,11 @@ Transform:
   m_GameObject: {fileID: 199431206}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.9100008, y: 0.83, z: 1}
+  m_LocalPosition: {x: -2.9100008, y: 0.89, z: 1}
   m_LocalScale: {x: 1.4999999, y: 1.4999999, z: 1.4999999}
   m_ConstrainProportionsScale: 1
-  m_Children: []
+  m_Children:
+  - {fileID: 628579030}
   m_Father: {fileID: 650290302}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &199431208
@@ -1785,7 +1843,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1553855423
   m_SortingLayer: 3
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: ef1c04cda3eb5e04bbefe0ec97c7726c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -2581,8 +2639,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 1
   m_ShadowVolumeIntensity: 0.869
   m_LocalBounds:
-    m_Center: {x: -1.6374999, y: -5.61855, z: 0}
-    m_Extent: {x: 2.0995998, y: 1.83785, z: 0}
+    m_Center: {x: -1.6401501, y: -5.61305, z: 0}
+    m_Extent: {x: 2.09955, y: 1.82945, z: 0}
   m_PointLightInnerAngle: 359.6
   m_PointLightOuterAngle: 359.6
   m_PointLightInnerRadius: 2
@@ -2697,6 +2755,8 @@ PlayableDirector:
     value: {fileID: 1502564046}
   - key: {fileID: -4561483178532295381, guid: 59e9b5446357e95469b1cc36afe54df4, type: 2}
     value: {fileID: 1054450565}
+  - key: {fileID: 3405603632387027226, guid: 59e9b5446357e95469b1cc36afe54df4, type: 2}
+    value: {fileID: 84311747}
   m_ExposedReferences:
     m_References:
     - 566fc46b28e9a7846bc190f38f57ee43: {fileID: 698130716}
@@ -3347,7 +3407,7 @@ MonoBehaviour:
   pathCreator: {fileID: 357603338}
   currentPosition: 0.1
   body: {fileID: 338108919}
-  travelTime: 20
+  travelTime: 40
   OnReachedStart:
     m_PersistentCalls:
       m_Calls:
@@ -3547,8 +3607,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 1
   m_ShadowVolumeIntensity: 0.869
   m_LocalBounds:
-    m_Center: {x: -1.3438, y: -5.5748997, z: 0}
-    m_Extent: {x: 1.7592, y: 1.9222, z: 0}
+    m_Center: {x: -1.3455501, y: -5.5696, z: 0}
+    m_Extent: {x: 1.75525, y: 1.9130999, z: 0}
   m_PointLightInnerAngle: 359.6
   m_PointLightOuterAngle: 359.6
   m_PointLightInnerRadius: 2
@@ -3716,7 +3776,7 @@ GameObject:
   m_Component:
   - component: {fileID: 402455890}
   - component: {fileID: 402455891}
-  m_Layer: 3
+  m_Layer: 5
   m_Name: Speaker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3756,12 +3816,29 @@ MonoBehaviour:
       \u043B\u0435\u0441\u0430. \u0418 \u0442\u0443\u0442 \u0417\u043B\u0430\u0442\u0430
       \u0447\u0442\u043E-\u0442\u043E \u0443\u0441\u043B\u044B\u0448\u0430\u043B\u0430."
     Audio: {fileID: 8300000, guid: f74be2404ccb4124db3ce647202b0b74, type: 3}
+    AudioSourceConfig:
+      priorityLevel: 128
+      Volume: 1
+      Pitch: 1
+      PanStereo: 0
+      ReverbZoneMix: 1
+      SpatialBlend: 1
+      RolloffMode: 0
+      MinDistance: 0.1
+      MaxDistance: 50
+      Spread: 0
+      DopplerLevel: 1
+      BypassEffects: 0
+      BypassListenerEffects: 0
+      BypassReverbZones: 0
+      IgnoreListenerVolume: 0
+      IgnoreListenerPause: 0
     DelayBeforeSaid: 0
     DelayAfterSaid: 0
-    cachedDuration: 0
+    cachedDuration: 6.2036667
   subtitles:
     mode: 0
-    unityReference: {fileID: 1514410469}
+    unityReference: {fileID: 859534840}
     rawReference:
       rid: -2
   references:
@@ -4068,18 +4145,52 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FirstTrySpeech:
   - Text: "\u0411\u0435\u0434\u043D\u0430\u044F \u043C\u043E\u044F \u0417\u043B\u0430\u0442\u0443\u0448\u043A\u0430\u2026
-      \u0414\u0430\u0436\u0435 [\u0437\u043D\u0430\u0445\u0430\u0440\u044C] \u043D\u0435
+      \u0414\u0430\u0436\u0435 \u0437\u043D\u0430\u0445\u0430\u0440\u044C \u043D\u0435
       \u0441\u043C\u043E\u0433 \u043F\u043E\u043C\u043E\u0447\u044C \u0442\u0435\u0431\u0435\u2026
-      \u041A\u0430\u043A \u0436\u0435 \u0442\u0435\u043F\u0435\u0440\u044C \u0431\u044B\u0442\u044C?"
-    Audio: {fileID: 0}
+      \u041A\u0430\u043A \u0436\u0435 \u0442\u0435\u043F\u0435\u0440\u044C \u0431\u044B\u0442\u044C?\r"
+    Audio: {fileID: 8300000, guid: 568a92082a3b21e46a4a4a15bf9eba29, type: 3}
+    AudioSourceConfig:
+      priorityLevel: 128
+      Volume: 1
+      Pitch: 1
+      PanStereo: 0
+      ReverbZoneMix: 1
+      SpatialBlend: 1
+      RolloffMode: 0
+      MinDistance: 0.1
+      MaxDistance: 50
+      Spread: 0
+      DopplerLevel: 1
+      BypassEffects: 0
+      BypassListenerEffects: 0
+      BypassReverbZones: 0
+      IgnoreListenerVolume: 0
+      IgnoreListenerPause: 0
     DelayBeforeSaid: 0
-    DelayAfterSaid: 0.3
-    cachedDuration: 0
+    DelayAfterSaid: 0
+    cachedDuration: 9.193107
   - Text: 
-    Audio: {fileID: 0}
+    Audio: {fileID: 8300000, guid: 3bb625af4058cf645bca79dbe8731b10, type: 3}
+    AudioSourceConfig:
+      priorityLevel: 128
+      Volume: 1
+      Pitch: 1
+      PanStereo: 0
+      ReverbZoneMix: 1
+      SpatialBlend: 1
+      RolloffMode: 0
+      MinDistance: 0.1
+      MaxDistance: 50
+      Spread: 0
+      DopplerLevel: 1
+      BypassEffects: 0
+      BypassListenerEffects: 0
+      BypassReverbZones: 0
+      IgnoreListenerVolume: 0
+      IgnoreListenerPause: 0
     DelayBeforeSaid: 2.5
     DelayAfterSaid: 2.5
-    cachedDuration: 0
+    cachedDuration: 5.9036736
   - Text: "\u0422\u043E\u0447\u043D\u043E! \u0421\u0435\u0433\u043E\u0434\u043D\u044F
       \u041A\u0443\u043F\u0430\u043B\u044C\u0435, \u0432 \u044D\u0442\u0443 \u043D\u043E\u0447\u044C
       \u0432 \u043B\u0435\u0441\u0443 \u0440\u0430\u0441\u0446\u0432\u0435\u0442\u0451\u0442
@@ -4087,49 +4198,189 @@ MonoBehaviour:
       \u041E\u043D\u0430 \u0436\u0435 \u0432\u043E\u043B\u0448\u0435\u0431\u043D\u0430\u044F,
       \u0430 \u0437\u043D\u0430\u0447\u0438\u0442 \u0438\u0441\u043F\u043E\u043B\u043D\u0438\u0442
       \u043B\u044E\u0431\u043E\u0435 \u0436\u0435\u043B\u0430\u043D\u0438\u0435!  "
-    Audio: {fileID: 0}
+    Audio: {fileID: 8300000, guid: 66ca87b1416b1e1449f73dadc848c3ba, type: 3}
+    AudioSourceConfig:
+      priorityLevel: 128
+      Volume: 1
+      Pitch: 1
+      PanStereo: 0
+      ReverbZoneMix: 1
+      SpatialBlend: 1
+      RolloffMode: 0
+      MinDistance: 0.1
+      MaxDistance: 50
+      Spread: 0
+      DopplerLevel: 1
+      BypassEffects: 0
+      BypassListenerEffects: 0
+      BypassReverbZones: 0
+      IgnoreListenerVolume: 0
+      IgnoreListenerPause: 0
     DelayBeforeSaid: 0
     DelayAfterSaid: 0.3
-    cachedDuration: 0
+    cachedDuration: 10.62
   - Text: "\u042F \u0435\u0435 \u043D\u0430\u0439\u0434\u0443 \u0438 \u0432\u044B\u043B\u0435\u0447\u0443
       \u0442\u0435\u0431\u044F! "
-    Audio: {fileID: 0}
+    Audio: {fileID: 8300000, guid: 612ad7ae40ec9a8478da4b0cff349415, type: 3}
+    AudioSourceConfig:
+      priorityLevel: 128
+      Volume: 1
+      Pitch: 1
+      PanStereo: 0
+      ReverbZoneMix: 1
+      SpatialBlend: 1
+      RolloffMode: 0
+      MinDistance: 0.1
+      MaxDistance: 50
+      Spread: 0
+      DopplerLevel: 1
+      BypassEffects: 0
+      BypassListenerEffects: 0
+      BypassReverbZones: 0
+      IgnoreListenerVolume: 0
+      IgnoreListenerPause: 0
     DelayBeforeSaid: 0
     DelayAfterSaid: 0.3
-    cachedDuration: 0
-  - Text: "\u0410 \u043B\u0435\u0441 \u043C\u043D\u0435 \u043D\u0435 \u0441\u0442\u0440\u0430\u0448\u0435\u043D
-      \u0438 \u0442\u0435\u043C\u043D\u043E\u0442\u044B \u044F \u043D\u0435 \u0431\u043E\u044E\u0441\u044C! "
-    Audio: {fileID: 0}
+    cachedDuration: 2.19
+  - Text: "\u0410 \u043B\u0435\u0441 \u043C\u043D\u0435 \u043D\u0435 \u0441\u0442\u0440\u0430\u0448\u0435\u043D!"
+    Audio: {fileID: 8300000, guid: 049899deae5928c4e82aef20b746b65b, type: 3}
+    AudioSourceConfig:
+      priorityLevel: 128
+      Volume: 1
+      Pitch: 1
+      PanStereo: 0
+      ReverbZoneMix: 1
+      SpatialBlend: 1
+      RolloffMode: 0
+      MinDistance: 0.1
+      MaxDistance: 50
+      Spread: 0
+      DopplerLevel: 1
+      BypassEffects: 0
+      BypassListenerEffects: 0
+      BypassReverbZones: 0
+      IgnoreListenerVolume: 0
+      IgnoreListenerPause: 0
     DelayBeforeSaid: 0
     DelayAfterSaid: 0.3
-    cachedDuration: 0
+    cachedDuration: 1.7915626
+  - Text: "\u0418 \u0442\u0435\u043C\u043D\u043E\u0442\u044B \u044F \u043D\u0435
+      \u0431\u043E\u044E\u0441\u044C!"
+    Audio: {fileID: 8300000, guid: 52b04f77e585874408d1229fa7d6b9d5, type: 3}
+    AudioSourceConfig:
+      priorityLevel: 128
+      Volume: 1
+      Pitch: 1
+      PanStereo: 0
+      ReverbZoneMix: 1
+      SpatialBlend: 1
+      RolloffMode: 0
+      MinDistance: 0.1
+      MaxDistance: 50
+      Spread: 0
+      DopplerLevel: 1
+      BypassEffects: 0
+      BypassListenerEffects: 0
+      BypassReverbZones: 0
+      IgnoreListenerVolume: 0
+      IgnoreListenerPause: 0
+    DelayBeforeSaid: 0
+    DelayAfterSaid: 0.3
+    cachedDuration: 1.63
   - Text: "\u0427\u0435\u0440\u043D\u044B\u0448, \u0430 \u0432\u0435\u0434\u044C
-      \u0442\u044B \u0443\u0436\u0435 \u0431\u044B\u0432\u0430\u043B \u0432 \u043B\u0435\u0441\u0443!
-      \u041F\u043E\u0439\u0434\u0451\u0448\u044C \u0441\u043E \u043C\u043D\u043E\u0439?   "
-    Audio: {fileID: 0}
+      \u0442\u044B \u0443\u0436\u0435 \u0431\u044B\u0432\u0430\u043B \u0432 \u043B\u0435\u0441\u0443.
+      \u041F\u043E\u0439\u0434\u0451\u0448\u044C \u0441\u043E \u043C\u043D\u043E\u0439?"
+    Audio: {fileID: 8300000, guid: eb38cc9e90668b1459c2a822def148fa, type: 3}
+    AudioSourceConfig:
+      priorityLevel: 128
+      Volume: 1
+      Pitch: 1
+      PanStereo: 0
+      ReverbZoneMix: 1
+      SpatialBlend: 1
+      RolloffMode: 0
+      MinDistance: 0.1
+      MaxDistance: 50
+      Spread: 0
+      DopplerLevel: 1
+      BypassEffects: 0
+      BypassListenerEffects: 0
+      BypassReverbZones: 0
+      IgnoreListenerVolume: 0
+      IgnoreListenerPause: 0
     DelayBeforeSaid: 0
     DelayAfterSaid: 0.3
-    cachedDuration: 0
-  - Text: "\u041C\u0440\u043C\u044F\u0443?"
-    Audio: {fileID: 0}
+    cachedDuration: 5.0903125
+  - Text: 
+    Audio: {fileID: 8300000, guid: 3fa1c28d8707fd945b938a43c28d38d3, type: 3}
+    AudioSourceConfig:
+      priorityLevel: 128
+      Volume: 1
+      Pitch: 1
+      PanStereo: 0
+      ReverbZoneMix: 1
+      SpatialBlend: 1
+      RolloffMode: 0
+      MinDistance: 0.1
+      MaxDistance: 50
+      Spread: 0
+      DopplerLevel: 1
+      BypassEffects: 0
+      BypassListenerEffects: 0
+      BypassReverbZones: 0
+      IgnoreListenerVolume: 0
+      IgnoreListenerPause: 0
     DelayBeforeSaid: 0
-    DelayAfterSaid: 1
-    cachedDuration: 0
+    DelayAfterSaid: 0.3
+    cachedDuration: 2.1681633
   - Text: "\u042F \u0437\u043D\u0430\u043B, \u0447\u0442\u043E \u0442\u044B \u0441\u043E\u0433\u043B\u0430\u0441\u0438\u0448\u044C\u0441\u044F! "
-    Audio: {fileID: 0}
+    Audio: {fileID: 8300000, guid: 9f3a6f0b0e25cb4478e9d410ef270f16, type: 3}
+    AudioSourceConfig:
+      priorityLevel: 128
+      Volume: 1
+      Pitch: 1
+      PanStereo: 0
+      ReverbZoneMix: 1
+      SpatialBlend: 1
+      RolloffMode: 0
+      MinDistance: 0.1
+      MaxDistance: 50
+      Spread: 0
+      DopplerLevel: 1
+      BypassEffects: 0
+      BypassListenerEffects: 0
+      BypassReverbZones: 0
+      IgnoreListenerVolume: 0
+      IgnoreListenerPause: 0
     DelayBeforeSaid: 0
-    DelayAfterSaid: 0.3
-    cachedDuration: 0
+    DelayAfterSaid: 0
+    cachedDuration: 2.38875
   AlternativeSpeech:
-  - Text: "\u0425\u043E\u0447\u0435\u0448\u044C \u043D\u0430 \u0443\u043B\u0438\u0446\u0443?
-      \u0414\u0430 \u0438 \u043C\u043D\u0435 \u043F\u043E\u0440\u0430 \u0438\u0434\u0442\u0438,
-      \u041F\u0430\u043F\u0430\u0440\u0430\u0446\u044C-\u043A\u0432\u0435\u0442\u043A\u0443
-      \u043C\u043E\u0436\u043D\u043E \u043D\u0430\u0439\u0442\u0438 \u0442\u043E\u043B\u044C\u043A\u043E
-      \u0441\u0435\u0433\u043E\u0434\u043D\u044F"
-    Audio: {fileID: 8300000, guid: 568a92082a3b21e46a4a4a15bf9eba29, type: 3}
+  - Text: "\u0422\u044B \u043F\u0440\u0430\u0432, \u0427\u0435\u0440\u043D\u044B\u0448,
+      \u043D\u0443\u0436\u043D\u043E \u0442\u043E\u0440\u043E\u043F\u0438\u0442\u044C\u0441\u044F.
+      \u041C\u044B \u0434\u043E\u043B\u0436\u043D\u044B \u043A\u0430\u043A \u043C\u043E\u0436\u043D\u043E
+      \u0441\u043A\u043E\u0440\u0435\u0435 \u043F\u043E\u043C\u043E\u0447\u044C \u0417\u043B\u0430\u0442\u0435!"
+    Audio: {fileID: 8300000, guid: 452c4f2d1f234494e9913ff5f60aa44e, type: 3}
+    AudioSourceConfig:
+      priorityLevel: 128
+      Volume: 1
+      Pitch: 1
+      PanStereo: 0
+      ReverbZoneMix: 1
+      SpatialBlend: 1
+      RolloffMode: 0
+      MinDistance: 0.1
+      MaxDistance: 50
+      Spread: 0
+      DopplerLevel: 1
+      BypassEffects: 0
+      BypassListenerEffects: 0
+      BypassReverbZones: 0
+      IgnoreListenerVolume: 0
+      IgnoreListenerPause: 0
     DelayBeforeSaid: 0
     DelayAfterSaid: 0.5
-    cachedDuration: 0
+    cachedDuration: 5.11875
   SubtitlesView:
     mode: 0
     unityReference: {fileID: 1514410469}
@@ -4661,22 +4912,14 @@ MonoBehaviour:
       m_Calls: []
   AfterFadeIn:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1332600837}
-        m_TargetAssemblyTypeName: Dialogue.ChainSpeaker, Assembly-CSharp
-        m_MethodName: JustTell
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
+  BeforeFadeOut:
+    m_PersistentCalls:
+      m_Calls: []
   AfterFadeOut:
     m_PersistentCalls:
       m_Calls: []
+  bindChainSpeakerOnStart: 1
 --- !u!114 &480677456
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4786,22 +5029,14 @@ MonoBehaviour:
       m_Calls: []
   AfterFadeIn:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1234649547}
-        m_TargetAssemblyTypeName: Dialogue.ChainSpeaker, Assembly-CSharp
-        m_MethodName: JustTell
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
+  BeforeFadeOut:
+    m_PersistentCalls:
+      m_Calls: []
   AfterFadeOut:
     m_PersistentCalls:
       m_Calls: []
+  bindChainSpeakerOnStart: 1
 --- !u!114 &501308708
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4906,6 +5141,8 @@ PlayableDirector:
     value: {fileID: 404196229}
   - key: {fileID: -5695136510430014700, guid: 6e2f3bbdb82d7f14e9550f026d925f01, type: 2}
     value: {fileID: 1054450565}
+  - key: {fileID: -3637314730575561596, guid: 6e2f3bbdb82d7f14e9550f026d925f01, type: 2}
+    value: {fileID: 404905214}
   m_ExposedReferences:
     m_References:
     - 58fd55e20482bd44c9d7d5e822af5fe1: {fileID: 6732909966977288568}
@@ -4916,6 +5153,7 @@ PlayableDirector:
     - d482de7a439752e42bcbd05862a6a803: {fileID: 6732909966977288568}
     - cfd0342be6acc3d4d9e398d530f5830f: {fileID: 1042581804}
     - 5d30f291e8b79274c90834220157cc68: {fileID: 1922170540}
+    - 94db415b0cf709b41885624fe95365f5: {fileID: 6732909966977288568}
     - 04d0ced4de8f6c44da1dbecf213d5669: {fileID: 2095549450}
     - 0f147a973bc5850428e974ad52639252: {fileID: 2095549447}
     - 26fe94ac7cd0be8469a0cd0faea390f8: {fileID: 1922170540}
@@ -4951,7 +5189,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogueManager: {fileID: 7491033804132257539}
   playableDirector: {fileID: 513049886}
-  endFrame: 1890
+  endFrame: 3000
   blackScreenCreator: {fileID: 93917074}
 --- !u!1 &523796235
 GameObject:
@@ -5036,7 +5274,7 @@ GameObject:
   m_Component:
   - component: {fileID: 538084428}
   - component: {fileID: 538084429}
-  m_Layer: 3
+  m_Layer: 5
   m_Name: Speaker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5077,12 +5315,29 @@ MonoBehaviour:
       \u043F\u043E\u043C\u043E\u0449\u0438 \u0443 \u0437\u043D\u0430\u0445\u0430\u0440\u044F
       \u0438\u0437 \u0441\u043E\u0441\u0435\u0434\u043D\u0435\u0439 \u0434\u0435\u0440\u0435\u0432\u043D\u0438.\r"
     Audio: {fileID: 8300000, guid: 43730614a2925a44c9edd300a02a5c5d, type: 3}
+    AudioSourceConfig:
+      priorityLevel: 128
+      Volume: 1
+      Pitch: 1
+      PanStereo: 0
+      ReverbZoneMix: 1
+      SpatialBlend: 1
+      RolloffMode: 0
+      MinDistance: 0.1
+      MaxDistance: 50
+      Spread: 0
+      DopplerLevel: 1
+      BypassEffects: 0
+      BypassListenerEffects: 0
+      BypassReverbZones: 0
+      IgnoreListenerVolume: 0
+      IgnoreListenerPause: 0
     DelayBeforeSaid: 0
     DelayAfterSaid: 0
-    cachedDuration: 0
+    cachedDuration: 5.6793127
   subtitles:
     mode: 0
-    unityReference: {fileID: 1514410469}
+    unityReference: {fileID: 1671889223}
     rawReference:
       rid: -2
   references:
@@ -5387,21 +5642,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FirstTrySpeech:
-  - Text: "\u0425\u043E\u0447\u0435\u0448\u044C \u043A\u0443\u0448\u0430\u0442\u044C,
-      \u041C\u0430\u0442\u0432\u0435\u044E\u0448\u043A\u0430? \u0421\u0435\u0439\u0447\u0430\u0441
-      \u043C\u044B \u0442\u0435\u0431\u044F \u043D\u0430\u043A\u043E\u0440\u043C\u0438\u043C\u0438"
-    Audio: {fileID: 8300000, guid: 568a92082a3b21e46a4a4a15bf9eba29, type: 3}
+  - Text: "\u0422\u044B \u0433\u043E\u043B\u043E\u0434\u043D\u044B\u0439, \u0427\u0435\u0440\u043D\u044B\u0448?
+      \u0414\u0430\u0432\u0430\u0439 \u044F \u043D\u0430\u043B\u044C\u044E \u0442\u0435\u0431\u0435
+      \u043C\u043E\u043B\u043E\u0447\u043A\u0430."
+    Audio: {fileID: 8300000, guid: 87ea1b138e8e5184ab7ab23c7e0fefdb, type: 3}
+    AudioSourceConfig:
+      priorityLevel: 128
+      Volume: 1
+      Pitch: 1
+      PanStereo: 0
+      ReverbZoneMix: 1
+      SpatialBlend: 1
+      RolloffMode: 0
+      MinDistance: 0.1
+      MaxDistance: 50
+      Spread: 0
+      DopplerLevel: 1
+      BypassEffects: 0
+      BypassListenerEffects: 0
+      BypassReverbZones: 0
+      IgnoreListenerVolume: 0
+      IgnoreListenerPause: 0
     DelayBeforeSaid: 0
     DelayAfterSaid: 0
-    cachedDuration: 0
-  AlternativeSpeech:
-  - Text: "\u041C\u043E\u043B\u043E\u043A\u043E \u043A\u043E\u043D\u0447\u0438\u043B\u043E\u0441\u044C,
-      \u041C\u0430\u0442\u0432\u0435\u044E\u0448\u043A\u0430. \u0421\u043A\u043E\u0440\u043E
-      \u043D\u0430\u0431\u0435\u0440\u0443 \u043D\u043E\u0432\u044B\u0439 \u043A\u0443\u0432\u0448\u0438\u043D"
-    Audio: {fileID: 8300000, guid: 568a92082a3b21e46a4a4a15bf9eba29, type: 3}
-    DelayBeforeSaid: 0
-    DelayAfterSaid: 0
-    cachedDuration: 0
+    cachedDuration: 3.2703125
+  AlternativeSpeech: []
   SubtitlesView:
     mode: 0
     unityReference: {fileID: 1514410469}
@@ -5466,6 +5731,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cutsceneStarter: {fileID: 324369289}
   canCatInteract: 0
+--- !u!114 &604893966 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3402555579230904323, guid: 0632c63fb65b1f340b1ae628fc7206cf, type: 3}
+  m_PrefabInstance: {fileID: 1184977934}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &619479246
 GameObject:
   m_ObjectHideFlags: 0
@@ -5535,22 +5811,14 @@ MonoBehaviour:
       m_Calls: []
   AfterFadeIn:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 153981788}
-        m_TargetAssemblyTypeName: Dialogue.ChainSpeaker, Assembly-CSharp
-        m_MethodName: JustTell
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
+  BeforeFadeOut:
+    m_PersistentCalls:
+      m_Calls: []
   AfterFadeOut:
     m_PersistentCalls:
       m_Calls: []
+  bindChainSpeakerOnStart: 1
 --- !u!114 &619479250
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5650,22 +5918,14 @@ MonoBehaviour:
       m_Calls: []
   AfterFadeIn:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 859746921}
-        m_TargetAssemblyTypeName: Dialogue.ChainSpeaker, Assembly-CSharp
-        m_MethodName: JustTell
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
+  BeforeFadeOut:
+    m_PersistentCalls:
+      m_Calls: []
   AfterFadeOut:
     m_PersistentCalls:
       m_Calls: []
+  bindChainSpeakerOnStart: 1
 --- !u!114 &624891205
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5696,6 +5956,90 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &628579029
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 628579030}
+  - component: {fileID: 628579031}
+  m_Layer: 0
+  m_Name: Shadow
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &628579030
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 628579029}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.03, y: -0.51, z: 0}
+  m_LocalScale: {x: 0.28, y: 0.308, z: 0.28}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 199431207}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &628579031
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 628579029}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: -1553855423
+  m_SortingLayer: 3
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: ad8c32aa531f3404bb33ccbaf39e2e12, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.59607846}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 3.87, y: 1.93}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!1 &634587046
 GameObject:
   m_ObjectHideFlags: 0
@@ -6037,6 +6381,7 @@ GameObject:
   m_Component:
   - component: {fileID: 665762108}
   - component: {fileID: 665762109}
+  - component: {fileID: 665762110}
   m_Layer: 5
   m_Name: SlideShowParent
   m_TagString: Untagged
@@ -6092,6 +6437,19 @@ MonoBehaviour:
   playOnAwake: 1
   childrenComponentsMode: 1
   slides:
+  - {fileID: 1869214160}
+  - {fileID: 1980860326}
+  - {fileID: 156445514}
+  - {fileID: 902705525}
+  - {fileID: 688236905}
+  - {fileID: 624891204}
+  - {fileID: 775222510}
+  - {fileID: 619479249}
+  - {fileID: 871613392}
+  - {fileID: 178267147}
+  - {fileID: 960914061}
+  - {fileID: 501308707}
+  - {fileID: 480677455}
   - {fileID: 1858794512}
   slideStructs:
   - Slide: {fileID: 21300000, guid: 096ef4d5eabc24149a113e0a3457e28e, type: 3}
@@ -6109,9 +6467,40 @@ MonoBehaviour:
     HoldTime: 1
     WaitAfter: 0
     FadeTime: 0.6
+  playLast: 1
+  SlideshowStarted:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 665762110}
+        m_TargetAssemblyTypeName: Audio.MusicPlayer, Assembly-CSharp
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   SlideshowEnded:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &665762110
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 665762107}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f6eb6a1e5cf81947a2c2772b33be04a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playlist: {fileID: 11400000, guid: 4a7554d83c5516e44a67b353890a20cd, type: 2}
+  playImmediately: 1
+  musicManager: {fileID: 1945025022}
 --- !u!1 &681937884
 GameObject:
   m_ObjectHideFlags: 0
@@ -6287,22 +6676,14 @@ MonoBehaviour:
       m_Calls: []
   AfterFadeIn:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1901955424}
-        m_TargetAssemblyTypeName: Dialogue.ChainSpeaker, Assembly-CSharp
-        m_MethodName: JustTell
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
+  BeforeFadeOut:
+    m_PersistentCalls:
+      m_Calls: []
   AfterFadeOut:
     m_PersistentCalls:
       m_Calls: []
+  bindChainSpeakerOnStart: 1
 --- !u!114 &688236906
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6344,7 +6725,7 @@ GameObject:
   - component: {fileID: 695168948}
   - component: {fileID: 695168950}
   - component: {fileID: 695168949}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: CutsceneCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6367,6 +6748,8 @@ RectTransform:
   - {fileID: 93917073}
   - {fileID: 1184977935}
   - {fileID: 1514410470}
+  - {fileID: 1671889222}
+  - {fileID: 859534839}
   m_Father: {fileID: 1885351567}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -6417,7 +6800,7 @@ Canvas:
   m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
-  m_SortingLayerID: 0
+  m_SortingLayerID: 1439697815
   m_SortingOrder: 3
   m_TargetDisplay: 0
 --- !u!1 &698130713
@@ -6975,22 +7358,14 @@ MonoBehaviour:
       m_Calls: []
   AfterFadeIn:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1034518250}
-        m_TargetAssemblyTypeName: Dialogue.ChainSpeaker, Assembly-CSharp
-        m_MethodName: JustTell
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
+  BeforeFadeOut:
+    m_PersistentCalls:
+      m_Calls: []
   AfterFadeOut:
     m_PersistentCalls:
       m_Calls: []
+  bindChainSpeakerOnStart: 1
 --- !u!114 &775222511
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7154,6 +7529,140 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8983533328905800291, guid: 5d3b0168371d4d74bb8508d8b8cf29aa, type: 3}
   m_PrefabInstance: {fileID: 356808517}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &859534838
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 695168948}
+    m_Modifications:
+    - target: {fileID: 5878860240890201876, guid: 79ebc9a83d0721c48a620c4536eef5a9, type: 3}
+      propertyPath: m_Name
+      value: SubtitlesView Slideshow (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5878860240890201876, guid: 79ebc9a83d0721c48a620c4536eef5a9, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6491097914779931501, guid: 79ebc9a83d0721c48a620c4536eef5a9, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6491097914779931501, guid: 79ebc9a83d0721c48a620c4536eef5a9, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6491097914779931501, guid: 79ebc9a83d0721c48a620c4536eef5a9, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6491097914779931501, guid: 79ebc9a83d0721c48a620c4536eef5a9, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6491097914779931501, guid: 79ebc9a83d0721c48a620c4536eef5a9, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6491097914779931501, guid: 79ebc9a83d0721c48a620c4536eef5a9, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6491097914779931501, guid: 79ebc9a83d0721c48a620c4536eef5a9, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6491097914779931501, guid: 79ebc9a83d0721c48a620c4536eef5a9, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: -950
+      objectReference: {fileID: 0}
+    - target: {fileID: 6491097914779931501, guid: 79ebc9a83d0721c48a620c4536eef5a9, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6491097914779931501, guid: 79ebc9a83d0721c48a620c4536eef5a9, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6491097914779931501, guid: 79ebc9a83d0721c48a620c4536eef5a9, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6491097914779931501, guid: 79ebc9a83d0721c48a620c4536eef5a9, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6491097914779931501, guid: 79ebc9a83d0721c48a620c4536eef5a9, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6491097914779931501, guid: 79ebc9a83d0721c48a620c4536eef5a9, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6491097914779931501, guid: 79ebc9a83d0721c48a620c4536eef5a9, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6491097914779931501, guid: 79ebc9a83d0721c48a620c4536eef5a9, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6491097914779931501, guid: 79ebc9a83d0721c48a620c4536eef5a9, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -475.00024
+      objectReference: {fileID: 0}
+    - target: {fileID: 6491097914779931501, guid: 79ebc9a83d0721c48a620c4536eef5a9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6491097914779931501, guid: 79ebc9a83d0721c48a620c4536eef5a9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6491097914779931501, guid: 79ebc9a83d0721c48a620c4536eef5a9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8797315435415026358, guid: 79ebc9a83d0721c48a620c4536eef5a9, type: 3}
+      propertyPath: useImage
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8797315435415026358, guid: 79ebc9a83d0721c48a620c4536eef5a9, type: 3}
+      propertyPath: outputTmpText
+      value: 
+      objectReference: {fileID: 1292381281}
+    - target: {fileID: 8797315435415026358, guid: 79ebc9a83d0721c48a620c4536eef5a9, type: 3}
+      propertyPath: useSlideshowDelay
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8797315435415026358, guid: 79ebc9a83d0721c48a620c4536eef5a9, type: 3}
+      propertyPath: additionalImageToFade
+      value: 
+      objectReference: {fileID: 237830383}
+    m_RemovedComponents: []
+    m_RemovedGameObjects:
+    - {fileID: 3641008339879505677, guid: 79ebc9a83d0721c48a620c4536eef5a9, type: 3}
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 79ebc9a83d0721c48a620c4536eef5a9, type: 3}
+--- !u!224 &859534839 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 6491097914779931501, guid: 79ebc9a83d0721c48a620c4536eef5a9, type: 3}
+  m_PrefabInstance: {fileID: 859534838}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &859534840 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8797315435415026358, guid: 79ebc9a83d0721c48a620c4536eef5a9, type: 3}
+  m_PrefabInstance: {fileID: 859534838}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a65b7f348a84fd48bb8135e4c68d40f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &859746919
 GameObject:
   m_ObjectHideFlags: 0
@@ -7164,7 +7673,7 @@ GameObject:
   m_Component:
   - component: {fileID: 859746920}
   - component: {fileID: 859746921}
-  m_Layer: 3
+  m_Layer: 5
   m_Name: Speaker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7206,12 +7715,29 @@ MonoBehaviour:
       \u0432 \u043B\u0435\u0441. \u041A\u0430\u0437\u0430\u043B\u043E\u0441\u044C,
       \u0442\u0430\u043C \u0431\u044B\u043B \u043A\u0442\u043E-\u0442\u043E \u0435\u0449\u0451.\r"
     Audio: {fileID: 8300000, guid: 28236499b1976c141808b39524195bbc, type: 3}
+    AudioSourceConfig:
+      priorityLevel: 128
+      Volume: 1
+      Pitch: 1
+      PanStereo: 0
+      ReverbZoneMix: 1
+      SpatialBlend: 1
+      RolloffMode: 0
+      MinDistance: 0.1
+      MaxDistance: 50
+      Spread: 0
+      DopplerLevel: 1
+      BypassEffects: 0
+      BypassListenerEffects: 0
+      BypassReverbZones: 0
+      IgnoreListenerVolume: 0
+      IgnoreListenerPause: 0
     DelayBeforeSaid: 0
     DelayAfterSaid: 0
-    cachedDuration: 0
+    cachedDuration: 7.8735833
   subtitles:
     mode: 0
-    unityReference: {fileID: 1514410469}
+    unityReference: {fileID: 859534840}
     rawReference:
       rid: -2
   references:
@@ -7288,22 +7814,14 @@ MonoBehaviour:
       m_Calls: []
   AfterFadeIn:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2051480788}
-        m_TargetAssemblyTypeName: Dialogue.ChainSpeaker, Assembly-CSharp
-        m_MethodName: JustTell
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
+  BeforeFadeOut:
+    m_PersistentCalls:
+      m_Calls: []
   AfterFadeOut:
     m_PersistentCalls:
       m_Calls: []
+  bindChainSpeakerOnStart: 1
 --- !u!114 &871613393
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7608,22 +8126,14 @@ MonoBehaviour:
       m_Calls: []
   AfterFadeIn:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 21463114}
-        m_TargetAssemblyTypeName: Dialogue.ChainSpeaker, Assembly-CSharp
-        m_MethodName: JustTell
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
+  BeforeFadeOut:
+    m_PersistentCalls:
+      m_Calls: []
   AfterFadeOut:
     m_PersistentCalls:
       m_Calls: []
+  bindChainSpeakerOnStart: 1
 --- !u!114 &902705526
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7693,7 +8203,7 @@ PrefabInstance:
     - target: {fileID: 7349593977763872040, guid: 5d3b0168371d4d74bb8508d8b8cf29aa, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: f8c570b39c5031648bbd5530fde16a92, type: 3}
+      objectReference: {fileID: 21300000, guid: 82c55483448af594aa2460b6e9783b67, type: 3}
     - target: {fileID: 8983533328905800291, guid: 5d3b0168371d4d74bb8508d8b8cf29aa, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.02
@@ -7843,8 +8353,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 1
   m_ShadowVolumeIntensity: 0.869
   m_LocalBounds:
-    m_Center: {x: 0.46139997, y: -5.58245, z: 0}
-    m_Extent: {x: 1.4621999, y: 1.9643501, z: 0}
+    m_Center: {x: 0.47320002, y: -5.5926, z: 0}
+    m_Extent: {x: 1.4596, y: 1.9612, z: 0}
   m_PointLightInnerAngle: 359.6
   m_PointLightOuterAngle: 359.6
   m_PointLightInnerRadius: 2
@@ -7928,22 +8438,14 @@ MonoBehaviour:
       m_Calls: []
   AfterFadeIn:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 538084429}
-        m_TargetAssemblyTypeName: Dialogue.ChainSpeaker, Assembly-CSharp
-        m_MethodName: JustTell
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
+  BeforeFadeOut:
+    m_PersistentCalls:
+      m_Calls: []
   AfterFadeOut:
     m_PersistentCalls:
       m_Calls: []
+  bindChainSpeakerOnStart: 1
 --- !u!114 &960914062
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8272,7 +8774,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1034518249}
   - component: {fileID: 1034518250}
-  m_Layer: 3
+  m_Layer: 5
   m_Name: Speaker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8311,12 +8813,29 @@ MonoBehaviour:
       \u0432\u0435\u0442\u0435\u0440 \u0438\u0433\u0440\u0430\u043B \u0441 \u043C\u043E\u0438\u043C
       \u0432\u043E\u043E\u0431\u0440\u0430\u0436\u0435\u043D\u0438\u0435\u043C."
     Audio: {fileID: 8300000, guid: 0659f22a69d130b4f9bbf69bf736be69, type: 3}
+    AudioSourceConfig:
+      priorityLevel: 128
+      Volume: 1
+      Pitch: 1
+      PanStereo: 0
+      ReverbZoneMix: 1
+      SpatialBlend: 1
+      RolloffMode: 0
+      MinDistance: 0.1
+      MaxDistance: 50
+      Spread: 0
+      DopplerLevel: 1
+      BypassEffects: 0
+      BypassListenerEffects: 0
+      BypassReverbZones: 0
+      IgnoreListenerVolume: 0
+      IgnoreListenerPause: 0
     DelayBeforeSaid: 0
     DelayAfterSaid: 0
-    cachedDuration: 0
+    cachedDuration: 3.1623333
   subtitles:
     mode: 0
-    unityReference: {fileID: 1514410469}
+    unityReference: {fileID: 1671889223}
     rawReference:
       rid: -2
   references:
@@ -8381,7 +8900,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1553855423
   m_SortingLayer: 3
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: a888ffa4eef52944197b069a483204eb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -8401,13 +8920,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1041349922}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: 0.3631718, w: 0.9317222}
-  m_LocalPosition: {x: 14.69, y: 1.04, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0.044544537, w: 0.9990074}
+  m_LocalPosition: {x: 14.02, y: 0.9, z: 0}
   m_LocalScale: {x: 1.18, y: 1.18, z: 1.18}
   m_ConstrainProportionsScale: 1
-  m_Children: []
+  m_Children:
+  - {fileID: 1067849541}
   m_Father: {fileID: 1911524845}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 42.59}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -5.106}
 --- !u!1 &1042581801
 GameObject:
   m_ObjectHideFlags: 0
@@ -8585,6 +9105,7 @@ Transform:
   - {fileID: 388219708}
   - {fileID: 1502564047}
   - {fileID: 1795956476677751910}
+  - {fileID: 1615994180}
   - {fileID: 1795956476643893301}
   - {fileID: 1041365443695265406}
   - {fileID: 1795956476753829964}
@@ -8647,11 +9168,10 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7209340483256552939, guid: b226e54f4be684b4f82c70458cacaaab, type: 3}
   m_PrefabInstance: {fileID: 7703565356622517965}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1054450565
+--- !u!114 &1054450565 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 2749134816934214972, guid: b226e54f4be684b4f82c70458cacaaab, type: 3}
+  m_PrefabInstance: {fileID: 7703565356622517965}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1054450547}
   m_Enabled: 1
@@ -8659,24 +9179,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Events:
-    m_Signals:
-    - {fileID: 11400000, guid: 657523eb1901cde4ab5b413477a4ffdf, type: 2}
-    m_Events:
-    - m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1054450560}
-          m_TargetAssemblyTypeName: Spine.Unity.SkeletonAnimation, spine-unity
-          m_MethodName: ClearState
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!114 &1065344955
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8689,9 +9191,94 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a7df89ef3e01b14ab822c019ac480aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  oneTimer: 1
   emoteType: 0
   emoteIcons:
   - {fileID: 21300000, guid: 149d0a16795c7604da1f68c8e3e557e4, type: 3}
+--- !u!1 &1067849540
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1067849541}
+  - component: {fileID: 1067849542}
+  m_Layer: 0
+  m_Name: Shadow
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1067849541
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1067849540}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: 0.09446471, w: 0.9955282}
+  m_LocalPosition: {x: 0.058, y: -0.001, z: 0}
+  m_LocalScale: {x: 0.34, y: 0.61200005, z: 0.27199998}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 1041349924}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 10.841}
+--- !u!212 &1067849542
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1067849540}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: -1553855423
+  m_SortingLayer: 3
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: ad8c32aa531f3404bb33ccbaf39e2e12, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.49019608}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 3.87, y: 1.93}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!1 &1078923246
 GameObject:
   m_ObjectHideFlags: 3
@@ -9012,7 +9599,8 @@ Transform:
   m_LocalPosition: {x: -2.9100008, y: 0.83, z: 1}
   m_LocalScale: {x: 1.4999999, y: 1.4999999, z: 1.4999999}
   m_ConstrainProportionsScale: 1
-  m_Children: []
+  m_Children:
+  - {fileID: 1309414240}
   m_Father: {fileID: 650290302}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1129111304
@@ -9055,7 +9643,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1553855423
   m_SortingLayer: 3
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 804f3fd52725d664fb11700969eff0d8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -9383,9 +9971,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 695168948}
     m_Modifications:
+    - target: {fileID: 3402555579230904323, guid: 0632c63fb65b1f340b1ae628fc7206cf, type: 3}
+      propertyPath: m_text
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 3726585329400342371, guid: 0632c63fb65b1f340b1ae628fc7206cf, type: 3}
       propertyPath: m_Name
       value: LinesContainer
+      objectReference: {fileID: 0}
+    - target: {fileID: 3996998158842811421, guid: 0632c63fb65b1f340b1ae628fc7206cf, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3996998158842811421, guid: 0632c63fb65b1f340b1ae628fc7206cf, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3996998158842811421, guid: 0632c63fb65b1f340b1ae628fc7206cf, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 102
       objectReference: {fileID: 0}
     - target: {fileID: 8480641837217862310, guid: 0632c63fb65b1f340b1ae628fc7206cf, type: 3}
       propertyPath: m_Pivot.x
@@ -9469,7 +10073,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 3359395131988125061, guid: 0632c63fb65b1f340b1ae628fc7206cf, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1292381284}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0632c63fb65b1f340b1ae628fc7206cf, type: 3}
 --- !u!224 &1184977935 stripped
@@ -9540,7 +10147,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1234649546}
   - component: {fileID: 1234649547}
-  m_Layer: 3
+  m_Layer: 5
   m_Name: Speaker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9581,12 +10188,29 @@ MonoBehaviour:
       \u0442\u0440\u0430\u0432, \u0438 \u0434\u0430\u0436\u0435 \u0432\u043E\u0440\u043E\u0436\u0438\u043B
       \u043D\u0430\u0434 \u043D\u0435\u0439.\r"
     Audio: {fileID: 8300000, guid: 53d0da54e28b5024ca4e961fd9947d55, type: 3}
+    AudioSourceConfig:
+      priorityLevel: 128
+      Volume: 1
+      Pitch: 1
+      PanStereo: 0
+      ReverbZoneMix: 1
+      SpatialBlend: 1
+      RolloffMode: 0
+      MinDistance: 0.1
+      MaxDistance: 50
+      Spread: 0
+      DopplerLevel: 1
+      BypassEffects: 0
+      BypassListenerEffects: 0
+      BypassReverbZones: 0
+      IgnoreListenerVolume: 0
+      IgnoreListenerPause: 0
     DelayBeforeSaid: 0
     DelayAfterSaid: 0
-    cachedDuration: 0
+    cachedDuration: 6.87325
   subtitles:
     mode: 0
-    unityReference: {fileID: 1514410469}
+    unityReference: {fileID: 859534840}
     rawReference:
       rid: -2
   references:
@@ -9752,6 +10376,8 @@ PlayableDirector:
     value: {fileID: 388219707}
   - key: {fileID: -7491671259218587895, guid: 786ca155ecfb04c4c93ebad3395f0152, type: 2}
     value: {fileID: 1054450565}
+  - key: {fileID: -3382524695504182768, guid: 786ca155ecfb04c4c93ebad3395f0152, type: 2}
+    value: {fileID: 1615994179}
   m_ExposedReferences:
     m_References:
     - 2fc0a315397f1df43bc438e316fda99d: {fileID: 415539562}
@@ -9839,6 +10465,155 @@ MonoBehaviour:
   - {x: -0.22971916, y: -4.6224694, z: 0}
   - {x: -0.06137085, y: -3.7429366, z: 0}
   - {x: -1.497078, y: -1.7540145, z: 0}
+--- !u!1 &1292381280
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1292381284}
+  - component: {fileID: 1292381283}
+  - component: {fileID: 1292381281}
+  - component: {fileID: 1292381282}
+  m_Layer: 5
+  m_Name: SubtitlesText Slide (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1292381281
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1292381280}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: 
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 6432a3f5fdefaa34ebe8a22a2ee8cf75, type: 2}
+  m_sharedMaterial: {fileID: -3726961341794439189, guid: 6432a3f5fdefaa34ebe8a22a2ee8cf75, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 45
+  m_fontSizeBase: 45
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 55
+  m_fontSizeMax: 60
+  m_fontStyle: 0
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: -30
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_enableWordWrapping: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 1
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 0
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &1292381282
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1292381280}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HorizontalFit: 2
+  m_VerticalFit: 2
+--- !u!222 &1292381283
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1292381280}
+  m_CullTransparentMesh: 1
+--- !u!224 &1292381284
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1292381280}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 40328973}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 0, y: 102.00006}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1293893717
 GameObject:
   m_ObjectHideFlags: 0
@@ -10067,6 +10842,174 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!1 &1297968100
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1297968101}
+  - component: {fileID: 1297968102}
+  m_Layer: 3
+  m_Name: Shadow
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1297968101
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1297968100}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.05, y: 0.07, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1474902136}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &1297968102
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1297968100}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: -1553855423
+  m_SortingLayer: 3
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: ad8c32aa531f3404bb33ccbaf39e2e12, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 3.87, y: 1.93}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+--- !u!1 &1309414239
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1309414240}
+  - component: {fileID: 1309414241}
+  m_Layer: 0
+  m_Name: Shadow
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1309414240
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1309414239}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.030000055, y: -0.47, z: 0}
+  m_LocalScale: {x: 0.28000003, y: 0.30800003, z: 0.28000003}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 1129111303}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &1309414241
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1309414239}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: -1553855423
+  m_SortingLayer: 3
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: ad8c32aa531f3404bb33ccbaf39e2e12, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.59607846}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 3.87, y: 1.93}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!1 &1320395019
 GameObject:
   m_ObjectHideFlags: 0
@@ -10127,7 +11070,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1332600836}
   - component: {fileID: 1332600837}
-  m_Layer: 3
+  m_Layer: 5
   m_Name: Speaker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10169,12 +11112,29 @@ MonoBehaviour:
       \u0435\u0451 \u0441\u043F\u0430\u0441\u0451\u0442 \u0442\u043E\u043B\u044C\u043A\u043E
       \u0447\u0443\u0434\u043E.\r"
     Audio: {fileID: 8300000, guid: fc9a16820cbac5e40bbc98f680fc3b12, type: 3}
+    AudioSourceConfig:
+      priorityLevel: 128
+      Volume: 1
+      Pitch: 1
+      PanStereo: 0
+      ReverbZoneMix: 1
+      SpatialBlend: 1
+      RolloffMode: 0
+      MinDistance: 0.1
+      MaxDistance: 50
+      Spread: 0
+      DopplerLevel: 1
+      BypassEffects: 0
+      BypassListenerEffects: 0
+      BypassReverbZones: 0
+      IgnoreListenerVolume: 0
+      IgnoreListenerPause: 0
     DelayBeforeSaid: 0
     DelayAfterSaid: 0
-    cachedDuration: 0
+    cachedDuration: 7.6799583
   subtitles:
     mode: 0
-    unityReference: {fileID: 1514410469}
+    unityReference: {fileID: 1671889223}
     rawReference:
       rid: -2
   references:
@@ -10876,6 +11836,7 @@ Transform:
   - {fileID: 558940582}
   - {fileID: 1141629844}
   - {fileID: 891646685}
+  - {fileID: 1297968101}
   m_Father: {fileID: 1446360651}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1474902139
@@ -11186,7 +12147,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1502564047}
   - component: {fileID: 1502564049}
-  - component: {fileID: 1502564048}
+  - component: {fileID: 1502564050}
   m_Layer: 3
   m_Name: DoorHint
   m_TagString: Untagged
@@ -11210,48 +12171,6 @@ Transform:
   - {fileID: 1128536886}
   m_Father: {fileID: 1051157850}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1502564048
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1502564046}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3af907535b877e24f83cf2b4b4b36f75, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  TriggeredByCat:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 431767118}
-        m_TargetAssemblyTypeName: Transition.End.Invoker, Assembly-CSharp
-        m_MethodName: Invoke
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 11400000, guid: 1feef0b50365b964f91ba136cf192c10, type: 2}
-        m_TargetAssemblyTypeName: Configs.Progression.ProgressionConfig, Assembly-CSharp
-        m_MethodName: SetSceneToLoad
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: ForestEdge
-          m_BoolArgument: 0
-        m_CallState: 2
-  TriggeredByHuman:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!61 &1502564049
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -11297,6 +12216,47 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3.99, y: 0.91}
   m_EdgeRadius: 0
+--- !u!114 &1502564050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1502564046}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f425e2d3967a6d41a94f12bdd1df1ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ignoreLock: 0
+  Triggered:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 431767118}
+        m_TargetAssemblyTypeName: Transition.End.Invoker, Assembly-CSharp
+        m_MethodName: Invoke
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 11400000, guid: 1feef0b50365b964f91ba136cf192c10, type: 2}
+        m_TargetAssemblyTypeName: Configs.Progression.ProgressionConfig, Assembly-CSharp
+        m_MethodName: SetSceneToLoad
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: ForestEdge
+          m_BoolArgument: 0
+        m_CallState: 2
+  lockTriggering: 0
 --- !u!1 &1511515968
 GameObject:
   m_ObjectHideFlags: 0
@@ -11470,7 +12430,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6491097914779931501, guid: 79ebc9a83d0721c48a620c4536eef5a9, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -475
+      value: -475.00024
       objectReference: {fileID: 0}
     - target: {fileID: 6491097914779931501, guid: 79ebc9a83d0721c48a620c4536eef5a9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -11524,7 +12484,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1519026809}
   - component: {fileID: 1519026810}
-  m_Layer: 3
+  m_Layer: 5
   m_Name: Speaker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11563,12 +12523,29 @@ MonoBehaviour:
       \u0431\u0435\u0434\u0430. \u0417\u043B\u0430\u0442\u0430 \u0442\u044F\u0436\u0435\u043B\u043E
       \u0437\u0430\u0431\u043E\u043B\u0435\u043B\u0430.\r"
     Audio: {fileID: 8300000, guid: 21deccb51e1be804c901aa8c52b8718a, type: 3}
+    AudioSourceConfig:
+      priorityLevel: 128
+      Volume: 1
+      Pitch: 1
+      PanStereo: 0
+      ReverbZoneMix: 1
+      SpatialBlend: 1
+      RolloffMode: 0
+      MinDistance: 0.1
+      MaxDistance: 50
+      Spread: 0
+      DopplerLevel: 1
+      BypassEffects: 0
+      BypassListenerEffects: 0
+      BypassReverbZones: 0
+      IgnoreListenerVolume: 0
+      IgnoreListenerPause: 0
     DelayBeforeSaid: 0
     DelayAfterSaid: 0
-    cachedDuration: 0
+    cachedDuration: 3.7431667
   subtitles:
     mode: 0
-    unityReference: {fileID: 1514410469}
+    unityReference: {fileID: 859534840}
     rawReference:
       rid: -2
   references:
@@ -11748,6 +12725,115 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1911524845}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1615994179
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1615994180}
+  - component: {fileID: 1615994183}
+  - component: {fileID: 1615994182}
+  - component: {fileID: 1615994181}
+  m_Layer: 0
+  m_Name: WantBreadBubble (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1615994180
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1615994179}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 26.67, y: -6.8284173, z: 0.05118084}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1051157850}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1615994181
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1615994179}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 043dee6d8a41d93429e317a78e313390, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boxCollider: {fileID: 1615994183}
+  color: {r: 1, g: 0, b: 0, a: 1}
+--- !u!114 &1615994182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1615994179}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a7df89ef3e01b14ab822c019ac480aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  oneTimer: 0
+  emoteType: 0
+  emoteIcons:
+  - {fileID: 21300000, guid: 149d0a16795c7604da1f68c8e3e557e4, type: 3}
+--- !u!61 &1615994183
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1615994179}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.19720173, y: 0.96}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 2.66, y: 1.89}
+  m_EdgeRadius: 0
 --- !u!1 &1620146137
 GameObject:
   m_ObjectHideFlags: 3
@@ -12201,6 +13287,140 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4034365755970449255, guid: 5d3b0168371d4d74bb8508d8b8cf29aa, type: 3}
   m_PrefabInstance: {fileID: 1467209292}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1671889221
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 695168948}
+    m_Modifications:
+    - target: {fileID: 5878860240890201876, guid: 79ebc9a83d0721c48a620c4536eef5a9, type: 3}
+      propertyPath: m_Name
+      value: SubtitlesView Slideshow
+      objectReference: {fileID: 0}
+    - target: {fileID: 5878860240890201876, guid: 79ebc9a83d0721c48a620c4536eef5a9, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6491097914779931501, guid: 79ebc9a83d0721c48a620c4536eef5a9, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6491097914779931501, guid: 79ebc9a83d0721c48a620c4536eef5a9, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6491097914779931501, guid: 79ebc9a83d0721c48a620c4536eef5a9, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6491097914779931501, guid: 79ebc9a83d0721c48a620c4536eef5a9, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6491097914779931501, guid: 79ebc9a83d0721c48a620c4536eef5a9, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6491097914779931501, guid: 79ebc9a83d0721c48a620c4536eef5a9, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6491097914779931501, guid: 79ebc9a83d0721c48a620c4536eef5a9, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6491097914779931501, guid: 79ebc9a83d0721c48a620c4536eef5a9, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: -950
+      objectReference: {fileID: 0}
+    - target: {fileID: 6491097914779931501, guid: 79ebc9a83d0721c48a620c4536eef5a9, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6491097914779931501, guid: 79ebc9a83d0721c48a620c4536eef5a9, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6491097914779931501, guid: 79ebc9a83d0721c48a620c4536eef5a9, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6491097914779931501, guid: 79ebc9a83d0721c48a620c4536eef5a9, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6491097914779931501, guid: 79ebc9a83d0721c48a620c4536eef5a9, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6491097914779931501, guid: 79ebc9a83d0721c48a620c4536eef5a9, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6491097914779931501, guid: 79ebc9a83d0721c48a620c4536eef5a9, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6491097914779931501, guid: 79ebc9a83d0721c48a620c4536eef5a9, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6491097914779931501, guid: 79ebc9a83d0721c48a620c4536eef5a9, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -475.00024
+      objectReference: {fileID: 0}
+    - target: {fileID: 6491097914779931501, guid: 79ebc9a83d0721c48a620c4536eef5a9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6491097914779931501, guid: 79ebc9a83d0721c48a620c4536eef5a9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6491097914779931501, guid: 79ebc9a83d0721c48a620c4536eef5a9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8797315435415026358, guid: 79ebc9a83d0721c48a620c4536eef5a9, type: 3}
+      propertyPath: useImage
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8797315435415026358, guid: 79ebc9a83d0721c48a620c4536eef5a9, type: 3}
+      propertyPath: outputTmpText
+      value: 
+      objectReference: {fileID: 604893966}
+    - target: {fileID: 8797315435415026358, guid: 79ebc9a83d0721c48a620c4536eef5a9, type: 3}
+      propertyPath: useSlideshowDelay
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8797315435415026358, guid: 79ebc9a83d0721c48a620c4536eef5a9, type: 3}
+      propertyPath: additionalImageToFade
+      value: 
+      objectReference: {fileID: 237830383}
+    m_RemovedComponents: []
+    m_RemovedGameObjects:
+    - {fileID: 3641008339879505677, guid: 79ebc9a83d0721c48a620c4536eef5a9, type: 3}
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 79ebc9a83d0721c48a620c4536eef5a9, type: 3}
+--- !u!224 &1671889222 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 6491097914779931501, guid: 79ebc9a83d0721c48a620c4536eef5a9, type: 3}
+  m_PrefabInstance: {fileID: 1671889221}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1671889223 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8797315435415026358, guid: 79ebc9a83d0721c48a620c4536eef5a9, type: 3}
+  m_PrefabInstance: {fileID: 1671889221}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a65b7f348a84fd48bb8135e4c68d40f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1674934816
 GameObject:
   m_ObjectHideFlags: 0
@@ -12420,25 +13640,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FirstTrySpeech:
-  - Text: "\u0425\u043E\u0447\u0435\u0448\u044C \u043D\u0430 \u0443\u043B\u0438\u0446\u0443?
-      \u0414\u0430 \u0438 \u043C\u043D\u0435 \u043F\u043E\u0440\u0430 \u0438\u0434\u0442\u0438,
-      \u041F\u0430\u043F\u0430\u0440\u0430\u0446\u044C-\u043A\u0432\u0435\u0442\u043A\u0443
-      \u043C\u043E\u0436\u043D\u043E \u043D\u0430\u0439\u0442\u0438 \u0442\u043E\u043B\u044C\u043A\u043E
-      \u0441\u0435\u0433\u043E\u0434\u043D\u044F"
-    Audio: {fileID: 8300000, guid: 568a92082a3b21e46a4a4a15bf9eba29, type: 3}
+  - Text: "\u0422\u044B \u043F\u0440\u0430\u0432, \u0427\u0435\u0440\u043D\u044B\u0448,
+      \u043D\u0443\u0436\u043D\u043E \u0442\u043E\u0440\u043E\u043F\u0438\u0442\u044C\u0441\u044F.
+      \u041C\u044B \u0434\u043E\u043B\u0436\u043D\u044B \u043A\u0430\u043A \u043C\u043E\u0436\u043D\u043E
+      \u0441\u043A\u043E\u0440\u0435\u0435 \u043F\u043E\u043C\u043E\u0447\u044C \u0417\u043B\u0430\u0442\u0435!"
+    Audio: {fileID: 8300000, guid: 452c4f2d1f234494e9913ff5f60aa44e, type: 3}
+    AudioSourceConfig:
+      priorityLevel: 128
+      Volume: 1
+      Pitch: 1
+      PanStereo: 0
+      ReverbZoneMix: 1
+      SpatialBlend: 1
+      RolloffMode: 0
+      MinDistance: 0.1
+      MaxDistance: 50
+      Spread: 0
+      DopplerLevel: 1
+      BypassEffects: 0
+      BypassListenerEffects: 0
+      BypassReverbZones: 0
+      IgnoreListenerVolume: 0
+      IgnoreListenerPause: 0
     DelayBeforeSaid: 0
     DelayAfterSaid: 0
-    cachedDuration: 0
-  AlternativeSpeech:
-  - Text: "\u0425\u043E\u0447\u0435\u0448\u044C \u043D\u0430 \u0443\u043B\u0438\u0446\u0443?
-      \u0414\u0430 \u0438 \u043C\u043D\u0435 \u043F\u043E\u0440\u0430 \u0438\u0434\u0442\u0438,
-      \u041F\u0430\u043F\u0430\u0440\u0430\u0446\u044C-\u043A\u0432\u0435\u0442\u043A\u0443
-      \u043C\u043E\u0436\u043D\u043E \u043D\u0430\u0439\u0442\u0438 \u0442\u043E\u043B\u044C\u043A\u043E
-      \u0441\u0435\u0433\u043E\u0434\u043D\u044F"
-    Audio: {fileID: 8300000, guid: 568a92082a3b21e46a4a4a15bf9eba29, type: 3}
-    DelayBeforeSaid: 0
-    DelayAfterSaid: 0
-    cachedDuration: 0
+    cachedDuration: 5.11875
+  AlternativeSpeech: []
   SubtitlesView:
     mode: 0
     unityReference: {fileID: 1514410469}
@@ -12706,8 +13933,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1858794510}
   - component: {fileID: 1858794513}
-  - component: {fileID: 1858794512}
   - component: {fileID: 1858794511}
+  - component: {fileID: 1858794512}
+  - component: {fileID: 1858794514}
   m_Layer: 5
   m_Name: BlackSlide
   m_TagString: Untagged
@@ -12789,9 +14017,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1945025022}
-        m_TargetAssemblyTypeName: Audio.MusicManager, Assembly-CSharp
-        m_MethodName: ResumeMusic
+      - m_Target: {fileID: 1858794514}
+        m_TargetAssemblyTypeName: Audio.MusicPlayer, Assembly-CSharp
+        m_MethodName: Play
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -12801,9 +14029,13 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  BeforeFadeOut:
+    m_PersistentCalls:
+      m_Calls: []
   AfterFadeOut:
     m_PersistentCalls:
       m_Calls: []
+  bindChainSpeakerOnStart: 0
 --- !u!114 &1858794513
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12834,6 +14066,21 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &1858794514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1858794509}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f6eb6a1e5cf81947a2c2772b33be04a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playlist: {fileID: 11400000, guid: 83b54c4bb432f8044a8fa7dad3966411, type: 2}
+  playImmediately: 1
+  musicManager: {fileID: 1945025022}
 --- !u!1 &1869214157
 GameObject:
   m_ObjectHideFlags: 0
@@ -12900,13 +14147,40 @@ MonoBehaviour:
   FadeTime: 2
   BeforeFadeIn:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1915642594}
+        m_TargetAssemblyTypeName: Dialogue.ChainSpeaker, Assembly-CSharp
+        m_MethodName: ShowSubtitles
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   AfterFadeIn:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1915642594}
         m_TargetAssemblyTypeName: Dialogue.ChainSpeaker, Assembly-CSharp
-        m_MethodName: JustTell
+        m_MethodName: JustTellWithoutSubtitles
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  BeforeFadeOut:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1915642594}
+        m_TargetAssemblyTypeName: Dialogue.ChainSpeaker, Assembly-CSharp
+        m_MethodName: HideSubtitles
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -12919,6 +14193,7 @@ MonoBehaviour:
   AfterFadeOut:
     m_PersistentCalls:
       m_Calls: []
+  bindChainSpeakerOnStart: 0
 --- !u!114 &1869214161
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13082,7 +14357,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1901955423}
   - component: {fileID: 1901955424}
-  m_Layer: 3
+  m_Layer: 5
   m_Name: Speaker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13121,12 +14396,29 @@ MonoBehaviour:
       \u0447\u0442\u043E \u0417\u043B\u0430\u0442\u0430, \u043A\u0430\u043A \u0437\u0430\u0432\u043E\u0440\u043E\u0436\u0435\u043D\u043D\u0430\u044F,
       \u043F\u043E\u0431\u0435\u0436\u0430\u043B\u0430 \u043A \u043D\u0435\u043C\u0443."
     Audio: {fileID: 8300000, guid: f3a17f0ad654fc5479d86557ad3aab3a, type: 3}
+    AudioSourceConfig:
+      priorityLevel: 128
+      Volume: 1
+      Pitch: 1
+      PanStereo: 0
+      ReverbZoneMix: 1
+      SpatialBlend: 1
+      RolloffMode: 0
+      MinDistance: 0.1
+      MaxDistance: 50
+      Spread: 0
+      DopplerLevel: 1
+      BypassEffects: 0
+      BypassListenerEffects: 0
+      BypassReverbZones: 0
+      IgnoreListenerVolume: 0
+      IgnoreListenerPause: 0
     DelayBeforeSaid: 0
     DelayAfterSaid: 0
-    cachedDuration: 0
+    cachedDuration: 5.0661874
   subtitles:
     mode: 0
-    unityReference: {fileID: 1514410469}
+    unityReference: {fileID: 1671889223}
     rawReference:
       rid: -2
   references:
@@ -13181,7 +14473,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1915642592}
   - component: {fileID: 1915642594}
-  m_Layer: 3
+  m_Layer: 5
   m_Name: Speaker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13222,12 +14514,29 @@ MonoBehaviour:
       \u0431\u0440\u0430\u0442 \u0438 \u0441\u0435\u0441\u0442\u0440\u0430 - \u043D\u0435
       \u0440\u0430\u0437\u043B\u0435\u0439 \u0432\u043E\u0434\u0430!"
     Audio: {fileID: 8300000, guid: 265d9ada8c0b03441907f8ae39a1d961, type: 3}
+    AudioSourceConfig:
+      priorityLevel: 128
+      Volume: 1
+      Pitch: 1
+      PanStereo: 0
+      ReverbZoneMix: 1
+      SpatialBlend: 1
+      RolloffMode: 0
+      MinDistance: 0.1
+      MaxDistance: 50
+      Spread: 0
+      DopplerLevel: 1
+      BypassEffects: 0
+      BypassListenerEffects: 0
+      BypassReverbZones: 0
+      IgnoreListenerVolume: 0
+      IgnoreListenerPause: 0
     DelayBeforeSaid: 0
     DelayAfterSaid: 0
-    cachedDuration: 0
+    cachedDuration: 6.0646043
   subtitles:
     mode: 0
-    unityReference: {fileID: 1514410469}
+    unityReference: {fileID: 1671889223}
     rawReference:
       rid: -2
   references:
@@ -13413,8 +14722,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 1
   m_ShadowVolumeIntensity: 0.869
   m_LocalBounds:
-    m_Center: {x: -2.8950999, y: -7.52695, z: 0}
-    m_Extent: {x: 1.9847, y: 1.2717502, z: 0}
+    m_Center: {x: -2.88975, y: -7.52375, z: 0}
+    m_Extent: {x: 1.98045, y: 1.2723498, z: 0}
   m_PointLightInnerAngle: 359.6
   m_PointLightOuterAngle: 359.6
   m_PointLightInnerRadius: 2
@@ -13440,6 +14749,741 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69882ec8c6d0c334bbce8d3cacd73901, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1946308818
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1946308819}
+  - component: {fileID: 1946308820}
+  m_Layer: 0
+  m_Name: AudioAggregator
+  m_TagString: EditorOnly
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1946308819
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1946308818}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1946308820
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1946308818}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87e1d91751ce3cc48beb2d78f0fe2754, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundPlayers: []
+  chainSpeakers:
+  - {fileID: 21463114}
+  - {fileID: 153981788}
+  - {fileID: 402455891}
+  - {fileID: 538084429}
+  - {fileID: 859746921}
+  - {fileID: 1034518250}
+  - {fileID: 1234649547}
+  - {fileID: 1332600837}
+  - {fileID: 1519026810}
+  - {fileID: 1901955424}
+  - {fileID: 1915642594}
+  - {fileID: 2051480788}
+  - {fileID: 2060054907}
+  musicPlayersPreviews: []
+  chainSpeakerPreviews:
+  - ChainSpeaker: {fileID: 21463114}
+    Name: Speaker Prologue_04
+    ReplicaPreviews:
+    - Replica:
+        rid: 8023115750595625066
+      AudioClip: {fileID: 8300000, guid: 2ea8b6b8ecfbf4d4fb3bffa153aeafdf, type: 3}
+      AudioSourceConfig:
+        priorityLevel: 64
+        Volume: 1
+        Pitch: 1
+        PanStereo: 0
+        ReverbZoneMix: 1
+        SpatialBlend: 1
+        RolloffMode: 0
+        MinDistance: 0.1
+        MaxDistance: 50
+        Spread: 0
+        DopplerLevel: 1
+        BypassEffects: 0
+        BypassListenerEffects: 0
+        BypassReverbZones: 0
+        IgnoreListenerVolume: 0
+        IgnoreListenerPause: 0
+  - ChainSpeaker: {fileID: 153981788}
+    Name: Speaker Prologue_08
+    ReplicaPreviews:
+    - Replica:
+        rid: 8023115750595625067
+      AudioClip: {fileID: 8300000, guid: 04da3bb8ae03c7249a014a0de3f6727c, type: 3}
+      AudioSourceConfig:
+        priorityLevel: 128
+        Volume: 1
+        Pitch: 1
+        PanStereo: 0
+        ReverbZoneMix: 1
+        SpatialBlend: 1
+        RolloffMode: 0
+        MinDistance: 0.1
+        MaxDistance: 50
+        Spread: 0
+        DopplerLevel: 1
+        BypassEffects: 0
+        BypassListenerEffects: 0
+        BypassReverbZones: 0
+        IgnoreListenerVolume: 0
+        IgnoreListenerPause: 0
+  - ChainSpeaker: {fileID: 402455891}
+    Name: Speaker Prologue_02
+    ReplicaPreviews:
+    - Replica:
+        rid: 8023115750595625068
+      AudioClip: {fileID: 8300000, guid: f74be2404ccb4124db3ce647202b0b74, type: 3}
+      AudioSourceConfig:
+        priorityLevel: 128
+        Volume: 1
+        Pitch: 1
+        PanStereo: 0
+        ReverbZoneMix: 1
+        SpatialBlend: 1
+        RolloffMode: 0
+        MinDistance: 0.1
+        MaxDistance: 50
+        Spread: 0
+        DopplerLevel: 1
+        BypassEffects: 0
+        BypassListenerEffects: 0
+        BypassReverbZones: 0
+        IgnoreListenerVolume: 0
+        IgnoreListenerPause: 0
+  - ChainSpeaker: {fileID: 538084429}
+    Name: Speaker Prologue_11
+    ReplicaPreviews:
+    - Replica:
+        rid: 8023115750595625069
+      AudioClip: {fileID: 8300000, guid: 43730614a2925a44c9edd300a02a5c5d, type: 3}
+      AudioSourceConfig:
+        priorityLevel: 128
+        Volume: 1
+        Pitch: 1
+        PanStereo: 0
+        ReverbZoneMix: 1
+        SpatialBlend: 1
+        RolloffMode: 0
+        MinDistance: 0.1
+        MaxDistance: 50
+        Spread: 0
+        DopplerLevel: 1
+        BypassEffects: 0
+        BypassListenerEffects: 0
+        BypassReverbZones: 0
+        IgnoreListenerVolume: 0
+        IgnoreListenerPause: 0
+  - ChainSpeaker: {fileID: 859746921}
+    Name: Speaker Prologue_06
+    ReplicaPreviews:
+    - Replica:
+        rid: 8023115750595625070
+      AudioClip: {fileID: 8300000, guid: 28236499b1976c141808b39524195bbc, type: 3}
+      AudioSourceConfig:
+        priorityLevel: 128
+        Volume: 1
+        Pitch: 1
+        PanStereo: 0
+        ReverbZoneMix: 1
+        SpatialBlend: 1
+        RolloffMode: 0
+        MinDistance: 0.1
+        MaxDistance: 50
+        Spread: 0
+        DopplerLevel: 1
+        BypassEffects: 0
+        BypassListenerEffects: 0
+        BypassReverbZones: 0
+        IgnoreListenerVolume: 0
+        IgnoreListenerPause: 0
+  - ChainSpeaker: {fileID: 1034518250}
+    Name: Speaker Prologue_07
+    ReplicaPreviews:
+    - Replica:
+        rid: 8023115750595625071
+      AudioClip: {fileID: 8300000, guid: 0659f22a69d130b4f9bbf69bf736be69, type: 3}
+      AudioSourceConfig:
+        priorityLevel: 128
+        Volume: 1
+        Pitch: 1
+        PanStereo: 0
+        ReverbZoneMix: 1
+        SpatialBlend: 1
+        RolloffMode: 0
+        MinDistance: 0.1
+        MaxDistance: 50
+        Spread: 0
+        DopplerLevel: 1
+        BypassEffects: 0
+        BypassListenerEffects: 0
+        BypassReverbZones: 0
+        IgnoreListenerVolume: 0
+        IgnoreListenerPause: 0
+  - ChainSpeaker: {fileID: 1234649547}
+    Name: Speaker Prologue_12
+    ReplicaPreviews:
+    - Replica:
+        rid: 8023115750595625072
+      AudioClip: {fileID: 8300000, guid: 53d0da54e28b5024ca4e961fd9947d55, type: 3}
+      AudioSourceConfig:
+        priorityLevel: 128
+        Volume: 1
+        Pitch: 1
+        PanStereo: 0
+        ReverbZoneMix: 1
+        SpatialBlend: 1
+        RolloffMode: 0
+        MinDistance: 0.1
+        MaxDistance: 50
+        Spread: 0
+        DopplerLevel: 1
+        BypassEffects: 0
+        BypassListenerEffects: 0
+        BypassReverbZones: 0
+        IgnoreListenerVolume: 0
+        IgnoreListenerPause: 0
+  - ChainSpeaker: {fileID: 1332600837}
+    Name: Speaker Prologue_13
+    ReplicaPreviews:
+    - Replica:
+        rid: 8023115750595625073
+      AudioClip: {fileID: 8300000, guid: fc9a16820cbac5e40bbc98f680fc3b12, type: 3}
+      AudioSourceConfig:
+        priorityLevel: 128
+        Volume: 1
+        Pitch: 1
+        PanStereo: 0
+        ReverbZoneMix: 1
+        SpatialBlend: 1
+        RolloffMode: 0
+        MinDistance: 0.1
+        MaxDistance: 50
+        Spread: 0
+        DopplerLevel: 1
+        BypassEffects: 0
+        BypassListenerEffects: 0
+        BypassReverbZones: 0
+        IgnoreListenerVolume: 0
+        IgnoreListenerPause: 0
+  - ChainSpeaker: {fileID: 1519026810}
+    Name: Speaker Prologue_10
+    ReplicaPreviews:
+    - Replica:
+        rid: 8023115750595625074
+      AudioClip: {fileID: 8300000, guid: 21deccb51e1be804c901aa8c52b8718a, type: 3}
+      AudioSourceConfig:
+        priorityLevel: 128
+        Volume: 1
+        Pitch: 1
+        PanStereo: 0
+        ReverbZoneMix: 1
+        SpatialBlend: 1
+        RolloffMode: 0
+        MinDistance: 0.1
+        MaxDistance: 50
+        Spread: 0
+        DopplerLevel: 1
+        BypassEffects: 0
+        BypassListenerEffects: 0
+        BypassReverbZones: 0
+        IgnoreListenerVolume: 0
+        IgnoreListenerPause: 0
+  - ChainSpeaker: {fileID: 1901955424}
+    Name: Speaker Prologue_05
+    ReplicaPreviews:
+    - Replica:
+        rid: 8023115750595625075
+      AudioClip: {fileID: 8300000, guid: f3a17f0ad654fc5479d86557ad3aab3a, type: 3}
+      AudioSourceConfig:
+        priorityLevel: 128
+        Volume: 1
+        Pitch: 1
+        PanStereo: 0
+        ReverbZoneMix: 1
+        SpatialBlend: 1
+        RolloffMode: 0
+        MinDistance: 0.1
+        MaxDistance: 50
+        Spread: 0
+        DopplerLevel: 1
+        BypassEffects: 0
+        BypassListenerEffects: 0
+        BypassReverbZones: 0
+        IgnoreListenerVolume: 0
+        IgnoreListenerPause: 0
+  - ChainSpeaker: {fileID: 1915642594}
+    Name: Speaker Prologue_01
+    ReplicaPreviews:
+    - Replica:
+        rid: 8023115750595625076
+      AudioClip: {fileID: 8300000, guid: 265d9ada8c0b03441907f8ae39a1d961, type: 3}
+      AudioSourceConfig:
+        priorityLevel: 128
+        Volume: 1
+        Pitch: 1
+        PanStereo: 0
+        ReverbZoneMix: 1
+        SpatialBlend: 1
+        RolloffMode: 0
+        MinDistance: 0.1
+        MaxDistance: 50
+        Spread: 0
+        DopplerLevel: 1
+        BypassEffects: 0
+        BypassListenerEffects: 0
+        BypassReverbZones: 0
+        IgnoreListenerVolume: 0
+        IgnoreListenerPause: 0
+  - ChainSpeaker: {fileID: 2051480788}
+    Name: Speaker Prologue_09
+    ReplicaPreviews:
+    - Replica:
+        rid: 8023115750595625077
+      AudioClip: {fileID: 8300000, guid: 4500a00bd4bff0b448a1f560f24c7bea, type: 3}
+      AudioSourceConfig:
+        priorityLevel: 128
+        Volume: 1
+        Pitch: 1
+        PanStereo: 0
+        ReverbZoneMix: 1
+        SpatialBlend: 1
+        RolloffMode: 0
+        MinDistance: 0.1
+        MaxDistance: 50
+        Spread: 0
+        DopplerLevel: 1
+        BypassEffects: 0
+        BypassListenerEffects: 0
+        BypassReverbZones: 0
+        IgnoreListenerVolume: 0
+        IgnoreListenerPause: 0
+  - ChainSpeaker: {fileID: 2060054907}
+    Name: Speaker Prologue_03
+    ReplicaPreviews:
+    - Replica:
+        rid: 8023115750595625078
+      AudioClip: {fileID: 8300000, guid: 78611157a428b5c41817179250be3fc8, type: 3}
+      AudioSourceConfig:
+        priorityLevel: 128
+        Volume: 1
+        Pitch: 1
+        PanStereo: 0
+        ReverbZoneMix: 1
+        SpatialBlend: 1
+        RolloffMode: 0
+        MinDistance: 0.1
+        MaxDistance: 50
+        Spread: 0
+        DopplerLevel: 1
+        BypassEffects: 0
+        BypassListenerEffects: 0
+        BypassReverbZones: 0
+        IgnoreListenerVolume: 0
+        IgnoreListenerPause: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: 8023115750595625066
+      type: {class: Replica, ns: Dialogue, asm: Assembly-CSharp}
+      data:
+        Text: "\u0427\u0451\u0440\u043D\u044B\u0439, \u043A\u0430\u043A \u0443\u0433\u043E\u043B\u044C,
+          \u043A\u043E\u0442 \u0441\u043E \u0441\u0432\u0435\u0440\u043A\u0430\u044E\u0449\u0438\u043C\u0438
+          \u0436\u0435\u043B\u0442\u044B\u043C\u0438 \u0433\u043B\u0430\u0437\u0430\u043C\u0438!\r"
+        Audio: {fileID: 8300000, guid: 2ea8b6b8ecfbf4d4fb3bffa153aeafdf, type: 3}
+        AudioSourceConfig:
+          priorityLevel: 64
+          Volume: 1
+          Pitch: 1
+          PanStereo: 0
+          ReverbZoneMix: 1
+          SpatialBlend: 1
+          RolloffMode: 0
+          MinDistance: 0.1
+          MaxDistance: 50
+          Spread: 0
+          DopplerLevel: 1
+          BypassEffects: 0
+          BypassListenerEffects: 0
+          BypassReverbZones: 0
+          IgnoreListenerVolume: 0
+          IgnoreListenerPause: 0
+        DelayBeforeSaid: 0
+        DelayAfterSaid: 0
+        cachedDuration: 4.2594585
+    - rid: 8023115750595625067
+      type: {class: Replica, ns: Dialogue, asm: Assembly-CSharp}
+      data:
+        Text: "\u0412\u0435\u0440\u043D\u0443\u043B\u0438\u0441\u044C \u0434\u043E\u043C\u043E\u0439
+          \u043C\u044B \u0443\u0436\u0435 \u0432\u0442\u0440\u043E\u0451\u043C. \u0421
+          \u0442\u0435\u0445 \u043F\u043E\u0440 \u043A\u043E\u0442 \u0441\u0442\u0430\u043B
+          \u0447\u0430\u0441\u0442\u044C\u044E \u043D\u0430\u0448\u0435\u0439 \u0441\u0435\u043C\u044C\u0438."
+        Audio: {fileID: 8300000, guid: 04da3bb8ae03c7249a014a0de3f6727c, type: 3}
+        AudioSourceConfig:
+          priorityLevel: 128
+          Volume: 1
+          Pitch: 1
+          PanStereo: 0
+          ReverbZoneMix: 1
+          SpatialBlend: 1
+          RolloffMode: 0
+          MinDistance: 0.1
+          MaxDistance: 50
+          Spread: 0
+          DopplerLevel: 1
+          BypassEffects: 0
+          BypassListenerEffects: 0
+          BypassReverbZones: 0
+          IgnoreListenerVolume: 0
+          IgnoreListenerPause: 0
+        DelayBeforeSaid: 0
+        DelayAfterSaid: 0
+        cachedDuration: 4.969375
+    - rid: 8023115750595625068
+      type: {class: Replica, ns: Dialogue, asm: Assembly-CSharp}
+      data:
+        Text: "\u0412 \u0442\u043E\u0442 \u0434\u0435\u043D\u044C \u043C\u044B \u043A\u0430\u043A
+          \u043E\u0431\u044B\u0447\u043D\u043E \u0438\u0433\u0440\u0430\u043B\u0438
+          \u0432\u043E\u0437\u043B\u0435 \u043B\u0435\u0441\u0430. \u0418 \u0442\u0443\u0442
+          \u0417\u043B\u0430\u0442\u0430 \u0447\u0442\u043E-\u0442\u043E \u0443\u0441\u043B\u044B\u0448\u0430\u043B\u0430."
+        Audio: {fileID: 8300000, guid: f74be2404ccb4124db3ce647202b0b74, type: 3}
+        AudioSourceConfig:
+          priorityLevel: 128
+          Volume: 1
+          Pitch: 1
+          PanStereo: 0
+          ReverbZoneMix: 1
+          SpatialBlend: 1
+          RolloffMode: 0
+          MinDistance: 0.1
+          MaxDistance: 50
+          Spread: 0
+          DopplerLevel: 1
+          BypassEffects: 0
+          BypassListenerEffects: 0
+          BypassReverbZones: 0
+          IgnoreListenerVolume: 0
+          IgnoreListenerPause: 0
+        DelayBeforeSaid: 0
+        DelayAfterSaid: 0
+        cachedDuration: 6.2036667
+    - rid: 8023115750595625069
+      type: {class: Replica, ns: Dialogue, asm: Assembly-CSharp}
+      data:
+        Text: "\u0421 \u043A\u0430\u0436\u0434\u044B\u043C \u0434\u043D\u0451\u043C
+          \u0435\u0439 \u0441\u0442\u0430\u043D\u043E\u0432\u0438\u043B\u043E\u0441\u044C
+          \u0432\u0441\u0451 \u0445\u0443\u0436\u0435, \u0438 \u043C\u044B \u043F\u043E\u043F\u0440\u043E\u0441\u0438\u043B\u0438
+          \u043F\u043E\u043C\u043E\u0449\u0438 \u0443 \u0437\u043D\u0430\u0445\u0430\u0440\u044F
+          \u0438\u0437 \u0441\u043E\u0441\u0435\u0434\u043D\u0435\u0439 \u0434\u0435\u0440\u0435\u0432\u043D\u0438.\r"
+        Audio: {fileID: 8300000, guid: 43730614a2925a44c9edd300a02a5c5d, type: 3}
+        AudioSourceConfig:
+          priorityLevel: 128
+          Volume: 1
+          Pitch: 1
+          PanStereo: 0
+          ReverbZoneMix: 1
+          SpatialBlend: 1
+          RolloffMode: 0
+          MinDistance: 0.1
+          MaxDistance: 50
+          Spread: 0
+          DopplerLevel: 1
+          BypassEffects: 0
+          BypassListenerEffects: 0
+          BypassReverbZones: 0
+          IgnoreListenerVolume: 0
+          IgnoreListenerPause: 0
+        DelayBeforeSaid: 0
+        DelayAfterSaid: 0
+        cachedDuration: 5.6793127
+    - rid: 8023115750595625070
+      type: {class: Replica, ns: Dialogue, asm: Assembly-CSharp}
+      data:
+        Text: "\u0421\u0435\u0441\u0442\u0440\u0430 \u0437\u0432\u0430\u043B\u0430
+          \u043C\u0435\u043D\u044F \u043F\u043E\u0433\u043B\u0430\u0434\u0438\u0442\u044C
+          \u043A\u043E\u0442\u0430, \u043D\u043E \u044F \u043F\u0440\u043E\u0434\u043E\u043B\u0436\u0430\u043B
+          \u0432\u0441\u043C\u0430\u0442\u0440\u0438\u0432\u0430\u0442\u044C\u0441\u044F
+          \u0432 \u043B\u0435\u0441. \u041A\u0430\u0437\u0430\u043B\u043E\u0441\u044C,
+          \u0442\u0430\u043C \u0431\u044B\u043B \u043A\u0442\u043E-\u0442\u043E \u0435\u0449\u0451.\r"
+        Audio: {fileID: 8300000, guid: 28236499b1976c141808b39524195bbc, type: 3}
+        AudioSourceConfig:
+          priorityLevel: 128
+          Volume: 1
+          Pitch: 1
+          PanStereo: 0
+          ReverbZoneMix: 1
+          SpatialBlend: 1
+          RolloffMode: 0
+          MinDistance: 0.1
+          MaxDistance: 50
+          Spread: 0
+          DopplerLevel: 1
+          BypassEffects: 0
+          BypassListenerEffects: 0
+          BypassReverbZones: 0
+          IgnoreListenerVolume: 0
+          IgnoreListenerPause: 0
+        DelayBeforeSaid: 0
+        DelayAfterSaid: 0
+        cachedDuration: 7.8735833
+    - rid: 8023115750595625071
+      type: {class: Replica, ns: Dialogue, asm: Assembly-CSharp}
+      data:
+        Text: "\u041D\u0430\u0432\u0435\u0440\u043D\u043E\u0435, \u044D\u0442\u043E
+          \u043F\u0440\u043E\u0441\u0442\u043E \u0432\u0435\u0442\u0435\u0440 \u0438\u0433\u0440\u0430\u043B
+          \u0441 \u043C\u043E\u0438\u043C \u0432\u043E\u043E\u0431\u0440\u0430\u0436\u0435\u043D\u0438\u0435\u043C."
+        Audio: {fileID: 8300000, guid: 0659f22a69d130b4f9bbf69bf736be69, type: 3}
+        AudioSourceConfig:
+          priorityLevel: 128
+          Volume: 1
+          Pitch: 1
+          PanStereo: 0
+          ReverbZoneMix: 1
+          SpatialBlend: 1
+          RolloffMode: 0
+          MinDistance: 0.1
+          MaxDistance: 50
+          Spread: 0
+          DopplerLevel: 1
+          BypassEffects: 0
+          BypassListenerEffects: 0
+          BypassReverbZones: 0
+          IgnoreListenerVolume: 0
+          IgnoreListenerPause: 0
+        DelayBeforeSaid: 0
+        DelayAfterSaid: 0
+        cachedDuration: 3.1623333
+    - rid: 8023115750595625072
+      type: {class: Replica, ns: Dialogue, asm: Assembly-CSharp}
+      data:
+        Text: "\u041E\u043D \u0433\u043E\u0442\u043E\u0432\u0438\u043B \u0417\u043B\u0430\u0442\u0435
+          \u043F\u0440\u0438\u043F\u0430\u0440\u043A\u0438, \u0432\u0430\u0440\u0438\u043B
+          \u043D\u0430\u0441\u0442\u043E\u0438 \u0438\u0437 \u0446\u0435\u043B\u0435\u0431\u043D\u044B\u0445
+          \u0442\u0440\u0430\u0432, \u0438 \u0434\u0430\u0436\u0435 \u0432\u043E\u0440\u043E\u0436\u0438\u043B
+          \u043D\u0430\u0434 \u043D\u0435\u0439.\r"
+        Audio: {fileID: 8300000, guid: 53d0da54e28b5024ca4e961fd9947d55, type: 3}
+        AudioSourceConfig:
+          priorityLevel: 128
+          Volume: 1
+          Pitch: 1
+          PanStereo: 0
+          ReverbZoneMix: 1
+          SpatialBlend: 1
+          RolloffMode: 0
+          MinDistance: 0.1
+          MaxDistance: 50
+          Spread: 0
+          DopplerLevel: 1
+          BypassEffects: 0
+          BypassListenerEffects: 0
+          BypassReverbZones: 0
+          IgnoreListenerVolume: 0
+          IgnoreListenerPause: 0
+        DelayBeforeSaid: 0
+        DelayAfterSaid: 0
+        cachedDuration: 6.87325
+    - rid: 8023115750595625073
+      type: {class: Replica, ns: Dialogue, asm: Assembly-CSharp}
+      data:
+        Text: "\u041D\u043E \u0441\u0435\u0441\u0442\u0440\u0435 \u043D\u0438\u0447\u0435\u0433\u043E
+          \u043D\u0435 \u043F\u043E\u043C\u043E\u0433\u043B\u043E. \u0417\u043D\u0430\u0445\u0430\u0440\u044C
+          \u0441\u043A\u0430\u0437\u0430\u043B, \u0447\u0442\u043E \u0441\u0434\u0435\u043B\u0430\u043B
+          \u0432\u0441\u0451 \u0447\u0442\u043E \u043C\u043E\u0433, \u0438 \u0442\u0435\u043F\u0435\u0440\u044C
+          \u0435\u0451 \u0441\u043F\u0430\u0441\u0451\u0442 \u0442\u043E\u043B\u044C\u043A\u043E
+          \u0447\u0443\u0434\u043E.\r"
+        Audio: {fileID: 8300000, guid: fc9a16820cbac5e40bbc98f680fc3b12, type: 3}
+        AudioSourceConfig:
+          priorityLevel: 128
+          Volume: 1
+          Pitch: 1
+          PanStereo: 0
+          ReverbZoneMix: 1
+          SpatialBlend: 1
+          RolloffMode: 0
+          MinDistance: 0.1
+          MaxDistance: 50
+          Spread: 0
+          DopplerLevel: 1
+          BypassEffects: 0
+          BypassListenerEffects: 0
+          BypassReverbZones: 0
+          IgnoreListenerVolume: 0
+          IgnoreListenerPause: 0
+        DelayBeforeSaid: 0
+        DelayAfterSaid: 0
+        cachedDuration: 7.6799583
+    - rid: 8023115750595625074
+      type: {class: Replica, ns: Dialogue, asm: Assembly-CSharp}
+      data:
+        Text: "\u0412\u0441\u043A\u043E\u0440\u0435 \u0441\u043B\u0443\u0447\u0438\u043B\u0430\u0441\u044C
+          \u0431\u0435\u0434\u0430. \u0417\u043B\u0430\u0442\u0430 \u0442\u044F\u0436\u0435\u043B\u043E
+          \u0437\u0430\u0431\u043E\u043B\u0435\u043B\u0430.\r"
+        Audio: {fileID: 8300000, guid: 21deccb51e1be804c901aa8c52b8718a, type: 3}
+        AudioSourceConfig:
+          priorityLevel: 128
+          Volume: 1
+          Pitch: 1
+          PanStereo: 0
+          ReverbZoneMix: 1
+          SpatialBlend: 1
+          RolloffMode: 0
+          MinDistance: 0.1
+          MaxDistance: 50
+          Spread: 0
+          DopplerLevel: 1
+          BypassEffects: 0
+          BypassListenerEffects: 0
+          BypassReverbZones: 0
+          IgnoreListenerVolume: 0
+          IgnoreListenerPause: 0
+        DelayBeforeSaid: 0
+        DelayAfterSaid: 0
+        cachedDuration: 3.7431667
+    - rid: 8023115750595625075
+      type: {class: Replica, ns: Dialogue, asm: Assembly-CSharp}
+      data:
+        Text: "\u041E\u043D \u0431\u044B\u043B \u0442\u0430\u043A\u0438\u043C \u043A\u0440\u0430\u0441\u0438\u0432\u044B\u043C,
+          \u0447\u0442\u043E \u0417\u043B\u0430\u0442\u0430, \u043A\u0430\u043A \u0437\u0430\u0432\u043E\u0440\u043E\u0436\u0435\u043D\u043D\u0430\u044F,
+          \u043F\u043E\u0431\u0435\u0436\u0430\u043B\u0430 \u043A \u043D\u0435\u043C\u0443."
+        Audio: {fileID: 8300000, guid: f3a17f0ad654fc5479d86557ad3aab3a, type: 3}
+        AudioSourceConfig:
+          priorityLevel: 128
+          Volume: 1
+          Pitch: 1
+          PanStereo: 0
+          ReverbZoneMix: 1
+          SpatialBlend: 1
+          RolloffMode: 0
+          MinDistance: 0.1
+          MaxDistance: 50
+          Spread: 0
+          DopplerLevel: 1
+          BypassEffects: 0
+          BypassListenerEffects: 0
+          BypassReverbZones: 0
+          IgnoreListenerVolume: 0
+          IgnoreListenerPause: 0
+        DelayBeforeSaid: 0
+        DelayAfterSaid: 0
+        cachedDuration: 5.0661874
+    - rid: 8023115750595625076
+      type: {class: Replica, ns: Dialogue, asm: Assembly-CSharp}
+      data:
+        Text: "\u0413\u043B\u044F\u0434\u044F \u043D\u0430 \u043D\u0430\u0441 \u0441\u043E
+          \u0417\u043B\u0430\u0442\u043E\u0439, \u0440\u043E\u0434\u0438\u0442\u0435\u043B\u0438
+          \u0432\u0441\u0435\u0433\u0434\u0430 \u0433\u043E\u0432\u043E\u0440\u0438\u043B\u0438:
+          \u0431\u0440\u0430\u0442 \u0438 \u0441\u0435\u0441\u0442\u0440\u0430 -
+          \u043D\u0435 \u0440\u0430\u0437\u043B\u0435\u0439 \u0432\u043E\u0434\u0430!"
+        Audio: {fileID: 8300000, guid: 265d9ada8c0b03441907f8ae39a1d961, type: 3}
+        AudioSourceConfig:
+          priorityLevel: 128
+          Volume: 1
+          Pitch: 1
+          PanStereo: 0
+          ReverbZoneMix: 1
+          SpatialBlend: 1
+          RolloffMode: 0
+          MinDistance: 0.1
+          MaxDistance: 50
+          Spread: 0
+          DopplerLevel: 1
+          BypassEffects: 0
+          BypassListenerEffects: 0
+          BypassReverbZones: 0
+          IgnoreListenerVolume: 0
+          IgnoreListenerPause: 0
+        DelayBeforeSaid: 0
+        DelayAfterSaid: 0
+        cachedDuration: 6.0646043
+    - rid: 8023115750595625077
+      type: {class: Replica, ns: Dialogue, asm: Assembly-CSharp}
+      data:
+        Text: "\u041C\u044B \u0434\u043E\u043B\u0433\u043E \u0432\u044B\u0431\u0438\u0440\u0430\u043B\u0438
+          \u0434\u043B\u044F \u043D\u0435\u0433\u043E \u0438\u043C\u044F. \u0413\u0440\u043E\u043C\u043E\u043B\u0430\u043F,
+          \u041E\u0441\u0442\u0440\u043E\u0443\u0441, \u041C\u044B\u0448\u0435\u0431\u043E\u0440\u2026
+          \u041D\u043E \u043D\u0438 \u043E\u0434\u043D\u043E \u0438\u0437 \u043D\u0438\u0445
+          \u043D\u0435 \u043F\u043E\u0434\u043E\u0448\u043B\u043E \u0435\u043C\u0443
+          \u043B\u0443\u0447\u0448\u0435, \u0447\u0435\u043C \u0427\u0435\u0440\u043D\u044B\u0448.\r"
+        Audio: {fileID: 8300000, guid: 4500a00bd4bff0b448a1f560f24c7bea, type: 3}
+        AudioSourceConfig:
+          priorityLevel: 128
+          Volume: 1
+          Pitch: 1
+          PanStereo: 0
+          ReverbZoneMix: 1
+          SpatialBlend: 1
+          RolloffMode: 0
+          MinDistance: 0.1
+          MaxDistance: 50
+          Spread: 0
+          DopplerLevel: 1
+          BypassEffects: 0
+          BypassListenerEffects: 0
+          BypassReverbZones: 0
+          IgnoreListenerVolume: 0
+          IgnoreListenerPause: 0
+        DelayBeforeSaid: 0
+        DelayAfterSaid: 0
+        cachedDuration: 10.003312
+    - rid: 8023115750595625078
+      type: {class: Replica, ns: Dialogue, asm: Assembly-CSharp}
+      data:
+        Text: "\u0420\u0430\u0437\u0434\u0430\u043B\u0441\u044F \u0445\u0440\u0443\u0441\u0442.
+          \u041C\u043D\u0435 \u043F\u043E\u043A\u0430\u0437\u0430\u043B\u043E\u0441\u044C,
+          \u0447\u0442\u043E \u0441\u0440\u0435\u0434\u0438 \u0434\u0435\u0440\u0435\u0432\u044C\u0435\u0432
+          \u043F\u0440\u043E\u043C\u0435\u043B\u044C\u043A\u043D\u0443\u043B\u0438
+          \u0441\u0442\u0440\u0430\u043D\u043D\u044B\u0435 \u043E\u0433\u043E\u043D\u044C\u043A\u0438,
+          \u0430 \u0437\u0430\u0442\u0435\u043C \u043D\u0430 \u043D\u0430\u0441 \u0432\u0438\u0445\u0440\u0435\u043C
+          \u0432\u044B\u043B\u0435\u0442\u0435\u043B\u2026"
+        Audio: {fileID: 8300000, guid: 78611157a428b5c41817179250be3fc8, type: 3}
+        AudioSourceConfig:
+          priorityLevel: 128
+          Volume: 1
+          Pitch: 1
+          PanStereo: 0
+          ReverbZoneMix: 1
+          SpatialBlend: 1
+          RolloffMode: 0
+          MinDistance: 0.1
+          MaxDistance: 50
+          Spread: 0
+          DopplerLevel: 1
+          BypassEffects: 0
+          BypassListenerEffects: 0
+          BypassReverbZones: 0
+          IgnoreListenerVolume: 0
+          IgnoreListenerPause: 0
+        DelayBeforeSaid: 0
+        DelayAfterSaid: 0
+        cachedDuration: 9.067521
 --- !u!1 &1956365296
 GameObject:
   m_ObjectHideFlags: 0
@@ -13719,22 +15763,14 @@ MonoBehaviour:
       m_Calls: []
   AfterFadeIn:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 402455891}
-        m_TargetAssemblyTypeName: Dialogue.ChainSpeaker, Assembly-CSharp
-        m_MethodName: JustTell
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
+  BeforeFadeOut:
+    m_PersistentCalls:
+      m_Calls: []
   AfterFadeOut:
     m_PersistentCalls:
       m_Calls: []
+  bindChainSpeakerOnStart: 1
 --- !u!114 &1980860327
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14037,7 +16073,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2051480787}
   - component: {fileID: 2051480788}
-  m_Layer: 3
+  m_Layer: 5
   m_Name: Speaker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14079,12 +16115,29 @@ MonoBehaviour:
       \u043D\u0435 \u043F\u043E\u0434\u043E\u0448\u043B\u043E \u0435\u043C\u0443
       \u043B\u0443\u0447\u0448\u0435, \u0447\u0435\u043C \u0427\u0435\u0440\u043D\u044B\u0448.\r"
     Audio: {fileID: 8300000, guid: 4500a00bd4bff0b448a1f560f24c7bea, type: 3}
+    AudioSourceConfig:
+      priorityLevel: 128
+      Volume: 1
+      Pitch: 1
+      PanStereo: 0
+      ReverbZoneMix: 1
+      SpatialBlend: 1
+      RolloffMode: 0
+      MinDistance: 0.1
+      MaxDistance: 50
+      Spread: 0
+      DopplerLevel: 1
+      BypassEffects: 0
+      BypassListenerEffects: 0
+      BypassReverbZones: 0
+      IgnoreListenerVolume: 0
+      IgnoreListenerPause: 0
     DelayBeforeSaid: 0
     DelayAfterSaid: 0
-    cachedDuration: 0
+    cachedDuration: 10.003312
   subtitles:
     mode: 0
-    unityReference: {fileID: 1514410469}
+    unityReference: {fileID: 1671889223}
     rawReference:
       rid: -2
   references:
@@ -14102,7 +16155,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2060054906}
   - component: {fileID: 2060054907}
-  m_Layer: 3
+  m_Layer: 5
   m_Name: Speaker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14144,12 +16197,29 @@ MonoBehaviour:
       \u043E\u0433\u043E\u043D\u044C\u043A\u0438, \u0430 \u0437\u0430\u0442\u0435\u043C
       \u043D\u0430 \u043D\u0430\u0441 \u0432\u0438\u0445\u0440\u0435\u043C \u0432\u044B\u043B\u0435\u0442\u0435\u043B\u2026"
     Audio: {fileID: 8300000, guid: 78611157a428b5c41817179250be3fc8, type: 3}
+    AudioSourceConfig:
+      priorityLevel: 128
+      Volume: 1
+      Pitch: 1
+      PanStereo: 0
+      ReverbZoneMix: 1
+      SpatialBlend: 1
+      RolloffMode: 0
+      MinDistance: 0.1
+      MaxDistance: 50
+      Spread: 0
+      DopplerLevel: 1
+      BypassEffects: 0
+      BypassListenerEffects: 0
+      BypassReverbZones: 0
+      IgnoreListenerVolume: 0
+      IgnoreListenerPause: 0
     DelayBeforeSaid: 0
     DelayAfterSaid: 0
-    cachedDuration: 0
+    cachedDuration: 9.067521
   subtitles:
     mode: 0
-    unityReference: {fileID: 1514410469}
+    unityReference: {fileID: 1671889223}
     rawReference:
       rid: -2
   references:
@@ -14548,8 +16618,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 1
   m_ShadowVolumeIntensity: 0.869
   m_LocalBounds:
-    m_Center: {x: -0.66725, y: -7.4284, z: 0}
-    m_Extent: {x: 2.60415, y: 1.3260002, z: 0}
+    m_Center: {x: -0.659, y: -7.4333, z: 0}
+    m_Extent: {x: 2.6034, y: 1.3238001, z: 0}
   m_PointLightInnerAngle: 359.6
   m_PointLightOuterAngle: 359.6
   m_PointLightInnerRadius: 2
@@ -16417,14 +18487,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 7703565356622517976}
     - targetCorrespondingSourceObject: {fileID: 905931653165027739, guid: b226e54f4be684b4f82c70458cacaaab, type: 3}
-      insertIndex: -1
+      insertIndex: 7
       addedObject: {fileID: 1054450555}
     - targetCorrespondingSourceObject: {fileID: 905931653165027739, guid: b226e54f4be684b4f82c70458cacaaab, type: 3}
-      insertIndex: -1
+      insertIndex: 8
       addedObject: {fileID: 1054450563}
-    - targetCorrespondingSourceObject: {fileID: 905931653165027739, guid: b226e54f4be684b4f82c70458cacaaab, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1054450565}
     - targetCorrespondingSourceObject: {fileID: 7610932237395598097, guid: b226e54f4be684b4f82c70458cacaaab, type: 3}
       insertIndex: -1
       addedObject: {fileID: 478181171}
@@ -16788,3 +18855,4 @@ SceneRoots:
   - {fileID: 1931037164191539420}
   - {fileID: 273099442}
   - {fileID: 1371304694}
+  - {fileID: 1946308819}
