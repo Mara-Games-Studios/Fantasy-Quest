@@ -7,6 +7,7 @@ using DG.Tweening;
 using Dialogue;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Minigames.AltarGame.Hand
 {
@@ -209,17 +210,21 @@ namespace Minigames.AltarGame.Hand
             }
         }
 
+        public UnityEvent OnChooseDisagreeHappens;
+
         public void ChooseDisagree()
         {
             if (!isChoosing)
             {
                 return;
             }
-
+            OnChooseDisagreeHappens?.Invoke();
             StopCoroutine(waitingForDecide);
             isChoosing = false;
             MoveToNextSlot();
         }
+
+        public UnityEvent OnChooseAgreeHappens;
 
         public void ChooseAgree()
         {
@@ -227,7 +232,7 @@ namespace Minigames.AltarGame.Hand
             {
                 return;
             }
-
+            OnChooseAgreeHappens?.Invoke();
             StopCoroutine(waitingForDecide);
             PlaceItemInSlot();
         }
