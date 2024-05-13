@@ -32,6 +32,8 @@ namespace Audio
         [SerializeField]
         private bool createOnThisPosition = false;
 
+        [ReadOnly]
+        [SerializeField]
         private AudioSource audioSource;
         public AudioSource AudioSource => audioSource;
 
@@ -94,6 +96,12 @@ namespace Audio
         public void PlayClip()
         {
             audioSource.Play();
+        }
+
+        [Button]
+        public void PlayClipDelayed(ulong delay)
+        {
+            audioSource.Play(delay);
         }
 
         [Button]
