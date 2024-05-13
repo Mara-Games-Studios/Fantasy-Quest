@@ -24,12 +24,16 @@ namespace Audio
         private bool playOnStart = false;
 
         [SerializeField]
+        private bool pauseOnStart = false;
+
+        [SerializeField]
         private bool ignorePause = false;
 
         [SerializeField]
         private bool createOnThisPosition = false;
 
         private AudioSource audioSource;
+        public AudioSource AudioSource => audioSource;
 
         public AudioClip AudioClip
         {
@@ -80,12 +84,22 @@ namespace Audio
             {
                 PlayClip();
             }
+            if (pauseOnStart)
+            {
+                PauseClip();
+            }
         }
 
         [Button]
         public void PlayClip()
         {
             audioSource.Play();
+        }
+
+        [Button]
+        public void StopClip()
+        {
+            audioSource.Stop();
         }
 
         [Button]

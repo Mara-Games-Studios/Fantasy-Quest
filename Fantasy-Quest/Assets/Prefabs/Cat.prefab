@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 7420271526200802404}
   - component: {fileID: 2749134816934214972}
   - component: {fileID: 1662828592892698969}
+  - component: {fileID: 1554763388633289072}
   m_Layer: 0
   m_Name: CatSkeleton
   m_TagString: Untagged
@@ -246,8 +247,22 @@ MonoBehaviour:
     IgnoreListenerPause: 0
   loop: 1
   playOnStart: 0
+  pauseOnStart: 0
   ignorePause: 0
   createOnThisPosition: 0
+--- !u!114 &1554763388633289072
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 905931653165027739}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d9f3595cefef414a953c30b34570065, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundPlayer: {fileID: 1662828592892698969}
 --- !u!1 &4994989475704801607
 GameObject:
   m_ObjectHideFlags: 0
@@ -286,6 +301,7 @@ Transform:
   m_Children:
   - {fileID: 7209340483256552939}
   - {fileID: 1515946995588636891}
+  - {fileID: 8842031222080313372}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!81 &5511604636016998095
@@ -495,6 +511,121 @@ Transform:
   - {fileID: 6873379657733608164}
   m_Father: {fileID: 1515946995588636891}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8383784292829087726
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8842031222080313372}
+  - component: {fileID: 1773760601911767444}
+  - component: {fileID: 8235641699351221328}
+  m_Layer: 0
+  m_Name: JumpSound
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8842031222080313372
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8383784292829087726}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 28.66, y: 1.8500001, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 182963880363041228}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1773760601911767444
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8383784292829087726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e25d7337314417479613a298ff03226, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundsManager: {fileID: 0}
+  audioClip: {fileID: 8300000, guid: 46a2d4b14efd3954ebd410d2cffe09d2, type: 3}
+  audioSourceConfig:
+    priorityLevel: 128
+    Mute: 0
+    Volume: 1
+    Pitch: 1
+    PanStereo: 0
+    ReverbZoneMix: 1
+    SpatialBlend: 0
+    RolloffMode: 0
+    MinDistance: 0.1
+    MaxDistance: 50
+    Spread: 0
+    DopplerLevel: 1
+    BypassEffects: 0
+    BypassListenerEffects: 0
+    BypassReverbZones: 0
+    IgnoreListenerVolume: 0
+    IgnoreListenerPause: 0
+  loop: 0
+  playOnStart: 0
+  pauseOnStart: 0
+  ignorePause: 0
+  createOnThisPosition: 0
+--- !u!114 &8235641699351221328
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8383784292829087726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Events:
+    m_Signals:
+    - {fileID: 11400000, guid: 63e816655dfbff24480ee12f05d232a8, type: 2}
+    - {fileID: 11400000, guid: 05c2d3bdb0d7a3c43967ae1591178fd7, type: 2}
+    m_Events:
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1773760601911767444}
+          m_TargetAssemblyTypeName: Audio.SoundPlayer, Assembly-CSharp
+          m_MethodName: PlayClip
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1773760601911767444}
+          m_TargetAssemblyTypeName: Audio.SoundPlayer, Assembly-CSharp
+          m_MethodName: StopClip
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1001 &1958334341114758454
 PrefabInstance:
   m_ObjectHideFlags: 0
