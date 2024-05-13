@@ -1,4 +1,5 @@
-﻿using Configs.Progression;
+﻿using Configs;
+using Configs.Progression;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -10,6 +11,7 @@ namespace LevelSpecific.ForestEdge
         public UnityEvent PassedFirstTime;
         public UnityEvent PassedFirstTimeAfterFade;
         private bool first = true;
+        private bool exitManual = false;
 
         public void SetMiniGamePassed()
         {
@@ -26,6 +28,20 @@ namespace LevelSpecific.ForestEdge
             {
                 PassedFirstTimeAfterFade?.Invoke();
                 first = false;
+            }
+        }
+
+        public void SetExitManual()
+        {
+            exitManual = true;
+        }
+
+        public void UnlockFromManualExit()
+        {
+            if (exitManual)
+            {
+                LockerSettings.Instance.UnlockAll();
+                exitManual = false;
             }
         }
     }
