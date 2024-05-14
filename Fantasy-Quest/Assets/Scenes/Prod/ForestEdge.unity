@@ -1541,6 +1541,8 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 657523eb1901cde4ab5b413477a4ffdf, type: 2}
     - {fileID: 11400000, guid: fe087c528835b3247aecb856a031377f, type: 2}
     - {fileID: 11400000, guid: 524d8462b86cf534a87cdf96b4c9cf5e, type: 2}
+    - {fileID: 11400000, guid: cae0eb5000c664147bc0e7897a245f9e, type: 2}
+    - {fileID: 11400000, guid: 8cfb8f5fa5687b24da64a9e179610c76, type: 2}
     m_Events:
     - m_PersistentCalls:
         m_Calls:
@@ -1582,6 +1584,34 @@ MonoBehaviour:
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: walk with backpack
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 84311742}
+          m_TargetAssemblyTypeName: Spine.Unity.SkeletonAnimation, spine-unity
+          m_MethodName: ClearState
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 84311742}
+          m_TargetAssemblyTypeName: Spine.Unity.SkeletonAnimation, spine-unity
+          m_MethodName: set_AnimationName
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: idle with backpack
             m_BoolArgument: 0
           m_CallState: 2
 --- !u!1 &93917072
@@ -3099,7 +3129,7 @@ MonoBehaviour:
       - 0
       globalNormalsAngle: 0
       flipNormals: 0
-    vertexPathUpToDate: 0
+    vertexPathUpToDate: 1
     vertexPathMaxAngleError: 0.3
     vertexPathMinVertexSpacing: 0.01
     showTransformTool: 1
@@ -8583,8 +8613,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -1.5626999, y: 1.7592001, z: 0}
-    m_Extent: {x: 1.6855, y: 3.3154001, z: 0}
+    m_Center: {x: -1.55665, y: 1.7586, z: 0}
+    m_Extent: {x: 1.67965, y: 3.3169, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0.38
@@ -10403,8 +10433,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -1.2444, y: -0.21939999, z: 0}
-    m_Extent: {x: 2.2841, y: 1.6819, z: 0}
+    m_Center: {x: -1.2434, y: -0.21750003, z: 0}
+    m_Extent: {x: 2.2842999, y: 1.675, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0.38
@@ -10534,8 +10564,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -1.2461001, y: -0.21829998, z: 0}
-    m_Extent: {x: 2.2882, y: 1.6815, z: 0}
+    m_Center: {x: -1.2470499, y: -0.2234, z: 0}
+    m_Extent: {x: 2.2832499, y: 1.6729, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0.38
@@ -11483,6 +11513,8 @@ PlayableDirector:
     value: {fileID: 84311747}
   - key: {fileID: -2562974908263493628, guid: 8d698b6d615fec649a380373e3afc087, type: 2}
     value: {fileID: 574118310}
+  - key: {fileID: -8193396185380052648, guid: 8d698b6d615fec649a380373e3afc087, type: 2}
+    value: {fileID: 404905207}
   m_ExposedReferences:
     m_References:
     - 2a22d10ab3df2d948a7e25573797c28b: {fileID: 1779070972}
@@ -13894,8 +13926,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 5.7292995, y: 9.411449, z: 0}
-    m_Extent: {x: 3.4768999, y: 5.74215, z: 0}
+    m_Center: {x: 5.7324, y: 9.4172, z: 0}
+    m_Extent: {x: 3.4765003, y: 5.7377996, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -20111,8 +20143,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.35415006, y: 5.4468, z: 0}
-    m_Extent: {x: 5.87455, y: 6.2213, z: 0}
+    m_Center: {x: -0.36109996, y: 5.4506497, z: 0}
+    m_Extent: {x: 5.8768997, y: 6.21475, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -20671,8 +20703,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 5.91955, y: 9.679851, z: 0}
-    m_Extent: {x: 4.61675, y: 7.23425, z: 0}
+    m_Center: {x: 5.9144998, y: 9.685751, z: 0}
+    m_Extent: {x: 4.6175, y: 7.2278504, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -20889,7 +20921,7 @@ MonoBehaviour:
       Pitch: 1
       PanStereo: 0
       ReverbZoneMix: 1
-      SpatialBlend: 1
+      SpatialBlend: 0
       RolloffMode: 0
       MinDistance: 0.1
       MaxDistance: 50
@@ -21916,8 +21948,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 6.18485, y: 10.1909, z: 0}
-    m_Extent: {x: 4.44465, y: 6.3898993, z: 0}
+    m_Center: {x: 6.1878, y: 10.197801, z: 0}
+    m_Extent: {x: 4.459, y: 6.3891, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -21998,8 +22030,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 5.20375, y: 7.41375, z: 0}
-    m_Extent: {x: 3.4791503, y: 4.82455, z: 0}
+    m_Center: {x: 5.2097, y: 7.41685, z: 0}
+    m_Extent: {x: 3.4896998, y: 4.81915, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -22129,7 +22161,7 @@ MonoBehaviour:
       - 0
       globalNormalsAngle: 0
       flipNormals: 0
-    vertexPathUpToDate: 0
+    vertexPathUpToDate: 1
     vertexPathMaxAngleError: 0.3
     vertexPathMinVertexSpacing: 0.01
     showTransformTool: 1
@@ -23569,6 +23601,8 @@ PlayableDirector:
     value: {fileID: 1253773136}
   - key: {fileID: -4757143636420283973, guid: 76f1e035f195abf47867f607b2964726, type: 2}
     value: {fileID: 1356532180}
+  - key: {fileID: 5569975542651008911, guid: 76f1e035f195abf47867f607b2964726, type: 2}
+    value: {fileID: 1207028225}
   m_ExposedReferences:
     m_References: []
 --- !u!1 &1382538271
@@ -26472,6 +26506,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1593528245}
   - component: {fileID: 1593528244}
+  - component: {fileID: 1593528246}
   m_Layer: 3
   m_Name: EndTheGameHint
   m_TagString: Untagged
@@ -26524,6 +26559,51 @@ Transform:
   - {fileID: 1797038938}
   m_Father: {fileID: 1051157850}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &1593528246
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1593528243}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 3.1305122, y: 1.2439504}
+  m_EdgeRadius: 0
 --- !u!1 &1597228848
 GameObject:
   m_ObjectHideFlags: 0
@@ -26884,6 +26964,8 @@ PlayableDirector:
     value: {fileID: 490775042}
   - key: {fileID: 363522702610237362, guid: 2688e46f535f06c4fa7330aa60f51565, type: 2}
     value: {fileID: 84311747}
+  - key: {fileID: 5636233692754327747, guid: 2688e46f535f06c4fa7330aa60f51565, type: 2}
+    value: {fileID: 404905207}
   m_ExposedReferences:
     m_References:
     - 30b78d685abe1484880e2c411bb59bcb: {fileID: 810026366}
@@ -27651,8 +27733,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 11.89995, y: 15.8745, z: 0}
-    m_Extent: {x: 2.5547504, y: 5.2311997, z: 0}
+    m_Center: {x: 11.89865, y: 15.877851, z: 0}
+    m_Extent: {x: 2.5552502, y: 5.2344503, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -27832,8 +27914,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 6.37435, y: 9.56425, z: 0}
-    m_Extent: {x: 3.4910502, y: 5.0119495, z: 0}
+    m_Center: {x: 6.3782, y: 9.5656, z: 0}
+    m_Extent: {x: 3.4948, y: 5.0067997, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -31890,8 +31972,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -1.8085501, y: 0.27954996, z: 0}
-    m_Extent: {x: 2.35975, y: 2.83995, z: 0}
+    m_Center: {x: -1.8109999, y: 0.28260005, z: 0}
+    m_Extent: {x: 2.3623, y: 2.8516002, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0.38
@@ -36595,8 +36677,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -1.35435, y: -0.53644997, z: 0}
-    m_Extent: {x: 2.16875, y: 1.59975, z: 0}
+    m_Center: {x: -1.3443, y: -0.53485006, z: 0}
+    m_Extent: {x: 2.1703, y: 1.60705, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0.38
@@ -38456,9 +38538,17 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8516057150035671861, guid: 78951c99008d395408102ffd3bb94551, type: 3}
+      propertyPath: InEffectStarted.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8516057150035671861, guid: 78951c99008d395408102ffd3bb94551, type: 3}
       propertyPath: InEffectEnded.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 6943755223806689839}
+    - target: {fileID: 8516057150035671861, guid: 78951c99008d395408102ffd3bb94551, type: 3}
+      propertyPath: InEffectStarted.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 8516057150035671861, guid: 78951c99008d395408102ffd3bb94551, type: 3}
       propertyPath: OutEffectEnded.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -38472,8 +38562,32 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 6792728119773763105}
     - target: {fileID: 8516057150035671861, guid: 78951c99008d395408102ffd3bb94551, type: 3}
+      propertyPath: InEffectStarted.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 805997864}
+    - target: {fileID: 8516057150035671861, guid: 78951c99008d395408102ffd3bb94551, type: 3}
+      propertyPath: InEffectStarted.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8516057150035671861, guid: 78951c99008d395408102ffd3bb94551, type: 3}
       propertyPath: OutEffectEnded.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: ActivateMiniGame
+      objectReference: {fileID: 0}
+    - target: {fileID: 8516057150035671861, guid: 78951c99008d395408102ffd3bb94551, type: 3}
+      propertyPath: InEffectStarted.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: set_AnimationName
+      objectReference: {fileID: 0}
+    - target: {fileID: 8516057150035671861, guid: 78951c99008d395408102ffd3bb94551, type: 3}
+      propertyPath: InEffectStarted.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: Spine.Unity.SkeletonAnimation, spine-unity
+      objectReference: {fileID: 0}
+    - target: {fileID: 8516057150035671861, guid: 78951c99008d395408102ffd3bb94551, type: 3}
+      propertyPath: InEffectStarted.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_StringArgument
+      value: idle
+      objectReference: {fileID: 0}
+    - target: {fileID: 8516057150035671861, guid: 78951c99008d395408102ffd3bb94551, type: 3}
+      propertyPath: InEffectStarted.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 8713202897810421844, guid: 78951c99008d395408102ffd3bb94551, type: 3}
       propertyPath: m_LocalPosition.x
