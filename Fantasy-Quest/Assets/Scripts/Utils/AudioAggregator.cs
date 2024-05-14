@@ -17,13 +17,11 @@ namespace Utils
             [InfoBox("@" + nameof(DialogueSpeakerInfo))]
             public DialogueSpeaker DialogueSpeaker;
             private string DialogueSpeakerInfo =>
-                DialogueSpeaker
-                    .FFirstTrySpeech.Select(x => x.Audio.name)
-                    .Aggregate((x, y) => x + "\n" + y);
-            //+ "\n"
-            //+ DialogueSpeaker
-            //    .AAlternativeSpeech.Select(x => x.Audio.name)
-            //    .Aggregate((x, y) => x + "\n" + y);
+                DialogueSpeaker.FFirstTrySpeech.Select(x => x.Audio.name).Any()
+                    ? DialogueSpeaker
+                        .FFirstTrySpeech.Select(x => x.Audio.name)
+                        .Aggregate((x, y) => x + "\n" + y)
+                    : "";
         }
 
         [Serializable]
