@@ -2915,8 +2915,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 1
   m_ShadowVolumeIntensity: 0.869
   m_LocalBounds:
-    m_Center: {x: -1.63835, y: -5.6253, z: 0}
-    m_Extent: {x: 2.10865, y: 1.8326, z: 0}
+    m_Center: {x: -1.64235, y: -5.616, z: 0}
+    m_Extent: {x: 2.10285, y: 1.8350002, z: 0}
   m_PointLightInnerAngle: 359.6
   m_PointLightOuterAngle: 359.6
   m_PointLightInnerRadius: 2
@@ -4056,8 +4056,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 1
   m_ShadowVolumeIntensity: 0.869
   m_LocalBounds:
-    m_Center: {x: -1.3425, y: -5.5703, z: 0}
-    m_Extent: {x: 1.7560999, y: 1.9227, z: 0}
+    m_Center: {x: -1.34375, y: -5.5759, z: 0}
+    m_Extent: {x: 1.75595, y: 1.9214998, z: 0}
   m_PointLightInnerAngle: 359.6
   m_PointLightOuterAngle: 359.6
   m_PointLightInnerRadius: 2
@@ -6253,6 +6253,121 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cutsceneStarter: {fileID: 324369289}
   canCatInteract: 0
+--- !u!1 &591391205
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 591391206}
+  - component: {fileID: 591391208}
+  - component: {fileID: 591391207}
+  m_Layer: 0
+  m_Name: WalkSymonSoundSound
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &591391206
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 591391205}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -13.950001, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 650290302}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &591391207
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 591391205}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Events:
+    m_Signals:
+    - {fileID: 11400000, guid: 63e816655dfbff24480ee12f05d232a8, type: 2}
+    - {fileID: 11400000, guid: 05c2d3bdb0d7a3c43967ae1591178fd7, type: 2}
+    m_Events:
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 591391208}
+          m_TargetAssemblyTypeName: Audio.SoundPlayer, Assembly-CSharp
+          m_MethodName: PlayClip
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 591391208}
+          m_TargetAssemblyTypeName: Audio.SoundPlayer, Assembly-CSharp
+          m_MethodName: StopClip
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!114 &591391208
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 591391205}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e25d7337314417479613a298ff03226, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundsManager: {fileID: 273099443}
+  audioClip: {fileID: 8300000, guid: e9149b389fd0f0349acd57e821c7e8bd, type: 3}
+  audioSourceConfig:
+    priorityLevel: 128
+    Mute: 0
+    Volume: 0.2
+    Pitch: 1
+    PanStereo: 0
+    ReverbZoneMix: 1
+    SpatialBlend: 0
+    RolloffMode: 0
+    MinDistance: 0.1
+    MaxDistance: 50
+    Spread: 0
+    DopplerLevel: 1
+    BypassEffects: 0
+    BypassListenerEffects: 0
+    BypassReverbZones: 0
+    IgnoreListenerVolume: 0
+    IgnoreListenerPause: 0
+  loop: 0
+  playOnStart: 0
+  ignorePause: 0
+  createOnThisPosition: 0
+  audioSource: {fileID: 0}
 --- !u!114 &604893966 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3402555579230904323, guid: 0632c63fb65b1f340b1ae628fc7206cf, type: 3}
@@ -6822,6 +6937,7 @@ Transform:
   - {fileID: 199431207}
   - {fileID: 1129111303}
   - {fileID: 1526135174}
+  - {fileID: 591391206}
   m_Father: {fileID: 106903181}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &650290303
@@ -6888,6 +7004,8 @@ PlayableDirector:
     value: {fileID: 0}
   - key: {fileID: -27282109257482976, guid: bc02affea331f0c4a8ece55d2e0b0df3, type: 2}
     value: {fileID: 1526135175}
+  - key: {fileID: -8488854718677436109, guid: bc02affea331f0c4a8ece55d2e0b0df3, type: 2}
+    value: {fileID: 591391207}
   m_ExposedReferences:
     m_References:
     - def7d135f55a3bf47a8ca214b5f53c09: {fileID: 1054450547}
@@ -7009,7 +7127,7 @@ MonoBehaviour:
     HoldTime: 1
     WaitAfter: 0
     FadeTime: 0.6
-  playLast: 0
+  playLast: 1
   SlideshowStarted:
     m_PersistentCalls:
       m_Calls:
@@ -9003,8 +9121,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 1
   m_ShadowVolumeIntensity: 0.869
   m_LocalBounds:
-    m_Center: {x: 0.46170002, y: -5.5928, z: 0}
-    m_Extent: {x: 1.4672, y: 1.9603001, z: 0}
+    m_Center: {x: 0.46705, y: -5.5901003, z: 0}
+    m_Extent: {x: 1.46595, y: 1.9605, z: 0}
   m_PointLightInnerAngle: 359.6
   m_PointLightOuterAngle: 359.6
   m_PointLightInnerRadius: 2
@@ -15817,8 +15935,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 1
   m_ShadowVolumeIntensity: 0.869
   m_LocalBounds:
-    m_Center: {x: -2.8849, y: -7.51985, z: 0}
-    m_Extent: {x: 1.981, y: 1.26525, z: 0}
+    m_Center: {x: -2.8874, y: -7.5182, z: 0}
+    m_Extent: {x: 1.9800999, y: 1.2715998, z: 0}
   m_PointLightInnerAngle: 359.6
   m_PointLightOuterAngle: 359.6
   m_PointLightInnerRadius: 2
@@ -17125,8 +17243,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 1
   m_ShadowVolumeIntensity: 0.869
   m_LocalBounds:
-    m_Center: {x: -0.65795, y: -7.4337, z: 0}
-    m_Extent: {x: 2.60155, y: 1.3276, z: 0}
+    m_Center: {x: -0.65265, y: -7.4342003, z: 0}
+    m_Extent: {x: 2.60505, y: 1.3279002, z: 0}
   m_PointLightInnerAngle: 359.6
   m_PointLightOuterAngle: 359.6
   m_PointLightInnerRadius: 2
