@@ -43,6 +43,10 @@ namespace LevelSpecific.ForestEdge
             {
                 acorn.SetActive(true);
             }
+            else
+            {
+                acorn.SetActive(false);
+            }
         }
     }
 }

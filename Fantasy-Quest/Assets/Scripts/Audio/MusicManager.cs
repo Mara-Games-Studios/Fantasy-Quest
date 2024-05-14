@@ -55,17 +55,18 @@ namespace Audio
             }
             if (playImmediately)
             {
-                PlayPlaylist();
+                PlayPlaylist(playlist.Loop);
             }
         }
 
         [Button]
-        private void PlayPlaylist()
+        private void PlayPlaylist(bool loop = false)
         {
             for (int i = 0; i < currentClips.Count; i++)
             {
                 audioSources[i].clip = currentClips[i].AudioClip;
                 currentClips[i].AudioSourceConfig.ApplyTo(audioSources[i]);
+                audioSources[i].loop = loop;
                 audioSources[i].Play();
             }
         }

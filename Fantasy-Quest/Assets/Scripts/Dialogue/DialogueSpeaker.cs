@@ -58,8 +58,6 @@ namespace Dialogue
                 StopCoroutine(SayCoroutine);
                 SayCoroutine = null;
             }
-
-            // BUGBUGBUBGUGBUGBUBGUBGUBGUBGUBGU
             Voice?.Silence();
             SubtitlesView.Value.Hide();
         }
@@ -85,18 +83,6 @@ namespace Dialogue
         protected bool HasISubtitlesView(GameObject gameObject)
         {
             return gameObject.TryGetComponent(out ISubtitlesView _);
-        }
-
-        public void Pause()
-        {
-            //BUGBUGBUGBUGBUGBUGBUGBUGBUGBUGBUGBUG
-            Voice.Pause();
-        }
-
-        public void Resume()
-        {
-            //BUGBUGBUGBUGBUGBUGBUGBUGBUG
-            Voice.Resume();
         }
 
         public void Kill()

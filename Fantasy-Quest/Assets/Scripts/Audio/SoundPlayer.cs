@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Audio
 {
     [AddComponentMenu("Scripts/Audio/Audio.SoundPlayer")]
-    internal class SoundPlayer : MonoBehaviour
+    public class SoundPlayer : MonoBehaviour
     {
         [RequiredIn(PrefabKind.PrefabInstanceAndNonPrefabInstance)]
         [SerializeField]

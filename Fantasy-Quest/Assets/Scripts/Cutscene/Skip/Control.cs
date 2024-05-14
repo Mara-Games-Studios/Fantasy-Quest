@@ -1,4 +1,8 @@
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using Audio;
+using Dialogue;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -12,6 +16,12 @@ namespace Cutscene.Skip
     {
         [SerializeField]
         private Dialogue.Manager dialogueManager;
+
+        [SerializeField]
+        private List<ChainSpeaker> chainSpeakerList;
+
+        [SerializeField]
+        private List<SoundPlayer> soundPlayerList;
 
         [SerializeField]
         private PlayableDirector playableDirector;
@@ -53,7 +63,9 @@ namespace Cutscene.Skip
         public void FadeInEndCallback()
         {
             playableDirector.time = endFrame / FRAMES_PER_SECOND;
-            dialogueManager.KillCurrentSpeakers();
+            chainSpeakerList.ForEach(x => x.StopTelling());
+            soundPlayerList.ForEach(x => x.StopClip());
+            dialogueManager.KillAllSpeakers();
             _ = StartCoroutine(WaitForSeconds(FADE_DURATION));
         }
 
@@ -61,7 +73,6 @@ namespace Cutscene.Skip
         {
             yield return new WaitForSeconds(duration);
             blackScreen.FadeOut();
-            dialogueManager.KillCurrentSpeakers();
         }
 
         private void OnDisable()
@@ -76,6 +87,8 @@ namespace Cutscene.Skip
             dialogueManager = FindAnyObjectByType<Dialogue.Manager>();
             playableDirector = GetComponent<PlayableDirector>();
             blackScreenCreator = FindAnyObjectByType<Creator>();
+            chainSpeakerList = GetComponentsInChildren<ChainSpeaker>().ToList();
+            soundPlayerList = GetComponentsInChildren<SoundPlayer>().ToList();
         }
     }
 }
