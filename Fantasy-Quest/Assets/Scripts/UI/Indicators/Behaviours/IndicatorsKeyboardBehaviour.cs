@@ -138,6 +138,7 @@ namespace UI.Pages.Behaviours
             }
 
             LayoutModel.VerticalButtons[LayoutModel.CurrentButtonIndex].onClick.Invoke();
+            EffectModel.EnterSound.PlayClip();
         }
     }
 }
