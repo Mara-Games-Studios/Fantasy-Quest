@@ -27,6 +27,7 @@ namespace Symon
 
         private void Update()
         {
+            Debug.Log(isPlayingCorrect);
             bool currentPlayingCorrect = TriggeringNames.Contains(skeletonAnimation.AnimationName);
             if (isPlayingCorrect != currentPlayingCorrect)
             {
