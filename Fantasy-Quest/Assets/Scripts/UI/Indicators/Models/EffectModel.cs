@@ -1,4 +1,5 @@
 ﻿using System;
+using Audio;
 using DG.Tweening;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -18,6 +19,12 @@ namespace UI.Indicators
         [Required]
         public CanvasGroup IndicatorsAlpha;
 
+        [SerializeField]
+        public SoundPlayer SlideSound;
+        
+        [SerializeField]
+        public SoundPlayer EnterSound;
+    
         [HideInInspector]
         public RectTransform RectTransform;
         public Tween VanishingTween;

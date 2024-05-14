@@ -108,6 +108,7 @@ namespace UI.Pages.Behaviours
             )
             {
                 horizontalSlider.MoveLeft();
+                EffectModel.SlideSound.PlayClip();
             }
         }
 
@@ -125,6 +126,7 @@ namespace UI.Pages.Behaviours
             )
             {
                 horizontalSlider.MoveRight();
+                EffectModel.SlideSound.PlayClip();
             }
         }
 
