@@ -80,7 +80,6 @@ namespace Scene.Gameplay
                 Time.timeScale = 1.0f;
                 cutsceneManager.LockFromSettings();
                 cutsceneManager.Resume();
-                dialogueManager.Resume();
                 soundsManager.ResumeSound();
                 animationLocker = true;
                 CursorLockUnlock.LockCursor();
