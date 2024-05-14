@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Audio;
 using Dialogue;
 using Sirenix.OdinInspector;
@@ -86,6 +87,8 @@ namespace Cutscene.Skip
             dialogueManager = FindAnyObjectByType<Dialogue.Manager>();
             playableDirector = GetComponent<PlayableDirector>();
             blackScreenCreator = FindAnyObjectByType<Creator>();
+            chainSpeakerList = GetComponentsInChildren<ChainSpeaker>().ToList();
+            soundPlayerList = GetComponentsInChildren<SoundPlayer>().ToList();
         }
     }
 }
