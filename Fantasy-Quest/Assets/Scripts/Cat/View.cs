@@ -72,16 +72,23 @@ namespace Cat
             catMovement.OnStateChanged -= StateChanged;
         }
 
+        private State previousState = State.Staying;
+
         private void StateChanged(State state)
         {
-            switch (state)
+            if (previousState != state)
             {
-                case State.Staying:
-                    walkSound.StopClip();
-                    break;
-                case State.Moving:
-                    walkSound.PlayClip();
-                    break;
+                switch (state)
+                {
+                    case State.Staying:
+                        walkSound.StopClip();
+                        break;
+                    case State.Moving:
+                        walkSound.PlayClip();
+                        break;
+                }
+
+                previousState = state;
             }
 
             switch (state)
