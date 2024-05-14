@@ -39,9 +39,11 @@ namespace UI.Pause
         [Button]
         public void Show()
         {
-            if(material.GetFloat(THRESHOLD_KEY) == visibleThreshold)
+            if (material.GetFloat(THRESHOLD_KEY) == visibleThreshold)
+            {
                 return;
-            
+            }
+
             image.gameObject.SetActive(true);
             tween?.Kill();
 
@@ -63,9 +65,11 @@ namespace UI.Pause
         [Button]
         public void Hide()
         {
-            if(material.GetFloat(THRESHOLD_KEY) == invisibleThreshold)
+            if (material.GetFloat(THRESHOLD_KEY) == invisibleThreshold)
+            {
                 return;
-            
+            }
+
             tween?.Kill();
 
             tween = DOTween

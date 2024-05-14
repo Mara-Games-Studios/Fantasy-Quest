@@ -2,6 +2,7 @@
 using System.Linq;
 using DG.Tweening;
 using Sirenix.OdinInspector;
+using Spine.Unity;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -17,6 +18,9 @@ namespace UI.FadingUI
         [SerializeField]
         private List<Image> images;
 
+        [SerializeField]
+        private SkeletonGraphic skeletonGraphic;
+
         public void FadeIn(float time)
         {
             foreach (Image image in images)
@@ -28,6 +32,16 @@ namespace UI.FadingUI
             {
                 label.color = new(label.color.r, label.color.g, label.color.b, 0);
                 _ = label.DOFade(1, time);
+            }
+            if (skeletonGraphic != null)
+            {
+                skeletonGraphic.color = new(
+                    skeletonGraphic.color.r,
+                    skeletonGraphic.color.g,
+                    skeletonGraphic.color.b,
+                    0
+                );
+                _ = skeletonGraphic.DOFade(1, time);
             }
         }
 
@@ -42,6 +56,17 @@ namespace UI.FadingUI
             {
                 label.color = new(label.color.r, label.color.g, label.color.b, 1);
                 _ = label.DOFade(0, time);
+            }
+
+            if (skeletonGraphic != null)
+            {
+                skeletonGraphic.color = new(
+                    skeletonGraphic.color.r,
+                    skeletonGraphic.color.g,
+                    skeletonGraphic.color.b,
+                    1
+                );
+                _ = skeletonGraphic.DOFade(0, time);
             }
         }
 

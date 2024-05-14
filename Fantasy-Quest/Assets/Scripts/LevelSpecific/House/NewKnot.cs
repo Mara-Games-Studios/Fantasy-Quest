@@ -35,12 +35,12 @@ namespace LevelSpecific.House
 
         [SerializeField]
         private State state = State.None;
-        
+
         [SerializeField]
         private SkeletonAnimation skeleton;
 
         //add reils + speed
-        
+
         public UnityEvent OnKnotHinted;
 
         public void InteractByCat()
@@ -52,13 +52,13 @@ namespace LevelSpecific.House
                 {
                     case State.MoveLeft:
                         canCatInteract = false;
-                        skeleton.AnimationState.SetAnimation(0, animations.MoveRight, false);
+                        _ = skeleton.AnimationState.SetAnimation(0, animations.MoveRight, false);
                         // animator.SetTrigger("MoveToRight");
                         state = State.MoveRight;
                         break;
                     case State.MoveRight:
                         canCatInteract = false;
-                        skeleton.AnimationState.SetAnimation(0, animations.MoveLeft, false);
+                        _ = skeleton.AnimationState.SetAnimation(0, animations.MoveLeft, false);
                         // animator.SetTrigger("MoveToLeft");
                         state = State.MoveLeft;
                         break;

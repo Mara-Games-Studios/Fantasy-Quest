@@ -21,7 +21,7 @@ namespace Minigames.SquirrelGame.Screamer
 
         [SerializeField]
         private float scaleDuration = 1f;
-        
+
         private Tween scaleTween;
 
         private void Awake()
@@ -33,8 +33,10 @@ namespace Minigames.SquirrelGame.Screamer
         [Button]
         public void Show()
         {
-            if(squirrelTransform.localScale.x == maxScale)
+            if (squirrelTransform.localScale.x == maxScale)
+            {
                 return;
+            }
 
             scaleTween?.Kill();
 
@@ -48,12 +50,14 @@ namespace Minigames.SquirrelGame.Screamer
         [Button]
         public void Hide()
         {
-            if(squirrelTransform.localScale.x == minScale)
+            if (squirrelTransform.localScale.x == minScale)
+            {
                 return;
+            }
 
             scaleTween?.Kill();
 
-            squirrelTransform
+            _ = squirrelTransform
                 .DOScale(new Vector3(minScale, minScale, 1f), scaleDuration)
                 .SetEase(ease)
                 .OnComplete(() => squirrelTransform.gameObject.SetActive(false));
