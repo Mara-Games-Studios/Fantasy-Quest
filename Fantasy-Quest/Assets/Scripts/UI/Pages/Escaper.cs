@@ -1,4 +1,5 @@
 ﻿using Audio;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace UI
@@ -6,9 +7,10 @@ namespace UI
     [AddComponentMenu("Scripts/UI/Pages/UI.Pages.Escaper")]
     public class Escaper : MonoBehaviour
     {
+        [Required]
         [SerializeField]
         private SoundPlayer exitSound;
-        
+
         private Pages.View currentPage;
         private Pages.View lastPage;
         private GameplayInput mainMenuInput;
