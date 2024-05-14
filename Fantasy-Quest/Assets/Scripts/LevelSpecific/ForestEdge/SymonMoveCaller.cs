@@ -61,11 +61,11 @@ namespace LevelSpecific.ForestEdge
                 // Start cutscene
                 _ = StartCoroutine(GoToCutscene());
             }
-            else
-            {
-                // Just walk
-                _ = StartCoroutine(TravelToPoint());
-            }
+            //else
+            //{
+            //    // Just walk
+            //    _ = StartCoroutine(TravelToPoint());
+            //}
         }
 
         public void SendSymonToStartAfterCutscene()
