@@ -66,11 +66,6 @@ namespace LevelSpecific.ForestEdge
                 tryToAltar.StartCutscene();
                 return;
             }
-            else if (ProgressionConfig.Instance.ForestEdgeLevel.AltarGamePassed)
-            {
-                finilizationCutscene.StartCutscene();
-                return;
-            }
         }
     }
 }

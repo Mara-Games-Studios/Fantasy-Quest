@@ -20,7 +20,7 @@ namespace Minigames.SquirrelGame.Screamer
 
         [SerializeField]
         private float duration = 0.3f;
-        
+
         private Coroutine waitCoroutine;
         public event Action OnScreamerShowed;
 
@@ -28,7 +28,7 @@ namespace Minigames.SquirrelGame.Screamer
         public void Show()
         {
             StopTheCoroutine(waitCoroutine);
-            
+
             background.Show();
             squirrelShower.Show();
             soundPlayer.PlayClip();
@@ -46,17 +46,18 @@ namespace Minigames.SquirrelGame.Screamer
         private void StopTheCoroutine(Coroutine coroutine)
         {
             if (coroutine == null)
+            {
                 return;
-            
+            }
 
             StopCoroutine(coroutine);
-            coroutine = null;
         }
 
         private IEnumerator WaitInvokeOnScreamerShowed(float timeBeforeInvoke)
         {
             yield return new WaitForSeconds(duration);
             InvokeOnScreamerShowed();
+            Hide();
         }
 
         private void InvokeOnScreamerShowed()
