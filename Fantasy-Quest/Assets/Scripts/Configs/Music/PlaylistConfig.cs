@@ -18,6 +18,8 @@ namespace Configs.Music
     [CreateAssetMenu(fileName = "Playlist Config", menuName = "Configs/Create Playlist Config")]
     internal class PlaylistConfig : ScriptableObject
     {
+        public bool Loop = false;
+
         [SerializeField]
         private List<AudioClipConfig> audioClips;
         public List<AudioClipConfig> AudioClips => audioClips;

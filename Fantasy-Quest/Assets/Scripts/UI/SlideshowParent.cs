@@ -55,7 +55,6 @@ namespace UI
             if (playOnAwake)
             {
                 StartSlideshow();
-                SlideshowStarted?.Invoke();
             }
         }
 
@@ -121,6 +120,7 @@ namespace UI
         [Button]
         public void StartSlideshow()
         {
+            SlideshowStarted?.Invoke();
             _ = StartCoroutine(ShowSlides());
         }
 
