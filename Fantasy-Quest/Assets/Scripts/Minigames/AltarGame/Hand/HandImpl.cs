@@ -93,25 +93,29 @@ namespace Minigames.AltarGame.Hand
         [SerializeField]
         private bool isFirstMove = true;
         private Coroutine waitingForDecide;
+        private Coroutine tellCoroutine;
+        private Tween moveTween;
 
         public void ResetHand()
         {
             isFirstMove = true;
-            transform.position = startPosition.position;
             temporaryItemsToCreate.Clear();
             temporaryItemsToCreate.AddRange(itemsToCreate);
-            //StopCoroutine(waitingForDecide);
+            _ = this.KillCoroutine(waitingForDecide);
+            _ = this.KillCoroutine(tellCoroutine);
+            moveTween?.Kill();
             isChoosing = false;
             if (holdingItem != null)
             {
                 Destroy(holdingItem.gameObject);
                 holdingItem = null;
             }
+            transform.position = startPosition.position;
         }
 
         public void TakeItem()
         {
-            Tween moveTween = transform.DOMove(takeItemPoint.Position, takeItemPoint.Duration);
+            moveTween = transform.DOMove(takeItemPoint.Position, takeItemPoint.Duration);
             moveTween.onComplete += CreateItem;
         }
 
@@ -143,10 +147,7 @@ namespace Minigames.AltarGame.Hand
             if (query.Any())
             {
                 chosenSlot = query.Dequeue();
-                Tween moveTween = transform.DOMove(
-                    chosenSlot.transform.position,
-                    moveToSlotDuration
-                );
+                moveTween = transform.DOMove(chosenSlot.transform.position, moveToSlotDuration);
                 if (isFirstMove)
                 {
                     moveTween.onComplete += () => firstMoveSpeech.Tell(() => { });
@@ -193,7 +194,7 @@ namespace Minigames.AltarGame.Hand
             }
             else
             {
-                Tween moveTween = transform.DOMove(endGamePoint.Position, endGamePoint.Duration);
+                moveTween = transform.DOMove(endGamePoint.Position, endGamePoint.Duration);
                 moveTween.onComplete += EndPointReached;
             }
         }
@@ -206,7 +207,9 @@ namespace Minigames.AltarGame.Hand
             }
             else
             {
-                wrongPlacingSpeech.Tell(() => manager.QuitMiniGame());
+                tellCoroutine = StartCoroutine(
+                    wrongPlacingSpeech.TellRoutine(() => manager.QuitMiniGame())
+                );
             }
         }
 
@@ -219,7 +222,7 @@ namespace Minigames.AltarGame.Hand
                 return;
             }
             OnChooseDisagreeHappens?.Invoke();
-            StopCoroutine(waitingForDecide);
+            _ = this.KillCoroutine(waitingForDecide);
             isChoosing = false;
             MoveToNextSlot();
         }
@@ -233,7 +236,7 @@ namespace Minigames.AltarGame.Hand
                 return;
             }
             OnChooseAgreeHappens?.Invoke();
-            StopCoroutine(waitingForDecide);
+            _ = this.KillCoroutine(waitingForDecide);
             PlaceItemInSlot();
         }
     }

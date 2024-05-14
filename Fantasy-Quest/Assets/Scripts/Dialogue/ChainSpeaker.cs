@@ -68,7 +68,7 @@ namespace Dialogue
             yield return TellRoutine(() => { });
         }
 
-        private IEnumerator TellRoutine(Action nextAction)
+        public IEnumerator TellRoutine(Action nextAction)
         {
             foreach (Replica replica in Replicas)
             {
