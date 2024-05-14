@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Audio;
 using Sirenix.OdinInspector;
+using UI.Pages;
 using UI.Pages.Behaviours;
 using UnityEngine;
 using UnityEngine.UI;
@@ -23,7 +24,7 @@ namespace UI
 
         private void Awake()
         {
-            Button[] allButtons = FindObjectsByType<Button>(
+            Button[] allButtons = FindObjectsByType<IndicatedButton>(
                 FindObjectsInactive.Include,
                 FindObjectsSortMode.None
             );

@@ -1,10 +1,14 @@
-﻿using UnityEngine;
+﻿using Audio;
+using UnityEngine;
 
 namespace UI
 {
     [AddComponentMenu("Scripts/UI/Pages/UI.Pages.Escaper")]
     public class Escaper : MonoBehaviour
     {
+        [SerializeField]
+        private SoundPlayer exitSound;
+        
         private Pages.View currentPage;
         private Pages.View lastPage;
         private GameplayInput mainMenuInput;
@@ -43,6 +47,7 @@ namespace UI
 
             currentPage.HideToStart();
             lastPage.ShowFromStart();
+            exitSound.PlayClip();
         }
 
         private void SetPage(Pages.View page)
