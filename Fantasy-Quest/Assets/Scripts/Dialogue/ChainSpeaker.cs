@@ -46,6 +46,7 @@ namespace Dialogue
             if (isWithSubtitles)
             {
                 Subtitles.Hide();
+                isWithSubtitles = false;
             }
         }
 
@@ -96,24 +97,28 @@ namespace Dialogue
 
         public IEnumerator TellRoutine(Action nextAction)
         {
+            isWithSubtitles = true;
             foreach (Replica replica in Replicas)
             {
                 voice.Say(replica);
                 Subtitles.Show(replica);
                 yield return new WaitForSeconds(replica.Duration + replica.DelayAfterSaid);
             }
+            isWithSubtitles = false;
             Subtitles.Hide();
             nextAction?.Invoke();
         }
 
         public IEnumerator JustTellRoutine()
         {
+            isWithSubtitles = true;
             foreach (Replica replica in Replicas)
             {
                 voice.Say(replica);
                 Subtitles.Show(replica);
                 yield return new WaitForSeconds(replica.Duration + replica.DelayAfterSaid);
             }
+            isWithSubtitles = false;
             Subtitles.Hide();
         }
 
