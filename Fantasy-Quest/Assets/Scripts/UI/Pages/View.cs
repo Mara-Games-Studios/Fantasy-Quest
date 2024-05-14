@@ -25,12 +25,12 @@ namespace UI.Pages
 
         private void OnEnable()
         {
-            effectShower.OnEffectShowed += InvokeOnPageShowed;
+            effectShower.OnEffectShowed.AddListener(InvokeOnPageShowed);
         }
 
         private void OnDisable()
         {
-            effectShower.OnEffectShowed -= InvokeOnPageShowed;
+            effectShower.OnEffectShowed.RemoveListener(InvokeOnPageShowed);
         }
 
         private void InvokeOnPageShowed()

@@ -23,7 +23,7 @@ namespace UI.ControlPage
 
         private GameplayInput mainMenuInput;
 
-        private void Awake()
+        private void Start()
         {
             mainMenuInput = new();
             mainMenuInput.Enable();
