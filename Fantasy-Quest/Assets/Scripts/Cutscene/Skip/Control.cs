@@ -73,6 +73,9 @@ namespace Cutscene.Skip
         {
             yield return new WaitForSeconds(duration);
             blackScreen.FadeOut();
+            chainSpeakerList.ForEach(x => x.StopTelling());
+            soundPlayerList.ForEach(x => x.StopClip());
+            dialogueManager.KillAllSpeakers();
         }
 
         private void OnDisable()
