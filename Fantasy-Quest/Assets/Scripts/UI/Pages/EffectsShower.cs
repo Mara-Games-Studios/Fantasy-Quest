@@ -30,7 +30,7 @@ namespace UI.Pages
 
         [HideInInspector]
         public GameObject AffectedContainer;
-        
+
         public UnityEvent OnEffectShowed;
         public UnityEvent OnEffectHiding;
 

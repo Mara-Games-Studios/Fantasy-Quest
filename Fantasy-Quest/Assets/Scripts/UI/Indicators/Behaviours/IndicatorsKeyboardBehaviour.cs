@@ -53,7 +53,11 @@ namespace UI.Pages.Behaviours
 
         private void GoDown()
         {
-            if (LayoutModel.VerticalButtons == null || LayoutModel.VerticalButtons.Count == 0 || !LayoutModel.Page.EffectedObject.activeSelf)
+            if (
+                LayoutModel.VerticalButtons == null
+                || LayoutModel.VerticalButtons.Count == 0
+                || !LayoutModel.Page.EffectedObject.activeSelf
+            )
             {
                 return;
             }
@@ -75,7 +79,11 @@ namespace UI.Pages.Behaviours
 
         private void GoUp()
         {
-            if (LayoutModel.VerticalButtons == null || LayoutModel.VerticalButtons.Count == 0 || !LayoutModel.Page.EffectedObject.activeSelf)
+            if (
+                LayoutModel.VerticalButtons == null
+                || LayoutModel.VerticalButtons.Count == 0
+                || !LayoutModel.Page.EffectedObject.activeSelf
+            )
             {
                 return;
             }
@@ -96,7 +104,11 @@ namespace UI.Pages.Behaviours
 
         private void GoLeft()
         {
-            if (LayoutModel.VerticalButtons == null || LayoutModel.VerticalButtons.Count == 0 || !LayoutModel.Page.EffectedObject.activeSelf)
+            if (
+                LayoutModel.VerticalButtons == null
+                || LayoutModel.VerticalButtons.Count == 0
+                || !LayoutModel.Page.EffectedObject.activeSelf
+            )
             {
                 return;
             }
@@ -114,7 +126,11 @@ namespace UI.Pages.Behaviours
 
         private void GoRight()
         {
-            if (LayoutModel.VerticalButtons == null || LayoutModel.VerticalButtons.Count == 0 || !LayoutModel.Page.EffectedObject.activeSelf)
+            if (
+                LayoutModel.VerticalButtons == null
+                || LayoutModel.VerticalButtons.Count == 0
+                || !LayoutModel.Page.EffectedObject.activeSelf
+            )
             {
                 return;
             }
@@ -132,7 +148,11 @@ namespace UI.Pages.Behaviours
 
         private void Click()
         {
-            if (LayoutModel.VerticalButtons == null || LayoutModel.VerticalButtons.Count == 0 || !LayoutModel.Page.EffectedObject.activeSelf)
+            if (
+                LayoutModel.VerticalButtons == null
+                || LayoutModel.VerticalButtons.Count == 0
+                || !LayoutModel.Page.EffectedObject.activeSelf
+            )
             {
                 return;
             }
