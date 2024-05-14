@@ -37,6 +37,7 @@ namespace Scene.Gameplay
         [Required((InfoMessageType)PrefabKind.PrefabInstanceAndNonPrefabInstance)]
         [SerializeField]
         private DarkBackground background;
+        private bool animationLocker = true;
 
         public void SwitchSettings()
         {
@@ -44,7 +45,7 @@ namespace Scene.Gameplay
             {
                 OpenSettings();
             }
-            else if (pausePanel.activeSelf)
+            else if (pausePanel.activeSelf && animationLocker)
             {
                 SettingsClosed();
             }
@@ -70,17 +71,20 @@ namespace Scene.Gameplay
         [Button]
         public void SettingsClosed()
         {
-            pauseShowed = false;
             settingsPage.HideToEnd();
-            LockerSettings.Instance.UnlockAll();
-            Time.timeScale = 1.0f;
-            cutsceneManager.LockFromSettings();
-            cutsceneManager.Resume();
-            soundsManager.ResumeSound();
-
-            CursorLockUnlock.LockCursor();
-
-            background.Hide();
+            animationLocker = false;
+            background.Hide(() =>
+            {
+                pauseShowed = false;
+                LockerSettings.Instance.UnlockAll();
+                Time.timeScale = 1.0f;
+                cutsceneManager.LockFromSettings();
+                cutsceneManager.Resume();
+                dialogueManager.Resume();
+                soundsManager.ResumeSound();
+                animationLocker = true;
+                CursorLockUnlock.LockCursor();
+            });
         }
     }
 }
