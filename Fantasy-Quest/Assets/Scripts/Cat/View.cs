@@ -50,12 +50,6 @@ namespace Cat
         [SerializeField]
         private SoundPlayer walkSound;
 
-        private void Start()
-        {
-            walkSound.PlayClip();
-            walkSound.StopClip();
-        }
-
         [Button]
         public void SetEggTaken(bool withEgg)
         {
@@ -83,10 +77,10 @@ namespace Cat
             switch (state)
             {
                 case State.Staying:
-                    walkSound.AudioSource.mute = true;
+                    walkSound.StopClip();
                     break;
                 case State.Moving:
-                    walkSound.AudioSource.mute = false;
+                    walkSound.PlayClip();
                     break;
             }
 

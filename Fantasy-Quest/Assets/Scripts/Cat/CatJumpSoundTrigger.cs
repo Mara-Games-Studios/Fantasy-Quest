@@ -29,25 +29,29 @@ namespace Cat
         [SerializeField]
         private List<AnimationInfo> animationInfos;
 
-        //[ReadOnly]
-        //[SerializeField]
-        //private string previousAnimation;
+        [ReadOnly]
+        [SerializeField]
+        private string previousAnimation;
 
-        private void Awake()
+        private void Update()
         {
-            //string currentAnimation = skeletonAnimation.AnimationName;
-            skeletonAnimation.AnimationState.Start += AnimationStateStart;
+            string currentAnimation = skeletonAnimation.AnimationName;
+            if (currentAnimation != previousAnimation)
+            {
+                AnimationStateStart(currentAnimation);
+                previousAnimation = currentAnimation;
+            }
         }
 
-        private void AnimationStateStart(Spine.TrackEntry trackEntry)
+        private void AnimationStateStart(string animationName)
         {
             AnimationInfo founded = animationInfos.FirstOrDefault(x =>
-                x.Asset.Animation.Name == trackEntry.Animation.Name
+                x.Asset.Animation.Name == animationName
             );
 
             if (founded != null)
             {
-                jumpSound.PlayClipDelayed((ulong)founded.Delay);
+                jumpSound.PlayClipDelayed(founded.Delay);
             }
         }
     }

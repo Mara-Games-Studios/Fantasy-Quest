@@ -23,6 +23,7 @@ namespace LevelSpecific.ForestEdge
 
         public UnityEvent EggTaken;
         public UnityEvent AcornTaken;
+        public UnityEvent AllItemsTaken;
 
         [Button]
         public void SpecificPlaceItem()

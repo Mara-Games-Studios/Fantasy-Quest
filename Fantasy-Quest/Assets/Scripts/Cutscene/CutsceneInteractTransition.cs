@@ -1,5 +1,9 @@
+using System.Collections;
+using System.Collections.Generic;
+using Audio;
 using Interaction.Item;
 using Sirenix.OdinInspector;
+using Spine.Unity;
 using UnityEngine;
 
 namespace Cutscene
@@ -25,14 +29,36 @@ namespace Cutscene
         [SerializeField]
         private Sprite newIcon;
 
+        [SerializeField]
+        private SkeletonAnimation skeletonAnimation;
+
+        [SerializeField]
+        private AnimationReferenceAsset idleAniamtion;
+
+        [SerializeField]
+        private AnimationReferenceAsset talkAnimation;
+
+        [Required]
+        [SerializeField]
+        private List<SoundPlayer> symonSpeech;
+
+        private bool isMilkEmpty = false;
         private bool canCatInteract;
+        private bool canTalk = true;
 
         public void InteractByCat()
         {
-            if (canCatInteract)
+            if (canCatInteract && !isMilkEmpty)
             {
                 startCat.StartCutscene();
-                Destroy(this);
+                isMilkEmpty = true;
+            }
+            else if (isMilkEmpty && canTalk)
+            {
+                canTalk = false;
+                SoundPlayer currentSound = symonSpeech[Random.Range(0, symonSpeech.Count)];
+                currentSound.PlayClip();
+                _ = StartCoroutine(SymonTalkAnimation(currentSound.AudioClip.length));
             }
         }
 
@@ -50,9 +76,27 @@ namespace Cutscene
             }
         }
 
+        private IEnumerator SymonTalkAnimation(float duration)
+        {
+            StartSpeakAnimation();
+            yield return new WaitForSeconds(duration);
+            canTalk = true;
+            StopSpeakAnimation();
+        }
+
         private void ChangeShortcutIcon()
         {
             hint.GetComponent<SpriteRenderer>().sprite = newIcon;
+        }
+
+        protected void StartSpeakAnimation()
+        {
+            _ = skeletonAnimation.AnimationState.SetAnimation(0, talkAnimation, true);
+        }
+
+        protected void StopSpeakAnimation()
+        {
+            _ = skeletonAnimation.AnimationState.SetAnimation(0, idleAniamtion, true);
         }
     }
 }
