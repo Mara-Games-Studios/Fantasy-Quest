@@ -22,10 +22,7 @@ namespace LevelSpecific.MainMenu
         [Button]
         public void StartGame()
         {
-            if (ProgressionConfig.Instance.IsGamePassed)
-            {
-                ProgressionConfig.Instance.ResetToDefault();
-            }
+            ProgressionConfig.Instance.ResetToDefault();
             endController.LoadScene(ProgressionConfig.Instance.SceneToLoad);
         }
 

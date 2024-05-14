@@ -7,7 +7,7 @@ namespace UI
     [AddComponentMenu("Scripts/UI/Pages/UI.Pages.Escaper")]
     public class Escaper : MonoBehaviour
     {
-        [Required]
+        [RequiredIn(PrefabKind.PrefabInstanceAndNonPrefabInstance)]
         [SerializeField]
         private SoundPlayer exitSound;
 
