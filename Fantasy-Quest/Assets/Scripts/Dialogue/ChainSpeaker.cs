@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Audio;
+using Common;
 using Sirenix.OdinInspector;
 using Subtitles;
 using TNRD;
@@ -34,16 +35,32 @@ namespace Dialogue
             voice = new(soundsManager, gameObject.name);
         }
 
+        private Coroutine coroutine;
+        private bool isWithSubtitles = false;
+
+        [Button]
+        public void StopTelling()
+        {
+            _ = this.KillCoroutine(coroutine);
+            voice.Silence();
+            if (isWithSubtitles)
+            {
+                Subtitles.Hide();
+            }
+        }
+
         [Button]
         public void JustTell()
         {
-            _ = StartCoroutine(JustTellRoutine());
+            IsWrong(coroutine);
+            coroutine = StartCoroutine(JustTellRoutine());
         }
 
         [Button]
         public void JustTellWithoutSubtitles()
         {
-            _ = StartCoroutine(JustTellWithoutSubtitlesRoutine());
+            IsWrong(coroutine);
+            coroutine = StartCoroutine(JustTellWithoutSubtitlesRoutine());
         }
 
         [Button]
@@ -60,7 +77,16 @@ namespace Dialogue
 
         public void Tell(Action nextAction)
         {
-            _ = StartCoroutine(TellRoutine(nextAction));
+            IsWrong(coroutine);
+            coroutine = StartCoroutine(TellRoutine(nextAction));
+        }
+
+        private void IsWrong(Coroutine coroutine)
+        {
+            if (coroutine != null)
+            {
+                Debug.LogError("DoubleTelling");
+            }
         }
 
         public IEnumerator Tell()

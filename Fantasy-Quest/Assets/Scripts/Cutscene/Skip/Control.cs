@@ -1,4 +1,7 @@
 using System.Collections;
+using System.Collections.Generic;
+using Audio;
+using Dialogue;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -12,6 +15,12 @@ namespace Cutscene.Skip
     {
         [SerializeField]
         private Dialogue.Manager dialogueManager;
+
+        [SerializeField]
+        private List<ChainSpeaker> chainSpeakerList;
+
+        [SerializeField]
+        private List<SoundPlayer> soundPlayerList;
 
         [SerializeField]
         private PlayableDirector playableDirector;
@@ -53,7 +62,6 @@ namespace Cutscene.Skip
         public void FadeInEndCallback()
         {
             playableDirector.time = endFrame / FRAMES_PER_SECOND;
-            dialogueManager.KillCurrentSpeakers();
             _ = StartCoroutine(WaitForSeconds(FADE_DURATION));
         }
 
@@ -61,7 +69,9 @@ namespace Cutscene.Skip
         {
             yield return new WaitForSeconds(duration);
             blackScreen.FadeOut();
-            dialogueManager.KillCurrentSpeakers();
+            chainSpeakerList.ForEach(x => x.StopTelling());
+            soundPlayerList.ForEach(x => x.StopClip());
+            dialogueManager.KillAllSpeakers();
         }
 
         private void OnDisable()

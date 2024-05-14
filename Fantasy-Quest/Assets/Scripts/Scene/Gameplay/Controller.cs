@@ -58,7 +58,6 @@ namespace Scene.Gameplay
             pauseShowed = true;
             cutsceneManager.Pause();
             soundsManager.PauseSound();
-            dialogueManager.Pause();
             settingsPage.ShowFromStart();
             LockerSettings.Instance.LockAll();
 
@@ -77,7 +76,6 @@ namespace Scene.Gameplay
             Time.timeScale = 1.0f;
             cutsceneManager.LockFromSettings();
             cutsceneManager.Resume();
-            dialogueManager.Resume();
             soundsManager.ResumeSound();
 
             CursorLockUnlock.LockCursor();

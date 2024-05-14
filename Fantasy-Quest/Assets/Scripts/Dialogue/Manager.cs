@@ -12,27 +12,11 @@ namespace Dialogue
         [SerializeField]
         private List<DialogueSpeaker> speakers;
 
-        public void Pause()
-        {
-            foreach (DialogueSpeaker speaker in speakers)
-            {
-                speaker.Pause();
-            }
-        }
-
-        public void KillCurrentSpeakers()
+        public void KillAllSpeakers()
         {
             foreach (DialogueSpeaker speaker in speakers)
             {
                 speaker.Kill();
-            }
-        }
-
-        public void Resume()
-        {
-            foreach (DialogueSpeaker speaker in speakers)
-            {
-                speaker.Resume();
             }
         }
 

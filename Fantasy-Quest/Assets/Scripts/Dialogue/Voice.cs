@@ -27,15 +27,5 @@ namespace Dialogue
             audioSource.Stop();
             audioSource.volume = 0f;
         }
-
-        public void Pause()
-        {
-            audioSource.Pause();
-        }
-
-        public void Resume()
-        {
-            audioSource.UnPause();
-        }
     }
 }
