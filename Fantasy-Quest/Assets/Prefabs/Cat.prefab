@@ -1,5 +1,74 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &166111206539698847
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8691118096419374702}
+  - component: {fileID: 1455910669247743690}
+  m_Layer: 0
+  m_Name: CantDoMeows
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8691118096419374702
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 166111206539698847}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3090932207169607347}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1455910669247743690
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 166111206539698847}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e25d7337314417479613a298ff03226, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundsManager: {fileID: 0}
+  audioClip: {fileID: 8300000, guid: 3315d8dc42f1a4048b8b9bb54bd73c66, type: 3}
+  audioSourceConfig:
+    priorityLevel: 128
+    Mute: 0
+    Volume: 0.4
+    Pitch: 1
+    PanStereo: 0
+    ReverbZoneMix: 1
+    SpatialBlend: 0
+    RolloffMode: 0
+    MinDistance: 0.1
+    MaxDistance: 50
+    Spread: 0
+    DopplerLevel: 1
+    BypassEffects: 0
+    BypassListenerEffects: 0
+    BypassReverbZones: 0
+    IgnoreListenerVolume: 0
+    IgnoreListenerPause: 0
+  loop: 0
+  playOnStart: 0
+  ignorePause: 0
+  createOnThisPosition: 0
+  audioSource: {fileID: 0}
 --- !u!1 &905931653165027739
 GameObject:
   m_ObjectHideFlags: 0
@@ -263,6 +332,108 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundPlayer: {fileID: 1662828592892698969}
+--- !u!1 &3410235368072893135
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3783682348478475929}
+  - component: {fileID: 7224838419161133770}
+  m_Layer: 0
+  m_Name: CanDoMeow
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3783682348478475929
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3410235368072893135}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3090932207169607347}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7224838419161133770
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3410235368072893135}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e25d7337314417479613a298ff03226, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundsManager: {fileID: 0}
+  audioClip: {fileID: 8300000, guid: 3fa1c28d8707fd945b938a43c28d38d3, type: 3}
+  audioSourceConfig:
+    priorityLevel: 128
+    Mute: 0
+    Volume: 0.4
+    Pitch: 1
+    PanStereo: 0
+    ReverbZoneMix: 1
+    SpatialBlend: 0
+    RolloffMode: 0
+    MinDistance: 0.1
+    MaxDistance: 50
+    Spread: 0
+    DopplerLevel: 1
+    BypassEffects: 0
+    BypassListenerEffects: 0
+    BypassReverbZones: 0
+    IgnoreListenerVolume: 0
+    IgnoreListenerPause: 0
+  loop: 0
+  playOnStart: 0
+  ignorePause: 0
+  createOnThisPosition: 0
+  audioSource: {fileID: 0}
+--- !u!1 &4932823787117332419
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3090932207169607347}
+  m_Layer: 0
+  m_Name: MeowSounds
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3090932207169607347
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4932823787117332419}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 3783682348478475929}
+  - {fileID: 8691118096419374702}
+  m_Father: {fileID: 182963880363041228}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4994989475704801607
 GameObject:
   m_ObjectHideFlags: 0
@@ -301,6 +472,7 @@ Transform:
   - {fileID: 7209340483256552939}
   - {fileID: 1515946995588636891}
   - {fileID: 8842031222080313372}
+  - {fileID: 3090932207169607347}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &3048288317685710039
@@ -358,6 +530,12 @@ MonoBehaviour:
     maxDepth: 0
     minNormalAngle: 0
     maxNormalAngle: 0
+  catSkeleton: {fileID: 5374469698757798622}
+  idleAnim: {fileID: 11400000, guid: e08513285cfb97942807f360d7159d12, type: 2}
+  canDoAnim: {fileID: 11400000, guid: 076eccea47ec02a4bb6a7f82184e057a, type: 2}
+  canDoSound: {fileID: 7224838419161133770}
+  cantDoAnim: {fileID: 11400000, guid: 2386d373b5cc4c947a106a5d8455f5fe, type: 2}
+  cantDoSound: {fileID: 1455910669247743690}
 --- !u!70 &1560389952819519362
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
