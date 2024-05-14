@@ -5,6 +5,7 @@ namespace UI.Indicators
 {
     public class LayoutModel
     {
+        public View Page;
         public List<IndicatedButton> VerticalButtons;
         public GameplayInput MainMenuInput;
         public int CurrentButtonIndex;
