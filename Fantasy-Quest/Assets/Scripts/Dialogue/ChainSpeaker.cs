@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Audio;
+using Common;
 using Sirenix.OdinInspector;
 using Subtitles;
 using TNRD;
@@ -34,16 +35,33 @@ namespace Dialogue
             voice = new(soundsManager, gameObject.name);
         }
 
+        private Coroutine coroutine;
+        private bool isWithSubtitles = false;
+
+        [Button]
+        public void StopTelling()
+        {
+            _ = this.KillCoroutine(coroutine);
+            voice.Silence();
+            if (isWithSubtitles)
+            {
+                Subtitles.Hide();
+                isWithSubtitles = false;
+            }
+        }
+
         [Button]
         public void JustTell()
         {
-            _ = StartCoroutine(JustTellRoutine());
+            IsWrong(coroutine);
+            coroutine = StartCoroutine(JustTellRoutine());
         }
 
         [Button]
         public void JustTellWithoutSubtitles()
         {
-            _ = StartCoroutine(JustTellWithoutSubtitlesRoutine());
+            IsWrong(coroutine);
+            coroutine = StartCoroutine(JustTellWithoutSubtitlesRoutine());
         }
 
         [Button]
@@ -60,7 +78,16 @@ namespace Dialogue
 
         public void Tell(Action nextAction)
         {
-            _ = StartCoroutine(TellRoutine(nextAction));
+            IsWrong(coroutine);
+            coroutine = StartCoroutine(TellRoutine(nextAction));
+        }
+
+        private void IsWrong(Coroutine coroutine)
+        {
+            if (coroutine != null)
+            {
+                Debug.LogError("DoubleTelling");
+            }
         }
 
         public IEnumerator Tell()
@@ -68,26 +95,30 @@ namespace Dialogue
             yield return TellRoutine(() => { });
         }
 
-        private IEnumerator TellRoutine(Action nextAction)
+        public IEnumerator TellRoutine(Action nextAction)
         {
+            isWithSubtitles = true;
             foreach (Replica replica in Replicas)
             {
                 voice.Say(replica);
                 Subtitles.Show(replica);
                 yield return new WaitForSeconds(replica.Duration + replica.DelayAfterSaid);
             }
+            isWithSubtitles = false;
             Subtitles.Hide();
             nextAction?.Invoke();
         }
 
         public IEnumerator JustTellRoutine()
         {
+            isWithSubtitles = true;
             foreach (Replica replica in Replicas)
             {
                 voice.Say(replica);
                 Subtitles.Show(replica);
                 yield return new WaitForSeconds(replica.Duration + replica.DelayAfterSaid);
             }
+            isWithSubtitles = false;
             Subtitles.Hide();
         }
 

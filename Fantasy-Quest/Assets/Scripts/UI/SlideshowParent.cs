@@ -55,7 +55,6 @@ namespace UI
             if (playOnAwake)
             {
                 StartSlideshow();
-                SlideshowStarted?.Invoke();
             }
         }
 
@@ -102,8 +101,6 @@ namespace UI
             slide.FadeIn();
             yield return new WaitForSeconds(slide.HoldTime);
             slide.FadeOut();
-            //yield return new WaitForSeconds(slide.FadeTime);
-            //yield return new WaitForSeconds(slide.WaitAfter);
         }
 
         private IEnumerator ShowSlide(SlideStruct slide)
@@ -114,13 +111,12 @@ namespace UI
             FadeIn(slide.FadeTime);
             yield return new WaitForSeconds(slide.HoldTime);
             FadeOut(slide.FadeTime);
-            //yield return new WaitForSeconds(slide.FadeTime);
-            //yield return new WaitForSeconds(slide.WaitAfter);
         }
 
         [Button]
         public void StartSlideshow()
         {
+            SlideshowStarted?.Invoke();
             _ = StartCoroutine(ShowSlides());
         }
 

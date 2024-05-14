@@ -226,7 +226,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundsManager: {fileID: 0}
-  audioClip: {fileID: 8300000, guid: 5612dce6077d56947a591e653b14393d, type: 3}
+  audioClip: {fileID: 8300000, guid: 96a46f7671405fa4aa1e6bd4d3c62ef4, type: 3}
   audioSourceConfig:
     priorityLevel: 128
     Mute: 0
@@ -247,7 +247,6 @@ MonoBehaviour:
     IgnoreListenerPause: 0
   loop: 1
   playOnStart: 0
-  pauseOnStart: 0
   ignorePause: 0
   createOnThisPosition: 0
   audioSource: {fileID: 0}
@@ -552,8 +551,8 @@ MonoBehaviour:
   audioClip: {fileID: 8300000, guid: 46a2d4b14efd3954ebd410d2cffe09d2, type: 3}
   audioSourceConfig:
     priorityLevel: 128
-    Mute: 1
-    Volume: 1
+    Mute: 0
+    Volume: 0.2
     Pitch: 1
     PanStereo: 0
     ReverbZoneMix: 1
@@ -568,9 +567,8 @@ MonoBehaviour:
     BypassReverbZones: 0
     IgnoreListenerVolume: 0
     IgnoreListenerPause: 0
-  loop: 1
-  playOnStart: 1
-  pauseOnStart: 0
+  loop: 0
+  playOnStart: 0
   ignorePause: 0
   createOnThisPosition: 0
   audioSource: {fileID: 0}
@@ -590,17 +588,18 @@ MonoBehaviour:
   jumpSound: {fileID: 1773760601911767444}
   animationInfos:
   - Asset: {fileID: 11400000, guid: 155e9e576620f344abf218798559a2da, type: 2}
-    Delay: 0
+    Delay: 0.7
   - Asset: {fileID: 11400000, guid: a89aec8233f6662468eb9cb0bc62495c, type: 2}
-    Delay: 0
+    Delay: 0.7
   - Asset: {fileID: 11400000, guid: 46997a6ba8f3bbb44bea80e704106797, type: 2}
-    Delay: 0
+    Delay: 0.7
   - Asset: {fileID: 11400000, guid: e78a5c69de9a4064c93d5877d7cd3621, type: 2}
-    Delay: 0
+    Delay: 1.2
   - Asset: {fileID: 11400000, guid: 905467bce01cf3742aefb2584786636c, type: 2}
-    Delay: 0
+    Delay: 1.2
   - Asset: {fileID: 11400000, guid: 1655530aa9834a0409165cf135ad7019, type: 2}
-    Delay: 0
+    Delay: 1.2
+  previousAnimation: 
 --- !u!1001 &1958334341114758454
 PrefabInstance:
   m_ObjectHideFlags: 0

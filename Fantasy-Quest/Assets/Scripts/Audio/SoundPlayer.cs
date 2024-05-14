@@ -1,10 +1,11 @@
-﻿using Sirenix.OdinInspector;
+﻿using System.Collections;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Audio
 {
     [AddComponentMenu("Scripts/Audio/Audio.SoundPlayer")]
-    internal class SoundPlayer : MonoBehaviour
+    public class SoundPlayer : MonoBehaviour
     {
         [RequiredIn(PrefabKind.PrefabInstanceAndNonPrefabInstance)]
         [SerializeField]
@@ -22,9 +23,6 @@ namespace Audio
 
         [SerializeField]
         private bool playOnStart = false;
-
-        [SerializeField]
-        private bool pauseOnStart = false;
 
         [SerializeField]
         private bool ignorePause = false;
@@ -86,10 +84,6 @@ namespace Audio
             {
                 PlayClip();
             }
-            if (pauseOnStart)
-            {
-                PauseClip();
-            }
         }
 
         [Button]
@@ -98,28 +92,22 @@ namespace Audio
             audioSource.Play();
         }
 
-        [Button]
-        public void PlayClipDelayed(ulong delay)
+        private IEnumerator PlayClipDelayedRoutine(float delay)
         {
-            audioSource.Play(delay);
+            yield return new WaitForSeconds(delay);
+            audioSource.Play();
+        }
+
+        [Button]
+        public void PlayClipDelayed(float delay)
+        {
+            _ = StartCoroutine(PlayClipDelayedRoutine(delay));
         }
 
         [Button]
         public void StopClip()
         {
             audioSource.Stop();
-        }
-
-        [Button]
-        public void PauseClip()
-        {
-            audioSource.Pause();
-        }
-
-        [Button]
-        public void ResumeClip()
-        {
-            audioSource.UnPause();
         }
     }
 }

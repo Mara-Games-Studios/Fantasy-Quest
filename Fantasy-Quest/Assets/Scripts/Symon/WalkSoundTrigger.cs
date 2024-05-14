@@ -23,9 +23,24 @@ namespace Symon
         private IEnumerable<string> TriggeringNames =>
             triggeringAnimations.Select(x => x.Animation.Name);
 
+        private bool isPlayingCorrect = false;
+
         private void Update()
         {
-            walkSound.AudioSource.mute = !TriggeringNames.Contains(skeletonAnimation.AnimationName);
+            Debug.Log(isPlayingCorrect);
+            bool currentPlayingCorrect = TriggeringNames.Contains(skeletonAnimation.AnimationName);
+            if (isPlayingCorrect != currentPlayingCorrect)
+            {
+                if (!isPlayingCorrect)
+                {
+                    walkSound.PlayClip();
+                }
+                else
+                {
+                    walkSound.StopClip();
+                }
+                isPlayingCorrect = currentPlayingCorrect;
+            }
         }
     }
 }

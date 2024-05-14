@@ -1,4 +1,5 @@
-﻿using Sirenix.OdinInspector;
+﻿using Minigames.SquirrelGame.Screamer;
+using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -27,6 +28,9 @@ namespace Minigames.SquirrelGame
         private Prize prize;
 
         [SerializeField]
+        private ScreamerActivator squirrelScreamer;
+
+        [SerializeField]
         private bool disableInputOnStart = true;
 
         public UnityEvent OnGameFinishedWin;
@@ -48,7 +52,7 @@ namespace Minigames.SquirrelGame
 
             if (exitState == ExitGameState.Lose)
             {
-                //TODO: SHOW SQUIRREL
+                squirrelScreamer.Show();
                 TriggerEvent(ExitGameState.Lose);
             }
             else

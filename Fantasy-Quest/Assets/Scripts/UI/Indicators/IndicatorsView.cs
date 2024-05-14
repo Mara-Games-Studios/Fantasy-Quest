@@ -55,6 +55,7 @@ public class IndicatorsView : MonoBehaviour
     {
         layoutModel.VerticalButtons = view.VerticalButtons;
         layoutModel.CurrentButtonIndex = 0;
+        layoutModel.Page = view;
     }
 
     private void ShowIndicates(View view)

@@ -1,6 +1,6 @@
-﻿using System;
-using DG.Tweening;
+﻿using DG.Tweening;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace UI.Pages
 {
@@ -28,10 +28,15 @@ namespace UI.Pages
         private Tween moveTween;
         private Tween fadeTween;
 
-        public event Action OnEffectShowed;
+        [HideInInspector]
+        public GameObject AffectedContainer;
+
+        public UnityEvent OnEffectShowed;
+        public UnityEvent OnEffectHiding;
 
         public void Initialize()
         {
+            AffectedContainer = pageInfo.RectTransform.gameObject;
             pageInfo.CanvasGroup.alpha = minAlpha;
             pageInfo.RectTransform.position = pivotPoints.StartPoint.position;
             pageInfo.CanvasGroup.gameObject.SetActive(false);
@@ -65,6 +70,7 @@ namespace UI.Pages
         public void HideToEnd()
         {
             StopTweens();
+            OnEffectHiding?.Invoke();
             fadeTween = pageInfo.CanvasGroup.DOFade(minAlpha, fadeDuration).SetUpdate(true);
 
             moveTween = pageInfo
@@ -77,6 +83,7 @@ namespace UI.Pages
         public void HideToStart()
         {
             StopTweens();
+            OnEffectHiding?.Invoke();
             fadeTween = pageInfo.CanvasGroup.DOFade(minAlpha, fadeDuration).SetUpdate(true);
 
             moveTween = pageInfo

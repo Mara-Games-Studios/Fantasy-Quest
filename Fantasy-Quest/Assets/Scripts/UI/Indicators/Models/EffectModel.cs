@@ -1,4 +1,5 @@
 ﻿using System;
+using Audio;
 using DG.Tweening;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -17,6 +18,14 @@ namespace UI.Indicators
 
         [Required]
         public CanvasGroup IndicatorsAlpha;
+
+        [RequiredIn(PrefabKind.PrefabInstanceAndNonPrefabInstance)]
+        [SerializeField]
+        public SoundPlayer SlideSound;
+
+        [RequiredIn(PrefabKind.PrefabInstanceAndNonPrefabInstance)]
+        [SerializeField]
+        public SoundPlayer EnterSound;
 
         [HideInInspector]
         public RectTransform RectTransform;

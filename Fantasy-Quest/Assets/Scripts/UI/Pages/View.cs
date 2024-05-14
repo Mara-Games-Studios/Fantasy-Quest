@@ -10,6 +10,7 @@ namespace UI.Pages
     {
         private EffectsShower effectShower;
 
+        public GameObject EffectedObject;
         public View PreviousPage;
         public List<IndicatedButton> VerticalButtons = new();
 
@@ -21,16 +22,17 @@ namespace UI.Pages
         {
             effectShower = GetComponent<EffectsShower>();
             effectShower.Initialize();
+            EffectedObject = effectShower.AffectedContainer;
         }
 
         private void OnEnable()
         {
-            effectShower.OnEffectShowed += InvokeOnPageShowed;
+            effectShower.OnEffectShowed.AddListener(InvokeOnPageShowed);
         }
 
         private void OnDisable()
         {
-            effectShower.OnEffectShowed -= InvokeOnPageShowed;
+            effectShower.OnEffectShowed.RemoveListener(InvokeOnPageShowed);
         }
 
         private void InvokeOnPageShowed()

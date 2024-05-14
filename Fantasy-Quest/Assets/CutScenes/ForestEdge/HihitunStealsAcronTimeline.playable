@@ -1,5 +1,32 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8660072515469069742
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b46e36075dd1c124a8422c228e75e1fb, type: 3}
+  m_Name: Signal Track (7)
+  m_EditorClassIdentifier: 
+  m_Version: 3
+  m_AnimClip: {fileID: 0}
+  m_Locked: 0
+  m_Muted: 0
+  m_CustomPlayableFullTypename: 
+  m_Curves: {fileID: 0}
+  m_Parent: {fileID: 11400000}
+  m_Children: []
+  m_Clips: []
+  m_Markers:
+    m_Objects:
+    - {fileID: -5416258433614251139}
+    - {fileID: -3711412753152320043}
+    - {fileID: 3643095589015106306}
+    - {fileID: 979691896354313744}
 --- !u!114 &-8210941682834018238
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -109,6 +136,29 @@ MonoBehaviour:
   m_Retroactive: 0
   m_EmitOnce: 0
   m_Asset: {fileID: 11400000, guid: b3746ecb0a432f446bae634e878e95cb, type: 2}
+--- !u!114 &-7326071468879136483
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 585e20c924ba86a44926c850aa8e1d84, type: 3}
+  m_Name: SpineAnimationStateClip
+  m_EditorClassIdentifier: 
+  template:
+    animationReference: {fileID: 11400000, guid: 3d6cf091838d1bd43a19c645da561399, type: 2}
+    loop: 1
+    customDuration: 0
+    useBlendDuration: 1
+    isInitialized: 1
+    mixDuration: 0.1
+    holdPrevious: 0
+    attachmentThreshold: 0.5
+    eventThreshold: 0.5
+    drawOrderThreshold: 0.5
 --- !u!114 &-7225890689879673645
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -281,6 +331,81 @@ MonoBehaviour:
     attachmentThreshold: 0.5
     eventThreshold: 0.5
     drawOrderThreshold: 0.5
+--- !u!114 &-6016868088578951550
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfabb056a779ae34b9ebd7de425c868b, type: 3}
+  m_Name: Spine Animation State Track (1)
+  m_EditorClassIdentifier: 
+  m_Version: 3
+  m_AnimClip: {fileID: 0}
+  m_Locked: 0
+  m_Muted: 0
+  m_CustomPlayableFullTypename: 
+  m_Curves: {fileID: 0}
+  m_Parent: {fileID: 11400000}
+  m_Children: []
+  m_Clips:
+  - m_Version: 1
+    m_Start: 5.833333333333333
+    m_ClipIn: 0.4333333333333327
+    m_Asset: {fileID: -7326071468879136483}
+    m_Duration: 0.16666666666666696
+    m_TimeScale: 1
+    m_ParentTrack: {fileID: -6016868088578951550}
+    m_EaseInDuration: 0
+    m_EaseOutDuration: 0
+    m_BlendInDuration: -1
+    m_BlendOutDuration: -1
+    m_MixInCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    m_MixOutCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    m_BlendInCurveMode: 0
+    m_BlendOutCurveMode: 0
+    m_ExposedParameterNames: []
+    m_AnimationCurves: {fileID: 0}
+    m_Recordable: 0
+    m_PostExtrapolationMode: 0
+    m_PreExtrapolationMode: 0
+    m_PostExtrapolationTime: 0
+    m_PreExtrapolationTime: 0
+    m_DisplayName: idle and  acorn
+  m_Markers:
+    m_Objects: []
+  trackIndex: 0
 --- !u!114 &-5927626561922840407
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -297,6 +422,22 @@ MonoBehaviour:
   m_Retroactive: 0
   m_EmitOnce: 0
   m_Asset: {fileID: 11400000, guid: b1e6def8652125e48be7f00ed1c2e844, type: 2}
+--- !u!114 &-5416258433614251139
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15c38f6fa1940124db1ab7f6fe7268d1, type: 3}
+  m_Name: Signal Emitter
+  m_EditorClassIdentifier: 
+  m_Time: 0
+  m_Retroactive: 0
+  m_EmitOnce: 0
+  m_Asset: {fileID: 11400000, guid: 63e816655dfbff24480ee12f05d232a8, type: 2}
 --- !u!114 &-4596645231701181509
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -322,6 +463,22 @@ MonoBehaviour:
     m_Objects:
     - {fileID: -1812988274233521219}
     - {fileID: -7225890689879673645}
+--- !u!114 &-3711412753152320043
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15c38f6fa1940124db1ab7f6fe7268d1, type: 3}
+  m_Name: Signal Emitter
+  m_EditorClassIdentifier: 
+  m_Time: 1.8986666666666667
+  m_Retroactive: 0
+  m_EmitOnce: 0
+  m_Asset: {fileID: 11400000, guid: 05c2d3bdb0d7a3c43967ae1591178fd7, type: 2}
 --- !u!114 &-2667467544861996480
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -494,25 +651,7 @@ MonoBehaviour:
     m_BlendOutDuration: -1
     m_MixInCurve:
       serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 1
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
+      m_Curve: []
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -599,14 +738,17 @@ MonoBehaviour:
   - {fileID: 8396310935169780336}
   - {fileID: -6486680757876615911}
   - {fileID: 6737466460134360864}
+  - {fileID: -6016868088578951550}
   - {fileID: -4596645231701181509}
   - {fileID: 6742890502160539928}
+  - {fileID: -8660072515469069742}
   - {fileID: 7767991440076426491}
   - {fileID: 4630277195181326557}
   - {fileID: -8210941682834018238}
   - {fileID: -6788172606011163593}
   - {fileID: 5416051979027088252}
   - {fileID: 7459692135888102780}
+  - {fileID: 2655038568997083295}
   m_FixedDuration: 0
   m_EditorSettings:
     m_Framerate: 60
@@ -645,6 +787,22 @@ MonoBehaviour:
   m_Retroactive: 0
   m_EmitOnce: 0
   m_Asset: {fileID: 11400000, guid: 657523eb1901cde4ab5b413477a4ffdf, type: 2}
+--- !u!114 &979691896354313744
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15c38f6fa1940124db1ab7f6fe7268d1, type: 3}
+  m_Name: Signal Emitter
+  m_EditorClassIdentifier: 
+  m_Time: 6
+  m_Retroactive: 0
+  m_EmitOnce: 0
+  m_Asset: {fileID: 11400000, guid: 05c2d3bdb0d7a3c43967ae1591178fd7, type: 2}
 --- !u!114 &1220241291451727312
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -693,6 +851,30 @@ MonoBehaviour:
   m_Retroactive: 0
   m_EmitOnce: 0
   m_Asset: {fileID: 11400000, guid: e28396f18fab1e442abf77d468479a1a, type: 2}
+--- !u!114 &2655038568997083295
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b46e36075dd1c124a8422c228e75e1fb, type: 3}
+  m_Name: Signal Track (5)
+  m_EditorClassIdentifier: 
+  m_Version: 3
+  m_AnimClip: {fileID: 0}
+  m_Locked: 0
+  m_Muted: 0
+  m_CustomPlayableFullTypename: 
+  m_Curves: {fileID: 0}
+  m_Parent: {fileID: 11400000}
+  m_Children: []
+  m_Clips: []
+  m_Markers:
+    m_Objects:
+    - {fileID: 8228532699357360550}
 --- !u!74 &3002358518502428273
 AnimationClip:
   m_ObjectHideFlags: 0
@@ -831,6 +1013,22 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_Events: []
+--- !u!114 &3643095589015106306
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15c38f6fa1940124db1ab7f6fe7268d1, type: 3}
+  m_Name: Signal Emitter
+  m_EditorClassIdentifier: 
+  m_Time: 4.101333333333333
+  m_Retroactive: 0
+  m_EmitOnce: 0
+  m_Asset: {fileID: 11400000, guid: 63e816655dfbff24480ee12f05d232a8, type: 2}
 --- !u!114 &3904085735530707753
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1245,7 +1443,7 @@ MonoBehaviour:
   m_Version: 3
   m_AnimClip: {fileID: 0}
   m_Locked: 0
-  m_Muted: 0
+  m_Muted: 1
   m_CustomPlayableFullTypename: 
   m_Curves: {fileID: 0}
   m_Parent: {fileID: 11400000}
@@ -1440,6 +1638,22 @@ MonoBehaviour:
   VirtualCamera:
     exposedName: 7b1fc4f23e62ae64eac5c658b7d30f9d
     defaultValue: {fileID: 0}
+--- !u!114 &8228532699357360550
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15c38f6fa1940124db1ab7f6fe7268d1, type: 3}
+  m_Name: Signal Emitter
+  m_EditorClassIdentifier: 
+  m_Time: 0
+  m_Retroactive: 0
+  m_EmitOnce: 0
+  m_Asset: {fileID: 11400000, guid: 524d8462b86cf534a87cdf96b4c9cf5e, type: 2}
 --- !u!114 &8387445097622849898
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -50,12 +50,6 @@ namespace Cat
         [SerializeField]
         private SoundPlayer walkSound;
 
-        private void Start()
-        {
-            walkSound.PlayClip();
-            walkSound.PauseClip();
-        }
-
         [Button]
         public void SetEggTaken(bool withEgg)
         {
@@ -78,16 +72,23 @@ namespace Cat
             catMovement.OnStateChanged -= StateChanged;
         }
 
+        private State previousState = State.Staying;
+
         private void StateChanged(State state)
         {
-            switch (state)
+            if (previousState != state)
             {
-                case State.Staying:
-                    walkSound.AudioSource.mute = true;
-                    break;
-                case State.Moving:
-                    walkSound.AudioSource.mute = false;
-                    break;
+                switch (state)
+                {
+                    case State.Staying:
+                        walkSound.StopClip();
+                        break;
+                    case State.Moving:
+                        walkSound.PlayClip();
+                        break;
+                }
+
+                previousState = state;
             }
 
             switch (state)
@@ -127,10 +128,7 @@ namespace Cat
         [Button]
         public void SetAnimation(string animation)
         {
-            if (skeletonAnimation.AnimationName != animation)
-            {
-                skeletonAnimation.AnimationName = animation;
-            }
+            skeletonAnimation.AnimationName = animation;
         }
     }
 }
