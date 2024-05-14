@@ -476,7 +476,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundsManager: {fileID: 1369950061}
-  audioClip: {fileID: 8300000, guid: e9149b389fd0f0349acd57e821c7e8bd, type: 3}
+  audioClip: {fileID: 8300000, guid: a6506fd2da3e2224895d50793dd3644d, type: 3}
   audioSourceConfig:
     priorityLevel: 128
     Mute: 1
@@ -4528,56 +4528,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playableDirector: {fileID: 267975931}
---- !u!1 &271242400
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 271242401}
-  - component: {fileID: 271242402}
-  m_Layer: 0
-  m_Name: SymonMovement
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &271242401
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 271242400}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 603124342}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &271242402
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 271242400}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb2d454cd6264e84a90c615ff8592928, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rails: {fileID: 187231270}
-  speed: 0
-  skeletonAnimation: {fileID: 0}
-  idle: {fileID: 0}
-  walk: {fileID: 0}
-  startPoint: {fileID: 366882178}
 --- !u!1 &272650647
 GameObject:
   m_ObjectHideFlags: 0
@@ -6866,6 +6816,7 @@ MonoBehaviour:
   speed: 5
   skeletonAnimation: {fileID: 84311742}
   idle: {fileID: 11400000, guid: 7cbab1668a945ea4bb0163d6d3093697, type: 2}
+  thinking: {fileID: 11400000, guid: 46be68f58c3e4fd4098c1a767c96e644, type: 2}
   walk: {fileID: 11400000, guid: 9a77c038ad1c7a2498fc1afa201bf3b5, type: 2}
   startPoint: {fileID: 1949871722}
 --- !u!114 &404905224
@@ -7487,7 +7438,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 2083480410}
   - {fileID: 914214374}
   m_Father: {fileID: 490756196}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -7548,19 +7498,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   MoveStarted:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2083480411}
-        m_TargetAssemblyTypeName: Symon.Movement, Assembly-CSharp
-        m_MethodName: UnbindFromRails
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   MoveFinished:
     m_PersistentCalls:
       m_Calls: []
@@ -8577,56 +8515,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1602268232}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &494272815
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 494272816}
-  - component: {fileID: 494272817}
-  m_Layer: 0
-  m_Name: SymonNewFloor
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &494272816
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 494272815}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 965151684}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &494272817
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 494272815}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb2d454cd6264e84a90c615ff8592928, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rails: {fileID: 187231270}
-  speed: 0
-  skeletonAnimation: {fileID: 0}
-  idle: {fileID: 0}
-  walk: {fileID: 0}
-  startPoint: {fileID: 366882178}
 --- !u!1 &494555519 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5467454157163471465, guid: 5d3b0168371d4d74bb8508d8b8cf29aa, type: 3}
@@ -8698,8 +8586,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -1.56355, y: 1.7589501, z: 0}
-    m_Extent: {x: 1.68295, y: 3.31705, z: 0}
+    m_Center: {x: -1.5601001, y: 1.75965, z: 0}
+    m_Extent: {x: 1.6875, y: 3.3199499, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0.38
@@ -9968,7 +9856,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundsManager: {fileID: 1369950061}
-  audioClip: {fileID: 8300000, guid: 51db50c879b0a1c4c9fa7ed21f72137d, type: 3}
+  audioClip: {fileID: 8300000, guid: 1e672cdff5f04d940bf15928528b024c, type: 3}
   audioSourceConfig:
     priorityLevel: 128
     Mute: 0
@@ -10513,8 +10401,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -1.24245, y: -0.21490002, z: 0}
-    m_Extent: {x: 2.28605, y: 1.6796, z: 0}
+    m_Center: {x: -1.24395, y: -0.22390002, z: 0}
+    m_Extent: {x: 2.2881498, y: 1.6754999, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0.38
@@ -10644,8 +10532,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -1.2499001, y: -0.2245, z: 0}
-    m_Extent: {x: 2.2895, y: 1.6760001, z: 0}
+    m_Center: {x: -1.24285, y: -0.22195, z: 0}
+    m_Extent: {x: 2.2916498, y: 1.6726501, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0.38
@@ -11071,7 +10959,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 325451541}
-  - {fileID: 271242401}
   m_Father: {fileID: 948977421}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &603124343
@@ -12703,8 +12590,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 2084554376}
+  m_Children: []
   m_Father: {fileID: 1756079854}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &674990235
@@ -12740,7 +12626,7 @@ MonoBehaviour:
           m_CallState: 2
     - m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 2084554377}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: Symon.Movement, Assembly-CSharp
           m_MethodName: BindOnRails
           m_Mode: 1
@@ -13556,56 +13442,6 @@ MonoBehaviour:
   FlipFinished:
     m_PersistentCalls:
       m_Calls: []
---- !u!1 &742785617
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 742785618}
-  - component: {fileID: 742785619}
-  m_Layer: 0
-  m_Name: SymonNewFloor
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &742785618
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 742785617}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 782276990}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &742785619
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 742785617}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb2d454cd6264e84a90c615ff8592928, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rails: {fileID: 187231270}
-  speed: 0
-  skeletonAnimation: {fileID: 0}
-  idle: {fileID: 0}
-  walk: {fileID: 0}
-  startPoint: {fileID: 2013836344}
 --- !u!114 &760252527 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2461063420424826450, guid: 78951c99008d395408102ffd3bb94551, type: 3}
@@ -13866,8 +13702,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 742785618}
+  m_Children: []
   m_Father: {fileID: 1707935521}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &782276991
@@ -13900,19 +13735,7 @@ MonoBehaviour:
       m_Calls: []
   MoveFinished:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 742785619}
-        m_TargetAssemblyTypeName: Symon.Movement, Assembly-CSharp
-        m_MethodName: BindOnRails
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &784494221
 GameObject:
   m_ObjectHideFlags: 0
@@ -13979,8 +13802,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 5.7341003, y: 9.4169, z: 0}
-    m_Extent: {x: 3.4753, y: 5.7485, z: 0}
+    m_Center: {x: 5.72915, y: 9.4152, z: 0}
+    m_Extent: {x: 3.4760501, y: 5.7472, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -14669,6 +14492,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2078310047}
+  - {fileID: 962557930}
   m_Father: {fileID: 1051157850}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &845792164
@@ -14779,6 +14603,21 @@ MonoBehaviour:
       - m_Target: {fileID: 4014933508526661022}
         m_TargetAssemblyTypeName: Cutscene.BlackLinesShower, Assembly-CSharp
         m_MethodName: Show
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  TravelledToPoint:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 962557931}
+        m_TargetAssemblyTypeName: Dialogue.ChainSpeaker, Assembly-CSharp
+        m_MethodName: JustTell
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -16723,6 +16562,84 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!1 &962557929
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 962557930}
+  - component: {fileID: 962557931}
+  m_Layer: 3
+  m_Name: SymonSoundWhatHappends
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &962557930
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 962557929}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 845792163}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &962557931
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 962557929}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb6b12e19eda42447ba9e77b65b0c102, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  replicas:
+  - Text: "\u0427\u0442\u043E \u0442\u0430\u043C, \u0427\u0435\u0440\u043D\u044B\u0448?"
+    Audio: {fileID: 8300000, guid: 72c5bcb3aabdf4347b1a4150612f70ed, type: 3}
+    AudioSourceConfig:
+      priorityLevel: 128
+      Mute: 0
+      Volume: 1
+      Pitch: 1
+      PanStereo: 0
+      ReverbZoneMix: 1
+      SpatialBlend: 0
+      RolloffMode: 0
+      MinDistance: 0.1
+      MaxDistance: 50
+      Spread: 0
+      DopplerLevel: 1
+      BypassEffects: 0
+      BypassListenerEffects: 0
+      BypassReverbZones: 0
+      IgnoreListenerVolume: 0
+      IgnoreListenerPause: 0
+    DelayBeforeSaid: 0
+    DelayAfterSaid: 0.3
+    cachedDuration: 2.0190625
+  subtitles:
+    mode: 0
+    unityReference: {fileID: 6319234026253948620}
+    rawReference:
+      rid: -2
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
 --- !u!1 &965151683
 GameObject:
   m_ObjectHideFlags: 0
@@ -16753,8 +16670,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 494272816}
+  m_Children: []
   m_Father: {fileID: 373237454}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &965151685
@@ -16790,7 +16706,7 @@ MonoBehaviour:
           m_CallState: 2
     - m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 494272817}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: Symon.Movement, Assembly-CSharp
           m_MethodName: BindOnRails
           m_Mode: 1
@@ -16830,7 +16746,7 @@ MonoBehaviour:
   MoveStarted:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 494272817}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Symon.Movement, Assembly-CSharp
         m_MethodName: UnbindFromRails
         m_Mode: 1
@@ -16844,19 +16760,7 @@ MonoBehaviour:
         m_CallState: 2
   MoveFinished:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 494272817}
-        m_TargetAssemblyTypeName: Symon.Movement, Assembly-CSharp
-        m_MethodName: BindOnRails
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!224 &967360776 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 714353630368369119, guid: 0632c63fb65b1f340b1ae628fc7206cf, type: 3}
@@ -20093,8 +19997,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.35605, y: 5.4491496, z: 0}
-    m_Extent: {x: 5.87815, y: 6.22255, z: 0}
+    m_Center: {x: -0.35750008, y: 5.4476, z: 0}
+    m_Extent: {x: 5.882, y: 6.2228, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -20653,8 +20557,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 5.9216995, y: 9.68605, z: 0}
-    m_Extent: {x: 4.618, y: 7.22605, z: 0}
+    m_Center: {x: 5.9214997, y: 9.68275, z: 0}
+    m_Extent: {x: 4.6253, y: 7.2224493, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -21898,8 +21802,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 6.1886997, y: 10.20485, z: 0}
-    m_Extent: {x: 4.4395, y: 6.39005, z: 0}
+    m_Center: {x: 6.189, y: 10.1922, z: 0}
+    m_Extent: {x: 4.4446, y: 6.3957, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -21980,8 +21884,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 5.2128, y: 7.41, z: 0}
-    m_Extent: {x: 3.482, y: 4.8206997, z: 0}
+    m_Center: {x: 5.2170496, y: 7.4116, z: 0}
+    m_Extent: {x: 3.4821498, y: 4.8227997, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -22265,7 +22169,7 @@ MonoBehaviour:
           m_CallState: 2
     - m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 742785619}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: Symon.Movement, Assembly-CSharp
           m_MethodName: BindOnRails
           m_Mode: 1
@@ -22305,7 +22209,7 @@ MonoBehaviour:
   MoveStarted:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 742785619}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Symon.Movement, Assembly-CSharp
         m_MethodName: UnbindFromRails
         m_Mode: 1
@@ -24401,56 +24305,6 @@ MonoBehaviour:
   target: {fileID: 84311741}
   to: {fileID: 0}
   direction: 0
---- !u!1 &1450212576
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1450212577}
-  - component: {fileID: 1450212578}
-  m_Layer: 0
-  m_Name: SymonNewFloor
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1450212577
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1450212576}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1810156317}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1450212578
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1450212576}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb2d454cd6264e84a90c615ff8592928, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rails: {fileID: 187231270}
-  speed: 0
-  skeletonAnimation: {fileID: 0}
-  idle: {fileID: 0}
-  walk: {fileID: 0}
-  startPoint: {fileID: 366882178}
 --- !u!1001 &1453695213
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -27599,8 +27453,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 11.89085, y: 15.879351, z: 0}
-    m_Extent: {x: 2.5573502, y: 5.2250504, z: 0}
+    m_Center: {x: 11.896099, y: 15.87515, z: 0}
+    m_Extent: {x: 2.5502, y: 5.23145, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -27780,8 +27634,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 6.3764, y: 9.5576, z: 0}
-    m_Extent: {x: 3.4990997, y: 5.0031004, z: 0}
+    m_Center: {x: 6.3869, y: 9.56785, z: 0}
+    m_Extent: {x: 3.4962997, y: 5.00035, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -30631,8 +30485,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1450212577}
+  m_Children: []
   m_Father: {fileID: 116643855}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1810156318
@@ -30668,7 +30521,7 @@ MonoBehaviour:
           m_CallState: 2
     - m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1450212578}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: Symon.Movement, Assembly-CSharp
           m_MethodName: BindOnRails
           m_Mode: 1
@@ -30708,7 +30561,7 @@ MonoBehaviour:
   MoveStarted:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1450212578}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Symon.Movement, Assembly-CSharp
         m_MethodName: UnbindFromRails
         m_Mode: 1
@@ -30722,19 +30575,7 @@ MonoBehaviour:
         m_CallState: 2
   MoveFinished:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1450212578}
-        m_TargetAssemblyTypeName: Symon.Movement, Assembly-CSharp
-        m_MethodName: BindOnRails
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &1811486075
 GameObject:
   m_ObjectHideFlags: 0
@@ -31852,8 +31693,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -1.8078, y: 0.27690005, z: 0}
-    m_Extent: {x: 2.3667, y: 2.846, z: 0}
+    m_Center: {x: -1.8076, y: 0.28030002, z: 0}
+    m_Extent: {x: 2.3634, y: 2.8446002, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0.38
@@ -36031,106 +35872,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boxCollider: {fileID: 2078310048}
   color: {r: 1, g: 1, b: 1, a: 1}
---- !u!1 &2083480409
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2083480410}
-  - component: {fileID: 2083480411}
-  m_Layer: 0
-  m_Name: SymonUnbind
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2083480410
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2083480409}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 441155908}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2083480411
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2083480409}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb2d454cd6264e84a90c615ff8592928, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rails: {fileID: 187231270}
-  speed: 0
-  skeletonAnimation: {fileID: 0}
-  idle: {fileID: 0}
-  walk: {fileID: 0}
-  startPoint: {fileID: 2013836344}
---- !u!1 &2084554375
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2084554376}
-  - component: {fileID: 2084554377}
-  m_Layer: 0
-  m_Name: SymonNewFloor
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2084554376
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2084554375}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 674990234}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2084554377
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2084554375}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb2d454cd6264e84a90c615ff8592928, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rails: {fileID: 1055194837}
-  speed: 0
-  skeletonAnimation: {fileID: 0}
-  idle: {fileID: 0}
-  walk: {fileID: 0}
-  startPoint: {fileID: 1179298555}
 --- !u!1 &2090560856 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5012085151432586511, guid: 28d9e3495a29edc46b1365288dc22921, type: 3}
@@ -36658,8 +36399,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -1.35245, y: -0.536, z: 0}
-    m_Extent: {x: 2.16835, y: 1.6011, z: 0}
+    m_Center: {x: -1.35185, y: -0.5393, z: 0}
+    m_Extent: {x: 2.17165, y: 1.6028001, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0.38

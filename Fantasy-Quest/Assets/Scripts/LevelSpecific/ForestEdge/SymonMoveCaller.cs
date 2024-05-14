@@ -89,10 +89,13 @@ namespace LevelSpecific.ForestEdge
             LockerSettings.Instance.UnlockAll();
         }
 
+        public UnityEvent TravelledToPoint;
+
         private IEnumerator TravelToPoint()
         {
             isMoving = true;
             yield return symonMovement.MoveToPoint(callPoint.position);
+            TravelledToPoint?.Invoke();
             yield return new WaitForSeconds(waitTime);
             yield return symonMovement.MoveToStartPoint();
             isMoving = false;

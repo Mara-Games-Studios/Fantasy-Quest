@@ -12,16 +12,21 @@ namespace Audio
             public AudioSource AudioSource;
             public bool IsOnPause;
             public bool IgnorePause;
+            public bool PlayingPreviously;
 
             public void Pause()
             {
+                PlayingPreviously = AudioSource.isPlaying;
                 AudioSource.Pause();
                 IsOnPause = true;
             }
 
             public void UnPause()
             {
-                AudioSource.UnPause();
+                if (PlayingPreviously)
+                {
+                    AudioSource.UnPause();
+                }
                 IsOnPause = false;
             }
         }
@@ -43,7 +48,8 @@ namespace Audio
                 {
                     AudioSource = newAudioSource,
                     IsOnPause = false,
-                    IgnorePause = ignorePause
+                    IgnorePause = ignorePause,
+                    PlayingPreviously = true
                 };
             audioSources.Add(sourcePoint);
             return newAudioSource;

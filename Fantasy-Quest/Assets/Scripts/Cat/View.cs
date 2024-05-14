@@ -53,7 +53,7 @@ namespace Cat
         private void Start()
         {
             walkSound.PlayClip();
-            walkSound.PauseClip();
+            walkSound.StopClip();
         }
 
         [Button]

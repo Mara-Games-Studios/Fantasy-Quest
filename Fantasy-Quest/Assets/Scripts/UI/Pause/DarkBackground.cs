@@ -1,6 +1,7 @@
 ﻿using DG.Tweening;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 namespace UI.Pause
@@ -27,6 +28,8 @@ namespace UI.Pause
         private const string THRESHOLD_KEY = "_Threshold";
         private Tween tween;
         private float currentThreshold;
+
+        public UnityEvent EndedPauseDarkScreen;
 
         private void Awake()
         {
@@ -85,7 +88,11 @@ namespace UI.Pause
                 )
                 .SetEase(ease)
                 .SetUpdate(true)
-                .OnComplete(() => image.gameObject.SetActive(false));
+                .OnComplete(() =>
+                {
+                    image.gameObject.SetActive(false);
+                    EndedPauseDarkScreen?.Invoke();
+                });
         }
     }
 }

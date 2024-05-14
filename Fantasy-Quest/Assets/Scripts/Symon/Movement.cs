@@ -17,12 +17,19 @@ namespace Symon
         [SerializeField]
         private float speed;
 
+        [Required]
         [SerializeField]
         private SkeletonAnimation skeletonAnimation;
 
+        [Required]
         [SerializeField]
         private AnimationReferenceAsset idle;
 
+        [Required]
+        [SerializeField]
+        private AnimationReferenceAsset thinking;
+
+        [Required]
         [SerializeField]
         private AnimationReferenceAsset walk;
 
@@ -49,7 +56,7 @@ namespace Symon
         {
             _ = skeletonAnimation.AnimationState.SetAnimation(0, walk, true);
             yield return MoveFromToPoint(rails.CurrentPosition, startPoint.Value);
-            _ = skeletonAnimation.AnimationState.SetAnimation(0, idle, true);
+            _ = skeletonAnimation.AnimationState.SetAnimation(0, thinking, true);
         }
 
         public IEnumerator MoveToPoint(Vector3 point)

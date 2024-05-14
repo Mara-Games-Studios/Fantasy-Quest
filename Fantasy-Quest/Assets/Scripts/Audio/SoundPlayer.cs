@@ -24,9 +24,6 @@ namespace Audio
         private bool playOnStart = false;
 
         [SerializeField]
-        private bool pauseOnStart = false;
-
-        [SerializeField]
         private bool ignorePause = false;
 
         [SerializeField]
@@ -86,10 +83,6 @@ namespace Audio
             {
                 PlayClip();
             }
-            if (pauseOnStart)
-            {
-                PauseClip();
-            }
         }
 
         [Button]
@@ -108,18 +101,6 @@ namespace Audio
         public void StopClip()
         {
             audioSource.Stop();
-        }
-
-        [Button]
-        public void PauseClip()
-        {
-            audioSource.Pause();
-        }
-
-        [Button]
-        public void ResumeClip()
-        {
-            audioSource.UnPause();
         }
     }
 }
