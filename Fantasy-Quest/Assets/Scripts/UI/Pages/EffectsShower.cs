@@ -28,11 +28,15 @@ namespace UI.Pages
         private Tween moveTween;
         private Tween fadeTween;
 
+        [HideInInspector]
+        public GameObject AffectedContainer;
+        
         public UnityEvent OnEffectShowed;
         public UnityEvent OnEffectHiding;
 
         public void Initialize()
         {
+            AffectedContainer = pageInfo.RectTransform.gameObject;
             pageInfo.CanvasGroup.alpha = minAlpha;
             pageInfo.RectTransform.position = pivotPoints.StartPoint.position;
             pageInfo.CanvasGroup.gameObject.SetActive(false);
