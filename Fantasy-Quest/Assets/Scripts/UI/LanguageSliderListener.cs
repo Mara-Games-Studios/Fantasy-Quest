@@ -1,6 +1,8 @@
-﻿using Sirenix.OdinInspector;
+﻿using System.Collections;
+using Sirenix.OdinInspector;
 using UI.Pages;
 using UnityEngine;
+using UnityEngine.Localization.Settings;
 
 namespace UI
 {
@@ -23,6 +25,29 @@ namespace UI
         [SerializeField]
         private CanvasGroup belarusian;
 
+        private bool active = false;
+
+        public void ChangeLocale(int localeID)
+        {
+            Debug.Log("Locale changed to " + localeID);
+            if (active)
+            {
+                return;
+            }
+            _ = StartCoroutine(SetLocale(localeID));
+        }
+
+        private IEnumerator SetLocale(int localeID)
+        {
+            active = true;
+            yield return LocalizationSettings.InitializationOperation;
+            LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[
+                localeID
+            ];
+            PlayerPrefs.SetInt("LocaleKey", localeID);
+            active = false;
+        }
+
         private void OnEnable()
         {
             horizontalSlider.OnElementIndexChanged += HorizontalSliderElementIndexChanged;
@@ -35,6 +60,7 @@ namespace UI
 
         private void Start()
         {
+            ChangeLocale(PlayerPrefs.GetInt("LocaleKey", 2));
             int i = 0;
             while (GetCurrent() != horizontalSlider.Current)
             {
@@ -50,25 +76,53 @@ namespace UI
 
         private void HorizontalSliderElementIndexChanged(int index)
         {
-            //CanvasGroup selected = horizontalSlider.ElementsCanvasGroup[index];
-            //if (selected == yes)
-            //{
-            //    SubtitlesSettings.SetShowSubtitles(true);
-            //}
-            //else if (selected == no)
-            //{
-            //    SubtitlesSettings.SetShowSubtitles(false);
-            //}
-            //else
-            //{
-            //    Debug.LogError("unknows selected CanvasGroup");
-            //}
+            CanvasGroup selected = horizontalSlider.ElementsCanvasGroup[index];
+            ChangeLocale(FromCanvasGroup(selected));
         }
 
         public CanvasGroup GetCurrent()
         {
+            return FromIndex(PlayerPrefs.GetInt("LocaleKey", 2));
+        }
+
+        public int FromCanvasGroup(CanvasGroup canvasGroup)
+        {
+            if (canvasGroup == belarusian)
+            {
+                return 0;
+            }
+
+            if (canvasGroup == english)
+            {
+                return 1;
+            }
+
+            if (canvasGroup == russian)
+            {
+                return 2;
+            }
+
+            return 0;
+        }
+
+        public CanvasGroup FromIndex(int index)
+        {
+            if (index == 2)
+            {
+                return russian;
+            }
+
+            if (index == 1)
+            {
+                return english;
+            }
+
+            if (index == 0)
+            {
+                return belarusian;
+            }
+
             return russian;
-            //return SubtitlesSettings.IsSubtitlesShowing ? yes : no;
         }
     }
 }

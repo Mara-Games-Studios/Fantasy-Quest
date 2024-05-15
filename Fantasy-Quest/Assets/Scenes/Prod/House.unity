@@ -2915,8 +2915,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 1
   m_ShadowVolumeIntensity: 0.869
   m_LocalBounds:
-    m_Center: {x: -1.64535, y: -5.618, z: 0}
-    m_Extent: {x: 2.11025, y: 1.8296, z: 0}
+    m_Center: {x: -1.64175, y: -5.62255, z: 0}
+    m_Extent: {x: 2.10715, y: 1.82575, z: 0}
   m_PointLightInnerAngle: 359.6
   m_PointLightOuterAngle: 359.6
   m_PointLightInnerRadius: 2
@@ -4103,8 +4103,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 1
   m_ShadowVolumeIntensity: 0.869
   m_LocalBounds:
-    m_Center: {x: -1.35135, y: -5.56365, z: 0}
-    m_Extent: {x: 1.76345, y: 1.9195501, z: 0}
+    m_Center: {x: -1.35035, y: -5.5714, z: 0}
+    m_Extent: {x: 1.7673501, y: 1.9122001, z: 0}
   m_PointLightInnerAngle: 359.6
   m_PointLightOuterAngle: 359.6
   m_PointLightInnerRadius: 2
@@ -4272,6 +4272,8 @@ GameObject:
   m_Component:
   - component: {fileID: 402455890}
   - component: {fileID: 402455891}
+  - component: {fileID: 402455893}
+  - component: {fileID: 402455892}
   m_Layer: 5
   m_Name: Speaker
   m_TagString: Untagged
@@ -4343,6 +4345,60 @@ MonoBehaviour:
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
+--- !u!114 &402455892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 402455889}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56eb0353ae6e5124bb35b17aff880f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_StringReference:
+    m_TableReference:
+      m_TableCollectionName: GUID:d23b2c87faf941c4b8a923a7d33555fe
+    m_TableEntryReference:
+      m_KeyId: 1614529523712
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  m_FormatArguments: []
+  m_UpdateString:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 402455893}
+        m_TargetAssemblyTypeName: Dialogue.UpdateTargetReplicaProxy, Assembly-CSharp
+        m_MethodName: UpdateText
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  references:
+    version: 2
+    RefIds: []
+--- !u!114 &402455893
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 402455889}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cfe0dc5797b5c647869fd45595ab8da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  index: 0
+  chainSpeaker: {fileID: 402455891}
 --- !u!1 &404196227
 GameObject:
   m_ObjectHideFlags: 0
@@ -7189,7 +7245,7 @@ MonoBehaviour:
     HoldTime: 1
     WaitAfter: 0
     FadeTime: 0.6
-  playLast: 1
+  playLast: 0
   SlideshowStarted:
     m_PersistentCalls:
       m_Calls:
@@ -9183,8 +9239,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 1
   m_ShadowVolumeIntensity: 0.869
   m_LocalBounds:
-    m_Center: {x: 0.45865, y: -5.58195, z: 0}
-    m_Extent: {x: 1.46475, y: 1.9575502, z: 0}
+    m_Center: {x: 0.46635002, y: -5.58335, z: 0}
+    m_Extent: {x: 1.4677501, y: 1.9627501, z: 0}
   m_PointLightInnerAngle: 359.6
   m_PointLightOuterAngle: 359.6
   m_PointLightInnerRadius: 2
@@ -15835,9 +15891,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_StringReference:
     m_TableReference:
-      m_TableCollectionName: GUID:5bb1ad3067e32bd4b9085c884f2fda97
+      m_TableCollectionName: GUID:d23b2c87faf941c4b8a923a7d33555fe
     m_TableEntryReference:
-      m_KeyId: 18919587840
+      m_KeyId: 1304679510016
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
@@ -16053,8 +16109,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 1
   m_ShadowVolumeIntensity: 0.869
   m_LocalBounds:
-    m_Center: {x: -2.8908, y: -7.51985, z: 0}
-    m_Extent: {x: 1.9822001, y: 1.2730501, z: 0}
+    m_Center: {x: -2.8861, y: -7.523, z: 0}
+    m_Extent: {x: 1.9795, y: 1.2787998, z: 0}
   m_PointLightInnerAngle: 359.6
   m_PointLightOuterAngle: 359.6
   m_PointLightInnerRadius: 2
@@ -17392,8 +17448,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 1
   m_ShadowVolumeIntensity: 0.869
   m_LocalBounds:
-    m_Center: {x: -0.66040003, y: -7.43505, z: 0}
-    m_Extent: {x: 2.6018, y: 1.3317499, z: 0}
+    m_Center: {x: -0.66265, y: -7.429, z: 0}
+    m_Extent: {x: 2.60015, y: 1.3259001, z: 0}
   m_PointLightInnerAngle: 359.6
   m_PointLightOuterAngle: 359.6
   m_PointLightInnerRadius: 2
