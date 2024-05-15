@@ -20,6 +20,10 @@ namespace UI.Pages
 
         [SerializeField]
         private List<CanvasGroup> elementsCanvasGroup;
+
+        [SerializeField]
+        private List<RectTransform> elementsTransform;
+        
         public List<CanvasGroup> ElementsCanvasGroup => elementsCanvasGroup;
 
         [SerializeField]
@@ -33,8 +37,6 @@ namespace UI.Pages
 
         [SerializeField]
         private float maxFade = 1f;
-
-        private List<RectTransform> elementsTransform;
 
         public event Action<int> OnElementIndexChanged;
         public CanvasGroup Current => elementsCanvasGroup[currentElementIndex];
@@ -54,10 +56,12 @@ namespace UI.Pages
 
         private void OnEnable()
         {
-            elementsTransform = new List<RectTransform>(
-                from element in elementsCanvasGroup
-                select element.GetComponent<RectTransform>()
-            );
+            PutOnStart();
+        }
+
+        private void PutOnStart()
+        {
+            
             if (CurrentElementIndex < 0 || CurrentElementIndex >= elementsCanvasGroup.Count)
             {
                 CurrentElementIndex = 0;
@@ -76,7 +80,6 @@ namespace UI.Pages
 
         public void MoveRightImmediately()
         {
-            Debug.Log("MoveRightImmediately");
             HideElement(localPoints.StartPoint.position, CurrentElementIndex, 0);
             IncreaseElementIndex(1);
             ShowElement(localPoints.EndPoint.position, CurrentElementIndex, 0);
@@ -84,7 +87,6 @@ namespace UI.Pages
 
         public void MoveLeftImmediately()
         {
-            Debug.Log("MoveLeftImmediately");
             HideElement(localPoints.EndPoint.position, CurrentElementIndex, 0);
             DecreaseElementIndex(1);
             ShowElement(localPoints.StartPoint.position, CurrentElementIndex, 0);
