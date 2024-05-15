@@ -2915,8 +2915,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 1
   m_ShadowVolumeIntensity: 0.869
   m_LocalBounds:
-    m_Center: {x: -1.6431999, y: -5.6218, z: 0}
-    m_Extent: {x: 2.1059, y: 1.8334999, z: 0}
+    m_Center: {x: -1.64535, y: -5.618, z: 0}
+    m_Extent: {x: 2.11025, y: 1.8296, z: 0}
   m_PointLightInnerAngle: 359.6
   m_PointLightOuterAngle: 359.6
   m_PointLightInnerRadius: 2
@@ -4103,8 +4103,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 1
   m_ShadowVolumeIntensity: 0.869
   m_LocalBounds:
-    m_Center: {x: -1.35075, y: -5.5772, z: 0}
-    m_Extent: {x: 1.76495, y: 1.9212002, z: 0}
+    m_Center: {x: -1.35135, y: -5.56365, z: 0}
+    m_Extent: {x: 1.76345, y: 1.9195501, z: 0}
   m_PointLightInnerAngle: 359.6
   m_PointLightOuterAngle: 359.6
   m_PointLightInnerRadius: 2
@@ -9183,8 +9183,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 1
   m_ShadowVolumeIntensity: 0.869
   m_LocalBounds:
-    m_Center: {x: 0.46880004, y: -5.58365, z: 0}
-    m_Extent: {x: 1.4676, y: 1.96445, z: 0}
+    m_Center: {x: 0.45865, y: -5.58195, z: 0}
+    m_Extent: {x: 1.46475, y: 1.9575502, z: 0}
   m_PointLightInnerAngle: 359.6
   m_PointLightOuterAngle: 359.6
   m_PointLightInnerRadius: 2
@@ -15747,6 +15747,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1915642592}
   - component: {fileID: 1915642594}
+  - component: {fileID: 1915642595}
+  - component: {fileID: 1915642596}
   m_Layer: 5
   m_Name: Speaker
   m_TagString: Untagged
@@ -15819,6 +15821,60 @@ MonoBehaviour:
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
+--- !u!114 &1915642595
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1915642591}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56eb0353ae6e5124bb35b17aff880f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_StringReference:
+    m_TableReference:
+      m_TableCollectionName: GUID:5bb1ad3067e32bd4b9085c884f2fda97
+    m_TableEntryReference:
+      m_KeyId: 18919587840
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  m_FormatArguments: []
+  m_UpdateString:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1915642596}
+        m_TargetAssemblyTypeName: Dialogue.UpdateTargetReplicaProxy, Assembly-CSharp
+        m_MethodName: UpdateText
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  references:
+    version: 2
+    RefIds: []
+--- !u!114 &1915642596
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1915642591}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cfe0dc5797b5c647869fd45595ab8da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  index: 0
+  chainSpeaker: {fileID: 1915642594}
 --- !u!1 &1922170537
 GameObject:
   m_ObjectHideFlags: 0
@@ -15997,8 +16053,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 1
   m_ShadowVolumeIntensity: 0.869
   m_LocalBounds:
-    m_Center: {x: -2.8872, y: -7.528, z: 0}
-    m_Extent: {x: 1.9820001, y: 1.2691, z: 0}
+    m_Center: {x: -2.8908, y: -7.51985, z: 0}
+    m_Extent: {x: 1.9822001, y: 1.2730501, z: 0}
   m_PointLightInnerAngle: 359.6
   m_PointLightOuterAngle: 359.6
   m_PointLightInnerRadius: 2
@@ -17336,8 +17392,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 1
   m_ShadowVolumeIntensity: 0.869
   m_LocalBounds:
-    m_Center: {x: -0.66345006, y: -7.4358997, z: 0}
-    m_Extent: {x: 2.60875, y: 1.3202999, z: 0}
+    m_Center: {x: -0.66040003, y: -7.43505, z: 0}
+    m_Extent: {x: 2.6018, y: 1.3317499, z: 0}
   m_PointLightInnerAngle: 359.6
   m_PointLightOuterAngle: 359.6
   m_PointLightInnerRadius: 2

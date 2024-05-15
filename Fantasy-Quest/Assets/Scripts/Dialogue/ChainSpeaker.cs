@@ -29,6 +29,12 @@ namespace Dialogue
 
         private Voice voice;
 
+        [Button]
+        public void UpdateReplicaString(int index, string label)
+        {
+            replicas[index].UpdateString(label);
+        }
+
         private void Awake()
         {
             SoundsManager soundsManager = GameObject.FindAnyObjectByType<SoundsManager>();
