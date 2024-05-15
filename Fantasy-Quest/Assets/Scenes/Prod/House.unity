@@ -217,6 +217,8 @@ GameObject:
   m_Component:
   - component: {fileID: 21463113}
   - component: {fileID: 21463114}
+  - component: {fileID: 21463116}
+  - component: {fileID: 21463115}
   m_Layer: 5
   m_Name: Speaker
   m_TagString: Untagged
@@ -287,6 +289,60 @@ MonoBehaviour:
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
+--- !u!114 &21463115
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 21463112}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56eb0353ae6e5124bb35b17aff880f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_StringReference:
+    m_TableReference:
+      m_TableCollectionName: GUID:d23b2c87faf941c4b8a923a7d33555fe
+    m_TableEntryReference:
+      m_KeyId: 1649812008960
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  m_FormatArguments: []
+  m_UpdateString:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 21463116}
+        m_TargetAssemblyTypeName: Dialogue.UpdateTargetReplicaProxy, Assembly-CSharp
+        m_MethodName: UpdateText
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  references:
+    version: 2
+    RefIds: []
+--- !u!114 &21463116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 21463112}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cfe0dc5797b5c647869fd45595ab8da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  index: 0
+  chainSpeaker: {fileID: 21463114}
 --- !u!1 &27713289
 GameObject:
   m_ObjectHideFlags: 0
@@ -1260,6 +1316,8 @@ GameObject:
   m_Component:
   - component: {fileID: 153981787}
   - component: {fileID: 153981788}
+  - component: {fileID: 153981790}
+  - component: {fileID: 153981789}
   m_Layer: 5
   m_Name: Speaker
   m_TagString: Untagged
@@ -1331,6 +1389,60 @@ MonoBehaviour:
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
+--- !u!114 &153981789
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 153981786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56eb0353ae6e5124bb35b17aff880f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_StringReference:
+    m_TableReference:
+      m_TableCollectionName: GUID:d23b2c87faf941c4b8a923a7d33555fe
+    m_TableEntryReference:
+      m_KeyId: 1689544650752
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  m_FormatArguments: []
+  m_UpdateString:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 153981790}
+        m_TargetAssemblyTypeName: Dialogue.UpdateTargetReplicaProxy, Assembly-CSharp
+        m_MethodName: UpdateText
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  references:
+    version: 2
+    RefIds: []
+--- !u!114 &153981790
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 153981786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cfe0dc5797b5c647869fd45595ab8da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  index: 0
+  chainSpeaker: {fileID: 153981788}
 --- !u!1 &156445511
 GameObject:
   m_ObjectHideFlags: 0
@@ -2915,8 +3027,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 1
   m_ShadowVolumeIntensity: 0.869
   m_LocalBounds:
-    m_Center: {x: -1.64175, y: -5.62255, z: 0}
-    m_Extent: {x: 2.10715, y: 1.82575, z: 0}
+    m_Center: {x: -1.65215, y: -5.6256, z: 0}
+    m_Extent: {x: 2.10425, y: 1.8287, z: 0}
   m_PointLightInnerAngle: 359.6
   m_PointLightOuterAngle: 359.6
   m_PointLightInnerRadius: 2
@@ -4103,8 +4215,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 1
   m_ShadowVolumeIntensity: 0.869
   m_LocalBounds:
-    m_Center: {x: -1.35035, y: -5.5714, z: 0}
-    m_Extent: {x: 1.7673501, y: 1.9122001, z: 0}
+    m_Center: {x: -1.35075, y: -5.5684, z: 0}
+    m_Extent: {x: 1.7644501, y: 1.9248999, z: 0}
   m_PointLightInnerAngle: 359.6
   m_PointLightOuterAngle: 359.6
   m_PointLightInnerRadius: 2
@@ -5809,6 +5921,8 @@ GameObject:
   m_Component:
   - component: {fileID: 538084428}
   - component: {fileID: 538084429}
+  - component: {fileID: 538084431}
+  - component: {fileID: 538084430}
   m_Layer: 5
   m_Name: Speaker
   m_TagString: Untagged
@@ -5881,6 +5995,60 @@ MonoBehaviour:
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
+--- !u!114 &538084430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 538084427}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56eb0353ae6e5124bb35b17aff880f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_StringReference:
+    m_TableReference:
+      m_TableCollectionName: GUID:d23b2c87faf941c4b8a923a7d33555fe
+    m_TableEntryReference:
+      m_KeyId: 1691260121088
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  m_FormatArguments: []
+  m_UpdateString:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 538084431}
+        m_TargetAssemblyTypeName: Dialogue.UpdateTargetReplicaProxy, Assembly-CSharp
+        m_MethodName: UpdateText
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  references:
+    version: 2
+    RefIds: []
+--- !u!114 &538084431
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 538084427}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cfe0dc5797b5c647869fd45595ab8da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  index: 0
+  chainSpeaker: {fileID: 538084429}
 --- !u!224 &545819541 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1485603182954940292, guid: 7468bdf2fc0310c4a95c1537d4927e10, type: 3}
@@ -8558,6 +8726,8 @@ GameObject:
   m_Component:
   - component: {fileID: 859746920}
   - component: {fileID: 859746921}
+  - component: {fileID: 859746923}
+  - component: {fileID: 859746922}
   m_Layer: 5
   m_Name: Speaker
   m_TagString: Untagged
@@ -8631,6 +8801,60 @@ MonoBehaviour:
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
+--- !u!114 &859746922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 859746919}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56eb0353ae6e5124bb35b17aff880f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_StringReference:
+    m_TableReference:
+      m_TableCollectionName: GUID:d23b2c87faf941c4b8a923a7d33555fe
+    m_TableEntryReference:
+      m_KeyId: 1687804014592
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  m_FormatArguments: []
+  m_UpdateString:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 859746923}
+        m_TargetAssemblyTypeName: Dialogue.UpdateTargetReplicaProxy, Assembly-CSharp
+        m_MethodName: UpdateText
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  references:
+    version: 2
+    RefIds: []
+--- !u!114 &859746923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 859746919}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cfe0dc5797b5c647869fd45595ab8da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  index: 0
+  chainSpeaker: {fileID: 859746921}
 --- !u!1 &871613389
 GameObject:
   m_ObjectHideFlags: 0
@@ -9239,8 +9463,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 1
   m_ShadowVolumeIntensity: 0.869
   m_LocalBounds:
-    m_Center: {x: 0.46635002, y: -5.58335, z: 0}
-    m_Extent: {x: 1.4677501, y: 1.9627501, z: 0}
+    m_Center: {x: 0.4668, y: -5.584, z: 0}
+    m_Extent: {x: 1.4587001, y: 1.9629999, z: 0}
   m_PointLightInnerAngle: 359.6
   m_PointLightOuterAngle: 359.6
   m_PointLightInnerRadius: 2
@@ -9660,6 +9884,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1034518249}
   - component: {fileID: 1034518250}
+  - component: {fileID: 1034518252}
+  - component: {fileID: 1034518251}
   m_Layer: 5
   m_Name: Speaker
   m_TagString: Untagged
@@ -9730,6 +9956,60 @@ MonoBehaviour:
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
+--- !u!114 &1034518251
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1034518248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56eb0353ae6e5124bb35b17aff880f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_StringReference:
+    m_TableReference:
+      m_TableCollectionName: GUID:d23b2c87faf941c4b8a923a7d33555fe
+    m_TableEntryReference:
+      m_KeyId: 1688722567168
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  m_FormatArguments: []
+  m_UpdateString:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1034518252}
+        m_TargetAssemblyTypeName: Dialogue.UpdateTargetReplicaProxy, Assembly-CSharp
+        m_MethodName: UpdateText
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  references:
+    version: 2
+    RefIds: []
+--- !u!114 &1034518252
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1034518248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cfe0dc5797b5c647869fd45595ab8da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  index: 0
+  chainSpeaker: {fileID: 1034518250}
 --- !u!1 &1041349922
 GameObject:
   m_ObjectHideFlags: 0
@@ -11058,6 +11338,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1234649546}
   - component: {fileID: 1234649547}
+  - component: {fileID: 1234649549}
+  - component: {fileID: 1234649548}
   m_Layer: 5
   m_Name: Speaker
   m_TagString: Untagged
@@ -11130,6 +11412,60 @@ MonoBehaviour:
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
+--- !u!114 &1234649548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1234649545}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56eb0353ae6e5124bb35b17aff880f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_StringReference:
+    m_TableReference:
+      m_TableCollectionName: GUID:d23b2c87faf941c4b8a923a7d33555fe
+    m_TableEntryReference:
+      m_KeyId: 1691977347072
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  m_FormatArguments: []
+  m_UpdateString:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1234649549}
+        m_TargetAssemblyTypeName: Dialogue.UpdateTargetReplicaProxy, Assembly-CSharp
+        m_MethodName: UpdateText
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  references:
+    version: 2
+    RefIds: []
+--- !u!114 &1234649549
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1234649545}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cfe0dc5797b5c647869fd45595ab8da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  index: 0
+  chainSpeaker: {fileID: 1234649547}
 --- !u!1 &1261444613
 GameObject:
   m_ObjectHideFlags: 0
@@ -11987,6 +12323,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1332600836}
   - component: {fileID: 1332600837}
+  - component: {fileID: 1332600839}
+  - component: {fileID: 1332600838}
   m_Layer: 5
   m_Name: Speaker
   m_TagString: Untagged
@@ -12060,6 +12398,60 @@ MonoBehaviour:
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
+--- !u!114 &1332600838
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1332600835}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56eb0353ae6e5124bb35b17aff880f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_StringReference:
+    m_TableReference:
+      m_TableCollectionName: GUID:d23b2c87faf941c4b8a923a7d33555fe
+    m_TableEntryReference:
+      m_KeyId: 1843001651200
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  m_FormatArguments: []
+  m_UpdateString:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1332600839}
+        m_TargetAssemblyTypeName: Dialogue.UpdateTargetReplicaProxy, Assembly-CSharp
+        m_MethodName: UpdateText
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  references:
+    version: 2
+    RefIds: []
+--- !u!114 &1332600839
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1332600835}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cfe0dc5797b5c647869fd45595ab8da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  index: 0
+  chainSpeaker: {fileID: 1332600837}
 --- !u!1 &1371304693
 GameObject:
   m_ObjectHideFlags: 0
@@ -13581,6 +13973,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1519026809}
   - component: {fileID: 1519026810}
+  - component: {fileID: 1519026812}
+  - component: {fileID: 1519026811}
   m_Layer: 5
   m_Name: Speaker
   m_TagString: Untagged
@@ -13651,6 +14045,60 @@ MonoBehaviour:
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
+--- !u!114 &1519026811
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1519026808}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56eb0353ae6e5124bb35b17aff880f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_StringReference:
+    m_TableReference:
+      m_TableCollectionName: GUID:d23b2c87faf941c4b8a923a7d33555fe
+    m_TableEntryReference:
+      m_KeyId: 1690626781184
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  m_FormatArguments: []
+  m_UpdateString:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1519026812}
+        m_TargetAssemblyTypeName: Dialogue.UpdateTargetReplicaProxy, Assembly-CSharp
+        m_MethodName: UpdateText
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  references:
+    version: 2
+    RefIds: []
+--- !u!114 &1519026812
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1519026808}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cfe0dc5797b5c647869fd45595ab8da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  index: 0
+  chainSpeaker: {fileID: 1519026810}
 --- !u!1 &1524370454
 GameObject:
   m_ObjectHideFlags: 3
@@ -15686,6 +16134,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1901955423}
   - component: {fileID: 1901955424}
+  - component: {fileID: 1901955426}
+  - component: {fileID: 1901955425}
   m_Layer: 5
   m_Name: Speaker
   m_TagString: Untagged
@@ -15756,6 +16206,60 @@ MonoBehaviour:
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
+--- !u!114 &1901955425
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1901955422}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56eb0353ae6e5124bb35b17aff880f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_StringReference:
+    m_TableReference:
+      m_TableCollectionName: GUID:d23b2c87faf941c4b8a923a7d33555fe
+    m_TableEntryReference:
+      m_KeyId: 1681994903552
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  m_FormatArguments: []
+  m_UpdateString:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1901955426}
+        m_TargetAssemblyTypeName: Dialogue.UpdateTargetReplicaProxy, Assembly-CSharp
+        m_MethodName: UpdateText
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  references:
+    version: 2
+    RefIds: []
+--- !u!114 &1901955426
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1901955422}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cfe0dc5797b5c647869fd45595ab8da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  index: 0
+  chainSpeaker: {fileID: 1901955424}
 --- !u!1 &1911524844
 GameObject:
   m_ObjectHideFlags: 0
@@ -16109,8 +16613,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 1
   m_ShadowVolumeIntensity: 0.869
   m_LocalBounds:
-    m_Center: {x: -2.8861, y: -7.523, z: 0}
-    m_Extent: {x: 1.9795, y: 1.2787998, z: 0}
+    m_Center: {x: -2.8934, y: -7.52355, z: 0}
+    m_Extent: {x: 1.9827, y: 1.2724497, z: 0}
   m_PointLightInnerAngle: 359.6
   m_PointLightOuterAngle: 359.6
   m_PointLightInnerRadius: 2
@@ -16832,6 +17336,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2051480787}
   - component: {fileID: 2051480788}
+  - component: {fileID: 2051480790}
+  - component: {fileID: 2051480789}
   m_Layer: 5
   m_Name: Speaker
   m_TagString: Untagged
@@ -16905,6 +17411,60 @@ MonoBehaviour:
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
+--- !u!114 &2051480789
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2051480786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56eb0353ae6e5124bb35b17aff880f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_StringReference:
+    m_TableReference:
+      m_TableCollectionName: GUID:d23b2c87faf941c4b8a923a7d33555fe
+    m_TableEntryReference:
+      m_KeyId: 1690073133056
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  m_FormatArguments: []
+  m_UpdateString:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2051480790}
+        m_TargetAssemblyTypeName: Dialogue.UpdateTargetReplicaProxy, Assembly-CSharp
+        m_MethodName: UpdateText
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  references:
+    version: 2
+    RefIds: []
+--- !u!114 &2051480790
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2051480786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cfe0dc5797b5c647869fd45595ab8da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  index: 0
+  chainSpeaker: {fileID: 2051480788}
 --- !u!1 &2060054905
 GameObject:
   m_ObjectHideFlags: 0
@@ -16915,6 +17475,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2060054906}
   - component: {fileID: 2060054907}
+  - component: {fileID: 2060054909}
+  - component: {fileID: 2060054908}
   m_Layer: 5
   m_Name: Speaker
   m_TagString: Untagged
@@ -16988,6 +17550,60 @@ MonoBehaviour:
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
+--- !u!114 &2060054908
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2060054905}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56eb0353ae6e5124bb35b17aff880f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_StringReference:
+    m_TableReference:
+      m_TableCollectionName: GUID:d23b2c87faf941c4b8a923a7d33555fe
+    m_TableEntryReference:
+      m_KeyId: 1634737680384
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  m_FormatArguments: []
+  m_UpdateString:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2060054909}
+        m_TargetAssemblyTypeName: Dialogue.UpdateTargetReplicaProxy, Assembly-CSharp
+        m_MethodName: UpdateText
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  references:
+    version: 2
+    RefIds: []
+--- !u!114 &2060054909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2060054905}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cfe0dc5797b5c647869fd45595ab8da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  index: 0
+  chainSpeaker: {fileID: 2060054907}
 --- !u!1 &2062223026
 GameObject:
   m_ObjectHideFlags: 0
@@ -17448,8 +18064,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 1
   m_ShadowVolumeIntensity: 0.869
   m_LocalBounds:
-    m_Center: {x: -0.66265, y: -7.429, z: 0}
-    m_Extent: {x: 2.60015, y: 1.3259001, z: 0}
+    m_Center: {x: -0.65384996, y: -7.4368, z: 0}
+    m_Extent: {x: 2.6020498, y: 1.3289001, z: 0}
   m_PointLightInnerAngle: 359.6
   m_PointLightOuterAngle: 359.6
   m_PointLightInnerRadius: 2
