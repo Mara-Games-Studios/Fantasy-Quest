@@ -38,7 +38,7 @@ namespace UI
             int i = 0;
             while (GetCurrent() != horizontalSlider.Current)
             {
-                horizontalSlider.MoveRight();
+                horizontalSlider.MoveRightWithAnimation();
                 i++;
                 if (i == 50)
                 {
