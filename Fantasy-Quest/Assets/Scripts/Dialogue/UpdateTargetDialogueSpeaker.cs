@@ -11,10 +11,10 @@ namespace Dialogue
         private DialogueSpeaker dialogueSpeaker;
 
         [SerializeField]
-        private int firstTrySpeechIndex = 0;
+        private int firstTrySpeechIndex = -1;
 
         [SerializeField]
-        private int alternativeSpeechIndex = 0;
+        private int alternativeSpeechIndex = -1;
 
         [Button]
         public void UpdateFirstTrySpeechText(string text)
