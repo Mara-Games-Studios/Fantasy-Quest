@@ -24,7 +24,12 @@ namespace Cutscene
 
         public void LockFromSettings()
         {
-            if (playableDirectors.Any(x => x.time > 0))
+            if (
+                playableDirectors.Any(x =>
+                    (x.time > 0 && x.GetComponent<UnlockZone>() == null)
+                    || (x.time > 0 && !x.GetComponent<UnlockZone>().IsInRange(x.time))
+                )
+            )
             {
                 LockerSettings.Instance.LockAll();
             }
