@@ -6,5 +6,6 @@ namespace Subtitles
     {
         public void Show(Replica replica);
         public void Hide();
+        public void UpdateText(string text);
     }
 }

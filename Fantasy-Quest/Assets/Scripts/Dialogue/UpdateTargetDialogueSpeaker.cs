@@ -19,13 +19,13 @@ namespace Dialogue
         [Button]
         public void UpdateFirstTrySpeechText(string text)
         {
-            dialogueSpeaker.FFirstTrySpeech[firstTrySpeechIndex].UpdateString(text);
+            dialogueSpeaker.UpdateFFirstTrySpeechReplica(firstTrySpeechIndex, text);
         }
 
         [Button]
         public void UpdateAlternativeSpeechText(string text)
         {
-            dialogueSpeaker.AAlternativeSpeech[alternativeSpeechIndex].UpdateString(text);
+            dialogueSpeaker.UpdateFAlternativeSpeechReplica(alternativeSpeechIndex, text);
         }
     }
 }

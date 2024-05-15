@@ -109,5 +109,18 @@ namespace Subtitles
                 imageFadeTween = additionalImageToFade.DOFade(endAlpha, duration);
             }
         }
+
+        public void UpdateText(string text)
+        {
+            if (!SubtitlesSettings.Instance.IsSubtitlesShowing)
+            {
+                return;
+            }
+
+            if (outputTmpText.text != "")
+            {
+                outputTmpText.SetText(text);
+            }
+        }
     }
 }
