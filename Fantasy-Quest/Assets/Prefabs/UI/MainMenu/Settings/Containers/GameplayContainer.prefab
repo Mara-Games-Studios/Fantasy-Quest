@@ -119,7 +119,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8048471987983843152}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: UI.Escaper, Assembly-CSharp
+        m_MethodName: Exit
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &615127342816037040
 GameObject:
   m_ObjectHideFlags: 0
@@ -1161,7 +1173,6 @@ GameObject:
   - component: {fileID: 8215372477143106570}
   - component: {fileID: 1053915381699269950}
   - component: {fileID: 1890130524778520337}
-  - component: {fileID: 6795125716914789283}
   m_Layer: 5
   m_Name: Result
   m_TagString: Untagged
@@ -1310,22 +1321,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3405594295579920519}
   m_CullTransparentMesh: 1
---- !u!114 &6795125716914789283
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3405594295579920519}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b7e533b93f5831b4382ddc4f73c41aed, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  horizontalSlider: {fileID: 8215372477143106570}
-  russian: {fileID: 4320169629253566538}
-  english: {fileID: 6109184681450430618}
-  belarusian: {fileID: 102975800029876886}
 --- !u!1 &3848335664417472330
 GameObject:
   m_ObjectHideFlags: 0
@@ -1689,7 +1684,6 @@ GameObject:
   - component: {fileID: 5529039528702702742}
   - component: {fileID: 3818399467802837149}
   - component: {fileID: 2275361454742144195}
-  - component: {fileID: 8295497812866424829}
   - component: {fileID: 4851207747658630283}
   - component: {fileID: 8520505526015393460}
   m_Layer: 5
@@ -1817,21 +1811,6 @@ MonoBehaviour:
   duration: 1.3
   minFade: 0.1
   maxFade: 1
---- !u!114 &8295497812866424829
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5781761601450385063}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e27a9b5ae4862ea4f98dc6ac88a048f2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  horizontalSlider: {fileID: 2275361454742144195}
-  yes: {fileID: 8763465663823799714}
-  no: {fileID: 9083974044416465424}
 --- !u!114 &4851207747658630283
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2414,6 +2393,8 @@ GameObject:
   - component: {fileID: 4266006664007113004}
   - component: {fileID: 5987721628798087547}
   - component: {fileID: 254830469774774738}
+  - component: {fileID: 7780126146985969447}
+  - component: {fileID: 7672359066740683467}
   m_Layer: 5
   m_Name: Controllers
   m_TagString: Untagged
@@ -2487,6 +2468,37 @@ MonoBehaviour:
   VerticalButtons:
   - {fileID: 2320650226923930251}
   - {fileID: 3818399467802837149}
+--- !u!114 &7780126146985969447
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8179089980491249527}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7e533b93f5831b4382ddc4f73c41aed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  horizontalSlider: {fileID: 8215372477143106570}
+  russian: {fileID: 4320169629253566538}
+  english: {fileID: 6109184681450430618}
+  belarusian: {fileID: 102975800029876886}
+--- !u!114 &7672359066740683467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8179089980491249527}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e27a9b5ae4862ea4f98dc6ac88a048f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  horizontalSlider: {fileID: 2275361454742144195}
+  yes: {fileID: 8763465663823799714}
+  no: {fileID: 9083974044416465424}
 --- !u!1001 &3428929705142384181
 PrefabInstance:
   m_ObjectHideFlags: 0
