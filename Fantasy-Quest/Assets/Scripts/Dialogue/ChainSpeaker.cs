@@ -29,6 +29,16 @@ namespace Dialogue
 
         private Voice voice;
 
+        [Button]
+        public void UpdateReplicaString(int index, string label)
+        {
+            replicas[index].UpdateString(label);
+            if (currentReplica == replicas[index])
+            {
+                Subtitles.UpdateText(label);
+            }
+        }
+
         private void Awake()
         {
             SoundsManager soundsManager = GameObject.FindAnyObjectByType<SoundsManager>();
@@ -43,6 +53,7 @@ namespace Dialogue
         {
             _ = this.KillCoroutine(coroutine);
             voice.Silence();
+            currentReplica = null;
             if (isWithSubtitles)
             {
                 Subtitles.Hide();
@@ -95,6 +106,8 @@ namespace Dialogue
             yield return TellRoutine(() => { });
         }
 
+        private Replica currentReplica = null;
+
         public IEnumerator TellRoutine(Action nextAction)
         {
             isWithSubtitles = true;
@@ -102,7 +115,9 @@ namespace Dialogue
             {
                 voice.Say(replica);
                 Subtitles.Show(replica);
+                currentReplica = replica;
                 yield return new WaitForSeconds(replica.Duration + replica.DelayAfterSaid);
+                currentReplica = null;
             }
             isWithSubtitles = false;
             Subtitles.Hide();
@@ -116,7 +131,9 @@ namespace Dialogue
             {
                 voice.Say(replica);
                 Subtitles.Show(replica);
+                currentReplica = replica;
                 yield return new WaitForSeconds(replica.Duration + replica.DelayAfterSaid);
+                currentReplica = null;
             }
             isWithSubtitles = false;
             Subtitles.Hide();

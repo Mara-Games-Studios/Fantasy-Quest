@@ -39,7 +39,7 @@ namespace Minigames.SquirrelGame.Screamer
         [Button]
         public void Hide()
         {
-            background.Hide();
+            background.Hide(() => { });
             squirrelShower.Hide();
         }
 

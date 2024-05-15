@@ -31,6 +31,24 @@ namespace Dialogue
         protected Voice Voice;
         protected bool WasSaid;
 
+        public void UpdateFFirstTrySpeechReplica(int index, string text)
+        {
+            FirstTrySpeech[index].UpdateString(text);
+            if (currentReplica == FirstTrySpeech[index])
+            {
+                SubtitlesView.Value.UpdateText(text);
+            }
+        }
+
+        public void UpdateFAlternativeSpeechReplica(int index, string text)
+        {
+            AlternativeSpeech[index].UpdateString(text);
+            if (currentReplica == AlternativeSpeech[index])
+            {
+                SubtitlesView.Value.UpdateText(text);
+            }
+        }
+
         protected virtual void Awake()
         {
             SoundsManager soundsManager = GameObject.FindAnyObjectByType<SoundsManager>();
@@ -56,6 +74,7 @@ namespace Dialogue
             if (SayCoroutine != null)
             {
                 StopCoroutine(SayCoroutine);
+                currentReplica = null;
                 SayCoroutine = null;
             }
             Voice?.Silence();
@@ -68,14 +87,18 @@ namespace Dialogue
             SayCoroutine = StartCoroutine(SayList(speech));
         }
 
+        private Replica currentReplica = null;
+
         protected IEnumerator SayList(List<Replica> replicas)
         {
             foreach (Replica replica in replicas)
             {
                 SubtitlesView.Value.Show(replica);
+                currentReplica = replica;
                 yield return new WaitForSeconds(replica.DelayBeforeSaid);
                 Voice.Say(replica);
                 yield return new WaitForSeconds(replica.Duration + replica.DelayAfterSaid);
+                currentReplica = null;
             }
             Stop();
         }

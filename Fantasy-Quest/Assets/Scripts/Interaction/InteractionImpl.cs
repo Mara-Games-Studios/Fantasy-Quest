@@ -1,8 +1,11 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Audio;
 using Configs;
 using Dialogue;
 using Interaction.Item;
+using Spine.Unity;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -22,7 +25,27 @@ namespace Interaction
         [SerializeField]
         private ContactFilter2D contactFilter;
 
+        [Header("Animations")]
+        [SerializeField]
+        private SkeletonAnimation catSkeleton;
+
+        [SerializeField]
+        private AnimationReferenceAsset idleAnim;
+
+        [SerializeField]
+        private AnimationReferenceAsset canDoAnim;
+
+        [SerializeField]
+        private SoundPlayer canDoSound;
+
+        [SerializeField]
+        private AnimationReferenceAsset cantDoAnim;
+
+        [SerializeField]
+        private SoundPlayer cantDoSound;
+
         private GameplayInput playerInput;
+        private bool canDoSmth = true;
 
         private void Awake()
         {
@@ -53,11 +76,46 @@ namespace Interaction
 
         public void InteractHuman(InputAction.CallbackContext context)
         {
+            _ = StartCoroutine(InteractHumanRoutine());
+        }
+
+        private IEnumerator InteractHumanRoutine()
+        {
             // 1
-            CastInterfaces<ISpeakable>()
-                .ForEach(x => x.Speak());
-            CastInterfaces<ICarryable>().ForEach(x => x.CarryByHuman());
-            CastInterfaces<IInteractable>().ForEach(x => x.InteractByHuman());
+            List<ISpeakable> speakers = CastInterfaces<ISpeakable>();
+            List<ICarryable> carriers = CastInterfaces<ICarryable>();
+            List<IInteractable> interactors = CastInterfaces<IInteractable>();
+            if (!LockerSettings.Instance.IsCatInteractionLocked)
+            {
+                if (
+                    (speakers.Count > 0 || carriers.Count > 0 || interactors.Count > 0) && canDoSmth
+                ) // Can Do something
+                {
+                    canDoSmth = false;
+                    LockerSettings.Instance.LockAllExceptBubble();
+                    _ = catSkeleton.AnimationState.SetAnimation(0, canDoAnim, false);
+                    canDoSound.PlayClip();
+                    yield return new WaitForSeconds(canDoAnim.Animation.Duration);
+                    _ = catSkeleton.AnimationState.SetAnimation(0, idleAnim, false);
+                    canDoSmth = true;
+                    LockerSettings.Instance.UnlockAll();
+                }
+                else if (canDoSmth) //Can't Do Anything
+                {
+                    canDoSmth = false;
+                    LockerSettings.Instance.LockAllExceptBubble();
+                    _ = catSkeleton.AnimationState.SetAnimation(0, cantDoAnim, false);
+                    cantDoSound.PlayClip();
+                    yield return new WaitForSeconds(cantDoAnim.Animation.Duration);
+                    _ = catSkeleton.AnimationState.SetAnimation(0, idleAnim, false);
+                    canDoSmth = true;
+                    LockerSettings.Instance.UnlockAll();
+                }
+            }
+
+            speakers.ForEach(x => x.Speak());
+            carriers.ForEach(x => x.CarryByHuman());
+            interactors.ForEach(x => x.InteractByHuman());
         }
 
         public void InteractCat(InputAction.CallbackContext context)

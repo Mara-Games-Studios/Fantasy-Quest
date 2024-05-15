@@ -22,6 +22,11 @@ namespace Dialogue
 
         private string InfoDuration => $"Voice duration: {Duration}";
 
+        public void UpdateString(string text)
+        {
+            Text = text;
+        }
+
         [ReadOnly]
         [SerializeField]
         private float cachedDuration;
