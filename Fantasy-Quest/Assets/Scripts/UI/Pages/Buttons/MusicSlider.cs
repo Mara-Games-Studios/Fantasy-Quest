@@ -14,7 +14,7 @@ namespace UI.Pages
         [SerializeField]
         private float step = 0.1f;
 
-        public void MoveLeft()
+        public void MoveLeftWithAnimation()
         {
             if (audioSlider.value <= 0)
             {
@@ -33,7 +33,7 @@ namespace UI.Pages
             AudioSettings.Instance.MusicValue = audioValue;
         }
 
-        public void MoveRight()
+        public void MoveRightWithAnimation()
         {
             if (audioSlider.value >= 1)
             {

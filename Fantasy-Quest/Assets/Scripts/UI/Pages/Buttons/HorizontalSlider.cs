@@ -8,8 +8,8 @@ namespace UI.Pages
 {
     public interface IHorizontalSlider
     {
-        public void MoveLeft();
-        public void MoveRight();
+        public void MoveLeftWithAnimation();
+        public void MoveRightWithAnimation();
     }
 
     [AddComponentMenu("Scripts/UI/Pages/Buttons/UI.Pages.Buttons.HorizontalSlider")]
@@ -20,6 +20,10 @@ namespace UI.Pages
 
         [SerializeField]
         private List<CanvasGroup> elementsCanvasGroup;
+
+        [SerializeField]
+        private List<RectTransform> elementsTransform;
+        
         public List<CanvasGroup> ElementsCanvasGroup => elementsCanvasGroup;
 
         [SerializeField]
@@ -33,8 +37,6 @@ namespace UI.Pages
 
         [SerializeField]
         private float maxFade = 1f;
-
-        private List<RectTransform> elementsTransform;
 
         public event Action<int> OnElementIndexChanged;
         public CanvasGroup Current => elementsCanvasGroup[currentElementIndex];
@@ -54,10 +56,12 @@ namespace UI.Pages
 
         private void OnEnable()
         {
-            elementsTransform = new List<RectTransform>(
-                from element in elementsCanvasGroup
-                select element.GetComponent<RectTransform>()
-            );
+            PutOnStart();
+        }
+
+        private void PutOnStart()
+        {
+            
             if (CurrentElementIndex < 0 || CurrentElementIndex >= elementsCanvasGroup.Count)
             {
                 CurrentElementIndex = 0;
@@ -74,43 +78,51 @@ namespace UI.Pages
             elementsCanvasGroup[CurrentElementIndex].alpha = maxFade;
         }
 
-        public void MoveRight()
+        public void MoveRightImmediately()
         {
-            //Hide element
-            _ = elementsTransform[CurrentElementIndex]
-                .DOMove(localPoints.StartPoint.position, duration)
-                .SetUpdate(true);
-            _ = elementsCanvasGroup[CurrentElementIndex].DOFade(minFade, duration).SetUpdate(true);
-
+            HideElement(localPoints.StartPoint.position, CurrentElementIndex, 0);
             IncreaseElementIndex(1);
-            //Show element
-            _ = elementsTransform[CurrentElementIndex]
-                .DOMove(localPoints.EndPoint.position, 0)
-                .SetUpdate(true);
-            _ = elementsTransform[CurrentElementIndex]
-                .DOMove(localPoints.MiddlePoint.position, duration)
-                .SetUpdate(true);
-            _ = elementsCanvasGroup[CurrentElementIndex].DOFade(maxFade, duration).SetUpdate(true);
+            ShowElement(localPoints.EndPoint.position, CurrentElementIndex, 0);
         }
 
-        public void MoveLeft()
+        public void MoveLeftImmediately()
         {
-            //Hide element
-            _ = elementsTransform[CurrentElementIndex]
-                .DOMove(localPoints.EndPoint.position, duration)
-                .SetUpdate(true);
-            _ = elementsCanvasGroup[CurrentElementIndex].DOFade(minFade, duration).SetUpdate(true);
-
+            HideElement(localPoints.EndPoint.position, CurrentElementIndex, 0);
             DecreaseElementIndex(1);
+            ShowElement(localPoints.StartPoint.position, CurrentElementIndex, 0);
+        }
+        
+        public void MoveRightWithAnimation()
+        {
+            HideElement(localPoints.StartPoint.position, CurrentElementIndex, duration);
+            IncreaseElementIndex(1);
+            ShowElement(localPoints.EndPoint.position, CurrentElementIndex, duration);
+        }
 
-            //Show element
-            _ = elementsTransform[CurrentElementIndex]
-                .DOMove(localPoints.StartPoint.position, 0)
+        public void MoveLeftWithAnimation()
+        {
+            HideElement(localPoints.EndPoint.position, CurrentElementIndex, duration);
+            DecreaseElementIndex(1);
+            ShowElement(localPoints.StartPoint.position, CurrentElementIndex, duration);
+        }
+
+        private void HideElement(Vector3 endPosition, int index, float duration)
+        {
+            _ = elementsTransform[index]
+                .DOMove(endPosition, duration)
                 .SetUpdate(true);
-            _ = elementsTransform[CurrentElementIndex]
+            _ = elementsCanvasGroup[index].DOFade(minFade, duration).SetUpdate(true);
+        }
+
+        private void ShowElement(Vector3 startPosition, int index, float duration)
+        {
+            _ = elementsTransform[index]
+                .DOMove(startPosition, 0)
+                .SetUpdate(true);
+            _ = elementsTransform[index]
                 .DOMove(localPoints.MiddlePoint.position, duration)
                 .SetUpdate(true);
-            _ = elementsCanvasGroup[CurrentElementIndex].DOFade(maxFade, duration).SetUpdate(true);
+            _ = elementsCanvasGroup[index].DOFade(maxFade, duration).SetUpdate(true);
         }
 
         private void IncreaseElementIndex(int step)

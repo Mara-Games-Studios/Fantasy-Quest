@@ -119,7 +119,7 @@ namespace UI.Pages.Behaviours
                     .TryGetComponent(out IHorizontalSlider horizontalSlider)
             )
             {
-                horizontalSlider.MoveLeft();
+                horizontalSlider.MoveLeftWithAnimation();
                 EffectModel.SlideSound.PlayClip();
             }
         }
@@ -141,7 +141,7 @@ namespace UI.Pages.Behaviours
                     .TryGetComponent(out IHorizontalSlider horizontalSlider)
             )
             {
-                horizontalSlider.MoveRight();
+                horizontalSlider.MoveRightWithAnimation();
                 EffectModel.SlideSound.PlayClip();
             }
         }

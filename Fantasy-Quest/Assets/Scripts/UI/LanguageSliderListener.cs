@@ -64,7 +64,7 @@ namespace UI
             int i = 0;
             while (GetCurrent() != horizontalSlider.Current)
             {
-                horizontalSlider.MoveRight();
+                horizontalSlider.MoveRightImmediately();
                 i++;
                 if (i == 50)
                 {
@@ -107,22 +107,17 @@ namespace UI
 
         public CanvasGroup FromIndex(int index)
         {
-            if (index == 2)
+            switch (index)
             {
-                return russian;
+                case 0:
+                    return belarusian;
+                case 1:
+                    return english;
+                case 2:
+                    return russian;
+                default:
+                    return russian;
             }
-
-            if (index == 1)
-            {
-                return english;
-            }
-
-            if (index == 0)
-            {
-                return belarusian;
-            }
-
-            return russian;
         }
     }
 }
