@@ -107,17 +107,13 @@ namespace UI
 
         public CanvasGroup FromIndex(int index)
         {
-            switch (index)
+            return index switch
             {
-                case 0:
-                    return belarusian;
-                case 1:
-                    return english;
-                case 2:
-                    return russian;
-                default:
-                    return russian;
-            }
+                0 => belarusian,
+                1 => english,
+                2 => russian,
+                _ => russian,
+            };
         }
     }
 }

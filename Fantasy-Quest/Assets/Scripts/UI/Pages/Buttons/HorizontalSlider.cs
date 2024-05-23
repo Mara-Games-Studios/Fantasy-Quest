@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using DG.Tweening;
 using UnityEngine;
 
@@ -23,7 +22,7 @@ namespace UI.Pages
 
         [SerializeField]
         private List<RectTransform> elementsTransform;
-        
+
         public List<CanvasGroup> ElementsCanvasGroup => elementsCanvasGroup;
 
         [SerializeField]
@@ -61,7 +60,6 @@ namespace UI.Pages
 
         private void PutOnStart()
         {
-            
             if (CurrentElementIndex < 0 || CurrentElementIndex >= elementsCanvasGroup.Count)
             {
                 CurrentElementIndex = 0;
@@ -91,7 +89,7 @@ namespace UI.Pages
             DecreaseElementIndex(1);
             ShowElement(localPoints.StartPoint.position, CurrentElementIndex, 0);
         }
-        
+
         public void MoveRightWithAnimation()
         {
             HideElement(localPoints.StartPoint.position, CurrentElementIndex, duration);
@@ -108,17 +106,13 @@ namespace UI.Pages
 
         private void HideElement(Vector3 endPosition, int index, float duration)
         {
-            _ = elementsTransform[index]
-                .DOMove(endPosition, duration)
-                .SetUpdate(true);
+            _ = elementsTransform[index].DOMove(endPosition, duration).SetUpdate(true);
             _ = elementsCanvasGroup[index].DOFade(minFade, duration).SetUpdate(true);
         }
 
         private void ShowElement(Vector3 startPosition, int index, float duration)
         {
-            _ = elementsTransform[index]
-                .DOMove(startPosition, 0)
-                .SetUpdate(true);
+            _ = elementsTransform[index].DOMove(startPosition, 0).SetUpdate(true);
             _ = elementsTransform[index]
                 .DOMove(localPoints.MiddlePoint.position, duration)
                 .SetUpdate(true);

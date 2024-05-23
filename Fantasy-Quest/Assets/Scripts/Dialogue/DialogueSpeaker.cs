@@ -33,8 +33,11 @@ namespace Dialogue
 
         public void UpdateFFirstTrySpeechReplica(int index, string text)
         {
-            if(index < 0 || index >= FirstTrySpeech.Count)
+            if (index < 0 || index >= FirstTrySpeech.Count)
+            {
                 return;
+            }
+
             FirstTrySpeech[index].UpdateString(text);
             if (currentReplica == FirstTrySpeech[index])
             {
@@ -44,8 +47,11 @@ namespace Dialogue
 
         public void UpdateFAlternativeSpeechReplica(int index, string text)
         {
-            if(index < 0 || index >= AlternativeSpeech.Count)
+            if (index < 0 || index >= AlternativeSpeech.Count)
+            {
                 return;
+            }
+
             AlternativeSpeech[index].UpdateString(text);
             if (currentReplica == AlternativeSpeech[index])
             {

@@ -37,7 +37,9 @@ namespace UI.Pages.Behaviours
         {
             if (previousButton != null)
             {
-                EffectModel.IndicatorsButtons.Left.onClick.RemoveListener(previousSlider.MoveLeftWithAnimation);
+                EffectModel.IndicatorsButtons.Left.onClick.RemoveListener(
+                    previousSlider.MoveLeftWithAnimation
+                );
                 EffectModel.IndicatorsButtons.Left.onClick.RemoveListener(
                     EffectModel.SlideSound.PlayClip
                 );
@@ -51,11 +53,15 @@ namespace UI.Pages.Behaviours
 
             if (button.TryGetComponent(out IHorizontalSlider slider))
             {
-                EffectModel.IndicatorsButtons.Left.onClick.AddListener(slider.MoveLeftWithAnimation);
+                EffectModel.IndicatorsButtons.Left.onClick.AddListener(
+                    slider.MoveLeftWithAnimation
+                );
                 EffectModel.IndicatorsButtons.Left.onClick.AddListener(
                     EffectModel.SlideSound.PlayClip
                 );
-                EffectModel.IndicatorsButtons.Right.onClick.AddListener(slider.MoveRightWithAnimation);
+                EffectModel.IndicatorsButtons.Right.onClick.AddListener(
+                    slider.MoveRightWithAnimation
+                );
                 EffectModel.IndicatorsButtons.Right.onClick.AddListener(
                     EffectModel.SlideSound.PlayClip
                 );
