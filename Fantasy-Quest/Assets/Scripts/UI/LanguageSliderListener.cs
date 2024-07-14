@@ -29,7 +29,6 @@ namespace UI
 
         public void ChangeLocale(int localeID)
         {
-            Debug.Log("Locale changed to " + localeID);
             if (active)
             {
                 return;

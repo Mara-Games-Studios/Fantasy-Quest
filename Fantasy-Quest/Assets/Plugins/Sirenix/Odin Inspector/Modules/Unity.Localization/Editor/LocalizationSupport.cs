@@ -1,6 +1,6 @@
 //-----------------------------------------------------------------------
-// <copyright file="LocalizationSupport.cs" company="Sirenix IVS">
-// Copyright (c) Sirenix IVS. All rights reserved.
+// <copyright file="LocalizationSupport.cs" company="Sirenix ApS">
+// Copyright (c) Sirenix ApS. All rights reserved.
 // </copyright>
 //-----------------------------------------------------------------------
 
@@ -10,23 +10,8 @@ namespace Sirenix.OdinInspector.Modules.Localization.Editor
 {
     using UnityEngine.Localization;
     using Sirenix.OdinInspector.Editor;
-    using System.Collections.Generic;
     using System;
     using Sirenix.Utilities.Editor;
-    using System.Reflection;
-
-    public class LocalizedReferenceProcessor : OdinAttributeProcessor<LocalizedReference>
-    {
-        public override bool CanProcessChildMemberAttributes(InspectorProperty parentProperty, MemberInfo member)
-        {
-            return false;
-        }
-
-        public override void ProcessSelfAttributes(InspectorProperty property, List<Attribute> attributes)
-        {
-            attributes.Add(new DrawWithUnityAttribute());
-        }
-    }
 
     public class LocalizedReferenceResolver : OdinPropertyResolver<LocalizedReference>
     {

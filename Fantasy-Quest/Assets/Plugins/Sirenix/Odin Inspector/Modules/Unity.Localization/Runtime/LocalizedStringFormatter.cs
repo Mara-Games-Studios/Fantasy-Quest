@@ -1,6 +1,6 @@
 //-----------------------------------------------------------------------
-// <copyright file="LocalizedStringFormatter.cs" company="Sirenix IVS">
-// Copyright (c) Sirenix IVS. All rights reserved.
+// <copyright file="LocalizedStringFormatter.cs" company="Sirenix ApS">
+// Copyright (c) Sirenix ApS. All rights reserved.
 // </copyright>
 //-----------------------------------------------------------------------
 
@@ -9,10 +9,13 @@ using System.Reflection;
 using UnityEngine.Localization;
 using System;
 
+#if !ODIN_INSPECTOR_EDITOR_ONLY
 [assembly: RegisterFormatter(typeof(Sirenix.OdinInspector.Modules.Localization.LocalizedStringFormatter))]
+#endif
 
 namespace Sirenix.OdinInspector.Modules.Localization
 {
+    #if !ODIN_INSPECTOR_EDITOR_ONLY
     public class LocalizedStringFormatter : ReflectionOrEmittedBaseFormatter<LocalizedString>
     {
         private static readonly FieldInfo m_LocalVariables_Field;
@@ -51,4 +54,5 @@ namespace Sirenix.OdinInspector.Modules.Localization
             }
         }
     }
+    #endif
 }
