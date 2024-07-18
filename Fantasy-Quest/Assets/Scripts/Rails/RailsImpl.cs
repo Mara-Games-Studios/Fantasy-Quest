@@ -14,6 +14,8 @@ namespace Rails
         [SerializeField]
         private PathCreator pathCreator;
         public VertexPath Path => pathCreator.path;
+        public BezierPath BezierPath => pathCreator.bezierPath;
+        public PathCreator PathCreator => pathCreator;
 
         [ReadOnly]
         [SerializeField]

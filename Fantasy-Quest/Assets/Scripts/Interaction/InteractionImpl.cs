@@ -6,6 +6,7 @@ using Configs;
 using Dialogue;
 using Interaction.Item;
 using Spine.Unity;
+using TestJump;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -130,6 +131,7 @@ namespace Interaction
         {
             CastInterfaces<ISceneTransition>(true).ForEach(x => x.ToNewScene());
             CastInterfaces<IJumpTransition>().ForEach(x => x.JumpUp());
+            CastInterfaces<ISimpleJumpTrigger>().ForEach(x => x.Jump());
         }
 
         public void TransitionDown(InputAction.CallbackContext context)

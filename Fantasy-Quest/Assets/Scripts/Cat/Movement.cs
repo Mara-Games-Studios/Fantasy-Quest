@@ -29,6 +29,7 @@ namespace Cat
         private Point point;
 
         private RailsImpl rails;
+        public RailsImpl Rails => rails;
         public bool IsOnLeftEdge => rails.CurrentPosition < 0.01;
         public bool IsOnRightEdge => rails.CurrentPosition > 0.99;
 
