@@ -29,6 +29,9 @@ namespace TestJump
         [SerializeField]
         private SkeletonAnimation catSkeleton;
 
+        [SerializeField]
+        private bool snapEndPointOfJumpPath;
+
         [Required]
         [SerializeField]
         private Movement catMovement;
@@ -72,11 +75,16 @@ namespace TestJump
             isJumping = true;
             (float time, RailsImpl rail) = FindEndRails();
 
-            //
-            // Vector3 point = rail.Path.GetPointAtTime(time);
-            // point = startPoint.Rails.transform.InverseTransformPoint(point);
-            // startPoint.Rails.BezierPath.SetPoint(startPoint.Rails.BezierPath.NumPoints - 1, point);
-            //
+            if (snapEndPointOfJumpPath)
+            {
+                Vector3 point = rail.Path.GetPointAtTime(time);
+                point = startPoint.Rails.transform.InverseTransformPoint(point);
+                startPoint.Rails.BezierPath.SetPoint(
+                    startPoint.Rails.BezierPath.NumPoints - 1,
+                    point
+                );
+                startPoint.Rails.PathCreator.TriggerPathUpdate();
+            }
 
             float previousTimeScale = catSkeleton.timeScale;
 
