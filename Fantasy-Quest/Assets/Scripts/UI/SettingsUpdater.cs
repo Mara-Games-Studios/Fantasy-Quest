@@ -11,7 +11,7 @@ namespace UI
 
         private void Start()
         {
-            ChangeLocale(PlayerPrefs.GetInt("LocaleKey", 2));
+            ChangeLocale(PlayerPrefs.GetInt("LocaleKey", 0));
         }
 
         public void ChangeLocale(int localeID)
