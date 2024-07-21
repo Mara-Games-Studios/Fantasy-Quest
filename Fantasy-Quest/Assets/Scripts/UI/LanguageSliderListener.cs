@@ -59,7 +59,7 @@ namespace UI
 
         private void Start()
         {
-            ChangeLocale(PlayerPrefs.GetInt("LocaleKey", 2));
+            ChangeLocale(PlayerPrefs.GetInt("LocaleKey", 0));
             int i = 0;
             while (GetCurrent() != horizontalSlider.Current)
             {
@@ -81,7 +81,7 @@ namespace UI
 
         public CanvasGroup GetCurrent()
         {
-            return FromIndex(PlayerPrefs.GetInt("LocaleKey", 2));
+            return FromIndex(PlayerPrefs.GetInt("LocaleKey", 0));
         }
 
         public int FromCanvasGroup(CanvasGroup canvasGroup)
