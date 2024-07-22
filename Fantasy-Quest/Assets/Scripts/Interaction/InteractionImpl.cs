@@ -9,6 +9,7 @@ using Spine.Unity;
 using TestJump;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UpDownJump;
 
 namespace Interaction
 {
@@ -132,11 +133,15 @@ namespace Interaction
             CastInterfaces<ISceneTransition>(true).ForEach(x => x.ToNewScene());
             CastInterfaces<IJumpTransition>().ForEach(x => x.JumpUp());
             CastInterfaces<ISimpleJumpTrigger>().ForEach(x => x.Jump());
+
+            CastInterfaces<IUpDownJump>().ForEach(x => x.JumpUp());
         }
 
         public void TransitionDown(InputAction.CallbackContext context)
         {
             CastInterfaces<IJumpTransition>().ForEach(x => x.JumpDown());
+
+            CastInterfaces<IUpDownJump>().ForEach(x => x.JumpDown());
         }
 
         private List<T> CastInterfaces<T>(bool ignore = false)
