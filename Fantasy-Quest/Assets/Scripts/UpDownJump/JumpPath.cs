@@ -49,9 +49,16 @@ namespace UpDownJump
         private BezierPath BezierPath => pathCreator.bezierPath;
 
         [SerializeField]
-        private Vector2 maxJumpPoint;
+        private RailsImpl rails;
+        public RailsImpl Rails => rails;
 
         [SerializeField]
+        private Point startPoint;
+        public Point StartPoint => startPoint;
+
+        [SerializeField]
+        private Vector2 maxJumpPoint;
+
         private List<RailsImpl> groundRails;
 
         [SerializeField]
@@ -75,40 +82,76 @@ namespace UpDownJump
         [SerializeField]
         private float thresholdDistance;
 
-        public void PreparePath(
+        [SerializeField]
+        private Vector3 stashPosition;
+
+        [Title("Debug")]
+        [SerializeField]
+        private bool showJumpFinding;
+
+        [SerializeField]
+        private Color color;
+
+        [SerializeField]
+        private Vector2 shiftGizmo;
+
+        private void Awake()
+        {
+            groundRails = FindObjectsByType<RailsImpl>(
+                    FindObjectsInactive.Exclude,
+                    FindObjectsSortMode.None
+                )
+                .Where(x => x.TryGetComponent<GroundMark>(out _))
+                .ToList();
+        }
+
+        public void StashPath()
+        {
+            transform.position = stashPosition;
+            // Set end point
+            BezierPath.MovePoint(0, Vector3.left);
+            BezierPath.MovePoint(3, Vector3.right);
+
+            // Set curve points
+            BezierPath.MovePoint(1, Vector3.one);
+            BezierPath.MovePoint(2, -Vector3.one);
+        }
+
+        public struct PrepareResult
+        {
+            public bool Found;
+            public RailsImpl DestinationRails;
+            public float DestinationRailsTime;
+        }
+
+        public PrepareResult PreparePath(
             JumpDirection jumpDirection,
             Vector2 catPosition,
             Cat.Vector moveVector
         )
         {
+            Vector2 orCatPos = catPosition;
             catPosition += catPositionShift;
 
-            // Detect rails
-            Quad quad = GetQuad(jumpDirection, moveVector);
-            List<RailsImpl> availableRails = FilterRails(quad, catPosition);
-            if (availableRails.Count == 0)
-            {
-                Debug.Log("No rails to jump in " + quad.ToString());
-                // Set end point
-                BezierPath.MovePoint(0, Vector3.zero);
-                BezierPath.MovePoint(3, Vector3.zero);
-
-                // Set curve points
-                BezierPath.MovePoint(1, Vector3.zero);
-                BezierPath.MovePoint(2, Vector3.zero);
-                return;
-            }
-
             // Perfect jump point
+            Quad quad = GetQuad(jumpDirection, moveVector);
             Vector2 maxPoint = catPosition + (maxJumpPoint * QuadToVector(quad));
             Vector2 downMaxPoint = new(maxPoint.x, catPosition.y);
-            RailsImpl targetRail = GetNearestToSegment(availableRails, maxPoint, downMaxPoint);
+            float heightDelta = maxPoint.y - catPosition.y;
+            if (jumpDirection == JumpDirection.Up)
+            {
+                downMaxPoint.y -= heightDelta;
+            }
+            RailsImpl targetRail = GetNearestToSegment(groundRails, maxPoint, downMaxPoint);
             Vector3 targetPoint = targetRail.Path.GetClosestPointOnPath(maxPoint);
+
+            if (jumpDirection == JumpDirection.Down && orCatPos.y <= targetPoint.y)
+            {
+                return new PrepareResult { Found = false };
+            }
 
             // Prepare path
             transform.position = catPosition;
-
-            float heightDelta = catPosition.y - maxPoint.y;
 
             // Set end point
             BezierPath.MovePoint(0, Vector3.zero);
@@ -129,6 +172,12 @@ namespace UpDownJump
 
             pathCreator.EditorData.PathTransformed();
             pathCreator.TriggerPathUpdate();
+            return new PrepareResult()
+            {
+                Found = true,
+                DestinationRails = targetRail,
+                DestinationRailsTime = targetRail.Path.GetClosestTimeOnPath(maxPoint)
+            };
         }
 
         private RailsImpl GetNearestToSegment(
@@ -137,6 +186,9 @@ namespace UpDownJump
             Vector2 end
         )
         {
+            startGizmo = start;
+            endGizmo = end;
+
             Vector2 step = (end - start) / calculationSteps;
             Vector2 point = start;
             RailsImpl result = null;
@@ -165,6 +217,24 @@ namespace UpDownJump
             }
 
             return result;
+        }
+
+        private Vector2 startGizmo;
+        private Vector2 endGizmo;
+
+        private void OnDrawGizmos()
+        {
+            if (showJumpFinding)
+            {
+                Gizmos.color = color;
+                Vector2 step = (endGizmo - startGizmo) / calculationSteps;
+                Vector2 point = startGizmo;
+                for (int i = 0; i < calculationSteps; i++)
+                {
+                    Gizmos.DrawSphere(point + shiftGizmo, thresholdDistance);
+                    point += step;
+                }
+            }
         }
 
         private Quad GetQuad(JumpDirection jumpDirection, Cat.Vector moveVector)
@@ -211,16 +281,6 @@ namespace UpDownJump
                 Quad.RightDown => Vector2.right + Vector2.down,
                 _ => throw new System.Exception()
             };
-        }
-
-        [Button]
-        private void FindAllRails()
-        {
-            groundRails = FindObjectsByType<RailsImpl>(
-                    FindObjectsInactive.Exclude,
-                    FindObjectsSortMode.None
-                )
-                .ToList();
         }
     }
 }

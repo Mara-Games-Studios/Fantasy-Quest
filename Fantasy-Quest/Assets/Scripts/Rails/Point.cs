@@ -65,8 +65,7 @@ namespace Rails
 
             Color tempColor = Handles.color;
             Handles.color = color;
-            transform.position = rails.Path.GetPointAtTime(value);
-            Vector3 center = transform.position;
+            Vector3 center = rails.Path.GetPointAtTime(value);
             Handles.DrawSolidDisc(center, Vector3.forward, radius);
             GUIStyle style = new() { fontSize = 12 };
             style.normal.textColor = Color.white;
