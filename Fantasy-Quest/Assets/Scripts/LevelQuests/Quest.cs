@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -16,22 +15,22 @@ namespace LevelQuests
         private GameObject cutsceneTriggerPoint;
 
         [SerializeField]
-        private List<GameObject> questInteractivePoints;
+        private List<GameObject> questInteractablePoints;
 
+        // Used on minigame objects as OnGameFinishedWin callback
         [Button]
         public void LockMinigame()
         {
             minigameEnterPoint.SetActive(false);
             SetActiveInteractivePoints(false);
         }
-
+        // Used in cutscenes which grant player a mission, as a signal callback
         [Button]
         public void UnlockMinigame()
         {
             minigameEnterPoint.SetActive(true);
             SetActiveInteractivePoints(true);
         }
-
         [Button]
         public void UnlockCutscene()
         {
@@ -44,17 +43,9 @@ namespace LevelQuests
             cutsceneTriggerPoint.SetActive(false);
         }
 
-        public void OnMinigameComplete()
-        {
-            LockMinigame();
-        }
-
         private void SetActiveInteractivePoints(bool state)
         {
-            if (questInteractivePoints.Any())
-            {
-                questInteractivePoints.ForEach(point => point.SetActive(state));
-            }
+            questInteractablePoints.ForEach(point => point.SetActive(state));
         }
     }
 }

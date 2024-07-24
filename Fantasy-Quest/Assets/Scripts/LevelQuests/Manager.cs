@@ -15,13 +15,19 @@ namespace LevelQuests
         [SerializeField]
         private List<Quest> secondaryQuests;
 
+        // Methods are used on scene, in object LevelQuestManager as a signal callback
+
         [Button]
         public void UnlockSecondaryQuests()
         {
             secondaryQuests.ForEach(quest => quest.UnlockCutscene());
         }
-
-        public void UnlockMainMinigamePreviev()
+        [Button]
+        public void LockSecondaryQuests()
+        {
+            secondaryQuests.ForEach(quest => quest.LockCutscene());
+        }
+        public void UnlockMainMinigame()
         {
             mainQuest.UnlockMinigame();
         }
