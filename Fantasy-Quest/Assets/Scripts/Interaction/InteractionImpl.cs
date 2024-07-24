@@ -121,6 +121,7 @@ namespace Interaction
         public void InteractCat(InputAction.CallbackContext context)
         {
             // E
+            CastInterfaces<ISceneTransition>(true).ForEach(x => x.ToNewScene());
             CastInterfaces<ICarryable>()
                 .ForEach(x => x.CarryByCat());
             CastInterfaces<IInteractable>().ForEach(x => x.InteractByCat());
@@ -128,7 +129,6 @@ namespace Interaction
 
         public void TransitionUp(InputAction.CallbackContext context)
         {
-            CastInterfaces<ISceneTransition>(true).ForEach(x => x.ToNewScene());
             CastInterfaces<IJumpTransition>().ForEach(x => x.JumpUp());
         }
 

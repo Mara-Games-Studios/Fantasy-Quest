@@ -8,11 +8,6 @@ namespace LevelQuests
     [AddComponentMenu("Scripts/LevelQuests/LevelQuests.Quest")]
     internal class Quest : MonoBehaviour
     {
-        [ReadOnly]
-        [SerializeField]
-        private bool isCompleted = false;
-        public bool IsCompleted => isCompleted;
-
         [Required]
         [SerializeField]
         private GameObject minigameEnterPoint;
@@ -52,8 +47,6 @@ namespace LevelQuests
         public void OnMinigameComplete()
         {
             LockMinigame();
-            isCompleted = true;
-            // ring complition to manager
         }
 
         private void SetActiveInteractivePoints(bool state)

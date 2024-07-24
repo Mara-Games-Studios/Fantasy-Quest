@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -25,16 +24,6 @@ namespace LevelQuests
         public void UnlockMainMinigamePreviev()
         {
             mainQuest.UnlockMinigame();
-            //after the first cutscene
         }
-        public void UnlockMainMinigamePlay()
-        {
-            //after all the secondary quests are done
-            if (!secondaryQuests.Any(quest => quest.IsCompleted == true))
-            {
-                Debug.Log("unlocked minigame");
-            }
-        }
-
     }
 }
