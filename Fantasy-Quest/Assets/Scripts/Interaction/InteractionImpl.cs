@@ -55,10 +55,11 @@ namespace Interaction
         private void OnEnable()
         {
             playerInput.Enable();
-            // 1
-            playerInput.Player.CallHumanInteraction.performed += InteractHuman;
             // E
             playerInput.Player.CatInteraction.performed += InteractCat;
+            // 1
+            playerInput.Player.CatInteraction.performed += InteractHuman;
+
             // W or ArrUP
             playerInput.Player.UpJump.performed += TransitionUp;
             // S or ArrDown
