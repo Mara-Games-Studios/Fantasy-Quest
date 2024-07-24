@@ -22,11 +22,13 @@ namespace LevelQuests
         {
             secondaryQuests.ForEach(quest => quest.UnlockCutscene());
         }
+
         [Button]
         public void LockSecondaryQuests()
         {
             secondaryQuests.ForEach(quest => quest.LockCutscene());
         }
+
         public void UnlockMainMinigame()
         {
             mainQuest.UnlockMinigame();

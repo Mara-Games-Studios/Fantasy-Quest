@@ -24,6 +24,7 @@ namespace LevelQuests
             minigameEnterPoint.SetActive(false);
             SetActiveInteractivePoints(false);
         }
+
         // Used in cutscenes which grant player a mission, as a signal callback
         [Button]
         public void UnlockMinigame()
@@ -31,6 +32,7 @@ namespace LevelQuests
             minigameEnterPoint.SetActive(true);
             SetActiveInteractivePoints(true);
         }
+
         [Button]
         public void UnlockCutscene()
         {

@@ -121,9 +121,9 @@ namespace Interaction
         public void InteractCat(InputAction.CallbackContext context)
         {
             // E
-            CastInterfaces<ISceneTransition>(true).ForEach(x => x.ToNewScene());
-            CastInterfaces<ICarryable>()
-                .ForEach(x => x.CarryByCat());
+            CastInterfaces<ISceneTransition>(true)
+                .ForEach(x => x.ToNewScene());
+            CastInterfaces<ICarryable>().ForEach(x => x.CarryByCat());
             CastInterfaces<IInteractable>().ForEach(x => x.InteractByCat());
         }
 
