@@ -783,7 +783,7 @@ GameObject:
   m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &55958846
 Transform:
   m_ObjectHideFlags: 0
@@ -1942,11 +1942,11 @@ Transform:
   - {fileID: 1781733685}
   - {fileID: 1756079854}
   - {fileID: 625399171}
-  - {fileID: 1602268232}
   - {fileID: 798239076}
   - {fileID: 1159698887}
   - {fileID: 1340446391}
   - {fileID: 116643855}
+  - {fileID: 1602268232}
   - {fileID: 373237454}
   - {fileID: 2144273740}
   - {fileID: 1530924078}
@@ -4949,6 +4949,8 @@ PlayableDirector:
     value: {fileID: 55992574}
   - key: {fileID: -8123984796563716756, guid: 9aa14d804f328a54ea1beaebd9ba5964, type: 2}
     value: {fileID: 1116631455}
+  - key: {fileID: -3571267790318889369, guid: 9aa14d804f328a54ea1beaebd9ba5964, type: 2}
+    value: {fileID: 4294706770205216675}
   m_ExposedReferences:
     m_References: []
 --- !u!1001 &274379170
@@ -8849,8 +8851,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -1.5554, y: 1.7578499, z: 0}
-    m_Extent: {x: 1.6876, y: 3.32075, z: 0}
+    m_Center: {x: -1.5563, y: 1.7497001, z: 0}
+    m_Extent: {x: 1.6909, y: 3.321, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0.38
@@ -10529,6 +10531,97 @@ MonoBehaviour:
   references:
     version: 2
     RefIds: []
+--- !u!1 &559948337
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 559948340}
+  - component: {fileID: 559948339}
+  - component: {fileID: 559948338}
+  m_Layer: 0
+  m_Name: LevelQuestManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &559948338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 559948337}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Events:
+    m_Signals:
+    - {fileID: 11400000, guid: 1e795aee8ab459a43800a9cefd9da585, type: 2}
+    m_Events:
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 559948339}
+          m_TargetAssemblyTypeName: LevelQuests.Manager, Assembly-CSharp
+          m_MethodName: UnlockSecondaryQuests
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 559948339}
+          m_TargetAssemblyTypeName: LevelQuests.Manager, Assembly-CSharp
+          m_MethodName: UnlockMainMinigamePreviev
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!114 &559948339
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 559948337}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 249acb433c6b06a44bb041aa5689e9be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainQuest: {fileID: 3224474072922614099}
+  secondaryQuests:
+  - {fileID: 4294706770205216674}
+  - {fileID: 6943755223806689843}
+--- !u!4 &559948340
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 559948337}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &561319468
 GameObject:
   m_ObjectHideFlags: 0
@@ -11025,8 +11118,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -1.2543501, y: -0.2134, z: 0}
-    m_Extent: {x: 2.2894502, y: 1.6727, z: 0}
+    m_Center: {x: -1.24385, y: -0.2241, z: 0}
+    m_Extent: {x: 2.28625, y: 1.6781, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0.38
@@ -11156,8 +11249,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -1.2493, y: -0.22154999, z: 0}
-    m_Extent: {x: 2.2952, y: 1.67405, z: 0}
+    m_Center: {x: -1.24755, y: -0.2144, z: 0}
+    m_Extent: {x: 2.29265, y: 1.6777, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0.38
@@ -12109,6 +12202,8 @@ PlayableDirector:
     value: {fileID: 574118310}
   - key: {fileID: -8193396185380052648, guid: 8d698b6d615fec649a380373e3afc087, type: 2}
     value: {fileID: 404905207}
+  - key: {fileID: -7049409668118739997, guid: 8d698b6d615fec649a380373e3afc087, type: 2}
+    value: {fileID: 559948338}
   m_ExposedReferences:
     m_References:
     - 2a22d10ab3df2d948a7e25573797c28b: {fileID: 1779070972}
@@ -14631,8 +14726,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 5.72715, y: 9.4176, z: 0}
-    m_Extent: {x: 3.4753501, y: 5.7369, z: 0}
+    m_Center: {x: 5.7311997, y: 9.42465, z: 0}
+    m_Extent: {x: 3.4671998, y: 5.74405, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -14717,6 +14812,8 @@ PlayableDirector:
     value: {fileID: 4014933508526661024}
   - key: {fileID: 1156130448991711531, guid: 7d0db450f4369a541b6491f45bd8e6e9, type: 2}
     value: {fileID: 1418968077}
+  - key: {fileID: 1607153689902139563, guid: 7d0db450f4369a541b6491f45bd8e6e9, type: 2}
+    value: {fileID: 6943755223806689845}
   m_ExposedReferences:
     m_References:
     - 94462f5b85ebee642b45b5aa8677783c: {fileID: 588637221}
@@ -16388,7 +16485,7 @@ GameObject:
   m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &902063094
 Transform:
   m_ObjectHideFlags: 0
@@ -20042,7 +20139,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1277694714172413174, guid: 4d35d9617128ddf4fa737bb2fe37cb3e, type: 3}
   m_PrefabInstance: {fileID: 3224474072922614093}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1850950991}
   m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 32a5821908367704caf7675a67e0aad8, type: 3}
@@ -20909,6 +21006,8 @@ PlayableDirector:
     value: {fileID: 4014933508526661024}
   - key: {fileID: -3247142784928734636, guid: a4c3b49a0007b0047b257242b5fdbb12, type: 2}
     value: {fileID: 1418968077}
+  - key: {fileID: -374190744301495412, guid: a4c3b49a0007b0047b257242b5fdbb12, type: 2}
+    value: {fileID: 6943755223806689845}
   m_ExposedReferences:
     m_References:
     - 41c64d3aca501a3449e9ae20367d79fe: {fileID: 810026366}
@@ -22130,8 +22229,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.3511002, y: 5.4513, z: 0}
-    m_Extent: {x: 5.8794003, y: 6.2209, z: 0}
+    m_Center: {x: -0.35800004, y: 5.4486, z: 0}
+    m_Extent: {x: 5.8767996, y: 6.2179003, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -22690,8 +22789,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 5.91905, y: 9.6814, z: 0}
-    m_Extent: {x: 4.62885, y: 7.2356, z: 0}
+    m_Center: {x: 5.92045, y: 9.68725, z: 0}
+    m_Extent: {x: 4.6244497, y: 7.23155, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -24142,8 +24241,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 6.1961, y: 10.1974, z: 0}
-    m_Extent: {x: 4.4507, y: 6.3902006, z: 0}
+    m_Center: {x: 6.18405, y: 10.1936, z: 0}
+    m_Extent: {x: 4.45575, y: 6.3866997, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -24224,8 +24323,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 5.2148, y: 7.4182997, z: 0}
-    m_Extent: {x: 3.4782, y: 4.8232, z: 0}
+    m_Center: {x: 5.2118, y: 7.4104004, z: 0}
+    m_Extent: {x: 3.4774003, y: 4.8131, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -24777,6 +24876,8 @@ PlayableDirector:
     value: {fileID: 4014933508526661024}
   - key: {fileID: 2699881866101513827, guid: 01bb07274b5648948b5ea3a1b17d7f4c, type: 2}
     value: {fileID: 1418968077}
+  - key: {fileID: 3472767291430819921, guid: 01bb07274b5648948b5ea3a1b17d7f4c, type: 2}
+    value: {fileID: 6943755223806689845}
   m_ExposedReferences:
     m_References:
     - 25e5eb439e67a7b498608108f5cc1686: {fileID: 810026366}
@@ -28075,6 +28176,8 @@ PlayableDirector:
     value: {fileID: 1640107176}
   - key: {fileID: -6147755456464281693, guid: 1a1694f7e0d3ac9428750672d35c722c, type: 2}
     value: {fileID: 213243981}
+  - key: {fileID: -1537618648294075733, guid: 1a1694f7e0d3ac9428750672d35c722c, type: 2}
+    value: {fileID: 4294706770205216675}
   m_ExposedReferences:
     m_References:
     - 59f4a8b483a9d234f88be156d2f4b3ea: {fileID: 810026366}
@@ -29593,6 +29696,8 @@ PlayableDirector:
     value: {fileID: 84311747}
   - key: {fileID: 5636233692754327747, guid: 2688e46f535f06c4fa7330aa60f51565, type: 2}
     value: {fileID: 404905207}
+  - key: {fileID: -7152927625295147659, guid: 2688e46f535f06c4fa7330aa60f51565, type: 2}
+    value: {fileID: 1770866686}
   m_ExposedReferences:
     m_References:
     - 30b78d685abe1484880e2c411bb59bcb: {fileID: 810026366}
@@ -30477,8 +30582,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 11.8845005, y: 15.872951, z: 0}
-    m_Extent: {x: 2.5518003, y: 5.23005, z: 0}
+    m_Center: {x: 11.89295, y: 15.8707, z: 0}
+    m_Extent: {x: 2.55435, y: 5.2221994, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -30745,8 +30850,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 6.38145, y: 9.5623, z: 0}
-    m_Extent: {x: 3.4875503, y: 5.0107, z: 0}
+    m_Center: {x: 6.37465, y: 9.56295, z: 0}
+    m_Extent: {x: 3.4901502, y: 5.0070496, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -34325,7 +34430,7 @@ GameObject:
   m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1820413189
 Transform:
   m_ObjectHideFlags: 0
@@ -35030,8 +35135,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -1.81305, y: 0.2757001, z: 0}
-    m_Extent: {x: 2.36605, y: 2.8413, z: 0}
+    m_Center: {x: -1.8073499, y: 0.28034997, z: 0}
+    m_Extent: {x: 2.36005, y: 2.84445, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0.38
@@ -35062,7 +35167,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1839620511
 Transform:
   m_ObjectHideFlags: 0
@@ -35479,6 +35584,11 @@ MonoBehaviour:
   railsPoint: {fileID: 1017733927}
   railsImpl: {fileID: 0}
   point: 0
+--- !u!1 &1850950991 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4912804306984447520, guid: 4d35d9617128ddf4fa737bb2fe37cb3e, type: 3}
+  m_PrefabInstance: {fileID: 3224474072922614093}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1855547182
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -39976,8 +40086,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -1.34885, y: -0.54025, z: 0}
-    m_Extent: {x: 2.17815, y: 1.6089499, z: 0}
+    m_Center: {x: -1.34665, y: -0.53620005, z: 0}
+    m_Extent: {x: 2.17535, y: 1.6103001, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0.38
@@ -40722,11 +40832,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1947430392642056277, guid: 28d9e3495a29edc46b1365288dc22921, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -14.263253
+      value: -14.264026
       objectReference: {fileID: 0}
     - target: {fileID: 1947430392642056277, guid: 28d9e3495a29edc46b1365288dc22921, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.7791896
+      value: 3.7791996
       objectReference: {fileID: 0}
     - target: {fileID: 1947430392642056277, guid: 28d9e3495a29edc46b1365288dc22921, type: 3}
       propertyPath: m_LocalPosition.z
@@ -41147,6 +41257,34 @@ PrefabInstance:
       propertyPath: PassedFirstTimeAfter.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1707935522}
+    - target: {fileID: 6396290319722952414, guid: 4d35d9617128ddf4fa737bb2fe37cb3e, type: 3}
+      propertyPath: OnGameFinishedWin.m_PersistentCalls.m_Calls.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6396290319722952414, guid: 4d35d9617128ddf4fa737bb2fe37cb3e, type: 3}
+      propertyPath: OnGameFinishedWin.m_PersistentCalls.m_Calls.Array.data[3].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6396290319722952414, guid: 4d35d9617128ddf4fa737bb2fe37cb3e, type: 3}
+      propertyPath: OnGameFinishedWin.m_PersistentCalls.m_Calls.Array.data[3].m_Target
+      value: 
+      objectReference: {fileID: 3224474072922614099}
+    - target: {fileID: 6396290319722952414, guid: 4d35d9617128ddf4fa737bb2fe37cb3e, type: 3}
+      propertyPath: OnGameFinishedWin.m_PersistentCalls.m_Calls.Array.data[3].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6396290319722952414, guid: 4d35d9617128ddf4fa737bb2fe37cb3e, type: 3}
+      propertyPath: OnGameFinishedWin.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
+      value: LockMinigame
+      objectReference: {fileID: 0}
+    - target: {fileID: 6396290319722952414, guid: 4d35d9617128ddf4fa737bb2fe37cb3e, type: 3}
+      propertyPath: OnGameFinishedWin.m_PersistentCalls.m_Calls.Array.data[3].m_TargetAssemblyTypeName
+      value: LevelQuests.Quest, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6396290319722952414, guid: 4d35d9617128ddf4fa737bb2fe37cb3e, type: 3}
+      propertyPath: OnGameFinishedWin.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -41154,6 +41292,9 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1085280988}
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4912804306984447520, guid: 4d35d9617128ddf4fa737bb2fe37cb3e, type: 3}
+      insertIndex: 4
+      addedObject: {fileID: 3224474072922614099}
     - targetCorrespondingSourceObject: {fileID: 6262870835889177130, guid: 4d35d9617128ddf4fa737bb2fe37cb3e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 0}
@@ -41178,7 +41319,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6396290319722952414, guid: 4d35d9617128ddf4fa737bb2fe37cb3e, type: 3}
   m_PrefabInstance: {fileID: 3224474072922614093}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1850950991}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e8cae761abc4837418a1bf7edabd1103, type: 3}
@@ -41228,6 +41369,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb6b12e19eda42447ba9e77b65b0c102, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3224474072922614099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1850950991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0552010f7ab287e4bb7a5672546eabf1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isCompleted: 0
+  minigameEnterPoint: {fileID: 1770866686}
+  cutsceneTriggerPoint: {fileID: 0}
+  questInteractivePoints: []
 --- !u!1001 &3288817515451690106
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -42128,6 +42285,14 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 3314e98e70e515b4ab92d06290cbd901, type: 2}
+    - target: {fileID: 8981457166510196029, guid: 78951c99008d395408102ffd3bb94551, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.29
+      objectReference: {fileID: 0}
+    - target: {fileID: 8981457166510196029, guid: 78951c99008d395408102ffd3bb94551, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.1
+      objectReference: {fileID: 0}
     - target: {fileID: 9127601337889070464, guid: 78951c99008d395408102ffd3bb94551, type: 3}
       propertyPath: m_LocalPosition.y
       value: -3.27
@@ -43683,7 +43848,13 @@ PrefabInstance:
       addedObject: {fileID: 4294706770205216671}
     - targetCorrespondingSourceObject: {fileID: 5961267224838741698, guid: b5c81db2869cb3e41b4d7e6fc2a5ac7e, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 4294706770205216674}
+    - targetCorrespondingSourceObject: {fileID: 5961267224838741698, guid: b5c81db2869cb3e41b4d7e6fc2a5ac7e, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 4294706770205216673}
+    - targetCorrespondingSourceObject: {fileID: 5961267224838741698, guid: b5c81db2869cb3e41b4d7e6fc2a5ac7e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4294706770205216675}
     - targetCorrespondingSourceObject: {fileID: 8824985315440866850, guid: b5c81db2869cb3e41b4d7e6fc2a5ac7e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 0}
@@ -43946,6 +44117,68 @@ MonoBehaviour:
   canStart: 0
   fallDownCutscene: {fileID: 1060917586}
   offsetDuration: 1.1
+--- !u!114 &4294706770205216674
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4294706770205216669}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0552010f7ab287e4bb7a5672546eabf1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isCompleted: 0
+  minigameEnterPoint: {fileID: 1820413188}
+  cutsceneTriggerPoint: {fileID: 55958845}
+  questInteractivePoints:
+  - {fileID: 1839620510}
+--- !u!114 &4294706770205216675
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4294706770205216669}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Events:
+    m_Signals:
+    - {fileID: 11400000, guid: eab4da6342a587f44bb7889eaee618dc, type: 2}
+    - {fileID: 11400000, guid: 6d32c8accdee46340a1f172e275cd621, type: 2}
+    m_Events:
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 4294706770205216674}
+          m_TargetAssemblyTypeName: LevelQuests.Quest, Assembly-CSharp
+          m_MethodName: UnlockMinigame
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 4294706770205216674}
+          m_TargetAssemblyTypeName: LevelQuests.Quest, Assembly-CSharp
+          m_MethodName: OnMinigameComplete
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1001 &5614611267327681458
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -44624,6 +44857,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5926202610852498109, guid: a60823007fa896643929acf6391f0fb8, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6943755223806689841}
+    - targetCorrespondingSourceObject: {fileID: 5926202610852498109, guid: a60823007fa896643929acf6391f0fb8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6943755223806689843}
+    - targetCorrespondingSourceObject: {fileID: 5926202610852498109, guid: a60823007fa896643929acf6391f0fb8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6943755223806689845}
     - targetCorrespondingSourceObject: {fileID: 5978455620019626, guid: a60823007fa896643929acf6391f0fb8, type: 3}
       insertIndex: -1
       addedObject: {fileID: 0}
@@ -44794,6 +45033,67 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a29956defe3a19345a539292a7a9cbbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6943755223806689843
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6943755223806689840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0552010f7ab287e4bb7a5672546eabf1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isCompleted: 0
+  minigameEnterPoint: {fileID: 902063093}
+  cutsceneTriggerPoint: {fileID: 1262291775}
+  questInteractivePoints: []
+--- !u!114 &6943755223806689845
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6943755223806689840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Events:
+    m_Signals:
+    - {fileID: 11400000, guid: eab4da6342a587f44bb7889eaee618dc, type: 2}
+    - {fileID: 11400000, guid: 6d32c8accdee46340a1f172e275cd621, type: 2}
+    m_Events:
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 6943755223806689843}
+          m_TargetAssemblyTypeName: LevelQuests.Quest, Assembly-CSharp
+          m_MethodName: UnlockMinigame
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 6943755223806689843}
+          m_TargetAssemblyTypeName: LevelQuests.Quest, Assembly-CSharp
+          m_MethodName: OnMinigameComplete
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!114 &7491033804132257539 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 57036290704809003, guid: 736bb9414ac04b4469810e7cde77a8dd, type: 3}
@@ -45533,6 +45833,7 @@ SceneRoots:
   - {fileID: 4014933508526661021}
   - {fileID: 1963166955}
   - {fileID: 274379170}
+  - {fileID: 559948340}
   - {fileID: 922888245}
   - {fileID: 1826997857}
   - {fileID: 1470115252}
