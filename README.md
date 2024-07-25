@@ -1,8 +1,58 @@
 # Paparaz Quetka
+Simple single-player fantasy adventure 2D game based on Belarusian folklore. Made with Unity by [Mara Games](https://github.com/Mara-Games-Studios)!
 
-A game in quest game genre with fantasy theme.
+Genre: *Adventure, Quest*
 
-# Code convensions
+Tags: *2D, Indie, Storytelling, Single-player, Fairytale, Folklore.*
+
+# Table of Contents
+- [Overview](##Overview)
+  - [Play](##Play)
+  - [Credits](##Credits)
+    
+- [Screenshots](#Screenshots)
+- [Project Installation](#Project-Installation)
+- [Code Conventions](#Code-Convensions)
+   - [Formatting](##Formatting)
+   - [Code Style Rules](##Code-Style-Rules)
+   - [Continious Intergation](##Continious-integration)
+     
+# Overview
+Paparats Kvetka is a quest game about a boy Simon. His gole is to save his little sister from horrible disease. In order to find the cure he goes on an adventure on Kupala night, when there is a chance to find magic flower. 
+
+The game is a classic point and click quest with elements of dynamic mini games and arcade style. 
+
+The player will take on the role of a cat who helps Simon in achieving his goals in a colorful Belarusian mythical world. Player's goal is to protect the boy from dangers and help him in solving puzzles and communicating with various fairy tale creatures.
+
+## Play
+
+Still in development ! Stay tuned !
+
+## Credits
+
+We are Mara Games!
+
+Game design: Voronovich Roman, Novikov Andrey;
+
+Art: Baranchik-Krasovskaya Marina, Zinovenko Diana, Nadeeva Anna, Pasyutina Kseniya;
+
+Programming: Grincevich Kseniya, Krivecki Igor', Papeta Maksim, Khimich Nikolay.
+
+# Screenshots
+
+<p align="center">
+</p>
+
+# Project Installation
+To Install and Run
+
+Clone repository
+```
+git clone https://github.com/Mara-Games-Studios/Fantasy-Quest
+```
+And open project with `Unity 2022.3.12f1`
+
+# Code Convensions
 
 ## Formatting
 
