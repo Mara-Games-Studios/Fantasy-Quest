@@ -55,10 +55,11 @@ namespace Interaction
         private void OnEnable()
         {
             playerInput.Enable();
-            // 1
-            playerInput.Player.CallHumanInteraction.performed += InteractHuman;
             // E
             playerInput.Player.CatInteraction.performed += InteractCat;
+            // 1
+            playerInput.Player.CatInteraction.performed += InteractHuman;
+
             // W or ArrUP
             playerInput.Player.UpJump.performed += TransitionUp;
             // S or ArrDown
@@ -121,14 +122,14 @@ namespace Interaction
         public void InteractCat(InputAction.CallbackContext context)
         {
             // E
-            CastInterfaces<ICarryable>()
-                .ForEach(x => x.CarryByCat());
+            CastInterfaces<ISceneTransition>(true)
+                .ForEach(x => x.ToNewScene());
+            CastInterfaces<ICarryable>().ForEach(x => x.CarryByCat());
             CastInterfaces<IInteractable>().ForEach(x => x.InteractByCat());
         }
 
         public void TransitionUp(InputAction.CallbackContext context)
         {
-            CastInterfaces<ISceneTransition>(true).ForEach(x => x.ToNewScene());
             CastInterfaces<IJumpTransition>().ForEach(x => x.JumpUp());
         }
 
