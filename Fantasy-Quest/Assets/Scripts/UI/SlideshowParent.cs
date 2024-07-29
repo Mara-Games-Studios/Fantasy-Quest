@@ -6,6 +6,7 @@ using DG.Tweening;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 namespace UI
@@ -47,8 +48,21 @@ namespace UI
         private Image image;
         private Tween fadeTween;
 
+        private GameplayInput playerInput;
+
         private string Info =>
             $"Total time on playlist +-{slides.Sum(x => x.WaitBefore + x.HoldTime)} sec";
+
+        private void Awake()
+        {
+            playerInput = new GameplayInput();
+        }
+
+        private void OnEnable()
+        {
+            playerInput.Enable();
+            playerInput.Player.Skip.performed += SkipCutscene;
+        }
 
         private void Start()
         {
@@ -56,6 +70,14 @@ namespace UI
             {
                 StartSlideshow();
             }
+        }
+
+        public void SkipCutscene(InputAction.CallbackContext context)
+        {
+            SlideshowEnded?.Invoke();
+            slides.ForEach(slide => slide.FadeOut());
+            _ = StartCoroutine(ShowSlide(slides.Last()));
+            slides.Clear();
         }
 
         private IEnumerator ShowSlides()

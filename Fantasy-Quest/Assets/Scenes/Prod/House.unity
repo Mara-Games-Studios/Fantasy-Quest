@@ -943,11 +943,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 832558757449281322, guid: 5d3b0168371d4d74bb8508d8b8cf29aa, type: 3}
       propertyPath: m_Size.x
-      value: 0.3
+      value: 0.29999995
       objectReference: {fileID: 0}
     - target: {fileID: 832558757449281322, guid: 5d3b0168371d4d74bb8508d8b8cf29aa, type: 3}
       propertyPath: m_Size.y
-      value: 1.21
+      value: 1.4664321
       objectReference: {fileID: 0}
     - target: {fileID: 832558757449281322, guid: 5d3b0168371d4d74bb8508d8b8cf29aa, type: 3}
       propertyPath: m_Offset.x
@@ -955,7 +955,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 832558757449281322, guid: 5d3b0168371d4d74bb8508d8b8cf29aa, type: 3}
       propertyPath: m_Offset.y
-      value: 1.43
+      value: 1.6116395
       objectReference: {fileID: 0}
     - target: {fileID: 1554257883113445004, guid: 5d3b0168371d4d74bb8508d8b8cf29aa, type: 3}
       propertyPath: m_LocalPosition.y
@@ -3216,8 +3216,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 1
   m_ShadowVolumeIntensity: 0.869
   m_LocalBounds:
-    m_Center: {x: -1.6414499, y: -5.62475, z: 0}
-    m_Extent: {x: 2.10515, y: 1.8276501, z: 0}
+    m_Center: {x: -1.6416, y: -5.61125, z: 0}
+    m_Extent: {x: 2.1032, y: 1.8304499, z: 0}
   m_PointLightInnerAngle: 359.6
   m_PointLightOuterAngle: 359.6
   m_PointLightInnerRadius: 2
@@ -3928,7 +3928,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.09, y: 0.61}
+  m_Size: {x: 1.09, y: 1.4496051}
   m_EdgeRadius: 0
 --- !u!114 &350709318
 MonoBehaviour:
@@ -4065,11 +4065,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 832558757449281322, guid: 5d3b0168371d4d74bb8508d8b8cf29aa, type: 3}
       propertyPath: m_Size.x
-      value: 0.3
+      value: 0.29999995
       objectReference: {fileID: 0}
     - target: {fileID: 832558757449281322, guid: 5d3b0168371d4d74bb8508d8b8cf29aa, type: 3}
       propertyPath: m_Size.y
-      value: 1.21
+      value: 1.4664325
       objectReference: {fileID: 0}
     - target: {fileID: 832558757449281322, guid: 5d3b0168371d4d74bb8508d8b8cf29aa, type: 3}
       propertyPath: m_Offset.x
@@ -4077,7 +4077,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 832558757449281322, guid: 5d3b0168371d4d74bb8508d8b8cf29aa, type: 3}
       propertyPath: m_Offset.y
-      value: 1.43
+      value: 1.6116393
       objectReference: {fileID: 0}
     - target: {fileID: 1554257883113445004, guid: 5d3b0168371d4d74bb8508d8b8cf29aa, type: 3}
       propertyPath: m_LocalPosition.y
@@ -4407,8 +4407,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 1
   m_ShadowVolumeIntensity: 0.869
   m_LocalBounds:
-    m_Center: {x: -1.3433, y: -5.575, z: 0}
-    m_Extent: {x: 1.7591001, y: 1.9244001, z: 0}
+    m_Center: {x: -1.3392999, y: -5.57025, z: 0}
+    m_Extent: {x: 1.7614, y: 1.92455, z: 0}
   m_PointLightInnerAngle: 359.6
   m_PointLightOuterAngle: 359.6
   m_PointLightInnerRadius: 2
@@ -7648,6 +7648,8 @@ PlayableDirector:
     value: {fileID: 1526135175}
   - key: {fileID: -8488854718677436109, guid: bc02affea331f0c4a8ece55d2e0b0df3, type: 2}
     value: {fileID: 591391207}
+  - key: {fileID: 4299368983951862448, guid: bc02affea331f0c4a8ece55d2e0b0df3, type: 2}
+    value: {fileID: 1054450560}
   m_ExposedReferences:
     m_References:
     - def7d135f55a3bf47a8ca214b5f53c09: {fileID: 1054450547}
@@ -7699,6 +7701,7 @@ GameObject:
   - component: {fileID: 665762109}
   - component: {fileID: 665762110}
   - component: {fileID: 665762111}
+  - component: {fileID: 665762112}
   m_Layer: 5
   m_Name: SlideShowParent
   m_TagString: Untagged
@@ -7802,7 +7805,31 @@ MonoBehaviour:
         m_CallState: 2
   SlideshowEnded:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 665762110}
+        m_TargetAssemblyTypeName: UnityEngine.MonoBehaviour, UnityEngine
+        m_MethodName: StopAllCoroutines
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 665762109}
+        m_TargetAssemblyTypeName: UnityEngine.MonoBehaviour, UnityEngine
+        m_MethodName: StopAllCoroutines
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &665762110
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7835,6 +7862,24 @@ PlayableDirector:
   m_SceneBindings: []
   m_ExposedReferences:
     m_References: []
+--- !u!114 &665762112
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 665762107}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 834f3e6bc0a1913458d7c81c799cf264, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueManager: {fileID: 7491033804132257539}
+  chainSpeakerList: []
+  soundPlayerList: []
+  playableDirector: {fileID: 513049886}
+  endFrame: 2914.727
+  blackScreenCreator: {fileID: 93917074}
 --- !u!1 &681937884
 GameObject:
   m_ObjectHideFlags: 0
@@ -9939,8 +9984,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 1
   m_ShadowVolumeIntensity: 0.869
   m_LocalBounds:
-    m_Center: {x: 0.46984997, y: -5.5861, z: 0}
-    m_Extent: {x: 1.46315, y: 1.9627, z: 0}
+    m_Center: {x: 0.46934998, y: -5.5915, z: 0}
+    m_Extent: {x: 1.46015, y: 1.9639, z: 0}
   m_PointLightInnerAngle: 359.6
   m_PointLightOuterAngle: 359.6
   m_PointLightInnerRadius: 2
@@ -13906,19 +13951,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 832558757449281322, guid: 5d3b0168371d4d74bb8508d8b8cf29aa, type: 3}
       propertyPath: m_Size.x
-      value: 1.72
+      value: 2.8731697
       objectReference: {fileID: 0}
     - target: {fileID: 832558757449281322, guid: 5d3b0168371d4d74bb8508d8b8cf29aa, type: 3}
       propertyPath: m_Size.y
-      value: 1.64
+      value: 3.4252977
       objectReference: {fileID: 0}
     - target: {fileID: 832558757449281322, guid: 5d3b0168371d4d74bb8508d8b8cf29aa, type: 3}
       propertyPath: m_Offset.x
-      value: 2.18
+      value: -0.084735036
       objectReference: {fileID: 0}
     - target: {fileID: 832558757449281322, guid: 5d3b0168371d4d74bb8508d8b8cf29aa, type: 3}
       propertyPath: m_Offset.y
-      value: 0.91
+      value: 0.10002875
       objectReference: {fileID: 0}
     - target: {fileID: 832558757449281322, guid: 5d3b0168371d4d74bb8508d8b8cf29aa, type: 3}
       propertyPath: m_SpriteTilingProperty.pivot.x
@@ -14119,7 +14164,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 2.18, y: 0.91}
+  m_Offset: {x: -0.078791976, y: 0.10248268}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -14130,7 +14175,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.72, y: 1.64}
+  m_Size: {x: 2.8612835, y: 3.4370143}
   m_EdgeRadius: 0
 --- !u!114 &1474902141
 MonoBehaviour:
@@ -17658,8 +17703,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 1
   m_ShadowVolumeIntensity: 0.869
   m_LocalBounds:
-    m_Center: {x: -2.8876, y: -7.5287, z: 0}
-    m_Extent: {x: 1.9784999, y: 1.2694998, z: 0}
+    m_Center: {x: -2.89785, y: -7.52415, z: 0}
+    m_Extent: {x: 1.9834499, y: 1.2751501, z: 0}
   m_PointLightInnerAngle: 359.6
   m_PointLightOuterAngle: 359.6
   m_PointLightInnerRadius: 2
@@ -19109,8 +19154,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 1
   m_ShadowVolumeIntensity: 0.869
   m_LocalBounds:
-    m_Center: {x: -0.66380006, y: -7.4296503, z: 0}
-    m_Extent: {x: 2.6005, y: 1.3252499, z: 0}
+    m_Center: {x: -0.6592, y: -7.43505, z: 0}
+    m_Extent: {x: 2.6003, y: 1.3314502, z: 0}
   m_PointLightInnerAngle: 359.6
   m_PointLightOuterAngle: 359.6
   m_PointLightInnerRadius: 2
@@ -19513,7 +19558,7 @@ Transform:
   m_GameObject: {fileID: 620786615719417258}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.564, y: 1.1000001, z: 0}
+  m_LocalPosition: {x: 0.291, y: 0.67, z: 0}
   m_LocalScale: {x: 0.77831995, y: 0.77831995, z: 0.77831995}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -20181,7 +20226,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 832558757449281322, guid: 5d3b0168371d4d74bb8508d8b8cf29aa, type: 3}
       propertyPath: m_Size.y
-      value: 0.44167423
+      value: 1.8871245
       objectReference: {fileID: 0}
     - target: {fileID: 832558757449281322, guid: 5d3b0168371d4d74bb8508d8b8cf29aa, type: 3}
       propertyPath: m_Offset.x
@@ -20189,7 +20234,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 832558757449281322, guid: 5d3b0168371d4d74bb8508d8b8cf29aa, type: 3}
       propertyPath: m_Offset.y
-      value: 0
+      value: 0.6681316
       objectReference: {fileID: 0}
     - target: {fileID: 3008105305202731995, guid: 5d3b0168371d4d74bb8508d8b8cf29aa, type: 3}
       propertyPath: m_LocalPosition.x
@@ -20291,7 +20336,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.0000009536743, y: 0.6569543}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -20302,7 +20347,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 0.5}
+  m_Size: {x: 0.9131298, y: 1.8790607}
   m_EdgeRadius: 0
 --- !u!114 &6231374749477164902
 MonoBehaviour:
@@ -21130,7 +21175,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.2500372, y: 0}
+  m_Offset: {x: 0.2500372, y: 0.5706794}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -21141,7 +21186,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.08, y: 0.44167423}
+  m_Size: {x: 1.08, y: 1.917089}
   m_EdgeRadius: 0
 --- !u!1 &7996022806941676508
 GameObject:
