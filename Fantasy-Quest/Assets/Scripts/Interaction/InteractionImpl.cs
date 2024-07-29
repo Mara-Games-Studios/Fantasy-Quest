@@ -57,6 +57,7 @@ namespace Interaction
             playerInput.Enable();
             // E
             playerInput.Player.CatInteraction.performed += InteractCat;
+            // E
             playerInput.Player.CatInteraction.performed += InteractHuman;
             // M
             playerInput.Player.CatMeow.performed += JustMeow;
@@ -79,11 +80,12 @@ namespace Interaction
         public void InteractHuman(InputAction.CallbackContext context)
         {
             // E
-            InteractHumanRoutine();
+            _ = StartCoroutine(InteractHumanRoutine());
         }
 
-        private void InteractHumanRoutine()
+        private IEnumerator InteractHumanRoutine()
         {
+            // 1
             List<ISpeakable> speakers = CastInterfaces<ISpeakable>();
             List<ICarryable> carriers = CastInterfaces<ICarryable>();
             List<IInteractable> interactors = CastInterfaces<IInteractable>();
@@ -93,11 +95,25 @@ namespace Interaction
                     (speakers.Count > 0 || carriers.Count > 0 || interactors.Count > 0) && canDoSmth
                 ) // Can Do something
                 {
-                    _ = StartCoroutine(CatMeowingCoroutine());
+                    canDoSmth = false;
+                    LockerSettings.Instance.LockAllExceptBubble();
+                    _ = catSkeleton.AnimationState.SetAnimation(0, canDoAnim, false);
+                    canDoSound.PlayClip();
+                    yield return new WaitForSeconds(canDoAnim.Animation.Duration);
+                    _ = catSkeleton.AnimationState.SetAnimation(0, idleAnim, false);
+                    canDoSmth = true;
+                    LockerSettings.Instance.UnlockAll();
                 }
                 else if (canDoSmth) //Can't Do Anything
                 {
-                    _ = StartCoroutine(CatHissingCoroutine());
+                    canDoSmth = false;
+                    LockerSettings.Instance.LockAllExceptBubble();
+                    _ = catSkeleton.AnimationState.SetAnimation(0, cantDoAnim, false);
+                    cantDoSound.PlayClip();
+                    yield return new WaitForSeconds(cantDoAnim.Animation.Duration);
+                    _ = catSkeleton.AnimationState.SetAnimation(0, idleAnim, false);
+                    canDoSmth = true;
+                    LockerSettings.Instance.UnlockAll();
                 }
             }
 
@@ -106,7 +122,13 @@ namespace Interaction
             interactors.ForEach(x => x.InteractByHuman());
         }
 
-        private IEnumerator CatMeowingCoroutine()
+        public void JustMeow(InputAction.CallbackContext context)
+        {
+            // M
+            _ = StartCoroutine(JustMeowCoroutine());
+        }
+
+        private IEnumerator JustMeowCoroutine()
         {
             if (!LockerSettings.Instance.IsCatInteractionLocked)
             {
@@ -114,30 +136,11 @@ namespace Interaction
                 LockerSettings.Instance.LockAllExceptBubble();
                 _ = catSkeleton.AnimationState.SetAnimation(0, canDoAnim, false);
                 canDoSound.PlayClip();
-                yield return new WaitForSeconds(canDoAnim.Animation.Duration);
-                _ = catSkeleton.AnimationState.SetAnimation(0, idleAnim, false);
+                yield return new WaitForSeconds(canDoAnim.Animation.Duration / 2);
                 canDoSmth = true;
                 LockerSettings.Instance.UnlockAll();
+                CastInterfaces<ISpeakable>().ForEach(x => x.Speak());
             }
-        }
-
-        private IEnumerator CatHissingCoroutine()
-        {
-            canDoSmth = false;
-            LockerSettings.Instance.LockAllExceptBubble();
-            _ = catSkeleton.AnimationState.SetAnimation(0, cantDoAnim, false);
-            cantDoSound.PlayClip();
-            yield return new WaitForSeconds(cantDoAnim.Animation.Duration);
-            _ = catSkeleton.AnimationState.SetAnimation(0, idleAnim, false);
-            canDoSmth = true;
-            LockerSettings.Instance.UnlockAll();
-        }
-
-        public void JustMeow(InputAction.CallbackContext context)
-        {
-            // M
-            _ = StartCoroutine(CatMeowingCoroutine());
-            CastInterfaces<ISpeakable>().ForEach(x => x.Speak());
         }
 
         public void InteractCat(InputAction.CallbackContext context)

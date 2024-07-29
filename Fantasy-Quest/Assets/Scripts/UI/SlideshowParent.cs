@@ -60,7 +60,7 @@ namespace UI
 
         private void OnEnable()
         {
-            playerInput.Enable();
+            playerInput.Player.Skip.performed += SkipCutscene;
         }
 
         private void Start()
@@ -137,8 +137,8 @@ namespace UI
         [Button]
         public void StartSlideshow()
         {
-            playerInput.Player.Skip.performed += SkipCutscene;
             SlideshowStarted?.Invoke();
+            playerInput.Enable();
             _ = StartCoroutine(ShowSlides());
         }
 
@@ -172,8 +172,9 @@ namespace UI
             fadeTween.onComplete += onEnd;
         }
 
-        private void OnDisable()
+        public void OnDisable()
         {
+            playerInput.Disable();
             playerInput.Player.Skip.performed -= SkipCutscene;
         }
     }
