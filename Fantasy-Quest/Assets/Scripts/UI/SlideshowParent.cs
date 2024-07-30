@@ -60,6 +60,7 @@ namespace UI
 
         private void OnEnable()
         {
+            playerInput.Enable();
             playerInput.Player.Skip.performed += SkipCutscene;
         }
 
@@ -73,10 +74,9 @@ namespace UI
 
         public void SkipCutscene(InputAction.CallbackContext context)
         {
-            SlideshowEnded?.Invoke();
             slides.ForEach(slide => slide.FadeOut());
+            StopAllCoroutines();
             _ = StartCoroutine(ShowSlide(slides.Last()));
-            slides.Clear();
         }
 
         private IEnumerator ShowSlides()
@@ -138,7 +138,6 @@ namespace UI
         public void StartSlideshow()
         {
             SlideshowStarted?.Invoke();
-            playerInput.Enable();
             _ = StartCoroutine(ShowSlides());
         }
 
@@ -172,7 +171,7 @@ namespace UI
             fadeTween.onComplete += onEnd;
         }
 
-        public void OnDisable()
+        private void OnDisable()
         {
             playerInput.Disable();
             playerInput.Player.Skip.performed -= SkipCutscene;
