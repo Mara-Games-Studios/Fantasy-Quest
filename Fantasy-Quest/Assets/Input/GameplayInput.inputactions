@@ -318,18 +318,18 @@
             "id": "a6204a56-f071-4ce4-a93f-7aa8add5a6dc",
             "actions": [
                 {
-                    "name": "CallHumanInteraction",
+                    "name": "CatInteraction",
                     "type": "Button",
-                    "id": "3bae8a71-044d-4744-9117-dfcc8199d673",
+                    "id": "816e9369-78e7-471a-9bc0-b56a2eef0b17",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
                 },
                 {
-                    "name": "CatInteraction",
+                    "name": "CatMeow",
                     "type": "Button",
-                    "id": "816e9369-78e7-471a-9bc0-b56a2eef0b17",
+                    "id": "e3bbed46-4fbc-4ce7-a3bf-fb0749c11f34",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -382,28 +382,6 @@
                 }
             ],
             "bindings": [
-                {
-                    "name": "",
-                    "id": "b4065826-8da3-4c2b-baa2-cff9ac8e1389",
-                    "path": "<Keyboard>/1",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "CallHumanInteraction",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "7c6cebd8-922e-45cc-8de6-37a4593d266c",
-                    "path": "<Keyboard>/numpad1",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "CallHumanInteraction",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
                 {
                     "name": "",
                     "id": "ff2de162-7395-4b3c-8311-1a2162136b26",
@@ -555,6 +533,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "CallHumanMove",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e7f2b140-78c1-47a8-b7c8-9359d40acfc6",
+                    "path": "<Keyboard>/m",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CatMeow",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

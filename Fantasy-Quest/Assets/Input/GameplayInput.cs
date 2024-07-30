@@ -340,18 +340,18 @@ public partial class @GameplayInput: IInputActionCollection2, IDisposable
             ""id"": ""a6204a56-f071-4ce4-a93f-7aa8add5a6dc"",
             ""actions"": [
                 {
-                    ""name"": ""CallHumanInteraction"",
+                    ""name"": ""CatInteraction"",
                     ""type"": ""Button"",
-                    ""id"": ""3bae8a71-044d-4744-9117-dfcc8199d673"",
+                    ""id"": ""816e9369-78e7-471a-9bc0-b56a2eef0b17"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""CatInteraction"",
+                    ""name"": ""CatMeow"",
                     ""type"": ""Button"",
-                    ""id"": ""816e9369-78e7-471a-9bc0-b56a2eef0b17"",
+                    ""id"": ""e3bbed46-4fbc-4ce7-a3bf-fb0749c11f34"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -404,28 +404,6 @@ public partial class @GameplayInput: IInputActionCollection2, IDisposable
                 }
             ],
             ""bindings"": [
-                {
-                    ""name"": """",
-                    ""id"": ""b4065826-8da3-4c2b-baa2-cff9ac8e1389"",
-                    ""path"": ""<Keyboard>/1"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""CallHumanInteraction"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""7c6cebd8-922e-45cc-8de6-37a4593d266c"",
-                    ""path"": ""<Keyboard>/numpad1"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""CallHumanInteraction"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
                 {
                     ""name"": """",
                     ""id"": ""ff2de162-7395-4b3c-8311-1a2162136b26"",
@@ -579,6 +557,17 @@ public partial class @GameplayInput: IInputActionCollection2, IDisposable
                     ""action"": ""CallHumanMove"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e7f2b140-78c1-47a8-b7c8-9359d40acfc6"",
+                    ""path"": ""<Keyboard>/m"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CatMeow"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -602,8 +591,8 @@ public partial class @GameplayInput: IInputActionCollection2, IDisposable
         m_UI_Mure = m_UI.FindAction("Mure", throwIfNotFound: true);
         // Player
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
-        m_Player_CallHumanInteraction = m_Player.FindAction("CallHumanInteraction", throwIfNotFound: true);
         m_Player_CatInteraction = m_Player.FindAction("CatInteraction", throwIfNotFound: true);
+        m_Player_CatMeow = m_Player.FindAction("CatMeow", throwIfNotFound: true);
         m_Player_HorizontalMove = m_Player.FindAction("HorizontalMove", throwIfNotFound: true);
         m_Player_UpJump = m_Player.FindAction("UpJump", throwIfNotFound: true);
         m_Player_DownJump = m_Player.FindAction("DownJump", throwIfNotFound: true);
@@ -812,8 +801,8 @@ public partial class @GameplayInput: IInputActionCollection2, IDisposable
     // Player
     private readonly InputActionMap m_Player;
     private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
-    private readonly InputAction m_Player_CallHumanInteraction;
     private readonly InputAction m_Player_CatInteraction;
+    private readonly InputAction m_Player_CatMeow;
     private readonly InputAction m_Player_HorizontalMove;
     private readonly InputAction m_Player_UpJump;
     private readonly InputAction m_Player_DownJump;
@@ -823,8 +812,8 @@ public partial class @GameplayInput: IInputActionCollection2, IDisposable
     {
         private @GameplayInput m_Wrapper;
         public PlayerActions(@GameplayInput wrapper) { m_Wrapper = wrapper; }
-        public InputAction @CallHumanInteraction => m_Wrapper.m_Player_CallHumanInteraction;
         public InputAction @CatInteraction => m_Wrapper.m_Player_CatInteraction;
+        public InputAction @CatMeow => m_Wrapper.m_Player_CatMeow;
         public InputAction @HorizontalMove => m_Wrapper.m_Player_HorizontalMove;
         public InputAction @UpJump => m_Wrapper.m_Player_UpJump;
         public InputAction @DownJump => m_Wrapper.m_Player_DownJump;
@@ -839,12 +828,12 @@ public partial class @GameplayInput: IInputActionCollection2, IDisposable
         {
             if (instance == null || m_Wrapper.m_PlayerActionsCallbackInterfaces.Contains(instance)) return;
             m_Wrapper.m_PlayerActionsCallbackInterfaces.Add(instance);
-            @CallHumanInteraction.started += instance.OnCallHumanInteraction;
-            @CallHumanInteraction.performed += instance.OnCallHumanInteraction;
-            @CallHumanInteraction.canceled += instance.OnCallHumanInteraction;
             @CatInteraction.started += instance.OnCatInteraction;
             @CatInteraction.performed += instance.OnCatInteraction;
             @CatInteraction.canceled += instance.OnCatInteraction;
+            @CatMeow.started += instance.OnCatMeow;
+            @CatMeow.performed += instance.OnCatMeow;
+            @CatMeow.canceled += instance.OnCatMeow;
             @HorizontalMove.started += instance.OnHorizontalMove;
             @HorizontalMove.performed += instance.OnHorizontalMove;
             @HorizontalMove.canceled += instance.OnHorizontalMove;
@@ -864,12 +853,12 @@ public partial class @GameplayInput: IInputActionCollection2, IDisposable
 
         private void UnregisterCallbacks(IPlayerActions instance)
         {
-            @CallHumanInteraction.started -= instance.OnCallHumanInteraction;
-            @CallHumanInteraction.performed -= instance.OnCallHumanInteraction;
-            @CallHumanInteraction.canceled -= instance.OnCallHumanInteraction;
             @CatInteraction.started -= instance.OnCatInteraction;
             @CatInteraction.performed -= instance.OnCatInteraction;
             @CatInteraction.canceled -= instance.OnCatInteraction;
+            @CatMeow.started -= instance.OnCatMeow;
+            @CatMeow.performed -= instance.OnCatMeow;
+            @CatMeow.canceled -= instance.OnCatMeow;
             @HorizontalMove.started -= instance.OnHorizontalMove;
             @HorizontalMove.performed -= instance.OnHorizontalMove;
             @HorizontalMove.canceled -= instance.OnHorizontalMove;
@@ -920,8 +909,8 @@ public partial class @GameplayInput: IInputActionCollection2, IDisposable
     }
     public interface IPlayerActions
     {
-        void OnCallHumanInteraction(InputAction.CallbackContext context);
         void OnCatInteraction(InputAction.CallbackContext context);
+        void OnCatMeow(InputAction.CallbackContext context);
         void OnHorizontalMove(InputAction.CallbackContext context);
         void OnUpJump(InputAction.CallbackContext context);
         void OnDownJump(InputAction.CallbackContext context);
