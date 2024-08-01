@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 namespace UI.Pause
 {
-    [AddComponentMenu("Scripts/UI/Pause.sDarkBackground")]
+    [AddComponentMenu("Scripts/UI/Pause/UI.Pause.DarkBackground")]
     public class DarkBackground : MonoBehaviour
     {
         [SerializeField]
