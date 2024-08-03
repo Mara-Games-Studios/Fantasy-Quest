@@ -31,6 +31,11 @@ namespace Configs
         private float textFadeInSlideshowDuration = 1f;
         public float TextFadeInSlideshowDuration => textFadeInSlideshowDuration;
 
+        [MinValue(0)]
+        [SerializeField]
+        private float subtitlesHintShowDuration = 2f;
+        public float SubtitlesHintShowDuration => subtitlesHintShowDuration;
+
         public void SetShowSubtitles(bool value)
         {
             isSubtitlesShowing = value;
