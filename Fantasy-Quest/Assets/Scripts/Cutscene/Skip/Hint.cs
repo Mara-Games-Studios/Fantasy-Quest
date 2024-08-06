@@ -1,6 +1,6 @@
-using System.Collections;
 using Configs;
 using DG.Tweening;
+using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -10,18 +10,17 @@ namespace Cutscene.Skip
     [AddComponentMenu("Scripts/Cutscene/Skip/Cutscene.Skip.Hint")]
     internal class Hint : MonoBehaviour
     {
-        private GameplayInput playerInput;
-
-        private TMP_Text textMeshPro;
-
+        [Required]
         [SerializeField]
-        private float fadeHintDuration;
+        private TextMeshProUGUI hintLabel;
+
+        private GameplayInput playerInput;
+        private Sequence showHintSequence;
 
         private void Awake()
         {
             playerInput = new GameplayInput();
-            textMeshPro = GetComponent<TMP_Text>();
-            _ = textMeshPro.DOFade(0f, 0f);
+            _ = hintLabel.DOFade(0f, 0f);
         }
 
         private void OnEnable()
@@ -32,14 +31,18 @@ namespace Cutscene.Skip
 
         private void ShowSkipHint(InputAction.CallbackContext context)
         {
-            _ = textMeshPro.DOFade(1f, fadeHintDuration);
-            _ = StartCoroutine(HideSkipHintRoutine());
-        }
-
-        private IEnumerator HideSkipHintRoutine()
-        {
-            yield return new WaitForSeconds(SubtitlesSettings.Instance.SubtitlesHintShowDuration);
-            _ = textMeshPro.DOFade(0f, fadeHintDuration);
+            showHintSequence?.Kill();
+            showHintSequence = DOTween.Sequence();
+            _ = showHintSequence.Append(
+                hintLabel.DOFade(1f, SubtitlesSettings.Instance.FadeHintDuration)
+            );
+            _ = showHintSequence.AppendInterval(
+                SubtitlesSettings.Instance.SubtitlesHintShowDuration
+            );
+            _ = showHintSequence.Append(
+                hintLabel.DOFade(0f, SubtitlesSettings.Instance.FadeHintDuration)
+            );
+            _ = showHintSequence.Play();
         }
 
         private void OnDisable()
