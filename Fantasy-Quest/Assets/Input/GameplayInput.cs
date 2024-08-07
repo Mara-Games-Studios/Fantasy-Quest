@@ -401,6 +401,15 @@ public partial class @GameplayInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""CutsceneAnyKey"",
+                    ""type"": ""Button"",
+                    ""id"": ""2d73d717-7a55-44ec-8456-a37e6eeb6b0c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -568,6 +577,17 @@ public partial class @GameplayInput: IInputActionCollection2, IDisposable
                     ""action"": ""CatMeow"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""dba6e113-def0-4f73-97ee-b5596ce9d140"",
+                    ""path"": ""<Keyboard>/anyKey"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CutsceneAnyKey"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -598,6 +618,7 @@ public partial class @GameplayInput: IInputActionCollection2, IDisposable
         m_Player_DownJump = m_Player.FindAction("DownJump", throwIfNotFound: true);
         m_Player_Skip = m_Player.FindAction("Skip", throwIfNotFound: true);
         m_Player_CallHumanMove = m_Player.FindAction("CallHumanMove", throwIfNotFound: true);
+        m_Player_CutsceneAnyKey = m_Player.FindAction("CutsceneAnyKey", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -808,6 +829,7 @@ public partial class @GameplayInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_DownJump;
     private readonly InputAction m_Player_Skip;
     private readonly InputAction m_Player_CallHumanMove;
+    private readonly InputAction m_Player_CutsceneAnyKey;
     public struct PlayerActions
     {
         private @GameplayInput m_Wrapper;
@@ -819,6 +841,7 @@ public partial class @GameplayInput: IInputActionCollection2, IDisposable
         public InputAction @DownJump => m_Wrapper.m_Player_DownJump;
         public InputAction @Skip => m_Wrapper.m_Player_Skip;
         public InputAction @CallHumanMove => m_Wrapper.m_Player_CallHumanMove;
+        public InputAction @CutsceneAnyKey => m_Wrapper.m_Player_CutsceneAnyKey;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -849,6 +872,9 @@ public partial class @GameplayInput: IInputActionCollection2, IDisposable
             @CallHumanMove.started += instance.OnCallHumanMove;
             @CallHumanMove.performed += instance.OnCallHumanMove;
             @CallHumanMove.canceled += instance.OnCallHumanMove;
+            @CutsceneAnyKey.started += instance.OnCutsceneAnyKey;
+            @CutsceneAnyKey.performed += instance.OnCutsceneAnyKey;
+            @CutsceneAnyKey.canceled += instance.OnCutsceneAnyKey;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -874,6 +900,9 @@ public partial class @GameplayInput: IInputActionCollection2, IDisposable
             @CallHumanMove.started -= instance.OnCallHumanMove;
             @CallHumanMove.performed -= instance.OnCallHumanMove;
             @CallHumanMove.canceled -= instance.OnCallHumanMove;
+            @CutsceneAnyKey.started -= instance.OnCutsceneAnyKey;
+            @CutsceneAnyKey.performed -= instance.OnCutsceneAnyKey;
+            @CutsceneAnyKey.canceled -= instance.OnCutsceneAnyKey;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -916,5 +945,6 @@ public partial class @GameplayInput: IInputActionCollection2, IDisposable
         void OnDownJump(InputAction.CallbackContext context);
         void OnSkip(InputAction.CallbackContext context);
         void OnCallHumanMove(InputAction.CallbackContext context);
+        void OnCutsceneAnyKey(InputAction.CallbackContext context);
     }
 }
