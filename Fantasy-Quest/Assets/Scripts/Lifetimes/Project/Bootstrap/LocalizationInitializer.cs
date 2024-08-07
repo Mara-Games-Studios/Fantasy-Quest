@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.Localization.Settings;
 using VContainer.Unity;
 
-namespace Bootstrap.Project
+namespace Lifetimes.Project.Bootstrap
 {
     public class LocalizationInitializer : IInitializable
     {

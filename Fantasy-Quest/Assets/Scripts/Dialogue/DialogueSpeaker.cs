@@ -67,7 +67,6 @@ namespace Dialogue
 
         public void Speak()
         {
-            Debug.Log("Trying to talk");
             if (WasSaid)
             {
                 Say(AlternativeSpeech);

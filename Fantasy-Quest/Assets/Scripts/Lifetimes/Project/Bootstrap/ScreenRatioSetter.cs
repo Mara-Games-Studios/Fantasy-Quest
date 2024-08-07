@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using VContainer.Unity;
 
-namespace Bootstrap.Project
+namespace Lifetimes.Project.Bootstrap
 {
     internal class ScreenRatioSetter : IInitializable
     {
