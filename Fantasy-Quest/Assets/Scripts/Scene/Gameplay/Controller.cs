@@ -1,15 +1,22 @@
-﻿using Audio;
+﻿using Common.DI;
 using Configs;
+using DI.Project.Services;
 using Sirenix.OdinInspector;
 using UI.Pause;
 using UnityEngine;
-using Utils;
+using VContainer;
 
 namespace Scene.Gameplay
 {
     [AddComponentMenu("Scripts/Scene/Gameplay/Scene.Gameplay.Controller")]
-    internal class Controller : MonoBehaviour
+    internal class Controller : InjectingMonoBehaviour
     {
+        [Inject]
+        private SoundsManager soundsManager;
+
+        [Inject]
+        private CursorController cursorController;
+
         [RequiredIn(PrefabKind.PrefabInstanceAndNonPrefabInstance)]
         [SerializeField]
         private Cutscene.Manager cutsceneManager;
@@ -29,10 +36,6 @@ namespace Scene.Gameplay
         [ReadOnly]
         [SerializeField]
         private bool pauseShowed = false;
-
-        [RequiredIn(PrefabKind.PrefabInstanceAndNonPrefabInstance)]
-        [SerializeField]
-        private SoundsManager soundsManager;
 
         [Required((InfoMessageType)PrefabKind.PrefabInstanceAndNonPrefabInstance)]
         [SerializeField]
@@ -62,7 +65,7 @@ namespace Scene.Gameplay
             settingsPage.ShowFromStart();
             LockerSettings.Instance.LockAll();
 
-            CursorLockUnlock.UnLockCursor();
+            cursorController.UnLockCursor();
 
             background.Show();
         }
@@ -82,7 +85,7 @@ namespace Scene.Gameplay
                 cutsceneManager.Resume();
                 soundsManager.ResumeSound();
                 animationLocker = true;
-                CursorLockUnlock.LockCursor();
+                cursorController.LockCursor();
             });
         }
     }

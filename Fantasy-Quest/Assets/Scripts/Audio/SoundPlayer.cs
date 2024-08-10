@@ -1,14 +1,16 @@
 ﻿using System.Collections;
+using Common.DI;
+using DI.Project.Services;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using VContainer;
 
 namespace Audio
 {
     [AddComponentMenu("Scripts/Audio/Audio.SoundPlayer")]
-    public class SoundPlayer : MonoBehaviour
+    public class SoundPlayer : InjectingMonoBehaviour
     {
-        [RequiredIn(PrefabKind.PrefabInstanceAndNonPrefabInstance)]
-        [SerializeField]
+        [Inject]
         private SoundsManager soundsManager;
 
         [RequiredIn(PrefabKind.PrefabInstanceAndNonPrefabInstance)]
@@ -66,7 +68,7 @@ namespace Audio
             set => createOnThisPosition = value;
         }
 
-        private void Awake()
+        private void Start()
         {
             audioSource = soundsManager.CreateSource(AudioClip.name, IgnorePause);
             audioSource.clip = AudioClip;
@@ -76,10 +78,7 @@ namespace Audio
             {
                 audioSource.transform.position = transform.position;
             }
-        }
 
-        private void Start()
-        {
             if (PlayOnStart)
             {
                 PlayClip();

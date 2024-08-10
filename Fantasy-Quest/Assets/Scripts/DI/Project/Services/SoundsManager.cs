@@ -1,12 +1,15 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-namespace Audio
+namespace DI.Project.Services
 {
-    [AddComponentMenu("Scripts/Audio/Audio.SoundsManager")]
+    [AddComponentMenu("Scripts/DI/Project/Services/DI.Project.Services.SoundsManager")]
     public class SoundsManager : MonoBehaviour
     {
+        [Serializable]
         private struct AudioSourcePoint
         {
             public AudioSource AudioSource;
@@ -31,13 +34,25 @@ namespace Audio
             }
         }
 
-        [ReadOnly]
-        [SerializeField]
-        private List<AudioSourcePoint> audioSources = new();
-
         [Required]
         [SerializeField]
         private AudioSource audioSourcePrefab;
+
+        private List<AudioSourcePoint> audioSources = new();
+
+        public void Awake()
+        {
+            SceneManager.activeSceneChanged += SceneManagerActiveSceneChanged;
+        }
+
+        private void SceneManagerActiveSceneChanged(
+            UnityEngine.SceneManagement.Scene oldScene,
+            UnityEngine.SceneManagement.Scene newScene
+        )
+        {
+            audioSources.ForEach(x => Destroy(x.AudioSource.gameObject));
+            audioSources.Clear();
+        }
 
         public AudioSource CreateSource(string name, bool ignorePause = false)
         {
