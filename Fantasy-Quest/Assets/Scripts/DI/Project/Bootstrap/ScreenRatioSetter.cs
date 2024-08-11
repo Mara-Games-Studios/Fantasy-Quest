@@ -1,10 +1,14 @@
 ﻿using UnityEngine;
+using VContainer;
 using VContainer.Unity;
 
 namespace DI.Project.Bootstrap
 {
-    internal class ScreenRatioSetter : IInitializable
+    public class ScreenRatioSetter : IInitializable
     {
+        [Preserve]
+        public ScreenRatioSetter() { }
+
         public void Initialize()
         {
             QualitySettings.vSyncCount = 1;

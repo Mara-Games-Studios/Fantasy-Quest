@@ -1,12 +1,16 @@
 ﻿using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Localization.Settings;
+using VContainer;
 using VContainer.Unity;
 
 namespace DI.Project.Bootstrap
 {
     public class LocalizationInitializer : IInitializable
     {
+        [Preserve]
+        public LocalizationInitializer() { }
+
         public void Initialize()
         {
             int locale = PlayerPrefs.GetInt("LocaleKey", 0);

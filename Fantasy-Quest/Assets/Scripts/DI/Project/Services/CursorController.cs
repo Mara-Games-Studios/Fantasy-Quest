@@ -1,9 +1,13 @@
 ﻿using UnityEngine;
+using VContainer;
 
 namespace DI.Project.Services
 {
-    internal class CursorController
+    public class CursorController
     {
+        [Preserve]
+        public CursorController() { }
+
         public void LockCursor()
         {
             Cursor.lockState = CursorLockMode.Locked;

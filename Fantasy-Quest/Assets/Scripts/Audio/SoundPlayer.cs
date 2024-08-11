@@ -32,8 +32,6 @@ namespace Audio
         [SerializeField]
         private bool createOnThisPosition = false;
 
-        [ReadOnly]
-        [SerializeField]
         private AudioSource audioSource;
         public AudioSource AudioSource => audioSource;
 

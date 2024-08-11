@@ -1,12 +1,11 @@
 ﻿using DI.Project.Services;
 using UnityEngine;
 using VContainer;
-using VContainer.Unity;
 
 namespace DI.Shared.Bootstrap
 {
     [AddComponentMenu("Scripts/DI/Shared/Bootstrap/DI.Shared.Bootstrap.CursorLocker")]
-    internal class CursorLocker : MonoBehaviour, IStartable
+    public class CursorLocker : MonoBehaviour
     {
         [Inject]
         private CursorController cursorController;
