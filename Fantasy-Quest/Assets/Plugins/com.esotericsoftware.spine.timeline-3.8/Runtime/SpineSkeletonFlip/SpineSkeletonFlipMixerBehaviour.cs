@@ -27,80 +27,92 @@
  * THE SPINE RUNTIMES, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *****************************************************************************/
 
-using System;
 using UnityEngine;
 using UnityEngine.Playables;
-using UnityEngine.Timeline;
 
-using Spine.Unity;
+namespace Spine.Unity.Playables
+{
+    public class SpineSkeletonFlipMixerBehaviour : PlayableBehaviour
+    {
+        private float originalScaleX,
+            originalScaleY;
+        private float baseScaleX,
+            baseScaleY;
+        private SpinePlayableHandleBase playableHandle;
+        private bool m_FirstFrameHappened;
 
-namespace Spine.Unity.Playables {
-	public class SpineSkeletonFlipMixerBehaviour : PlayableBehaviour {
-		float originalScaleX, originalScaleY;
-		float baseScaleX, baseScaleY;
+        public override void ProcessFrame(Playable playable, FrameData info, object playerData)
+        {
+            playableHandle = playerData as SpinePlayableHandleBase;
 
-		SpinePlayableHandleBase playableHandle;
-		bool m_FirstFrameHappened;
+            if (playableHandle == null)
+            {
+                return;
+            }
 
-		public override void ProcessFrame (Playable playable, FrameData info, object playerData) {
-			playableHandle = playerData as SpinePlayableHandleBase;
+            Skeleton skeleton = playableHandle.Skeleton;
 
-			if (playableHandle == null)
-				return;
+            if (!m_FirstFrameHappened)
+            {
+                originalScaleX = skeleton.ScaleX;
+                originalScaleY = skeleton.ScaleY;
+                baseScaleX = Mathf.Abs(originalScaleX);
+                baseScaleY = Mathf.Abs(originalScaleY);
+                m_FirstFrameHappened = true;
+            }
 
-			var skeleton = playableHandle.Skeleton;
+            int inputCount = playable.GetInputCount();
 
-			if (!m_FirstFrameHappened) {
-				originalScaleX = skeleton.ScaleX;
-				originalScaleY = skeleton.ScaleY;
-				baseScaleX = Mathf.Abs(originalScaleX);
-				baseScaleY = Mathf.Abs(originalScaleY);
-				m_FirstFrameHappened = true;
-			}
+            float totalWeight = 0f;
+            float greatestWeight = 0f;
+            int currentInputs = 0;
 
-			int inputCount = playable.GetInputCount();
+            for (int i = 0; i < inputCount; i++)
+            {
+                float inputWeight = playable.GetInputWeight(i);
+                ScriptPlayable<SpineSkeletonFlipBehaviour> inputPlayable =
+                    (ScriptPlayable<SpineSkeletonFlipBehaviour>)playable.GetInput(i);
+                SpineSkeletonFlipBehaviour input = inputPlayable.GetBehaviour();
 
-			float totalWeight = 0f;
-			float greatestWeight = 0f;
-			int currentInputs = 0;
+                totalWeight += inputWeight;
 
-			for (int i = 0; i < inputCount; i++) {
-				float inputWeight = playable.GetInputWeight(i);
-				ScriptPlayable<SpineSkeletonFlipBehaviour> inputPlayable = (ScriptPlayable<SpineSkeletonFlipBehaviour>)playable.GetInput(i);
-				SpineSkeletonFlipBehaviour input = inputPlayable.GetBehaviour();
+                if (inputWeight > greatestWeight)
+                {
+                    SetSkeletonScaleFromFlip(skeleton, input.flipX, input.flipY);
+                    greatestWeight = inputWeight;
+                }
 
-				totalWeight += inputWeight;
+                if (!Mathf.Approximately(inputWeight, 0f))
+                {
+                    currentInputs++;
+                }
+            }
 
-				if (inputWeight > greatestWeight) {
-					SetSkeletonScaleFromFlip(skeleton, input.flipX, input.flipY);
-					greatestWeight = inputWeight;
-				}
+            if (currentInputs != 1 && 1f - totalWeight > greatestWeight)
+            {
+                skeleton.ScaleX = originalScaleX;
+                skeleton.ScaleY = originalScaleY;
+            }
+        }
 
-				if (!Mathf.Approximately(inputWeight, 0f))
-					currentInputs++;
-			}
+        public void SetSkeletonScaleFromFlip(Skeleton skeleton, bool flipX, bool flipY)
+        {
+            skeleton.ScaleX = flipX ? -baseScaleX : baseScaleX;
+            skeleton.ScaleY = flipY ? -baseScaleY : baseScaleY;
+        }
 
-			if (currentInputs != 1 && 1f - totalWeight > greatestWeight) {
-				skeleton.ScaleX = originalScaleX;
-				skeleton.ScaleY = originalScaleY;
-			}
-		}
+        public override void OnGraphStop(Playable playable)
+        {
+            m_FirstFrameHappened = false;
 
-		public void SetSkeletonScaleFromFlip (Skeleton skeleton, bool flipX, bool flipY) {
-			skeleton.ScaleX = flipX ? -baseScaleX : baseScaleX;
-			skeleton.ScaleY = flipY ? -baseScaleY : baseScaleY;
-		}
+            if (playableHandle == null)
+            {
+                return;
+            }
 
-		public override void OnGraphStop (Playable playable) {
-			m_FirstFrameHappened = false;
-
-			if (playableHandle == null)
-				return;
-
-			var skeleton = playableHandle.Skeleton;
-			skeleton.ScaleX = originalScaleX;
-			skeleton.ScaleY = originalScaleY;
-		}
-	}
-
+            Skeleton skeleton = playableHandle.Skeleton;
+            skeleton.ScaleX = originalScaleX;
+            skeleton.ScaleY = originalScaleY;
+        }
+    }
 }

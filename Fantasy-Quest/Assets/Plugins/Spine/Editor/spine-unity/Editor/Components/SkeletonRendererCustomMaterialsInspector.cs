@@ -37,129 +37,172 @@ using System.Linq;
 using System.Reflection;
 using UnityEditor;
 using UnityEngine;
-using Spine.Unity.Examples;
 
-namespace Spine.Unity.Editor {
+namespace Spine.Unity.Editor
+{
+    // This script is not intended for use with code. See the readme.txt file in SkeletonRendererCustomMaterials folder to learn more.
+    [CustomEditor(typeof(SkeletonRendererCustomMaterials))]
+    public class SkeletonRendererCustomMaterialsInspector : UnityEditor.Editor
+    {
+        private List<SkeletonRendererCustomMaterials.AtlasMaterialOverride> componentCustomMaterialOverrides,
+            _customMaterialOverridesPrev;
+        private List<SkeletonRendererCustomMaterials.SlotMaterialOverride> componentCustomSlotMaterials,
+            _customSlotMaterialsPrev;
+        private SkeletonRendererCustomMaterials component;
+        private const BindingFlags PrivateInstance = BindingFlags.Instance | BindingFlags.NonPublic;
+        private MethodInfo RemoveCustomMaterialOverrides,
+            RemoveCustomSlotMaterials,
+            SetCustomMaterialOverrides,
+            SetCustomSlotMaterials;
 
-	// This script is not intended for use with code. See the readme.txt file in SkeletonRendererCustomMaterials folder to learn more.
-	[CustomEditor(typeof(SkeletonRendererCustomMaterials))]
-	public class SkeletonRendererCustomMaterialsInspector : UnityEditor.Editor {
-		List<SkeletonRendererCustomMaterials.AtlasMaterialOverride> componentCustomMaterialOverrides, _customMaterialOverridesPrev;
-		List<SkeletonRendererCustomMaterials.SlotMaterialOverride> componentCustomSlotMaterials, _customSlotMaterialsPrev;
-		SkeletonRendererCustomMaterials component;
+        #region SkeletonRenderer context menu
+        [MenuItem("CONTEXT/SkeletonRenderer/Add Basic Serialized Custom Materials")]
+        private static void AddSkeletonRendererCustomMaterials(MenuCommand menuCommand)
+        {
+            SkeletonRenderer skeletonRenderer = (SkeletonRenderer)menuCommand.context;
+            SkeletonRendererCustomMaterials newComponent =
+                skeletonRenderer.gameObject.AddComponent<SkeletonRendererCustomMaterials>();
+            Undo.RegisterCreatedObjectUndo(newComponent, "Add Basic Serialized Custom Materials");
+        }
 
-		const BindingFlags PrivateInstance = BindingFlags.Instance | BindingFlags.NonPublic;
-		MethodInfo RemoveCustomMaterialOverrides, RemoveCustomSlotMaterials, SetCustomMaterialOverrides, SetCustomSlotMaterials;
+        [MenuItem("CONTEXT/SkeletonRenderer/Add Basic Serialized Custom Materials", true)]
+        private static bool AddSkeletonRendererCustomMaterials_Validate(MenuCommand menuCommand)
+        {
+            SkeletonRenderer skeletonRenderer = (SkeletonRenderer)menuCommand.context;
+            return skeletonRenderer.GetComponent<SkeletonRendererCustomMaterials>() == null;
+        }
+        #endregion
 
-		#region SkeletonRenderer context menu
-		[MenuItem("CONTEXT/SkeletonRenderer/Add Basic Serialized Custom Materials")]
-		static void AddSkeletonRendererCustomMaterials (MenuCommand menuCommand) {
-			var skeletonRenderer = (SkeletonRenderer)menuCommand.context;
-			var newComponent = skeletonRenderer.gameObject.AddComponent<SkeletonRendererCustomMaterials>();
-			Undo.RegisterCreatedObjectUndo(newComponent, "Add Basic Serialized Custom Materials");
-		}
+        private void OnEnable()
+        {
+            Type cm = typeof(SkeletonRendererCustomMaterials);
+            RemoveCustomMaterialOverrides = cm.GetMethod(
+                "RemoveCustomMaterialOverrides",
+                PrivateInstance
+            );
+            RemoveCustomSlotMaterials = cm.GetMethod("RemoveCustomSlotMaterials", PrivateInstance);
+            SetCustomMaterialOverrides = cm.GetMethod(
+                "SetCustomMaterialOverrides",
+                PrivateInstance
+            );
+            SetCustomSlotMaterials = cm.GetMethod("SetCustomSlotMaterials", PrivateInstance);
+        }
 
-		[MenuItem("CONTEXT/SkeletonRenderer/Add Basic Serialized Custom Materials", true)]
-		static bool AddSkeletonRendererCustomMaterials_Validate (MenuCommand menuCommand) {
-			var skeletonRenderer = (SkeletonRenderer)menuCommand.context;
-			return (skeletonRenderer.GetComponent<SkeletonRendererCustomMaterials>() == null);
-		}
-		#endregion
+        public override void OnInspectorGUI()
+        {
+            component = (SkeletonRendererCustomMaterials)target;
+            SkeletonRenderer skeletonRenderer = component.skeletonRenderer;
 
-		void OnEnable () {
-			Type cm = typeof(SkeletonRendererCustomMaterials);
-			RemoveCustomMaterialOverrides = cm.GetMethod("RemoveCustomMaterialOverrides", PrivateInstance);
-			RemoveCustomSlotMaterials = cm.GetMethod("RemoveCustomSlotMaterials", PrivateInstance);
-			SetCustomMaterialOverrides = cm.GetMethod("SetCustomMaterialOverrides", PrivateInstance);
-			SetCustomSlotMaterials = cm.GetMethod("SetCustomSlotMaterials", PrivateInstance);
-		}
+            // Draw the default inspector
+            DrawDefaultInspector();
 
-		public override void OnInspectorGUI () {
-			component = (SkeletonRendererCustomMaterials)target;
-			var skeletonRenderer = component.skeletonRenderer;
+            if (serializedObject.isEditingMultipleObjects)
+            {
+                return;
+            }
 
-			// Draw the default inspector
-			DrawDefaultInspector();
+            if (componentCustomMaterialOverrides == null)
+            {
+                Type cm = typeof(SkeletonRendererCustomMaterials);
+                componentCustomMaterialOverrides =
+                    cm.GetField("customMaterialOverrides", PrivateInstance).GetValue(component)
+                    as List<SkeletonRendererCustomMaterials.AtlasMaterialOverride>;
+                componentCustomSlotMaterials =
+                    cm.GetField("customSlotMaterials", PrivateInstance).GetValue(component)
+                    as List<SkeletonRendererCustomMaterials.SlotMaterialOverride>;
+                if (componentCustomMaterialOverrides == null)
+                {
+                    Debug.Log("Reflection failed.");
+                    return;
+                }
+            }
 
-			if (serializedObject.isEditingMultipleObjects)
-				return;
+            // Fill with current values at start
+            if (_customMaterialOverridesPrev == null || _customSlotMaterialsPrev == null)
+            {
+                _customMaterialOverridesPrev = CopyList(componentCustomMaterialOverrides);
+                _customSlotMaterialsPrev = CopyList(componentCustomSlotMaterials);
+            }
 
-			if (componentCustomMaterialOverrides == null) {
-				Type cm = typeof(SkeletonRendererCustomMaterials);
-				componentCustomMaterialOverrides = cm.GetField("customMaterialOverrides", PrivateInstance).GetValue(component) as List<SkeletonRendererCustomMaterials.AtlasMaterialOverride>;
-				componentCustomSlotMaterials = cm.GetField("customSlotMaterials", PrivateInstance).GetValue(component) as List<SkeletonRendererCustomMaterials.SlotMaterialOverride>;
-				if (componentCustomMaterialOverrides == null) {
-					Debug.Log("Reflection failed.");
-					return;
-				}
-			}
+            // Compare new values with saved. If change is detected:
+            // store new values, restore old values, remove overrides, restore new values, restore overrides.
 
-			// Fill with current values at start
-			if (_customMaterialOverridesPrev == null || _customSlotMaterialsPrev == null) {
-				_customMaterialOverridesPrev = CopyList(componentCustomMaterialOverrides);
-				_customSlotMaterialsPrev = CopyList(componentCustomSlotMaterials);
-			}
+            // 1. Store new values
+            List<SkeletonRendererCustomMaterials.AtlasMaterialOverride> customMaterialOverridesNew =
+                CopyList(componentCustomMaterialOverrides);
+            List<SkeletonRendererCustomMaterials.SlotMaterialOverride> customSlotMaterialsNew =
+                CopyList(componentCustomSlotMaterials);
 
-			// Compare new values with saved. If change is detected:
-			// store new values, restore old values, remove overrides, restore new values, restore overrides.
+            // Detect changes
+            if (
+                !_customMaterialOverridesPrev.SequenceEqual(customMaterialOverridesNew)
+                || !_customSlotMaterialsPrev.SequenceEqual(customSlotMaterialsNew)
+            )
+            {
+                // 2. Restore old values
+                componentCustomMaterialOverrides.Clear();
+                componentCustomSlotMaterials.Clear();
+                componentCustomMaterialOverrides.AddRange(_customMaterialOverridesPrev);
+                componentCustomSlotMaterials.AddRange(_customSlotMaterialsPrev);
 
-			// 1. Store new values
-			var customMaterialOverridesNew = CopyList(componentCustomMaterialOverrides);
-			var customSlotMaterialsNew = CopyList(componentCustomSlotMaterials);
+                // 3. Remove overrides
+                RemoveCustomMaterials();
 
-			// Detect changes
-			if (!_customMaterialOverridesPrev.SequenceEqual(customMaterialOverridesNew) ||
-				!_customSlotMaterialsPrev.SequenceEqual(customSlotMaterialsNew)) {
-				// 2. Restore old values
-				componentCustomMaterialOverrides.Clear();
-				componentCustomSlotMaterials.Clear();
-				componentCustomMaterialOverrides.AddRange(_customMaterialOverridesPrev);
-				componentCustomSlotMaterials.AddRange(_customSlotMaterialsPrev);
+                // 4. Restore new values
+                componentCustomMaterialOverrides.Clear();
+                componentCustomSlotMaterials.Clear();
+                componentCustomMaterialOverrides.AddRange(customMaterialOverridesNew);
+                componentCustomSlotMaterials.AddRange(customSlotMaterialsNew);
 
-				// 3. Remove overrides
-				RemoveCustomMaterials();
+                // 5. Restore overrides
+                SetCustomMaterials();
 
-				// 4. Restore new values
-				componentCustomMaterialOverrides.Clear();
-				componentCustomSlotMaterials.Clear();
-				componentCustomMaterialOverrides.AddRange(customMaterialOverridesNew);
-				componentCustomSlotMaterials.AddRange(customSlotMaterialsNew);
+                if (skeletonRenderer != null)
+                {
+                    skeletonRenderer.LateUpdate();
+                }
+            }
 
-				// 5. Restore overrides
-				SetCustomMaterials();
+            _customMaterialOverridesPrev = CopyList(componentCustomMaterialOverrides);
+            _customSlotMaterialsPrev = CopyList(componentCustomSlotMaterials);
 
-				if (skeletonRenderer != null)
-					skeletonRenderer.LateUpdate();
-			}
+            if (
+                SpineInspectorUtility.LargeCenteredButton(
+                    SpineInspectorUtility.TempContent(
+                        "Clear and Reapply Changes",
+                        tooltip: "Removes all non-serialized overrides in the SkeletonRenderer and reapplies the overrides on this component."
+                    )
+                )
+            )
+            {
+                if (skeletonRenderer != null)
+                {
+#if SPINE_OPTIONAL_MATERIALOVERRIDE
+                    skeletonRenderer.CustomMaterialOverride.Clear();
+#endif
+                    skeletonRenderer.CustomSlotMaterials.Clear();
+                    RemoveCustomMaterials();
+                    SetCustomMaterials();
+                    skeletonRenderer.LateUpdate();
+                }
+            }
+        }
 
-			_customMaterialOverridesPrev = CopyList(componentCustomMaterialOverrides);
-			_customSlotMaterialsPrev = CopyList(componentCustomSlotMaterials);
+        private void RemoveCustomMaterials()
+        {
+            _ = RemoveCustomMaterialOverrides.Invoke(component, null);
+            _ = RemoveCustomSlotMaterials.Invoke(component, null);
+        }
 
-			if (SpineInspectorUtility.LargeCenteredButton(SpineInspectorUtility.TempContent("Clear and Reapply Changes", tooltip: "Removes all non-serialized overrides in the SkeletonRenderer and reapplies the overrides on this component."))) {
-				if (skeletonRenderer != null) {
-					#if SPINE_OPTIONAL_MATERIALOVERRIDE
-					skeletonRenderer.CustomMaterialOverride.Clear();
-					#endif
-					skeletonRenderer.CustomSlotMaterials.Clear();
-					RemoveCustomMaterials();
-					SetCustomMaterials();
-					skeletonRenderer.LateUpdate();
-				}
-			}
-		}
+        private void SetCustomMaterials()
+        {
+            _ = SetCustomMaterialOverrides.Invoke(component, null);
+            _ = SetCustomSlotMaterials.Invoke(component, null);
+        }
 
-		void RemoveCustomMaterials () {
-			RemoveCustomMaterialOverrides.Invoke(component, null);
-			RemoveCustomSlotMaterials.Invoke(component, null);
-		}
-
-		void SetCustomMaterials () {
-			SetCustomMaterialOverrides.Invoke(component, null);
-			SetCustomSlotMaterials.Invoke(component, null);
-		}
-
-		static List<T> CopyList<T> (List<T> list) {
-			return list.GetRange(0, list.Count);
-		}
-	}
+        private static List<T> CopyList<T>(List<T> list)
+        {
+            return list.GetRange(0, list.Count);
+        }
+    }
 }

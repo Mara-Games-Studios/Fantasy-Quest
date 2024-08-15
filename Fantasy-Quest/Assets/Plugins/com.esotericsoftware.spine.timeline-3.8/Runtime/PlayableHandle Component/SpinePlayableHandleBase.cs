@@ -27,32 +27,36 @@
  * THE SPINE RUNTIMES, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *****************************************************************************/
 
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 //using UnityEngine.Playables;
 
-namespace Spine.Unity.Playables {
+namespace Spine.Unity.Playables
+{
+    public delegate void SpineEventDelegate(Spine.Event e);
 
-	public delegate void SpineEventDelegate (Spine.Event e);
+    /// <summary>Base class for Spine Playable Handle components, commonly for integrating with UnityEngine Timeline.</summary>
+    public abstract class SpinePlayableHandleBase : MonoBehaviour
+    {
+        /// <summary>Gets the SkeletonData of the targeted Spine component.</summary>
+        public abstract SkeletonData SkeletonData { get; }
 
-	/// <summary>Base class for Spine Playable Handle components, commonly for integrating with UnityEngine Timeline.</summary>
-	public abstract class SpinePlayableHandleBase : MonoBehaviour {
+        public abstract Skeleton Skeleton { get; }
 
-		/// <summary>Gets the SkeletonData of the targeted Spine component.</summary>
-		public abstract SkeletonData SkeletonData { get; }
+        /// <summary>Subscribe to this to handle user events played by the Unity playable</summary>
+        public event SpineEventDelegate AnimationEvents;
 
-		public abstract Skeleton Skeleton { get; }
+        public virtual void HandleEvents(ExposedList<Event> eventBuffer)
+        {
+            if (eventBuffer == null || AnimationEvents == null)
+            {
+                return;
+            }
 
-		/// <summary>Subscribe to this to handle user events played by the Unity playable</summary>
-		public event SpineEventDelegate AnimationEvents;
-
-		public virtual void HandleEvents (ExposedList<Event> eventBuffer) {
-			if (eventBuffer == null || AnimationEvents == null) return;
-			for (int i = 0, n = eventBuffer.Count; i < n; i++)
-				AnimationEvents.Invoke(eventBuffer.Items[i]);
-		}
-
-	}
+            for (int i = 0, n = eventBuffer.Count; i < n; i++)
+            {
+                AnimationEvents.Invoke(eventBuffer.Items[i]);
+            }
+        }
+    }
 }

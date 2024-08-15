@@ -27,21 +27,23 @@
  * THE SPINE RUNTIMES, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *****************************************************************************/
 
-using UnityEngine;
-using UnityEditor;
-using Spine.Unity.Deprecated;
 using System;
+using Spine.Unity.Deprecated;
+using UnityEditor;
 
-namespace Spine.Unity.Editor {
-	using Editor = UnityEditor.Editor;
-
-	[Obsolete("The spine-unity 3.7 runtime introduced SkeletonDataModifierAssets BlendModeMaterials which replaced SlotBlendModes. Will be removed in spine-unity 3.9.", false)]
-	public class SlotBlendModesEditor : Editor {
-
-		[MenuItem("CONTEXT/SkeletonRenderer/Add Slot Blend Modes Component")]
-		static void AddSlotBlendModesComponent (MenuCommand command) {
-			var skeletonRenderer = (SkeletonRenderer)command.context;
-			skeletonRenderer.gameObject.AddComponent<SlotBlendModes>();
-		}
-	}
+namespace Spine.Unity.Editor
+{
+    [Obsolete(
+        "The spine-unity 3.7 runtime introduced SkeletonDataModifierAssets BlendModeMaterials which replaced SlotBlendModes. Will be removed in spine-unity 3.9.",
+        false
+    )]
+    public class SlotBlendModesEditor : UnityEditor.Editor
+    {
+        [MenuItem("CONTEXT/SkeletonRenderer/Add Slot Blend Modes Component")]
+        private static void AddSlotBlendModesComponent(MenuCommand command)
+        {
+            SkeletonRenderer skeletonRenderer = (SkeletonRenderer)command.context;
+            _ = skeletonRenderer.gameObject.AddComponent<SlotBlendModes>();
+        }
+    }
 }

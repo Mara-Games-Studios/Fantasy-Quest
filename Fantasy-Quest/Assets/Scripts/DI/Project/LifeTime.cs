@@ -17,10 +17,16 @@ namespace DI.Project
 
         protected override void Configure(IContainerBuilder builder)
         {
-            _ = builder.RegisterEntryPoint<LocalizationInitializer>();
-            _ = builder.RegisterEntryPoint<ScreenRatioSetter>();
+            builder.UseEntryPoints(
+                (entryPoints) =>
+                {
+                    _ = entryPoints.Add<Bootstrap.Localization>();
+                    _ = entryPoints.Add<ScreenRatio>();
+                }
+            );
 
-            _ = builder.Register<CursorController>(Lifetime.Singleton);
+            _ = builder.Register<Services.Cursor>(Lifetime.Singleton);
+            _ = builder.Register<Services.Localization>(Lifetime.Singleton);
 
             _ = builder.RegisterComponent(soundsManager);
         }

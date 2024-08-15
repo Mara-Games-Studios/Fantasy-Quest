@@ -33,15 +33,16 @@ using UnityEngine.Playables;
 using UnityEngine.Timeline;
 
 [Serializable]
-public class SpineSkeletonFlipClip : PlayableAsset, ITimelineClipAsset {
-	public SpineSkeletonFlipBehaviour template = new SpineSkeletonFlipBehaviour();
+public class SpineSkeletonFlipClip : PlayableAsset, ITimelineClipAsset
+{
+    public SpineSkeletonFlipBehaviour template = new();
 
-	public ClipCaps clipCaps {
-		get { return ClipCaps.None; }
-	}
+    public ClipCaps clipCaps => ClipCaps.None;
 
-	public override Playable CreatePlayable (PlayableGraph graph, GameObject owner) {
-		var playable = ScriptPlayable<SpineSkeletonFlipBehaviour>.Create(graph, template);
-		return playable;
-	}
+    public override Playable CreatePlayable(PlayableGraph graph, GameObject owner)
+    {
+        ScriptPlayable<SpineSkeletonFlipBehaviour> playable =
+            ScriptPlayable<SpineSkeletonFlipBehaviour>.Create(graph, template);
+        return playable;
+    }
 }

@@ -27,44 +27,46 @@
  * THE SPINE RUNTIMES, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *****************************************************************************/
 
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+
 //using UnityEngine.Playables;
 
-using Spine;
-using Spine.Unity;
-using Spine.Unity.Playables;
+namespace Spine.Unity.Playables
+{
+    [AddComponentMenu("Spine/Playables/SkeletonAnimation Playable Handle (Playables)")]
+    public class SkeletonAnimationPlayableHandle : SpinePlayableHandleBase
+    {
+        #region Inspector
+        public SkeletonAnimation skeletonAnimation;
 
-namespace Spine.Unity.Playables {
+#if UNITY_EDITOR
+        private void Reset()
+        {
+            InitializeReference();
+        }
 
-	[AddComponentMenu("Spine/Playables/SkeletonAnimation Playable Handle (Playables)")]
-	public class SkeletonAnimationPlayableHandle : SpinePlayableHandleBase {
-		#region Inspector
-		public SkeletonAnimation skeletonAnimation;
+        private void OnValidate()
+        {
+            InitializeReference();
+        }
+#endif
 
-		#if UNITY_EDITOR
-		void Reset () {
-			InitializeReference();
-		}
+        #endregion
 
-		void OnValidate () {
-			InitializeReference();
-		}
-		#endif
+        public override Skeleton Skeleton => skeletonAnimation.Skeleton;
+        public override SkeletonData SkeletonData => skeletonAnimation.Skeleton.Data;
 
-		#endregion
+        private void Awake()
+        {
+            InitializeReference();
+        }
 
-		public override Skeleton Skeleton {	get { return skeletonAnimation.Skeleton; } }
-		public override SkeletonData SkeletonData { get { return skeletonAnimation.Skeleton.Data; } }
-
-		void Awake () {
-			InitializeReference();
-		}
-
-		void InitializeReference () {
-			if (skeletonAnimation == null)
-				skeletonAnimation = GetComponent<SkeletonAnimation>();
-		}
-	}
+        private void InitializeReference()
+        {
+            if (skeletonAnimation == null)
+            {
+                skeletonAnimation = GetComponent<SkeletonAnimation>();
+            }
+        }
+    }
 }

@@ -32,26 +32,41 @@ using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.Timeline;
 
-namespace Spine.Unity.Playables {
-	[Serializable]
-	public class SpineAnimationStateClip : PlayableAsset, ITimelineClipAsset {
-		public SpineAnimationStateBehaviour template = new SpineAnimationStateBehaviour();
+namespace Spine.Unity.Playables
+{
+    [Serializable]
+    public class SpineAnimationStateClip : PlayableAsset, ITimelineClipAsset
+    {
+        public SpineAnimationStateBehaviour template = new();
 
-		public ClipCaps clipCaps { get { return ClipCaps.Blending | ClipCaps.ClipIn | ClipCaps.SpeedMultiplier | (template.loop ? ClipCaps.Looping : 0); } }
+        public ClipCaps clipCaps =>
+            ClipCaps.Blending
+            | ClipCaps.ClipIn
+            | ClipCaps.SpeedMultiplier
+            | (template.loop ? ClipCaps.Looping : 0);
 
-		public override Playable CreatePlayable (PlayableGraph graph, GameObject owner) {
-			var playable = ScriptPlayable<SpineAnimationStateBehaviour>.Create(graph, template);
-			playable.GetBehaviour();
-			return playable;
-		}
+        public override Playable CreatePlayable(PlayableGraph graph, GameObject owner)
+        {
+            ScriptPlayable<SpineAnimationStateBehaviour> playable =
+                ScriptPlayable<SpineAnimationStateBehaviour>.Create(graph, template);
+            _ = playable.GetBehaviour();
+            return playable;
+        }
 
-		public override double duration {
-			get {
-				if (template.animationReference == null || template.animationReference.Animation == null)
-					return 0;
-				return template.animationReference.Animation.Duration;
-			}
-		}
-	}
+        public override double duration
+        {
+            get
+            {
+                if (
+                    template.animationReference == null
+                    || template.animationReference.Animation == null
+                )
+                {
+                    return 0;
+                }
 
+                return template.animationReference.Animation.Duration;
+            }
+        }
+    }
 }

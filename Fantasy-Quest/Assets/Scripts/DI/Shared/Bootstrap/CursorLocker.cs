@@ -1,5 +1,4 @@
-﻿using DI.Project.Services;
-using UnityEngine;
+﻿using UnityEngine;
 using VContainer;
 
 namespace DI.Shared.Bootstrap
@@ -8,7 +7,7 @@ namespace DI.Shared.Bootstrap
     public class CursorLocker : MonoBehaviour
     {
         [Inject]
-        private CursorController cursorController;
+        private Project.Services.Cursor cursorService;
 
         [SerializeField]
         private bool lockOnStart;
@@ -17,7 +16,7 @@ namespace DI.Shared.Bootstrap
         {
             if (lockOnStart)
             {
-                cursorController.LockCursor();
+                cursorService.LockCursor();
             }
         }
     }

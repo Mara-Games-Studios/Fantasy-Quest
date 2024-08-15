@@ -15,7 +15,7 @@ namespace Scene.Gameplay
         private SoundsManager soundsManager;
 
         [Inject]
-        private CursorController cursorController;
+        private DI.Project.Services.Cursor cursorController;
 
         [RequiredIn(PrefabKind.PrefabInstanceAndNonPrefabInstance)]
         [SerializeField]

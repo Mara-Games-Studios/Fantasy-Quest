@@ -4,10 +4,10 @@ using VContainer.Unity;
 
 namespace DI.Project.Bootstrap
 {
-    public class ScreenRatioSetter : IInitializable
+    public class ScreenRatio : IInitializable
     {
         [Preserve]
-        public ScreenRatioSetter() { }
+        public ScreenRatio() { }
 
         public void Initialize()
         {

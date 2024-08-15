@@ -32,122 +32,176 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace Spine.Unity.Editor {
-	[CustomEditor(typeof(SkeletonMecanim))]
-	[CanEditMultipleObjects]
-	public class SkeletonMecanimInspector : SkeletonRendererInspector {
-		public static bool mecanimSettingsFoldout;
+namespace Spine.Unity.Editor
+{
+    [CustomEditor(typeof(SkeletonMecanim))]
+    [CanEditMultipleObjects]
+    public class SkeletonMecanimInspector : SkeletonRendererInspector
+    {
+        public static bool mecanimSettingsFoldout;
 
-		protected SerializedProperty autoReset;
-		protected SerializedProperty useCustomMixMode;
-		protected SerializedProperty layerMixModes;
-		protected SerializedProperty layerBlendModes;
+        protected SerializedProperty autoReset;
+        protected SerializedProperty useCustomMixMode;
+        protected SerializedProperty layerMixModes;
+        protected SerializedProperty layerBlendModes;
 
-		protected override void OnEnable () {
-			base.OnEnable();
-			SerializedProperty mecanimTranslator = serializedObject.FindProperty("translator");
-			autoReset = mecanimTranslator.FindPropertyRelative("autoReset");
-			useCustomMixMode = mecanimTranslator.FindPropertyRelative("useCustomMixMode");
-			layerMixModes = mecanimTranslator.FindPropertyRelative("layerMixModes");
-			layerBlendModes = mecanimTranslator.FindPropertyRelative("layerBlendModes");
-		}
+        protected override void OnEnable()
+        {
+            base.OnEnable();
+            SerializedProperty mecanimTranslator = serializedObject.FindProperty("translator");
+            autoReset = mecanimTranslator.FindPropertyRelative("autoReset");
+            useCustomMixMode = mecanimTranslator.FindPropertyRelative("useCustomMixMode");
+            layerMixModes = mecanimTranslator.FindPropertyRelative("layerMixModes");
+            layerBlendModes = mecanimTranslator.FindPropertyRelative("layerBlendModes");
+        }
 
-		protected override void DrawInspectorGUI (bool multi) {
+        protected override void DrawInspectorGUI(bool multi)
+        {
+            AddRootMotionComponentIfEnabled();
 
-			AddRootMotionComponentIfEnabled();
+            base.DrawInspectorGUI(multi);
 
-			base.DrawInspectorGUI(multi);
+            using (new SpineInspectorUtility.BoxScope())
+            {
+                mecanimSettingsFoldout = EditorGUILayout.Foldout(
+                    mecanimSettingsFoldout,
+                    "Mecanim Translator"
+                );
+                if (mecanimSettingsFoldout)
+                {
+                    _ = EditorGUILayout.PropertyField(
+                        autoReset,
+                        new GUIContent(
+                            "Auto Reset",
+                            "When set to true, the skeleton state is mixed out to setup-"
+                                + "pose when an animation finishes, according to the "
+                                + "animation's keyed items."
+                        )
+                    );
 
-			using (new SpineInspectorUtility.BoxScope()) {
-				mecanimSettingsFoldout = EditorGUILayout.Foldout(mecanimSettingsFoldout, "Mecanim Translator");
-				if (mecanimSettingsFoldout) {
-					EditorGUILayout.PropertyField(autoReset, new GUIContent("Auto Reset",
-						"When set to true, the skeleton state is mixed out to setup-" +
-						"pose when an animation finishes, according to the " +
-						"animation's keyed items."));
+                    _ = EditorGUILayout.PropertyField(
+                        useCustomMixMode,
+                        new GUIContent(
+                            "Custom MixMode",
+                            "When disabled, the recommended MixMode is used according to the layer blend mode. Enable to specify a custom MixMode for each Mecanim layer."
+                        )
+                    );
 
-					EditorGUILayout.PropertyField(useCustomMixMode, new GUIContent("Custom MixMode",
-						"When disabled, the recommended MixMode is used according to the layer blend mode. Enable to specify a custom MixMode for each Mecanim layer."));
+                    if (
+                        useCustomMixMode.hasMultipleDifferentValues
+                        || useCustomMixMode.boolValue == true
+                    )
+                    {
+                        DrawLayerSettings();
+                        EditorGUILayout.Space();
+                    }
+                }
+            }
+        }
 
-					if (useCustomMixMode.hasMultipleDifferentValues || useCustomMixMode.boolValue == true) {
-						DrawLayerSettings();
-						EditorGUILayout.Space();
-					}
-				}
-			}
-		}
+        protected void AddRootMotionComponentIfEnabled()
+        {
+            foreach (Object t in targets)
+            {
+                Component component = t as Component;
+                Animator animator = component.GetComponent<Animator>();
+                if (animator != null && animator.applyRootMotion)
+                {
+                    if (component.GetComponent<SkeletonMecanimRootMotion>() == null)
+                    {
+                        _ = component.gameObject.AddComponent<SkeletonMecanimRootMotion>();
+                    }
+                }
+            }
+        }
 
-		protected void AddRootMotionComponentIfEnabled () {
-			foreach (var t in targets) {
-				var component = t as Component;
-				var animator = component.GetComponent<Animator>();
-				if (animator != null && animator.applyRootMotion) {
-					if (component.GetComponent<SkeletonMecanimRootMotion>() == null) {
-						component.gameObject.AddComponent<SkeletonMecanimRootMotion>();
-					}
-				}
-			}
-		}
+        protected void DrawLayerSettings()
+        {
+            string[] layerNames = GetLayerNames();
+            float widthLayerColumn = 140;
+            float widthMixColumn = 84;
 
-		protected void DrawLayerSettings () {
-			string[] layerNames = GetLayerNames();
-			float widthLayerColumn = 140;
-			float widthMixColumn = 84;
+            using (new GUILayout.HorizontalScope())
+            {
+                Rect rect = GUILayoutUtility.GetRect(
+                    EditorGUIUtility.currentViewWidth,
+                    EditorGUIUtility.singleLineHeight
+                );
+                rect.width = widthLayerColumn;
+                EditorGUI.LabelField(
+                    rect,
+                    SpineInspectorUtility.TempContent("Mecanim Layer"),
+                    EditorStyles.boldLabel
+                );
 
-			using (new GUILayout.HorizontalScope()) {
-				var rect = GUILayoutUtility.GetRect(EditorGUIUtility.currentViewWidth, EditorGUIUtility.singleLineHeight);
-				rect.width = widthLayerColumn;
-				EditorGUI.LabelField(rect, SpineInspectorUtility.TempContent("Mecanim Layer"), EditorStyles.boldLabel);
+                int savedIndent = EditorGUI.indentLevel;
+                EditorGUI.indentLevel = 0;
 
-				var savedIndent = EditorGUI.indentLevel;
-				EditorGUI.indentLevel = 0;
+                rect.position += new Vector2(rect.width, 0);
+                rect.width = widthMixColumn;
+                EditorGUI.LabelField(
+                    rect,
+                    SpineInspectorUtility.TempContent("Mix Mode"),
+                    EditorStyles.boldLabel
+                );
 
-				rect.position += new Vector2(rect.width, 0);
-				rect.width = widthMixColumn;
-				EditorGUI.LabelField(rect, SpineInspectorUtility.TempContent("Mix Mode"), EditorStyles.boldLabel);
+                EditorGUI.indentLevel = savedIndent;
+            }
 
-				EditorGUI.indentLevel = savedIndent;
-			}
+            using (new SpineInspectorUtility.IndentScope())
+            {
+                int layerCount = layerMixModes.arraySize;
+                for (int i = 0; i < layerCount; ++i)
+                {
+                    using (new GUILayout.HorizontalScope())
+                    {
+                        string layerName = i < layerNames.Length ? layerNames[i] : ("Layer " + i);
 
-			using (new SpineInspectorUtility.IndentScope()) {
-				int layerCount = layerMixModes.arraySize;
-				for (int i = 0; i < layerCount; ++i) {
-					using (new GUILayout.HorizontalScope()) {
-						string layerName = i < layerNames.Length ? layerNames[i] : ("Layer " + i);
+                        Rect rect = GUILayoutUtility.GetRect(
+                            EditorGUIUtility.currentViewWidth,
+                            EditorGUIUtility.singleLineHeight
+                        );
+                        rect.width = widthLayerColumn;
+                        _ = EditorGUI.PrefixLabel(
+                            rect,
+                            SpineInspectorUtility.TempContent(layerName)
+                        );
 
-						var rect = GUILayoutUtility.GetRect(EditorGUIUtility.currentViewWidth, EditorGUIUtility.singleLineHeight);
-						rect.width = widthLayerColumn;
-						EditorGUI.PrefixLabel(rect, SpineInspectorUtility.TempContent(layerName));
+                        int savedIndent = EditorGUI.indentLevel;
+                        EditorGUI.indentLevel = 0;
 
-						var savedIndent = EditorGUI.indentLevel;
-						EditorGUI.indentLevel = 0;
+                        SerializedProperty mixMode = layerMixModes.GetArrayElementAtIndex(i);
+                        rect.position += new Vector2(rect.width, 0);
+                        rect.width = widthMixColumn;
+                        _ = EditorGUI.PropertyField(rect, mixMode, GUIContent.none);
 
-						var mixMode = layerMixModes.GetArrayElementAtIndex(i);
-						rect.position += new Vector2(rect.width, 0);
-						rect.width = widthMixColumn;
-						EditorGUI.PropertyField(rect, mixMode, GUIContent.none);
+                        EditorGUI.indentLevel = savedIndent;
+                    }
+                }
+            }
+        }
 
-						EditorGUI.indentLevel = savedIndent;
-					}
-				}
-			}
-		}
+        protected string[] GetLayerNames()
+        {
+            int maxLayerCount = 0;
+            int maxIndex = 0;
+            for (int i = 0; i < targets.Length; ++i)
+            {
+                SkeletonMecanim skeletonMecanim = (SkeletonMecanim)targets[i];
+                int count = skeletonMecanim.Translator.MecanimLayerCount;
+                if (count > maxLayerCount)
+                {
+                    maxLayerCount = count;
+                    maxIndex = i;
+                }
+            }
+            if (maxLayerCount == 0)
+            {
+                return new string[0];
+            }
 
-		protected string[] GetLayerNames () {
-			int maxLayerCount = 0;
-			int maxIndex = 0;
-			for (int i = 0; i < targets.Length; ++i) {
-				var skeletonMecanim = ((SkeletonMecanim)targets[i]);
-				int count = skeletonMecanim.Translator.MecanimLayerCount;
-				if (count > maxLayerCount) {
-					maxLayerCount = count;
-					maxIndex = i;
-				}
-			}
-			if (maxLayerCount == 0)
-				return new string[0];
-			var skeletonMecanimMaxLayers = ((SkeletonMecanim)targets[maxIndex]);
-			return skeletonMecanimMaxLayers.Translator.MecanimLayerNames;
-		}
-	}
+            SkeletonMecanim skeletonMecanimMaxLayers = (SkeletonMecanim)targets[maxIndex];
+            return skeletonMecanimMaxLayers.Translator.MecanimLayerNames;
+        }
+    }
 }

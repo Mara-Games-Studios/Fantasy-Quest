@@ -34,7 +34,20 @@ namespace Transition.End
         private string nextScene = "NULL";
         private bool exitingGame = false;
 
+        private IFadingUI screenToShow;
+        private GameObject ScreenGameObject => (screenToShow as MonoBehaviour).gameObject;
+        private int currentFilling;
+
         public UnityEvent OnQuitGame;
+
+        private void Awake()
+        {
+            currentFilling = TransitionSettings.Instance.CurrentFilling;
+            List<SerializableInterface<IFadingUI>> uisToShow = TransitionSettings.Instance.UiToShow;
+            SerializableInterface<IFadingUI> uiToShow = uisToShow[currentFilling];
+            screenToShow = uiToShow.Instantiate(uiParent);
+            ScreenGameObject.SetActive(false);
+        }
 
         [Button]
         public void LoadScene(string nextScene)
@@ -59,6 +72,7 @@ namespace Transition.End
             if (exitingGame)
             {
                 Application.Quit();
+                return;
             }
             AsyncOperation loading = SceneManager.LoadSceneAsync(nextScene);
             loading.allowSceneActivation = false;
@@ -69,18 +83,16 @@ namespace Transition.End
 
         private IEnumerator LoadSceneRoutine(float duration, AsyncOperation loading)
         {
-            int currentFilling = TransitionSettings.Instance.CurrentFilling;
+            ScreenGameObject.SetActive(true);
             float fadeDuration = TransitionSettings.Instance.FadingDuration;
-            List<SerializableInterface<IFadingUI>> uisToShow = TransitionSettings.Instance.UiToShow;
+            TransitionSettings.Instance.CurrentFilling =
+                (currentFilling + 1) % TransitionSettings.Instance.UiToShow.Count;
 
-            SerializableInterface<IFadingUI> uiToShow = uisToShow[currentFilling];
-            TransitionSettings.Instance.CurrentFilling = (currentFilling + 1) % uisToShow.Count;
-            IFadingUI ui = uiToShow.Instantiate(uiParent);
-            ui.FadeIn(fadeDuration);
+            screenToShow.FadeIn(fadeDuration);
             loadingUI.Value.FadeIn(fadeDuration);
             yield return new WaitForSecondsRealtime(duration - fadeDuration);
 
-            ui.FadeOut(fadeDuration);
+            screenToShow.FadeOut(fadeDuration);
             loadingUI.Value.FadeOut(fadeDuration);
             yield return new WaitForSecondsRealtime(fadeDuration);
 

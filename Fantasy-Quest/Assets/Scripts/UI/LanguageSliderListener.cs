@@ -1,13 +1,14 @@
-﻿using System.Collections;
+﻿using Common.DI;
+using DI.Project.Services;
 using Sirenix.OdinInspector;
 using UI.Pages;
 using UnityEngine;
-using UnityEngine.Localization.Settings;
+using VContainer;
 
 namespace UI
 {
     [AddComponentMenu("Scripts/UI/UI.LanguageSliderListener")]
-    internal class LanguageSliderListener : MonoBehaviour
+    internal class LanguageSliderListener : InjectingMonoBehaviour
     {
         [Required]
         [SerializeField]
@@ -25,27 +26,8 @@ namespace UI
         [SerializeField]
         private CanvasGroup belarusian;
 
-        private bool active = false;
-
-        public void ChangeLocale(int localeID)
-        {
-            if (active)
-            {
-                return;
-            }
-            _ = StartCoroutine(SetLocale(localeID));
-        }
-
-        private IEnumerator SetLocale(int localeID)
-        {
-            active = true;
-            yield return LocalizationSettings.InitializationOperation;
-            LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[
-                localeID
-            ];
-            PlayerPrefs.SetInt("LocaleKey", localeID);
-            active = false;
-        }
+        [Inject]
+        private Localization localizationService;
 
         private void OnEnable()
         {
@@ -59,29 +41,36 @@ namespace UI
 
         private void Start()
         {
-            ChangeLocale(PlayerPrefs.GetInt("LocaleKey", 0));
-            int i = 0;
-            while (GetCurrent() != horizontalSlider.Current)
+            CanvasGroup locale = GetCurrentLocale();
+            if (!horizontalSlider.ElementsCanvasGroup.Contains(locale))
+            {
+                Debug.LogError("No needed locale variant");
+                return;
+            }
+
+            while (locale != horizontalSlider.Current)
             {
                 horizontalSlider.MoveRightImmediately();
-                i++;
-                if (i == 50)
-                {
-                    Debug.LogError("INFINITIE LOOP!");
-                    break;
-                }
             }
         }
 
         private void HorizontalSliderElementIndexChanged(int index)
         {
             CanvasGroup selected = horizontalSlider.ElementsCanvasGroup[index];
-            ChangeLocale(FromCanvasGroup(selected));
+            int localeId = FromCanvasGroup(selected);
+            _ = localizationService.SetLocale(localeId);
         }
 
-        public CanvasGroup GetCurrent()
+        public CanvasGroup GetCurrentLocale()
         {
-            return FromIndex(PlayerPrefs.GetInt("LocaleKey", 0));
+            int index = localizationService.GetLocaleID();
+            return index switch
+            {
+                0 => belarusian,
+                1 => english,
+                2 => russian,
+                _ => russian,
+            };
         }
 
         public int FromCanvasGroup(CanvasGroup canvasGroup)
@@ -90,29 +79,15 @@ namespace UI
             {
                 return 0;
             }
-
             if (canvasGroup == english)
             {
                 return 1;
             }
-
             if (canvasGroup == russian)
             {
                 return 2;
             }
-
             return 0;
-        }
-
-        public CanvasGroup FromIndex(int index)
-        {
-            return index switch
-            {
-                0 => belarusian,
-                1 => english,
-                2 => russian,
-                _ => russian,
-            };
         }
     }
 }

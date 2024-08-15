@@ -27,90 +27,117 @@
  * THE SPINE RUNTIMES, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *****************************************************************************/
 
-using UnityEditor;
 using Spine.Unity.Playables;
+using UnityEditor;
 using UnityEngine.Timeline;
 
-namespace Spine.Unity.Editor {
+namespace Spine.Unity.Editor
+{
+    [CustomEditor(typeof(SpineAnimationStateClip))]
+    [CanEditMultipleObjects]
+    public class SpineAnimationStateClipInspector : UnityEditor.Editor
+    {
+        protected SerializedProperty templateProp = null;
 
-	[CustomEditor(typeof(SpineAnimationStateClip))]
-	[CanEditMultipleObjects]
-	public class SpineAnimationStateClipInspector : UnityEditor.Editor {
+        protected class ClipInfo
+        {
+            public TimelineClip timelineClip;
+            public float previousBlendInDuration = -1.0f;
+            public float unblendedMixDuration = 0.2f;
+        }
 
-		protected SerializedProperty templateProp = null;
+        protected ClipInfo[] clipInfo = null;
 
-		protected class ClipInfo {
-			public TimelineClip timelineClip;
-			public float previousBlendInDuration = -1.0f;
-			public float unblendedMixDuration = 0.2f;
-		}
+        public void OnEnable()
+        {
+            templateProp = serializedObject.FindProperty("template");
+            System.Array.Resize(ref clipInfo, targets.Length);
+            for (int i = 0; i < targets.Length; ++i)
+            {
+                SpineAnimationStateClip clip = (SpineAnimationStateClip)targets[i];
+                clipInfo[i] = new ClipInfo { timelineClip = FindTimelineClip(clip) };
+            }
+        }
 
-		protected ClipInfo[] clipInfo = null;
+        public override void OnInspectorGUI()
+        {
+            serializedObject.Update();
+            _ = EditorGUILayout.PropertyField(templateProp);
 
-		public void OnEnable () {
-			templateProp = serializedObject.FindProperty("template");
-			System.Array.Resize(ref clipInfo, targets.Length);
-			for (int i = 0; i < targets.Length; ++i) {
-				var clip = (SpineAnimationStateClip)targets[i];
-				clipInfo[i] = new ClipInfo();
-				clipInfo[i].timelineClip = FindTimelineClip(clip);
-			}
-		}
+            for (int i = 0; i < targets.Length; ++i)
+            {
+                SpineAnimationStateClip targetClip = (SpineAnimationStateClip)targets[i];
+                if (targetClip.template.useBlendDuration)
+                {
+                    AdjustMixDuration(targetClip, clipInfo[i]);
+                }
+            }
 
-		public override void OnInspectorGUI () {
-			serializedObject.Update();
-			EditorGUILayout.PropertyField(templateProp);
+            _ = serializedObject.ApplyModifiedProperties();
+        }
 
-			for (int i = 0; i < targets.Length; ++i) {
-				var targetClip = (SpineAnimationStateClip)targets[i];
-				if (targetClip.template.useBlendDuration)
-					AdjustMixDuration(targetClip, clipInfo[i]);
-			}
+        protected void AdjustMixDuration(
+            SpineAnimationStateClip targetClip,
+            ClipInfo timelineClipInfo
+        )
+        {
+            if (timelineClipInfo == null)
+            {
+                return;
+            }
 
-			serializedObject.ApplyModifiedProperties();
-		}
+            TimelineClip timelineClip = timelineClipInfo.timelineClip;
+            if (timelineClip == null)
+            {
+                return;
+            }
 
-		protected void AdjustMixDuration(SpineAnimationStateClip targetClip, ClipInfo timelineClipInfo) {
+            float blendInDur = (float)timelineClip.blendInDuration;
+            bool isBlendingNow = blendInDur > 0;
+            bool wasBlendingBefore = timelineClipInfo.previousBlendInDuration > 0;
 
-			if (timelineClipInfo == null)
-				return;
+            if (isBlendingNow)
+            {
+                if (!wasBlendingBefore)
+                {
+                    timelineClipInfo.unblendedMixDuration = targetClip.template.mixDuration;
+                }
+                targetClip.template.mixDuration = blendInDur;
+                EditorUtility.SetDirty(targetClip);
+            }
+            else if (wasBlendingBefore)
+            {
+                targetClip.template.mixDuration = timelineClipInfo.unblendedMixDuration;
+                EditorUtility.SetDirty(targetClip);
+            }
+            timelineClipInfo.previousBlendInDuration = blendInDur;
+        }
 
-			var timelineClip = timelineClipInfo.timelineClip;
-			if (timelineClip == null)
-				return;
-
-			float blendInDur = (float)timelineClip.blendInDuration;
-			bool isBlendingNow = blendInDur > 0;
-			bool wasBlendingBefore = timelineClipInfo.previousBlendInDuration > 0;
-
-			if (isBlendingNow) {
-				if (!wasBlendingBefore) {
-					timelineClipInfo.unblendedMixDuration = targetClip.template.mixDuration;
-				}
-				targetClip.template.mixDuration = blendInDur;
-				EditorUtility.SetDirty(targetClip);
-			}
-			else if (wasBlendingBefore) {
-				targetClip.template.mixDuration = timelineClipInfo.unblendedMixDuration;
-				EditorUtility.SetDirty(targetClip);
-			}
-			timelineClipInfo.previousBlendInDuration = blendInDur;
-		}
-
-		protected TimelineClip FindTimelineClip(SpineAnimationStateClip targetClip) {
-			string[] guids = AssetDatabase.FindAssets("t:TimelineAsset");
-			foreach (string guid in guids) {
-				TimelineAsset timeline = (TimelineAsset)AssetDatabase.LoadAssetAtPath(AssetDatabase.GUIDToAssetPath(guid), typeof(TimelineAsset));
-				foreach (var track in timeline.GetOutputTracks()) {
-					foreach (var clip in track.GetClips()) {
-						if (clip.asset.GetType() == typeof(SpineAnimationStateClip) && object.ReferenceEquals(clip.asset, targetClip)) {
-							return clip;
-						}
-					}
-				}
-			}
-			return null;
-		}
-
-	}
+        protected TimelineClip FindTimelineClip(SpineAnimationStateClip targetClip)
+        {
+            string[] guids = AssetDatabase.FindAssets("t:TimelineAsset");
+            foreach (string guid in guids)
+            {
+                TimelineAsset timeline = (TimelineAsset)
+                    AssetDatabase.LoadAssetAtPath(
+                        AssetDatabase.GUIDToAssetPath(guid),
+                        typeof(TimelineAsset)
+                    );
+                foreach (TrackAsset track in timeline.GetOutputTracks())
+                {
+                    foreach (TimelineClip clip in track.GetClips())
+                    {
+                        if (
+                            clip.asset.GetType() == typeof(SpineAnimationStateClip)
+                            && object.ReferenceEquals(clip.asset, targetClip)
+                        )
+                        {
+                            return clip;
+                        }
+                    }
+                }
+            }
+            return null;
+        }
+    }
 }

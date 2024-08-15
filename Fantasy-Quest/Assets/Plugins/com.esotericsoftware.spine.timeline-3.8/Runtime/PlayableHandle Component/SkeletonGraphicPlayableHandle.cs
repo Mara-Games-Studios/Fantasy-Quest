@@ -27,44 +27,46 @@
  * THE SPINE RUNTIMES, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *****************************************************************************/
 
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+
 //using UnityEngine.Playables;
 
-using Spine;
-using Spine.Unity;
-using Spine.Unity.Playables;
+namespace Spine.Unity.Playables
+{
+    [AddComponentMenu("Spine/Playables/SkeletonGraphic Playable Handle (Playables)")]
+    public class SkeletonGraphicPlayableHandle : SpinePlayableHandleBase
+    {
+        #region Inspector
+        public SkeletonGraphic skeletonGraphic;
 
-namespace Spine.Unity.Playables {
+#if UNITY_EDITOR
+        private void Reset()
+        {
+            InitializeReference();
+        }
 
-	[AddComponentMenu("Spine/Playables/SkeletonGraphic Playable Handle (Playables)")]
-	public class SkeletonGraphicPlayableHandle : SpinePlayableHandleBase {
-		#region Inspector
-		public SkeletonGraphic skeletonGraphic;
+        private void OnValidate()
+        {
+            InitializeReference();
+        }
+#endif
 
-		#if UNITY_EDITOR
-		void Reset () {
-			InitializeReference();
-		}
+        #endregion
 
-		void OnValidate () {
-			InitializeReference();
-		}
-		#endif
+        public override Skeleton Skeleton => skeletonGraphic.Skeleton;
+        public override SkeletonData SkeletonData => skeletonGraphic.Skeleton.Data;
 
-		#endregion
+        private void Awake()
+        {
+            InitializeReference();
+        }
 
-		public override Skeleton Skeleton {	get { return skeletonGraphic.Skeleton; } }
-		public override SkeletonData SkeletonData { get { return skeletonGraphic.Skeleton.Data; } }
-
-		void Awake () {
-			InitializeReference();
-		}
-
-		void InitializeReference () {
-			if (skeletonGraphic == null)
-				skeletonGraphic = GetComponent<SkeletonGraphic>();
-		}
-	}
+        private void InitializeReference()
+        {
+            if (skeletonGraphic == null)
+            {
+                skeletonGraphic = GetComponent<SkeletonGraphic>();
+            }
+        }
+    }
 }
