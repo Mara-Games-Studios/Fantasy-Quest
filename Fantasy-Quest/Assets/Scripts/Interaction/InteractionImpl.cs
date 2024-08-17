@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Audio;
+using Cat.Jump;
 using Configs;
 using Dialogue;
 using Interaction.Item;
@@ -149,12 +150,12 @@ namespace Interaction
 
         public void TransitionUp(InputAction.CallbackContext context)
         {
-            CastInterfaces<IJumpTransition>().ForEach(x => x.JumpUp());
+            CastInterfaces<IJumpTrigger>().ForEach(x => x.JumpUp());
         }
 
         public void TransitionDown(InputAction.CallbackContext context)
         {
-            CastInterfaces<IJumpTransition>().ForEach(x => x.JumpDown());
+            CastInterfaces<IJumpTrigger>().ForEach(x => x.JumpDown());
         }
 
         private List<T> CastInterfaces<T>(bool ignore = false)

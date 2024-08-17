@@ -1,9 +1,8 @@
-namespace Interaction.Item
+﻿namespace Cat.Jump
 {
-    internal interface IJumpTransition
+    internal interface IJumpTrigger
     {
         public void JumpUp();
-
         public void JumpDown();
     }
 }

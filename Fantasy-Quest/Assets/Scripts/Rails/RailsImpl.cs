@@ -10,10 +10,15 @@ namespace Rails
     [AddComponentMenu("Scripts/Rails/Rails")]
     internal class RailsImpl : MonoBehaviour
     {
+        public static float StartPointFloat = 0.01f;
+        public static float EndPointFloat = 0.99f;
+
         [ReadOnly]
         [SerializeField]
         private PathCreator pathCreator;
         public VertexPath Path => pathCreator.path;
+        public BezierPath BezierPath => pathCreator.bezierPath;
+        public PathCreator PathCreator => pathCreator;
 
         [ReadOnly]
         [SerializeField]
@@ -26,7 +31,7 @@ namespace Rails
         public float CurrentPosition
         {
             get => currentPosition;
-            set => currentPosition = Mathf.Clamp(value, 0.01f, 0.99f);
+            set => currentPosition = Mathf.Clamp(value, StartPointFloat, EndPointFloat);
         }
 
         private Coroutine rideCoroutine;

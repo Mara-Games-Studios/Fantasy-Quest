@@ -11,7 +11,7 @@ namespace Common.DI
         [Button]
         private void AddAllMarkedAutoInjectingGameObjects()
         {
-            InjectingMonoBehaviour[] founded = FindObjectsOfType<InjectingMonoBehaviour>();
+            InjectingMonoBehaviour[] founded = FindObjectsOfType<InjectingMonoBehaviour>(true);
             IEnumerable<GameObject> gameObjects = founded.Select(x => x.gameObject).Distinct();
             gameObjects = gameObjects.Where(x => x.scene == gameObject.scene);
             autoInjectGameObjects = autoInjectGameObjects.Concat(gameObjects).Distinct().ToList();
