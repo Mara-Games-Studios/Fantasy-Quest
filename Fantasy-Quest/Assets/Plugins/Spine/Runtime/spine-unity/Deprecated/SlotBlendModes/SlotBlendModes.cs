@@ -27,204 +27,289 @@
  * THE SPINE RUNTIMES, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *****************************************************************************/
 
+using System;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
 
-namespace Spine.Unity.Deprecated {
+namespace Spine.Unity.Deprecated
+{
+    /// <summary>
+    /// Deprecated. The spine-unity 3.7 runtime introduced SkeletonDataModifierAssets BlendModeMaterials which replaced SlotBlendModes. See the
+    /// <see href="http://esotericsoftware.com/spine-unity-skeletondatamodifierassets#BlendModeMaterials">SkeletonDataModifierAssets BlendModeMaterials documentation page</see> and
+    /// <see href="http://esotericsoftware.com/forum/Slot-blending-not-work-11281">this forum thread</see> for further information.
+    /// This class will be removed in the spine-unity 3.9 runtime.
+    /// </summary>
+    [Obsolete(
+        "The spine-unity 3.7 runtime introduced SkeletonDataModifierAssets BlendModeMaterials which replaced SlotBlendModes. Will be removed in spine-unity 3.9.",
+        false
+    )]
+    [DisallowMultipleComponent]
+    public class SlotBlendModes : MonoBehaviour
+    {
+        #region Internal Material Dictionary
+        public struct MaterialTexturePair
+        {
+            public Texture2D texture2D;
+            public Material material;
+        }
 
-	/// <summary>
-	/// Deprecated. The spine-unity 3.7 runtime introduced SkeletonDataModifierAssets BlendModeMaterials which replaced SlotBlendModes. See the
-	/// <see href="http://esotericsoftware.com/spine-unity-skeletondatamodifierassets#BlendModeMaterials">SkeletonDataModifierAssets BlendModeMaterials documentation page</see> and
-	/// <see href="http://esotericsoftware.com/forum/Slot-blending-not-work-11281">this forum thread</see> for further information.
-	/// This class will be removed in the spine-unity 3.9 runtime.
-	/// </summary>
-	[Obsolete("The spine-unity 3.7 runtime introduced SkeletonDataModifierAssets BlendModeMaterials which replaced SlotBlendModes. Will be removed in spine-unity 3.9.", false)]
-	[DisallowMultipleComponent]
-	public class SlotBlendModes : MonoBehaviour {
+        internal class MaterialWithRefcount
+        {
+            public Material materialClone;
+            public int refcount = 1;
 
-		#region Internal Material Dictionary
-		public struct MaterialTexturePair {
-			public Texture2D texture2D;
-			public Material material;
-		}
+            public MaterialWithRefcount(Material mat)
+            {
+                materialClone = mat;
+            }
+        }
 
-		internal class MaterialWithRefcount {
-			public Material materialClone;
-			public int refcount = 1;
+        private static Dictionary<MaterialTexturePair, MaterialWithRefcount> materialTable;
+        internal static Dictionary<MaterialTexturePair, MaterialWithRefcount> MaterialTable
+        {
+            get
+            {
+                materialTable ??= new Dictionary<MaterialTexturePair, MaterialWithRefcount>();
+                return materialTable;
+            }
+        }
 
-			public MaterialWithRefcount(Material mat) {
-				this.materialClone = mat;
-			}
-		}
-		static Dictionary<MaterialTexturePair, MaterialWithRefcount> materialTable;
-		internal static Dictionary<MaterialTexturePair, MaterialWithRefcount> MaterialTable {
-			get {
-				if (materialTable == null) materialTable = new Dictionary<MaterialTexturePair, MaterialWithRefcount>();
-				return materialTable;
-			}
-		}
+        internal struct SlotMaterialTextureTuple
+        {
+            public Slot slot;
+            public Texture2D texture2D;
+            public Material material;
 
-		internal struct SlotMaterialTextureTuple {
-			public Slot slot;
-			public Texture2D texture2D;
-			public Material material;
+            public SlotMaterialTextureTuple(Slot slot, Material material, Texture2D texture)
+            {
+                this.slot = slot;
+                this.material = material;
+                texture2D = texture;
+            }
+        }
 
-			public SlotMaterialTextureTuple(Slot slot, Material material, Texture2D texture) {
-				this.slot = slot;
-				this.material = material;
-				this.texture2D = texture;
-			}
-		}
+        internal static Material GetOrAddMaterialFor(Material materialSource, Texture2D texture)
+        {
+            if (materialSource == null || texture == null)
+            {
+                return null;
+            }
 
-		internal static Material GetOrAddMaterialFor(Material materialSource, Texture2D texture) {
-			if (materialSource == null || texture == null) return null;
+            Dictionary<MaterialTexturePair, MaterialWithRefcount> mt = SlotBlendModes.MaterialTable;
+            MaterialTexturePair key = new() { material = materialSource, texture2D = texture };
+            if (!mt.TryGetValue(key, out MaterialWithRefcount matWithRefcount))
+            {
+                matWithRefcount = new MaterialWithRefcount(new Material(materialSource));
+                Material m = matWithRefcount.materialClone;
+                m.name = "(Clone)" + texture.name + "-" + materialSource.name;
+                m.mainTexture = texture;
+                mt[key] = matWithRefcount;
+            }
+            else
+            {
+                matWithRefcount.refcount++;
+            }
+            return matWithRefcount.materialClone;
+        }
 
-			var mt = SlotBlendModes.MaterialTable;
-			MaterialWithRefcount matWithRefcount;
-			var key = new MaterialTexturePair {	material = materialSource, texture2D = texture };
-			if (!mt.TryGetValue(key, out matWithRefcount)) {
-				matWithRefcount = new MaterialWithRefcount(new Material(materialSource));
-				var m = matWithRefcount.materialClone;
-				m.name = "(Clone)" + texture.name + "-" + materialSource.name;
-				m.mainTexture = texture;
-				mt[key] = matWithRefcount;
-			}
-			else {
-				matWithRefcount.refcount++;
-			}
-			return matWithRefcount.materialClone;
-		}
+        internal static MaterialWithRefcount GetExistingMaterialFor(
+            Material materialSource,
+            Texture2D texture
+        )
+        {
+            if (materialSource == null || texture == null)
+            {
+                return null;
+            }
 
-		internal static MaterialWithRefcount GetExistingMaterialFor(Material materialSource, Texture2D texture)
-		{
-			if (materialSource == null || texture == null) return null;
+            Dictionary<MaterialTexturePair, MaterialWithRefcount> mt = SlotBlendModes.MaterialTable;
+            MaterialTexturePair key = new() { material = materialSource, texture2D = texture };
+            if (!mt.TryGetValue(key, out MaterialWithRefcount matWithRefcount))
+            {
+                return null;
+            }
+            return matWithRefcount;
+        }
 
-			var mt = SlotBlendModes.MaterialTable;
-			MaterialWithRefcount matWithRefcount;
-			var key = new MaterialTexturePair { material = materialSource, texture2D = texture };
-			if (!mt.TryGetValue(key, out matWithRefcount)) {
-				return null;
-			}
-			return matWithRefcount;
-		}
+        internal static void RemoveMaterialFromTable(Material materialSource, Texture2D texture)
+        {
+            Dictionary<MaterialTexturePair, MaterialWithRefcount> mt = SlotBlendModes.MaterialTable;
+            MaterialTexturePair key = new() { material = materialSource, texture2D = texture };
+            _ = mt.Remove(key);
+        }
+        #endregion
 
-		internal static void RemoveMaterialFromTable(Material materialSource, Texture2D texture) {
-			var mt = SlotBlendModes.MaterialTable;
-			var key = new MaterialTexturePair { material = materialSource, texture2D = texture };
-			mt.Remove(key);
-		}
-		#endregion
+        #region Inspector
+        public Material multiplyMaterialSource;
+        public Material screenMaterialSource;
+        private Texture2D texture;
+        #endregion
 
-		#region Inspector
-		public Material multiplyMaterialSource;
-		public Material screenMaterialSource;
+        private SlotMaterialTextureTuple[] slotsWithCustomMaterial = new SlotMaterialTextureTuple[
+            0
+        ];
 
-		Texture2D texture;
-		#endregion
+        public bool Applied { get; private set; }
 
-		SlotMaterialTextureTuple[] slotsWithCustomMaterial = new SlotMaterialTextureTuple[0];
+        private void Start()
+        {
+            if (!Applied)
+            {
+                Apply();
+            }
+        }
 
-		public bool Applied { get; private set; }
+        private void OnDestroy()
+        {
+            if (Applied)
+            {
+                Remove();
+            }
+        }
 
-		void Start() {
-			if (!Applied) Apply();
-		}
+        public void Apply()
+        {
+            GetTexture();
+            if (texture == null)
+            {
+                return;
+            }
 
-		void OnDestroy() {
-			if (Applied) Remove();
-		}
+            SkeletonRenderer skeletonRenderer = GetComponent<SkeletonRenderer>();
+            if (skeletonRenderer == null)
+            {
+                return;
+            }
 
-		public void Apply() {
-			GetTexture();
-			if (texture == null) return;
+            Dictionary<Slot, Material> slotMaterials = skeletonRenderer.CustomSlotMaterials;
 
-			var skeletonRenderer = GetComponent<SkeletonRenderer>();
-			if (skeletonRenderer == null) return;
+            int numSlotsWithCustomMaterial = 0;
+            foreach (Slot s in skeletonRenderer.Skeleton.Slots)
+            {
+                switch (s.data.blendMode)
+                {
+                    case BlendMode.Multiply:
+                        if (multiplyMaterialSource != null)
+                        {
+                            slotMaterials[s] = GetOrAddMaterialFor(multiplyMaterialSource, texture);
+                            ++numSlotsWithCustomMaterial;
+                        }
+                        break;
+                    case BlendMode.Screen:
+                        if (screenMaterialSource != null)
+                        {
+                            slotMaterials[s] = GetOrAddMaterialFor(screenMaterialSource, texture);
+                            ++numSlotsWithCustomMaterial;
+                        }
+                        break;
+                }
+            }
+            slotsWithCustomMaterial = new SlotMaterialTextureTuple[numSlotsWithCustomMaterial];
+            int storedSlotIndex = 0;
+            foreach (Slot s in skeletonRenderer.Skeleton.Slots)
+            {
+                switch (s.data.blendMode)
+                {
+                    case BlendMode.Multiply:
+                        if (multiplyMaterialSource != null)
+                        {
+                            slotsWithCustomMaterial[storedSlotIndex++] =
+                                new SlotMaterialTextureTuple(s, multiplyMaterialSource, texture);
+                        }
+                        break;
+                    case BlendMode.Screen:
+                        if (screenMaterialSource != null)
+                        {
+                            slotsWithCustomMaterial[storedSlotIndex++] =
+                                new SlotMaterialTextureTuple(s, screenMaterialSource, texture);
+                        }
+                        break;
+                }
+            }
 
-			var slotMaterials = skeletonRenderer.CustomSlotMaterials;
+            Applied = true;
+            skeletonRenderer.LateUpdate();
+        }
 
-			int numSlotsWithCustomMaterial = 0;
-			foreach (var s in skeletonRenderer.Skeleton.Slots) {
-				switch (s.data.blendMode) {
-				case BlendMode.Multiply:
-					if (multiplyMaterialSource != null) {
-						slotMaterials[s] = GetOrAddMaterialFor(multiplyMaterialSource, texture);
-						++numSlotsWithCustomMaterial;
-					}
-					break;
-				case BlendMode.Screen:
-					if (screenMaterialSource != null) {
-						slotMaterials[s] = GetOrAddMaterialFor(screenMaterialSource, texture);
-						++numSlotsWithCustomMaterial;
-					}
-					break;
-				}
-			}
-			slotsWithCustomMaterial = new SlotMaterialTextureTuple[numSlotsWithCustomMaterial];
-			int storedSlotIndex = 0;
-			foreach (var s in skeletonRenderer.Skeleton.Slots) {
-				switch (s.data.blendMode) {
-				case BlendMode.Multiply:
-					if (multiplyMaterialSource != null) {
-						slotsWithCustomMaterial[storedSlotIndex++] = new SlotMaterialTextureTuple(s, multiplyMaterialSource, texture);
-					}
-					break;
-				case BlendMode.Screen:
-					if (screenMaterialSource != null) {
-						slotsWithCustomMaterial[storedSlotIndex++] = new SlotMaterialTextureTuple(s, screenMaterialSource, texture);
-					}
-					break;
-				}
-			}
+        public void Remove()
+        {
+            GetTexture();
+            if (texture == null)
+            {
+                return;
+            }
 
-			Applied = true;
-			skeletonRenderer.LateUpdate();
-		}
+            SkeletonRenderer skeletonRenderer = GetComponent<SkeletonRenderer>();
+            if (skeletonRenderer == null)
+            {
+                return;
+            }
 
-		public void Remove() {
-			GetTexture();
-			if (texture == null) return;
+            Dictionary<Slot, Material> slotMaterials = skeletonRenderer.CustomSlotMaterials;
 
-			var skeletonRenderer = GetComponent<SkeletonRenderer>();
-			if (skeletonRenderer == null) return;
+            foreach (SlotMaterialTextureTuple slotWithCustomMat in slotsWithCustomMaterial)
+            {
+                Slot s = slotWithCustomMat.slot;
+                Material storedMaterialSource = slotWithCustomMat.material;
+                Texture2D storedTexture = slotWithCustomMat.texture2D;
 
-			var slotMaterials = skeletonRenderer.CustomSlotMaterials;
+                MaterialWithRefcount matWithRefcount = GetExistingMaterialFor(
+                    storedMaterialSource,
+                    storedTexture
+                );
+                if (--matWithRefcount.refcount == 0)
+                {
+                    RemoveMaterialFromTable(storedMaterialSource, storedTexture);
+                }
+                // we don't want to remove slotMaterials[s] if it has been changed in the meantime.
+                if (slotMaterials.TryGetValue(s, out Material m))
+                {
+                    Material existingMat = matWithRefcount?.materialClone;
+                    if (Material.ReferenceEquals(m, existingMat))
+                    {
+                        _ = slotMaterials.Remove(s);
+                    }
+                }
+            }
+            slotsWithCustomMaterial = null;
 
-			foreach (var slotWithCustomMat in slotsWithCustomMaterial) {
+            Applied = false;
+            if (skeletonRenderer.valid)
+            {
+                skeletonRenderer.LateUpdate();
+            }
+        }
 
-				Slot s = slotWithCustomMat.slot;
-				Material storedMaterialSource = slotWithCustomMat.material;
-				Texture2D storedTexture = slotWithCustomMat.texture2D;
+        public void GetTexture()
+        {
+            if (texture == null)
+            {
+                SkeletonRenderer sr = GetComponent<SkeletonRenderer>();
+                if (sr == null)
+                {
+                    return;
+                }
 
-				var matWithRefcount = GetExistingMaterialFor(storedMaterialSource, storedTexture);
-				if (--matWithRefcount.refcount == 0) {
-					RemoveMaterialFromTable(storedMaterialSource, storedTexture);
-				}
-				// we don't want to remove slotMaterials[s] if it has been changed in the meantime.
-				Material m;
-				if (slotMaterials.TryGetValue(s, out m)) {
-					var existingMat = matWithRefcount == null ? null : matWithRefcount.materialClone;
-					if (Material.ReferenceEquals(m, existingMat)) {
-						slotMaterials.Remove(s);
-					}
-				}
-			}
-			slotsWithCustomMaterial = null;
+                SkeletonDataAsset sda = sr.skeletonDataAsset;
+                if (sda == null)
+                {
+                    return;
+                }
 
-			Applied = false;
-			if (skeletonRenderer.valid) skeletonRenderer.LateUpdate();
-		}
+                AtlasAssetBase aa = sda.atlasAssets[0];
+                if (aa == null)
+                {
+                    return;
+                }
 
-		public void GetTexture() {
-			if (texture == null) {
-				var sr = GetComponent<SkeletonRenderer>(); if (sr == null) return;
-				var sda = sr.skeletonDataAsset; if (sda == null) return;
-				var aa = sda.atlasAssets[0]; if (aa == null) return;
-				var am = aa.PrimaryMaterial; if (am == null) return;
-				texture = am.mainTexture as Texture2D;
-			}
-		}
+                Material am = aa.PrimaryMaterial;
+                if (am == null)
+                {
+                    return;
+                }
 
-	}
+                texture = am.mainTexture as Texture2D;
+            }
+        }
+    }
 }

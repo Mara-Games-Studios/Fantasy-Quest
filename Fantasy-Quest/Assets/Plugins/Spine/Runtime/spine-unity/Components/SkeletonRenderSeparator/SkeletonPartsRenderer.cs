@@ -29,123 +29,164 @@
 
 using UnityEngine;
 
-namespace Spine.Unity {
-	[RequireComponent(typeof(MeshRenderer), typeof(MeshFilter))]
-	[HelpURL("http://esotericsoftware.com/spine-unity#SkeletonRenderSeparator")]
-	public class SkeletonPartsRenderer : MonoBehaviour {
+namespace Spine.Unity
+{
+    [RequireComponent(typeof(MeshRenderer), typeof(MeshFilter))]
+    [HelpURL("http://esotericsoftware.com/spine-unity#SkeletonRenderSeparator")]
+    public class SkeletonPartsRenderer : MonoBehaviour
+    {
+        #region Properties
+        private MeshGenerator meshGenerator;
+        public MeshGenerator MeshGenerator
+        {
+            get
+            {
+                LazyIntialize();
+                return meshGenerator;
+            }
+        }
 
-		#region Properties
-		MeshGenerator meshGenerator;
-		public MeshGenerator MeshGenerator {
-			get {
-				LazyIntialize();
-				return meshGenerator;
-			}
-		}
+        private MeshRenderer meshRenderer;
+        public MeshRenderer MeshRenderer
+        {
+            get
+            {
+                LazyIntialize();
+                return meshRenderer;
+            }
+        }
 
-		MeshRenderer meshRenderer;
-		public MeshRenderer MeshRenderer {
-			get {
-				LazyIntialize();
-				return meshRenderer;
-			}
-		}
+        private MeshFilter meshFilter;
+        public MeshFilter MeshFilter
+        {
+            get
+            {
+                LazyIntialize();
+                return meshFilter;
+            }
+        }
+        #endregion
 
-		MeshFilter meshFilter;
-		public MeshFilter MeshFilter {
-			get {
-				LazyIntialize();
-				return meshFilter;
-			}
-		}
-		#endregion
+        #region Callback Delegates
+        public delegate void SkeletonPartsRendererDelegate(
+            SkeletonPartsRenderer skeletonPartsRenderer
+        );
 
-		#region Callback Delegates
-		public delegate void SkeletonPartsRendererDelegate (SkeletonPartsRenderer skeletonPartsRenderer);
+        /// <summary>OnMeshAndMaterialsUpdated is called at the end of LateUpdate after the Mesh and
+        /// all materials have been updated.</summary>
+        public event SkeletonPartsRendererDelegate OnMeshAndMaterialsUpdated;
+        #endregion
 
-		/// <summary>OnMeshAndMaterialsUpdated is called at the end of LateUpdate after the Mesh and
-		/// all materials have been updated.</summary>
-		public event SkeletonPartsRendererDelegate OnMeshAndMaterialsUpdated;
-		#endregion
+        private MeshRendererBuffers buffers;
+        private SkeletonRendererInstruction currentInstructions = new();
 
-		MeshRendererBuffers buffers;
-		SkeletonRendererInstruction currentInstructions = new SkeletonRendererInstruction();
+        private void LazyIntialize()
+        {
+            if (buffers == null)
+            {
+                buffers = new MeshRendererBuffers();
+                buffers.Initialize();
 
+                if (meshGenerator != null)
+                {
+                    return;
+                }
 
-		void LazyIntialize () {
-			if (buffers == null) {
-				buffers = new MeshRendererBuffers();
-				buffers.Initialize();
+                meshGenerator = new MeshGenerator();
+                meshFilter = GetComponent<MeshFilter>();
+                meshRenderer = GetComponent<MeshRenderer>();
+                currentInstructions.Clear();
+            }
+        }
 
-				if (meshGenerator != null) return;
-				meshGenerator = new MeshGenerator();
-				meshFilter = GetComponent<MeshFilter>();
-				meshRenderer = GetComponent<MeshRenderer>();
-				currentInstructions.Clear();
-			}
-		}
+        public void ClearMesh()
+        {
+            LazyIntialize();
+            meshFilter.sharedMesh = null;
+        }
 
-		public void ClearMesh () {
-			LazyIntialize();
-			meshFilter.sharedMesh = null;
-		}
+        public void RenderParts(
+            ExposedList<SubmeshInstruction> instructions,
+            int startSubmesh,
+            int endSubmesh
+        )
+        {
+            LazyIntialize();
 
-		public void RenderParts (ExposedList<SubmeshInstruction> instructions, int startSubmesh, int endSubmesh) {
-			LazyIntialize();
+            // STEP 1: Create instruction
+            MeshRendererBuffers.SmartMesh smartMesh = buffers.GetNextMesh();
+            currentInstructions.SetWithSubset(instructions, startSubmesh, endSubmesh);
+            bool updateTriangles = SkeletonRendererInstruction.GeometryNotEqual(
+                currentInstructions,
+                smartMesh.instructionUsed
+            );
 
-			// STEP 1: Create instruction
-			var smartMesh = buffers.GetNextMesh();
-			currentInstructions.SetWithSubset(instructions, startSubmesh, endSubmesh);
-			bool updateTriangles = SkeletonRendererInstruction.GeometryNotEqual(currentInstructions, smartMesh.instructionUsed);
+            // STEP 2: Generate mesh buffers.
+            SubmeshInstruction[] currentInstructionsSubmeshesItems = currentInstructions
+                .submeshInstructions
+                .Items;
+            meshGenerator.Begin();
+            if (currentInstructions.hasActiveClipping)
+            {
+                for (int i = 0; i < currentInstructions.submeshInstructions.Count; i++)
+                {
+                    meshGenerator.AddSubmesh(currentInstructionsSubmeshesItems[i], updateTriangles);
+                }
+            }
+            else
+            {
+                meshGenerator.BuildMeshWithArrays(currentInstructions, updateTriangles);
+            }
 
-			// STEP 2: Generate mesh buffers.
-			var currentInstructionsSubmeshesItems = currentInstructions.submeshInstructions.Items;
-			meshGenerator.Begin();
-			if (currentInstructions.hasActiveClipping) {
-				for (int i = 0; i < currentInstructions.submeshInstructions.Count; i++)
-					meshGenerator.AddSubmesh(currentInstructionsSubmeshesItems[i], updateTriangles);
-			} else {
-				meshGenerator.BuildMeshWithArrays(currentInstructions, updateTriangles);
-			}
+            buffers.UpdateSharedMaterials(currentInstructions.submeshInstructions);
 
-			buffers.UpdateSharedMaterials(currentInstructions.submeshInstructions);
+            // STEP 3: modify mesh.
+            Mesh mesh = smartMesh.mesh;
 
-			// STEP 3: modify mesh.
-			var mesh = smartMesh.mesh;
+            if (meshGenerator.VertexCount <= 0)
+            { // Clear an empty mesh
+                updateTriangles = false;
+                mesh.Clear();
+            }
+            else
+            {
+                meshGenerator.FillVertexData(mesh);
+                if (updateTriangles)
+                {
+                    meshGenerator.FillTriangles(mesh);
+                    meshRenderer.sharedMaterials = buffers.GetUpdatedSharedMaterialsArray();
+                }
+                else if (buffers.MaterialsChangedInLastUpdate())
+                {
+                    meshRenderer.sharedMaterials = buffers.GetUpdatedSharedMaterialsArray();
+                }
+                meshGenerator.FillLateVertexData(mesh);
+            }
 
-			if (meshGenerator.VertexCount <= 0) { // Clear an empty mesh
-				updateTriangles = false;
-				mesh.Clear();
-			} else {
-				meshGenerator.FillVertexData(mesh);
-				if (updateTriangles) {
-					meshGenerator.FillTriangles(mesh);
-					meshRenderer.sharedMaterials = buffers.GetUpdatedSharedMaterialsArray();
-				} else if (buffers.MaterialsChangedInLastUpdate()) {
-					meshRenderer.sharedMaterials = buffers.GetUpdatedSharedMaterialsArray();
-				}
-				meshGenerator.FillLateVertexData(mesh);
-			}
+            meshFilter.sharedMesh = mesh;
+            smartMesh.instructionUsed.Set(currentInstructions);
 
-			meshFilter.sharedMesh = mesh;
-			smartMesh.instructionUsed.Set(currentInstructions);
+            OnMeshAndMaterialsUpdated?.Invoke(this);
+        }
 
-			if (OnMeshAndMaterialsUpdated != null)
-				OnMeshAndMaterialsUpdated(this);
-		}
+        public void SetPropertyBlock(MaterialPropertyBlock block)
+        {
+            LazyIntialize();
+            meshRenderer.SetPropertyBlock(block);
+        }
 
-		public void SetPropertyBlock (MaterialPropertyBlock block) {
-			LazyIntialize();
-			meshRenderer.SetPropertyBlock(block);
-		}
+        public static SkeletonPartsRenderer NewPartsRendererGameObject(
+            Transform parent,
+            string name,
+            int sortingOrder = 0
+        )
+        {
+            GameObject go = new(name, typeof(MeshFilter), typeof(MeshRenderer));
+            go.transform.SetParent(parent, false);
+            SkeletonPartsRenderer returnComponent = go.AddComponent<SkeletonPartsRenderer>();
+            returnComponent.MeshRenderer.sortingOrder = sortingOrder;
 
-		public static SkeletonPartsRenderer NewPartsRendererGameObject (Transform parent, string name, int sortingOrder = 0) {
-			var go = new GameObject(name, typeof(MeshFilter), typeof(MeshRenderer));
-			go.transform.SetParent(parent, false);
-			var returnComponent = go.AddComponent<SkeletonPartsRenderer>();
-			returnComponent.MeshRenderer.sortingOrder = sortingOrder;
-
-			return returnComponent;
-		}
-	}
+            return returnComponent;
+        }
+    }
 }

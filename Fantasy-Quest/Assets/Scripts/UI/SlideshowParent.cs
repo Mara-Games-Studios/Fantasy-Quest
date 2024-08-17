@@ -74,6 +74,7 @@ namespace UI
 
         public void SkipCutscene(InputAction.CallbackContext context)
         {
+            playerInput.Disable();
             slides.ForEach(slide => slide.FadeOut());
             StopAllCoroutines();
             _ = StartCoroutine(ShowSlide(slides.Last()));

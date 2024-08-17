@@ -1,17 +1,22 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using Audio;
+using Common.DI;
+using DI.Project.Services;
 using Sirenix.OdinInspector;
 using Subtitles;
 using TNRD;
 using UnityEngine;
+using VContainer;
 
 namespace Dialogue
 {
     [RequireComponent(typeof(Collider2D))]
     [AddComponentMenu("Scripts/Dialogue/Dialogue.DialogueSpeaker")]
-    public class DialogueSpeaker : MonoBehaviour, ISpeakable
+    public class DialogueSpeaker : InjectingMonoBehaviour, ISpeakable
     {
+        [Inject]
+        private SoundsManager soundsManager;
+
         [InfoBox("CALLED BY 1")]
         [Header("Speech")]
         [SerializeField]
@@ -59,15 +64,13 @@ namespace Dialogue
             }
         }
 
-        protected virtual void Awake()
+        protected virtual void Start()
         {
-            SoundsManager soundsManager = GameObject.FindAnyObjectByType<SoundsManager>();
             Voice = new Voice(soundsManager, gameObject.name);
         }
 
         public void Speak()
         {
-            Debug.Log("Trying to talk");
             if (WasSaid)
             {
                 Say(AlternativeSpeech);

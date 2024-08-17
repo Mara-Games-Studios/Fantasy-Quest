@@ -27,26 +27,27 @@
  * THE SPINE RUNTIMES, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *****************************************************************************/
 
-using UnityEditor;
 using Spine.Unity.Playables;
-using UnityEngine.Timeline;
+using UnityEditor;
 
-namespace Spine.Unity.Editor {
+namespace Spine.Unity.Editor
+{
+    [CustomEditor(typeof(SpineAnimationStateTrack))]
+    [CanEditMultipleObjects]
+    public class SpineAnimationStateTrackInspector : UnityEditor.Editor
+    {
+        protected SerializedProperty trackIndexProperty = null;
 
-	[CustomEditor(typeof(SpineAnimationStateTrack))]
-	[CanEditMultipleObjects]
-	public class SpineAnimationStateTrackInspector : UnityEditor.Editor {
+        public void OnEnable()
+        {
+            trackIndexProperty = serializedObject.FindProperty("trackIndex");
+        }
 
-		protected SerializedProperty trackIndexProperty = null;
-
-		public void OnEnable () {
-			trackIndexProperty = serializedObject.FindProperty("trackIndex");
-		}
-
-		public override void OnInspectorGUI () {
-			serializedObject.Update();
-			EditorGUILayout.PropertyField(trackIndexProperty);
-			serializedObject.ApplyModifiedProperties();
-		}
-	}
+        public override void OnInspectorGUI()
+        {
+            serializedObject.Update();
+            _ = EditorGUILayout.PropertyField(trackIndexProperty);
+            _ = serializedObject.ApplyModifiedProperties();
+        }
+    }
 }

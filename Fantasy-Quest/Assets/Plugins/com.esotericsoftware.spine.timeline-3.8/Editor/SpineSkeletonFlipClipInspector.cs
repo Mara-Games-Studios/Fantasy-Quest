@@ -28,24 +28,25 @@
  *****************************************************************************/
 
 using UnityEditor;
-using Spine.Unity.Playables;
 
-namespace Spine.Unity.Editor {
+namespace Spine.Unity.Editor
+{
+    [CustomEditor(typeof(SpineSkeletonFlipClip))]
+    [CanEditMultipleObjects]
+    public class SpineSkeletonFlipClipInspector : UnityEditor.Editor
+    {
+        protected SerializedProperty templateProp = null;
 
-	[CustomEditor(typeof(SpineSkeletonFlipClip))]
-	[CanEditMultipleObjects]
-	public class SpineSkeletonFlipClipInspector : UnityEditor.Editor {
+        public void OnEnable()
+        {
+            templateProp = serializedObject.FindProperty("template");
+        }
 
-		protected SerializedProperty templateProp = null;
-
-		public void OnEnable () {
-			templateProp = serializedObject.FindProperty("template");
-		}
-
-		public override void OnInspectorGUI () {
-			serializedObject.Update();
-			EditorGUILayout.PropertyField(templateProp);
-			serializedObject.ApplyModifiedProperties();
-		}
-	}
+        public override void OnInspectorGUI()
+        {
+            serializedObject.Update();
+            _ = EditorGUILayout.PropertyField(templateProp);
+            _ = serializedObject.ApplyModifiedProperties();
+        }
+    }
 }

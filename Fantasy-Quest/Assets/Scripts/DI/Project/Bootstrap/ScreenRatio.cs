@@ -1,11 +1,15 @@
 ﻿using UnityEngine;
+using VContainer;
+using VContainer.Unity;
 
-namespace Utils
+namespace DI.Project.Bootstrap
 {
-    [AddComponentMenu("Scripts/Utils/Utils.ScreenRatioSetter")]
-    internal class ScreenRatioSetter : MonoBehaviour
+    public class ScreenRatio : IInitializable
     {
-        private void Start()
+        [Preserve]
+        public ScreenRatio() { }
+
+        public void Initialize()
         {
             QualitySettings.vSyncCount = 1;
             SetRatio(16, 9);

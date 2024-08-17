@@ -31,36 +31,60 @@
 
 using UnityEngine;
 
-namespace Spine.Unity {
-	[CreateAssetMenu(menuName = "Spine/Animation Reference Asset", order = 100)]
-	public class AnimationReferenceAsset : ScriptableObject, IHasSkeletonDataAsset {
-		const bool QuietSkeletonData = true;
+namespace Spine.Unity
+{
+    [CreateAssetMenu(menuName = "Spine/Animation Reference Asset", order = 100)]
+    public class AnimationReferenceAsset : ScriptableObject, IHasSkeletonDataAsset
+    {
+        private const bool QuietSkeletonData = true;
 
-		[SerializeField] protected SkeletonDataAsset skeletonDataAsset;
-		[SerializeField, SpineAnimation] protected string animationName;
-		private Animation animation;
+        [SerializeField]
+        protected SkeletonDataAsset skeletonDataAsset;
 
-		public SkeletonDataAsset SkeletonDataAsset { get { return skeletonDataAsset; } }
+        [SerializeField, SpineAnimation]
+        protected string animationName;
+        private Animation animation;
 
-		public Animation Animation {
-			get {
-				#if AUTOINIT_SPINEREFERENCE
-				if (animation == null)
-					Initialize();
-				#endif
+        public SkeletonDataAsset SkeletonDataAsset => skeletonDataAsset;
 
-				return animation;
-			}
-		}
+        public Animation Animation
+        {
+            get
+            {
+#if AUTOINIT_SPINEREFERENCE
+                if (animation == null)
+                {
+                    Initialize();
+                }
+#endif
 
-		public void Initialize () {
-			if (skeletonDataAsset == null) return;
-			this.animation = skeletonDataAsset.GetSkeletonData(AnimationReferenceAsset.QuietSkeletonData).FindAnimation(animationName);
-			if (this.animation == null) Debug.LogWarningFormat("Animation '{0}' not found in SkeletonData : {1}.", animationName, skeletonDataAsset.name);
-		}
+                return animation;
+            }
+        }
 
-		public static implicit operator Animation (AnimationReferenceAsset asset) {
-			return asset.Animation;
-		}
-	}
+        public void Initialize()
+        {
+            if (skeletonDataAsset == null)
+            {
+                return;
+            }
+
+            animation = skeletonDataAsset
+                .GetSkeletonData(AnimationReferenceAsset.QuietSkeletonData)
+                .FindAnimation(animationName);
+            if (animation == null)
+            {
+                Debug.LogWarningFormat(
+                    "Animation '{0}' not found in SkeletonData : {1}.",
+                    animationName,
+                    skeletonDataAsset.name
+                );
+            }
+        }
+
+        public static implicit operator Animation(AnimationReferenceAsset asset)
+        {
+            return asset.Animation;
+        }
+    }
 }

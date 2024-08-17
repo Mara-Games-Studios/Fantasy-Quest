@@ -33,37 +33,41 @@
 
 #if TIMELINE_HAS_CLIPEDITOR_CLASS
 
-using UnityEditor;
-using Spine.Unity.Playables;
 using UnityEditor.Timeline;
 using UnityEngine.Timeline;
 
-namespace Spine.Unity.Editor {
+namespace Spine.Unity.Editor
+{
+    [CustomTimelineEditor(typeof(SpineSkeletonFlipClip))]
+    public class SpineSkeletonFlipClipEditor : ClipEditor
+    {
+        public override void OnCreate(TimelineClip clip, TrackAsset track, TimelineClip clonedFrom)
+        {
+            SetDisplayName(clip);
+        }
 
-	[CustomTimelineEditor(typeof(SpineSkeletonFlipClip))]
-	public class SpineSkeletonFlipClipEditor : ClipEditor {
+        public override void OnClipChanged(TimelineClip clip)
+        {
+            SetDisplayName(clip);
+        }
 
-		public override void OnCreate (TimelineClip clip, TrackAsset track, TimelineClip clonedFrom) {
-			SetDisplayName(clip);
-		}
-
-		public override void OnClipChanged (TimelineClip clip) {
-			SetDisplayName(clip);
-		}
-
-		protected void SetDisplayName(TimelineClip clip) {
-			var flipClip = (SpineSkeletonFlipClip)clip.asset;
-			if (flipClip != null) {
-				bool flipX = false, flipY = false;
-				var settings = flipClip.template;
-				if (settings != null) {
-					flipX = settings.flipX;
-					flipY = settings.flipY;
-				}
-				clip.displayName = "Flip" + (flipX ? " X" : "") + (flipY ? " Y" : "");
-			}
-		}
-	}
+        protected void SetDisplayName(TimelineClip clip)
+        {
+            SpineSkeletonFlipClip flipClip = (SpineSkeletonFlipClip)clip.asset;
+            if (flipClip != null)
+            {
+                bool flipX = false,
+                    flipY = false;
+                SpineSkeletonFlipBehaviour settings = flipClip.template;
+                if (settings != null)
+                {
+                    flipX = settings.flipX;
+                    flipY = settings.flipY;
+                }
+                clip.displayName = "Flip" + (flipX ? " X" : "") + (flipY ? " Y" : "");
+            }
+        }
+    }
 }
 
 #endif // TIMELINE_HAS_CLIPEDITOR_CLASS

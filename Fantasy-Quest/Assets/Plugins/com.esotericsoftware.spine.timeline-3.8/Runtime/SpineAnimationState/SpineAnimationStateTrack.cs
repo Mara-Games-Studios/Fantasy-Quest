@@ -31,18 +31,26 @@ using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.Timeline;
 
-namespace Spine.Unity.Playables {
-	[TrackColor(0.9960785f, 0.2509804f, 0.003921569f)]
-	[TrackClipType(typeof(SpineAnimationStateClip))]
-	[TrackBindingType(typeof(SkeletonAnimation))]
-	public class SpineAnimationStateTrack : TrackAsset {
-		public int trackIndex = 0;
+namespace Spine.Unity.Playables
+{
+    [TrackColor(0.9960785f, 0.2509804f, 0.003921569f)]
+    [TrackClipType(typeof(SpineAnimationStateClip))]
+    [TrackBindingType(typeof(SkeletonAnimation))]
+    public class SpineAnimationStateTrack : TrackAsset
+    {
+        public int trackIndex = 0;
 
-		public override Playable CreateTrackMixer(PlayableGraph graph, GameObject go, int inputCount) {
-			var scriptPlayable = ScriptPlayable<SpineAnimationStateMixerBehaviour>.Create(graph, inputCount);
-			var mixerBehaviour = scriptPlayable.GetBehaviour();
-			mixerBehaviour.trackIndex = this.trackIndex;
-			return scriptPlayable;
-		}
-	}
+        public override Playable CreateTrackMixer(
+            PlayableGraph graph,
+            GameObject go,
+            int inputCount
+        )
+        {
+            ScriptPlayable<SpineAnimationStateMixerBehaviour> scriptPlayable =
+                ScriptPlayable<SpineAnimationStateMixerBehaviour>.Create(graph, inputCount);
+            SpineAnimationStateMixerBehaviour mixerBehaviour = scriptPlayable.GetBehaviour();
+            mixerBehaviour.trackIndex = trackIndex;
+            return scriptPlayable;
+        }
+    }
 }

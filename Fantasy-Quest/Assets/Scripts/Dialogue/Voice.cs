@@ -1,5 +1,5 @@
 ﻿using System;
-using Audio;
+using DI.Project.Services;
 using UnityEngine;
 
 namespace Dialogue

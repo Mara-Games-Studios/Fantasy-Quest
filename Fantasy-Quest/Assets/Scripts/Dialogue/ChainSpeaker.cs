@@ -2,18 +2,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Audio;
 using Common;
+using Common.DI;
+using DI.Project.Services;
 using Sirenix.OdinInspector;
 using Subtitles;
 using TNRD;
 using UnityEngine;
+using VContainer;
 
 namespace Dialogue
 {
     [AddComponentMenu("Scripts/Dialogue/Dialogue.ChainSpeaker")]
-    internal class ChainSpeaker : MonoBehaviour
+    internal class ChainSpeaker : InjectingMonoBehaviour
     {
+        [Inject]
+        private SoundsManager soundsManager;
+
         [SerializeField]
         private List<Replica> replicas;
 
@@ -39,9 +44,8 @@ namespace Dialogue
             }
         }
 
-        private void Awake()
+        private void Start()
         {
-            SoundsManager soundsManager = GameObject.FindAnyObjectByType<SoundsManager>();
             voice = new(soundsManager, gameObject.name);
         }
 

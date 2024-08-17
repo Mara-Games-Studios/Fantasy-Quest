@@ -30,38 +30,33 @@
 using System;
 using UnityEngine;
 using UnityEngine.Playables;
-using UnityEngine.Timeline;
-using Spine;
-using Spine.Unity;
-using System.Collections.Generic;
 
-namespace Spine.Unity.Playables {
+namespace Spine.Unity.Playables
+{
+    [Serializable]
+    public class SpineAnimationStateBehaviour : PlayableBehaviour
+    {
+        public AnimationReferenceAsset animationReference;
+        public bool loop;
 
-	using Animation = Spine.Animation;
+        // Mix Properties
+        public bool customDuration = false;
+        public bool useBlendDuration = true;
 
-	[Serializable]
-	public class SpineAnimationStateBehaviour : PlayableBehaviour {
-		public AnimationReferenceAsset animationReference;
-		public bool loop;
+        [SerializeField]
+#pragma warning disable 414
+        private bool isInitialized = false; // required to read preferences values from editor side.
+#pragma warning restore 414
+        public float mixDuration = 0.1f;
+        public bool holdPrevious = false;
 
-		// Mix Properties
-		public bool customDuration = false;
-		public bool useBlendDuration = true;
-		[SerializeField]
-		#pragma warning disable 414
-		private bool isInitialized = false; // required to read preferences values from editor side.
-		#pragma warning restore 414
-		public float mixDuration = 0.1f;
-		public bool holdPrevious = false;
+        [Range(0, 1f)]
+        public float attachmentThreshold = 0.5f;
 
-		[Range(0, 1f)]
-		public float attachmentThreshold = 0.5f;
+        [Range(0, 1f)]
+        public float eventThreshold = 0.5f;
 
-		[Range(0, 1f)]
-		public float eventThreshold = 0.5f;
-
-		[Range(0, 1f)]
-		public float drawOrderThreshold = 0.5f;
-	}
-
+        [Range(0, 1f)]
+        public float drawOrderThreshold = 0.5f;
+    }
 }

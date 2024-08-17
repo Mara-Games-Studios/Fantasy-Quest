@@ -16,13 +16,13 @@ namespace Dialogue
         [SerializeField]
         private AnimationReferenceAsset talkAnimation;
 
-        protected override void Awake()
+        protected override void Start()
         {
             if (skeletonAnimation == null)
             {
                 Debug.LogError("There's no skeleton animation(Symon)\n");
             }
-            base.Awake();
+            base.Start();
         }
 
         public override void Stop()
