@@ -6,6 +6,8 @@ namespace Configs
     internal class SingletonScriptableObject<T> : ScriptableObject
         where T : SingletonScriptableObject<T>
     {
+        public virtual void FirstTryLoaded() { }
+
         private static Lazy<T> LazyInstance { get; set; } = new(GetScriptableObject);
         public static T Instance
         {
@@ -34,6 +36,7 @@ namespace Configs
                 );
                 return null;
             }
+            assets[0].FirstTryLoaded();
             return assets[0];
         }
     }

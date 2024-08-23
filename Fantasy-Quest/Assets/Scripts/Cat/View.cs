@@ -128,7 +128,10 @@ namespace Cat
         [Button]
         public void SetAnimation(string animation)
         {
-            skeletonAnimation.AnimationName = animation;
+            if (skeletonAnimation.AnimationName != animation)
+            {
+                _ = skeletonAnimation.AnimationState.SetAnimation(0, animation, true);
+            }
         }
     }
 }
