@@ -25,8 +25,8 @@ namespace Cat.Jump
     [Serializable]
     public struct PointedVector
     {
-        public float Height;
-        public Vector2 Position;
+        public Vector2 Time;
+        public Vector2 Value;
     }
 
     [Serializable]
@@ -35,9 +35,45 @@ namespace Cat.Jump
         [SerializeField]
         private List<PointedVector> values;
 
-        public Vector2 GetCurveValue(float height)
+        public Vector2 GetCurveValue(Vector2 point)
         {
-            return values[0].Position;
+            Vector2 result = Vector2.zero;
+
+            values = values.OrderBy(x => x.Time.x).ToList();
+            result.x = Evaluate(
+                values.Select(v => v.Time.x).ToList(),
+                values.Select(v => v.Value.x).ToList(),
+                values.Count,
+                point.x
+            );
+            result.y = Evaluate(
+                values.Select(v => v.Time.y).ToList(),
+                values.Select(v => v.Value.y).ToList(),
+                values.Count,
+                point.y
+            );
+            return result;
+        }
+
+        private float Evaluate(List<float> times, List<float> values, int count, float time)
+        {
+            for (int i = 0; i < count - 1; i++)
+            {
+                float l_time = times[i];
+                float r_time = times[i + 1];
+                if (l_time <= time && time <= r_time)
+                {
+                    float l_val = values[i];
+                    float r_val = values[i + 1];
+                    float norm_time = (time - l_time) / (r_time - l_time);
+                    return Mathf.Lerp(l_val, r_val, norm_time);
+                }
+            }
+
+            Debug.LogError(
+                $"Don't found needed value. Requested value {time}, bounds: {times.First()} -> {times.Last()}"
+            );
+            return 0;
         }
     }
 
@@ -116,7 +152,7 @@ namespace Cat.Jump
             Cat.Vector moveVector
         )
         {
-            Vector2 orCatPos = catPosition;
+            Vector2 absoluteCatPos = catPosition;
             catPosition += catPositionShift;
 
             // Perfect jump point
@@ -128,10 +164,11 @@ namespace Cat.Jump
             {
                 downMaxPoint.y -= heightDelta;
             }
-            RailsImpl targetRail = GetNearestToSegment(groundRails, maxPoint, downMaxPoint);
-            Vector3 targetPoint = targetRail.Path.GetClosestPointOnPath(maxPoint);
+            RailsImpl targetRail = GetNearestRailToSegment(groundRails, maxPoint, downMaxPoint);
+            Vector3 targetPoint = targetRail.GetClosestPointOnPath(maxPoint);
+            Vector2 jumpPoint = targetPoint - (Vector3)catPosition;
 
-            if (jumpDirection == JumpDirection.Down && orCatPos.y <= targetPoint.y)
+            if (jumpDirection == JumpDirection.Down && absoluteCatPos.y <= targetPoint.y)
             {
                 return new PrepareResult { Found = false };
             }
@@ -141,11 +178,14 @@ namespace Cat.Jump
 
             // Set end point
             BezierPath.MovePoint(0, Vector3.zero);
-            BezierPath.MovePoint(3, targetPoint - transform.position);
+            BezierPath.MovePoint(3, jumpPoint);
 
             // Set curve points
-            Vector2 start = startPointCurve.GetCurveValue(heightDelta);
-            Vector2 end = endPointCurve.GetCurveValue(heightDelta);
+            Vector2 normalized = jumpPoint / maxJumpPoint;
+            normalized.x = Mathf.Clamp01(Mathf.Abs(normalized.x));
+            normalized.y = Mathf.Clamp(normalized.y, -1, 1);
+            Vector2 start = startPointCurve.GetCurveValue(normalized);
+            Vector2 end = endPointCurve.GetCurveValue(normalized);
 
             if (moveVector is Cat.Vector.Left)
             {
@@ -166,7 +206,7 @@ namespace Cat.Jump
             };
         }
 
-        private RailsImpl GetNearestToSegment(
+        private RailsImpl GetNearestRailToSegment(
             List<RailsImpl> availableRails,
             Vector2 start,
             Vector2 end

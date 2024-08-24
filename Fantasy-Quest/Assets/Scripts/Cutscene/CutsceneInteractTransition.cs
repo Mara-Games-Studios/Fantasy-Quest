@@ -42,8 +42,13 @@ namespace Cutscene
         [SerializeField]
         private List<SoundPlayer> symonSpeech;
 
+        [SerializeField, ReadOnly]
         private bool isMilkEmpty = false;
+
+        [SerializeField, ReadOnly]
         private bool canCatInteract;
+
+        [SerializeField, ReadOnly]
         private bool canTalk = true;
 
         public void InteractByCat()

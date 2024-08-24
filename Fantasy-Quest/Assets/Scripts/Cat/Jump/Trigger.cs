@@ -80,14 +80,14 @@ namespace Cat.Jump
             isJumping = true;
             float previousTimeScale = catSkeleton.timeScale;
 
-            LockerSettings.Instance.LockAll();
+            LockerSettings.Instance.LockAll(this);
             catMovement.RemoveFromRails();
-            catMovement.SetOnRails(jumpPath.Rails, RailsImpl.StartPointFloat);
+            catMovement.SetOnRails(jumpPath.Rails, RailsImpl.MIN_TIME);
             SetAnimation();
 
             jumpPath.Rails.RideBodyByCurve(
-                RailsImpl.StartPointFloat,
-                RailsImpl.EndPointFloat,
+                RailsImpl.MIN_TIME,
+                RailsImpl.MAX_TIME,
                 jumpOptions.MoveCurve,
                 jumpOptions.Duration
             );
@@ -98,7 +98,7 @@ namespace Cat.Jump
                 prepareResult.DestinationRails,
                 prepareResult.DestinationRailsTime
             );
-            LockerSettings.Instance.UnlockAll();
+            LockerSettings.Instance.UnlockAll(this);
             catSkeleton.timeScale = previousTimeScale;
             jumpPath.StashPath();
             isJumping = false;
