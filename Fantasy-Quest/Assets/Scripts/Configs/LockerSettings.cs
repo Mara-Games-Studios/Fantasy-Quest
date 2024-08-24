@@ -24,18 +24,12 @@ namespace Configs
             public bool CatInteraction;
         }
 
+        [InlineProperty, HideLabel]
         public LockerApi Api;
 
-        [SerializeField, ReadOnly]
         private bool isDialogueBubbleLocked = false;
-
-        [SerializeField, ReadOnly]
         private bool isCatMovementLocked = false;
-
-        [SerializeField, ReadOnly]
         private bool isCatInteractionLocked = false;
-
-        [SerializeField, ReadOnly]
         private List<LockRequest> lockRequests = new();
 
         public bool IsDialogueBubbleLocked =>
