@@ -14,13 +14,13 @@ namespace TimelineTrack.BlackLineTrack
 
     internal class BlackLineClip : PlayableAsset
     {
-        public BlackLineBehaviour LineParams;
+        public BlackLineBehaviour LineProperties;
 
         public override Playable CreatePlayable(PlayableGraph graph, GameObject owner)
         {
             ScriptPlayable<BlackLineBehaviour> playable = ScriptPlayable<BlackLineBehaviour>.Create(
                 graph,
-                LineParams
+                LineProperties
             );
             return playable;
         }
