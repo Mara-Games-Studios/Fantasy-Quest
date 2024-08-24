@@ -10,8 +10,8 @@ namespace Rails
     [AddComponentMenu("Scripts/Rails/Rails")]
     internal class RailsImpl : MonoBehaviour
     {
-        public static float StartPointFloat = 0.01f;
-        public static float EndPointFloat = 0.99f;
+        public static float MIN_TIME = 0.0001f;
+        public static float MAX_TIME = 0.9999f;
 
         [ReadOnly]
         [SerializeField]
@@ -31,7 +31,7 @@ namespace Rails
         public float CurrentPosition
         {
             get => currentPosition;
-            set => currentPosition = Mathf.Clamp(value, StartPointFloat, EndPointFloat);
+            set => currentPosition = Mathf.Clamp(value, MIN_TIME, MAX_TIME);
         }
 
         private Coroutine rideCoroutine;
@@ -60,6 +60,12 @@ namespace Rails
                 return;
             }
             Gizmos.DrawLine(Path.GetPointAtTime(CurrentPosition), body.position);
+        }
+
+        public Vector2 GetClosestPointOnPath(Vector2 point)
+        {
+            float time = Path.GetClosestTimeOnPath(point);
+            return Path.GetPointAtTime(Mathf.Clamp(time, MIN_TIME, MAX_TIME));
         }
 
         [Title("Debug buttons for testing")]
