@@ -35,6 +35,9 @@ namespace Audio
         private AudioSource audioSource;
         public AudioSource AudioSource => audioSource;
 
+        private bool isClipPlaying = false;
+        public bool IsClipPLaying => isClipPlaying;
+
         public AudioClip AudioClip
         {
             get => audioClip;
@@ -86,6 +89,7 @@ namespace Audio
         [Button]
         public void PlayClip()
         {
+            isClipPlaying = true;
             audioSource.Play();
         }
 
@@ -104,6 +108,7 @@ namespace Audio
         [Button]
         public void StopClip()
         {
+            isClipPlaying = false;
             audioSource.Stop();
         }
     }
