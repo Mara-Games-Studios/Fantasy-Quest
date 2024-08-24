@@ -1,15 +1,20 @@
 using Cinemachine;
+using Common.DI;
 using Configs;
 using Cutscene;
 using Sirenix.OdinInspector;
 using Spine.Unity;
 using UnityEngine;
+using VContainer;
 
 namespace LevelSpecific.ForestEdge
 {
     [AddComponentMenu("Scripts/LevelSpecific/ForestEdge/LevelSpecific.ForestEdge.EndGoBack")]
-    internal class EndGoBack : MonoBehaviour
+    internal class EndGoBack : InjectingMonoBehaviour
     {
+        [Inject]
+        private LockerApi lockerSettings;
+
         [Header("Animation")]
         [SerializeField]
         private GameObject symonMovement;
@@ -64,7 +69,7 @@ namespace LevelSpecific.ForestEdge
 
             failedCutscene.StartCutscene();
 
-            LockerSettings.Instance.UnlockAll();
+            lockerSettings.Api.UnlockAll();
         }
     }
 }

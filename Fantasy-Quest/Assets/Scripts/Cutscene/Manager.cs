@@ -1,15 +1,20 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Common.DI;
 using Configs;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Playables;
+using VContainer;
 
 namespace Cutscene
 {
     [AddComponentMenu("Scripts/Cutscene/Cutscene.Manager")]
-    internal class Manager : MonoBehaviour
+    internal class Manager : InjectingMonoBehaviour
     {
+        [Inject]
+        private LockerApi lockerSettings;
+
         [ReadOnly]
         [SerializeField]
         private List<PlayableDirector> playableDirectors;
@@ -31,7 +36,7 @@ namespace Cutscene
                 )
             )
             {
-                LockerSettings.Instance.LockAll();
+                lockerSettings.Api.LockAll();
             }
         }
 

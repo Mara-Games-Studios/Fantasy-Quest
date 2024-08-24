@@ -17,6 +17,9 @@ namespace Scene.Gameplay
         [Inject]
         private DI.Project.Services.Cursor cursorController;
 
+        [Inject]
+        private LockerApi lockerSettings;
+
         [RequiredIn(PrefabKind.PrefabInstanceAndNonPrefabInstance)]
         [SerializeField]
         private Cutscene.Manager cutsceneManager;
@@ -63,7 +66,7 @@ namespace Scene.Gameplay
             cutsceneManager.Pause();
             soundsManager.PauseSound();
             settingsPage.ShowFromStart();
-            LockerSettings.Instance.LockAll(this);
+            lockerSettings.Api.LockAll(this);
 
             cursorController.UnLockCursor();
 
@@ -79,7 +82,7 @@ namespace Scene.Gameplay
             background.Hide(() =>
             {
                 pauseShowed = false;
-                LockerSettings.Instance.UnlockAll(this);
+                lockerSettings.Api.UnlockAll(this);
                 Time.timeScale = 1.0f;
                 cutsceneManager.LockFromSettings();
                 cutsceneManager.Resume();

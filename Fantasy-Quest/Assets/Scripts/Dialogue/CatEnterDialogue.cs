@@ -1,16 +1,21 @@
 using System.Collections;
 using Cat;
 using Cinemachine;
+using Common.DI;
 using Configs;
 using UnityEngine;
 using UnityEngine.Events;
 using Utils;
+using VContainer;
 
 namespace Dialogue
 {
     [AddComponentMenu("Scripts/Dialogue/Dialogue.CatEnterDialogue")]
-    internal class CatEnterDialogue : MonoBehaviour
+    internal class CatEnterDialogue : InjectingMonoBehaviour
     {
+        [Inject]
+        private LockerApi lockerSettings;
+
         [Header("Controllers")]
         private CinemachineVirtualCamera dialogueCamera;
 
@@ -44,7 +49,7 @@ namespace Dialogue
 
         public IEnumerator ListenToCompanion()
         {
-            LockerSettings.Instance.LockAll(this);
+            lockerSettings.Api.LockAll(this);
 
             float direction = companion.position.x - cat.position.x;
             if (direction < 0)
@@ -68,7 +73,7 @@ namespace Dialogue
             catSwitch.SetIdleAnimation();
             companionSwitch.SetIdleAnimation();
 
-            LockerSettings.Instance.UnlockAll(this);
+            lockerSettings.Api.UnlockAll(this);
         }
     }
 }

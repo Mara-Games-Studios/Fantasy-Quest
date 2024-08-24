@@ -1,4 +1,5 @@
 ﻿using System;
+using Common.DI;
 using Configs;
 using Cysharp.Threading.Tasks;
 using Rails;
@@ -6,6 +7,7 @@ using Sirenix.OdinInspector;
 using Spine;
 using Spine.Unity;
 using UnityEngine;
+using VContainer;
 
 namespace Cat.Jump
 {
@@ -19,8 +21,11 @@ namespace Cat.Jump
     }
 
     [AddComponentMenu("Scripts/Cat/Jump/Cat.Jump.Trigger")]
-    internal class Trigger : MonoBehaviour, IJumpTrigger
+    internal class Trigger : InjectingMonoBehaviour, IJumpTrigger
     {
+        [Inject]
+        private LockerApi lockerSettings;
+
         [RequiredIn(PrefabKind.InstanceInScene)]
         [SerializeField]
         private SkeletonAnimation catSkeleton;
@@ -80,7 +85,7 @@ namespace Cat.Jump
             isJumping = true;
             float previousTimeScale = catSkeleton.timeScale;
 
-            LockerSettings.Instance.LockAll(this);
+            lockerSettings.Api.LockAll(this);
             catMovement.RemoveFromRails();
             catMovement.SetOnRails(jumpPath.Rails, RailsImpl.MIN_TIME);
             SetAnimation();
@@ -98,7 +103,7 @@ namespace Cat.Jump
                 prepareResult.DestinationRails,
                 prepareResult.DestinationRailsTime
             );
-            LockerSettings.Instance.UnlockAll(this);
+            lockerSettings.Api.UnlockAll(this);
             catSkeleton.timeScale = previousTimeScale;
             jumpPath.StashPath();
             isJumping = false;

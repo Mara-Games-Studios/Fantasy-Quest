@@ -1,3 +1,4 @@
+using Configs;
 using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.Timeline;
@@ -9,6 +10,7 @@ namespace TimelineTrack.InteractionLockerTrack
     )]
     [TrackColor(0.88f, 0.45f, 0.12f)]
     [TrackClipType(typeof(LockerClip))]
+    [TrackBindingType(typeof(LockerSettings))]
     internal class LockerTrack : TrackAsset
     {
         public override Playable CreateTrackMixer(

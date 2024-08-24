@@ -1,13 +1,18 @@
 using System.Collections.Generic;
+using Common.DI;
 using Configs;
 using Interaction;
 using UnityEngine;
+using VContainer;
 
 namespace DialogueBubble
 {
     [AddComponentMenu("Scripts/DialogueBubble/DialogueBubble.Trigger")]
-    public class Trigger : MonoBehaviour
+    public class Trigger : InjectingMonoBehaviour
     {
+        [Inject]
+        private LockerApi lockerSettings;
+
         [SerializeField]
         private bool oneTimer = false;
 
@@ -19,7 +24,7 @@ namespace DialogueBubble
 
         private void OnTriggerEnter2D(Collider2D other)
         {
-            if (!LockerSettings.Instance.IsDialogueBubbleLocked)
+            if (!lockerSettings.Api.IsDialogueBubbleLocked)
             {
                 if (other.TryGetComponent(out InteractionImpl interaction))
                 {
@@ -37,7 +42,7 @@ namespace DialogueBubble
 
         private void OnTriggerExit2D(Collider2D other)
         {
-            if (!LockerSettings.Instance.IsDialogueBubbleLocked)
+            if (!lockerSettings.Api.IsDialogueBubbleLocked)
             {
                 if (other.TryGetComponent(out InteractionImpl _) && !oneTimer)
                 {

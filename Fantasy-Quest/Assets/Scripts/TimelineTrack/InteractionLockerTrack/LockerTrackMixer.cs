@@ -17,14 +17,17 @@ namespace TimelineTrack.InteractionLockerTrack
                 PlayableGraph graph = playable.GetGraph();
                 PlayableDirector director = graph.GetResolver() as PlayableDirector;
 
+                LockerSettings lockerSettings = playerData as LockerSettings;
+
                 float inputWeight = playable.GetInputWeight(i);
-                if (inputWeight > 0f && !LockerSettings.Instance.IsCatInteractionLocked)
+                bool isLockedByMe = lockerSettings.IsLockedBy(director);
+                if (inputWeight > 0f && !isLockedByMe)
                 {
-                    LockerSettings.Instance.LockAll(director);
+                    lockerSettings.LockAll(director);
                 }
-                else if (inputWeight == 0f)
+                else if (inputWeight == 0f && isLockedByMe)
                 {
-                    LockerSettings.Instance.UnlockAll(director);
+                    lockerSettings.UnlockAll(director);
                 }
             }
         }

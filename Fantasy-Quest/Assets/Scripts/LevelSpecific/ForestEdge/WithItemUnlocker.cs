@@ -1,13 +1,18 @@
+using Common.DI;
 using Configs;
 using Inventory;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using VContainer;
 
 namespace LevelSpecific.ForestEdge
 {
     [AddComponentMenu("Scripts/LevelSpecific/ForestEdge/LevelSpecific.ForestEdge.WithItemUnlocker")]
-    internal class WithItemUnlocker : MonoBehaviour
+    internal class WithItemUnlocker : InjectingMonoBehaviour
     {
+        [Inject]
+        private LockerApi lockerSettings;
+
         [SerializeField]
         private ItemTaker itemTaker;
 
@@ -16,7 +21,7 @@ namespace LevelSpecific.ForestEdge
         {
             if (itemTaker.TakenItem != null)
             {
-                LockerSettings.Instance.LockForCarryingItem();
+                lockerSettings.Api.LockForCarryingItem();
             }
         }
     }

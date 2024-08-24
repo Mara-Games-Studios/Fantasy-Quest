@@ -1,16 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
+using Common.DI;
 using Configs;
 using DG.Tweening;
 using Interaction;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using VContainer;
 
 namespace Hints
 {
     [AddComponentMenu("Scripts/Hints/Hints.ShowHints")]
-    internal class ShowHints : MonoBehaviour
+    internal class ShowHints : InjectingMonoBehaviour
     {
+        [Inject]
+        private LockerApi lockerSettings;
+
         [Header("Show Settings")]
         [SerializeField]
         private bool alwaysShowWithoutTimer = false;
@@ -50,7 +55,7 @@ namespace Hints
         private void OnTriggerEnter2D(Collider2D collision)
         {
             if (
-                !LockerSettings.Instance.IsDialogueBubbleLocked
+                !lockerSettings.Api.IsDialogueBubbleLocked
                 && (firstShowWithoutTimer || alwaysShowWithoutTimer)
             )
             {
@@ -60,7 +65,7 @@ namespace Hints
                     firstShowWithoutTimer = false;
                 }
             }
-            else if (!LockerSettings.Instance.IsDialogueBubbleLocked && !firstShowWithoutTimer)
+            else if (!lockerSettings.Api.IsDialogueBubbleLocked && !firstShowWithoutTimer)
             {
                 if (collision.TryGetComponent(out InteractionImpl _))
                 {
@@ -75,7 +80,7 @@ namespace Hints
 
         private void OnTriggerExit2D(Collider2D collision)
         {
-            if (!LockerSettings.Instance.IsDialogueBubbleLocked)
+            if (!lockerSettings.Api.IsDialogueBubbleLocked)
             {
                 if (collision.TryGetComponent(out InteractionImpl _))
                 {

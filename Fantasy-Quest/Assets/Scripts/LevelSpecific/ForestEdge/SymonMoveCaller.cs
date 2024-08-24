@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using Common.DI;
 using Configs;
 using Configs.Progression;
 using Cutscene;
@@ -6,12 +7,16 @@ using Dialogue;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Events;
+using VContainer;
 
 namespace LevelSpecific.ForestEdge
 {
     [AddComponentMenu("Scripts/LevelSpecific/ForestEdge/LevelSpecific.ForestEdge.SymonMoveCaller")]
-    internal class SymonMoveCaller : MonoBehaviour
+    internal class SymonMoveCaller : InjectingMonoBehaviour
     {
+        [Inject]
+        private LockerApi lockerSettings;
+
         [SerializeField]
         private Collider2D correctZone;
 
@@ -61,11 +66,6 @@ namespace LevelSpecific.ForestEdge
                 // Start cutscene
                 _ = StartCoroutine(GoToCutscene());
             }
-            //else
-            //{
-            //    // Just walk
-            //    _ = StartCoroutine(TravelToPoint());
-            //}
         }
 
         public void SendSymonToStartAfterCutscene()
@@ -75,7 +75,7 @@ namespace LevelSpecific.ForestEdge
 
         private IEnumerator GoToCutscene()
         {
-            LockerSettings.Instance.LockAll(this);
+            lockerSettings.Api.LockAll(this);
             ComingToBack?.Invoke();
             yield return explanationSpeak.Tell();
             yield return symonMovement.MoveToPoint(callPoint.position);
@@ -86,7 +86,7 @@ namespace LevelSpecific.ForestEdge
         private IEnumerator GoToStartPointAfterCutscene()
         {
             yield return symonMovement.MoveToStartPoint();
-            LockerSettings.Instance.UnlockAll(this);
+            lockerSettings.Api.UnlockAll(this);
         }
 
         public UnityEvent TravelledToPoint;

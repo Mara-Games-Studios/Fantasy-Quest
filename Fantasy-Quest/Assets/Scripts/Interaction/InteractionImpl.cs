@@ -3,19 +3,24 @@ using System.Collections.Generic;
 using System.Linq;
 using Audio;
 using Cat.Jump;
+using Common.DI;
 using Configs;
 using Dialogue;
 using Interaction.Item;
 using Spine.Unity;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using VContainer;
 
 namespace Interaction
 {
     [RequireComponent(typeof(Rigidbody2D))]
     [AddComponentMenu("Scripts/Interaction/Interaction")]
-    internal class InteractionImpl : MonoBehaviour
+    internal class InteractionImpl : InjectingMonoBehaviour
     {
+        [Inject]
+        private LockerApi lockerSettings;
+
         [SerializeField]
         private Rigidbody2D playerRigidBody;
 
@@ -88,7 +93,7 @@ namespace Interaction
             List<ISpeakable> speakers = CastInterfaces<ISpeakable>();
             List<ICarryable> carriers = CastInterfaces<ICarryable>();
             List<IInteractable> interactors = CastInterfaces<IInteractable>();
-            if (!LockerSettings.Instance.IsCatInteractionLocked)
+            if (!lockerSettings.Api.IsCatInteractionLocked)
             {
                 if (
                     (speakers.Count > 0 || carriers.Count > 0 || interactors.Count > 0) && canDoSmth
@@ -115,28 +120,28 @@ namespace Interaction
 
         private IEnumerator CatMeowingRoutine()
         {
-            if (!LockerSettings.Instance.IsCatInteractionLocked)
+            if (!lockerSettings.Api.IsCatInteractionLocked)
             {
                 canDoSmth = false;
-                LockerSettings.Instance.LockAllExceptBubble();
+                lockerSettings.Api.LockAllExceptBubble();
                 _ = catSkeleton.AnimationState.SetAnimation(0, canDoAnim, false);
                 canDoSound.PlayClip();
                 yield return new WaitForSeconds(canDoAnim.Animation.Duration);
                 canDoSmth = true;
-                LockerSettings.Instance.UnlockAll();
+                lockerSettings.Api.UnlockAll();
             }
         }
 
         private IEnumerator CatHissingRoutine()
         {
             canDoSmth = false;
-            LockerSettings.Instance.LockAllExceptBubble();
+            lockerSettings.Api.LockAllExceptBubble();
             _ = catSkeleton.AnimationState.SetAnimation(0, cantDoAnim, false);
             cantDoSound.PlayClip();
             yield return new WaitForSeconds(cantDoAnim.Animation.Duration);
             _ = catSkeleton.AnimationState.SetAnimation(0, idleAnim, false);
             canDoSmth = true;
-            LockerSettings.Instance.UnlockAll();
+            lockerSettings.Api.UnlockAll();
         }
 
         public void InteractCat(InputAction.CallbackContext context)
@@ -160,7 +165,7 @@ namespace Interaction
 
         private List<T> CastInterfaces<T>(bool ignore = false)
         {
-            if (LockerSettings.Instance.IsCatInteractionLocked && !ignore)
+            if (lockerSettings.Api.IsCatInteractionLocked && !ignore)
             {
                 return new List<T>();
             }

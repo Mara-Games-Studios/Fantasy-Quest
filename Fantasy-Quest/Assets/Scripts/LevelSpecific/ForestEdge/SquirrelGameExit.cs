@@ -1,13 +1,18 @@
-﻿using Configs;
+﻿using Common.DI;
+using Configs;
 using Configs.Progression;
 using UnityEngine;
 using UnityEngine.Events;
+using VContainer;
 
 namespace LevelSpecific.ForestEdge
 {
     [AddComponentMenu("Scripts/LevelSpecific/ForestEdge/LevelSpecific.ForestEdge.SquirrelGameExit")]
-    internal class SquirrelGameExit : MonoBehaviour
+    internal class SquirrelGameExit : InjectingMonoBehaviour
     {
+        [Inject]
+        private LockerApi lockerSettings;
+
         public UnityEvent PassedFirstTime;
         public UnityEvent PassedFirstTimeAfterFade;
         private bool first = true;
@@ -40,7 +45,7 @@ namespace LevelSpecific.ForestEdge
         {
             if (exitManual)
             {
-                LockerSettings.Instance.UnlockAll();
+                lockerSettings.Api.UnlockAll();
                 exitManual = false;
             }
         }

@@ -1,4 +1,5 @@
 ﻿using Common.DI;
+using Configs;
 using DI.Project.Bootstrap;
 using DI.Project.Services;
 using Sirenix.OdinInspector;
@@ -15,6 +16,10 @@ namespace DI.Project
         [SerializeField]
         private SoundsManager soundsManager;
 
+        [Required]
+        [SerializeField]
+        private LockerSettings lockerSettings;
+
         protected override void Configure(IContainerBuilder builder)
         {
             builder.UseEntryPoints(
@@ -22,11 +27,13 @@ namespace DI.Project
                 {
                     _ = entryPoints.Add<Bootstrap.Localization>();
                     _ = entryPoints.Add<ScreenRatio>();
+                    _ = entryPoints.Add<LockerSettingsCleaner>();
                 }
             );
 
             _ = builder.Register<Services.Cursor>(Lifetime.Singleton);
             _ = builder.Register<Services.Localization>(Lifetime.Singleton);
+            _ = builder.RegisterInstance<LockerApi>(lockerSettings.Api);
 
             _ = builder.RegisterComponent(soundsManager);
         }

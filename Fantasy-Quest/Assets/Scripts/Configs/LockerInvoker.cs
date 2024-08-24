@@ -1,11 +1,16 @@
-﻿using Sirenix.OdinInspector;
+﻿using Common.DI;
+using Sirenix.OdinInspector;
 using UnityEngine;
+using VContainer;
 
 namespace Configs
 {
     [AddComponentMenu("Scripts/Configs/Configs.LockerInvoker")]
-    internal class LockerInvoker : MonoBehaviour
+    internal class LockerInvoker : InjectingMonoBehaviour
     {
+        [Inject]
+        private LockerApi lockerSettings;
+
         [SerializeField]
         private bool invokeLockAllOnStart = false;
 
@@ -27,13 +32,13 @@ namespace Configs
         [Button]
         public void LockAll()
         {
-            LockerSettings.Instance.LockAll();
+            lockerSettings.Api.LockAll();
         }
 
         [Button]
         public void UnLockAll()
         {
-            LockerSettings.Instance.UnlockAll();
+            lockerSettings.Api.UnlockAll();
         }
     }
 }

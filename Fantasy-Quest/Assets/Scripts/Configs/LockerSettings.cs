@@ -6,8 +6,14 @@ using UnityEngine;
 
 namespace Configs
 {
+    [Serializable]
+    public class LockerApi
+    {
+        public LockerSettings Api;
+    }
+
     [CreateAssetMenu(fileName = "Locker Settings", menuName = "Settings/Create Locker Settings")]
-    internal class LockerSettings : SingletonScriptableObject<LockerSettings>
+    public class LockerSettings : ScriptableObject
     {
         [Serializable]
         private class LockRequest
@@ -18,11 +24,18 @@ namespace Configs
             public bool CatInteraction;
         }
 
+        public LockerApi Api;
+
+        [SerializeField, ReadOnly]
         private bool isDialogueBubbleLocked = false;
+
+        [SerializeField, ReadOnly]
         private bool isCatMovementLocked = false;
+
+        [SerializeField, ReadOnly]
         private bool isCatInteractionLocked = false;
 
-        [SerializeField]
+        [SerializeField, ReadOnly]
         private List<LockRequest> lockRequests = new();
 
         public bool IsDialogueBubbleLocked =>
@@ -32,18 +45,12 @@ namespace Configs
         public bool IsCatInteractionLocked =>
             lockRequests.Any(x => x.CatInteraction) || isCatInteractionLocked;
 
-        private string Info =>
-            $"IsDialogueBubbleLocked {IsDialogueBubbleLocked}\n"
-            + $"IsCatMovementLocked {IsCatMovementLocked}\n"
-            + $"isCatInteractionLocked {IsCatInteractionLocked}";
-
-        public override void FirstTryLoaded()
+        public void Initialize()
         {
             lockRequests = new();
         }
 
         [Button]
-        [InfoBox("@Info")]
         public void LockAll()
         {
             isDialogueBubbleLocked = true;
@@ -102,6 +109,11 @@ namespace Configs
                 return;
             }
             _ = lockRequests.Remove(request);
+        }
+
+        public bool IsLockedBy(UnityEngine.Object locker)
+        {
+            return lockRequests.Any(x => x.Locker == locker);
         }
     }
 }
