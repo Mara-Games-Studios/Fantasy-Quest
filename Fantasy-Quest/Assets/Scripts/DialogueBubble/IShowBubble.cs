@@ -1,3 +1,5 @@
+using DI.Project.Services;
+
 namespace DialogueBubble
 {
     internal interface IShowBubble

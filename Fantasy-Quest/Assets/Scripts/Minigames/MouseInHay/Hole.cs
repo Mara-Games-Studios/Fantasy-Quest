@@ -44,16 +44,16 @@ namespace Minigames.MouseInHay
             HideMouse();
         }
 
-        public Result TryGrabMouse()
+        public bool TryGrabMouse()
         {
             OnHoleHit.Invoke();
             if (isShowed)
             {
                 _ = this.KillCoroutine(showCoroutine);
                 HideMouse();
-                return new SuccessResult();
+                return true;
             }
-            return new FailResult("No mouse in hole");
+            return false;
         }
 
         public void HideMouse()

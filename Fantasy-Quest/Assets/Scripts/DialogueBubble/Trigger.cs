@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Common.DI;
 using Configs;
+using DI.Project.Services;
 using Interaction;
 using UnityEngine;
 using VContainer;
@@ -12,6 +13,9 @@ namespace DialogueBubble
     {
         [Inject]
         private LockerApi lockerSettings;
+
+        [Inject]
+        private BubbleEventSystem bubbleEventSystem;
 
         [SerializeField]
         private bool oneTimer = false;
@@ -28,7 +32,7 @@ namespace DialogueBubble
             {
                 if (other.TryGetComponent(out InteractionImpl interaction))
                 {
-                    EventSystem.OnTriggerBubble?.Invoke(
+                    bubbleEventSystem.OnTriggerBubble?.Invoke(
                         new BubbleSettings
                         {
                             CanShow = true,
@@ -46,7 +50,7 @@ namespace DialogueBubble
             {
                 if (other.TryGetComponent(out InteractionImpl _) && !oneTimer)
                 {
-                    EventSystem.OnTriggerBubble?.Invoke(
+                    bubbleEventSystem.OnTriggerBubble?.Invoke(
                         new BubbleSettings
                         {
                             CanShow = false,
@@ -57,7 +61,7 @@ namespace DialogueBubble
                 }
                 else if (other.TryGetComponent(out InteractionImpl _) && oneTimer)
                 {
-                    EventSystem.OnTriggerBubble?.Invoke(
+                    bubbleEventSystem.OnTriggerBubble?.Invoke(
                         new BubbleSettings
                         {
                             CanShow = false,

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using Common;
 using DG.Tweening;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -76,8 +75,8 @@ namespace Minigames.MouseInHay
             yield return transform
                 .DOMove(hole.transform.position, MoveToHoleTime)
                 .WaitForCompletion();
-            Result result = hole.TryGrabMouse();
-            if (result.Success)
+            bool isGrabbed = hole.TryGrabMouse();
+            if (isGrabbed)
             {
                 scoreCounter.AddPoint();
                 SuccessMouseHit?.Invoke();

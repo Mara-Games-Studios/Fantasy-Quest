@@ -1,21 +1,27 @@
+using Common.DI;
+using DI.Project.Services;
 using UnityEngine;
+using VContainer;
 
 namespace DialogueBubble
 {
     [AddComponentMenu("Scripts/DialogueBubble/DialogueBubble.Controller")]
-    internal class Controller : MonoBehaviour
+    internal class Controller : InjectingMonoBehaviour
     {
+        [Inject]
+        private BubbleEventSystem bubbleEventSystem;
+
         [SerializeField]
         private GameObject dialogueBubble;
 
         private void OnEnable()
         {
-            EventSystem.OnTriggerBubble += SetBubbleShow;
+            bubbleEventSystem.OnTriggerBubble += SetBubbleShow;
         }
 
         private void OnDisable()
         {
-            EventSystem.OnTriggerBubble -= SetBubbleShow;
+            bubbleEventSystem.OnTriggerBubble -= SetBubbleShow;
         }
 
         private void SetBubbleShow(BubbleSettings settings)

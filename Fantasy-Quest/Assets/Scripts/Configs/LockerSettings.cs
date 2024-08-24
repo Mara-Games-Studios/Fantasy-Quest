@@ -12,7 +12,7 @@ namespace Configs
         public LockerSettings Api;
     }
 
-    [CreateAssetMenu(fileName = "Locker Settings", menuName = "Settings/Create Locker Settings")]
+    [CreateAssetMenu(fileName = "Locker Settings", menuName = "Settings/Locker Settings")]
     public class LockerSettings : ScriptableObject
     {
         [Serializable]

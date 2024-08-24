@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using DG.Tweening;
+using DI.Project.Services;
 using UnityEngine;
 
 namespace DialogueBubble
@@ -34,8 +35,8 @@ namespace DialogueBubble
         {
             if (needToBeHidden)
             {
-                Color bubbleColor = bubbleSpriteRenderer.GetComponent<SpriteRenderer>().color;
-                Color iconColor = iconSpriteRenderer.GetComponent<SpriteRenderer>().color;
+                Color bubbleColor = bubbleSpriteRenderer.color;
+                Color iconColor = iconSpriteRenderer.color;
 
                 bubbleColor.a = 0f;
                 iconColor.a = 0f;

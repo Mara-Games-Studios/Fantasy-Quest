@@ -33,6 +33,8 @@ namespace DI.Project
 
             _ = builder.Register<Services.Cursor>(Lifetime.Singleton);
             _ = builder.Register<Services.Localization>(Lifetime.Singleton);
+            _ = builder.Register<BubbleEventSystem>(Lifetime.Singleton);
+
             _ = builder.RegisterInstance<LockerApi>(lockerSettings.Api);
 
             _ = builder.RegisterComponent(soundsManager);
