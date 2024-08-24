@@ -82,12 +82,12 @@ namespace Cat.Jump
 
             LockerSettings.Instance.LockAll(this);
             catMovement.RemoveFromRails();
-            catMovement.SetOnRails(jumpPath.Rails, RailsImpl.StartPointFloat);
+            catMovement.SetOnRails(jumpPath.Rails, RailsImpl.MIN_TIME);
             SetAnimation();
 
             jumpPath.Rails.RideBodyByCurve(
-                RailsImpl.StartPointFloat,
-                RailsImpl.EndPointFloat,
+                RailsImpl.MIN_TIME,
+                RailsImpl.MAX_TIME,
                 jumpOptions.MoveCurve,
                 jumpOptions.Duration
             );

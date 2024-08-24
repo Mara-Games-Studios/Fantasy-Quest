@@ -29,8 +29,8 @@ namespace Cat
         private Point point;
 
         private RailsImpl rails;
-        public bool IsOnLeftEdge => rails.CurrentPosition < 0.01;
-        public bool IsOnRightEdge => rails.CurrentPosition > 0.99;
+        public bool IsOnLeftEdge => rails.CurrentPosition < RailsImpl.MIN_TIME;
+        public bool IsOnRightEdge => rails.CurrentPosition > RailsImpl.MAX_TIME;
 
         [SerializeField]
         private float speed;
