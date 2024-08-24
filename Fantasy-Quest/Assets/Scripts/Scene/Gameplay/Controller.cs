@@ -63,7 +63,7 @@ namespace Scene.Gameplay
             cutsceneManager.Pause();
             soundsManager.PauseSound();
             settingsPage.ShowFromStart();
-            LockerSettings.Instance.LockAll();
+            LockerSettings.Instance.LockAll(this);
 
             cursorController.UnLockCursor();
 
@@ -79,7 +79,7 @@ namespace Scene.Gameplay
             background.Hide(() =>
             {
                 pauseShowed = false;
-                LockerSettings.Instance.UnlockAll();
+                LockerSettings.Instance.UnlockAll(this);
                 Time.timeScale = 1.0f;
                 cutsceneManager.LockFromSettings();
                 cutsceneManager.Resume();

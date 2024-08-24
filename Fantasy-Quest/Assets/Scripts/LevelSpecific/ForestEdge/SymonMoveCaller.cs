@@ -75,7 +75,7 @@ namespace LevelSpecific.ForestEdge
 
         private IEnumerator GoToCutscene()
         {
-            LockerSettings.Instance.LockAll();
+            LockerSettings.Instance.LockAll(this);
             ComingToBack?.Invoke();
             yield return explanationSpeak.Tell();
             yield return symonMovement.MoveToPoint(callPoint.position);
@@ -86,7 +86,7 @@ namespace LevelSpecific.ForestEdge
         private IEnumerator GoToStartPointAfterCutscene()
         {
             yield return symonMovement.MoveToStartPoint();
-            LockerSettings.Instance.UnlockAll();
+            LockerSettings.Instance.UnlockAll(this);
         }
 
         public UnityEvent TravelledToPoint;

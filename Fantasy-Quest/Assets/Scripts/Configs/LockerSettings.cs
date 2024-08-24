@@ -46,17 +46,17 @@ namespace Configs
         [InfoBox("@Info")]
         public void LockAll()
         {
-            // isDialogueBubbleLocked = true;
-            //  isCatMovementLocked = true;
-            // isCatInteractionLocked = true;
+            isDialogueBubbleLocked = true;
+            isCatMovementLocked = true;
+            isCatInteractionLocked = true;
         }
 
         [Button]
         public void UnlockAll()
         {
-            // isDialogueBubbleLocked = false;
-            // isCatMovementLocked = false;
-            //isCatInteractionLocked = false;
+            isDialogueBubbleLocked = false;
+            isCatMovementLocked = false;
+            isCatInteractionLocked = false;
         }
 
         [Button]

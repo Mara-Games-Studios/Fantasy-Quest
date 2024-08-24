@@ -18,14 +18,13 @@ namespace TimelineTrack.InteractionLockerTrack
                 PlayableDirector director = graph.GetResolver() as PlayableDirector;
 
                 float inputWeight = playable.GetInputWeight(i);
-                if (inputWeight > 0f)
+                if (inputWeight > 0f && !LockerSettings.Instance.IsCatInteractionLocked)
                 {
                     LockerSettings.Instance.LockAll(director);
                 }
-                else
+                else if (inputWeight == 0f)
                 {
                     LockerSettings.Instance.UnlockAll(director);
-                    //LockerSettings.Instance.SetOwner(null);
                 }
             }
         }

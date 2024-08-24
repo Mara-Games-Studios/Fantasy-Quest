@@ -7,7 +7,7 @@ namespace TimelineTrack.InteractionLockerTrack
     [AddComponentMenu(
         "Scripts/TimelineTrack/InteractionLockerTrack/TimelineTrack.InteractionLockerTrack"
     )]
-    [TrackColor(0.74f, 0.33f, 0.85f)]
+    [TrackColor(0.88f, 0.45f, 0.12f)]
     [TrackClipType(typeof(LockerClip))]
     internal class LockerTrack : TrackAsset
     {

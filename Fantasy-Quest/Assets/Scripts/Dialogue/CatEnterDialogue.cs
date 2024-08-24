@@ -44,7 +44,7 @@ namespace Dialogue
 
         public IEnumerator ListenToCompanion()
         {
-            LockerSettings.Instance.LockAll();
+            LockerSettings.Instance.LockAll(this);
 
             float direction = companion.position.x - cat.position.x;
             if (direction < 0)
@@ -68,7 +68,7 @@ namespace Dialogue
             catSwitch.SetIdleAnimation();
             companionSwitch.SetIdleAnimation();
 
-            LockerSettings.Instance.UnlockAll();
+            LockerSettings.Instance.UnlockAll(this);
         }
     }
 }
