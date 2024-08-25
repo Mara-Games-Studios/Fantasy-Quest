@@ -73,6 +73,7 @@ namespace UI
         {
             playerInput.Disable();
             slides.ForEach(slide => slide.FadeOut());
+            slides.ForEach(slide => slide.StopChainSpeaker());
             StopAllCoroutines();
             _ = StartCoroutine(LastSlideWithSkip());
         }

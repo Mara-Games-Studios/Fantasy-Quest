@@ -7,15 +7,13 @@ using UnityEngine.UI;
 
 namespace UI
 {
-    [AddComponentMenu("Scripts/UI/UI.Slideshow")]
+    [AddComponentMenu("Scripts/UI/UI.Slide")]
     internal class Slide : MonoBehaviour
     {
-        [Header("Component")]
         [Required]
         [SerializeField]
         private Image slide;
 
-        [Header("Timing")]
         public float WaitBefore = 0.0f;
 
         public float HoldTime = 1.0f;
@@ -46,7 +44,6 @@ namespace UI
         private void OnEnable()
         {
             slide.color = new Color(slide.color.r, slide.color.g, slide.color.b, 0);
-            slide = GetComponent<Image>();
         }
 
         public void FadeIn()
@@ -77,10 +74,12 @@ namespace UI
             fadeTween.onComplete += onEnd;
         }
 
-        [Button]
-        public void GetComponentImage()
+        public void StopChainSpeaker()
         {
-            slide = GetComponent<Image>();
+            if (gameObject.activeSelf)
+            {
+                GetComponentInChildren<ChainSpeaker>().StopTelling();
+            }
         }
 
         [Button]
