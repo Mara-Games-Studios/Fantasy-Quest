@@ -2396,6 +2396,7 @@ MonoBehaviour:
   playOnStart: 0
   ignorePause: 0
   createOnThisPosition: 0
+  isClipPlaying: 0
 --- !u!1 &271566478
 GameObject:
   m_ObjectHideFlags: 0
@@ -2606,8 +2607,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 1
   m_ShadowVolumeIntensity: 0.869
   m_LocalBounds:
-    m_Center: {x: -1.6475501, y: -5.6289997, z: 0}
-    m_Extent: {x: 2.10815, y: 1.8309, z: 0}
+    m_Center: {x: -1.6423, y: -5.6256, z: 0}
+    m_Extent: {x: 2.1091, y: 1.8313, z: 0}
   m_PointLightInnerAngle: 359.6
   m_PointLightOuterAngle: 359.6
   m_PointLightInnerRadius: 2
@@ -2690,6 +2691,7 @@ MonoBehaviour:
   playOnStart: 0
   ignorePause: 0
   createOnThisPosition: 0
+  isClipPlaying: 0
 --- !u!114 &291099163
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2820,7 +2822,7 @@ PlayableDirector:
   - key: {fileID: 7241949480315080499, guid: 59e9b5446357e95469b1cc36afe54df4, type: 2}
     value: {fileID: 1041349922}
   - key: {fileID: 3404182572201653061, guid: 59e9b5446357e95469b1cc36afe54df4, type: 2}
-    value: {fileID: 1479972681942824263}
+    value: {fileID: 0}
   - key: {fileID: -2311013131146489449, guid: 59e9b5446357e95469b1cc36afe54df4, type: 2}
     value: {fileID: 84311742}
   - key: {fileID: 2776875735262271603, guid: 59e9b5446357e95469b1cc36afe54df4, type: 2}
@@ -2843,6 +2845,8 @@ PlayableDirector:
     value: {fileID: 271566480}
   - key: {fileID: 5557935406836903999, guid: 59e9b5446357e95469b1cc36afe54df4, type: 2}
     value: {fileID: 11400000, guid: 4c552f663c8ac264d9f53fc8accc92d3, type: 2}
+  - key: {fileID: 5340619925036099149, guid: 59e9b5446357e95469b1cc36afe54df4, type: 2}
+    value: {fileID: 498059925}
   m_ExposedReferences:
     m_References:
     - 566fc46b28e9a7846bc190f38f57ee43: {fileID: 0}
@@ -3358,6 +3362,7 @@ MonoBehaviour:
   playOnStart: 0
   ignorePause: 0
   createOnThisPosition: 0
+  isClipPlaying: 0
 --- !u!1001 &356808517
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3734,8 +3739,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 1
   m_ShadowVolumeIntensity: 0.869
   m_LocalBounds:
-    m_Center: {x: -1.3475001, y: -5.5634, z: 0}
-    m_Extent: {x: 1.7602, y: 1.92, z: 0}
+    m_Center: {x: -1.3482001, y: -5.56905, z: 0}
+    m_Extent: {x: 1.7556, y: 1.92645, z: 0}
   m_PointLightInnerAngle: 359.6
   m_PointLightOuterAngle: 359.6
   m_PointLightInnerRadius: 2
@@ -5513,6 +5518,7 @@ MonoBehaviour:
   playOnStart: 0
   ignorePause: 0
   createOnThisPosition: 0
+  isClipPlaying: 0
 --- !u!1 &523796235
 GameObject:
   m_ObjectHideFlags: 0
@@ -6330,6 +6336,7 @@ MonoBehaviour:
   playOnStart: 0
   ignorePause: 0
   createOnThisPosition: 0
+  isClipPlaying: 0
 --- !u!114 &604893966 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3402555579230904323, guid: 0632c63fb65b1f340b1ae628fc7206cf, type: 3}
@@ -6926,7 +6933,7 @@ PlayableDirector:
   - key: {fileID: -5274574942413381506, guid: bc02affea331f0c4a8ece55d2e0b0df3, type: 2}
     value: {fileID: 84311745}
   - key: {fileID: -1500098584500805858, guid: bc02affea331f0c4a8ece55d2e0b0df3, type: 2}
-    value: {fileID: 1479972681942824263}
+    value: {fileID: 0}
   - key: {fileID: -6714942015857933744, guid: bc02affea331f0c4a8ece55d2e0b0df3, type: 2}
     value: {fileID: 84311747}
   - key: {fileID: 4195317424832436673, guid: bc02affea331f0c4a8ece55d2e0b0df3, type: 2}
@@ -7139,18 +7146,6 @@ MonoBehaviour:
   SlideshowEnded:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1945025022}
-        m_TargetAssemblyTypeName: UnityEngine.MonoBehaviour, UnityEngine
-        m_MethodName: StopAllCoroutines
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 1479972681942824262}
         m_TargetAssemblyTypeName: Cutscene.BlackLinesShower, Assembly-CSharp
         m_MethodName: Hide
@@ -7634,6 +7629,7 @@ MonoBehaviour:
   playOnStart: 0
   ignorePause: 0
   createOnThisPosition: 0
+  isClipPlaying: 0
 --- !u!1 &717319246
 GameObject:
   m_ObjectHideFlags: 0
@@ -9054,8 +9050,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 1
   m_ShadowVolumeIntensity: 0.869
   m_LocalBounds:
-    m_Center: {x: 0.46749997, y: -5.5858502, z: 0}
-    m_Extent: {x: 1.4553, y: 1.96235, z: 0}
+    m_Center: {x: 0.46359998, y: -5.59195, z: 0}
+    m_Extent: {x: 1.4718001, y: 1.96275, z: 0}
   m_PointLightInnerAngle: 359.6
   m_PointLightOuterAngle: 359.6
   m_PointLightInnerRadius: 2
@@ -10567,7 +10563,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6248883267310956832, guid: 0632c63fb65b1f340b1ae628fc7206cf, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 15.000061
+      value: 14.999878
       objectReference: {fileID: 0}
     - target: {fileID: 6442010461244743819, guid: 0632c63fb65b1f340b1ae628fc7206cf, type: 3}
       propertyPath: m_Enabled
@@ -11958,6 +11954,7 @@ MonoBehaviour:
   playOnStart: 0
   ignorePause: 0
   createOnThisPosition: 0
+  isClipPlaying: 0
 --- !u!1 &1394585173
 GameObject:
   m_ObjectHideFlags: 0
@@ -12025,6 +12022,7 @@ MonoBehaviour:
   playOnStart: 0
   ignorePause: 0
   createOnThisPosition: 0
+  isClipPlaying: 0
 --- !u!1 &1405161613
 GameObject:
   m_ObjectHideFlags: 0
@@ -13547,6 +13545,7 @@ MonoBehaviour:
   playOnStart: 0
   ignorePause: 0
   createOnThisPosition: 0
+  isClipPlaying: 0
 --- !u!1 &1563142290 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5467454157163471465, guid: 5d3b0168371d4d74bb8508d8b8cf29aa, type: 3}
@@ -13704,6 +13703,7 @@ MonoBehaviour:
   playOnStart: 0
   ignorePause: 0
   createOnThisPosition: 0
+  isClipPlaying: 0
 --- !u!114 &1613673179
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15769,8 +15769,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 1
   m_ShadowVolumeIntensity: 0.869
   m_LocalBounds:
-    m_Center: {x: -2.8917, y: -7.5184, z: 0}
-    m_Extent: {x: 1.9872, y: 1.2684002, z: 0}
+    m_Center: {x: -2.8892498, y: -7.521, z: 0}
+    m_Extent: {x: 1.9803499, y: 1.2751999, z: 0}
   m_PointLightInnerAngle: 359.6
   m_PointLightOuterAngle: 359.6
   m_PointLightInnerRadius: 2
@@ -16650,6 +16650,7 @@ MonoBehaviour:
   playOnStart: 0
   ignorePause: 0
   createOnThisPosition: 0
+  isClipPlaying: 0
 --- !u!1 &2095549447
 GameObject:
   m_ObjectHideFlags: 0
@@ -17008,8 +17009,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 1
   m_ShadowVolumeIntensity: 0.869
   m_LocalBounds:
-    m_Center: {x: -0.65715003, y: -7.4392, z: 0}
-    m_Extent: {x: 2.60045, y: 1.3225999, z: 0}
+    m_Center: {x: -0.65699995, y: -7.4327497, z: 0}
+    m_Extent: {x: 2.6104999, y: 1.3239498, z: 0}
   m_PointLightInnerAngle: 359.6
   m_PointLightOuterAngle: 359.6
   m_PointLightInnerRadius: 2
@@ -17310,51 +17311,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5cd9b88989bb5045b1d7e830e28139a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1479972681942824263
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2037787906}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Events:
-    m_Signals:
-    - {fileID: 11400000, guid: 2dffc6cb77a58dd44bde9b192346f303, type: 2}
-    - {fileID: 11400000, guid: b1e6def8652125e48be7f00ed1c2e844, type: 2}
-    m_Events:
-    - m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1479972681942824262}
-          m_TargetAssemblyTypeName: BlackLinesShower, Assembly-CSharp
-          m_MethodName: Show
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-    - m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1479972681942824262}
-          m_TargetAssemblyTypeName: BlackLinesShower, Assembly-CSharp
-          m_MethodName: Hide
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!4 &1554257882467301141
 Transform:
   m_ObjectHideFlags: 0
@@ -17648,10 +17604,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5874246676700921701, guid: 8f2982feb16fc6846bfe8126db4b7adb, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1479972681942824263}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8f2982feb16fc6846bfe8126db4b7adb, type: 3}
 --- !u!1 &4034365756381449982
 GameObject:
