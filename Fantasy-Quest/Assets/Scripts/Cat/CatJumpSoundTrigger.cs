@@ -51,7 +51,7 @@ namespace Cat
 
             if (founded != null)
             {
-                jumpSound.PlayClipDelayed(founded.Delay);
+                jumpSound.PlayClip();
             }
         }
     }
