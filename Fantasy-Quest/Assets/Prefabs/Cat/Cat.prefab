@@ -67,6 +67,7 @@ MonoBehaviour:
   playOnStart: 0
   ignorePause: 0
   createOnThisPosition: 0
+  isClipPlaying: 0
 --- !u!1 &905931653165027739
 GameObject:
   m_ObjectHideFlags: 0
@@ -315,6 +316,7 @@ MonoBehaviour:
   playOnStart: 0
   ignorePause: 0
   createOnThisPosition: 0
+  isClipPlaying: 0
 --- !u!114 &1554763388633289072
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -395,6 +397,7 @@ MonoBehaviour:
   playOnStart: 0
   ignorePause: 0
   createOnThisPosition: 0
+  isClipPlaying: 0
 --- !u!1 &4932823787117332419
 GameObject:
   m_ObjectHideFlags: 0
@@ -465,7 +468,6 @@ Transform:
   m_Children:
   - {fileID: 7209340483256552939}
   - {fileID: 1515946995588636891}
-  - {fileID: 8842031222080313372}
   - {fileID: 3090932207169607347}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -674,102 +676,6 @@ Transform:
   - {fileID: 6873379657733608164}
   m_Father: {fileID: 1515946995588636891}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &8383784292829087726
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 8842031222080313372}
-  - component: {fileID: 1773760601911767444}
-  - component: {fileID: 8190325235203020691}
-  m_Layer: 0
-  m_Name: JumpSound
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &8842031222080313372
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8383784292829087726}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 28.66, y: 1.8500001, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 182963880363041228}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1773760601911767444
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8383784292829087726}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e25d7337314417479613a298ff03226, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  audioClip: {fileID: 8300000, guid: 46a2d4b14efd3954ebd410d2cffe09d2, type: 3}
-  audioSourceConfig:
-    priorityLevel: 128
-    Mute: 0
-    Volume: 0.2
-    Pitch: 1
-    PanStereo: 0
-    ReverbZoneMix: 1
-    SpatialBlend: 0
-    RolloffMode: 0
-    MinDistance: 0.1
-    MaxDistance: 50
-    Spread: 0
-    DopplerLevel: 1
-    BypassEffects: 0
-    BypassListenerEffects: 0
-    BypassReverbZones: 0
-    IgnoreListenerVolume: 0
-    IgnoreListenerPause: 0
-  loop: 0
-  playOnStart: 0
-  ignorePause: 0
-  createOnThisPosition: 0
---- !u!114 &8190325235203020691
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8383784292829087726}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f7993e2028101143a34dd61d29b6d9c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  skeletonAnimation: {fileID: 5374469698757798622}
-  jumpSound: {fileID: 1773760601911767444}
-  animationInfos:
-  - Asset: {fileID: 11400000, guid: 155e9e576620f344abf218798559a2da, type: 2}
-    Delay: 0.7
-  - Asset: {fileID: 11400000, guid: a89aec8233f6662468eb9cb0bc62495c, type: 2}
-    Delay: 0.7
-  - Asset: {fileID: 11400000, guid: 46997a6ba8f3bbb44bea80e704106797, type: 2}
-    Delay: 0.7
-  - Asset: {fileID: 11400000, guid: e78a5c69de9a4064c93d5877d7cd3621, type: 2}
-    Delay: 1.2
-  - Asset: {fileID: 11400000, guid: 905467bce01cf3742aefb2584786636c, type: 2}
-    Delay: 1.2
-  - Asset: {fileID: 11400000, guid: 1655530aa9834a0409165cf135ad7019, type: 2}
-    Delay: 1.2
-  previousAnimation: 
 --- !u!1001 &1958334341114758454
 PrefabInstance:
   m_ObjectHideFlags: 0
