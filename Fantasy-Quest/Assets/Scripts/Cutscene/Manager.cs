@@ -34,10 +34,7 @@ namespace Cutscene
                     (x.time > 0 && x.GetComponent<UnlockZone>() == null)
                     || (x.time > 0 && !x.GetComponent<UnlockZone>().IsInRange(x.time))
                 )
-            )
-            {
-                lockerSettings.Api.LockAll();
-            }
+            ) { }
         }
 
         public void Resume()

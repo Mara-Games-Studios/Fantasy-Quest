@@ -75,7 +75,6 @@ namespace LevelSpecific.ForestEdge
 
         private IEnumerator GoToCutscene()
         {
-            lockerSettings.Api.LockAll(this);
             ComingToBack?.Invoke();
             yield return explanationSpeak.Tell();
             yield return symonMovement.MoveToPoint(callPoint.position);
