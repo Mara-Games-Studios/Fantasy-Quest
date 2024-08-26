@@ -43,7 +43,7 @@ namespace LevelSpecific.House
 
         public UnityEvent OnKnotHinted;
 
-        public void InteractByCat()
+        public void InteractionByCat()
         {
             if (canCatInteract)
             {

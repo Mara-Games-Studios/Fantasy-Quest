@@ -8,11 +8,11 @@ namespace Configs.Progression
     {
         private void Start()
         {
-            Starter();
+            ResetProgress();
         }
 
         [Button]
-        public void Starter()
+        public void ResetProgress()
         {
             ProgressionConfig.Instance.ResetToDefault();
         }

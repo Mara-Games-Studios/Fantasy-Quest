@@ -51,7 +51,7 @@ namespace Cutscene
         [SerializeField, ReadOnly]
         private bool canTalk = true;
 
-        public void InteractByCat()
+        public void InteractionByCat()
         {
             if (canCatInteract && !isMilkEmpty)
             {

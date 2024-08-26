@@ -24,6 +24,7 @@ namespace TimelineTrack.BlackLineTrack
                 ScriptPlayable<BlackLineBehaviour> inputPlayable =
                     (ScriptPlayable<BlackLineBehaviour>)playable.GetInput(i);
                 BlackLineBehaviour input = inputPlayable.GetBehaviour();
+
                 if (inputWeight > 0f && !input.IsLinesShowing)
                 {
                     blackLines.Show();

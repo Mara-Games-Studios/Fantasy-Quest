@@ -27,9 +27,16 @@ namespace Configs
         [InlineProperty, HideLabel]
         public LockerApi Api;
 
+        [SerializeField]
         private bool isDialogueBubbleLocked = false;
+
+        [SerializeField]
         private bool isCatMovementLocked = false;
+
+        [SerializeField]
         private bool isCatInteractionLocked = false;
+
+        [SerializeField]
         private List<LockRequest> lockRequests = new();
 
         public bool IsDialogueBubbleLocked =>

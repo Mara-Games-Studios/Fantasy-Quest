@@ -14,7 +14,11 @@ namespace Common.DI
             InjectingMonoBehaviour[] founded = FindObjectsOfType<InjectingMonoBehaviour>(true);
             IEnumerable<GameObject> gameObjects = founded.Select(x => x.gameObject).Distinct();
             gameObjects = gameObjects.Where(x => x.scene == gameObject.scene);
-            autoInjectGameObjects = autoInjectGameObjects.Concat(gameObjects).Distinct().ToList();
+            autoInjectGameObjects = autoInjectGameObjects
+                .Concat(gameObjects)
+                .Where(x => x != null)
+                .Distinct()
+                .ToList();
         }
     }
 }

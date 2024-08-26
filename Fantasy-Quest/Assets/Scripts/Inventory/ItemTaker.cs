@@ -1,11 +1,17 @@
-﻿using Sirenix.OdinInspector;
+﻿using Common.DI;
+using Configs;
+using Sirenix.OdinInspector;
 using UnityEngine;
+using VContainer;
 
 namespace Inventory
 {
     [AddComponentMenu("Scripts/Inventory/Inventory.ItemTaker")]
-    internal class ItemTaker : MonoBehaviour
+    internal class ItemTaker : InjectingMonoBehaviour
     {
+        [Inject]
+        private LockerApi lockerSettings;
+
         [ReadOnly]
         [SerializeField]
         private Item takenItem;
@@ -31,7 +37,9 @@ namespace Inventory
                 Debug.Log("Item already taken.");
                 return;
             }
+
             takenItem = item;
+            lockerSettings.Api.LockForCarryingItem();
             if (takenItem.UidEquals(egg))
             {
                 catView.SetEggTaken(true);

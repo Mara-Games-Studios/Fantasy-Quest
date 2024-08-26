@@ -22,10 +22,6 @@ namespace Scene.Gameplay
 
         [RequiredIn(PrefabKind.PrefabInstanceAndNonPrefabInstance)]
         [SerializeField]
-        private Cutscene.Manager cutsceneManager;
-
-        [RequiredIn(PrefabKind.PrefabInstanceAndNonPrefabInstance)]
-        [SerializeField]
         private Dialogue.Manager dialogueManager;
 
         [RequiredIn(PrefabKind.PrefabInstanceAndNonPrefabInstance)]
@@ -58,23 +54,18 @@ namespace Scene.Gameplay
         }
 
         // Called by Input Manager or UI buttons
-        [Button]
         public void OpenSettings()
         {
             Time.timeScale = 0.0f;
             pauseShowed = true;
-            cutsceneManager.Pause();
             soundsManager.PauseSound();
             settingsPage.ShowFromStart();
             lockerSettings.Api.LockAll(this);
-
             cursorController.UnLockCursor();
-
             background.Show();
         }
 
         // Called by Settings controller callback
-        [Button]
         public void SettingsClosed()
         {
             settingsPage.HideToEnd();
@@ -84,8 +75,6 @@ namespace Scene.Gameplay
                 pauseShowed = false;
                 lockerSettings.Api.UnlockAll(this);
                 Time.timeScale = 1.0f;
-                cutsceneManager.LockFromSettings();
-                cutsceneManager.Resume();
                 soundsManager.ResumeSound();
                 animationLocker = true;
                 cursorController.LockCursor();

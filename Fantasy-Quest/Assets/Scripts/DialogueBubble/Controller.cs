@@ -14,12 +14,12 @@ namespace DialogueBubble
         [SerializeField]
         private GameObject dialogueBubble;
 
-        private void OnEnable()
+        private void Start()
         {
             bubbleEventSystem.OnTriggerBubble += SetBubbleShow;
         }
 
-        private void OnDisable()
+        private void OnDestroy()
         {
             bubbleEventSystem.OnTriggerBubble -= SetBubbleShow;
         }

@@ -1,8 +1,8 @@
-﻿using System.Collections;
-using Common.DI;
+﻿using Common.DI;
 using Configs;
 using Configs.Progression;
 using Cutscene;
+using Cysharp.Threading.Tasks;
 using Dialogue;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -18,7 +18,7 @@ namespace LevelSpecific.ForestEdge
         private LockerApi lockerSettings;
 
         [SerializeField]
-        private Collider2D correctZone;
+        private Collider2D zoneToCheck;
 
         [SerializeField]
         private Transform callPoint;
@@ -30,9 +30,6 @@ namespace LevelSpecific.ForestEdge
         [SerializeField]
         private Symon.Movement symonMovement;
 
-        [SerializeField]
-        private float waitTime = 2.0f;
-
         [Required]
         [SerializeField]
         private ChainSpeaker explanationSpeak;
@@ -43,7 +40,7 @@ namespace LevelSpecific.ForestEdge
 
         public UnityEvent ComingToBack;
 
-        [Button]
+        // Called by interaction
         public void CallSymon()
         {
             if (isMoving)
@@ -61,43 +58,23 @@ namespace LevelSpecific.ForestEdge
                 return;
             }
 
-            if (correctZone.OverlapPoint(callPoint.position))
+            if (zoneToCheck.OverlapPoint(callPoint.position))
             {
-                // Start cutscene
-                _ = StartCoroutine(GoToCutscene());
+                _ = GoToCutscene();
             }
         }
 
-        public void SendSymonToStartAfterCutscene()
-        {
-            _ = StartCoroutine(GoToStartPointAfterCutscene());
-        }
-
-        private IEnumerator GoToCutscene()
+        private async UniTaskVoid GoToCutscene()
         {
             ComingToBack?.Invoke();
-            yield return explanationSpeak.Tell();
-            yield return symonMovement.MoveToPoint(callPoint.position);
+            lockerSettings.Api.LockAll(this);
+            await UniTask.WhenAll(
+                explanationSpeak.Tell().ToUniTask(this),
+                symonMovement.MoveToPoint(callPoint.position).ToUniTask(this)
+            );
+            lockerSettings.Api.UnlockAll(this);
             cutsceneStarter.StartCutscene();
             ProgressionConfig.Instance.ForestEdgeLevel.BagTaken = true;
-        }
-
-        private IEnumerator GoToStartPointAfterCutscene()
-        {
-            yield return symonMovement.MoveToStartPoint();
-            lockerSettings.Api.UnlockAll(this);
-        }
-
-        public UnityEvent TravelledToPoint;
-
-        private IEnumerator TravelToPoint()
-        {
-            isMoving = true;
-            yield return symonMovement.MoveToPoint(callPoint.position);
-            TravelledToPoint?.Invoke();
-            yield return new WaitForSeconds(waitTime);
-            yield return symonMovement.MoveToStartPoint();
-            isMoving = false;
         }
     }
 }
