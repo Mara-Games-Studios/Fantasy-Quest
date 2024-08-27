@@ -1,13 +1,19 @@
 ﻿using Audio;
+using Common.DI;
+using Configs;
 using Sirenix.OdinInspector;
 using Spine.Unity;
 using UnityEngine;
+using VContainer;
 
 namespace Cat
 {
     [AddComponentMenu("Scripts/Cat/Cat.View")]
-    internal class View : MonoBehaviour
+    internal class View : InjectingMonoBehaviour
     {
+        [Inject]
+        private LockerApi lockerSettings;
+
         [SerializeField]
         private Movement catMovement;
 
@@ -49,14 +55,13 @@ namespace Cat
         [Required]
         [SerializeField]
         private SoundPlayer walkSound;
+        private State previousState = State.Staying;
 
-        [Button]
         public void SetEggTaken(bool withEgg)
         {
             this.withEgg = withEgg;
         }
 
-        [Button]
         public void SetAcornTaken(bool withAcorn)
         {
             this.withAcorn = withAcorn;
@@ -72,7 +77,10 @@ namespace Cat
             catMovement.OnStateChanged -= StateChanged;
         }
 
-        private State previousState = State.Staying;
+        private void Update()
+        {
+            walkSound.AudioSource.mute = lockerSettings.Api.IsCatMovementLocked;
+        }
 
         private void StateChanged(State state)
         {
@@ -84,7 +92,10 @@ namespace Cat
                         walkSound.StopClip();
                         break;
                     case State.Moving:
-                        walkSound.PlayClip();
+                        if (!walkSound.AudioSource.isPlaying)
+                        {
+                            walkSound.PlayClip();
+                        }
                         break;
                 }
 
@@ -103,7 +114,6 @@ namespace Cat
             ;
         }
 
-        [Button]
         public void SetIdleAnimation()
         {
             string animation = withAcorn
@@ -114,7 +124,6 @@ namespace Cat
             SetAnimation(animation);
         }
 
-        [Button]
         public void SetWalkAnimation()
         {
             string animation = withAcorn
@@ -125,7 +134,6 @@ namespace Cat
             SetAnimation(animation);
         }
 
-        [Button]
         public void SetAnimation(string animation)
         {
             if (skeletonAnimation.AnimationName != animation)

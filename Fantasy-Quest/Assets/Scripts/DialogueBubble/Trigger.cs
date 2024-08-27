@@ -18,7 +18,7 @@ namespace DialogueBubble
         private BubbleEventSystem bubbleEventSystem;
 
         [SerializeField]
-        private bool oneTimer = false;
+        private bool oneTime = false;
 
         [SerializeField]
         private Type emoteType = Type.Thought;
@@ -26,49 +26,47 @@ namespace DialogueBubble
         [SerializeField]
         private List<Sprite> emoteIcons = new();
 
+        private BubbleConfig enterSettings;
+        private BubbleConfig exitSettings;
+
+        private void Start()
+        {
+            enterSettings = new BubbleConfig
+            {
+                CanShow = true,
+                BubbleType = emoteType,
+                EmoteIcons = emoteIcons
+            };
+
+            exitSettings = new()
+            {
+                CanShow = false,
+                BubbleType = emoteType,
+                EmoteIcons = emoteIcons
+            };
+        }
+
         private void OnTriggerEnter2D(Collider2D other)
         {
-            if (!lockerSettings.Api.IsDialogueBubbleLocked)
+            if (
+                !lockerSettings.Api.IsDialogueBubbleLocked
+                && other.TryGetComponent(out InteractionImpl interaction)
+            )
             {
-                if (other.TryGetComponent(out InteractionImpl interaction))
-                {
-                    bubbleEventSystem.OnTriggerBubble?.Invoke(
-                        new BubbleSettings
-                        {
-                            CanShow = true,
-                            BubbleType = emoteType,
-                            EmoteIcons = emoteIcons
-                        }
-                    );
-                }
+                bubbleEventSystem.OnTriggerBubble?.Invoke(enterSettings);
             }
         }
 
         private void OnTriggerExit2D(Collider2D other)
         {
-            if (!lockerSettings.Api.IsDialogueBubbleLocked)
+            if (
+                !lockerSettings.Api.IsDialogueBubbleLocked
+                && other.TryGetComponent(out InteractionImpl _)
+            )
             {
-                if (other.TryGetComponent(out InteractionImpl _) && !oneTimer)
+                bubbleEventSystem.OnTriggerBubble?.Invoke(exitSettings);
+                if (oneTime)
                 {
-                    bubbleEventSystem.OnTriggerBubble?.Invoke(
-                        new BubbleSettings
-                        {
-                            CanShow = false,
-                            BubbleType = emoteType,
-                            EmoteIcons = emoteIcons
-                        }
-                    );
-                }
-                else if (other.TryGetComponent(out InteractionImpl _) && oneTimer)
-                {
-                    bubbleEventSystem.OnTriggerBubble?.Invoke(
-                        new BubbleSettings
-                        {
-                            CanShow = false,
-                            BubbleType = emoteType,
-                            EmoteIcons = emoteIcons
-                        }
-                    );
                     Destroy(this);
                 }
             }

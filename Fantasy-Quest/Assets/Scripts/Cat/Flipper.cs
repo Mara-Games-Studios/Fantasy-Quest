@@ -6,21 +6,18 @@ using UnityEngine;
 
 namespace Cat
 {
-    [Serializable]
-    public struct RotationByVector
-    {
-        public Vector3 Rotation;
-        public Vector Vector;
-    }
-
     [AddComponentMenu("Scripts/Cat/Cat.Flipper")]
     internal class Flipper : MonoBehaviour
     {
+        [Serializable]
+        public struct RotationByVector
+        {
+            public Vector3 Rotation;
+            public Vector Vector;
+        }
+
         [SerializeField]
         private Movement catMovement;
-
-        //[SerializeField]
-        //private float flipTime = 0.5f;
 
         [ReadOnly]
         [SerializeField]
@@ -35,16 +32,6 @@ namespace Cat
         private Dictionary<Vector, Vector3> RotationByVectors =>
             rotationByVectorsRaw.ToDictionary(x => x.Vector, x => x.Rotation);
 
-        private void VectorChanged(Vector vector)
-        {
-            transform.rotation = Quaternion.Euler(RotationByVectors[vector]);
-        }
-
-        public float GetFlipTime()
-        {
-            return 0;
-        }
-
         private void OnEnable()
         {
             catMovement.OnVectorChanged += VectorChanged;
@@ -53,6 +40,11 @@ namespace Cat
         private void OnDisable()
         {
             catMovement.OnVectorChanged -= VectorChanged;
+        }
+
+        private void VectorChanged(Vector vector)
+        {
+            transform.rotation = Quaternion.Euler(RotationByVectors[vector]);
         }
     }
 }

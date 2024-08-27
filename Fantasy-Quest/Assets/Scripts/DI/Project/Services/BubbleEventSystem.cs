@@ -5,7 +5,7 @@ using VContainer;
 
 namespace DI.Project.Services
 {
-    public struct BubbleSettings
+    public struct BubbleConfig
     {
         public bool CanShow;
         public DialogueBubble.Type BubbleType;
@@ -17,6 +17,6 @@ namespace DI.Project.Services
         [Preserve]
         public BubbleEventSystem() { }
 
-        public Action<BubbleSettings> OnTriggerBubble;
+        public Action<BubbleConfig> OnTriggerBubble;
     }
 }

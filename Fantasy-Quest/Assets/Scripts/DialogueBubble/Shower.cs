@@ -1,17 +1,17 @@
 using System.Collections.Generic;
 using DG.Tweening;
 using DI.Project.Services;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace DialogueBubble
 {
     [RequireComponent(typeof(SpriteRenderer))]
-    [AddComponentMenu("Scripts/DialogueBubble/DialogueBubble.Show")]
-    internal class Show : MonoBehaviour, IShowBubble
+    [AddComponentMenu("Scripts/DialogueBubble/DialogueBubble.Shower")]
+    internal class Shower : MonoBehaviour
     {
-        [Header("Show Settings")]
         [SerializeField]
-        private bool needToBeHidden = true;
+        private bool initialHidden = true;
 
         [SerializeField]
         private float fadeInDuration = 0.6f;
@@ -19,7 +19,7 @@ namespace DialogueBubble
         [SerializeField]
         private float fadeOutDuration = 0.3f;
 
-        [Header("Sprites/Renderers")]
+        [InfoBox("First for Dialogue, Second for Thought")]
         [SerializeField]
         private List<Sprite> bubbleSprites = new();
 
@@ -33,7 +33,7 @@ namespace DialogueBubble
 
         private void Awake()
         {
-            if (needToBeHidden)
+            if (initialHidden)
             {
                 Color bubbleColor = bubbleSpriteRenderer.color;
                 Color iconColor = iconSpriteRenderer.color;
@@ -46,7 +46,7 @@ namespace DialogueBubble
             }
         }
 
-        public void SwitchShow(BubbleSettings settings)
+        public void ShowBubble(BubbleConfig settings)
         {
             if (settings.CanShow)
             {
