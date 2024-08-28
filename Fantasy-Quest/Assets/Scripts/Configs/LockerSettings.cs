@@ -86,8 +86,9 @@ namespace Configs
         {
             if (lockRequests.Any(x => x.Locker == locker))
             {
-                Debug.LogError($"Object {locker.name} tried double lock, unlock first.");
-                return;
+                Debug.LogWarning(
+                    $"Object {locker.name} locked {lockRequests.Count(x => x.Locker == locker)} Times."
+                );
             }
 
             lockRequests.Add(
@@ -110,6 +111,13 @@ namespace Configs
                 return;
             }
             _ = lockRequests.Remove(request);
+            int duplications = lockRequests.Count(x => x.Locker == locker);
+            if (duplications > 0)
+            {
+                Debug.LogWarning(
+                    $"Object {locker.name} has {lockRequests.Count(x => x.Locker == locker)} duplication Locks."
+                );
+            }
         }
 
         public bool IsLockedBy(UnityEngine.Object locker)

@@ -5,9 +5,9 @@ using UnityEngine;
 namespace LevelSpecific.ForestEdge
 {
     [AddComponentMenu(
-        "Scripts/LevelSpecific/ForestEdge/LevelSpecific.ForestEdge.CheckSquirellLose"
+        "Scripts/LevelSpecific/ForestEdge/LevelSpecific.ForestEdge.CheckSquirrelLose"
     )]
-    internal class CheckSquirellLose : MonoBehaviour
+    internal class CheckSquirrelLose : MonoBehaviour
     {
         [SerializeField]
         private bool canStart = false;
