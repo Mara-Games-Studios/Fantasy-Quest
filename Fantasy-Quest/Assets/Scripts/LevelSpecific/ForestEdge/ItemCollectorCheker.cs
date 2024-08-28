@@ -3,6 +3,7 @@ using Configs.Progression;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Events;
+using VContainer;
 
 namespace LevelSpecific.ForestEdge
 {
@@ -11,6 +12,9 @@ namespace LevelSpecific.ForestEdge
     )]
     internal class ItemCollectorChecker : MonoBehaviour
     {
+        [Inject]
+        private LockerApi lockerSettings;
+
         [Required]
         [SerializeField]
         private GameObject egg;
@@ -24,14 +28,14 @@ namespace LevelSpecific.ForestEdge
         public void TakeEgg()
         {
             Destroy(egg);
-            LockerSettings.Instance.UnlockAll();
+            lockerSettings.Api.UnlockAll();
             CheckForAllCollected();
         }
 
         public void TakeAcorn()
         {
             Destroy(acorn);
-            LockerSettings.Instance.UnlockAll();
+            lockerSettings.Api.UnlockAll();
             CheckForAllCollected();
         }
 

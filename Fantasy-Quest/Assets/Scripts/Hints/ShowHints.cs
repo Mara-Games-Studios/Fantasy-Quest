@@ -1,21 +1,22 @@
-using System.Collections;
 using System.Collections.Generic;
+using Common.DI;
 using Configs;
 using DG.Tweening;
 using Interaction;
-using Sirenix.OdinInspector;
 using UnityEngine;
+using VContainer;
 
 namespace Hints
 {
     [AddComponentMenu("Scripts/Hints/Hints.ShowHints")]
-    internal class ShowHints : MonoBehaviour
+    internal class ShowHints : InjectingMonoBehaviour
     {
-        [Header("Show Settings")]
+        [Inject]
+        private LockerApi lockerSettings;
+
         [SerializeField]
         private bool alwaysShowWithoutTimer = false;
 
-        [ShowIf("@!alwaysShowWithoutTimer")]
         [SerializeField]
         private bool firstShowWithoutTimer = true;
 
@@ -26,16 +27,19 @@ namespace Hints
         private float fadeOutDuration = 0.3f;
 
         [SerializeField]
-        private List<SpriteRenderer> keyboardSpriteRenderer;
-
-        [SerializeField]
         private bool useCustomWaitTime = false;
 
         [SerializeField]
         private float customWaitTime = 1f;
 
-        private Coroutine waitRoutine;
-        private Tween fadeTween;
+        [SerializeField]
+        private List<SpriteRenderer> keyboardSpriteRenderer;
+
+        private Tween waitTween;
+        private List<Tween> tweens = new();
+
+        private float WaitTime =>
+            useCustomWaitTime ? customWaitTime : HintConfig.Instance.SecondUntilShow;
 
         private void Awake()
         {
@@ -49,70 +53,44 @@ namespace Hints
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            if (
-                !LockerSettings.Instance.IsDialogueBubbleLocked
-                && (firstShowWithoutTimer || alwaysShowWithoutTimer)
-            )
+            if (collision.TryGetComponent(out InteractionImpl _))
             {
-                if (collision.TryGetComponent(out InteractionImpl _))
+                waitTween?.Kill();
+                if (!lockerSettings.Api.IsDialogueBubbleLocked)
                 {
-                    FadeIn(fadeInDuration);
-                    firstShowWithoutTimer = false;
-                }
-            }
-            else if (!LockerSettings.Instance.IsDialogueBubbleLocked && !firstShowWithoutTimer)
-            {
-                if (collision.TryGetComponent(out InteractionImpl _))
-                {
-                    waitRoutine = StartCoroutine(
-                        WaitUntilShowRoutine(
-                            useCustomWaitTime ? customWaitTime : HintConfig.Instance.SecondUntilShow
-                        )
-                    );
+                    if (firstShowWithoutTimer || alwaysShowWithoutTimer)
+                    {
+                        Fade(1, fadeInDuration);
+                        firstShowWithoutTimer = false;
+                    }
+                    else
+                    {
+                        waitTween = DOVirtual.DelayedCall(
+                            WaitTime,
+                            () => Fade(1, fadeInDuration),
+                            false
+                        );
+                    }
                 }
             }
         }
 
         private void OnTriggerExit2D(Collider2D collision)
         {
-            if (!LockerSettings.Instance.IsDialogueBubbleLocked)
+            if (collision.TryGetComponent(out InteractionImpl _))
             {
-                if (collision.TryGetComponent(out InteractionImpl _))
-                {
-                    if (waitRoutine != null)
-                    {
-                        StopCoroutine(waitRoutine);
-                    }
-
-                    FadeOut(fadeOutDuration);
-                }
+                waitTween?.Kill();
+                Fade(0, fadeOutDuration);
             }
         }
 
-        private IEnumerator WaitUntilShowRoutine(float duration)
+        private void Fade(float endValue, float duration)
         {
-            yield return new WaitForSeconds(duration);
-            FadeIn(fadeInDuration);
-        }
-
-        public void FadeIn(float duration)
-        {
-            fadeTween?.Kill();
-            Fade(1f, duration, () => { });
-        }
-
-        public void FadeOut(float duration)
-        {
-            fadeTween?.Kill();
-            Fade(0f, duration, () => { });
-        }
-
-        private void Fade(float endValue, float duration, TweenCallback onEnd)
-        {
+            tweens.ForEach(t => t.Kill());
+            tweens.Clear();
             foreach (SpriteRenderer kbRenderer in keyboardSpriteRenderer)
             {
-                fadeTween = kbRenderer.DOFade(endValue, duration);
-                fadeTween.onComplete += onEnd;
+                tweens.Add(kbRenderer.DOFade(endValue, duration));
             }
         }
     }

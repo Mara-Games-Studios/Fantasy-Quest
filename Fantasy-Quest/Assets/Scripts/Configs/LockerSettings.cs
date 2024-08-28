@@ -6,8 +6,14 @@ using UnityEngine;
 
 namespace Configs
 {
-    [CreateAssetMenu(fileName = "Locker Settings", menuName = "Settings/Create Locker Settings")]
-    internal class LockerSettings : SingletonScriptableObject<LockerSettings>
+    [Serializable]
+    public class LockerApi
+    {
+        public LockerSettings Api;
+    }
+
+    [CreateAssetMenu(fileName = "Locker Settings", menuName = "Settings/Locker Settings")]
+    public class LockerSettings : ScriptableObject
     {
         [Serializable]
         private class LockRequest
@@ -18,9 +24,19 @@ namespace Configs
             public bool CatInteraction;
         }
 
+        [InlineProperty, HideLabel]
+        public LockerApi Api;
+
+        [SerializeField]
         private bool isDialogueBubbleLocked = false;
+
+        [SerializeField]
         private bool isCatMovementLocked = false;
+
+        [SerializeField]
         private bool isCatInteractionLocked = false;
+
+        [SerializeField]
         private List<LockRequest> lockRequests = new();
 
         public bool IsDialogueBubbleLocked =>
@@ -30,18 +46,12 @@ namespace Configs
         public bool IsCatInteractionLocked =>
             lockRequests.Any(x => x.CatInteraction) || isCatInteractionLocked;
 
-        private string Info =>
-            $"IsDialogueBubbleLocked {IsDialogueBubbleLocked}\n"
-            + $"IsCatMovementLocked {IsCatMovementLocked}\n"
-            + $"isCatInteractionLocked {IsCatInteractionLocked}";
-
-        public override void FirstTryLoaded()
+        public void Initialize()
         {
             lockRequests = new();
         }
 
         [Button]
-        [InfoBox("@Info")]
         public void LockAll()
         {
             isDialogueBubbleLocked = true;
@@ -76,8 +86,9 @@ namespace Configs
         {
             if (lockRequests.Any(x => x.Locker == locker))
             {
-                Debug.LogError($"Object {locker.name} tried double lock, unlock first.");
-                return;
+                Debug.LogWarning(
+                    $"Object {locker.name} locked {lockRequests.Count(x => x.Locker == locker)} Times."
+                );
             }
 
             lockRequests.Add(
@@ -100,6 +111,18 @@ namespace Configs
                 return;
             }
             _ = lockRequests.Remove(request);
+            int duplications = lockRequests.Count(x => x.Locker == locker);
+            if (duplications > 0)
+            {
+                Debug.LogWarning(
+                    $"Object {locker.name} has {lockRequests.Count(x => x.Locker == locker)} duplication Locks."
+                );
+            }
+        }
+
+        public bool IsLockedBy(UnityEngine.Object locker)
+        {
+            return lockRequests.Any(x => x.Locker == locker);
         }
     }
 }

@@ -1,4 +1,3 @@
-using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Playables;
 
@@ -10,7 +9,6 @@ namespace Cutscene
         [SerializeField]
         private PlayableDirector playableDirector;
 
-        [Button]
         public void StartCutscene()
         {
             playableDirector.Play();

@@ -1,15 +1,24 @@
 using System.Collections.Generic;
+using Common.DI;
 using Configs;
+using DI.Project.Services;
 using Interaction;
 using UnityEngine;
+using VContainer;
 
 namespace DialogueBubble
 {
     [AddComponentMenu("Scripts/DialogueBubble/DialogueBubble.Trigger")]
-    public class Trigger : MonoBehaviour
+    public class Trigger : InjectingMonoBehaviour
     {
+        [Inject]
+        private LockerApi lockerSettings;
+
+        [Inject]
+        private BubbleEventSystem bubbleEventSystem;
+
         [SerializeField]
-        private bool oneTimer = false;
+        private bool oneTime = false;
 
         [SerializeField]
         private Type emoteType = Type.Thought;
@@ -17,49 +26,47 @@ namespace DialogueBubble
         [SerializeField]
         private List<Sprite> emoteIcons = new();
 
+        private BubbleConfig enterSettings;
+        private BubbleConfig exitSettings;
+
+        private void Start()
+        {
+            enterSettings = new BubbleConfig
+            {
+                CanShow = true,
+                BubbleType = emoteType,
+                EmoteIcons = emoteIcons
+            };
+
+            exitSettings = new()
+            {
+                CanShow = false,
+                BubbleType = emoteType,
+                EmoteIcons = emoteIcons
+            };
+        }
+
         private void OnTriggerEnter2D(Collider2D other)
         {
-            if (!LockerSettings.Instance.IsDialogueBubbleLocked)
+            if (
+                !lockerSettings.Api.IsDialogueBubbleLocked
+                && other.TryGetComponent(out InteractionImpl interaction)
+            )
             {
-                if (other.TryGetComponent(out InteractionImpl interaction))
-                {
-                    EventSystem.OnTriggerBubble?.Invoke(
-                        new BubbleSettings
-                        {
-                            CanShow = true,
-                            BubbleType = emoteType,
-                            EmoteIcons = emoteIcons
-                        }
-                    );
-                }
+                bubbleEventSystem.OnTriggerBubble?.Invoke(enterSettings);
             }
         }
 
         private void OnTriggerExit2D(Collider2D other)
         {
-            if (!LockerSettings.Instance.IsDialogueBubbleLocked)
+            if (
+                !lockerSettings.Api.IsDialogueBubbleLocked
+                && other.TryGetComponent(out InteractionImpl _)
+            )
             {
-                if (other.TryGetComponent(out InteractionImpl _) && !oneTimer)
+                bubbleEventSystem.OnTriggerBubble?.Invoke(exitSettings);
+                if (oneTime)
                 {
-                    EventSystem.OnTriggerBubble?.Invoke(
-                        new BubbleSettings
-                        {
-                            CanShow = false,
-                            BubbleType = emoteType,
-                            EmoteIcons = emoteIcons
-                        }
-                    );
-                }
-                else if (other.TryGetComponent(out InteractionImpl _) && oneTimer)
-                {
-                    EventSystem.OnTriggerBubble?.Invoke(
-                        new BubbleSettings
-                        {
-                            CanShow = false,
-                            BubbleType = emoteType,
-                            EmoteIcons = emoteIcons
-                        }
-                    );
                     Destroy(this);
                 }
             }

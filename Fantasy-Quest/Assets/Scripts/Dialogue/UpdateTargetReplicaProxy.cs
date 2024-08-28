@@ -13,7 +13,7 @@ namespace Dialogue
         [SerializeField]
         private ChainSpeaker chainSpeaker;
 
-        [Button]
+        /// Called by unity events
         public void UpdateText(string text)
         {
             chainSpeaker.UpdateReplicaString(index, text);

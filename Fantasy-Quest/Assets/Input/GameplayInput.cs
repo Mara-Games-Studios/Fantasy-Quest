@@ -394,15 +394,6 @@ public partial class @GameplayInput: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""CallHumanMove"",
-                    ""type"": ""Button"",
-                    ""id"": ""1610fa07-cd30-4413-99e4-066823051381"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""CutsceneAnyKey"",
                     ""type"": ""Button"",
                     ""id"": ""2d73d717-7a55-44ec-8456-a37e6eeb6b0c"",
@@ -547,28 +538,6 @@ public partial class @GameplayInput: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""1d03e56d-65dc-465d-99bf-13f0a2e0511f"",
-                    ""path"": ""<Keyboard>/2"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""CallHumanMove"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""719a8ff8-6097-4b6b-9c9e-a3093e466ac6"",
-                    ""path"": ""<Keyboard>/numpad2"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""CallHumanMove"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""e7f2b140-78c1-47a8-b7c8-9359d40acfc6"",
                     ""path"": ""<Keyboard>/m"",
                     ""interactions"": """",
@@ -617,7 +586,6 @@ public partial class @GameplayInput: IInputActionCollection2, IDisposable
         m_Player_UpJump = m_Player.FindAction("UpJump", throwIfNotFound: true);
         m_Player_DownJump = m_Player.FindAction("DownJump", throwIfNotFound: true);
         m_Player_Skip = m_Player.FindAction("Skip", throwIfNotFound: true);
-        m_Player_CallHumanMove = m_Player.FindAction("CallHumanMove", throwIfNotFound: true);
         m_Player_CutsceneAnyKey = m_Player.FindAction("CutsceneAnyKey", throwIfNotFound: true);
     }
 
@@ -828,7 +796,6 @@ public partial class @GameplayInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_UpJump;
     private readonly InputAction m_Player_DownJump;
     private readonly InputAction m_Player_Skip;
-    private readonly InputAction m_Player_CallHumanMove;
     private readonly InputAction m_Player_CutsceneAnyKey;
     public struct PlayerActions
     {
@@ -840,7 +807,6 @@ public partial class @GameplayInput: IInputActionCollection2, IDisposable
         public InputAction @UpJump => m_Wrapper.m_Player_UpJump;
         public InputAction @DownJump => m_Wrapper.m_Player_DownJump;
         public InputAction @Skip => m_Wrapper.m_Player_Skip;
-        public InputAction @CallHumanMove => m_Wrapper.m_Player_CallHumanMove;
         public InputAction @CutsceneAnyKey => m_Wrapper.m_Player_CutsceneAnyKey;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
@@ -869,9 +835,6 @@ public partial class @GameplayInput: IInputActionCollection2, IDisposable
             @Skip.started += instance.OnSkip;
             @Skip.performed += instance.OnSkip;
             @Skip.canceled += instance.OnSkip;
-            @CallHumanMove.started += instance.OnCallHumanMove;
-            @CallHumanMove.performed += instance.OnCallHumanMove;
-            @CallHumanMove.canceled += instance.OnCallHumanMove;
             @CutsceneAnyKey.started += instance.OnCutsceneAnyKey;
             @CutsceneAnyKey.performed += instance.OnCutsceneAnyKey;
             @CutsceneAnyKey.canceled += instance.OnCutsceneAnyKey;
@@ -897,9 +860,6 @@ public partial class @GameplayInput: IInputActionCollection2, IDisposable
             @Skip.started -= instance.OnSkip;
             @Skip.performed -= instance.OnSkip;
             @Skip.canceled -= instance.OnSkip;
-            @CallHumanMove.started -= instance.OnCallHumanMove;
-            @CallHumanMove.performed -= instance.OnCallHumanMove;
-            @CallHumanMove.canceled -= instance.OnCallHumanMove;
             @CutsceneAnyKey.started -= instance.OnCutsceneAnyKey;
             @CutsceneAnyKey.performed -= instance.OnCutsceneAnyKey;
             @CutsceneAnyKey.canceled -= instance.OnCutsceneAnyKey;
@@ -944,7 +904,6 @@ public partial class @GameplayInput: IInputActionCollection2, IDisposable
         void OnUpJump(InputAction.CallbackContext context);
         void OnDownJump(InputAction.CallbackContext context);
         void OnSkip(InputAction.CallbackContext context);
-        void OnCallHumanMove(InputAction.CallbackContext context);
         void OnCutsceneAnyKey(InputAction.CallbackContext context);
     }
 }

@@ -10,17 +10,9 @@ namespace Interaction.Item
         [InfoBox("CALLED BY E")]
         public UnityEvent TriggeredByCat;
 
-        [InfoBox("CALLED BY 1")]
-        public UnityEvent TriggeredByHuman;
-
-        public void InteractByCat()
+        public void InteractionByCat()
         {
             TriggeredByCat?.Invoke();
-        }
-
-        public void InteractByHuman()
-        {
-            TriggeredByHuman?.Invoke();
         }
     }
 }

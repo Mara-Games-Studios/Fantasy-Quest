@@ -39,9 +39,6 @@ namespace UI
         [SerializeField]
         private List<SlideStruct> slideStructs = new();
 
-        [SerializeField]
-        private bool playLast = false;
-
         public UnityEvent SlideshowStarted;
         public UnityEvent SlideshowEnded;
 
@@ -76,43 +73,42 @@ namespace UI
         {
             playerInput.Disable();
             slides.ForEach(slide => slide.FadeOut());
+            slides.ForEach(slide => slide.StopChainSpeaker());
             StopAllCoroutines();
-            _ = StartCoroutine(ShowSlide(slides.Last()));
+            _ = StartCoroutine(LastSlideWithSkip());
+        }
+
+        private IEnumerator LastSlideWithSkip()
+        {
+            yield return ShowSlide(slides.Last());
+            SlideshowEnded?.Invoke();
         }
 
         private IEnumerator ShowSlides()
         {
-            if (playLast)
+            if (childrenComponentsMode)
             {
-                yield return ShowSlide(slides.Last());
+                FillChildren();
+                yield return new WaitForSeconds(0.5f);
+                foreach (Slide slide in slides)
+                {
+                    yield return ShowSlide(slide);
+                }
                 SlideshowEnded?.Invoke();
             }
             else
             {
-                if (childrenComponentsMode)
+                if (image == null)
                 {
-                    FillChildren();
-                    yield return new WaitForSeconds(0.5f);
-                    foreach (Slide slide in slides)
-                    {
-                        yield return ShowSlide(slide);
-                    }
-                    SlideshowEnded?.Invoke();
+                    image = gameObject.AddComponent<Image>();
                 }
-                else
-                {
-                    if (image == null)
-                    {
-                        image = gameObject.AddComponent<Image>();
-                    }
 
-                    image.color = new Color(image.color.r, image.color.g, image.color.b, 0);
-                    foreach (SlideStruct slide in slideStructs)
-                    {
-                        yield return ShowSlide(slide);
-                    }
-                    SlideshowEnded?.Invoke();
+                image.color = new Color(image.color.r, image.color.g, image.color.b, 0);
+                foreach (SlideStruct slide in slideStructs)
+                {
+                    yield return ShowSlide(slide);
                 }
+                SlideshowEnded?.Invoke();
             }
         }
 

@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using Common.DI;
+﻿using Common.DI;
 using DI.Project.Services;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -87,18 +86,6 @@ namespace Audio
         public void PlayClip()
         {
             audioSource.Play();
-        }
-
-        private IEnumerator PlayClipDelayedRoutine(float delay)
-        {
-            yield return new WaitForSeconds(delay);
-            audioSource.Play();
-        }
-
-        [Button]
-        public void PlayClipDelayed(float delay)
-        {
-            _ = StartCoroutine(PlayClipDelayedRoutine(delay));
         }
 
         [Button]

@@ -93,10 +93,5 @@ namespace Utils
             }
             MoveFinished?.Invoke();
         }
-
-        public float GetDuration()
-        {
-            return duration;
-        }
     }
 }

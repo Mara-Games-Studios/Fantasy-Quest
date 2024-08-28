@@ -3,19 +3,25 @@ using System.Collections.Generic;
 using System.Linq;
 using Audio;
 using Cat.Jump;
+using Common.DI;
 using Configs;
+using Cysharp.Threading.Tasks;
 using Dialogue;
 using Interaction.Item;
 using Spine.Unity;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using VContainer;
 
 namespace Interaction
 {
     [RequireComponent(typeof(Rigidbody2D))]
     [AddComponentMenu("Scripts/Interaction/Interaction")]
-    internal class InteractionImpl : MonoBehaviour
+    internal class InteractionImpl : InjectingMonoBehaviour
     {
+        [Inject]
+        private LockerApi lockerSettings;
+
         [SerializeField]
         private Rigidbody2D playerRigidBody;
 
@@ -46,7 +52,7 @@ namespace Interaction
         private SoundPlayer cantDoSound;
 
         private GameplayInput playerInput;
-        private bool canDoSmth = true;
+        private bool canDoSomething = true;
 
         private void Awake()
         {
@@ -57,8 +63,7 @@ namespace Interaction
         {
             playerInput.Enable();
             // E
-            playerInput.Player.CatInteraction.performed += InteractCat;
-            playerInput.Player.CatInteraction.performed += InteractHuman;
+            playerInput.Player.CatInteraction.performed += CallInteraction;
             // M
             playerInput.Player.CatMeow.performed += JustMeow;
 
@@ -66,20 +71,47 @@ namespace Interaction
             playerInput.Player.UpJump.performed += TransitionUp;
             // S or ArrDown
             playerInput.Player.DownJump.performed += TransitionDown;
-            // 2
-            playerInput.Player.CallHumanMove.performed += CallHumanMove;
         }
 
-        private void CallHumanMove(InputAction.CallbackContext context)
+        public void JustMeow(InputAction.CallbackContext context)
         {
-            // 2
-            CastInterfaces<ICallHumanMove>()
-                .ForEach(x => x.CallHumanMove());
+            // M
+            _ = CatMeowingTask();
         }
 
-        public void InteractHuman(InputAction.CallbackContext context)
+        private async UniTaskVoid CatMeowingTask()
+        {
+            if (!lockerSettings.Api.IsCatInteractionLocked)
+            {
+                canDoSomething = false;
+                lockerSettings.Api.LockAllExceptBubble();
+                _ = catSkeleton.AnimationState.SetAnimation(0, canDoAnim, false);
+                canDoSound.PlayClip();
+                await UniTask.WaitForSeconds(canDoAnim.Animation.Duration);
+                canDoSomething = true;
+                lockerSettings.Api.UnlockAll();
+            }
+        }
+
+        private IEnumerator CatHissingRoutine()
+        {
+            canDoSomething = false;
+            lockerSettings.Api.LockAllExceptBubble();
+            _ = catSkeleton.AnimationState.SetAnimation(0, cantDoAnim, false);
+            cantDoSound.PlayClip();
+            yield return new WaitForSeconds(cantDoAnim.Animation.Duration);
+            _ = catSkeleton.AnimationState.SetAnimation(0, idleAnim, false);
+            canDoSomething = true;
+            lockerSettings.Api.UnlockAll();
+        }
+
+        public void CallInteraction(InputAction.CallbackContext context)
         {
             // E
+            CastInterfaces<ISceneTransition>(true)
+                .ForEach(x => x.ToNewScene());
+            CastInterfaces<ICarryable>().ForEach(x => x.CarryByCat());
+            CastInterfaces<IInteractable>().ForEach(x => x.InteractionByCat());
             _ = StartCoroutine(InteractHumanRoutine());
         }
 
@@ -88,15 +120,16 @@ namespace Interaction
             List<ISpeakable> speakers = CastInterfaces<ISpeakable>();
             List<ICarryable> carriers = CastInterfaces<ICarryable>();
             List<IInteractable> interactors = CastInterfaces<IInteractable>();
-            if (!LockerSettings.Instance.IsCatInteractionLocked)
+            if (!lockerSettings.Api.IsCatInteractionLocked)
             {
                 if (
-                    (speakers.Count > 0 || carriers.Count > 0 || interactors.Count > 0) && canDoSmth
+                    (speakers.Count > 0 || carriers.Count > 0 || interactors.Count > 0)
+                    && canDoSomething
                 ) // Can Do something
                 {
-                    yield return CatMeowingRoutine();
+                    yield return CatMeowingTask();
                 }
-                else if (canDoSmth) //Can't Do Anything
+                else if (canDoSomething) //Can't Do Anything
                 {
                     yield return CatHissingRoutine();
                 }
@@ -104,48 +137,6 @@ namespace Interaction
 
             speakers.ForEach(x => x.Speak());
             carriers.ForEach(x => x.CarryByHuman());
-            interactors.ForEach(x => x.InteractByHuman());
-        }
-
-        public void JustMeow(InputAction.CallbackContext context)
-        {
-            // M
-            _ = StartCoroutine(CatMeowingRoutine());
-        }
-
-        private IEnumerator CatMeowingRoutine()
-        {
-            if (!LockerSettings.Instance.IsCatInteractionLocked)
-            {
-                canDoSmth = false;
-                LockerSettings.Instance.LockAllExceptBubble();
-                _ = catSkeleton.AnimationState.SetAnimation(0, canDoAnim, false);
-                canDoSound.PlayClip();
-                yield return new WaitForSeconds(canDoAnim.Animation.Duration);
-                canDoSmth = true;
-                LockerSettings.Instance.UnlockAll();
-            }
-        }
-
-        private IEnumerator CatHissingRoutine()
-        {
-            canDoSmth = false;
-            LockerSettings.Instance.LockAllExceptBubble();
-            _ = catSkeleton.AnimationState.SetAnimation(0, cantDoAnim, false);
-            cantDoSound.PlayClip();
-            yield return new WaitForSeconds(cantDoAnim.Animation.Duration);
-            _ = catSkeleton.AnimationState.SetAnimation(0, idleAnim, false);
-            canDoSmth = true;
-            LockerSettings.Instance.UnlockAll();
-        }
-
-        public void InteractCat(InputAction.CallbackContext context)
-        {
-            // E
-            CastInterfaces<ISceneTransition>(true)
-                .ForEach(x => x.ToNewScene());
-            CastInterfaces<ICarryable>().ForEach(x => x.CarryByCat());
-            CastInterfaces<IInteractable>().ForEach(x => x.InteractByCat());
         }
 
         public void TransitionUp(InputAction.CallbackContext context)
@@ -160,7 +151,7 @@ namespace Interaction
 
         private List<T> CastInterfaces<T>(bool ignore = false)
         {
-            if (LockerSettings.Instance.IsCatInteractionLocked && !ignore)
+            if (lockerSettings.Api.IsCatInteractionLocked && !ignore)
             {
                 return new List<T>();
             }
@@ -183,13 +174,11 @@ namespace Interaction
 
         private void OnDisable()
         {
-            playerInput.Player.CatInteraction.performed -= InteractCat;
-            playerInput.Player.CatInteraction.performed -= InteractHuman;
+            playerInput.Player.CatInteraction.performed -= CallInteraction;
             playerInput.Player.CatMeow.performed -= JustMeow;
 
             playerInput.Player.UpJump.performed -= TransitionUp;
             playerInput.Player.DownJump.performed -= TransitionDown;
-            playerInput.Player.CallHumanMove.performed -= CallHumanMove;
             playerInput.Disable();
         }
     }

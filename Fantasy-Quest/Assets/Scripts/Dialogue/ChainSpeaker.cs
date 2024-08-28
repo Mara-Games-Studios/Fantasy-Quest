@@ -34,7 +34,6 @@ namespace Dialogue
 
         private Voice voice;
 
-        [Button]
         public void UpdateReplicaString(int index, string label)
         {
             replicas[index].UpdateString(label);

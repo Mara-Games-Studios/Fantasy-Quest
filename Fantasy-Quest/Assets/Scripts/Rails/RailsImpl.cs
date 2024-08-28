@@ -117,9 +117,12 @@ namespace Rails
         [Button(Style = ButtonStyle.Box)]
         public void MoveBody(float length)
         {
-            CurrentPosition = MathfTools.Clamp01UpperExclusive(
-                CurrentPosition + (length / Path.length)
-            );
+            float clamped = Mathf.Clamp01(CurrentPosition + (length / Path.length));
+            if (clamped == 1)
+            {
+                clamped = 0.99999f;
+            }
+            CurrentPosition = clamped;
         }
 
         [Button(Style = ButtonStyle.Box)]
