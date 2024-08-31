@@ -2,9 +2,7 @@
 using System.Collections.Generic;
 using Common.DI;
 using DI.Project.Services;
-using Sirenix.OdinInspector;
 using Subtitles;
-using TNRD;
 using UnityEngine;
 using VContainer;
 
@@ -17,8 +15,9 @@ namespace Dialogue
         [Inject]
         private SoundsManager soundsManager;
 
-        [InfoBox("CALLED BY 1")]
-        [Header("Speech")]
+        [Inject]
+        protected ISubtitlesView Subtitles;
+
         [SerializeField]
         protected List<Replica> FirstTrySpeech;
         public List<Replica> FFirstTrySpeech => FirstTrySpeech;
@@ -27,12 +26,8 @@ namespace Dialogue
         protected List<Replica> AlternativeSpeech;
         public List<Replica> AAlternativeSpeech => AlternativeSpeech;
 
-        [Space]
-        [Header("Components")]
-        [SerializeField]
-        protected SerializableInterface<ISubtitlesView> SubtitlesView;
-
         protected Coroutine SayCoroutine;
+        private Replica currentReplica = null;
         protected Voice Voice;
         protected bool WasSaid;
 
@@ -46,7 +41,7 @@ namespace Dialogue
             FirstTrySpeech[index].UpdateString(text);
             if (currentReplica == FirstTrySpeech[index])
             {
-                SubtitlesView.Value.UpdateText(text);
+                Subtitles.UpdateText(text);
             }
         }
 
@@ -60,7 +55,7 @@ namespace Dialogue
             AlternativeSpeech[index].UpdateString(text);
             if (currentReplica == AlternativeSpeech[index])
             {
-                SubtitlesView.Value.UpdateText(text);
+                Subtitles.UpdateText(text);
             }
         }
 
@@ -91,7 +86,7 @@ namespace Dialogue
                 SayCoroutine = null;
             }
             Voice?.Silence();
-            SubtitlesView.Value.Hide();
+            Subtitles.Hide();
         }
 
         protected virtual void Say(List<Replica> speech)
@@ -100,29 +95,17 @@ namespace Dialogue
             SayCoroutine = StartCoroutine(SayList(speech));
         }
 
-        private Replica currentReplica = null;
-
         protected IEnumerator SayList(List<Replica> replicas)
         {
             foreach (Replica replica in replicas)
             {
-                SubtitlesView.Value.Show(replica);
+                Subtitles.Show(replica);
                 currentReplica = replica;
                 yield return new WaitForSeconds(replica.DelayBeforeSaid);
                 Voice.Say(replica);
                 yield return new WaitForSeconds(replica.Duration + replica.DelayAfterSaid);
                 currentReplica = null;
             }
-            Stop();
-        }
-
-        protected bool HasISubtitlesView(GameObject gameObject)
-        {
-            return gameObject.TryGetComponent(out ISubtitlesView _);
-        }
-
-        public void Kill()
-        {
             Stop();
         }
     }

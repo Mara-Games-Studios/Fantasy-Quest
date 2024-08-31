@@ -35,7 +35,6 @@ namespace Effects
             DoFadeForAll(0);
         }
 
-        [Button]
         public void DoFadeForAll(float endAlpha)
         {
             KillAllActions();
@@ -51,7 +50,6 @@ namespace Effects
             );
         }
 
-        [Button]
         private void KillAllActions()
         {
             tweens.ForEach(x => x?.Kill(true));
@@ -62,7 +60,6 @@ namespace Effects
             }
         }
 
-        [Button]
         private Func<bool> DoFadeForRenderer(Renderer renderer, float endAlpha)
         {
             List<Func<bool>> conditions = new();

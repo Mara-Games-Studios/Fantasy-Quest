@@ -7,7 +7,6 @@ using Common.DI;
 using DI.Project.Services;
 using Sirenix.OdinInspector;
 using Subtitles;
-using TNRD;
 using UnityEngine;
 using VContainer;
 
@@ -19,12 +18,13 @@ namespace Dialogue
         [Inject]
         private SoundsManager soundsManager;
 
+        [Inject]
+        private ISubtitlesView subtitles;
+
         [SerializeField]
         private List<Replica> replicas;
 
-        [SerializeField]
-        private SerializableInterface<ISubtitlesView> subtitles;
-        private ISubtitlesView Subtitles => subtitles.Value;
+        public float Duration => replicas.Sum(s => s.Duration);
 
         public List<Replica> Replicas
         {
@@ -39,7 +39,7 @@ namespace Dialogue
             replicas[index].UpdateString(label);
             if (currentReplica == replicas[index])
             {
-                Subtitles.UpdateText(label);
+                subtitles.UpdateText(label);
             }
         }
 
@@ -59,7 +59,7 @@ namespace Dialogue
             currentReplica = null;
             if (isWithSubtitles)
             {
-                Subtitles.Hide();
+                subtitles.Hide();
                 isWithSubtitles = false;
             }
         }
@@ -81,13 +81,13 @@ namespace Dialogue
         [Button]
         public void ShowSubtitles()
         {
-            Subtitles.Show(Replicas.First());
+            subtitles.Show(Replicas.First());
         }
 
         [Button]
         public void HideSubtitles()
         {
-            Subtitles.Hide();
+            subtitles.Hide();
         }
 
         public void Tell(Action nextAction)
@@ -117,13 +117,13 @@ namespace Dialogue
             foreach (Replica replica in Replicas)
             {
                 voice.Say(replica);
-                Subtitles.Show(replica);
+                subtitles.Show(replica);
                 currentReplica = replica;
                 yield return new WaitForSeconds(replica.Duration + replica.DelayAfterSaid);
                 currentReplica = null;
             }
             isWithSubtitles = false;
-            Subtitles.Hide();
+            subtitles.Hide();
             nextAction?.Invoke();
         }
 
@@ -133,13 +133,13 @@ namespace Dialogue
             foreach (Replica replica in Replicas)
             {
                 voice.Say(replica);
-                Subtitles.Show(replica);
+                subtitles.Show(replica);
                 currentReplica = replica;
                 yield return new WaitForSeconds(replica.Duration + replica.DelayAfterSaid);
                 currentReplica = null;
             }
             isWithSubtitles = false;
-            Subtitles.Hide();
+            subtitles.Hide();
         }
 
         private IEnumerator JustTellWithoutSubtitlesRoutine(Action nextAction = null)
@@ -149,14 +149,6 @@ namespace Dialogue
                 voice.Say(replica);
                 yield return new WaitForSeconds(replica.Duration + replica.DelayAfterSaid);
             }
-        }
-
-        [Button]
-        private void FindSubtitlesView()
-        {
-            subtitles.Value =
-                FindObjectsOfType<MonoBehaviour>().First(x => x is ISubtitlesView)
-                as ISubtitlesView;
         }
     }
 }

@@ -1,7 +1,7 @@
 using System.Collections.Generic;
-using Audio;
 using Cutscene;
 using Cysharp.Threading.Tasks;
+using Dialogue;
 using Interaction;
 using Sirenix.OdinInspector;
 using Spine.Unity;
@@ -33,9 +33,8 @@ namespace LevelSpecific.House
         [SerializeField]
         private AnimationReferenceAsset talkAnimation;
 
-        [Required]
         [SerializeField]
-        private List<SoundPlayer> symonSpeech;
+        private List<ChainSpeaker> speakers;
 
         private bool isMilkFilled = true;
         private bool firstTry = true;
@@ -67,17 +66,17 @@ namespace LevelSpecific.House
             {
                 await meowing.CatMeowingTask();
                 canTalk = false;
-                SoundPlayer currentSound = symonSpeech[Random.Range(0, symonSpeech.Count)];
-                currentSound.PlayClip();
-                await SymonTalkAnimation(currentSound);
+                ChainSpeaker speech = speakers[Random.Range(0, speakers.Count)];
+                speech.JustTell();
+                await SymonTalkAnimation(speech.Duration);
                 canTalk = true;
             }
         }
 
-        private async UniTask SymonTalkAnimation(SoundPlayer currentSound)
+        private async UniTask SymonTalkAnimation(float talkDuration)
         {
             _ = skeletonAnimation.AnimationState.SetAnimation(0, talkAnimation, true);
-            await UniTask.WaitForSeconds(currentSound.AudioClip.length);
+            await UniTask.WaitForSeconds(talkDuration);
             _ = skeletonAnimation.AnimationState.SetAnimation(0, idleAnimation, true);
         }
     }

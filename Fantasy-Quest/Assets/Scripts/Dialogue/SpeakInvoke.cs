@@ -1,5 +1,4 @@
-﻿using Sirenix.OdinInspector;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Events;
 
 namespace Dialogue
@@ -8,7 +7,6 @@ namespace Dialogue
     [AddComponentMenu("Scripts/Dialogue/Dialogue.SpeakInvoke")]
     internal class SpeakInvoke : MonoBehaviour, ISpeakable
     {
-        [InfoBox("CALLED BY 1")]
         public UnityEvent OnSpeakTriggered;
         public UnityEvent OnSpeakStopped;
 
