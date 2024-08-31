@@ -1,72 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &166111206539698847
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 8691118096419374702}
-  - component: {fileID: 1455910669247743690}
-  m_Layer: 0
-  m_Name: CantDoMeows
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &8691118096419374702
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 166111206539698847}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 3090932207169607347}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1455910669247743690
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 166111206539698847}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e25d7337314417479613a298ff03226, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  audioClip: {fileID: 8300000, guid: 3315d8dc42f1a4048b8b9bb54bd73c66, type: 3}
-  audioSourceConfig:
-    priorityLevel: 128
-    Mute: 0
-    Volume: 0.4
-    Pitch: 1
-    PanStereo: 0
-    ReverbZoneMix: 1
-    SpatialBlend: 0
-    RolloffMode: 0
-    MinDistance: 0.1
-    MaxDistance: 50
-    Spread: 0
-    DopplerLevel: 1
-    BypassEffects: 0
-    BypassListenerEffects: 0
-    BypassReverbZones: 0
-    IgnoreListenerVolume: 0
-    IgnoreListenerPause: 0
-  loop: 0
-  playOnStart: 0
-  ignorePause: 0
-  createOnThisPosition: 0
 --- !u!1 &488276124650566734
 GameObject:
   m_ObjectHideFlags: 0
@@ -311,7 +244,7 @@ GameObject:
   - component: {fileID: 3783682348478475929}
   - component: {fileID: 7224838419161133770}
   m_Layer: 0
-  m_Name: CanDoMeow
+  m_Name: Meow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -397,7 +330,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3783682348478475929}
-  - {fileID: 8691118096419374702}
   - {fileID: 5480687627444997209}
   m_Father: {fileID: 182963880363041228}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -417,6 +349,7 @@ GameObject:
   - component: {fileID: 3358981370784136412}
   - component: {fileID: 5384320320187699602}
   - component: {fileID: 8525059513916484998}
+  - component: {fileID: 1705437890998203663}
   m_Layer: 0
   m_Name: Cat
   m_TagString: Player
@@ -530,8 +463,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bf04377b26e6cd41b4a755db165e63e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  meowing: {fileID: 1705437890998203663}
   playerRigidBody: {fileID: 3048288317685710039}
-  colDistance: 1
   contactFilter:
     useTriggers: 1
     useLayerMask: 1
@@ -546,12 +479,6 @@ MonoBehaviour:
     maxDepth: 0
     minNormalAngle: 0
     maxNormalAngle: 0
-  catSkeleton: {fileID: 5374469698757798622}
-  idleAnim: {fileID: 11400000, guid: e08513285cfb97942807f360d7159d12, type: 2}
-  canDoAnim: {fileID: 11400000, guid: 076eccea47ec02a4bb6a7f82184e057a, type: 2}
-  canDoSound: {fileID: 7224838419161133770}
-  cantDoAnim: {fileID: 11400000, guid: 2386d373b5cc4c947a106a5d8455f5fe, type: 2}
-  cantDoSound: {fileID: 1455910669247743690}
 --- !u!114 &3358981370784136412
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -596,6 +523,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bubbleShower: {fileID: 3269079039358453128}
+--- !u!114 &1705437890998203663
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4994989475704801607}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d48c5f0f1a1dbc944bcfb814d9e5bd12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  catSkeleton: {fileID: 5374469698757798622}
+  meowAnimation: {fileID: 11400000, guid: 076eccea47ec02a4bb6a7f82184e057a, type: 2}
+  meowSound: {fileID: 7224838419161133770}
 --- !u!1 &7170774820902234647
 GameObject:
   m_ObjectHideFlags: 0

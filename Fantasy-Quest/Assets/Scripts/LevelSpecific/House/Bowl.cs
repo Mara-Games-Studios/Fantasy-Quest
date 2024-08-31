@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using Audio;
 using Cutscene;
 using Cysharp.Threading.Tasks;
-using Interaction.Item;
+using Interaction;
 using Sirenix.OdinInspector;
 using Spine.Unity;
 using UnityEngine;
@@ -19,6 +19,10 @@ namespace LevelSpecific.House
         [Required]
         [SerializeField]
         private Start drinkMilkCutscene;
+
+        [Required]
+        [SerializeField]
+        private Cat.Mewing meowing;
 
         [SerializeField]
         private SkeletonAnimation skeletonAnimation;
@@ -37,10 +41,16 @@ namespace LevelSpecific.House
         private bool firstTry = true;
         private bool canTalk = true;
 
-        public void InteractionByCat()
+        public void Interact()
+        {
+            _ = MeowAndDo();
+        }
+
+        private async UniTaskVoid MeowAndDo()
         {
             if (firstTry)
             {
+                await meowing.CatMeowingTask();
                 fillMilkCutscene.StartCutscene();
                 firstTry = false;
                 return;
@@ -55,28 +65,19 @@ namespace LevelSpecific.House
 
             if (!isMilkFilled && canTalk)
             {
+                await meowing.CatMeowingTask();
                 canTalk = false;
                 SoundPlayer currentSound = symonSpeech[Random.Range(0, symonSpeech.Count)];
                 currentSound.PlayClip();
-                _ = SymonTalkAnimation(currentSound.AudioClip.length);
+                await SymonTalkAnimation(currentSound);
+                canTalk = true;
             }
         }
 
-        private async UniTaskVoid SymonTalkAnimation(float duration)
-        {
-            StartSpeakAnimation();
-            await UniTask.WaitForSeconds(duration);
-            StopSpeakAnimation();
-            canTalk = true;
-        }
-
-        private void StartSpeakAnimation()
+        private async UniTask SymonTalkAnimation(SoundPlayer currentSound)
         {
             _ = skeletonAnimation.AnimationState.SetAnimation(0, talkAnimation, true);
-        }
-
-        private void StopSpeakAnimation()
-        {
+            await UniTask.WaitForSeconds(currentSound.AudioClip.length);
             _ = skeletonAnimation.AnimationState.SetAnimation(0, idleAnimation, true);
         }
     }

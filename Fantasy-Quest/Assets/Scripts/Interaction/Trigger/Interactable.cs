@@ -2,15 +2,15 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Interaction.Item
+namespace Interaction.Trigger
 {
-    [AddComponentMenu("Scripts/Interaction/Item/Interaction.Item.InteractableTrigger")]
-    internal class InteractableTrigger : MonoBehaviour, IInteractable
+    [AddComponentMenu("Scripts/Interaction/Trigger/Interaction.Trigger.Interactable")]
+    internal class Interactable : MonoBehaviour, IInteractable
     {
         [InfoBox("CALLED BY E")]
         public UnityEvent TriggeredByCat;
 
-        public void InteractionByCat()
+        public void Interact()
         {
             TriggeredByCat?.Invoke();
         }

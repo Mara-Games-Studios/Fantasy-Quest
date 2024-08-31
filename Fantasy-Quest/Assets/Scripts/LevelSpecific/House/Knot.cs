@@ -1,4 +1,4 @@
-using Interaction.Item;
+using Interaction;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -25,7 +25,7 @@ namespace LevelSpecific.House
 
         public UnityEvent OnKnotHinted;
 
-        public void InteractionByCat()
+        public void Interact()
         {
             if (canCatInteract)
             {

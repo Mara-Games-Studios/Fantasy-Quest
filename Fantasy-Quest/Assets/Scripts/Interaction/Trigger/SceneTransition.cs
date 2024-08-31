@@ -4,10 +4,10 @@ using UnityEngine;
 using UnityEngine.Events;
 using VContainer;
 
-namespace Interaction.Item
+namespace Interaction.Trigger
 {
-    [AddComponentMenu("Scripts/Interaction/Item/Interaction.Item.SceneTransitionTrigger")]
-    internal class SceneTransitionTrigger : InjectingMonoBehaviour, IInteractable
+    [AddComponentMenu("Scripts/Interaction/Trigger/Interaction.Trigger.SceneTransition")]
+    internal class SceneTransition : InjectingMonoBehaviour, IInteractable
     {
         [Inject]
         private LockerApi lockerSettings;
@@ -24,7 +24,7 @@ namespace Interaction.Item
             this.lockTriggering = lockTriggering;
         }
 
-        public void InteractionByCat()
+        public void Interact()
         {
             if (lockTriggering)
             {
