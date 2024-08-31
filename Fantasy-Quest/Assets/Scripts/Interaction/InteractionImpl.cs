@@ -5,6 +5,7 @@ using Cat.Jump;
 using Common.DI;
 using Configs;
 using Cysharp.Threading.Tasks;
+using Dialogue;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -55,6 +56,8 @@ namespace Interaction
         public void CallInteraction(InputAction.CallbackContext context)
         {
             CastInterfaces<IInteractable>().ForEach(x => x.Interact());
+            CastInterfaces<ISpeakable>().ForEach(x => x.Speak());
+            //CastInterfaces<ISpeakable>().ForEach(x => x.Interact());
         }
 
         public void JumpUp(InputAction.CallbackContext context)
