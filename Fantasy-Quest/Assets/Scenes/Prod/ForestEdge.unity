@@ -2462,7 +2462,6 @@ MonoBehaviour:
       IgnoreListenerPause: 0
     DelayBeforeSaid: 0
     DelayAfterSaid: 0
-    cachedDuration: 6.7490625
 --- !u!1 &212486991
 GameObject:
   m_ObjectHideFlags: 3
@@ -2871,7 +2870,6 @@ MonoBehaviour:
       IgnoreListenerPause: 0
     DelayBeforeSaid: 0
     DelayAfterSaid: 0.3
-    cachedDuration: 2.38875
 --- !u!1 &227300143
 GameObject:
   m_ObjectHideFlags: 3
@@ -4161,7 +4159,6 @@ MonoBehaviour:
       IgnoreListenerPause: 0
     DelayBeforeSaid: 0
     DelayAfterSaid: 0.3
-    cachedDuration: 2.0190625
 --- !u!1 &325451540
 GameObject:
   m_ObjectHideFlags: 0
@@ -4821,8 +4818,8 @@ GameObject:
   - component: {fileID: 404905208}
   - component: {fileID: 404905225}
   - component: {fileID: 404905217}
-  - component: {fileID: 404905220}
   - component: {fileID: 404905221}
+  - component: {fileID: 404905227}
   - component: {fileID: 404905223}
   - component: {fileID: 404905226}
   - component: {fileID: 404905224}
@@ -4874,36 +4871,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &404905220
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 404905207}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55013a6cc4e402c4dae0a1f8724a008f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  OnSpeakTriggered:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 404905221}
-        m_TargetAssemblyTypeName: LevelSpecific.ForestEdge.SymonSpeakLogic, Assembly-CSharp
-        m_MethodName: Speak
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  OnSpeakStopped:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!114 &404905221
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5028,6 +4995,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boxCollider: {fileID: 404905225}
   color: {r: 1, g: 1, b: 1, a: 1}
+--- !u!114 &404905227
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 404905207}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3af907535b877e24f83cf2b4b4b36f75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TriggeredByCat:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 404905221}
+        m_TargetAssemblyTypeName: LevelSpecific.ForestEdge.SymonSpeakLogic, Assembly-CSharp
+        m_MethodName: Speak
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &408088389
 GameObject:
   m_ObjectHideFlags: 0
@@ -6273,8 +6267,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -1.5606999, y: 1.75805, z: 0}
-    m_Extent: {x: 1.6845, y: 3.31495, z: 0}
+    m_Center: {x: -1.5649, y: 1.75475, z: 0}
+    m_Extent: {x: 1.6846, y: 3.31695, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0.38
@@ -6377,7 +6371,6 @@ MonoBehaviour:
       IgnoreListenerPause: 0
     DelayBeforeSaid: 0
     DelayAfterSaid: 0
-    cachedDuration: 12.6865
 --- !u!4 &498147044
 Transform:
   m_ObjectHideFlags: 0
@@ -6555,7 +6548,6 @@ MonoBehaviour:
       IgnoreListenerPause: 0
     DelayBeforeSaid: 0
     DelayAfterSaid: 0.3
-    cachedDuration: 4.4646873
   - Text: "\u0423 \u043C\u0435\u043D\u044F \u0436\u0435 \u0435\u0441\u0442\u044C
       \u0441\u0443\u043C\u043A\u0430! \u041D\u043E \u0433\u0434\u0435 \u043E\u043D\u0430?  "
     Audio: {fileID: 8300000, guid: 9cccb0b9d2f438a4d88748396f844a17, type: 3}
@@ -6579,7 +6571,6 @@ MonoBehaviour:
       IgnoreListenerPause: 0
     DelayBeforeSaid: 0
     DelayAfterSaid: 0.3
-    cachedDuration: 3.6684375
   - Text: "\u0421\u0435\u0433\u043E\u0434\u043D\u044F \u044F \u0432 \u0430\u043C\u0431\u0430\u0440
       \u0437\u0430\u0445\u043E\u0434\u0438\u043B\u2026\u041D\u0430 \u043A\u0430\u0447\u0435\u043B\u044F\u0445
       \u043A\u0430\u0442\u0430\u043B\u0441\u044F\u2026"
@@ -6604,7 +6595,6 @@ MonoBehaviour:
       IgnoreListenerPause: 0
     DelayBeforeSaid: 0
     DelayAfterSaid: 0.3
-    cachedDuration: 3.7821875
 --- !u!114 &507370713
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7016,7 +7006,6 @@ MonoBehaviour:
       IgnoreListenerPause: 0
     DelayBeforeSaid: 0
     DelayAfterSaid: 0
-    cachedDuration: 1.70625
 --- !u!4 &520998946
 Transform:
   m_ObjectHideFlags: 0
@@ -7884,8 +7873,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -1.25225, y: -0.22155005, z: 0}
-    m_Extent: {x: 2.29185, y: 1.67745, z: 0}
+    m_Center: {x: -1.2537999, y: -0.2152, z: 0}
+    m_Extent: {x: 2.2886, y: 1.6845, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0.38
@@ -7965,8 +7954,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -1.2504, y: -0.21704996, z: 0}
-    m_Extent: {x: 2.2887, y: 1.67565, z: 0}
+    m_Center: {x: -1.24135, y: -0.21495003, z: 0}
+    m_Extent: {x: 2.28625, y: 1.6830499, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0.38
@@ -8186,7 +8175,6 @@ MonoBehaviour:
       IgnoreListenerPause: 0
     DelayBeforeSaid: 0
     DelayAfterSaid: 0
-    cachedDuration: 2.9859376
 --- !u!1 &598062200
 GameObject:
   m_ObjectHideFlags: 0
@@ -10408,8 +10396,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 5.7312503, y: 9.41515, z: 0}
-    m_Extent: {x: 3.48035, y: 5.73725, z: 0}
+    m_Center: {x: 5.7339, y: 9.4202, z: 0}
+    m_Extent: {x: 3.4719, y: 5.7447, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -11166,7 +11154,6 @@ MonoBehaviour:
       IgnoreListenerPause: 0
     DelayBeforeSaid: 0
     DelayAfterSaid: 0
-    cachedDuration: 9.583438
 --- !u!1 &863591683
 GameObject:
   m_ObjectHideFlags: 0
@@ -12669,7 +12656,6 @@ MonoBehaviour:
       IgnoreListenerPause: 0
     DelayBeforeSaid: 0
     DelayAfterSaid: 0.3
-    cachedDuration: 2.0190625
 --- !u!1 &965151683
 GameObject:
   m_ObjectHideFlags: 0
@@ -14622,6 +14608,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39979dd723983a14582ee9362f27c6de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isAvailable: 1
 --- !u!114 &1142547509
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14904,7 +14891,6 @@ MonoBehaviour:
       IgnoreListenerPause: 0
     DelayBeforeSaid: 0
     DelayAfterSaid: 0.3
-    cachedDuration: 1.990625
 --- !u!1 &1155657233
 GameObject:
   m_ObjectHideFlags: 0
@@ -15878,8 +15864,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.3489499, y: 5.44875, z: 0}
-    m_Extent: {x: 5.87525, y: 6.2230496, z: 0}
+    m_Center: {x: -0.3548, y: 5.44715, z: 0}
+    m_Extent: {x: 5.8774996, y: 6.2259502, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -16327,8 +16313,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 5.9189, y: 9.68325, z: 0}
-    m_Extent: {x: 4.6173997, y: 7.22575, z: 0}
+    m_Center: {x: 5.9128, y: 9.6776, z: 0}
+    m_Extent: {x: 4.6243, y: 7.2286997, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -16580,7 +16566,6 @@ MonoBehaviour:
       IgnoreListenerPause: 0
     DelayBeforeSaid: 0
     DelayAfterSaid: 0
-    cachedDuration: 1.5640625
 --- !u!1 &1262291775
 GameObject:
   m_ObjectHideFlags: 0
@@ -16879,8 +16864,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 6.1889, y: 10.196051, z: 0}
-    m_Extent: {x: 4.453, y: 6.3864503, z: 0}
+    m_Center: {x: 6.1896, y: 10.20075, z: 0}
+    m_Extent: {x: 4.4437, y: 6.39815, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -16961,8 +16946,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 5.21065, y: 7.4192, z: 0}
-    m_Extent: {x: 3.49015, y: 4.8231, z: 0}
+    m_Center: {x: 5.2099996, y: 7.41555, z: 0}
+    m_Extent: {x: 3.4904997, y: 4.8168497, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -18501,6 +18486,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39979dd723983a14582ee9362f27c6de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isAvailable: 1
 --- !u!1 &1405407342
 GameObject:
   m_ObjectHideFlags: 0
@@ -18649,7 +18635,6 @@ MonoBehaviour:
       IgnoreListenerPause: 0
     DelayBeforeSaid: 0
     DelayAfterSaid: 0
-    cachedDuration: 4.606875
 --- !u!114 &1418968071 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7420271526200802404, guid: b226e54f4be684b4f82c70458cacaaab, type: 3}
@@ -19305,6 +19290,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39979dd723983a14582ee9362f27c6de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isAvailable: 1
 --- !u!1 &1506959455
 GameObject:
   m_ObjectHideFlags: 0
@@ -19650,7 +19636,6 @@ MonoBehaviour:
       IgnoreListenerPause: 0
     DelayBeforeSaid: 0
     DelayAfterSaid: 0.3
-    cachedDuration: 3.07125
 --- !u!1 &1530924075
 GameObject:
   m_ObjectHideFlags: 0
@@ -20392,7 +20377,6 @@ MonoBehaviour:
       IgnoreListenerPause: 0
     DelayBeforeSaid: 0
     DelayAfterSaid: 0
-    cachedDuration: 1.9621875
 --- !u!1 &1579123525
 GameObject:
   m_ObjectHideFlags: 0
@@ -21098,6 +21082,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39979dd723983a14582ee9362f27c6de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isAvailable: 1
 --- !u!1 &1630584903
 GameObject:
   m_ObjectHideFlags: 0
@@ -21637,8 +21622,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 11.89365, y: 15.8738, z: 0}
-    m_Extent: {x: 2.5606499, y: 5.22, z: 0}
+    m_Center: {x: 11.895451, y: 15.8806, z: 0}
+    m_Extent: {x: 2.55965, y: 5.2271004, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -21900,8 +21885,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 6.3840003, y: 9.562, z: 0}
-    m_Extent: {x: 3.4954, y: 5.0097, z: 0}
+    m_Center: {x: 6.3766003, y: 9.562201, z: 0}
+    m_Extent: {x: 3.4893, y: 5.0116, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -23887,7 +23872,6 @@ MonoBehaviour:
       IgnoreListenerPause: 0
     DelayBeforeSaid: 0
     DelayAfterSaid: 0
-    cachedDuration: 1.763125
   - Text: "\u041F\u043E\u0440\u0430 \u0434\u0432\u0438\u0433\u0430\u0442\u044C\u0441\u044F
       \u0434\u0430\u043B\u044C\u0448\u0435"
     Audio: {fileID: 8300000, guid: 18c7a13f61b5de544b4fd48f2469492f, type: 3}
@@ -23911,7 +23895,6 @@ MonoBehaviour:
       IgnoreListenerPause: 0
     DelayBeforeSaid: 0
     DelayAfterSaid: 0
-    cachedDuration: 1.535625
 --- !u!4 &1784131400
 Transform:
   m_ObjectHideFlags: 0
@@ -24793,8 +24776,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -1.8089, y: 0.2756499, z: 0}
-    m_Extent: {x: 2.3645, y: 2.85315, z: 0}
+    m_Center: {x: -1.8073499, y: 0.27744997, z: 0}
+    m_Extent: {x: 2.35685, y: 2.8408499, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0.38
@@ -26554,7 +26537,6 @@ MonoBehaviour:
       IgnoreListenerPause: 0
     DelayBeforeSaid: 0
     DelayAfterSaid: 0
-    cachedDuration: 4.6921873
   - Text: "\u041E\u043D\u0430 \u0443\u043F\u043E\u043C\u0438\u043D\u0430\u043B\u0430,
       \u0447\u0442\u043E \u043D\u0443\u0436\u043D\u043E \u043F\u0440\u0438\u043D\u0435\u0441\u0442\u0438
       \u0417 \u0434\u0430\u0440\u0430, \u043D\u043E \u044F \u043D\u0435 \u043F\u043E\u043C\u043D\u044E
@@ -26584,7 +26566,6 @@ MonoBehaviour:
       IgnoreListenerPause: 0
     DelayBeforeSaid: 0
     DelayAfterSaid: 0
-    cachedDuration: 12.029062
 --- !u!4 &2007438489
 Transform:
   m_ObjectHideFlags: 0
@@ -26879,6 +26860,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39979dd723983a14582ee9362f27c6de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isAvailable: 1
 --- !u!1 &2025364179
 GameObject:
   m_ObjectHideFlags: 0
@@ -27138,7 +27120,6 @@ MonoBehaviour:
       IgnoreListenerPause: 0
     DelayBeforeSaid: 0
     DelayAfterSaid: 0
-    cachedDuration: 5.202396
 --- !u!1 &2045980859
 GameObject:
   m_ObjectHideFlags: 0
@@ -27944,8 +27925,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -1.3531001, y: -0.53155, z: 0}
-    m_Extent: {x: 2.1784, y: 1.60395, z: 0}
+    m_Center: {x: -1.3504, y: -0.53894997, z: 0}
+    m_Extent: {x: 2.1817, y: 1.60285, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0.38
@@ -29297,7 +29278,6 @@ MonoBehaviour:
       IgnoreListenerPause: 0
     DelayBeforeSaid: 0
     DelayAfterSaid: 0
-    cachedDuration: 3.5
 --- !u!61 &412218668215007588
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -29826,7 +29806,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1947430392642056277, guid: 28d9e3495a29edc46b1365288dc22921, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -14.264014
+      value: -14.264022
       objectReference: {fileID: 0}
     - target: {fileID: 1947430392642056277, guid: 28d9e3495a29edc46b1365288dc22921, type: 3}
       propertyPath: m_LocalPosition.y
@@ -30862,7 +30842,6 @@ MonoBehaviour:
       IgnoreListenerPause: 0
     DelayBeforeSaid: 0
     DelayAfterSaid: 0
-    cachedDuration: 3
 --- !u!4 &1572963979274719350
 Transform:
   m_ObjectHideFlags: 0
@@ -31264,8 +31243,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 3.5206501, y: 1.9877, z: 0}
-    m_Extent: {x: 3.81165, y: 4.6611, z: 0}
+    m_Center: {x: 3.5191, y: 1.9982499, z: 0}
+    m_Extent: {x: 3.8072999, y: 4.66245, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -31334,8 +31313,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.5479001, y: 1.50205, z: 0}
-    m_Extent: {x: 4.3321, y: 3.7385502, z: 0}
+    m_Center: {x: -0.54104996, y: 1.5028001, z: 0}
+    m_Extent: {x: 4.33245, y: 3.7287002, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -32858,7 +32837,6 @@ MonoBehaviour:
       IgnoreListenerPause: 0
     DelayBeforeSaid: 0
     DelayAfterSaid: 0
-    cachedDuration: 3.5
   - Text: "\u041F\u043E\u0440\u0430 \u0434\u0432\u0438\u0433\u0430\u0442\u044C\u0441\u044F
       \u0434\u0430\u043B\u044C\u0448\u0435."
     Audio: {fileID: 8300000, guid: 18c7a13f61b5de544b4fd48f2469492f, type: 3}
@@ -32882,7 +32860,6 @@ MonoBehaviour:
       IgnoreListenerPause: 0
     DelayBeforeSaid: 0
     DelayAfterSaid: 0
-    cachedDuration: 2.1000001
 --- !u!114 &2993095930778690273
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34770,8 +34747,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.0022999942, y: 0.057400048, z: 0}
-    m_Extent: {x: 0.7874, y: 1.9523001, z: 0}
+    m_Center: {x: 0.007550001, y: 0.056050003, z: 0}
+    m_Extent: {x: 0.78155, y: 1.95345, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -35408,8 +35385,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.68345, y: -2.11995, z: 0}
-    m_Extent: {x: 1.15825, y: 1.69255, z: 0}
+    m_Center: {x: -0.6722, y: -2.12975, z: 0}
+    m_Extent: {x: 1.1599, y: 1.6939499, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -36232,8 +36209,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 3.2926002, y: 2.1197, z: 0}
-    m_Extent: {x: 4.033, y: 4.5397, z: 0}
+    m_Center: {x: 3.28485, y: 2.1237502, z: 0}
+    m_Extent: {x: 4.04305, y: 4.53575, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -37173,8 +37150,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.93855, y: -3.00595, z: 0}
-    m_Extent: {x: 1.74965, y: 2.90275, z: 0}
+    m_Center: {x: -0.92865, y: -3.0072, z: 0}
+    m_Extent: {x: 1.74695, y: 2.9048002, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -37556,8 +37533,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.68649995, y: 0.9884999, z: 0}
-    m_Extent: {x: 4.1994, y: 3.228, z: 0}
+    m_Center: {x: -0.6820501, y: 0.9892, z: 0}
+    m_Extent: {x: 4.20605, y: 3.2301998, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -38449,6 +38426,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39979dd723983a14582ee9362f27c6de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isAvailable: 1
 --- !u!1 &6684316215591537519
 GameObject:
   m_ObjectHideFlags: 0
@@ -39306,6 +39284,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39979dd723983a14582ee9362f27c6de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isAvailable: 1
 --- !u!1 &7015751086512448485
 GameObject:
   m_ObjectHideFlags: 0
@@ -40232,6 +40211,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39979dd723983a14582ee9362f27c6de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isAvailable: 1
 --- !u!212 &7433866631659070761
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -40537,8 +40517,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.17924994, y: 0.042950004, z: 0}
-    m_Extent: {x: 2.02435, y: 0.96435, z: 0}
+    m_Center: {x: 0.18509996, y: 0.042050034, z: 0}
+    m_Extent: {x: 2.0238, y: 0.97265005, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -40586,8 +40566,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.097, y: -0.24480003, z: 0}
-    m_Extent: {x: 0.6078, y: 1.4909, z: 0}
+    m_Center: {x: -0.08430001, y: -0.24294996, z: 0}
+    m_Extent: {x: 0.60749996, y: 1.50025, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0

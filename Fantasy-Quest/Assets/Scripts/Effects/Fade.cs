@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using Common;
-using DG.Tweening;
+using System.Threading;
+using Cysharp.Threading.Tasks;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Events;
@@ -18,68 +17,64 @@ namespace Effects
         [SerializeField]
         private float fadeDuration = 1f;
 
-        private Coroutine finishGates;
-        private List<Tween> tweens = new();
+        private CancellationTokenSource tokenSource = new();
 
         public UnityEvent OnFadeCompleted;
+
+        public void SetFadeDuration(float fadeDuration)
+        {
+            this.fadeDuration = fadeDuration;
+        }
 
         [Button]
         public void Appear()
         {
-            DoFadeForAll(1);
+            _ = DoFadeForAll(1);
         }
 
         [Button]
         public void Disappear()
         {
-            DoFadeForAll(0);
+            _ = DoFadeForAll(0);
         }
 
-        public void DoFadeForAll(float endAlpha)
+        public async UniTask DoFadeForAll(float endAlpha)
         {
-            KillAllActions();
-            List<Func<bool>> conditions = new();
+            tokenSource.Cancel();
+            tokenSource.Dispose();
+            tokenSource = new();
+
+            List<UniTask> tasks = new();
             foreach (Renderer renderer in renderers)
             {
-                Func<bool> endAction = DoFadeForRenderer(renderer, endAlpha);
-                conditions.Add(endAction);
+                tasks.Add(ForceSetAlfa(renderer, endAlpha));
             }
-            finishGates = this.CreateGate(
-                conditions,
-                new() { () => KillAllActions(), () => OnFadeCompleted?.Invoke(), }
+            await UniTask.WhenAll(tasks);
+        }
+
+        private async UniTask ForceSetAlfa(Renderer renderer, float andAlfa)
+        {
+            Dictionary<Material, float> materials = renderer.materials.ToDictionary(
+                x => x,
+                x => x.color.a
             );
-        }
-
-        private void KillAllActions()
-        {
-            tweens.ForEach(x => x?.Kill(true));
-            tweens.Clear();
-            if (this.KillCoroutine(finishGates))
+            float timer = 0f;
+            while (timer <= fadeDuration)
             {
-                finishGates = null;
+                foreach (KeyValuePair<Material, float> pair in materials)
+                {
+                    float alfa = Mathf.Lerp(pair.Value, andAlfa, timer / fadeDuration);
+                    SetAlfa(pair.Key, alfa);
+                }
+                await UniTask.Yield(PlayerLoopTiming.Update);
+                timer += Time.deltaTime;
             }
         }
 
-        private Func<bool> DoFadeForRenderer(Renderer renderer, float endAlpha)
+        private void SetAlfa(Material material, float alfa)
         {
-            List<Func<bool>> conditions = new();
-            foreach (Material material in renderer.materials)
-            {
-                Tween tween = material.DOFade(endAlpha, fadeDuration);
-                tweens.Add(tween);
-                conditions.Add(GetOnTweenComplete(tween));
-            }
-
-            bool coroutineCompleted = false;
-            finishGates = this.CreateGate(conditions, new() { () => coroutineCompleted = true });
-            return () => coroutineCompleted;
-        }
-
-        private Func<bool> GetOnTweenComplete(Tween tween)
-        {
-            bool completed = false;
-            tween.onComplete += () => completed = true;
-            return () => completed;
+            Color mc = material.color;
+            material.color = new Color(mc.r, mc.g, mc.b, alfa);
         }
 
         [Button]
@@ -92,6 +87,12 @@ namespace Effects
         private void CatchRenderersOnThisObjectAndChilds()
         {
             renderers = GetComponentsInChildren<Renderer>(true).ToList();
+        }
+
+        private void OnDestroy()
+        {
+            tokenSource.Cancel();
+            tokenSource.Dispose();
         }
     }
 }

@@ -6,6 +6,7 @@ using VContainer;
 
 namespace Interaction.Trigger
 {
+    [RequireComponent(typeof(Collider2D))]
     [AddComponentMenu("Scripts/Interaction/Trigger/Interaction.Trigger.SceneTransition")]
     internal class SceneTransition : InjectingMonoBehaviour, IInteractable
     {

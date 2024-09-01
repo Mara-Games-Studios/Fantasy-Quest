@@ -1,11 +1,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using Cat;
-using Cat.Jump;
 using Common.DI;
 using Configs;
 using Cysharp.Threading.Tasks;
-using Dialogue;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -56,18 +54,16 @@ namespace Interaction
         public void CallInteraction(InputAction.CallbackContext context)
         {
             CastInterfaces<IInteractable>().ForEach(x => x.Interact());
-            CastInterfaces<ISpeakable>().ForEach(x => x.Speak());
-            //CastInterfaces<ISpeakable>().ForEach(x => x.Interact());
         }
 
         public void JumpUp(InputAction.CallbackContext context)
         {
-            CastInterfaces<IJumpTrigger>().ForEach(x => x.JumpUp());
+            CastInterfaces<IJumpUp>().ForEach(x => x.JumpUp());
         }
 
         public void JumpDown(InputAction.CallbackContext context)
         {
-            CastInterfaces<IJumpTrigger>().ForEach(x => x.JumpDown());
+            CastInterfaces<IJumpDown>().ForEach(x => x.JumpDown());
         }
 
         private List<T> CastInterfaces<T>()

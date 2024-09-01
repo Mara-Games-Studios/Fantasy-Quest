@@ -4,6 +4,7 @@ using UnityEngine.Events;
 
 namespace Interaction.Trigger
 {
+    [RequireComponent(typeof(Collider2D))]
     [AddComponentMenu("Scripts/Interaction/Trigger/Interaction.Trigger.Interactable")]
     internal class Interactable : MonoBehaviour, IInteractable
     {

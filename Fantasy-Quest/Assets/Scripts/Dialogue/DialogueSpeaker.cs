@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Common.DI;
 using DI.Project.Services;
+using Interaction;
 using Subtitles;
 using UnityEngine;
 using VContainer;
@@ -10,7 +11,7 @@ namespace Dialogue
 {
     [RequireComponent(typeof(Collider2D))]
     [AddComponentMenu("Scripts/Dialogue/Dialogue.DialogueSpeaker")]
-    public class DialogueSpeaker : InjectingMonoBehaviour, ISpeakable
+    public class DialogueSpeaker : InjectingMonoBehaviour, IInteractable
     {
         [Inject]
         private SoundsManager soundsManager;
@@ -62,6 +63,11 @@ namespace Dialogue
         protected virtual void Start()
         {
             Voice = new Voice(soundsManager, gameObject.name);
+        }
+
+        public void Interact()
+        {
+            Speak();
         }
 
         public void Speak()

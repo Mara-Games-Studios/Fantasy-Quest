@@ -114,15 +114,16 @@ namespace Cat.Jump
         private Vector3 stashPosition;
 
         [SerializeField, ReadOnly]
-        private List<RailsImpl> groundRails;
+        private List<GroundMask> groundMasks;
+        private IEnumerable<RailsImpl> AvailableRails =>
+            groundMasks.Where(x => x.IsAvailable).Select(x => x.Rails);
 
         private void Start()
         {
-            groundRails = FindObjectsByType<RailsImpl>(
+            groundMasks = FindObjectsByType<GroundMask>(
                     FindObjectsInactive.Include,
                     FindObjectsSortMode.None
                 )
-                .Where(x => x.TryGetComponent<GroundMask>(out _))
                 .ToList();
             PathCreator.InitializeEditorData(true);
         }
@@ -164,7 +165,7 @@ namespace Cat.Jump
             {
                 downMaxPoint.y -= heightDelta;
             }
-            RailsImpl targetRail = GetNearestRailToSegment(groundRails, maxPoint, downMaxPoint);
+            RailsImpl targetRail = GetNearestRailToSegment(AvailableRails, maxPoint, downMaxPoint);
             Vector3 targetPoint = targetRail.GetClosestPointOnPath(maxPoint);
             Vector2 jumpPoint = targetPoint - (Vector3)catPosition;
 
@@ -207,7 +208,7 @@ namespace Cat.Jump
         }
 
         private RailsImpl GetNearestRailToSegment(
-            List<RailsImpl> availableRails,
+            IEnumerable<RailsImpl> availableRails,
             Vector2 start,
             Vector2 end
         )
@@ -257,7 +258,7 @@ namespace Cat.Jump
         // Suppose that all rails is strongly horizontal
         private List<RailsImpl> FilterRails(Quad targetQuad, Vector2 anchor)
         {
-            return groundRails
+            return AvailableRails
                 .Where(x =>
                     targetQuad == DetectQuad(anchor, x.Path.GetPointAtTime(0))
                     || targetQuad == DetectQuad(anchor, x.Path.GetPointAtTime(0.999f))

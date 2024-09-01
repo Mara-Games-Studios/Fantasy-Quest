@@ -2,6 +2,7 @@
 using Common.DI;
 using Configs;
 using Cysharp.Threading.Tasks;
+using Interaction;
 using Rails;
 using Sirenix.OdinInspector;
 using Spine;
@@ -21,7 +22,7 @@ namespace Cat.Jump
     }
 
     [AddComponentMenu("Scripts/Cat/Jump/Cat.Jump.Trigger")]
-    internal class Trigger : InjectingMonoBehaviour, IJumpTrigger
+    internal class Trigger : InjectingMonoBehaviour, IJumpUp, IJumpDown
     {
         [Inject]
         private LockerApi lockerSettings;
@@ -36,6 +37,7 @@ namespace Cat.Jump
 
         [SerializeField]
         private JumpOptions jumpOptions;
+        public float JumpDuration => jumpOptions.Duration;
 
         [Required]
         [SerializeField]
@@ -111,7 +113,7 @@ namespace Cat.Jump
 
         private void SetAnimation()
         {
-            _ = catSkeleton.AnimationState.SetEmptyAnimation(0, 0.1f);
+            _ = catSkeleton.AnimationState.SetEmptyAnimation(0, 0);
             TrackEntry entry = catSkeleton.AnimationState.AddAnimation(
                 0,
                 jumpOptions.Animation.Animation,
