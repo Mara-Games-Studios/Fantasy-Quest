@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using Cat;
 using Configs;
 using Cysharp.Threading.Tasks;
@@ -27,9 +26,7 @@ namespace LevelSpecific.House
         [SerializeField]
         private SkeletonAnimation skeletonAnimation;
 
-        private static List<int> positionsList = new() { 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
-
-        private LinkedList<int> knotPosition = new(positionsList);
+        private int knotPosition = 1;
 
         public UnityEvent OnKnotHinted;
 
@@ -40,17 +37,16 @@ namespace LevelSpecific.House
                 lockerSettings.Api.LockForCarryingItem();
                 OnKnotHinted?.Invoke();
                 Cat.Vector vector = catMovement.Vector;
-                if (vector == Cat.Vector.Right && knotPosition.Last.Value != 1)
+
+                if (vector == Cat.Vector.Right && knotPosition < 14)
                 {
-                    knotPosition.RemoveLast();
-                    _ = knotPosition.AddFirst(0);
+                    knotPosition++;
                     skeletonAnimation.AnimationName = "MoveRight";
                     animator.SetTrigger("MoveToRight");
                 }
-                else if (vector == Cat.Vector.Left && knotPosition.First.Value != 1)
+                else if (vector == Cat.Vector.Left && knotPosition > 0)
                 {
-                    knotPosition.RemoveFirst();
-                    _ = knotPosition.AddLast(0);
+                    knotPosition--;
                     skeletonAnimation.AnimationName = "MoveLeft";
                     animator.SetTrigger("MoveToLeft");
                 }
