@@ -23,6 +23,11 @@ namespace DialogueBubble
 
         private void OnDestroy()
         {
+            if (bubbleEventSystem == null)
+            {
+                return;
+            }
+
             bubbleEventSystem.OnTriggerBubble -= SetBubbleShow;
         }
 

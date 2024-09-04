@@ -46,8 +46,11 @@ namespace Configs
         public bool IsCatInteractionLocked =>
             lockRequests.Any(x => x.CatInteraction) || isCatInteractionLocked;
 
-        public void Initialize()
+        public void SetToDefault()
         {
+            isDialogueBubbleLocked = false;
+            isCatMovementLocked = false;
+            isCatInteractionLocked = false;
             lockRequests = new();
         }
 

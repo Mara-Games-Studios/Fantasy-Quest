@@ -1,4 +1,8 @@
-using Interaction.Item;
+using System;
+using Cat;
+using Cysharp.Threading.Tasks;
+using Interaction;
+using Spine.Unity;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -8,57 +12,64 @@ namespace LevelSpecific.House
     [AddComponentMenu("Scripts/LevelSpecific/House/LevelSpecific.House.Knot")]
     internal class Knot : MonoBehaviour, IInteractable
     {
-        private enum State
-        {
-            Left,
-            Right
-        }
-
         [SerializeField]
-        private bool canCatInteract = true;
+        private Movement catMovement;
 
         [SerializeField]
         private Animator animator;
 
         [SerializeField]
-        private State state = State.Left;
+        private int animationLayer;
+
+        [SerializeField]
+        private SkeletonAnimation skeletonAnimation;
+
+        [SerializeField]
+        private float knotStartPosition;
+
+        [SerializeField]
+        private float knotEndPosition;
+
+        private float knotPosition;
+
+        [SerializeField]
+        private bool isKnotMoving = false;
 
         public UnityEvent OnKnotHinted;
 
-        public void InteractionByCat()
+        public void Interact()
         {
-            if (canCatInteract)
+            if (!isKnotMoving)
             {
+                knotPosition = gameObject.transform.position.x;
+                isKnotMoving = true;
                 OnKnotHinted?.Invoke();
-                switch (state)
+                Cat.Vector vector = catMovement.Vector;
+
+                if (vector == Cat.Vector.Right && knotPosition < knotEndPosition)
                 {
-                    case State.Left:
-                        canCatInteract = false;
-                        animator.SetTrigger("MoveToRight");
-                        state = State.Right;
-                        break;
-                    case State.Right:
-                        canCatInteract = false;
-                        animator.SetTrigger("MoveToLeft");
-                        state = State.Left;
-                        break;
+                    knotPosition++;
+                    skeletonAnimation.AnimationName = "MoveRight";
+                    animator.Play("MoveToRight");
+                    _ = UnlockInteraction();
+                }
+                else if (vector == Cat.Vector.Left && knotPosition > knotStartPosition)
+                {
+                    knotPosition--;
+                    skeletonAnimation.AnimationName = "MoveLeft";
+                    animator.Play("MoveToLeft");
+                    _ = UnlockInteraction();
                 }
             }
         }
 
-        public void InteractByHuman()
+        private async UniTask UnlockInteraction()
         {
+            await UniTask.Delay(
+                TimeSpan.FromSeconds(animator.GetCurrentAnimatorStateInfo(animationLayer).length)
+            );
+            isKnotMoving = false;
             return;
-        }
-
-        public void SetTrueCanInteract()
-        {
-            canCatInteract = true;
-        }
-
-        public void SetFalseCanInteract()
-        {
-            canCatInteract = false;
         }
     }
 }

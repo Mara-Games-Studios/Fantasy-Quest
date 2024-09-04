@@ -27,8 +27,6 @@ namespace Dialogue
             Text = text;
         }
 
-        [ReadOnly]
-        [SerializeField]
         private float cachedDuration;
         public float Duration
         {

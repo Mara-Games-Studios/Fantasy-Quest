@@ -12,10 +12,19 @@ namespace Cutscene
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            if (collision.TryGetComponent<InteractionImpl>(out _))
+            if (collision.TryGetComponent(out InteractionImpl interaction))
             {
-                starter.StartCutscene();
                 gameObject.SetActive(false);
+                if (interaction.JumpTrigger.IsJumping)
+                {
+                    interaction.JumpTrigger.AddOneTimeEndJumpCallback(
+                        () => starter.StartCutscene()
+                    );
+                }
+                else
+                {
+                    starter.StartCutscene();
+                }
             }
         }
     }

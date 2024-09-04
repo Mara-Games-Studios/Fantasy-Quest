@@ -1,8 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using Common;
-using DG.Tweening;
+using Cysharp.Threading.Tasks;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Events;
@@ -18,71 +18,71 @@ namespace Effects
         [SerializeField]
         private float fadeDuration = 1f;
 
-        private Coroutine finishGates;
-        private List<Tween> tweens = new();
+        private CancellationTokenSource tokenSource = new();
 
         public UnityEvent OnFadeCompleted;
+
+        public void SetFadeDuration(float fadeDuration)
+        {
+            this.fadeDuration = fadeDuration;
+        }
 
         [Button]
         public void Appear()
         {
-            DoFadeForAll(1);
+            _ = DoFadeForAll(1);
         }
 
         [Button]
         public void Disappear()
         {
-            DoFadeForAll(0);
+            _ = DoFadeForAll(0);
         }
 
-        [Button]
-        public void DoFadeForAll(float endAlpha)
+        public async UniTask DoFadeForAll(float endAlpha)
         {
-            KillAllActions();
-            List<Func<bool>> conditions = new();
+            tokenSource.Cancel();
+            tokenSource.Dispose();
+            tokenSource = new();
+
+            List<UniTask> tasks = new();
             foreach (Renderer renderer in renderers)
             {
-                Func<bool> endAction = DoFadeForRenderer(renderer, endAlpha);
-                conditions.Add(endAction);
+                tasks.Add(ForceSetAlfa(renderer, endAlpha));
             }
-            finishGates = this.CreateGate(
-                conditions,
-                new() { () => KillAllActions(), () => OnFadeCompleted?.Invoke(), }
-            );
+            await UniTask.WhenAll(tasks);
         }
 
-        [Button]
-        private void KillAllActions()
+        private async UniTask ForceSetAlfa(Renderer renderer, float andAlfa)
         {
-            tweens.ForEach(x => x?.Kill(true));
-            tweens.Clear();
-            if (this.KillCoroutine(finishGates))
+            Dictionary<Material, float> materials = new();
+
+            if (renderer.TryGetComponent(out SpineSkeletonMaterialLinker linker))
             {
-                finishGates = null;
+                materials.Add(linker.Material, linker.Material.color.a);
             }
-        }
-
-        [Button]
-        private Func<bool> DoFadeForRenderer(Renderer renderer, float endAlpha)
-        {
-            List<Func<bool>> conditions = new();
-            foreach (Material material in renderer.materials)
+            else
             {
-                Tween tween = material.DOFade(endAlpha, fadeDuration);
-                tweens.Add(tween);
-                conditions.Add(GetOnTweenComplete(tween));
+                materials = renderer.materials.ToDictionary(x => x, x => x.color.a);
             }
 
-            bool coroutineCompleted = false;
-            finishGates = this.CreateGate(conditions, new() { () => coroutineCompleted = true });
-            return () => coroutineCompleted;
+            float timer = 0f;
+            while (timer <= fadeDuration)
+            {
+                foreach (KeyValuePair<Material, float> pair in materials)
+                {
+                    float alfa = Mathf.Lerp(pair.Value, andAlfa, timer / fadeDuration);
+                    SetAlfa(pair.Key, alfa);
+                }
+                await UniTask.Yield(PlayerLoopTiming.Update);
+                timer += Time.deltaTime;
+            }
         }
 
-        private Func<bool> GetOnTweenComplete(Tween tween)
+        private void SetAlfa(Material material, float alfa)
         {
-            bool completed = false;
-            tween.onComplete += () => completed = true;
-            return () => completed;
+            Color mc = material.color;
+            material.color = new Color(mc.r, mc.g, mc.b, alfa);
         }
 
         [Button]
@@ -95,6 +95,12 @@ namespace Effects
         private void CatchRenderersOnThisObjectAndChilds()
         {
             renderers = GetComponentsInChildren<Renderer>(true).ToList();
+        }
+
+        private void OnDestroy()
+        {
+            tokenSource.Cancel();
+            tokenSource.Dispose();
         }
     }
 }

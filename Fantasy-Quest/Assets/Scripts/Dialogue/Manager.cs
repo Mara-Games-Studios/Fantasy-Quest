@@ -16,7 +16,7 @@ namespace Dialogue
         {
             foreach (DialogueSpeaker speaker in speakers)
             {
-                speaker.Kill();
+                speaker.Stop();
             }
         }
 
