@@ -29,6 +29,7 @@ namespace Cat
         private Point point;
 
         private RailsImpl rails;
+        public RailsImpl Rails => rails;
         public bool IsOnLeftEdge => rails.CurrentPosition < RailsImpl.MIN_TIME;
         public bool IsOnRightEdge => rails.CurrentPosition > RailsImpl.MAX_TIME;
 

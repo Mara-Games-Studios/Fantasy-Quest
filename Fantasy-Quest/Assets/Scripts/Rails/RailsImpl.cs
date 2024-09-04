@@ -10,8 +10,8 @@ namespace Rails
     [AddComponentMenu("Scripts/Rails/Rails")]
     internal class RailsImpl : MonoBehaviour
     {
-        public static float MIN_TIME = 0.0001f;
-        public static float MAX_TIME = 0.9999f;
+        public const float MIN_TIME = 0.0001f;
+        public const float MAX_TIME = 0.9999f;
 
         [ReadOnly]
         [SerializeField]

@@ -7,13 +7,12 @@ namespace Rails
     [AddComponentMenu("Scripts/Rails/Rails.Point")]
     internal class Point : MonoBehaviour
     {
-        [Title("Main info")]
         [Required]
         [SerializeField]
         private RailsImpl rails;
         public RailsImpl Rails => rails;
 
-        [Range(0f, 0.99999f)]
+        [Range(RailsImpl.MIN_TIME, RailsImpl.MAX_TIME)]
         [SerializeField]
         private float value;
         public float Value => value;
