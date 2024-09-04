@@ -28,6 +28,7 @@ namespace DI.Project
                     _ = entryPoints.Add<Bootstrap.Localization>();
                     _ = entryPoints.Add<ScreenRatio>();
                     _ = entryPoints.Add<LockerSettingsCleaner>();
+                    _ = entryPoints.Add<SpineSkeletonMaterialRefresher>();
                 }
             );
 

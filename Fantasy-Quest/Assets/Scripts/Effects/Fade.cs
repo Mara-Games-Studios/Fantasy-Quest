@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
+using Common;
 using Cysharp.Threading.Tasks;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -54,10 +55,17 @@ namespace Effects
 
         private async UniTask ForceSetAlfa(Renderer renderer, float andAlfa)
         {
-            Dictionary<Material, float> materials = renderer.materials.ToDictionary(
-                x => x,
-                x => x.color.a
-            );
+            Dictionary<Material, float> materials = new();
+
+            if (renderer.TryGetComponent(out SpineSkeletonMaterialLinker linker))
+            {
+                materials.Add(linker.Material, linker.Material.color.a);
+            }
+            else
+            {
+                materials = renderer.materials.ToDictionary(x => x, x => x.color.a);
+            }
+
             float timer = 0f;
             while (timer <= fadeDuration)
             {
