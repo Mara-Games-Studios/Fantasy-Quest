@@ -18,6 +18,11 @@ namespace Interaction
         [Inject]
         private LockerApi lockerSettings;
 
+        [RequiredIn(PrefabKind.InstanceInScene)]
+        [SerializeField]
+        private Cat.Jump.Trigger jumpTrigger;
+        public Cat.Jump.Trigger JumpTrigger => jumpTrigger;
+
         [Required]
         [SerializeField]
         private Mewing meowing;

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Common.DI;
 using Configs;
 using Cysharp.Threading.Tasks;
@@ -47,6 +48,13 @@ namespace Cat.Jump
 
         private JumpDirection jumpDirection;
         private bool isJumping = false;
+        public bool IsJumping => isJumping;
+        private List<Action> endJumpsCallbacks = new();
+
+        public void AddOneTimeEndJumpCallback(Action callback)
+        {
+            endJumpsCallbacks.Add(callback);
+        }
 
         private void Start()
         {
@@ -109,6 +117,8 @@ namespace Cat.Jump
             catSkeleton.timeScale = previousTimeScale;
             jumpPath.StashPath();
             isJumping = false;
+            endJumpsCallbacks.ForEach(x => x?.Invoke());
+            endJumpsCallbacks.Clear();
         }
 
         private void SetAnimation()
