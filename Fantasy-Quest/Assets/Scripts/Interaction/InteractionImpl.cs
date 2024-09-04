@@ -25,7 +25,7 @@ namespace Interaction
 
         [Required]
         [SerializeField]
-        private Mewing meowing;
+        private Meowing meowing;
 
         [Required]
         [SerializeField]

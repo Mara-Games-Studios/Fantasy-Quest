@@ -9,8 +9,8 @@ using VContainer;
 
 namespace Cat
 {
-    [AddComponentMenu("Scripts/Cat/Cat.Mewing")]
-    internal class Mewing : InjectingMonoBehaviour
+    [AddComponentMenu("Scripts/Cat/Cat.Meowing")]
+    internal class Meowing : InjectingMonoBehaviour
     {
         [Inject]
         private LockerApi lockerSettings;

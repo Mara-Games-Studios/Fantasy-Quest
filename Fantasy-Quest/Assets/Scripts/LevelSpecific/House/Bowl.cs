@@ -22,7 +22,7 @@ namespace LevelSpecific.House
 
         [Required]
         [SerializeField]
-        private Cat.Mewing meowing;
+        private Cat.Meowing meowing;
 
         [SerializeField]
         private SkeletonAnimation skeletonAnimation;
