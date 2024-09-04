@@ -39,21 +39,25 @@ namespace Interaction
         private void OnEnable()
         {
             playerInput.Enable();
-            playerInput.Player.CatInteraction.performed += CallInteraction;
-            playerInput.Player.CatMeow.performed += JustMeow;
+            playerInput.Player.CatInteraction.performed += PerformInteraction;
+            playerInput.Player.CatMeow.performed += PerformMeow;
 
             playerInput.Player.UpJump.performed += JumpUp;
             playerInput.Player.DownJump.performed += JumpDown;
         }
 
-        public void JustMeow(InputAction.CallbackContext context)
+        public void PerformMeow(InputAction.CallbackContext context)
         {
             _ = meowing.CatMeowingTask();
         }
 
-        public void CallInteraction(InputAction.CallbackContext context)
+        public void PerformInteraction(InputAction.CallbackContext context)
         {
-            CastInterfaces<IInteractable>().ForEach(x => x.Interact());
+            List<IInteractable> interfaces = CastInterfaces<IInteractable>();
+            if (interfaces.Count != 0)
+            {
+                interfaces.OrderByDescending(x => x.GetPriority()).First().Interact();
+            }
         }
 
         public void JumpUp(InputAction.CallbackContext context)
@@ -91,8 +95,8 @@ namespace Interaction
 
         private void OnDisable()
         {
-            playerInput.Player.CatInteraction.performed -= CallInteraction;
-            playerInput.Player.CatMeow.performed -= JustMeow;
+            playerInput.Player.CatInteraction.performed -= PerformInteraction;
+            playerInput.Player.CatMeow.performed -= PerformMeow;
 
             playerInput.Player.UpJump.performed -= JumpUp;
             playerInput.Player.DownJump.performed -= JumpDown;

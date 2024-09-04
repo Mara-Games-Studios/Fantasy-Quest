@@ -30,6 +30,11 @@ namespace LevelSpecific.House
 
         public UnityEvent OnKnotHinted;
 
+        public int GetPriority()
+        {
+            return -1;
+        }
+
         public void Interact()
         {
             if (!lockerSettings.Api.IsCatInteractionLocked)
