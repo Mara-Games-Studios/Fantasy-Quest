@@ -13,29 +13,11 @@ namespace Interaction.Trigger
         [Inject]
         private LockerApi lockerSettings;
 
-        [SerializeField]
-        private bool ignoreLock = false;
-        private bool lockTriggering = false;
-
         public UnityEvent Triggered;
-
-        // Called by unity events
-        public void SetLockTriggering(bool lockTriggering)
-        {
-            this.lockTriggering = lockTriggering;
-        }
 
         public void Interact()
         {
-            if (lockTriggering)
-            {
-                return;
-            }
-            if (ignoreLock)
-            {
-                Triggered?.Invoke();
-            }
-            else if (!lockerSettings.Api.IsCatInteractionLocked)
+            if (!lockerSettings.Api.IsCatInteractionLocked)
             {
                 Triggered?.Invoke();
             }

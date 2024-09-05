@@ -39,7 +39,7 @@ namespace Inventory
             }
 
             takenItem = item;
-            lockerSettings.Api.LockForCarryingItem();
+
             if (takenItem.UidEquals(egg))
             {
                 catView.SetEggTaken(true);

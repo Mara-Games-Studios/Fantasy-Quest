@@ -332,6 +332,10 @@ PrefabInstance:
       value: JumpTrigger
       objectReference: {fileID: 0}
     - target: {fileID: 3657867304118719529, guid: bcb4153f53565914ca046a25892dcef2, type: 3}
+      propertyPath: itemTaker
+      value: 
+      objectReference: {fileID: 7703565356622517999}
+    - target: {fileID: 3657867304118719529, guid: bcb4153f53565914ca046a25892dcef2, type: 3}
       propertyPath: catMovement
       value: 
       objectReference: {fileID: 7703565356622517976}
@@ -1977,6 +1981,7 @@ Transform:
   - {fileID: 1642252707}
   - {fileID: 947763738562461671}
   - {fileID: 281684981}
+  - {fileID: 1869517132}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &157355934
@@ -4614,7 +4619,7 @@ Transform:
   m_GameObject: {fileID: 366882176}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 32.099987, y: -3.3999693, z: 0}
+  m_LocalPosition: {x: 32.099884, y: -3.3996933, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4633,7 +4638,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rails: {fileID: 187231270}
-  value: 0.99999
+  value: 0.9999
 --- !u!1 &373237453
 GameObject:
   m_ObjectHideFlags: 0
@@ -6278,8 +6283,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -1.5695, y: 1.7577999, z: 0}
-    m_Extent: {x: 1.6843, y: 3.3186, z: 0}
+    m_Center: {x: -1.5597, y: 1.7572999, z: 0}
+    m_Extent: {x: 1.6854999, y: 3.3143, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0.38
@@ -7884,8 +7889,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -1.2544, y: -0.22259998, z: 0}
-    m_Extent: {x: 2.2837, y: 1.6794, z: 0}
+    m_Center: {x: -1.2551, y: -0.21555, z: 0}
+    m_Extent: {x: 2.2838, y: 1.67605, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0.38
@@ -7965,8 +7970,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -1.2572999, y: -0.21280003, z: 0}
-    m_Extent: {x: 2.2897, y: 1.6798, z: 0}
+    m_Center: {x: -1.2506, y: -0.21934998, z: 0}
+    m_Extent: {x: 2.2958999, y: 1.67435, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0.38
@@ -8404,7 +8409,7 @@ Transform:
   m_GameObject: {fileID: 616968997}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 32.10001, y: -3.399975, z: 0}
+  m_LocalPosition: {x: 32.100113, y: -3.3997502, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8423,7 +8428,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rails: {fileID: 1326191822}
-  value: 0.99999
+  value: 0.9999
 --- !u!1 &625399170
 GameObject:
   m_ObjectHideFlags: 0
@@ -10407,8 +10412,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 5.7239504, y: 9.42145, z: 0}
-    m_Extent: {x: 3.4722502, y: 5.74625, z: 0}
+    m_Center: {x: 5.72265, y: 9.4129505, z: 0}
+    m_Extent: {x: 3.47395, y: 5.74025, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -10423,6 +10428,58 @@ MonoBehaviour:
   - {x: 4.1884727, y: 5.4040504, z: 0}
   - {x: 7.617573, y: 13.570328, z: 0}
   - {x: 6.902149, y: 13.095454, z: 0}
+--- !u!1 &795279551
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 795279552}
+  - component: {fileID: 795279553}
+  m_Layer: 0
+  m_Name: BranchJump Middle-Right
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &795279552
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 795279551}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1869517132}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &795279553
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 795279551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3afab2d45b8867147b7160975687fa91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveVector: 0
+  jumpDirection: 0
+  jumpFrom:
+    targetRails: {fileID: 1606297979}
+    points: {x: 0.0001, y: 0.9999}
+  jumpTo:
+    targetRails: {fileID: 2021553791}
+    points: {x: 0.0001, y: 0.9999}
 --- !u!1 &798239075
 GameObject:
   m_ObjectHideFlags: 0
@@ -11773,30 +11830,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: LevelSpecific.ForestEdge.WithItemUnlocker, Assembly-CSharp
-        m_MethodName: LockIfHasItem
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 902063100}
-        m_TargetAssemblyTypeName: Interaction.Item.SceneTransitionTrigger, Assembly-CSharp
-        m_MethodName: SetLockTriggering
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 2459589931758946356}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
@@ -11868,7 +11901,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f425e2d3967a6d41a94f12bdd1df1ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ignoreLock: 1
   Triggered:
     m_PersistentCalls:
       m_Calls:
@@ -11883,18 +11915,6 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 902063100}
-        m_TargetAssemblyTypeName: Interaction.Item.SceneTransitionTrigger, Assembly-CSharp
-        m_MethodName: SetLockTriggering
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
         m_CallState: 2
 --- !u!1 &902330719
 GameObject:
@@ -14019,7 +14039,7 @@ Transform:
   m_GameObject: {fileID: 1080608935}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 29.1, y: -2.5, z: 0}
+  m_LocalPosition: {x: 29.100328, y: -2.4999886, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -14038,7 +14058,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rails: {fileID: 187231270}
-  value: 0
+  value: 0.0001
 --- !u!1 &1085280987
 GameObject:
   m_ObjectHideFlags: 0
@@ -15875,8 +15895,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.3440001, y: 5.44805, z: 0}
-    m_Extent: {x: 5.8761997, y: 6.21435, z: 0}
+    m_Center: {x: -0.36080003, y: 5.454, z: 0}
+    m_Extent: {x: 5.8749, y: 6.2158, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -16324,8 +16344,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 5.91575, y: 9.682651, z: 0}
-    m_Extent: {x: 4.6163497, y: 7.2284503, z: 0}
+    m_Center: {x: 5.911, y: 9.68515, z: 0}
+    m_Extent: {x: 4.6224, y: 7.2259502, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -16875,8 +16895,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 6.18915, y: 10.19925, z: 0}
-    m_Extent: {x: 4.44615, y: 6.3877497, z: 0}
+    m_Center: {x: 6.18, y: 10.1996, z: 0}
+    m_Extent: {x: 4.4526, y: 6.3901005, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -16957,8 +16977,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 5.2023, y: 7.4172, z: 0}
-    m_Extent: {x: 3.4805002, y: 4.8143997, z: 0}
+    m_Center: {x: 5.21235, y: 7.41815, z: 0}
+    m_Extent: {x: 3.4791498, y: 4.8144503, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -18279,8 +18299,6 @@ PlayableDirector:
     value: {fileID: 1788104365}
   - key: {fileID: 5048034392186737411, guid: 76f1e035f195abf47867f607b2964726, type: 2}
     value: {fileID: 441425173}
-  - key: {fileID: -8066148056974891833, guid: 76f1e035f195abf47867f607b2964726, type: 2}
-    value: {fileID: 0}
   - key: {fileID: 2806846299914664406, guid: 76f1e035f195abf47867f607b2964726, type: 2}
     value: {fileID: 1253773136}
   - key: {fileID: -4757143636420283973, guid: 76f1e035f195abf47867f607b2964726, type: 2}
@@ -18524,7 +18542,7 @@ Transform:
   m_GameObject: {fileID: 1405407342}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 34.5, y: -2.5, z: 0}
+  m_LocalPosition: {x: 34.499725, y: -2.5000145, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -18543,7 +18561,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rails: {fileID: 1326191822}
-  value: 0
+  value: 0.0001
 --- !u!1 &1413804781
 GameObject:
   m_ObjectHideFlags: 0
@@ -18646,6 +18664,58 @@ MonoBehaviour:
       IgnoreListenerPause: 0
     DelayBeforeSaid: 0
     DelayAfterSaid: 0
+--- !u!1 &1415603269
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1415603270}
+  - component: {fileID: 1415603271}
+  m_Layer: 0
+  m_Name: BranchJump Floor-Left
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1415603270
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1415603269}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1869517132}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1415603271
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1415603269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3afab2d45b8867147b7160975687fa91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveVector: 0
+  jumpDirection: 0
+  jumpFrom:
+    targetRails: {fileID: 1405161616}
+    points: {x: 0.6406507, y: 0.74405086}
+  jumpTo:
+    targetRails: {fileID: 1506453572}
+    points: {x: 0.0001, y: 0.9999}
 --- !u!114 &1418968071 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7420271526200802404, guid: b226e54f4be684b4f82c70458cacaaab, type: 3}
@@ -20562,7 +20632,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f425e2d3967a6d41a94f12bdd1df1ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ignoreLock: 0
   Triggered:
     m_PersistentCalls:
       m_Calls:
@@ -21633,8 +21702,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 11.886049, y: 15.8794, z: 0}
-    m_Extent: {x: 2.55555, y: 5.2260995, z: 0}
+    m_Center: {x: 11.89345, y: 15.875, z: 0}
+    m_Extent: {x: 2.55305, y: 5.2238, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -21896,8 +21965,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 6.37965, y: 9.5678005, z: 0}
-    m_Extent: {x: 3.4991503, y: 5.0024, z: 0}
+    m_Center: {x: 6.3737497, y: 9.569799, z: 0}
+    m_Extent: {x: 3.49495, y: 5.0045, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -23921,6 +23990,58 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1707935521}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1786755054
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1786755055}
+  - component: {fileID: 1786755056}
+  m_Layer: 0
+  m_Name: BranchJump Left-Middle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1786755055
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1786755054}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1869517132}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1786755056
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1786755054}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3afab2d45b8867147b7160975687fa91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveVector: 0
+  jumpDirection: 0
+  jumpFrom:
+    targetRails: {fileID: 1506453572}
+    points: {x: 0.0001, y: 0.9999}
+  jumpTo:
+    targetRails: {fileID: 1606297979}
+    points: {x: 0.0001, y: 0.9999}
 --- !u!1 &1788104364
 GameObject:
   m_ObjectHideFlags: 0
@@ -24787,8 +24908,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -1.81465, y: 0.26960003, z: 0}
-    m_Extent: {x: 2.36125, y: 2.8472, z: 0}
+    m_Center: {x: -1.80555, y: 0.27515006, z: 0}
+    m_Extent: {x: 2.36475, y: 2.85305, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0.38
@@ -25148,6 +25269,40 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5d3b0168371d4d74bb8508d8b8cf29aa, type: 3}
+--- !u!1 &1869517131
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1869517132}
+  m_Layer: 0
+  m_Name: RailsZones
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1869517132
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1869517131}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1415603270}
+  - {fileID: 1786755055}
+  - {fileID: 795279552}
+  m_Father: {fileID: 153532713}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1869840933
 GameObject:
   m_ObjectHideFlags: 0
@@ -25662,7 +25817,7 @@ Transform:
   m_GameObject: {fileID: 1919320035}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 72.99904, y: -2.5, z: 0}
+  m_LocalPosition: {x: 72.9904, y: -2.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -25681,7 +25836,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rails: {fileID: 1405161616}
-  value: 0.99999
+  value: 0.9999
 --- !u!1 &1922889074
 GameObject:
   m_ObjectHideFlags: 0
@@ -25932,7 +26087,7 @@ Transform:
   m_GameObject: {fileID: 1949871720}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -16, y: -2.3, z: 0}
+  m_LocalPosition: {x: -15.991402, y: -2.3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -25951,7 +26106,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rails: {fileID: 1055194837}
-  value: 0
+  value: 0.0001
 --- !u!1 &1950373225
 GameObject:
   m_ObjectHideFlags: 0
@@ -27402,7 +27557,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rails: {fileID: 422068314}
-  value: 0
+  value: 0.0001
 --- !u!4 &2061446844
 Transform:
   m_ObjectHideFlags: 0
@@ -27412,7 +27567,7 @@ Transform:
   m_GameObject: {fileID: 2061446842}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.1245537, y: 3.4356956, z: 0}
+  m_LocalPosition: {x: -1.1247139, y: 3.4349504, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -27936,8 +28091,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -1.35345, y: -0.53895, z: 0}
-    m_Extent: {x: 2.16755, y: 1.5978501, z: 0}
+    m_Center: {x: -1.35605, y: -0.54714996, z: 0}
+    m_Extent: {x: 2.17515, y: 1.60165, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0.38
@@ -28201,7 +28356,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rails: {fileID: 422068314}
-  value: 0.99999
+  value: 0.9999
 --- !u!4 &2138583119
 Transform:
   m_ObjectHideFlags: 0
@@ -28211,7 +28366,7 @@ Transform:
   m_GameObject: {fileID: 2138583117}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.7769356, y: -4.1526504, z: 0}
+  m_LocalPosition: {x: -1.7767982, y: -4.1519785, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -29817,7 +29972,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1947430392642056277, guid: 28d9e3495a29edc46b1365288dc22921, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -14.264022
+      value: -14.264026
       objectReference: {fileID: 0}
     - target: {fileID: 1947430392642056277, guid: 28d9e3495a29edc46b1365288dc22921, type: 3}
       propertyPath: m_LocalPosition.y
@@ -30171,6 +30326,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 11400000, guid: 4c552f663c8ac264d9f53fc8accc92d3, type: 2}
+        m_TargetAssemblyTypeName: Configs.LockerSettings, Assembly-CSharp
+        m_MethodName: UnlockAll
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnGameFinishedLose:
     m_PersistentCalls:
       m_Calls:
@@ -30228,6 +30395,18 @@ MonoBehaviour:
       - m_Target: {fileID: 4294706770205216671}
         m_TargetAssemblyTypeName: LevelSpecific.ForestEdge.SquirrelGameExit, Assembly-CSharp
         m_MethodName: SetExitManual
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 11400000, guid: 4c552f663c8ac264d9f53fc8accc92d3, type: 2}
+        m_TargetAssemblyTypeName: Configs.LockerSettings, Assembly-CSharp
+        m_MethodName: UnlockAll
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -31254,8 +31433,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 3.52145, y: 1.9955, z: 0}
-    m_Extent: {x: 3.79385, y: 4.6624, z: 0}
+    m_Center: {x: 3.52295, y: 1.9958501, z: 0}
+    m_Extent: {x: 3.79905, y: 4.66405, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -31324,8 +31503,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.5481999, y: 1.4996499, z: 0}
-    m_Extent: {x: 4.3389997, y: 3.7379498, z: 0}
+    m_Center: {x: -0.5497, y: 1.4984001, z: 0}
+    m_Extent: {x: 4.3401003, y: 3.7363, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -31824,7 +32003,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f425e2d3967a6d41a94f12bdd1df1ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ignoreLock: 1
   Triggered:
     m_PersistentCalls:
       m_Calls:
@@ -31839,18 +32017,6 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 2268063306111490975}
-        m_TargetAssemblyTypeName: Interaction.Item.SceneTransitionTrigger, Assembly-CSharp
-        m_MethodName: SetLockTriggering
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
         m_CallState: 2
 --- !u!1 &2282234575212539959
 GameObject:
@@ -34758,8 +34924,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.0038999915, y: 0.057850063, z: 0}
-    m_Extent: {x: 0.7919, y: 1.95765, z: 0}
+    m_Center: {x: 0.0054500103, y: 0.058100045, z: 0}
+    m_Extent: {x: 0.79095, y: 1.9453001, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -35396,8 +35562,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.6737, y: -2.13205, z: 0}
-    m_Extent: {x: 1.1644, y: 1.69065, z: 0}
+    m_Center: {x: -0.6704, y: -2.12465, z: 0}
+    m_Extent: {x: 1.1565, y: 1.68905, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -36220,8 +36386,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 3.2848, y: 2.1160002, z: 0}
-    m_Extent: {x: 4.0298, y: 4.5273, z: 0}
+    m_Center: {x: 3.28995, y: 2.1129498, z: 0}
+    m_Extent: {x: 4.03625, y: 4.53545, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -36827,7 +36993,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 448853940931248904, guid: 0632c63fb65b1f340b1ae628fc7206cf, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -15
+      value: -14.999939
       objectReference: {fileID: 0}
     - target: {fileID: 3726585329400342371, guid: 0632c63fb65b1f340b1ae628fc7206cf, type: 3}
       propertyPath: m_Name
@@ -36843,7 +37009,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6248883267310956832, guid: 0632c63fb65b1f340b1ae628fc7206cf, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 15
+      value: 14.999939
       objectReference: {fileID: 0}
     - target: {fileID: 7847371244572141648, guid: 0632c63fb65b1f340b1ae628fc7206cf, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -37161,8 +37327,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.93715, y: -3.0125, z: 0}
-    m_Extent: {x: 1.74495, y: 2.9020998, z: 0}
+    m_Center: {x: -0.93435, y: -3.0073998, z: 0}
+    m_Extent: {x: 1.73995, y: 2.9075, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -37544,8 +37710,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.6833501, y: 0.98475003, z: 0}
-    m_Extent: {x: 4.19455, y: 3.22415, z: 0}
+    m_Center: {x: -0.6839, y: 0.9857, z: 0}
+    m_Extent: {x: 4.2052, y: 3.2254, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -40528,8 +40694,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.1821, y: 0.038350016, z: 0}
-    m_Extent: {x: 2.0107, y: 0.96815, z: 0}
+    m_Center: {x: 0.17950004, y: 0.033499986, z: 0}
+    m_Extent: {x: 2.0126, y: 0.96570003, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -40577,8 +40743,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.09595001, y: -0.24595004, z: 0}
-    m_Extent: {x: 0.61015, y: 1.4927499, z: 0}
+    m_Center: {x: -0.09275001, y: -0.23855, z: 0}
+    m_Extent: {x: 0.60175, y: 1.49775, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -41969,30 +42135,6 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: Configs.LockerSettings, Assembly-CSharp
         m_MethodName: UnlockAll
         m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: LevelSpecific.ForestEdge.WithItemUnlocker, Assembly-CSharp
-        m_MethodName: LockIfHasItem
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 2268063306111490975}
-        m_TargetAssemblyTypeName: Interaction.Item.SceneTransitionTrigger, Assembly-CSharp
-        m_MethodName: SetLockTriggering
-        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

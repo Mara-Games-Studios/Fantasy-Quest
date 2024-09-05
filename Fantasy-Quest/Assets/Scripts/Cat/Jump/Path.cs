@@ -139,6 +139,7 @@ namespace Cat.Jump
             public float DestinationRailsTime;
             public Cat.Vector MoveVector;
             public Vector2 CatPosition;
+            public JumpDirection JumpDirection;
         }
 
         public void PreparePath(PrepareResult prepareResult)

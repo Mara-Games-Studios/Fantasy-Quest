@@ -5,6 +5,7 @@ using Common.DI;
 using Configs;
 using Cysharp.Threading.Tasks;
 using Interaction;
+using Inventory;
 using Rails;
 using Sirenix.OdinInspector;
 using Spine;
@@ -39,6 +40,9 @@ namespace Cat.Jump
 
         [SerializeField]
         private JumpOptions jumpOptions;
+
+        [SerializeField]
+        private ItemTaker itemTaker;
         public float JumpDuration => jumpOptions.Duration;
 
         [Required]
@@ -79,6 +83,11 @@ namespace Cat.Jump
 
         private async UniTaskVoid Jump(JumpDirection jumpDirection)
         {
+            if (itemTaker != null && itemTaker.TakenItem != null)
+            {
+                return;
+            }
+
             if (isJumping)
             {
                 return;
@@ -86,7 +95,7 @@ namespace Cat.Jump
 
             Path.PrepareResult prepareResult;
 
-            Path.PrepareResult resultFromJumpZone = GetPreparedJumpConfig();
+            Path.PrepareResult resultFromJumpZone = GetPreparedJumpConfig(jumpDirection);
             if (resultFromJumpZone.Found)
             {
                 prepareResult = resultFromJumpZone;
@@ -155,7 +164,7 @@ namespace Cat.Jump
             transform.position = catMovement.transform.position;
         }
 
-        public Path.PrepareResult GetPreparedJumpConfig()
+        public Path.PrepareResult GetPreparedJumpConfig(JumpDirection jumpDirection)
         {
             if (catMovement.Rails == null)
             {
@@ -165,7 +174,11 @@ namespace Cat.Jump
             foreach (PreparedJumpZone zone in preparedJumpZones)
             {
                 Path.PrepareResult result = zone.GetPrepreparedJumpConfig(catMovement.Rails);
-                if (result.Found && result.MoveVector == catMovement.Vector)
+                if (
+                    result.Found
+                    && result.MoveVector == catMovement.Vector
+                    && result.JumpDirection == jumpDirection
+                )
                 {
                     return result;
                 }
