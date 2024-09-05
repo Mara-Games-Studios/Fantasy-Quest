@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Common.DI;
 using Configs;
 using Cysharp.Threading.Tasks;
@@ -46,14 +47,14 @@ namespace Cat.Jump
 
         private Path jumpPath;
 
-        private JumpDirection jumpDirection;
         private bool isJumping = false;
         public bool IsJumping => isJumping;
         private List<Action> endJumpsCallbacks = new();
+        private List<PreparedJumpZone> preparedJumpZones;
 
-        public void AddOneTimeEndJumpCallback(Action callback)
+        private void Awake()
         {
-            endJumpsCallbacks.Add(callback);
+            preparedJumpZones = FindObjectsOfType<PreparedJumpZone>(true).ToList();
         }
 
         private void Start()
@@ -61,37 +62,52 @@ namespace Cat.Jump
             jumpPath = Instantiate(jumpPathPrefab);
         }
 
+        public void AddOneTimeEndJumpCallback(Action callback)
+        {
+            endJumpsCallbacks.Add(callback);
+        }
+
         public void JumpUp()
         {
-            if (isJumping)
-            {
-                return;
-            }
-            jumpDirection = JumpDirection.Up;
-            _ = Jump();
+            _ = Jump(JumpDirection.Up);
         }
 
         public void JumpDown()
         {
+            _ = Jump(JumpDirection.Down);
+        }
+
+        private async UniTaskVoid Jump(JumpDirection jumpDirection)
+        {
             if (isJumping)
             {
                 return;
             }
-            jumpDirection = JumpDirection.Down;
-            _ = Jump();
-        }
 
-        private async UniTaskVoid Jump()
-        {
-            Path.PrepareResult prepareResult = jumpPath.PreparePath(
-                jumpDirection,
-                catMovement.transform.position,
-                catMovement.Vector
-            );
+            Path.PrepareResult prepareResult;
+
+            Path.PrepareResult resultFromJumpZone = GetPreparedJumpConfig();
+            if (resultFromJumpZone.Found)
+            {
+                prepareResult = resultFromJumpZone;
+                prepareResult.CatPosition = catMovement.transform.position;
+            }
+            else
+            {
+                prepareResult = jumpPath.DetectJump(
+                    jumpDirection,
+                    catMovement.transform.position,
+                    catMovement.Vector
+                );
+            }
+
             if (!prepareResult.Found)
             {
                 return;
             }
+
+            jumpPath.PreparePath(prepareResult);
+
             isJumping = true;
             float previousTimeScale = catSkeleton.timeScale;
 
@@ -137,6 +153,25 @@ namespace Cat.Jump
         private void Update()
         {
             transform.position = catMovement.transform.position;
+        }
+
+        public Path.PrepareResult GetPreparedJumpConfig()
+        {
+            if (catMovement.Rails == null)
+            {
+                return new Path.PrepareResult() { Found = false };
+            }
+
+            foreach (PreparedJumpZone zone in preparedJumpZones)
+            {
+                Path.PrepareResult result = zone.GetPrepreparedJumpConfig(catMovement.Rails);
+                if (result.Found && result.MoveVector == catMovement.Vector)
+                {
+                    return result;
+                }
+            }
+
+            return new Path.PrepareResult() { Found = false };
         }
     }
 }

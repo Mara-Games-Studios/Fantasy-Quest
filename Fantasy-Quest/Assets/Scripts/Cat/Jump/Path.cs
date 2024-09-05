@@ -8,14 +8,6 @@ using UnityEngine;
 
 namespace Cat.Jump
 {
-    public enum Quad
-    {
-        RightUp,
-        RightDown,
-        LeftUp,
-        LeftDown,
-    }
-
     public enum JumpDirection
     {
         Up,
@@ -145,37 +137,19 @@ namespace Cat.Jump
             public bool Found;
             public RailsImpl DestinationRails;
             public float DestinationRailsTime;
+            public Cat.Vector MoveVector;
+            public Vector2 CatPosition;
         }
 
-        public PrepareResult PreparePath(
-            JumpDirection jumpDirection,
-            Vector2 catPosition,
-            Cat.Vector moveVector
-        )
+        public void PreparePath(PrepareResult prepareResult)
         {
-            Vector2 absoluteCatPos = catPosition;
-            catPosition += catPositionShift;
-
-            // Perfect jump point
-            Quad quad = GetQuad(jumpDirection, moveVector);
-            Vector2 maxPoint = catPosition + (maxJumpPoint * QuadToVector(quad));
-            Vector2 downMaxPoint = new(maxPoint.x, catPosition.y);
-            float heightDelta = maxPoint.y - catPosition.y;
-            if (jumpDirection == JumpDirection.Up)
-            {
-                downMaxPoint.y -= heightDelta;
-            }
-            RailsImpl targetRail = GetNearestRailToSegment(AvailableRails, maxPoint, downMaxPoint);
-            Vector3 targetPoint = targetRail.GetClosestPointOnPath(maxPoint);
-            Vector2 jumpPoint = targetPoint - (Vector3)catPosition;
-
-            if (jumpDirection == JumpDirection.Down && absoluteCatPos.y <= targetPoint.y)
-            {
-                return new PrepareResult { Found = false };
-            }
-
             // Prepare path
-            transform.position = catPosition;
+            transform.position = prepareResult.CatPosition;
+
+            Vector3 targetPoint = prepareResult.DestinationRails.Path.GetPointAtTime(
+                prepareResult.DestinationRailsTime
+            );
+            Vector2 jumpPoint = targetPoint - (Vector3)prepareResult.CatPosition;
 
             // Set end point
             BezierPath.MovePoint(0, Vector3.zero);
@@ -188,7 +162,7 @@ namespace Cat.Jump
             Vector2 start = startPointCurve.GetCurveValue(normalized);
             Vector2 end = endPointCurve.GetCurveValue(normalized);
 
-            if (moveVector is Cat.Vector.Left)
+            if (prepareResult.MoveVector is Cat.Vector.Left)
             {
                 start.x *= -1;
                 end.x *= -1;
@@ -198,12 +172,41 @@ namespace Cat.Jump
             BezierPath.MovePoint(2, (Vector2)BezierPath.GetPoint(3) + end);
 
             BezierPath.NotifyPathModified();
+        }
+
+        public PrepareResult DetectJump(
+            JumpDirection jumpDirection,
+            Vector2 catPosition,
+            Cat.Vector moveVector
+        )
+        {
+            Vector2 absoluteCatPos = catPosition;
+            catPosition += catPositionShift;
+
+            // Perfect jump point
+            Vector2 quadVector = GetQuadVector(jumpDirection, moveVector);
+            Vector2 maxPoint = catPosition + (maxJumpPoint * quadVector);
+            Vector2 downMaxPoint = new(maxPoint.x, catPosition.y);
+            float heightDelta = maxPoint.y - catPosition.y;
+            if (jumpDirection == JumpDirection.Up)
+            {
+                downMaxPoint.y -= heightDelta;
+            }
+            RailsImpl targetRail = GetNearestRailToSegment(AvailableRails, maxPoint, downMaxPoint);
+            Vector3 targetPoint = targetRail.GetClosestPointOnPath(maxPoint);
+
+            if (jumpDirection == JumpDirection.Down && absoluteCatPos.y <= targetPoint.y)
+            {
+                return new PrepareResult { Found = false };
+            }
 
             return new PrepareResult()
             {
                 Found = true,
                 DestinationRails = targetRail,
-                DestinationRailsTime = targetRail.Path.GetClosestTimeOnPath(maxPoint)
+                DestinationRailsTime = targetRail.Path.GetClosestTimeOnPath(maxPoint),
+                MoveVector = moveVector,
+                CatPosition = absoluteCatPos,
             };
         }
 
@@ -243,48 +246,14 @@ namespace Cat.Jump
             return result;
         }
 
-        private Quad GetQuad(JumpDirection jumpDirection, Cat.Vector moveVector)
+        private Vector2 GetQuadVector(JumpDirection jumpDirection, Cat.Vector moveVector)
         {
             return (jumpDirection, moveVector) switch
             {
-                (JumpDirection.Up, Cat.Vector.Right) => Quad.RightUp,
-                (JumpDirection.Up, Cat.Vector.Left) => Quad.LeftUp,
-                (JumpDirection.Down, Cat.Vector.Right) => Quad.RightDown,
-                (JumpDirection.Down, Cat.Vector.Left) => Quad.LeftDown,
-                _ => throw new System.Exception()
-            };
-        }
-
-        // Suppose that all rails is strongly horizontal
-        private List<RailsImpl> FilterRails(Quad targetQuad, Vector2 anchor)
-        {
-            return AvailableRails
-                .Where(x =>
-                    targetQuad == DetectQuad(anchor, x.Path.GetPointAtTime(0))
-                    || targetQuad == DetectQuad(anchor, x.Path.GetPointAtTime(0.999f))
-                )
-                .ToList();
-        }
-
-        private Quad DetectQuad(Vector2 anchor, Vector2 point)
-        {
-            return (anchor.x <= point.x, anchor.y <= point.y) switch
-            {
-                (true, true) => Quad.RightUp,
-                (true, false) => Quad.RightDown,
-                (false, true) => Quad.LeftUp,
-                (false, false) => Quad.LeftDown,
-            };
-        }
-
-        private Vector2 QuadToVector(Quad quad)
-        {
-            return quad switch
-            {
-                Quad.LeftDown => Vector2.left + Vector2.down,
-                Quad.LeftUp => Vector2.left + Vector2.up,
-                Quad.RightUp => Vector2.right + Vector2.up,
-                Quad.RightDown => Vector2.right + Vector2.down,
+                (JumpDirection.Up, Cat.Vector.Right) => Vector2.right + Vector2.up,
+                (JumpDirection.Up, Cat.Vector.Left) => Vector2.left + Vector2.up,
+                (JumpDirection.Down, Cat.Vector.Right) => Vector2.right + Vector2.down,
+                (JumpDirection.Down, Cat.Vector.Left) => Vector2.left + Vector2.down,
                 _ => throw new System.Exception()
             };
         }
