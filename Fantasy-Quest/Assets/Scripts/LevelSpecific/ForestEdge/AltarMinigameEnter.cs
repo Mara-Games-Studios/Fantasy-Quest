@@ -26,6 +26,7 @@ namespace LevelSpecific.ForestEdge
                 && !ProgressionConfig.Instance.ForestEdgeLevel.AltarGamePassedCorrectly
             )
             {
+                miniGameManager.ShowMiniGameUI();
                 miniGameManager.EnableAllMinigameInput();
                 miniGameManager.RefreshMiniGame();
                 miniGameManager.StartMiniGame();

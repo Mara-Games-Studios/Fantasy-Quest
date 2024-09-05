@@ -1,4 +1,5 @@
-﻿using Dialogue;
+﻿using System.Collections.Generic;
+using Dialogue;
 using Minigames.AltarGame.Hand;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -25,6 +26,9 @@ namespace Minigames.AltarGame
         [SerializeField]
         private Altar altar;
 
+        [SerializeField]
+        private List<GameObject> miniGameUI = new();
+
         public UnityEvent OnGameFinishedWin;
         public UnityEvent OnGameFinishedLose;
         public UnityEvent OnGameFinishedManual;
@@ -40,6 +44,24 @@ namespace Minigames.AltarGame
         {
             altar.ResetAltar();
             hand.ResetHand();
+        }
+
+        [Button]
+        public void ShowMiniGameUI()
+        {
+            foreach (GameObject elementUI in miniGameUI)
+            {
+                elementUI.SetActive(true);
+            }
+        }
+
+        [Button]
+        public void HideMiniGameUI()
+        {
+            foreach (GameObject elementUI in miniGameUI)
+            {
+                elementUI.SetActive(false);
+            }
         }
 
         [Button]
