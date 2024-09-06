@@ -70,7 +70,7 @@ namespace LevelSpecific.ForestEdge
             lockerSettings.Api.LockAll(this);
             await UniTask.WhenAll(
                 explanationSpeak.Tell().ToUniTask(this),
-                symonMovement.MoveToPoint(callPoint.position).ToUniTask(this)
+                symonMovement.MoveToPoint(callPoint.position)
             );
             lockerSettings.Api.UnlockAll(this);
             cutsceneStarter.StartCutscene();
