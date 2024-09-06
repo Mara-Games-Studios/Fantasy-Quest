@@ -2,16 +2,13 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using VContainer;
-using VContainer.Unity;
 
 namespace DI.Project.Bootstrap
 {
-    internal class SpineSkeletonMaterialRefresher : IInitializable
+    internal class SpineSkeletonMaterialRefresher
     {
         [Preserve]
-        public SpineSkeletonMaterialRefresher() { }
-
-        public void Initialize()
+        public SpineSkeletonMaterialRefresher()
         {
             SceneManager.activeSceneChanged += SceneManager_activeSceneChanged;
             ResetMaterialsAlfa();

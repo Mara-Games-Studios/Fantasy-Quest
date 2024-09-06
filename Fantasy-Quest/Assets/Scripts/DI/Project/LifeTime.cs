@@ -28,13 +28,13 @@ namespace DI.Project
                     _ = entryPoints.Add<Bootstrap.Localization>();
                     _ = entryPoints.Add<ScreenRatio>();
                     _ = entryPoints.Add<LockerSettingsCleaner>();
-                    _ = entryPoints.Add<SpineSkeletonMaterialRefresher>();
                 }
             );
 
             _ = builder.Register<Services.Cursor>(Lifetime.Singleton);
             _ = builder.Register<Services.Localization>(Lifetime.Singleton);
             _ = builder.Register<BubbleEventSystem>(Lifetime.Singleton);
+            _ = builder.Register<SpineSkeletonMaterialRefresher>(Lifetime.Singleton);
 
             _ = builder.RegisterInstance<LockerApi>(lockerSettings.Api);
 

@@ -205,7 +205,7 @@ namespace Cat.Jump
             {
                 Found = true,
                 DestinationRails = targetRail,
-                DestinationRailsTime = targetRail.Path.GetClosestTimeOnPath(maxPoint),
+                DestinationRailsTime = targetRail.GetClosestTimeOnPath(maxPoint),
                 MoveVector = moveVector,
                 CatPosition = absoluteCatPos,
             };

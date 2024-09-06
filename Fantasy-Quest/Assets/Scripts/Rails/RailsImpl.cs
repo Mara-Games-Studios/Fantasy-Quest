@@ -68,6 +68,12 @@ namespace Rails
             return Path.GetPointAtTime(Mathf.Clamp(time, MIN_TIME, MAX_TIME));
         }
 
+        public float GetClosestTimeOnPath(Vector2 point)
+        {
+            float time = Path.GetClosestTimeOnPath(point);
+            return Mathf.Clamp(time, MIN_TIME, MAX_TIME);
+        }
+
         [Title("Debug buttons for testing")]
         [Button(Style = ButtonStyle.Box)]
         public void RideBody(float start, float end, float time)
