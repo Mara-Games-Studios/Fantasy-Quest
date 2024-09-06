@@ -2598,8 +2598,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 1
   m_ShadowVolumeIntensity: 0.869
   m_LocalBounds:
-    m_Center: {x: -1.64405, y: -5.6113, z: 0}
-    m_Extent: {x: 2.11085, y: 1.8306999, z: 0}
+    m_Center: {x: -1.6382, y: -5.6143, z: 0}
+    m_Extent: {x: 2.1051, y: 1.8302, z: 0}
   m_PointLightInnerAngle: 359.6
   m_PointLightOuterAngle: 359.6
   m_PointLightInnerRadius: 2
@@ -3022,7 +3022,6 @@ GameObject:
   - component: {fileID: 350709312}
   - component: {fileID: 350709316}
   - component: {fileID: 350709315}
-  - component: {fileID: 350709314}
   - component: {fileID: 350709318}
   - component: {fileID: 350709317}
   - component: {fileID: 350709319}
@@ -3052,27 +3051,6 @@ Transform:
   - {fileID: 3008105303969368642}
   m_Father: {fileID: 1446360651}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &350709314
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 350709311}
-  m_Enabled: 0
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 1f8a40d205e6a6d48970ca257aca661c, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 1
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!23 &350709315
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3181,8 +3159,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   catMovement: {fileID: 7703565356622517968}
-  animator: {fileID: 350709314}
-  animationLayer: 0
   knotSkeletonAnimation: {fileID: 350709322}
   catSkeletonAnimation: {fileID: 1054450560}
   catBallAnimation: {fileID: 11400000, guid: a7426cddfd0f25c40853d5e7119f7670, type: 2}
@@ -3239,6 +3215,9 @@ MonoBehaviour:
     m_RotationOrder: 4
   knotStartPosition: -30
   knotEndPosition: 26
+  moveLeftKnotAnimationName: MoveLeft
+  moveRightKnotAnimationName: MoveRight
+  ballAnimationDelay: 0.1
   OnKnotHinted:
     m_PersistentCalls:
       m_Calls:
@@ -3623,8 +3602,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 1
   m_ShadowVolumeIntensity: 0.869
   m_LocalBounds:
-    m_Center: {x: -1.34595, y: -5.57345, z: 0}
-    m_Extent: {x: 1.7594501, y: 1.92185, z: 0}
+    m_Center: {x: -1.34505, y: -5.58085, z: 0}
+    m_Extent: {x: 1.7535499, y: 1.9201499, z: 0}
   m_PointLightInnerAngle: 359.6
   m_PointLightOuterAngle: 359.6
   m_PointLightInnerRadius: 2
@@ -8930,8 +8909,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 1
   m_ShadowVolumeIntensity: 0.869
   m_LocalBounds:
-    m_Center: {x: 0.46844998, y: -5.58405, z: 0}
-    m_Extent: {x: 1.46655, y: 1.9660499, z: 0}
+    m_Center: {x: 0.46415, y: -5.58165, z: 0}
+    m_Extent: {x: 1.46895, y: 1.9624499, z: 0}
   m_PointLightInnerAngle: 359.6
   m_PointLightOuterAngle: 359.6
   m_PointLightInnerRadius: 2
@@ -15760,8 +15739,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 1
   m_ShadowVolumeIntensity: 0.869
   m_LocalBounds:
-    m_Center: {x: -2.8945498, y: -7.5231, z: 0}
-    m_Extent: {x: 1.98805, y: 1.2758999, z: 0}
+    m_Center: {x: -2.8919, y: -7.52555, z: 0}
+    m_Extent: {x: 1.9765, y: 1.27565, z: 0}
   m_PointLightInnerAngle: 359.6
   m_PointLightOuterAngle: 359.6
   m_PointLightInnerRadius: 2
@@ -16972,8 +16951,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 1
   m_ShadowVolumeIntensity: 0.869
   m_LocalBounds:
-    m_Center: {x: -0.66755, y: -7.4344997, z: 0}
-    m_Extent: {x: 2.60375, y: 1.3232, z: 0}
+    m_Center: {x: -0.6647499, y: -7.4287, z: 0}
+    m_Extent: {x: 2.60975, y: 1.3269, z: 0}
   m_PointLightInnerAngle: 359.6
   m_PointLightOuterAngle: 359.6
   m_PointLightInnerRadius: 2

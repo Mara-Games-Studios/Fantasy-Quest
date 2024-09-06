@@ -12,7 +12,6 @@ using VContainer;
 
 namespace LevelSpecific.House
 {
-    [RequireComponent(typeof(Animator))]
     [AddComponentMenu("Scripts/LevelSpecific/House/LevelSpecific.House.Knot")]
     internal class Knot : InjectingMonoBehaviour, IInteractable
     {
@@ -22,13 +21,6 @@ namespace LevelSpecific.House
         [SerializeField]
         [Required]
         private Cat.Movement catMovement;
-
-        [SerializeField]
-        [Required]
-        private Animator animator;
-
-        [SerializeField]
-        private int animationLayer;
 
         [SerializeField]
         [Required]
@@ -62,42 +54,49 @@ namespace LevelSpecific.House
         [SerializeField]
         private float knotEndPosition;
 
-        private bool isKnotMoving = false;
+        [SpineAnimation]
+        [SerializeField]
+        private string moveLeftKnotAnimationName;
 
-        private float catTimeScale;
-        private float knotPosition;
+        [SpineAnimation]
+        [SerializeField]
+        private string moveRightKnotAnimationName;
+
+        [SerializeField]
+        private float ballAnimationDelay;
+
+        private bool isKnotMoving = false;
+        private float KnotPosition => transform.position.x;
 
         public UnityEvent OnKnotHinted;
 
         public void Interact()
         {
-            knotPosition = gameObject.transform.position.x;
             if (!isKnotMoving)
             {
-                float catPosition = catMovement.gameObject.transform.position.x;
-                if (catMovement.Vector == Cat.Vector.Right && knotPosition - catPosition > 0)
+                float catPosition = catMovement.transform.position.x;
+                if (catMovement.Vector == Cat.Vector.Right && KnotPosition - catPosition > 0)
                 {
                     _ = PlayCatAnimation();
-                    _ = PlayKnotAnimation("MoveRight", knotMoveDistance, pushCurve);
+                    _ = PlayKnotAnimation(moveRightKnotAnimationName, knotMoveDistance, pushCurve);
                 }
-                else if (catMovement.Vector == Cat.Vector.Left && knotPosition - catPosition < 0)
+                else if (catMovement.Vector == Cat.Vector.Left && KnotPosition - catPosition < 0)
                 {
                     _ = PlayCatAnimation();
-                    _ = PlayKnotAnimation("MoveLeft", -knotMoveDistance, pushCurve);
+                    _ = PlayKnotAnimation(moveLeftKnotAnimationName, -knotMoveDistance, pushCurve);
                 }
             }
         }
 
         private void CallWallBounce()
         {
-            knotPosition = gameObject.transform.position.x;
-            if (knotPosition < knotStartPosition)
+            if (KnotPosition < knotStartPosition)
             {
-                _ = PlayKnotAnimation("MoveRight", knotMoveDistance, bounceCurve);
+                _ = PlayKnotAnimation(moveRightKnotAnimationName, knotMoveDistance, bounceCurve);
             }
-            else if (knotPosition > knotEndPosition)
+            else if (KnotPosition > knotEndPosition)
             {
-                _ = PlayKnotAnimation("MoveLeft", -knotMoveDistance, bounceCurve);
+                _ = PlayKnotAnimation(moveLeftKnotAnimationName, -knotMoveDistance, bounceCurve);
             }
         }
 
@@ -105,19 +104,16 @@ namespace LevelSpecific.House
         {
             lockerSettings.Api.LockAll();
             _ = catSkeletonAnimation.AnimationState.SetAnimation(0, catBallAnimation, false);
-            catTimeScale = catSkeletonAnimation.timeScale;
+            float catTimeScale = catSkeletonAnimation.timeScale;
             catSkeletonAnimation.timeScale = catBallAnimationTimeScale;
 
-            await UniTask.Delay(
-                TimeSpan.FromSeconds(
-                    catBallAnimation.Animation.Duration / catBallAnimationTimeScale
-                )
+            TimeSpan delay = TimeSpan.FromSeconds(
+                catBallAnimation.Animation.Duration / catBallAnimationTimeScale
             );
+            await UniTask.Delay(delay);
 
             lockerSettings.Api.UnlockAll();
             catSkeletonAnimation.timeScale = catTimeScale;
-
-            return;
         }
 
         private async UniTask PlayKnotAnimation(
@@ -126,19 +122,16 @@ namespace LevelSpecific.House
             AnimationCurve curve
         )
         {
+            await UniTask.Delay(TimeSpan.FromSeconds(ballAnimationDelay));
             OnKnotHinted?.Invoke();
             isKnotMoving = true;
-            knotSkeletonAnimation.enabled = true;
             knotSkeletonAnimation.AnimationName = animationName;
-            _ = transform.DOMoveX(knotPosition + moveDistance, knotMoveDuration).SetEase(curve);
 
-            await UniTask.Delay(TimeSpan.FromSeconds(knotMoveDuration));
+            await transform.DOMoveX(KnotPosition + moveDistance, knotMoveDuration).SetEase(curve);
 
             knotSkeletonAnimation.AnimationName = null;
             isKnotMoving = false;
             CallWallBounce();
-
-            return;
         }
     }
 }
