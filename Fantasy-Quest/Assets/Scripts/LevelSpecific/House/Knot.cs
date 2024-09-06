@@ -72,7 +72,7 @@ namespace LevelSpecific.House
         public void Interact()
         {
             knotPosition = gameObject.transform.position.x;
-            if (!isKnotMoving) // && CanPushForward())
+            if (!isKnotMoving)
             {
                 float catPosition = catMovement.gameObject.transform.position.x;
                 if (catMovement.Vector == Cat.Vector.Right && knotPosition - catPosition > 0)
