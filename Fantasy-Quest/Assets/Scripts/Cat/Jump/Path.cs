@@ -139,17 +139,24 @@ namespace Cat.Jump
             public float DestinationRailsTime;
             public Cat.Vector MoveVector;
             public Vector2 CatPosition;
+            public JumpDirection JumpDirection;
+
+            public Vector3 DestinationPosition =>
+                DestinationRails.Path.GetPointAtTime(DestinationRailsTime);
         }
 
         public void PreparePath(PrepareResult prepareResult)
         {
             // Prepare path
             transform.position = prepareResult.CatPosition;
+            Vector2 jumpPoint =
+                prepareResult.DestinationPosition - (Vector3)prepareResult.CatPosition;
 
-            Vector3 targetPoint = prepareResult.DestinationRails.Path.GetPointAtTime(
-                prepareResult.DestinationRailsTime
-            );
-            Vector2 jumpPoint = targetPoint - (Vector3)prepareResult.CatPosition;
+            if (Vector3.Distance(jumpPoint, Vector3.zero) <= 0.01)
+            {
+                jumpPoint +=
+                    Vector2.right * 0.01f * (prepareResult.MoveVector == Vector.Right ? 1 : -1);
+            }
 
             // Set end point
             BezierPath.MovePoint(0, Vector3.zero);
@@ -204,7 +211,7 @@ namespace Cat.Jump
             {
                 Found = true,
                 DestinationRails = targetRail,
-                DestinationRailsTime = targetRail.Path.GetClosestTimeOnPath(maxPoint),
+                DestinationRailsTime = targetRail.GetClosestTimeOnPath(maxPoint),
                 MoveVector = moveVector,
                 CatPosition = absoluteCatPos,
             };

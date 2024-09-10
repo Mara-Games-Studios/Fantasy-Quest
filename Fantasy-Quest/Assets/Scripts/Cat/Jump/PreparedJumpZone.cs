@@ -18,7 +18,7 @@ namespace Cat.Jump
 
         [MinMaxSlider(RailsImpl.MIN_TIME, RailsImpl.MAX_TIME)]
         [SerializeField]
-        private Vector2 points;
+        private Vector2 points = new(0.2f, 0.8f);
 
         public float StartPoint => points.x;
         public float EndPoint => points.y;
@@ -51,6 +51,9 @@ namespace Cat.Jump
         private Cat.Vector moveVector;
 
         [SerializeField]
+        private JumpDirection jumpDirection;
+
+        [SerializeField]
         private JumpZone jumpFrom;
 
         [SerializeField]
@@ -78,6 +81,7 @@ namespace Cat.Jump
                     DestinationRailsTime = Mathf.Lerp(jumpTo.StartPoint, jumpTo.EndPoint, time),
                     Found = true,
                     MoveVector = moveVector,
+                    JumpDirection = jumpDirection,
                 };
 
             return result;

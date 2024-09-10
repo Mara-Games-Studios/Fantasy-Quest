@@ -1,5 +1,5 @@
-using System.Collections;
-using Common;
+using System.Threading;
+using Cysharp.Threading.Tasks;
 using PathCreation;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -10,8 +10,8 @@ namespace Rails
     [AddComponentMenu("Scripts/Rails/Rails")]
     internal class RailsImpl : MonoBehaviour
     {
-        public const float MIN_TIME = 0.0001f;
-        public const float MAX_TIME = 0.9999f;
+        public const float MIN_TIME = 0.001f;
+        public const float MAX_TIME = 0.999f;
 
         [ReadOnly]
         [SerializeField]
@@ -34,7 +34,7 @@ namespace Rails
             set => currentPosition = Mathf.Clamp(value, MIN_TIME, MAX_TIME);
         }
 
-        private Coroutine rideCoroutine;
+        private CancellationTokenSource tokenSource = new();
 
         private void OnValidate()
         {
@@ -68,19 +68,23 @@ namespace Rails
             return Path.GetPointAtTime(Mathf.Clamp(time, MIN_TIME, MAX_TIME));
         }
 
-        [Title("Debug buttons for testing")]
+        public float GetClosestTimeOnPath(Vector2 point)
+        {
+            float time = Path.GetClosestTimeOnPath(point);
+            return Mathf.Clamp(time, MIN_TIME, MAX_TIME);
+        }
+
         [Button(Style = ButtonStyle.Box)]
         public void RideBody(float start, float end, float time)
         {
-            _ = this.KillCoroutine(rideCoroutine);
-            rideCoroutine = StartCoroutine(
-                RideRoutine(start, end, time, AnimationCurve.Linear(0, 0, 1, 1))
-            );
+            tokenSource.Cancel();
+            tokenSource = new();
+            _ = RideTask(start, end, time, AnimationCurve.Linear(0, 0, 1, 1));
         }
 
-        public Coroutine RideBodyByCoroutine(float start, float end, float time)
+        public UniTask RideBodyTask(float start, float end, float time)
         {
-            return StartCoroutine(RideRoutine(start, end, time, AnimationCurve.Linear(0, 0, 1, 1)));
+            return RideTask(start, end, time, AnimationCurve.Linear(0, 0, 1, 1));
         }
 
         [Button(Style = ButtonStyle.Box)]
@@ -92,8 +96,9 @@ namespace Rails
         [Button(Style = ButtonStyle.Box)]
         public void RideBodyByCurve(float start, float end, AnimationCurve curve, float time)
         {
-            _ = this.KillCoroutine(rideCoroutine);
-            rideCoroutine = StartCoroutine(RideRoutine(start, end, time, curve));
+            tokenSource.Cancel();
+            tokenSource = new();
+            _ = RideTask(start, end, time, curve);
         }
 
         [Button(Style = ButtonStyle.Box)]
@@ -102,27 +107,21 @@ namespace Rails
             RideBodyByCurve(start.Value, end.Value, curve, time);
         }
 
-        private IEnumerator RideRoutine(float start, float end, float time, AnimationCurve curve)
+        private async UniTask RideTask(float start, float end, float time, AnimationCurve curve)
         {
             float timer = 0;
-            while (timer <= time)
+            while (timer < time)
             {
                 CurrentPosition = Mathf.Lerp(start, end, curve.Evaluate(timer / time));
-
                 timer += Time.deltaTime;
-                yield return null;
+                await UniTask.Yield(PlayerLoopTiming.Update, tokenSource.Token);
             }
         }
 
         [Button(Style = ButtonStyle.Box)]
         public void MoveBody(float length)
         {
-            float clamped = Mathf.Clamp01(CurrentPosition + (length / Path.length));
-            if (clamped == 1)
-            {
-                clamped = 0.99999f;
-            }
-            CurrentPosition = clamped;
+            CurrentPosition += length / Path.length;
         }
 
         [Button(Style = ButtonStyle.Box)]
@@ -146,6 +145,12 @@ namespace Rails
         public float GetPathLengthBetweenPoints(float start, float end)
         {
             return Mathf.Abs(Path.length * (end - start));
+        }
+
+        private void OnDestroy()
+        {
+            tokenSource.Cancel();
+            tokenSource.Dispose();
         }
     }
 }

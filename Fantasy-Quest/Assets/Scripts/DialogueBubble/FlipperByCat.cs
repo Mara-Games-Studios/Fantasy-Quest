@@ -34,12 +34,12 @@ namespace DialogueBubble
         private Dictionary<Vector, PosAndRotationByVector> PositionsByVector =>
             positions.ToDictionary(x => x.Vector, x => x);
 
-        private void OnEnable()
+        private void Awake()
         {
             catMovement.OnVectorChanged += StateChanged;
         }
 
-        private void OnDisable()
+        private void OnDestroy()
         {
             catMovement.OnVectorChanged -= StateChanged;
         }

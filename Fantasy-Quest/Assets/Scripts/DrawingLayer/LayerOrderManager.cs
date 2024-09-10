@@ -33,13 +33,13 @@ namespace DrawingLayer
         {
             if (symon.transform.position.y < cat.transform.position.y)
             {
-                symonSkeleton.sortingOrder = 3;
+                symonSkeleton.sortingOrder = 4;
                 catSkeleton.sortingOrder = 2;
             }
             else
             {
                 symonSkeleton.sortingOrder = 2;
-                catSkeleton.sortingOrder = 3;
+                catSkeleton.sortingOrder = 4;
             }
         }
 

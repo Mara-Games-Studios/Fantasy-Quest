@@ -48,10 +48,7 @@ namespace DialogueBubble
 
         private void OnTriggerEnter2D(Collider2D other)
         {
-            if (
-                !lockerSettings.Api.IsDialogueBubbleLocked
-                && other.TryGetComponent(out InteractionImpl interaction)
-            )
+            if (other.TryGetComponent(out InteractionImpl interaction))
             {
                 bubbleEventSystem.OnTriggerBubble?.Invoke(enterSettings);
             }
@@ -59,10 +56,7 @@ namespace DialogueBubble
 
         private void OnTriggerExit2D(Collider2D other)
         {
-            if (
-                !lockerSettings.Api.IsDialogueBubbleLocked
-                && other.TryGetComponent(out InteractionImpl _)
-            )
+            if (other.TryGetComponent(out InteractionImpl _))
             {
                 bubbleEventSystem.OnTriggerBubble?.Invoke(exitSettings);
                 if (oneTime)
