@@ -1,21 +1,20 @@
-﻿using Configs.Progression;
+﻿using Common.DI;
+using Configs.Progression;
 using Cutscene;
+using Cysharp.Threading.Tasks;
 using Dialogue;
 using Sirenix.OdinInspector;
+using Symon;
 using UnityEngine;
 
 namespace LevelSpecific.ForestEdge
 {
     [AddComponentMenu("Scripts/LevelSpecific/ForestEdge/LevelSpecific.ForestEdge.SymonSpeakLogic")]
-    internal class SymonSpeakLogic : MonoBehaviour
+    internal class SymonSpeakLogic : InjectingMonoBehaviour
     {
         [Required]
         [SerializeField]
-        private ChainSpeaker introductionSpeak;
-
-        [Required]
-        [SerializeField]
-        private Start introCustcene;
+        private Start introCutscene;
 
         [Required]
         [SerializeField]
@@ -25,47 +24,58 @@ namespace LevelSpecific.ForestEdge
         [SerializeField]
         private Start hintCutscene;
 
-        //[Required]
-        //[SerializeField]
-        //private Start tryToAltar;
+        [Required]
+        [SerializeField]
+        private ChainSpeaker whereBagSpeaker;
 
-        //[Required]
-        //[SerializeField]
-        //private Start finilizationCutscene;
+        [Required]
+        [SerializeField]
+        private SkeletonManager symonSkeletonManager;
 
+        [Required]
+        [SerializeField]
+        private ToCatTurner toCatTurner;
+        private bool isTalking = false;
+
+        private ForestEdgeLevel EdgeConfig => ProgressionConfig.Instance.ForestEdgeLevel;
+
+        // Called by trigger
         public void Speak()
         {
-            if (!ProgressionConfig.Instance.ForestEdgeLevel.FirstDialoguePassed)
+            if (!EdgeConfig.FirstDialoguePassed)
             {
-                introCustcene.StartCutscene();
-                ProgressionConfig.Instance.ForestEdgeLevel.FirstDialoguePassed = true;
+                introCutscene.StartCutscene();
+                EdgeConfig.FirstDialoguePassed = true;
                 return;
             }
-            else if (
-                !ProgressionConfig.Instance.ForestEdgeLevel.ExplanationListened
-                && ProgressionConfig.Instance.ForestEdgeLevel.BagTaken
-            )
+
+            if (EdgeConfig.FirstDialoguePassed && !EdgeConfig.BagTaken && !isTalking)
+            {
+                _ = WhereBagTalk();
+                return;
+            }
+
+            if (!EdgeConfig.ExplanationListened && EdgeConfig.BagTaken)
             {
                 explanationCutscene.StartCutscene();
-                ProgressionConfig.Instance.ForestEdgeLevel.ExplanationListened = true;
+                EdgeConfig.ExplanationListened = true;
                 return;
             }
-            else if (
-                !ProgressionConfig.Instance.ForestEdgeLevel.AllItemTaken
-                && ProgressionConfig.Instance.ForestEdgeLevel.BagTaken
-            )
+
+            if (!EdgeConfig.AllItemTaken && EdgeConfig.BagTaken)
             {
                 hintCutscene.StartCutscene();
                 return;
             }
-            //else if (
-            //    ProgressionConfig.Instance.ForestEdgeLevel.AllItemTaken
-            //    && !ProgressionConfig.Instance.ForestEdgeLevel.AltarGamePassed
-            //)
-            //{
-            //    tryToAltar.StartCutscene();
-            //    return;
-            //}
+        }
+
+        private async UniTask WhereBagTalk()
+        {
+            isTalking = true;
+            toCatTurner.TurnToCat();
+            symonSkeletonManager.TellDownWithBread(whereBagSpeaker.Duration);
+            await whereBagSpeaker.JustTellRoutine();
+            isTalking = false;
         }
     }
 }

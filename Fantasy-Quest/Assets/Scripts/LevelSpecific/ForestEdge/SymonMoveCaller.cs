@@ -1,4 +1,5 @@
-﻿using Common.DI;
+﻿using Cat;
+using Common.DI;
 using Configs;
 using Configs.Progression;
 using Cutscene;
@@ -38,6 +39,10 @@ namespace LevelSpecific.ForestEdge
         [SerializeField]
         private Start cutsceneStarter;
 
+        [Required]
+        [SerializeField]
+        private Meowing meowing;
+
         public UnityEvent ComingToBack;
 
         // Called by interaction
@@ -66,6 +71,7 @@ namespace LevelSpecific.ForestEdge
 
         private async UniTaskVoid GoToCutscene()
         {
+            await meowing.CatMeowingTask();
             ComingToBack?.Invoke();
             lockerSettings.Api.LockAll(this);
             await UniTask.WhenAll(
