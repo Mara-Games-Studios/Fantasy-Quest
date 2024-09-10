@@ -6,6 +6,7 @@ using VContainer.Unity;
 
 namespace Common.DI
 {
+    [AddComponentMenu("Common/DI/Common.DI.TooledLifetimeScope")]
     public class TooledLifetimeScope : LifetimeScope
     {
         [Button]
