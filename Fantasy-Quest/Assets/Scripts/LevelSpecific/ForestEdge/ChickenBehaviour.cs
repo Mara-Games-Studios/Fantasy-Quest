@@ -25,6 +25,9 @@ namespace LevelSpecific.ForestEdge
         [SerializeField]
         private ChickenState chickenState = ChickenState.Idle;
 
+        [SerializeField]
+        private ChickenState chickenStartState = ChickenState.Idle;
+
         [Header("Randomization")]
         [Header("Idle Time")]
         [SerializeField]
@@ -47,7 +50,7 @@ namespace LevelSpecific.ForestEdge
         [SerializeField]
         private float minDistance = 3f;
 
-        private float moveTime = 0f;
+        private float moveTime = 3f;
 
         [HideInInspector]
         public Vector2 RandomPoint;
@@ -56,7 +59,7 @@ namespace LevelSpecific.ForestEdge
         private void Start()
         {
             RandomPoint = RandomPointInBounds(bounds);
-            ChooseState(ChickenState.Idle);
+            ChooseState(chickenStartState);
         }
 
         private void OnEnable()
