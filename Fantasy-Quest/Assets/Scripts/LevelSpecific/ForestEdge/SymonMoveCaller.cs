@@ -5,6 +5,7 @@ using Configs.Progression;
 using Cutscene;
 using Cysharp.Threading.Tasks;
 using Dialogue;
+using Hints;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Events;
@@ -24,10 +25,6 @@ namespace LevelSpecific.ForestEdge
         [SerializeField]
         private Transform callPoint;
 
-        [ReadOnly]
-        [SerializeField]
-        private bool isMoving = false;
-
         [SerializeField]
         private Symon.Movement symonMovement;
 
@@ -43,6 +40,11 @@ namespace LevelSpecific.ForestEdge
         [SerializeField]
         private Meowing meowing;
 
+        [Required]
+        [SerializeField]
+        private ShowHints hintsShower;
+
+        private bool isMoving = false;
         public UnityEvent ComingToBack;
 
         // Called by interaction
@@ -71,6 +73,7 @@ namespace LevelSpecific.ForestEdge
 
         private async UniTaskVoid GoToCutscene()
         {
+            hintsShower.TurnOffHints();
             await meowing.CatMeowingTask();
             ComingToBack?.Invoke();
             lockerSettings.Api.LockAll(this);
