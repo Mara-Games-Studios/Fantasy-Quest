@@ -45,5 +45,28 @@ namespace Symon
 
             _ = symonSkeleton.state.AddAnimation(0, animation, true, 0);
         }
+
+        public void TellDownWithBackPack(float duration)
+        {
+            string animation = symonSkeleton.AnimationName;
+
+            float talkDuration =
+                duration
+                - (
+                    startTalkDownWithBread.Animation.Duration
+                    + finishTalkDownWithBread.Animation.Duration
+                    + talkDownWithBread.Animation.Duration
+                );
+            _ = symonSkeleton.state.SetAnimation(0, startTalkDownWithBread.Animation, false);
+            _ = symonSkeleton.state.AddAnimation(0, talkDownWithBread.Animation, true, 0);
+            _ = symonSkeleton.state.AddAnimation(
+                0,
+                finishTalkDownWithBread.Animation,
+                false,
+                talkDuration
+            );
+
+            _ = symonSkeleton.state.AddAnimation(0, animation, true, 0);
+        }
     }
 }

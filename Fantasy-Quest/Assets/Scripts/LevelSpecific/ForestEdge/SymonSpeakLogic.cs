@@ -22,7 +22,7 @@ namespace LevelSpecific.ForestEdge
 
         [Required]
         [SerializeField]
-        private Start hintCutscene;
+        private ChainSpeaker theeItemsSpeaker;
 
         [Required]
         [SerializeField]
@@ -64,7 +64,7 @@ namespace LevelSpecific.ForestEdge
 
             if (!EdgeConfig.AllItemTaken && EdgeConfig.BagTaken)
             {
-                hintCutscene.StartCutscene();
+                _ = Find3ItemsBagTalk();
                 return;
             }
         }
@@ -75,6 +75,15 @@ namespace LevelSpecific.ForestEdge
             toCatTurner.TurnToCat();
             symonSkeletonManager.TellDownWithBread(whereBagSpeaker.Duration);
             await whereBagSpeaker.JustTellRoutine();
+            isTalking = false;
+        }
+
+        private async UniTask Find3ItemsBagTalk()
+        {
+            isTalking = true;
+            toCatTurner.TurnToCat();
+            symonSkeletonManager.TellDownWithBackPack(theeItemsSpeaker.Duration);
+            await theeItemsSpeaker.JustTellRoutine();
             isTalking = false;
         }
     }
