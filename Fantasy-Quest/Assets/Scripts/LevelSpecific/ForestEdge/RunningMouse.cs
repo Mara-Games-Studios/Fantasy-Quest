@@ -22,14 +22,16 @@ namespace LevelSpecific.ForestEdge
         private bool oneTime = false;
 
         public UnityEvent RunEnded;
+        public UnityEvent RunStarted;
 
         [Button]
         public void Run()
         {
-            if (!oneTime)
+            if (oneTime)
             {
                 return;
             }
+            RunStarted?.Invoke();
             oneTime = true;
             _ = transform.DOMove(endPoint.position, runTime).OnComplete(() => RunEnded?.Invoke());
             _ = DOVirtual.DelayedCall(runTime - fade.Duration, () => fade.Disappear(), false);

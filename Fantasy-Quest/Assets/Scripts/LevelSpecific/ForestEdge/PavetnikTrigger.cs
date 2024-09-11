@@ -21,7 +21,6 @@ namespace LevelSpecific.ForestEdge
         {
             if (collision.TryGetComponent(out InteractionImpl interaction))
             {
-                gameObject.SetActive(false);
                 if (interaction.JumpTrigger.IsJumping)
                 {
                     interaction.JumpTrigger.AddOneTimeEndJumpCallback(Logic);
