@@ -11,11 +11,15 @@ namespace LevelSpecific.ForestEdge
         [SerializeField]
         private TransformMover beforeEncounter;
 
+        [SerializeField]
+        private ChickensPlaceChanger chickensPlaceChanger;
+
         private void OnTriggerEnter2D(UnityEngine.Collider2D collision)
         {
             if (collision.TryGetComponent<InteractionImpl>(out _))
             {
                 beforeEncounter.Move();
+                chickensPlaceChanger.ShowChickensRunningFromBarn();
             }
         }
     }
