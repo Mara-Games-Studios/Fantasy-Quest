@@ -78,12 +78,22 @@ namespace LevelSpecific.House
                 if (catMovement.Vector == Cat.Vector.Right && KnotPosition - catPosition > 0)
                 {
                     _ = PlayCatAnimation();
-                    _ = PlayKnotAnimation(moveRightKnotAnimationName, knotMoveDistance, pushCurve);
+                    _ = PlayKnotAnimation(
+                        moveRightKnotAnimationName,
+                        knotMoveDistance,
+                        pushCurve,
+                        true
+                    );
                 }
                 else if (catMovement.Vector == Cat.Vector.Left && KnotPosition - catPosition < 0)
                 {
                     _ = PlayCatAnimation();
-                    _ = PlayKnotAnimation(moveLeftKnotAnimationName, -knotMoveDistance, pushCurve);
+                    _ = PlayKnotAnimation(
+                        moveLeftKnotAnimationName,
+                        -knotMoveDistance,
+                        pushCurve,
+                        true
+                    );
                 }
             }
         }
@@ -92,11 +102,21 @@ namespace LevelSpecific.House
         {
             if (KnotPosition < knotStartPosition)
             {
-                _ = PlayKnotAnimation(moveRightKnotAnimationName, knotMoveDistance, bounceCurve);
+                _ = PlayKnotAnimation(
+                    moveRightKnotAnimationName,
+                    knotMoveDistance,
+                    bounceCurve,
+                    false
+                );
             }
             else if (KnotPosition > knotEndPosition)
             {
-                _ = PlayKnotAnimation(moveLeftKnotAnimationName, -knotMoveDistance, bounceCurve);
+                _ = PlayKnotAnimation(
+                    moveLeftKnotAnimationName,
+                    -knotMoveDistance,
+                    bounceCurve,
+                    false
+                );
             }
         }
 
@@ -119,17 +139,22 @@ namespace LevelSpecific.House
         private async UniTask PlayKnotAnimation(
             string animationName,
             float moveDistance,
-            AnimationCurve curve
+            AnimationCurve curve,
+            bool isDelayed
         )
         {
-            await UniTask.Delay(TimeSpan.FromSeconds(ballAnimationDelay));
+            if (isDelayed)
+            {
+                await UniTask.Delay(TimeSpan.FromSeconds(ballAnimationDelay));
+            }
+
             OnKnotHinted?.Invoke();
             isKnotMoving = true;
-            knotSkeletonAnimation.AnimationName = animationName;
+            _ = knotSkeletonAnimation.AnimationState.SetAnimation(0, animationName, true);
 
             await transform.DOMoveX(KnotPosition + moveDistance, knotMoveDuration).SetEase(curve);
 
-            knotSkeletonAnimation.AnimationName = null;
+            _ = knotSkeletonAnimation.AnimationState.SetEmptyAnimation(0, 0);
             isKnotMoving = false;
             CallWallBounce();
         }
