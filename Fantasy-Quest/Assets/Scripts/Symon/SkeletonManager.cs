@@ -23,6 +23,18 @@ namespace Symon
         [SerializeField]
         private AnimationReferenceAsset finishTalkDownWithBread;
 
+        [Required]
+        [SerializeField]
+        private AnimationReferenceAsset startTalkDownWithBackPack;
+
+        [Required]
+        [SerializeField]
+        private AnimationReferenceAsset talkDownWithBackPack;
+
+        [Required]
+        [SerializeField]
+        private AnimationReferenceAsset finishTalkDownWithBackPack;
+
         public void TellDownWithBread(float duration)
         {
             string animation = symonSkeleton.AnimationName;
@@ -53,15 +65,15 @@ namespace Symon
             float talkDuration =
                 duration
                 - (
-                    startTalkDownWithBread.Animation.Duration
-                    + finishTalkDownWithBread.Animation.Duration
-                    + talkDownWithBread.Animation.Duration
+                    startTalkDownWithBackPack.Animation.Duration
+                    + finishTalkDownWithBackPack.Animation.Duration
+                    + talkDownWithBackPack.Animation.Duration
                 );
-            _ = symonSkeleton.state.SetAnimation(0, startTalkDownWithBread.Animation, false);
-            _ = symonSkeleton.state.AddAnimation(0, talkDownWithBread.Animation, true, 0);
+            _ = symonSkeleton.state.SetAnimation(0, startTalkDownWithBackPack.Animation, false);
+            _ = symonSkeleton.state.AddAnimation(0, talkDownWithBackPack.Animation, true, 0);
             _ = symonSkeleton.state.AddAnimation(
                 0,
-                finishTalkDownWithBread.Animation,
+                finishTalkDownWithBackPack.Animation,
                 false,
                 talkDuration
             );
