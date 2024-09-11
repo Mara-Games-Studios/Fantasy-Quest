@@ -1,4 +1,5 @@
 ﻿using System;
+using DG.Tweening;
 using Rails;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -21,6 +22,9 @@ namespace Cat
     [AddComponentMenu("Scripts/Cat/Cat.Movement")]
     internal class Movement : MonoBehaviour
     {
+        [SerializeField]
+        private float defaultCatScale = 1.0f;
+
         [SerializeField]
         private bool bindOnStart = false;
 
@@ -142,6 +146,23 @@ namespace Cat
         public void RemoveFromRails()
         {
             rails.UnBindBody();
+        }
+
+        public void SetDefaultScale()
+        {
+            transform.localScale = Vector3.one * defaultCatScale;
+        }
+
+        public void SetCatScale(float? scale, float time)
+        {
+            Vector3 endScale = Vector3.one * (scale ?? defaultCatScale);
+
+            if (transform.localScale == endScale)
+            {
+                return;
+            }
+
+            _ = transform.DOScale(endScale, time);
         }
     }
 }

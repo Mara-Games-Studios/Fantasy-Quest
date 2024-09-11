@@ -11,6 +11,14 @@ namespace Cat.Jump
         private bool isAvailable = true;
         public bool IsAvailable => isAvailable;
 
+        [SerializeField]
+        private bool isCatScaleChange = false;
+        public bool IsCatScaleChange => isCatScaleChange;
+
+        [SerializeField]
+        private float newCatScale = 1.0f;
+        public float NewCatScale => newCatScale;
+
         private RailsImpl rails;
         public RailsImpl Rails => rails;
 
