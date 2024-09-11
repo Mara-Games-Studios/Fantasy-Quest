@@ -1,4 +1,5 @@
 using Interaction;
+using Sirenix.OdinInspector;
 using UnityEngine;
 using Utils;
 
@@ -8,8 +9,13 @@ namespace LevelSpecific.ForestEdge
     [AddComponentMenu("Scripts/LevelSpecific/ForestEdge/LevelSpecific.ForestEdge.PavetnikTrigger")]
     internal class PavetnikTrigger : MonoBehaviour
     {
+        [Required]
         [SerializeField]
         private TransformMover beforeEncounter;
+
+        [Required]
+        [SerializeField]
+        private ChickensPlaceChanger chickensPlaceChanger;
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
@@ -29,6 +35,7 @@ namespace LevelSpecific.ForestEdge
 
         private void Logic()
         {
+            chickensPlaceChanger.ShowChickensRunningFromBarn();
             beforeEncounter.Move();
         }
     }

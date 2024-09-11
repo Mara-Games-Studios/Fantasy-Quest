@@ -1558,7 +1558,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5106021408120112183}
-  - component: {fileID: 8108515057865622442}
   - component: {fileID: 6403257015909612740}
   m_Layer: 0
   m_Name: Chickens
@@ -1584,53 +1583,6 @@ Transform:
   - {fileID: 8117840702849644624}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8108515057865622442
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8259200082078091795}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Events:
-    m_Signals:
-    - {fileID: 11400000, guid: 258c3f1ee5c232244bf0d2b4fd14058c, type: 2}
-    - {fileID: 11400000, guid: 151ec280eaa84f640931c9f293d57b75, type: 2}
-    m_Events:
-    - m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 6403257015909612740}
-          m_TargetAssemblyTypeName: LevelSpecific.ForestEdge.ChickensPlaceChanger,
-            Assembly-CSharp
-          m_MethodName: ShowChickensRunningFromBarn
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-    - m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 6403257015909612740}
-          m_TargetAssemblyTypeName: LevelSpecific.ForestEdge.ChickensPlaceChanger,
-            Assembly-CSharp
-          m_MethodName: ReturnChickensToBarn
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!114 &6403257015909612740
 MonoBehaviour:
   m_ObjectHideFlags: 0
