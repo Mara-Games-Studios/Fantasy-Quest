@@ -12,11 +12,19 @@ namespace DI.Shared.Bootstrap
         [SerializeField]
         private bool lockOnStart;
 
+        [SerializeField]
+        private bool unLockOnStart;
+
         public void Start()
         {
             if (lockOnStart)
             {
                 cursorService.LockCursor();
+            }
+
+            if (unLockOnStart)
+            {
+                cursorService.UnLockCursor();
             }
         }
     }
