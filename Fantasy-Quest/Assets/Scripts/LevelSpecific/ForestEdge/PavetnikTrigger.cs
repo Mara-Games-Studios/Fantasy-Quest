@@ -23,7 +23,7 @@ namespace LevelSpecific.ForestEdge
             {
                 if (interaction.JumpTrigger.IsJumping)
                 {
-                    interaction.JumpTrigger.AddOneTimeEndJumpCallback(Logic);
+                    interaction.JumpTrigger.AddOneTimeEndJumpCallback(() => Logic());
                 }
                 else
                 {
