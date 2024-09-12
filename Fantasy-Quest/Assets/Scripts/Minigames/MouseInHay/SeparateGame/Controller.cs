@@ -68,8 +68,8 @@ namespace Minigames.MouseInHay.SeparateGame
             paw.DisableInput();
             upscaleTimeScale = false;
             failedHits = 0;
+            resultScreen.Show(scoreCounter.Score, Time.timeScale);
             Time.timeScale = 1f;
-            resultScreen.Show(scoreCounter.Score);
             scoreCounter.ResetScore();
             playScreen.Show();
         }
@@ -88,7 +88,7 @@ namespace Minigames.MouseInHay.SeparateGame
             failCounter.text =
                 "Промахи: "
                 + (hitsToFail - failedHits).ToString()
-                + $"\nСкорость: {Time.timeScale:0.0}";
+                + $"\nСкорость: {Time.timeScale:0.00}";
             if (upscaleTimeScale)
             {
                 Time.timeScale += Time.deltaTime * timeScaleUpSpeed;

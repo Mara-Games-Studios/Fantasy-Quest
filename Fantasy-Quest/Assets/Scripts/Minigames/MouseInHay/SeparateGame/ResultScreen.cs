@@ -24,10 +24,11 @@ namespace Minigames.MouseInHay.SeparateGame
             confirm.onClick.AddListener(Confirm);
         }
 
-        public void Show(int score)
+        public void Show(int score, float speed)
         {
             screenGroup.blocksRaycasts = true;
-            this.score.text = $"Результат:\n\n{score} попаданий!\n\nКрасавчик!";
+            this.score.text =
+                $"{score} попаданий!\n<size=60>на {speed:0.00} ускорении</size>\n\nЭто было круто\nТы молодец!";
             _ = screenGroup.DOFade(1, 1).OnComplete(() => screenGroup.interactable = true);
         }
 
