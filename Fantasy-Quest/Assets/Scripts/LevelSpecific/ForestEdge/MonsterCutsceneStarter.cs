@@ -1,4 +1,5 @@
 ﻿using Configs.Progression;
+using Interaction;
 using UnityEngine;
 
 namespace LevelSpecific.ForestEdge
@@ -11,19 +12,32 @@ namespace LevelSpecific.ForestEdge
         [SerializeField]
         private Cutscene.Start cutsceneStarter;
 
+        private ForestEdgeLevel EdgeConfig => ProgressionConfig.Instance.ForestEdgeLevel;
+
         private void OnTriggerEnter2D(Collider2D collision)
         {
             if (
-                collision.TryGetComponent(out Cat.Movement _)
-                && !ProgressionConfig.Instance.ForestEdgeLevel.MonsterCutsceneTriggered
-                && ProgressionConfig.Instance.ForestEdgeLevel.ExplanationListened
+                collision.TryGetComponent(out InteractionImpl interaction)
+                && !EdgeConfig.MonsterCutsceneTriggered
+                && EdgeConfig.ExplanationListened
             )
             {
-                cutsceneStarter.StartCutscene();
-                Debug.Log("Squirrel game unlocked");
-                ProgressionConfig.Instance.ForestEdgeLevel.MonsterCutsceneTriggered = true;
                 gameObject.SetActive(false);
+                if (interaction.JumpTrigger.IsJumping)
+                {
+                    interaction.JumpTrigger.AddOneTimeEndJumpCallback(Logic);
+                }
+                else
+                {
+                    Logic();
+                }
             }
+        }
+
+        private void Logic()
+        {
+            cutsceneStarter.StartCutscene();
+            EdgeConfig.MonsterCutsceneTriggered = true;
         }
     }
 }

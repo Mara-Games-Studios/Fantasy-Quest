@@ -36,9 +36,6 @@ namespace Minigames.MouseInHay
         private ScoreCounter scoreCounter;
 
         [SerializeField]
-        private Manager manager;
-
-        [SerializeField]
         private List<HoleByInputAction> holesWithInput;
 
         public UnityEvent SuccessMouseHit;
@@ -78,12 +75,8 @@ namespace Minigames.MouseInHay
             bool isGrabbed = hole.TryGrabMouse();
             if (isGrabbed)
             {
-                scoreCounter.AddPoint();
                 SuccessMouseHit?.Invoke();
-                if (scoreCounter.IsWinGame)
-                {
-                    manager.ExitGame(ExitGameState.Win);
-                }
+                scoreCounter.AddPoint();
             }
             else
             {

@@ -74,6 +74,9 @@ namespace Cat.Jump
             float time =
                 (fromRails.CurrentPosition - jumpFrom.StartPoint)
                 / (jumpFrom.EndPoint - jumpFrom.StartPoint);
+
+            GroundMask mask = jumpTo.TargetRails.GetComponent<GroundMask>();
+
             Path.PrepareResult result =
                 new()
                 {
@@ -82,6 +85,7 @@ namespace Cat.Jump
                     Found = true,
                     MoveVector = moveVector,
                     JumpDirection = jumpDirection,
+                    EndCatScale = mask.IsCatScaleChange ? mask.NewCatScale : null,
                 };
 
             return result;

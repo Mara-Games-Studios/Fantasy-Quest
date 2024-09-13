@@ -7,10 +7,11 @@ namespace LevelQuests
     [AddComponentMenu("Scripts/LevelQuests/LevelQuests.Quest")]
     internal class Quest : MonoBehaviour
     {
-        [Required]
+        [RequiredIn(PrefabKind.InstanceInScene)]
         [SerializeField]
         private GameObject minigameEnterPoint;
 
+        [RequiredIn(PrefabKind.InstanceInScene)]
         [SerializeField]
         private GameObject cutsceneTriggerPoint;
 

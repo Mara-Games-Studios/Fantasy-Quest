@@ -67,7 +67,7 @@ namespace Audio
 
         private void Start()
         {
-            audioSource = soundsManager.CreateSource(AudioClip.name, IgnorePause);
+            audioSource = soundsManager.CreateSource(gameObject.name, IgnorePause);
             audioSource.clip = AudioClip;
             audioSource.loop = Loop;
             AudioSourceConfig.ApplyTo(audioSource);

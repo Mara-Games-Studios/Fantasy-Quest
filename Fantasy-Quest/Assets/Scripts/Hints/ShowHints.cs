@@ -93,5 +93,10 @@ namespace Hints
                 tweens.Add(kbRenderer.DOFade(endValue, duration));
             }
         }
+
+        public void TurnOffHints()
+        {
+            keyboardSpriteRenderer.ForEach(x => x.gameObject.SetActive(false));
+        }
     }
 }

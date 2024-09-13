@@ -131,6 +131,8 @@ namespace Cat.Jump
                 jumpOptions.MoveCurve,
                 jumpOptions.Duration
             );
+
+            catMovement.SetCatScale(prepareResult.EndCatScale, jumpOptions.Duration);
             await UniTask.Delay(TimeSpan.FromSeconds(jumpOptions.Duration));
 
             catMovement.RemoveFromRails();

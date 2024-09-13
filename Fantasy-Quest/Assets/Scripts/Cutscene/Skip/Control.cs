@@ -76,6 +76,7 @@ namespace Cutscene.Skip
             chainSpeakerList.ForEach(x => x.StopTelling());
             soundPlayerList.ForEach(x => x.StopClip());
             dialogueManager.KillAllSpeakers();
+            playerInput.Enable();
         }
 
         private void OnDisable()

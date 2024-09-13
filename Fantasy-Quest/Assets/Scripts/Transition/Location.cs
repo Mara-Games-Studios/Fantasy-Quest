@@ -2,6 +2,7 @@
 using Effects;
 using Effects.Screen;
 using Sirenix.OdinInspector;
+using Spine.Unity;
 using TNRD;
 using UnityEngine;
 using UnityEngine.Events;
@@ -31,23 +32,33 @@ namespace Transition
         private SerializableInterface<IEffect> outEffect;
         private IEffect OutEffect => outEffect.Value;
 
+        [RequiredIn(PrefabKind.InstanceInScene)]
+        [SerializeField]
+        private SkeletonAnimation catSkeleton;
+
         [SerializeField]
         private Transform outPoint;
 
+        private bool isChangingLocation = false;
         public UnityEvent InEffectStarted;
         public UnityEvent InEffectEnded;
         public UnityEvent OutEffectEnded;
 
         public void TriggerTransition()
         {
-            InEffectStarted?.Invoke();
-            InEffect.OnEffectEnded += OnInEffectEnded;
-            OutEffect.OnEffectEnded += OnOutEffectEnded;
-            if (inPoint != null && InEffect is CutoutMask cutout)
+            if (!isChangingLocation)
             {
-                cutout.SetDestinationPoint(inPoint);
+                isChangingLocation = true;
+                _ = catSkeleton.AnimationState.SetEmptyAnimation(0, 0);
+                InEffectStarted?.Invoke();
+                InEffect.OnEffectEnded += OnInEffectEnded;
+                OutEffect.OnEffectEnded += OnOutEffectEnded;
+                if (inPoint != null && InEffect is CutoutMask cutout)
+                {
+                    cutout.SetDestinationPoint(inPoint);
+                }
+                InEffect.DoEffect();
             }
-            InEffect.DoEffect();
         }
 
         public void OnInEffectEnded()
@@ -66,6 +77,7 @@ namespace Transition
                 {
                     cutout.SetDestinationPoint(outPoint);
                 }
+                isChangingLocation = false;
                 OutEffect.DoEffect();
             }
         }

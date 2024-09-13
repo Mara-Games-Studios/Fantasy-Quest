@@ -17,6 +17,13 @@ namespace Effects
 
         [SerializeField]
         private float fadeDuration = 1f;
+        public float Duration => fadeDuration;
+
+        [SerializeField]
+        private float offAlfa = 0f;
+
+        [SerializeField]
+        private float onAlfa = 1f;
 
         private CancellationTokenSource tokenSource = new();
 
@@ -30,13 +37,13 @@ namespace Effects
         [Button]
         public void Appear()
         {
-            _ = DoFadeForAll(1);
+            _ = DoFadeForAll(onAlfa);
         }
 
         [Button]
         public void Disappear()
         {
-            _ = DoFadeForAll(0);
+            _ = DoFadeForAll(offAlfa);
         }
 
         public async UniTask DoFadeForAll(float endAlpha)
