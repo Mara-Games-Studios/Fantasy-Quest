@@ -72,7 +72,6 @@ namespace LevelSpecific.ForestEdge
         private async UniTask WhereBagTalk()
         {
             isTalking = true;
-            toCatTurner.TurnToCat();
             symonSkeletonManager.TellDownWithBread(whereBagSpeaker.Duration);
             await whereBagSpeaker.JustTellRoutine();
             isTalking = false;
@@ -81,7 +80,6 @@ namespace LevelSpecific.ForestEdge
         private async UniTask Find3ItemsBagTalk()
         {
             isTalking = true;
-            toCatTurner.TurnToCat();
             symonSkeletonManager.TellDownWithBackPack(theeItemsSpeaker.Duration);
             await theeItemsSpeaker.JustTellRoutine();
             isTalking = false;
