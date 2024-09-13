@@ -4527,85 +4527,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &305950802
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 305950803}
-  - component: {fileID: 305950805}
-  - component: {fileID: 305950804}
-  m_Layer: 0
-  m_Name: Turner
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &305950803
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 305950802}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 490756196}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &305950804
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 305950802}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Events:
-    m_Signals:
-    - {fileID: 11400000, guid: defef0dbb2c5f994eac7757f78572af7, type: 2}
-    m_Events:
-    - m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 305950805}
-          m_TargetAssemblyTypeName: Utils.TurnTransform, Assembly-CSharp
-          m_MethodName: Turner
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
---- !u!114 &305950805
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 305950802}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1d9da98e510bf14484dd37f44b531f7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  toTarget: 0
-  target: {fileID: 84311741}
-  to: {fileID: 0}
-  direction: 1
 --- !u!1 &309798967
 GameObject:
   m_ObjectHideFlags: 0
@@ -5226,9 +5147,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1976332832}
   - {fileID: 662304999}
   - {fileID: 200483291}
-  - {fileID: 1448928618}
   - {fileID: 965151684}
   m_Father: {fileID: 106903181}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5259,18 +5180,16 @@ PlayableDirector:
     value: {fileID: 84311742}
   - key: {fileID: 6235364904608600866, guid: af59cf516305ba344896c280cc9ee117, type: 2}
     value: {fileID: 1770866686}
-  - key: {fileID: 2308634471975455947, guid: af59cf516305ba344896c280cc9ee117, type: 2}
-    value: {fileID: 0}
-  - key: {fileID: -677789262806203144, guid: af59cf516305ba344896c280cc9ee117, type: 2}
-    value: {fileID: 1448928619}
-  - key: {fileID: -797868680424993387, guid: af59cf516305ba344896c280cc9ee117, type: 2}
-    value: {fileID: 0}
   - key: {fileID: -1581359590059615670, guid: af59cf516305ba344896c280cc9ee117, type: 2}
     value: {fileID: 1593528243}
   - key: {fileID: 1112977687632239437, guid: af59cf516305ba344896c280cc9ee117, type: 2}
     value: {fileID: 11400000, guid: 4c552f663c8ac264d9f53fc8accc92d3, type: 2}
   - key: {fileID: 7430470700109191499, guid: af59cf516305ba344896c280cc9ee117, type: 2}
     value: {fileID: 4014933508526661022}
+  - key: {fileID: -7733680402687165937, guid: af59cf516305ba344896c280cc9ee117, type: 2}
+    value: {fileID: 1736969259}
+  - key: {fileID: 3041704605509309368, guid: af59cf516305ba344896c280cc9ee117, type: 2}
+    value: {fileID: 1770866686}
   m_ExposedReferences:
     m_References:
     - c3820cfdc87d2d84ba2b5e5c7b7262e8: {fileID: 810026366}
@@ -6620,6 +6539,85 @@ Transform:
   - {fileID: 2021553790}
   m_Father: {fileID: 1642252707}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &466234645
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 466234646}
+  - component: {fileID: 466234648}
+  - component: {fileID: 466234647}
+  m_Layer: 0
+  m_Name: TurnLeft
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &466234646
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 466234645}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 955732136}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &466234647
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 466234645}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Events:
+    m_Signals:
+    - {fileID: 11400000, guid: defef0dbb2c5f994eac7757f78572af7, type: 2}
+    m_Events:
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 466234648}
+          m_TargetAssemblyTypeName: Utils.TurnTransform, Assembly-CSharp
+          m_MethodName: Turner
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!114 &466234648
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 466234645}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1d9da98e510bf14484dd37f44b531f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  toTarget: 0
+  target: {fileID: 84311741}
+  to: {fileID: 0}
+  direction: 1
 --- !u!1 &480148226
 GameObject:
   m_ObjectHideFlags: 0
@@ -6803,7 +6801,7 @@ Transform:
   - {fileID: 1539808194}
   - {fileID: 441155908}
   - {fileID: 948977421}
-  - {fileID: 305950803}
+  - {fileID: 955732136}
   - {fileID: 1639476608}
   m_Father: {fileID: 106903181}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6861,12 +6859,8 @@ PlayableDirector:
     value: {fileID: 441155909}
   - key: {fileID: 5155290589655053532, guid: 32a533f0ebf0f6d4ca5520f909f182b5, type: 2}
     value: {fileID: 84311742}
-  - key: {fileID: -1225519860130669031, guid: 32a533f0ebf0f6d4ca5520f909f182b5, type: 2}
-    value: {fileID: 84311745}
   - key: {fileID: 3877957257409415791, guid: 32a533f0ebf0f6d4ca5520f909f182b5, type: 2}
     value: {fileID: 948977422}
-  - key: {fileID: 6222989939105359399, guid: 32a533f0ebf0f6d4ca5520f909f182b5, type: 2}
-    value: {fileID: 305950804}
   - key: {fileID: -63932568935867768, guid: 32a533f0ebf0f6d4ca5520f909f182b5, type: 2}
     value: {fileID: 1639476606}
   - key: {fileID: -1562858151025163711, guid: 32a533f0ebf0f6d4ca5520f909f182b5, type: 2}
@@ -6875,6 +6869,8 @@ PlayableDirector:
     value: {fileID: 11400000, guid: 4c552f663c8ac264d9f53fc8accc92d3, type: 2}
   - key: {fileID: 3933235198373357561, guid: 32a533f0ebf0f6d4ca5520f909f182b5, type: 2}
     value: {fileID: 4014933508526661022}
+  - key: {fileID: -4143948989382890168, guid: 32a533f0ebf0f6d4ca5520f909f182b5, type: 2}
+    value: {fileID: 1480590983}
   m_ExposedReferences:
     m_References:
     - 48b1985df8073d243b5e6e5e70344e2b: {fileID: 810026366}
@@ -6946,8 +6942,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -1.5610499, y: 1.7578502, z: 0}
-    m_Extent: {x: 1.69225, y: 3.32095, z: 0}
+    m_Center: {x: -1.5622, y: 1.7639, z: 0}
+    m_Extent: {x: 1.6906999, y: 3.3249, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0.38
@@ -8392,8 +8388,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -1.2507, y: -0.21114999, z: 0}
-    m_Extent: {x: 2.2815, y: 1.68045, z: 0}
+    m_Center: {x: -1.25545, y: -0.22370005, z: 0}
+    m_Extent: {x: 2.29055, y: 1.6811, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0.38
@@ -8473,8 +8469,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -1.2485001, y: -0.2216, z: 0}
-    m_Extent: {x: 2.2835, y: 1.6794, z: 0}
+    m_Center: {x: -1.2558, y: -0.20985001, z: 0}
+    m_Extent: {x: 2.2854, y: 1.67835, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0.38
@@ -11061,8 +11057,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 5.7304, y: 9.41915, z: 0}
-    m_Extent: {x: 3.4806004, y: 5.74825, z: 0}
+    m_Center: {x: 5.7279997, y: 9.41905, z: 0}
+    m_Extent: {x: 3.4703999, y: 5.7353497, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -13311,6 +13307,87 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!1 &955732135
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 955732136}
+  - component: {fileID: 955732138}
+  - component: {fileID: 955732137}
+  m_Layer: 0
+  m_Name: Turners
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &955732136
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 955732135}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 466234646}
+  - {fileID: 1480590985}
+  m_Father: {fileID: 490756196}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &955732137
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 955732135}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Events:
+    m_Signals:
+    - {fileID: 11400000, guid: defef0dbb2c5f994eac7757f78572af7, type: 2}
+    m_Events:
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 955732138}
+          m_TargetAssemblyTypeName: Utils.DirectionDetector, Assembly-CSharp
+          m_MethodName: TurnInDirection
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!114 &955732138
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 955732135}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e152d43197f70846b40b2f7a22222d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  from: {fileID: 404905208}
+  to: {fileID: 1593528245}
+  turnLeft: {fileID: 1480590984}
+  turnRight: {fileID: 466234648}
 --- !u!1 &962225351
 GameObject:
   m_ObjectHideFlags: 0
@@ -14716,6 +14793,85 @@ MonoBehaviour:
   targetTransform: {fileID: 864437628}
   leftRotation: {x: 0, y: -180, z: 0}
   rightRotation: {x: 0, y: 0, z: 0}
+--- !u!1 &1059345003
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1059345004}
+  - component: {fileID: 1059345006}
+  - component: {fileID: 1059345005}
+  m_Layer: 0
+  m_Name: TurnLeft
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1059345004
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1059345003}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1976332832}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1059345005
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1059345003}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Events:
+    m_Signals:
+    - {fileID: 11400000, guid: defef0dbb2c5f994eac7757f78572af7, type: 2}
+    m_Events:
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1059345006}
+          m_TargetAssemblyTypeName: Utils.TurnTransform, Assembly-CSharp
+          m_MethodName: Turner
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!114 &1059345006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1059345003}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1d9da98e510bf14484dd37f44b531f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  toTarget: 0
+  target: {fileID: 84311741}
+  to: {fileID: 0}
+  direction: 1
 --- !u!1 &1060933764
 GameObject:
   m_ObjectHideFlags: 0
@@ -17007,8 +17163,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.35019994, y: 5.44475, z: 0}
-    m_Extent: {x: 5.8742, y: 6.22215, z: 0}
+    m_Center: {x: -0.34675002, y: 5.4442997, z: 0}
+    m_Extent: {x: 5.8764496, y: 6.2164, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -17453,8 +17609,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 5.91765, y: 9.683201, z: 0}
-    m_Extent: {x: 4.61465, y: 7.2267003, z: 0}
+    m_Center: {x: 5.9205503, y: 9.6793, z: 0}
+    m_Extent: {x: 4.61625, y: 7.23, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -18127,8 +18283,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 6.17995, y: 10.20055, z: 0}
-    m_Extent: {x: 4.45095, y: 6.3977504, z: 0}
+    m_Center: {x: 6.19135, y: 10.19595, z: 0}
+    m_Extent: {x: 4.4558496, y: 6.3932495, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -18309,8 +18465,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 5.2143, y: 7.4143505, z: 0}
-    m_Extent: {x: 3.4815, y: 4.82405, z: 0}
+    m_Center: {x: 5.20955, y: 7.4124, z: 0}
+    m_Extent: {x: 3.48775, y: 4.8141, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -20517,85 +20673,6 @@ MonoBehaviour:
   playOnStart: 0
   ignorePause: 0
   createOnThisPosition: 0
---- !u!1 &1448928617
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1448928618}
-  - component: {fileID: 1448928620}
-  - component: {fileID: 1448928619}
-  m_Layer: 0
-  m_Name: Turner
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1448928618
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1448928617}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 373237454}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1448928619
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1448928617}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Events:
-    m_Signals:
-    - {fileID: 11400000, guid: defef0dbb2c5f994eac7757f78572af7, type: 2}
-    m_Events:
-    - m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1448928620}
-          m_TargetAssemblyTypeName: Utils.TurnTransform, Assembly-CSharp
-          m_MethodName: Turner
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
---- !u!114 &1448928620
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1448928617}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1d9da98e510bf14484dd37f44b531f7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  toTarget: 0
-  target: {fileID: 84311741}
-  to: {fileID: 0}
-  direction: 0
 --- !u!1001 &1453695213
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20891,6 +20968,85 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1480590982
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1480590985}
+  - component: {fileID: 1480590984}
+  - component: {fileID: 1480590983}
+  m_Layer: 0
+  m_Name: TurnRight
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1480590983
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1480590982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Events:
+    m_Signals:
+    - {fileID: 11400000, guid: defef0dbb2c5f994eac7757f78572af7, type: 2}
+    m_Events:
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1480590984}
+          m_TargetAssemblyTypeName: Utils.TurnTransform, Assembly-CSharp
+          m_MethodName: Turner
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!114 &1480590984
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1480590982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1d9da98e510bf14484dd37f44b531f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  toTarget: 0
+  target: {fileID: 84311741}
+  to: {fileID: 0}
+  direction: 0
+--- !u!4 &1480590985
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1480590982}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 955732136}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1484190204
 GameObject:
   m_ObjectHideFlags: 0
@@ -23443,8 +23599,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 11.8877, y: 15.8666, z: 0}
-    m_Extent: {x: 2.5488997, y: 5.2266, z: 0}
+    m_Center: {x: 11.8859005, y: 15.879049, z: 0}
+    m_Extent: {x: 2.5523, y: 5.2329497, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -23799,8 +23955,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 6.3812, y: 9.55765, z: 0}
-    m_Extent: {x: 3.4958, y: 5.00465, z: 0}
+    m_Center: {x: 6.3782, y: 9.56285, z: 0}
+    m_Extent: {x: 3.4933, y: 5.0063496, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -24516,6 +24672,85 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rails: {fileID: 1405161616}
   value: 0.505
+--- !u!1 &1736969258
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1736969261}
+  - component: {fileID: 1736969260}
+  - component: {fileID: 1736969259}
+  m_Layer: 0
+  m_Name: TurnRight
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1736969259
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1736969258}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Events:
+    m_Signals:
+    - {fileID: 11400000, guid: defef0dbb2c5f994eac7757f78572af7, type: 2}
+    m_Events:
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1736969260}
+          m_TargetAssemblyTypeName: Utils.TurnTransform, Assembly-CSharp
+          m_MethodName: Turner
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!114 &1736969260
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1736969258}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1d9da98e510bf14484dd37f44b531f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  toTarget: 0
+  target: {fileID: 84311741}
+  to: {fileID: 0}
+  direction: 0
+--- !u!4 &1736969261
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1736969258}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1976332832}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1739169941
 GameObject:
   m_ObjectHideFlags: 0
@@ -26964,8 +27199,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -1.8039999, y: 0.26999998, z: 0}
-    m_Extent: {x: 2.3637, y: 2.8469, z: 0}
+    m_Center: {x: -1.80235, y: 0.2830999, z: 0}
+    m_Extent: {x: 2.36735, y: 2.8441, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0.38
@@ -28413,6 +28648,87 @@ MonoBehaviour:
   FlipFinished:
     m_PersistentCalls:
       m_Calls: []
+--- !u!1 &1976332831
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1976332832}
+  - component: {fileID: 1976332834}
+  - component: {fileID: 1976332833}
+  m_Layer: 0
+  m_Name: Turners
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1976332832
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1976332831}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1059345004}
+  - {fileID: 1736969261}
+  m_Father: {fileID: 373237454}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1976332833
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1976332831}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Events:
+    m_Signals:
+    - {fileID: 11400000, guid: defef0dbb2c5f994eac7757f78572af7, type: 2}
+    m_Events:
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1976332834}
+          m_TargetAssemblyTypeName: Utils.DirectionDetector, Assembly-CSharp
+          m_MethodName: TurnInDirection
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!114 &1976332834
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1976332831}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e152d43197f70846b40b2f7a22222d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  from: {fileID: 404905208}
+  to: {fileID: 1770866687}
+  turnLeft: {fileID: 1736969260}
+  turnRight: {fileID: 1059345006}
 --- !u!1 &1981562522
 GameObject:
   m_ObjectHideFlags: 0
@@ -30078,8 +30394,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -1.3472, y: -0.54630005, z: 0}
-    m_Extent: {x: 2.17, y: 1.5995001, z: 0}
+    m_Center: {x: -1.3491501, y: -0.54095, z: 0}
+    m_Extent: {x: 2.1795502, y: 1.6110499, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0.38
@@ -32849,8 +33165,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 3.52585, y: 1.99555, z: 0}
-    m_Extent: {x: 3.80115, y: 4.66595, z: 0}
+    m_Center: {x: 3.52495, y: 1.9909, z: 0}
+    m_Extent: {x: 3.79775, y: 4.6538, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -32919,8 +33235,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.5454, y: 1.49765, z: 0}
-    m_Extent: {x: 4.3293, y: 3.74085, z: 0}
+    m_Center: {x: -0.54350007, y: 1.4966499, z: 0}
+    m_Extent: {x: 4.3348002, y: 3.72725, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -35836,8 +36152,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.007849991, y: 0.053249955, z: 0}
-    m_Extent: {x: 0.78725, y: 1.9575499, z: 0}
+    m_Center: {x: -0.000100016594, y: 0.060249984, z: 0}
+    m_Extent: {x: 0.7873, y: 1.95115, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -36408,8 +36724,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.67814994, y: -2.13155, z: 0}
-    m_Extent: {x: 1.15915, y: 1.69305, z: 0}
+    m_Center: {x: -0.679, y: -2.12795, z: 0}
+    m_Extent: {x: 1.1617, y: 1.68915, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -37201,8 +37517,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 3.2912502, y: 2.1242, z: 0}
-    m_Extent: {x: 4.03965, y: 4.535, z: 0}
+    m_Center: {x: 3.2862, y: 2.1233, z: 0}
+    m_Extent: {x: 4.032, y: 4.5351, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -37891,8 +38207,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.9355, y: -3.00855, z: 0}
-    m_Extent: {x: 1.7459, y: 2.91385, z: 0}
+    m_Center: {x: -0.93245006, y: -3.0145, z: 0}
+    m_Extent: {x: 1.74685, y: 2.9089, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -38196,8 +38512,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.68165004, y: 0.99095, z: 0}
-    m_Extent: {x: 4.20535, y: 3.23275, z: 0}
+    m_Center: {x: -0.6780499, y: 0.99864995, z: 0}
+    m_Extent: {x: 4.2013497, y: 3.2221498, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -40801,8 +41117,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.17774993, y: 0.04759997, z: 0}
-    m_Extent: {x: 2.02005, y: 0.9709, z: 0}
+    m_Center: {x: 0.1796, y: 0.039499998, z: 0}
+    m_Extent: {x: 2.0197, y: 0.9604, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -40850,8 +41166,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.09019998, y: -0.24444997, z: 0}
-    m_Extent: {x: 0.6155, y: 1.49545, z: 0}
+    m_Center: {x: -0.09470001, y: -0.23750001, z: 0}
+    m_Extent: {x: 0.6136, y: 1.5009, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
