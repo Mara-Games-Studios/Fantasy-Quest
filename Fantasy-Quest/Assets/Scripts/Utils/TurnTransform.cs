@@ -1,4 +1,5 @@
 using Sirenix.OdinInspector;
+using Spine.Unity;
 using UnityEngine;
 
 namespace Utils
@@ -27,6 +28,9 @@ namespace Utils
         [SerializeField]
         private Direction direction;
 
+        [SerializeField]
+        private bool useScale = false;
+
         [Button]
         public void Turner()
         {
@@ -44,6 +48,11 @@ namespace Utils
 
         private void Turn(Direction direction)
         {
+            if (useScale)
+            {
+                target.GetComponent<SkeletonAnimation>().skeleton.ScaleX = 1f;
+            }
+
             switch (direction)
             {
                 case Direction.right:

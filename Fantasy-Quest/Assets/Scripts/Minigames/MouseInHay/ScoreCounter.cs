@@ -1,6 +1,7 @@
 ﻿using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Minigames.MouseInHay
 {
@@ -16,12 +17,23 @@ namespace Minigames.MouseInHay
         private int neededScore = 3;
         public bool IsWinGame => score == NeededScore;
 
+        [SerializeField]
+        private bool showInvertScore = false;
+
         [Required]
         [SerializeField]
         private TMP_Text label;
 
+        public UnityEvent<ExitGameState> GameWinEvent;
+
         private void Update()
         {
+            if (showInvertScore)
+            {
+                label.text = score.ToString() + " X";
+                return;
+            }
+
             label.text = (neededScore - score).ToString() + " X";
         }
 
@@ -39,6 +51,10 @@ namespace Minigames.MouseInHay
         public void AddPoint()
         {
             score++;
+            if (score == NeededScore)
+            {
+                GameWinEvent?.Invoke(ExitGameState.Win);
+            }
         }
     }
 }

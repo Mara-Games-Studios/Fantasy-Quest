@@ -1,10 +1,11 @@
-﻿using UnityEngine;
+﻿using Common.DI;
+using UnityEngine;
 using VContainer;
 
 namespace DI.Shared.Bootstrap
 {
     [AddComponentMenu("Scripts/DI/Shared/Bootstrap/DI.Shared.Bootstrap.CursorLocker")]
-    public class CursorLocker : MonoBehaviour
+    public class CursorLocker : InjectingMonoBehaviour
     {
         [Inject]
         private Project.Services.Cursor cursorService;
@@ -12,11 +13,19 @@ namespace DI.Shared.Bootstrap
         [SerializeField]
         private bool lockOnStart;
 
+        [SerializeField]
+        private bool unLockOnStart;
+
         public void Start()
         {
             if (lockOnStart)
             {
                 cursorService.LockCursor();
+            }
+
+            if (unLockOnStart)
+            {
+                cursorService.UnLockCursor();
             }
         }
     }

@@ -137,6 +137,7 @@ namespace Cat.Jump
             public bool Found;
             public RailsImpl DestinationRails;
             public float DestinationRailsTime;
+            public float? EndCatScale;
             public Cat.Vector MoveVector;
             public Vector2 CatPosition;
             public JumpDirection JumpDirection;
@@ -207,6 +208,8 @@ namespace Cat.Jump
                 return new PrepareResult { Found = false };
             }
 
+            GroundMask mask = targetRail.GetComponent<GroundMask>();
+
             return new PrepareResult()
             {
                 Found = true,
@@ -214,6 +217,7 @@ namespace Cat.Jump
                 DestinationRailsTime = targetRail.GetClosestTimeOnPath(maxPoint),
                 MoveVector = moveVector,
                 CatPosition = absoluteCatPos,
+                EndCatScale = mask.IsCatScaleChange ? mask.NewCatScale : null,
             };
         }
 

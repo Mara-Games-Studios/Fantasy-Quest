@@ -5,15 +5,13 @@ using Common;
 using Minigames.MouseInHay.MouseSequenceBuilder;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Minigames.MouseInHay
 {
     [AddComponentMenu("Scripts/Minigames/MouseInHay/Minigames.MouseInHay.Hay")]
     internal class Hay : MonoBehaviour
     {
-        [SerializeField]
-        private Manager manager;
-
         [HideLabel]
         [SerializeReference]
         [FoldoutGroup("Mouse sequence parameters")]
@@ -33,7 +31,8 @@ namespace Minigames.MouseInHay
         [ReadOnly]
         [SerializeField]
         private List<ShowMouseConfig> showMouseConfigs;
-        public int AllMousesCount => showMouseConfigs.Count;
+
+        public UnityEvent<ExitGameState> MousesEndShow;
 
         private Coroutine launchCoroutine;
 
@@ -63,7 +62,7 @@ namespace Minigames.MouseInHay
                 ShowMousesInHoles(showMouseConfig.HolesCount, showTime);
                 yield return new WaitForSeconds(showMouseConfig.Delay + showMouseConfig.ShowTime);
             }
-            manager.ExitGame(ExitGameState.Lose);
+            MousesEndShow?.Invoke(ExitGameState.Lose);
         }
 
         private void ShowMousesInHoles(int mousesCount, float showTime)

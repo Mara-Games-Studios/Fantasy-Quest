@@ -100,7 +100,8 @@ namespace Dialogue
         {
             if (coroutine != null)
             {
-                Debug.LogError("DoubleTelling");
+                Debug.LogWarning("DoubleTelling");
+                StopCoroutine(coroutine);
             }
         }
 
