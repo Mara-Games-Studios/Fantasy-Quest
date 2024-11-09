@@ -15,13 +15,10 @@ namespace Hints
         private LockerApi lockerSettings;
 
         [SerializeField]
-        private bool alwaysShowWithoutTimer = false;
+        private bool useWaitBeforeHint = false;
 
         [SerializeField]
-        private bool firstShowWithoutTimer = true;
-
-        [SerializeField]
-        private float fadeInDuration = 0.6f;
+        private float fadeInDuration = 0.3f;
 
         [SerializeField]
         private float fadeOutDuration = 0.3f;
@@ -58,18 +55,17 @@ namespace Hints
                 waitTween?.Kill();
                 if (!lockerSettings.Api.IsDialogueBubbleLocked)
                 {
-                    if (firstShowWithoutTimer || alwaysShowWithoutTimer)
-                    {
-                        Fade(1, fadeInDuration);
-                        firstShowWithoutTimer = false;
-                    }
-                    else
+                    if (useWaitBeforeHint)
                     {
                         waitTween = DOVirtual.DelayedCall(
                             WaitTime,
                             () => Fade(1, fadeInDuration),
                             false
                         );
+                    }
+                    else
+                    {
+                        Fade(1, fadeInDuration);
                     }
                 }
             }
@@ -91,6 +87,19 @@ namespace Hints
             foreach (SpriteRenderer kbRenderer in keyboardSpriteRenderer)
             {
                 tweens.Add(kbRenderer.DOFade(endValue, duration));
+            }
+        }
+
+        public void ShowingHints(bool state)
+        {
+            waitTween?.Kill();
+            if (state)
+            {
+                Fade(1, fadeInDuration);
+            }
+            else
+            {
+                Fade(0, fadeOutDuration);
             }
         }
 
