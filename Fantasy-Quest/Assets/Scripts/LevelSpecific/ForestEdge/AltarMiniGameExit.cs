@@ -33,9 +33,9 @@ namespace LevelSpecific.ForestEdge
 
         public void CallMinigamePassed()
         {
-            ProgressionConfig.Instance.ForestEdgeLevel.AltarGamePassed = true;
             if (passedLoseWin)
             {
+                ProgressionConfig.Instance.ForestEdgeLevel.AltarGamePassed = true;
                 PassedFirstTimeAfter?.Invoke();
                 passedLoseWin = false;
             }
