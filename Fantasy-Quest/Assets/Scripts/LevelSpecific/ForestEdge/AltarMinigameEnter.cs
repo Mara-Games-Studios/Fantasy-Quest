@@ -31,6 +31,10 @@ namespace LevelSpecific.ForestEdge
                 miniGameManager.RefreshMiniGame();
                 miniGameManager.StartMiniGame();
             }
+        }
+
+        public void EnableExitButton()
+        {
             quitInput.enabled = true;
         }
     }

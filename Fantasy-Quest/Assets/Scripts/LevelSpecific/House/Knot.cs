@@ -3,6 +3,7 @@ using Common.DI;
 using Configs;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
+using Hints;
 using Interaction;
 using Sirenix.OdinInspector;
 using Spine.Unity;
@@ -21,6 +22,10 @@ namespace LevelSpecific.House
         [SerializeField]
         [Required]
         private Cat.Movement catMovement;
+
+        [Required]
+        [SerializeField]
+        private ShowHints hintsShower;
 
         [SerializeField]
         [Required]
@@ -66,35 +71,48 @@ namespace LevelSpecific.House
         private float ballAnimationDelay;
 
         private bool isKnotMoving = false;
+        private bool canMoveRight = false;
+        private bool canMoveLeft = false;
         private float KnotPosition => transform.position.x;
 
         public UnityEvent OnKnotHinted;
 
-        public void Interact()
+        private void OnTriggerStay2D(Collider2D collision)
         {
-            if (!isKnotMoving)
+            if (collision.TryGetComponent(out InteractionImpl _))
             {
+                canMoveRight = false;
+                canMoveLeft = false;
                 float catPosition = catMovement.transform.position.x;
+
                 if (catMovement.Vector == Cat.Vector.Right && KnotPosition - catPosition > 0)
                 {
-                    _ = PlayCatAnimation();
-                    _ = PlayKnotAnimation(
-                        moveRightKnotAnimationName,
-                        knotMoveDistance,
-                        pushCurve,
-                        true
-                    );
+                    canMoveRight = true;
+                    hintsShower.ShowingHints(!isKnotMoving);
                 }
                 else if (catMovement.Vector == Cat.Vector.Left && KnotPosition - catPosition < 0)
                 {
-                    _ = PlayCatAnimation();
-                    _ = PlayKnotAnimation(
-                        moveLeftKnotAnimationName,
-                        -knotMoveDistance,
-                        pushCurve,
-                        true
-                    );
+                    canMoveLeft = true;
+                    hintsShower.ShowingHints(!isKnotMoving);
                 }
+                else
+                {
+                    hintsShower.ShowingHints(false);
+                }
+            }
+        }
+
+        public void Interact()
+        {
+            if (canMoveRight)
+            {
+                _ = PlayCatAnimation();
+                _ = PlayKnotAnimation(moveRightKnotAnimationName, knotMoveDistance, true);
+            }
+            else if (canMoveLeft)
+            {
+                _ = PlayCatAnimation();
+                _ = PlayKnotAnimation(moveLeftKnotAnimationName, -knotMoveDistance, true);
             }
         }
 
@@ -102,21 +120,11 @@ namespace LevelSpecific.House
         {
             if (KnotPosition < knotStartPosition)
             {
-                _ = PlayKnotAnimation(
-                    moveRightKnotAnimationName,
-                    knotMoveDistance,
-                    bounceCurve,
-                    false
-                );
+                _ = PlayKnotAnimation(moveRightKnotAnimationName, knotMoveDistance, false);
             }
             else if (KnotPosition > knotEndPosition)
             {
-                _ = PlayKnotAnimation(
-                    moveLeftKnotAnimationName,
-                    -knotMoveDistance,
-                    bounceCurve,
-                    false
-                );
+                _ = PlayKnotAnimation(moveLeftKnotAnimationName, -knotMoveDistance, false);
             }
         }
 
@@ -139,7 +147,6 @@ namespace LevelSpecific.House
         private async UniTask PlayKnotAnimation(
             string animationName,
             float moveDistance,
-            AnimationCurve curve,
             bool isDelayed
         )
         {
@@ -152,7 +159,9 @@ namespace LevelSpecific.House
             isKnotMoving = true;
             _ = knotSkeletonAnimation.AnimationState.SetAnimation(0, animationName, true);
 
-            await transform.DOMoveX(KnotPosition + moveDistance, knotMoveDuration).SetEase(curve);
+            await transform
+                .DOMoveX(KnotPosition + moveDistance, knotMoveDuration)
+                .SetEase(pushCurve);
 
             _ = knotSkeletonAnimation.AnimationState.SetEmptyAnimation(0, 0);
             isKnotMoving = false;
